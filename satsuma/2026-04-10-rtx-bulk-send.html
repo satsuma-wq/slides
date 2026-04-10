@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【協業】RTX 一括送信ツール</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f4f8;color:#333;padding:24px 16px}
+  .container{max-width:680px;margin:0 auto}
+  h1{font-size:1.35em;font-weight:700;margin-bottom:4px}
+  .subtitle{font-size:.88em;color:#555;background:#e8f0fe;border-left:3px solid #2563eb;padding:10px 14px;border-radius:0 6px 6px 0;margin-bottom:24px;line-height:1.6}
+  .card{background:white;border-radius:10px;padding:20px 24px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .card h2{font-size:1em;color:#1d4ed8;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .card h2 .num{background:#1d4ed8;color:white;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:.8em;flex-shrink:0}
+  ol,ul{padding-left:1.4em}
+  ol li,ul li{margin-bottom:8px;line-height:1.7}
+  textarea{width:100%;height:110px;font-family:monospace;font-size:11px;border:1px solid #ddd;border-radius:6px;padding:10px;resize:vertical;background:#fafafa;margin-top:10px}
+  .copy-btn{display:block;width:100%;margin-top:8px;padding:11px;background:#1d4ed8;color:white;border:none;border-radius:6px;font-size:.95em;cursor:pointer;font-weight:600;transition:background .15s}
+  .copy-btn:hover{background:#1e40af}
+  .copy-btn:active{background:#1e3a8a}
+  kbd{background:#eee;border:1px solid #ccc;border-radius:3px;padding:1px 5px;font-family:monospace;font-size:.9em}
+  .note{background:#fff8e1;border-left:3px solid #f9a825;padding:10px 14px;border-radius:0 6px 6px 0;font-size:.88em;margin-top:12px;line-height:1.6}
+  .tip{background:#e8f5e9;border-left:3px solid #43a047;padding:10px 14px;border-radius:0 6px 6px 0;font-size:.88em;margin-top:12px;line-height:1.6}
+  code{background:#f0f0f0;padding:1px 5px;border-radius:3px;font-family:monospace;font-size:.9em}
+  table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.9em}
+  th{background:#f0f4f8;padding:8px 12px;text-align:left;border:1px solid #e0e0e0;font-weight:600}
+  td{padding:8px 12px;border:1px solid #e0e0e0;vertical-align:top}
+  tr:nth-child(even) td{background:#fafafa}
+  .tag{display:inline-block;background:#1d4ed8;color:white;font-size:.7em;padding:2px 7px;border-radius:10px;vertical-align:middle;margin-left:6px;font-weight:normal}
+  .ver{font-size:.75em;color:#bbb;text-align:center;margin-top:24px}
+  .section-title{font-size:1em;font-weight:700;color:#1f2937;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e5e7eb}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>📨 【協業】RTX 一括送信ツール <span class="tag">v2.2</span></h1>
+  <p class="subtitle">協業パートナーのグループに、同じメッセージをまとめて送れるツールです。<br>物件紹介やお知らせなど、何十件もあるグループに1件ずつ送る手間がなくなります。</p>
+
+  <!-- できること -->
+  <div class="card">
+    <h2>📋 このツールでできること</h2>
+    <ul>
+      <li>「<b>協業</b>」と「<b>RTX</b>」が名前に入っているLINE WORKSグループに、同じメッセージを一括送信できます</li>
+      <li>「閉鎖」と書かれたグループは自動で除外されます</li>
+      <li>新しくグループが追加されても、条件に合えば自動で送信対象になります</li>
+    </ul>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="card">
+    <h2><span class="num">1</span>コードをコピーする</h2>
+    <p style="font-size:.9em;color:#555">下のボタンを押してコードを全選択し、<kbd>Ctrl</kbd>+<kbd>C</kbd>（Macは<kbd>⌘</kbd>+<kbd>C</kbd>）でコピーしてください。</p>
+    <textarea id="code" readonly>javascript:void((async()=>{if(!location.hostname.includes('worksmobile.com')){alert('LINE WORKS のトーク画面で実行してください');return}document.title='チャンネル読み込み中...';const sl=document.querySelector('.chat_list');if(sl){const sc=sl.closest('[class*=scroll]')||sl.parentElement;if(sc){let prev=0;let cur=sl.querySelectorAll('.item_chat').length;for(let i=0;i<50;i++){sc.scrollTop=sc.scrollHeight;await new Promise(r=>setTimeout(r,600));cur=sl.querySelectorAll('.item_chat').length;document.title='読み込み中... '+cur+'件';if(cur===prev)break;prev=cur}sc.scrollTop=0;await new Promise(r=>setTimeout(r,500))}}const channels=window._messageAppData?.ChannelList?._channels;if(!channels){alert('チャンネルデータが見つかりません。ページをリロードしてください。');return}const kyogyo=Object.values(channels).filter(ch=>ch.title&&ch.title.includes('協業')&&ch.title.includes('RTX')&&!ch.title.includes('閉鎖'));if(!kyogyo.length){alert('「協業」+「RTX」を含むグループが見つかりません');return}const ov=document.createElement('div');ov.id='rtx-send-overlay';ov.style.cssText='position:fixed;top:0;left:0;width:100%25;height:100%25;background:rgba(0,0,0,0.5);z-index:99999;display:flex;align-items:center;justify-content:center;font-family:sans-serif';const box=document.createElement('div');box.style.cssText='background:%23fff;border-radius:16px;padding:28px;width:520px;max-width:90vw;max-height:90vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.2)';const h=document.createElement('div');h.style.cssText='font-size:18px;font-weight:700;color:%231f2937;margin-bottom:4px';h.textContent='【協業】RTX 一括送信';box.appendChild(h);const sub=document.createElement('div');sub.style.cssText='font-size:13px;color:%236b7280;margin-bottom:16px';sub.textContent=kyogyo.length+'グループに送信します';box.appendChild(sub);const gl=document.createElement('div');gl.style.cssText='font-size:12px;color:%236b7280;margin-bottom:8px;max-height:120px;overflow-y:auto;background:%23f9fafb;border-radius:8px;padding:8px';gl.innerHTML=kyogyo.map(ch=>'・'+ch.title).join('<br>');box.appendChild(gl);const lb=document.createElement('div');lb.style.cssText='font-size:13px;font-weight:600;color:%23374151;margin-bottom:6px';lb.textContent='メッセージ：';box.appendChild(lb);const ta=document.createElement('textarea');ta.id='rtx-msg-input';ta.style.cssText='width:100%25;height:240px;border:1px solid %23d1d5db;border-radius:8px;padding:12px;font-size:14px;line-height:1.6;resize:vertical;font-family:inherit';ta.placeholder='ここにメッセージを入力...';box.appendChild(ta);const btns=document.createElement('div');btns.style.cssText='display:flex;gap:10px;margin-top:16px;justify-content:flex-end';const cb=document.createElement('button');cb.id='rtx-cancel';cb.style.cssText='padding:10px 24px;border-radius:8px;border:1px solid %23d1d5db;background:%23fff;color:%23374151;font-size:14px;cursor:pointer';cb.textContent='キャンセル';btns.appendChild(cb);const sb=document.createElement('button');sb.id='rtx-send';sb.style.cssText='padding:10px 24px;border-radius:8px;border:none;background:%232563eb;color:%23fff;font-size:14px;font-weight:600;cursor:pointer';sb.textContent='送信する';btns.appendChild(sb);box.appendChild(btns);ov.appendChild(box);document.body.appendChild(ov);document.title='LINE WORKS';ta.focus();const result=await new Promise(resolve=>{cb.onclick=()=>{ov.remove();resolve(null)};sb.onclick=()=>{const v=ta.value;ov.remove();resolve(v)}});if(!result||!result.trim())return;const msg=result;if(!confirm('以下の'+kyogyo.length+'グループにメッセージを送信します。よろしいですか？'))return;const items=document.querySelectorAll('.chat_list .item_chat');if(!items.length){alert('トーク一覧が見つかりません');return}const fk=Object.keys(items[0]).find(k=>k.startsWith('__reactFiber')||k.startsWith('__reactInternalInstance'));if(!fk){alert('内部構造が見つかりません');return}const clickCh=items[0][fk].return?.stateNode?.props?.clickChannel;if(!clickCh){alert('clickChannel関数が見つかりません');return}let done=0;const errors=[];for(const ch of kyogyo){try{clickCh(ch);document.title='送信中... '+(done+1)+'/'+kyogyo.length+' '+ch.title;await new Promise(r=>setTimeout(r,1500));const mi=document.getElementById('message-input');if(!mi){errors.push(ch.title+': 入力欄なし');continue}const mfk=Object.keys(mi).find(k=>k.startsWith('__reactFiber')||k.startsWith('__reactInternalInstance'));if(!mfk){errors.push(ch.title+': fiber未検出');continue}let nd=mi[mfk];for(let i=0;i<5;i++){nd=nd.return}const comp=nd.stateNode;if(!comp||!comp.setContent||!comp.sendContent){errors.push(ch.title+': 送信関数なし');continue}comp.setContent(msg);await new Promise(r=>setTimeout(r,300));comp.sendContent();done++;await new Promise(r=>setTimeout(r,1000))}catch(e){errors.push(ch.title+': '+e.message)}}document.title='LINE WORKS';let res='完了！ '+done+'/'+kyogyo.length+'グループに送信しました';if(errors.length)res+='\n\nエラー：\n'+errors.join('\n');alert(res)})())</textarea>
+    <button class="copy-btn" onclick="var t=document.getElementById('code');t.focus();t.select();this.textContent='✅ 選択されました！ → Ctrl+C でコピー'">
+      👆 クリックしてコードを全選択する
+    </button>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="card">
+    <h2><span class="num">2</span>ブックマークとして登録する（最初の1回だけ）</h2>
+    <ol>
+      <li>Chromeのブックマークバー（アドレスバーの下の帯）で<b>右クリック</b>する</li>
+      <li>メニューから <b>「ページを追加…」</b> を選ぶ</li>
+      <li><b>名前</b> に <code>協業RTX一括送信</code> と入力する</li>
+      <li><b>URL</b> 欄を全選択（<kbd>Ctrl</kbd>+<kbd>A</kbd>）して、コピーしたコードを <b>貼り付け</b>（<kbd>Ctrl</kbd>+<kbd>V</kbd>）</li>
+      <li><b>「保存」</b> を押す</li>
+    </ol>
+    <div style="background:#f8fafc;border-radius:6px;padding:12px;margin-top:10px;font-size:.88em;color:#555;line-height:1.7">
+      📌 ブックマークバーが表示されていない場合：<br>
+      <b>Windows:</b> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> 　<b>Mac:</b> <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>
+    </div>
+    <div class="note">
+      ⚠️ <b>重要：</b> Chromeはブックマーク登録時に先頭の <code>javascript:</code> を自動で削除することがあります。<br>
+      保存後にブックマークを<b>右クリック →「編集」</b>で開き、URLが <code>javascript:void(</code> で始まっているか確認してください。<br>
+      消えていた場合は先頭に <code>javascript:</code> を追加して再保存してください。
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="card">
+    <h2><span class="num">3</span>使い方（毎回の操作）</h2>
+    <ol>
+      <li>ChromeでLINE WORKSのトーク画面（<code>talk.worksmobile.com</code>）を開く</li>
+      <li>ブックマークバーの <b>「協業RTX一括送信」</b> をクリックする</li>
+      <li>画面にチャットリストの読み込みが始まる（タブに「読み込み中… ○○件」と表示）</li>
+      <li>送信先グループの一覧とメッセージ入力欄が表示される</li>
+      <li>メッセージを入力して <b>「送信する」</b> をクリック</li>
+      <li>確認ダイアログで <b>「OK」</b> を押すと送信開始</li>
+      <li>完了ダイアログが出たら終了！</li>
+    </ol>
+    <div class="tip">
+      ✅ タブのタイトルに「送信中… 1/50」のように進捗が表示されます。<br>
+      送信が完了するまでブラウザを閉じないでください。
+    </div>
+  </div>
+
+  <!-- 送信時間 -->
+  <div class="card">
+    <h2>⏱ 送信にかかる時間の目安</h2>
+    <table>
+      <tr><th>グループ数</th><th>かかる時間</th></tr>
+      <tr><td>50件</td><td>約2分半</td></tr>
+      <tr><td>100件</td><td>約5分</td></tr>
+      <tr><td>200件</td><td>約10分</td></tr>
+      <tr><td>250件</td><td>約12分</td></tr>
+    </table>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card">
+    <h2>❓ よくある質問</h2>
+    <ol>
+      <li style="margin-bottom:14px">
+        <b>どのグループに送信されるの？</b><br>
+        <span style="font-size:.9em;color:#555">グループ名に「<b>協業</b>」と「<b>RTX</b>」の両方が入っているグループが対象です。「閉鎖」と書かれたグループは除外されます。</span>
+      </li>
+      <li style="margin-bottom:14px">
+        <b>新しく協業グループを作ったら、自動で対象になる？</b><br>
+        <span style="font-size:.9em;color:#555">はい！グループ名に「協業」と「RTX」が入っていれば、次回実行時から自動的に対象になります。</span>
+      </li>
+      <li style="margin-bottom:14px">
+        <b>送信中にブラウザを閉じても大丈夫？</b><br>
+        <span style="font-size:.9em;color:#555">送信が途中で止まってしまうので、完了ダイアログが出るまでそのままにしてください。</span>
+      </li>
+      <li style="margin-bottom:14px">
+        <b>画面がバタバタ切り替わるけど正常？</b><br>
+        <span style="font-size:.9em;color:#555">はい、正常です。各グループを1つずつ開いて送信しているため、画面が切り替わります。</span>
+      </li>
+      <li style="margin-bottom:14px">
+        <b>画像やファイルも送れる？</b><br>
+        <span style="font-size:.9em;color:#555">テキストメッセージのみ対応です。画像やファイルの送信はできません。</span>
+      </li>
+      <li>
+        <b>改行のあるメッセージは送れる？</b><br>
+        <span style="font-size:.9em;color:#555">はい、入力欄でEnterキーを押せば改行できます。</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- トラブルシューティング -->
+  <div class="card">
+    <h2>🔧 うまくいかないときは</h2>
+    <table>
+      <tr><th>症状</th><th>対処法</th></tr>
+      <tr><td>「LINE WORKSのトーク画面で実行してください」と出る</td><td><code>talk.worksmobile.com</code> を開いてから実行</td></tr>
+      <tr><td>「チャンネルデータが見つかりません」と出る</td><td>ページをリロード（<kbd>F5</kbd>）してから再実行</td></tr>
+      <tr><td>対象グループが0件と表示される</td><td>トーク一覧が表示されているか確認。ページをリロードして再実行</td></tr>
+      <tr><td>一部のグループで送信失敗</td><td>完了ダイアログにエラー一覧が出るので、そのグループだけ手動で送信</td></tr>
+      <tr><td>何も起きない・ボタンが反応しない</td><td>ブックマークを右クリック→「編集」でURLの先頭に <code>javascript:</code> があるか確認</td></tr>
+    </table>
+  </div>
+
+  <p class="ver">v2.2 / 2026-04-10 — 社内専用ツール</p>
+</div>
+</body>
+</html>
