@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】 福岡県北九州市八幡東区宮田町 一棟アパート（二棟）</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+    font-size: 10pt;
+    color: #1A365D;
+    background: #fff;
+  }
+
+  @page {
+    size: A4 landscape;
+    margin: 14mm 15mm;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .page-break { page-break-before: always; }
+    section, .avoid-break { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+  }
+
+  /* ========== ページ共通 ========== */
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 20mm);
+    justify-content: space-between;
+    width: 267mm;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .page-content {
+    flex: 1;
+  }
+
+  /* ========== ヘッダー ========== */
+  .header {
+    background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+    color: white;
+    padding: 10px 18px 8px;
+    border-bottom: 3px solid #DAA520;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .header-logo img {
+    height: 32px;
+    filter: brightness(0) invert(1);
+  }
+
+  .header-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.4);
+  }
+
+  .header-title-group {}
+  .header-label {
+    font-size: 7.5pt;
+    letter-spacing: 2px;
+    color: #DAA520;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .header-property-name {
+    font-size: 15pt;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-top: 2px;
+  }
+
+  .header-right {
+    text-align: right;
+    font-size: 8pt;
+    color: rgba(255,255,255,0.85);
+  }
+  .header-right a {
+    color: #DAA520;
+    text-decoration: none;
+    font-size: 7.5pt;
+  }
+  .header-property-num {
+    font-size: 7pt;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+  }
+
+  /* ========== ハイライトボックス ========== */
+  .highlight-box {
+    background: linear-gradient(135deg, #fffdf0 0%, #fef9e7 100%);
+    border: 1.5px solid #DAA520;
+    border-radius: 6px;
+    padding: 8px 14px;
+    margin: 8px 0 6px;
+    display: flex;
+    gap: 0;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .highlight-item {
+    text-align: center;
+    padding: 0 10px;
+    border-right: 1px solid #e8d5a0;
+    flex: 1;
+  }
+  .highlight-item:last-child { border-right: none; }
+
+  .highlight-label {
+    font-size: 7pt;
+    color: #666;
+    margin-bottom: 2px;
+    font-weight: 500;
+  }
+  .highlight-value {
+    font-size: 16pt;
+    font-weight: 900;
+    color: #1A365D;
+    line-height: 1.1;
+  }
+  .highlight-value.red { color: #C41E3A; }
+  .highlight-value.green { color: #1a6b3a; }
+  .highlight-sub {
+    font-size: 7pt;
+    color: #888;
+    margin-top: 1px;
+  }
+
+  /* ========== 物件概要テーブル ========== */
+  .overview-section {
+    margin: 6px 0;
+  }
+
+  .section-title {
+    background: #1A365D;
+    color: white;
+    padding: 4px 10px;
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .overview-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+  }
+  .overview-table td {
+    padding: 4px 8px;
+    border: 1px solid #d0d8e8;
+    vertical-align: middle;
+  }
+  .overview-table tr:nth-child(even) { background: #f5f7fc; }
+  .overview-table .label {
+    background: #E8F0FE;
+    color: #1A365D;
+    font-weight: 700;
+    width: 110px;
+    white-space: nowrap;
+  }
+  .overview-table .value { color: #222; }
+  .price-red { color: #CC6600; font-weight: 900; font-size: 11pt; }
+  .yield-green { color: #9A7000; font-weight: 700; }
+
+  /* ========== フッター帯 ========== */
+  .footer-band {
+    background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+    border-top: 3px solid #DAA520;
+    padding: 6px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    margin-top: auto;
+  }
+  .footer-band img {
+    height: 22px;
+    filter: brightness(0) invert(1);
+  }
+  .footer-info {
+    font-size: 7pt;
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+  }
+  .footer-contact {
+    font-size: 7pt;
+    color: rgba(255,255,255,0.8);
+    text-align: right;
+  }
+
+  /* ========== ページ2: レントロール ========== */
+  .page-break {
+    page-break-before: always;
+  }
+
+  .lentroll-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin-top: 4px;
+  }
+  .lentroll-table th {
+    background: #1A365D;
+    color: white;
+    padding: 5px 6px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 8pt;
+    border: 1px solid #2d4a7a;
+  }
+  .lentroll-table td {
+    padding: 4px 6px;
+    border: 1px solid #d0d8e8;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .lentroll-table tr:nth-child(even) td { background: #f5f7fc; }
+  .lentroll-table .building-header td {
+    background: #E8F0FE;
+    color: #1A365D;
+    font-weight: 700;
+    font-size: 8.5pt;
+  }
+  .lentroll-table .total-row td {
+    background: #fef9e7;
+    font-weight: 700;
+    border-top: 2px solid #DAA520;
+  }
+  .occupied { color: #1a6b3a; font-weight: 700; }
+  .vacant { color: #888; }
+  .rent-amount { font-weight: 700; color: #1A365D; }
+  .assumed { color: #2563EB; font-style: italic; }
+
+  /* ========== 収支・投資指標 ========== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 6px 0;
+  }
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 6px 0;
+  }
+
+  .finance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+  }
+  .finance-table td {
+    padding: 4px 8px;
+    border: 1px solid #d0d8e8;
+    vertical-align: middle;
+  }
+  .finance-table .label {
+    background: #E8F0FE;
+    color: #1A365D;
+    font-weight: 700;
+    width: 120px;
+  }
+  .finance-table .value { font-weight: 500; }
+  .finance-table .subtotal td { background: #f0f4fd; font-weight: 700; }
+  .finance-table .noi-row td { background: #1A365D; color: white; font-weight: 900; }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin: 6px 0;
+  }
+  .kpi-card {
+    background: linear-gradient(135deg, #fffdf0 0%, #fef9e7 100%);
+    border: 1.5px solid #DAA520;
+    border-radius: 5px;
+    padding: 6px 8px;
+    text-align: center;
+  }
+  .kpi-label { font-size: 7pt; color: #555; margin-bottom: 2px; }
+  .kpi-value { font-size: 13pt; font-weight: 900; color: #1A365D; }
+  .kpi-sub { font-size: 6.5pt; color: #888; margin-top: 1px; }
+
+  .points-list {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0;
+  }
+  .points-list li {
+    padding: 5px 10px 5px 28px;
+    border-left: 3px solid #DAA520;
+    margin-bottom: 4px;
+    background: #fffdf5;
+    font-size: 8.5pt;
+    position: relative;
+    border-radius: 0 3px 3px 0;
+  }
+  .points-list li::before {
+    content: "●";
+    position: absolute;
+    left: 8px;
+    color: #DAA520;
+    font-size: 8pt;
+  }
+  .points-list li strong { color: #9A5500; }
+
+  /* 周辺環境カード */
+  .env-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin: 4px 0;
+  }
+  .env-card {
+    border: 1px solid #d0d8e8;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 7.5pt;
+    position: relative;
+  }
+  .env-card img {
+    width: 100%;
+    height: 65px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(1.08) contrast(1.04);
+  }
+  .env-card-body {
+    padding: 4px 6px;
+    background: #f5f7fc;
+  }
+  .env-card-cat {
+    font-size: 6.5pt;
+    color: #2563EB;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .env-card-name {
+    font-weight: 700;
+    color: #1A365D;
+    font-size: 7.5pt;
+    margin-top: 1px;
+  }
+  /* 世界遺産・イオン強調 */
+  .env-card.env-featured {
+    border: 2px solid #DAA520;
+    box-shadow: 0 2px 8px rgba(218,165,32,0.25);
+  }
+  .env-card.env-featured img {
+    height: 75px;
+    filter: brightness(1.12) contrast(1.06) saturate(1.1);
+  }
+  .env-card.env-featured .env-card-body {
+    background: linear-gradient(135deg, #fffdf0, #fef9e7);
+    border-top: 1.5px solid #DAA520;
+  }
+  .env-card.env-featured .env-card-cat {
+    color: #b8860b;
+  }
+  .env-feat-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #DAA520;
+    color: white;
+    font-size: 5.5pt;
+    font-weight: 900;
+    padding: 2px 5px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+  }
+
+  /* ========== ページ4: 写真 ========== */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin: 4px 0;
+  }
+  .photo-item {
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+  .photo-item img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(1.12) contrast(1.05) saturate(1.08);
+  }
+  .photo-label {
+    font-size: 7pt;
+    text-align: center;
+    padding: 3px;
+    background: #f5f7fc;
+    color: #555;
+  }
+  .photo-main img {
+    height: 140px;
+    filter: brightness(1.15) contrast(1.06) saturate(1.1);
+  }
+
+  .notes-box {
+    background: #fff8f0;
+    border: 1.5px solid #e0884a;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    font-size: 8.5pt;
+  }
+  .notes-box .notes-title {
+    font-weight: 700;
+    color: #c44a10;
+    margin-bottom: 6px;
+    font-size: 9pt;
+  }
+  .notes-box ul {
+    padding-left: 16px;
+    color: #444;
+    line-height: 1.8;
+  }
+
+  /* ========== ページ5: LINEチラシ ========== */
+  .line-page {
+    background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+    min-height: 140mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 18px 20px 14px;
+    text-align: center;
+    gap: 0;
+  }
+  .line-header-label {
+    font-size: 9pt;
+    color: #1a365d;
+    font-weight: 700;
+    margin-bottom: 6px;
+    margin-top: 0;
+  }
+  .line-main-title {
+    font-size: 20pt;
+    font-weight: 900;
+    color: #1a365d;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .line-sub-title {
+    font-size: 11pt;
+    color: #2d4a7a;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .line-content {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 16px 0;
+  }
+  .line-qr-area {
+    background: white;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .line-qr-area img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+  }
+  .line-qr-label {
+    font-size: 7pt;
+    color: #555;
+    font-weight: 700;
+  }
+  .line-features {
+    background: white;
+    border-radius: 10px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    text-align: left;
+    min-width: 200px;
+  }
+  .line-features h4 {
+    font-size: 9pt;
+    color: #1a365d;
+    margin-bottom: 8px;
+    font-weight: 900;
+  }
+  .line-features ul {
+    list-style: none;
+    padding: 0;
+  }
+  .line-features ul li {
+    padding: 3px 0 3px 18px;
+    font-size: 8pt;
+    color: #333;
+    position: relative;
+  }
+  .line-features ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #06C755;
+    font-weight: 900;
+  }
+  .line-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #06C755, #04B34F);
+    color: white;
+    font-size: 11pt;
+    font-weight: 900;
+    padding: 10px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    margin: 0 0 16px 0;
+    box-shadow: 0 4px 12px rgba(6,199,85,0.35);
+    letter-spacing: 0.5px;
+  }
+  .line-company {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    padding: 6px 14px;
+  }
+  .line-company img {
+    height: 22px;
+  }
+  .line-company-info {
+    font-size: 7pt;
+    color: #1a365d;
+    text-align: left;
+  }
+
+  /* ========== 概要テーブル 2カラム ========== */
+  .overview-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 4px 0;
+  }
+
+  /* ========== HERO SECTION（ページ1） ========== */
+  .hero-section {
+    display: grid;
+    grid-template-columns: 56% 44%;
+    gap: 0;
+    margin: 6px 0 5px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1.5px solid #DAA520;
+    min-height: 68mm;
+  }
+  .hero-left {
+    background: linear-gradient(150deg, #0b1e3a 0%, #1a365d 55%, #1e4a7a 100%);
+    padding: 14px 20px 14px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+  }
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(1.15) contrast(1.05) saturate(1.1);
+  }
+  .hero-right-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.55));
+    padding: 8px 10px 6px;
+    color: white;
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 6.5pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #DAA520;
+    text-transform: uppercase;
+    background: rgba(218,165,32,0.12);
+    border: 1px solid rgba(218,165,32,0.4);
+    border-radius: 2px;
+    padding: 2px 7px;
+    margin-bottom: 5px;
+  }
+  .hero-metric {
+    margin-bottom: 6px;
+  }
+  .hero-metric-label {
+    font-size: 7pt;
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 0;
+    line-height: 1.3;
+  }
+  .hero-metric-value {
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -1px;
+  }
+  .hero-v-red {
+    font-size: 32pt;
+    color: #FF9500;
+    text-shadow: 0 2px 12px rgba(255,149,0,0.55);
+  }
+  .hero-v-green {
+    font-size: 32pt;
+    color: #F5C518;
+    text-shadow: 0 2px 12px rgba(245,197,24,0.5);
+  }
+  .hero-v-green-md {
+    font-size: 20pt;
+    color: #F5C518;
+  }
+  .hero-v-current {
+    font-size: 22pt;
+    color: #FFD700;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.5px;
+    text-shadow: 0 1px 8px rgba(255,215,0,0.5);
+  }
+  .hero-current-box {
+    background: rgba(255,215,0,0.12);
+    border: 1px solid rgba(255,215,0,0.45);
+    border-radius: 4px;
+    padding: 4px 10px 5px;
+    margin-bottom: 5px;
+  }
+  .hero-divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(218,165,32,0.5), transparent);
+    margin: 5px 0;
+  }
+  .hero-bottom-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+  .hero-badge {
+    background: rgba(218,165,32,0.15);
+    border: 1px solid rgba(218,165,32,0.5);
+    border-radius: 10px;
+    padding: 2px 9px;
+    font-size: 7pt;
+    color: #DAA520;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* ========== 統合概要テーブル ========== */
+  .overview-unified {
+    margin: 4px 0;
+  }
+  .overview-unified-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8pt;
+  }
+  .overview-unified-table td {
+    padding: 3px 8px;
+    border: 1px solid #d0d8e8;
+    vertical-align: middle;
+  }
+  .overview-unified-table tr:nth-child(even) td { background: #f5f7fc; }
+  .overview-unified-table tr:nth-child(even) .ov-lbl { background: #dce6f8; }
+  .ov-icon {
+    width: 22px;
+    text-align: center;
+    font-size: 10pt;
+    background: #E8F0FE;
+    border-right: none !important;
+    padding: 3px 2px !important;
+  }
+  .ov-lbl {
+    background: #E8F0FE;
+    color: #1A365D;
+    font-weight: 700;
+    width: 88px;
+    white-space: nowrap;
+    border-left: none !important;
+  }
+  .ov-val { color: #222; max-width: 220px; }
+  .ov-spacer { width: 6px; background: #fff; border: none !important; padding: 0 !important; }
+
+  /* ========== 3DKバナー（レントロール） ========== */
+  .rent-spec-banner {
+    background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+    border-radius: 5px;
+    padding: 5px 14px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    font-size: 8pt;
+  }
+  .rent-spec-banner .spec-hl {
+    font-size: 13pt;
+    font-weight: 900;
+    color: #4ADE80;
+    letter-spacing: 0.5px;
+  }
+  .rent-spec-banner .spec-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: rgba(255,255,255,0.85);
+    font-size: 8pt;
+  }
+
+  /* ========== 周辺環境カード（強化版） ========== */
+  .env-card-featured {
+    border: 2px solid #DAA520;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 7.5pt;
+    position: relative;
+  }
+  .env-card-featured img {
+    width: 100%;
+    height: 70px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(1.08) contrast(1.05);
+  }
+  .env-card-featured .env-card-body {
+    background: linear-gradient(135deg, #fffdf0, #fef9e7);
+    border-top: 2px solid #DAA520;
+  }
+  .env-feature-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #DAA520;
+    color: white;
+    font-size: 6pt;
+    font-weight: 900;
+    padding: 2px 5px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 1: 物件概要
+     ============================================================ -->
+<div class="page-container">
+  <div class="page-content">
+
+    <!-- ヘッダー -->
+    <div class="header">
+      <div class="header-left">
+        <div class="header-logo">
+          <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+               alt="REATEX" onerror="this.style.display='none'">
+        </div>
+        <div class="header-divider"></div>
+        <div class="header-title-group">
+          <div class="header-label">INVESTMENT PROPERTY</div>
+          <div class="header-property-name">江田荘Ⅰ・Ⅱ（二棟アパート）</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <a href="https://maps.app.goo.gl/2tfx87aTSkjAZByC9" target="_blank">📍 福岡県北九州市八幡東区宮田町22-5</a>
+        <div class="header-property-num">物件番号：p-3494</div>
+      </div>
+    </div>
+
+    <!-- ヒーローセクション（Z-パターン） -->
+    <div class="hero-section" style="min-height:56mm;">
+      <!-- 左：4大パワーワード -->
+      <div class="hero-left" style="padding:10px 18px 10px 16px; gap:0;">
+        <div class="hero-tag">INVESTMENT PROPERTY ― 北九州市八幡東区 ｜ 物件番号：p-3494</div>
+
+        <!-- 上段：利回り2本並び -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:4px;">
+          <div>
+            <div class="hero-metric-label">表面利回り（満室想定）</div>
+            <div class="hero-metric-value hero-v-green">216.54%</div>
+          </div>
+          <div class="hero-current-box">
+            <div class="hero-metric-label" style="color:rgba(255,215,0,0.7);">現況利回り（入居1戸 / 今すぐ）</div>
+            <div class="hero-metric-value hero-v-current">27.07%</div>
+            <div style="font-size:6.5pt; color:rgba(255,215,0,0.6); margin-top:1px;">※ 18%超の高い現況利回り</div>
+          </div>
+        </div>
+
+        <div class="hero-divider" style="margin:4px 0;"></div>
+
+        <!-- 下段：価格 + 積算 並び -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+          <div>
+            <div class="hero-metric-label">販売価格</div>
+            <div class="hero-metric-value hero-v-red">133万円</div>
+          </div>
+          <div>
+            <div class="hero-metric-label">土地積算比率</div>
+            <div class="hero-metric-value hero-v-green-md">土地積算 185%</div>
+            <div style="font-size:6.5pt; color:rgba(255,255,255,0.5); margin-top:1px;">土地価値246.6万円 ＞ 販売価格133万円</div>
+          </div>
+        </div>
+
+        <div class="hero-bottom-row" style="margin-top:5px;">
+          <span class="hero-badge">📍 枝光駅 徒歩6分</span>
+          <span class="hero-badge">🏠 3DK × 8戸</span>
+          <span class="hero-badge">⏱ 回収期間 約6ヶ月</span>
+        </div>
+      </div>
+
+      <!-- 右：外観写真 -->
+      <div class="hero-right">
+        <img src="https://drive.google.com/thumbnail?id=1VFDm4UytKjwHyKo1VxkE5quiDyUn3XP-&sz=w800"
+             onerror="this.src='https://lh3.googleusercontent.com/d/1VFDm4UytKjwHyKo1VxkE5quiDyUn3XP-'; this.onerror=null;"
+             alt="外観">
+        <div class="hero-right-overlay">外観（全景）｜江田荘Ⅰ・Ⅱ</div>
+      </div>
+    </div>
+
+    <!-- 統合物件概要テーブル -->
+    <div class="overview-unified avoid-break">
+      <div class="section-title">物件概要</div>
+      <table class="overview-unified-table">
+        <tr>
+          <td class="ov-icon">📍</td>
+          <td class="ov-lbl">所在地</td>
+          <td class="ov-val" colspan="4"><a href="https://maps.app.goo.gl/2tfx87aTSkjAZByC9" style="color:#2563EB;">福岡県北九州市八幡東区宮田町22-5</a>　｜　<strong>JR枝光駅 徒歩6分</strong> / スペースワールド駅 徒歩19分</td>
+        </tr>
+        <tr>
+          <td class="ov-icon">🏗️</td>
+          <td class="ov-lbl">構造・種別</td>
+          <td class="ov-val">Ⅰ：木造瓦葺2階建　Ⅱ：木造セメント瓦葺2階建</td>
+          <td class="ov-spacer"></td>
+          <td class="ov-icon">📅</td>
+          <td class="ov-lbl" style="width:80px;">築年月</td>
+          <td class="ov-val" style="width:160px;">Ⅱ：昭和52年（築49年） / Ⅰ：昭和45年（築56年）</td>
+        </tr>
+        <tr>
+          <td class="ov-icon">🏠</td>
+          <td class="ov-lbl">総戸数・間取り</td>
+          <td class="ov-val"><strong style="color:#1a365d; font-size:9.5pt;">8戸（4戸×2棟）　全戸 3DK・45.45㎡</strong></td>
+          <td class="ov-spacer"></td>
+          <td class="ov-icon">📐</td>
+          <td class="ov-lbl">土地/建物</td>
+          <td class="ov-val">土地237.08㎡（71.72坪）/ 建物229.67㎡</td>
+        </tr>
+        <tr>
+          <td class="ov-icon">💴</td>
+          <td class="ov-lbl">売買価格</td>
+          <td class="ov-val"><span class="price-red">1,330,000円（133万円）</span></td>
+          <td class="ov-spacer"></td>
+          <td class="ov-icon">📈</td>
+          <td class="ov-lbl">利回り</td>
+          <td class="ov-val"><span class="yield-green">216.54%</span>（満室）／ <span class="yield-green">27.07%</span>（現況1戸）</td>
+        </tr>
+        <tr>
+          <td class="ov-icon">🌍</td>
+          <td class="ov-lbl">土地積算</td>
+          <td class="ov-val">2,465,632円（246.6万円）｜積算比率 <strong style="color:#9A7000;">185%</strong>　路線価10,400円/㎡</td>
+          <td class="ov-spacer"></td>
+          <td class="ov-icon">🏙️</td>
+          <td class="ov-lbl">都市計画</td>
+          <td class="ov-val">市街化区域　建ぺい率60%／容積率200%</td>
+        </tr>
+        <tr>
+          <td class="ov-icon">🔧</td>
+          <td class="ov-lbl">設備</td>
+          <td class="ov-val">公営上水道・公共下水・個別プロパンガス・電気</td>
+          <td class="ov-spacer"></td>
+          <td class="ov-icon">🅿️</td>
+          <td class="ov-lbl">駐車場</td>
+          <td class="ov-val">0台（徒歩4分に月ぎめ空きあり　<a href="https://www.park-direct.jp/parkinglot/PK000043489?utm_source=googlemap&utm_campaign=1422_fukuoka" style="color:#2563EB;" target="_blank">詳細</a>）</td>
+        </tr>
+        <tr>
+          <td class="ov-icon">⚠️</td>
+          <td class="ov-lbl">耐用年数</td>
+          <td class="ov-val">残存0年（超過）　再調達価格 2,756万円（木造12万円/㎡×229.67㎡）</td>
+          <td class="ov-spacer"></td>
+          <td class="ov-icon">💰</td>
+          <td class="ov-lbl">固定資産税</td>
+          <td class="ov-val">年間39,700円（ランニングコストは実質これのみ）</td>
+        </tr>
+      </table>
+    </div>
+
+  </div><!-- /.page-content -->
+
+  <!-- ===== レントロール（1ページ目と合体） ===== -->
+  <!-- 3DKバナー（コンパクト版） -->
+  <div class="rent-spec-banner" style="padding:4px 12px; margin-top:5px; margin-bottom:4px;">
+    <span class="spec-hl" style="font-size:11pt;">🏠 3DK × 8戸　45.45㎡／戸</span>
+    <span class="spec-item">💰 想定賃料 30,000円／戸</span>
+    <span class="spec-item">📅 満室時 24万円／月・288万円／年</span>
+    <span class="spec-item" style="margin-left:auto; color:#F5C518; font-weight:700;">現況利回り 27.07%　／　表面利回り 216.54%</span>
+  </div>
+  <div class="section-title" style="font-size:8pt;">テナント状況一覧（全8戸 ― 間取り・専有面積は全戸共通：3DK・45.45㎡）</div>
+  <table class="lentroll-table" style="font-size:7.5pt;">
+    <thead>
+      <tr>
+        <th style="width:52px;">棟</th>
+        <th style="width:72px;">部屋番号</th>
+        <th>入居状況</th>
+        <th style="width:80px;">契約賃料（円）</th>
+        <th style="width:80px;">月額合計</th>
+        <th style="width:80px;">想定賃料（円）</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 江田荘Ⅰ -->
+      <tr class="building-header">
+        <td colspan="7">■ 江田荘Ⅰ（木造瓦葺2階建・昭和45年築）</td>
+      </tr>
+      <tr>
+        <td>江田荘Ⅰ</td><td>1-01（1F）</td>
+        <td><span class="vacant">空室</span></td><td>－</td><td>－</td><td class="assumed">30,000</td><td></td>
+      </tr>
+      <tr>
+        <td>江田荘Ⅰ</td><td>1-02（1F）</td>
+        <td><span class="vacant">空室</span></td><td>－</td><td>－</td><td class="assumed">30,000</td><td></td>
+      </tr>
+      <tr>
+        <td>江田荘Ⅰ</td><td>2-01（2F）</td>
+        <td><span class="vacant">空室</span></td><td>－</td><td>－</td><td class="assumed">30,000</td><td></td>
+      </tr>
+      <tr>
+        <td>江田荘Ⅰ</td><td>2-02（2F）</td>
+        <td><span class="vacant">空室</span></td><td>－</td><td>－</td><td class="assumed">30,000</td><td></td>
+      </tr>
+      <!-- 江田荘Ⅱ -->
+      <tr class="building-header">
+        <td colspan="7">■ 江田荘Ⅱ（木造セメント瓦葺2階建・昭和52年築）</td>
+      </tr>
+      <tr>
+        <td>江田荘Ⅱ</td><td>1-01（1F）</td>
+        <td><span class="occupied">● 入居中</span></td><td class="rent-amount">30,000</td><td class="rent-amount">30,000</td><td class="assumed">30,000</td><td>現況賃貸中（生活保護代理納付）</td>
+      </tr>
+      <tr>
+        <td>江田荘Ⅱ</td><td>1-02（1F）</td>
+        <td><span class="vacant">空室</span></td><td>－</td><td>－</td><td class="assumed">30,000</td><td></td>
+      </tr>
+      <tr>
+        <td>江田荘Ⅱ</td><td>2-01（2F）</td>
+        <td><span class="vacant">空室</span></td><td>－</td><td>－</td><td class="assumed">30,000</td><td></td>
+      </tr>
+      <tr>
+        <td>江田荘Ⅱ</td><td>2-02（2F）</td>
+        <td><span class="vacant">空室</span></td><td>－</td><td>－</td><td class="assumed">30,000</td><td></td>
+      </tr>
+      <!-- 合計行 -->
+      <tr class="total-row">
+        <td colspan="2">合計（8戸）</td>
+        <td>入居1戸 / 空室7戸</td>
+        <td>30,000</td>
+        <td><strong>30,000</strong></td>
+        <td><strong style="color:#9A7000;">240,000</strong></td>
+        <td>満室時 月24万円・年288万円</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:6.5pt; color:#999; margin-top:3px; text-align:right;">
+    ※ 想定賃料は周辺相場を参考にした概算値。専有面積は登記簿面積をもとにした概算値です。
+  </p>
+
+  <!-- フッター帯（1+2統合ページ下部） -->
+  <div class="footer-band" style="margin-top:6px;">
+    <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+         alt="REATEX" onerror="this.style.display='none'">
+    <div class="footer-info">
+      株式会社リアテクス　〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506
+    </div>
+    <div class="footer-contact">
+      TEL：03-6822-7297　FAX：03-6740-1747<br>
+      MAIL：satsuma@reatex.co.jp
+    </div>
+  </div>
+</div><!-- /.page-container -->
+
+
+<!-- ============================================================
+     PAGE 3: 収支シミュレーション・投資ポイント・周辺環境
+     ============================================================ -->
+<div class="page-break"></div>
+<div style="width:267mm; margin:0 auto; padding: 0;">
+
+  <div class="header" style="margin-bottom:8px;">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             alt="REATEX" onerror="this.style.display='none'">
+      </div>
+      <div class="header-divider"></div>
+      <div class="header-title-group">
+        <div class="header-label">FINANCIAL ANALYSIS</div>
+        <div class="header-property-name">収支シミュレーション・投資ポイント</div>
+      </div>
+    </div>
+    <div class="header-right">
+      江田荘Ⅰ・Ⅱ｜福岡県北九州市八幡東区宮田町22-5
+    </div>
+  </div>
+
+  <div class="two-col">
+    <!-- 年間収支 -->
+    <div class="avoid-break">
+      <div class="section-title">年間収支シミュレーション（満室想定）</div>
+      <table class="finance-table">
+        <tr><td class="label">年間賃料収入</td><td class="value">2,880,000円</td></tr>
+        <tr><td class="label">固定資産税</td><td class="value">－39,700円</td></tr>
+        <tr class="noi-row"><td class="label" style="color:white;">NOI（純営業収益）</td><td class="value" style="color:#DAA520; font-size:11pt; font-weight:900;">2,840,300円</td></tr>
+      </table>
+    </div>
+
+    <!-- 投資指標KPI -->
+    <div class="avoid-break">
+      <div class="section-title">投資指標（満室・全額自己資金）</div>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">表面利回り</div>
+          <div class="kpi-value" style="color:#9A7000;">217%</div>
+          <div class="kpi-sub">満室想定</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">CCR</div>
+          <div class="kpi-value">214%</div>
+          <div class="kpi-sub">全額自己資金</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">投資回収期間</div>
+          <div class="kpi-value" style="color:#CC6600;">0.47年</div>
+          <div class="kpi-sub">約6ヶ月</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">土地積算比率</div>
+          <div class="kpi-value" style="color:#9A7000;">185%</div>
+          <div class="kpi-sub">246.6万円 vs 133万円</div>
+        </div>
+      </div>
+      <p style="font-size:6.5pt; color:#888; margin-top:4px;">※ NOI＝年間賃料－固都税(39,700円)　※全額自己資金想定</p>
+    </div>
+  </div>
+
+  <!-- 投資のポイント -->
+  <div class="avoid-break" style="margin-top:6px;">
+    <div class="section-title">投資のポイント（5項目）</div>
+    <ul class="points-list">
+      <li><strong>圧倒的な高利回り：満室表面利回り217%、投資回収期間わずか約6ヶ月</strong>という超高収益物件。価格133万円に対して満室年間収益2,880,000円を実現。</li>
+      <li><strong>土地積算が販売価格を大幅に上回る（積算比率185%）。</strong>固定資産税路線価ベースで土地価値だけで246.6万円。販売価格133万円を上回る土地積算は実質的な担保価値として機能。</li>
+      <li><strong>ランニングコストは固定資産税のみ年39,700円。</strong>水道代・インターネット代等の共用費用もゼロ。シンプルな収支構造で手元キャッシュが残りやすい。</li>
+      <li><strong>現況でも27%の利回りを確保。</strong>現在1戸入居（月3万円）で現況利回り27%。残り7戸の空室対策次第で大幅な収入増加が見込める。</li>
+      <li><strong>JR鹿児島本線・枝光駅から徒歩6分の好立地。</strong>北九州市内の工場・製鉄所・工業地帯へのアクセス良好。単身労働者・工場勤務者向けの需要が見込めるエリア。</li>
+    </ul>
+  </div>
+
+  <!-- 周辺環境 -->
+  <div class="avoid-break" style="margin-top:6px;">
+    <div class="section-title">周辺環境</div>
+    <div class="env-grid">
+      <div class="env-card">
+        <img src="https://drive.google.com/thumbnail?id=1k3tUO4c_I00vZdFy0l6sjHKu_IKntTbx&sz=w400"
+             onerror="this.src='https://lh3.googleusercontent.com/d/1k3tUO4c_I00vZdFy0l6sjHKu_IKntTbx'; this.onerror=null;"
+             alt="枝光小学校">
+        <div class="env-card-body">
+          <div class="env-card-cat">🏫 教育</div>
+          <div class="env-card-name">北九州市立枝光小学校</div>
+        </div>
+      </div>
+      <div class="env-card">
+        <img src="https://drive.google.com/thumbnail?id=1i5oG9jxB0HGnpDphR0vCwNiJNiQ7CtHU&sz=w400"
+             onerror="this.src='https://lh3.googleusercontent.com/d/1i5oG9jxB0HGnpDphR0vCwNiJNiQ7CtHU'; this.onerror=null;"
+             alt="公園">
+        <div class="env-card-body">
+          <div class="env-card-cat">🌳 公園</div>
+          <div class="env-card-name">枝光三丁目公園</div>
+        </div>
+      </div>
+      <div class="env-card env-featured">
+        <span class="env-feat-badge">🏛️ 世界遺産</span>
+        <img src="https://drive.google.com/thumbnail?id=1O0hdo5cxD-1DpU8A-GQWyBj7jbQRYRQ9&sz=w400"
+             onerror="this.src='https://lh3.googleusercontent.com/d/1O0hdo5cxD-1DpU8A-GQWyBj7jbQRYRQ9'; this.onerror=null;"
+             alt="官営八幡製鐵所">
+        <div class="env-card-body">
+          <div class="env-card-cat">🏛️ 世界文化遺産（2015年登録）</div>
+          <div class="env-card-name">官営八幡製鐵所 旧本事務所</div>
+        </div>
+      </div>
+      <div class="env-card">
+        <img src="https://drive.google.com/thumbnail?id=1zyC27n_gX3WBJXZ5VMUbs_G4yybKGqa-&sz=w400"
+             onerror="this.src='https://lh3.googleusercontent.com/d/1zyC27n_gX3WBJXZ5VMUbs_G4yybKGqa-'; this.onerror=null;"
+             alt="ローソン">
+        <div class="env-card-body">
+          <div class="env-card-cat">🏪 コンビニ</div>
+          <div class="env-card-name">ローソン 八幡枝光二丁目店</div>
+        </div>
+      </div>
+      <div class="env-card env-featured">
+        <span class="env-feat-badge">🛒 大型SC</span>
+        <img src="https://drive.google.com/thumbnail?id=1qLaVQCJrpKds160OGbqvSMrD9ZO9ENuh&sz=w400"
+             onerror="this.src='https://lh3.googleusercontent.com/d/1qLaVQCJrpKds160OGbqvSMrD9ZO9ENuh'; this.onerror=null;"
+             alt="イオンモール">
+        <div class="env-card-body">
+          <div class="env-card-cat">🛒 大型ショッピングモール（徒歩圏）</div>
+          <div class="env-card-name">イオンモール八幡東</div>
+        </div>
+      </div>
+      <div class="env-card">
+        <img src="https://drive.google.com/thumbnail?id=1-5nklVSy_UGPMxCIzyQrI4laIs_vvVCU&sz=w400"
+             onerror="this.src='https://lh3.googleusercontent.com/d/1-5nklVSy_UGPMxCIzyQrI4laIs_vvVCU'; this.onerror=null;"
+             alt="アウトレット">
+        <div class="env-card-body">
+          <div class="env-card-cat">🛍️ アウトレット</div>
+          <div class="env-card-name">THE OUTLETS KITAKYUSHU</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ============================================================
+     PAGE 4: 写真・特記事項
+     ============================================================ -->
+<div class="page-break"></div>
+<div style="width:267mm; margin:0 auto; padding: 0;">
+
+  <div class="header" style="margin-bottom:8px;">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             alt="REATEX" onerror="this.style.display='none'">
+      </div>
+      <div class="header-divider"></div>
+      <div class="header-title-group">
+        <div class="header-label">PROPERTY PHOTOS</div>
+        <div class="header-property-name">物件写真・特記事項</div>
+      </div>
+    </div>
+    <div class="header-right">
+      江田荘Ⅰ・Ⅱ｜福岡県北九州市八幡東区宮田町22-5
+    </div>
+  </div>
+
+  <div class="section-title">物件写真</div>
+
+  <!-- 外観メイン -->
+  <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:6px; margin-bottom:6px;">
+    <div class="photo-item photo-main">
+      <img src="https://drive.google.com/thumbnail?id=1VFDm4UytKjwHyKo1VxkE5quiDyUn3XP-&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1VFDm4UytKjwHyKo1VxkE5quiDyUn3XP-'; this.onerror=null;"
+           alt="外観">
+      <div class="photo-label">外観（全景）</div>
+    </div>
+    <div class="photo-item photo-main">
+      <img src="https://drive.google.com/thumbnail?id=1i5oG9jxB0HGnpDphR0vCwNiJNiQ7CtHU&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1i5oG9jxB0HGnpDphR0vCwNiJNiQ7CtHU'; this.onerror=null;"
+           alt="枝光三丁目公園">
+      <div class="photo-label">枝光三丁目公園（徒歩3分）</div>
+    </div>
+    <div class="photo-item photo-main">
+      <img src="https://drive.google.com/thumbnail?id=1zyC27n_gX3WBJXZ5VMUbs_G4yybKGqa-&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1zyC27n_gX3WBJXZ5VMUbs_G4yybKGqa-'; this.onerror=null;"
+           alt="ローソン八幡枝光二丁目店">
+      <div class="photo-label">ローソン 八幡枝光二丁目店（近隣）</div>
+    </div>
+  </div>
+
+  <!-- 地図・周辺写真 -->
+  <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:6px; margin:4px 0;">
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1p1w0GVOL53VJ_6l96i_IxBZAxwjAWzuZ&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1p1w0GVOL53VJ_6l96i_IxBZAxwjAWzuZ'; this.onerror=null;"
+           alt="地図">
+      <div class="photo-label">周辺地図</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=14pZ60aKvcOldrtn1-8AhCTF2N8r5hDeJ&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/14pZ60aKvcOldrtn1-8AhCTF2N8r5hDeJ'; this.onerror=null;"
+           alt="皿倉山夜景">
+      <div class="photo-label">皿倉山の夜景（近隣）</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=17k75eQRKgf40stV0jYh5uBn4VxhuXhFS&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/17k75eQRKgf40stV0jYh5uBn4VxhuXhFS'; this.onerror=null;"
+           alt="九州国際大学付属高等学校">
+      <div class="photo-label">九州国際大学付属高等学校</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1eaVp6rV2Cu02rMz1bOUJP9LdJtwCZ4xT&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1eaVp6rV2Cu02rMz1bOUJP9LdJtwCZ4xT'; this.onerror=null;"
+           alt="ホームセンターグッデイ">
+      <div class="photo-label">ホームセンターグッデイ 八幡東店</div>
+    </div>
+  </div>
+  <!-- 世界遺産・イオンモール（大きく強調） -->
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin:4px 0;">
+    <div class="photo-item" style="border:2px solid #DAA520; position:relative;">
+      <img src="https://drive.google.com/thumbnail?id=1qLaVQCJrpKds160OGbqvSMrD9ZO9ENuh&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1qLaVQCJrpKds160OGbqvSMrD9ZO9ENuh'; this.onerror=null;"
+           alt="イオンモール" style="height:110px; filter:brightness(1.15) contrast(1.06) saturate(1.1);">
+      <div class="photo-label" style="background:linear-gradient(135deg,#fffdf0,#fef9e7); font-weight:700; color:#1a365d; border-top:1.5px solid #DAA520;">
+        🛒 イオンモール八幡東（大型ショッピングモール・徒歩圏）
+      </div>
+    </div>
+    <div class="photo-item" style="border:2px solid #DAA520; position:relative;">
+      <img src="https://drive.google.com/thumbnail?id=1O0hdo5cxD-1DpU8A-GQWyBj7jbQRYRQ9&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1O0hdo5cxD-1DpU8A-GQWyBj7jbQRYRQ9'; this.onerror=null;"
+           alt="世界遺産" style="height:110px; filter:brightness(1.15) contrast(1.06) saturate(1.1);">
+      <div class="photo-label" style="background:linear-gradient(135deg,#fffdf0,#fef9e7); font-weight:700; color:#1a365d; border-top:1.5px solid #DAA520;">
+        🏛️ 官営八幡製鐵所 旧本事務所（世界文化遺産 2015年登録）
+      </div>
+    </div>
+  </div>
+
+  <!-- おすすめポイント -->
+  <div class="notes-box avoid-break" style="margin-top:8px; border-left-color:#1a6b3a; background:#f0faf4;">
+    <div class="notes-title" style="color:#1a6b3a;">⭐ おすすめポイント</div>
+    <ul>
+      <li><strong>平成14年から長期入居中（20年以上）</strong>で退去予定なし・クレームなし。安定した賃貸運営が続いています。</li>
+      <li><strong>北九州市からの直接振込（生活保護の代理納付）</strong>のため、家賃滞納リスクがゼロ。安心の安定収入です。</li>
+    </ul>
+  </div>
+
+  <!-- 特記事項 -->
+  <div class="notes-box avoid-break" style="margin-top:8px;">
+    <div class="notes-title">⚠️ 特記事項</div>
+    <ul>
+      <li>本物件は<strong>再建築不可</strong>です。現状の建物を取り壊した場合、再建築できない可能性があります。</li>
+      <li>室内写真は現在撮影準備中です。内見のご希望はお気軽にお申し付けください。</li>
+      <li>江田荘Ⅱ（昭和52年築）・江田荘Ⅰ（昭和45年築）ともに法定耐用年数（木造22年）を超過しています（残存耐用年数0年）。</li>
+      <li>現況1戸入居中（月額30,000円）。残り7戸は空室となっており、空室対策による収入増が期待できます。</li>
+      <li>Ⅱ-101号室の賃貸借契約書は現在ありませんが、引き渡しまでに巻き直しいたします。</li>
+      <li>現況自主管理ですが、新規管理会社のご紹介が可能です（東京都内の管理会社。管理費：現況家賃の5%）。</li>
+      <li>取引態様：一般媒介。引渡時期：相談。</li>
+    </ul>
+  </div>
+
+</div>
+
+
+<!-- ============================================================
+     PAGE 5: 未公開プレミアム不動産チラシ（LINE）
+     ============================================================ -->
+<div class="page-break"></div>
+<div style="width:267mm; margin:0 auto; padding: 0;">
+  <div class="line-page">
+    <div class="line-header-label">＼ ここだけの ㊙ 物件情報をお届け ／</div>
+    <div class="line-main-title">未公開プレミアム不動産</div>
+    <div class="line-sub-title">公式 LINE（無料）でご案内中</div>
+
+    <div class="line-content">
+      <!-- QRエリア -->
+      <div class="line-qr-area">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq"
+             alt="LINE QR" style="width:100px;height:100px;border-radius:4px;">
+        <div class="line-qr-label">📲 カメラでスキャン</div>
+      </div>
+
+      <!-- 特徴リスト -->
+      <div class="line-features">
+        <h4>🎯 こんな物件をご案内中</h4>
+        <ul>
+          <li>現況利回り<strong>25%以上</strong>の地方収益物件</li>
+          <li>利回り<strong>13%以上</strong>の関東エリア収益物件</li>
+          <li>積算価格以下の<strong>土地付き物件</strong></li>
+          <li>市場に出回らない<strong>未公開プレミアム物件</strong>多数</li>
+          <li>登録無料・情報配信も<strong>すべて無料</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <a href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq" class="line-btn">LINE友だち追加はこちらから ＞</a>
+
+    <div class="line-company">
+      <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+           alt="REATEX" onerror="this.style.display='none'">
+      <div class="line-company-info">
+        株式会社リアテクス<br>
+        〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506<br>
+        TEL：03-6822-7297　MAIL：satsuma@reatex.co.jp
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
