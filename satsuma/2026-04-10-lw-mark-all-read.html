@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✅ LINE WORKS 一括既読ツール</title>
+  <style>
+    :root {
+      --green: #00c073;
+      --green-dark: #00995c;
+      --green-light: #e6faf2;
+      --gray-bg: #f7f8fa;
+      --gray-border: #e2e6ea;
+      --text: #1a1a2e;
+      --text-sub: #555;
+      --code-bg: #1e1e2e;
+      --code-text: #cdd6f4;
+      --accent: #6c7fe8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background: var(--gray-bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 24px 16px 64px;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* ヘッダー */
+    .hero {
+      background: linear-gradient(135deg, var(--green) 0%, var(--accent) 100%);
+      border-radius: 20px;
+      padding: 44px 40px;
+      color: #fff;
+      margin-bottom: 32px;
+      box-shadow: 0 8px 32px rgba(0,192,115,0.25);
+    }
+    .hero-icon { font-size: 2.8rem; margin-bottom: 12px; }
+    .hero h1 { font-size: 1.7rem; font-weight: 700; margin-bottom: 10px; }
+    .hero p { font-size: 1rem; opacity: 0.9; }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.25);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.8rem;
+      margin-top: 14px;
+    }
+
+    /* カード */
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 1px solid var(--gray-border);
+    }
+
+    .card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card h2 .step-num {
+      background: var(--green);
+      color: #fff;
+      border-radius: 50%;
+      width: 28px; height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ショートカットキー表示 */
+    kbd {
+      background: var(--gray-bg);
+      border: 1px solid var(--gray-border);
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-family: monospace;
+      font-size: 0.9em;
+      color: var(--text);
+      box-shadow: 0 2px 0 var(--gray-border);
+    }
+
+    /* テーブル */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.95rem;
+    }
+    th {
+      background: var(--green-light);
+      color: var(--green-dark);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+      border: 1px solid #c3ead8;
+    }
+    td {
+      padding: 10px 14px;
+      border: 1px solid var(--gray-border);
+      vertical-align: middle;
+    }
+    tr:nth-child(even) td { background: var(--gray-bg); }
+    code {
+      background: var(--gray-bg);
+      border: 1px solid var(--gray-border);
+      border-radius: 5px;
+      padding: 2px 7px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.88em;
+    }
+
+    /* コードブロック */
+    .code-block-wrap {
+      position: relative;
+      margin: 20px 0;
+    }
+    .code-block {
+      background: var(--code-bg);
+      color: var(--code-text);
+      border-radius: 12px;
+      padding: 20px 20px 20px 20px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      border: 1px solid #313244;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 7px 16px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .copy-btn:hover { background: var(--green-dark); }
+    .copy-btn:active { transform: scale(0.96); }
+    .copy-btn.copied { background: #555; }
+
+    /* 警告 */
+    .warning {
+      background: #fff8e6;
+      border-left: 4px solid #f5a623;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      color: #7a5800;
+      margin: 16px 0;
+    }
+
+    /* 手順リスト */
+    ol { padding-left: 22px; }
+    ol li { margin-bottom: 10px; }
+
+    /* 使い方 */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      counter-reset: step-counter;
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--green-light);
+      border-radius: 10px;
+      padding: 14px 18px;
+    }
+    .step-item .n {
+      background: var(--green);
+      color: #fff;
+      border-radius: 50%;
+      width: 26px; height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-item p { font-size: 0.95rem; color: var(--text); }
+    .step-item a { color: var(--green-dark); font-weight: 600; }
+
+    /* 注意事項 */
+    .notice-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .notice-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.93rem;
+      color: var(--text-sub);
+    }
+    .notice-list li::before {
+      content: '⚠️';
+      flex-shrink: 0;
+    }
+
+    /* FAQ */
+    details {
+      border: 1px solid var(--gray-border);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    summary {
+      padding: 14px 18px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      background: var(--gray-bg);
+      user-select: none;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    summary::before { content: '❓'; font-size: 1rem; }
+    summary::-webkit-details-marker { display: none; }
+    details[open] summary { background: var(--green-light); color: var(--green-dark); }
+    .faq-body {
+      padding: 16px 18px;
+      font-size: 0.92rem;
+      color: var(--text-sub);
+      line-height: 1.8;
+      background: #fff;
+    }
+
+    /* フッター */
+    footer {
+      text-align: center;
+      color: #aaa;
+      font-size: 0.8rem;
+      margin-top: 40px;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 600px) {
+      .hero { padding: 28px 22px; }
+      .hero h1 { font-size: 1.3rem; }
+      .card { padding: 22px 18px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ヒーロー -->
+  <div class="hero">
+    <div class="hero-icon">✅</div>
+    <h1>LINE WORKS 一括既読ツール</h1>
+    <p>未読メッセージをワンクリックでまとめて既読にできる便利ツールです。<br>初回セットアップは1分で完了します。</p>
+    <span class="badge">🔄 React 17 / 18 対応版</span>
+  </div>
+
+  <!-- ステップ1 -->
+  <div class="card">
+    <h2><span class="step-num">1</span>ブックマークバーを表示する</h2>
+    <p>Chromeのアドレスバーの下に「ブックマークバー」が表示されているか確認してください。<br>表示されていない場合は以下のショートカットで表示できます。</p>
+    <table style="margin-top:16px">
+      <tr><th>OS</th><th>ショートカット</th></tr>
+      <tr><td>Windows</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd></td></tr>
+      <tr><td>Mac</td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd></td></tr>
+    </table>
+  </div>
+
+  <!-- ステップ2 -->
+  <div class="card">
+    <h2><span class="step-num">2</span>ブックマークを新規作成する</h2>
+    <ol>
+      <li>ブックマークバーの空いているところを<strong>右クリック</strong></li>
+      <li><strong>「ページを追加」</strong>をクリック</li>
+      <li>以下の内容を入力して保存します</li>
+    </ol>
+    <table>
+      <tr><th>項目</th><th>入力する内容</th></tr>
+      <tr><td><strong>名前</strong></td><td><code>LW全既読</code></td></tr>
+      <tr><td><strong>URL</strong></td><td>下の「コピー用コード」をそのまま貼り付け</td></tr>
+    </table>
+  </div>
+
+  <!-- ステップ3 -->
+  <div class="card">
+    <h2><span class="step-num">3</span>コピー用コードを登録する</h2>
+    <p>以下のコードを<strong>全てコピー</strong>し、ステップ2のURL欄に貼り付けてください。</p>
+
+    <div class="code-block-wrap">
+      <button class="copy-btn" onclick="copyCode(this)">📋 コピー</button>
+      <div class="code-block" id="bookmarklet-code">javascript:void((async()=>{if(!location.hostname.includes('worksmobile.com')){alert('LINE WORKSのトーク画面で実行してください');return}const sels=['.chat_list .item_chat','[class*="chat_list"] [class*="item_chat"]','[class*="chatList"] [class*="chatItem"]','[class*="channel_list"] li','[class*="channelList"] li','[class*="talkList"] li'];let items=null;for(const s of sels){const r=document.querySelectorAll(s);if(r.length>0){items=r;break}}if(!items||!items.length){alert('トークルームが見つかりません\nトーク一覧を表示した状態で実行してください');return}const getFK=el=>Object.keys(el).find(k=>k.startsWith('__reactFiber')||k.startsWith('__reactInternalInstance'));const getPK=el=>Object.keys(el).find(k=>k.startsWith('__reactProps'));const walk=(node,test,max=30)=>{let n=node,d=0;while(n&&d++<max){const p=n.memoizedProps||n.pendingProps;if(p&&test(p))return p;n=n.return}return null};let cc=null;const uc=[];for(const item of items){const prk=getPK(item);if(prk){const p=item[prk];if(!cc&&typeof p?.clickChannel==='function')cc=p.clickChannel;if(!cc&&typeof p?.onClick==='function')cc=p.onClick;const ch=p?.channel||p?.channelInfo;if(ch&&ch.unreadCount>0)uc.push(ch);continue}const fk=getFK(item);if(!fk)continue;const fiber=item[fk];if(!cc){const p=walk(fiber,p=>typeof p.clickChannel==='function'||typeof p.onClickChannel==='function');if(p)cc=p.clickChannel||p.onClickChannel}const cp=walk(fiber,p=>p.channel&&p.channel.channelNo!==undefined);if(cp?.channel?.unreadCount>0)uc.push(cp.channel)}if(!cc||!uc.length){const bad=Array.from(items).filter(el=>{const b=el.querySelector('[class*="unread"],[class*="badge"],[class*="count"],[class*="Count"]');return b&&parseInt(b.textContent||'0')>0});if(!bad.length){alert('未読はありません！');return}if(!confirm(bad.length+'件の未読チャットをまとめて既読にしますか？'))return;let d=0;for(const el of bad){el.click();d++;document.title='既読処理中... '+d+'/'+bad.length;await new Promise(r=>setTimeout(r,800))}document.title='LINE WORKS';alert('完了！ '+d+'件を既読にしました');return}if(!uc.length){alert('未読はありません！');return}if(!confirm(uc.length+'件の未読チャットをまとめて既読にしますか？'))return;let d=0;for(const ch of uc){cc(ch);d++;document.title='既読処理中... '+d+'/'+uc.length;await new Promise(r=>setTimeout(r,500))}document.title='LINE WORKS';alert('完了！ '+d+'件を既読にしました')})())</div>
+    </div>
+
+    <div class="warning">⚠️ コードは1行で非常に長いですが、途中で改行せずに全てコピーしてください</div>
+  </div>
+
+  <!-- 使い方 -->
+  <div class="card">
+    <h2>🖱️ 使い方（毎回の操作）</h2>
+    <div class="steps">
+      <div class="step-item">
+        <div class="n">1</div>
+        <p><strong>LINE WORKS のトーク画面</strong>（<a href="https://talk.worksmobile.com" target="_blank">talk.worksmobile.com</a>）を Chrome で開く</p>
+      </div>
+      <div class="step-item">
+        <div class="n">2</div>
+        <p>ブックマークバーの <strong>「LW全既読」</strong> をクリック</p>
+      </div>
+      <div class="step-item">
+        <div class="n">3</div>
+        <p>「○件の未読チャットをまとめて既読にしますか？」と表示されるので <strong>「OK」</strong> をクリック</p>
+      </div>
+      <div class="step-item">
+        <div class="n">4</div>
+        <p>自動で全ルームを既読処理します（タブのタイトルに進捗が表示されます）</p>
+      </div>
+      <div class="step-item">
+        <div class="n">5</div>
+        <p>「完了！」のダイアログが出たら終了です</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 注意事項 -->
+  <div class="card">
+    <h2>⚠️ 注意事項</h2>
+    <ul class="notice-list">
+      <li>必ず <strong>LINE WORKS にログイン済みの Chrome ブラウザ</strong> で使用してください</li>
+      <li><strong>トーク一覧が表示された状態</strong> で実行してください</li>
+      <li>処理中は画面が切り替わりますが <strong>正常です</strong>（各ルームを開いて既読にしています）</li>
+      <li>未読数が多い場合は <strong>数分かかる</strong> ことがあります</li>
+      <li>このツールはブラウザ内でのみ動作し、<strong>外部にデータを送信することは一切ありません</strong></li>
+    </ul>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card">
+    <h2>❓ よくある質問</h2>
+
+    <details>
+      <summary>ブックマークバーが表示されません</summary>
+      <div class="faq-body">Chromeで <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>（Macは <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>）を押すと表示されます。</div>
+    </details>
+
+    <details>
+      <summary>「トークルームが見つかりません」と表示されます</summary>
+      <div class="faq-body">LINE WORKS のトーク画面（<a href="https://talk.worksmobile.com" target="_blank">talk.worksmobile.com</a>）を開いた状態で実行してください。ホームやカレンダーなど別の画面では動作しません。</div>
+    </details>
+
+    <details>
+      <summary>「内部構造が見つかりません」と表示されます</summary>
+      <div class="faq-body">ページをリロード（<kbd>F5</kbd> または <kbd>Ctrl</kbd>+<kbd>R</kbd>）してから再度お試しください。それでも解決しない場合は、ブックマークレットのコードが古い可能性があります。このページの最新コードを再登録してください。</div>
+    </details>
+
+    <details>
+      <summary>処理中に画面がパチパチ切り替わるのは大丈夫？</summary>
+      <div class="faq-body">正常です。各トークルームを自動で開いて既読にしているためです。完了するまでそのままお待ちください。</div>
+    </details>
+
+    <details>
+      <summary>セキュリティ上の心配はありますか？</summary>
+      <div class="faq-body">このツールはあなたのブラウザ内でのみ動作し、外部にデータを送信することは一切ありません。手動で各ルームを開くのと同じ動作を自動化しているだけです。</div>
+    </details>
+  </div>
+
+  <footer>
+    © リアテクス &nbsp;|&nbsp; LINE WORKS 一括既読ツール
+  </footer>
+</div>
+
+<script>
+  function copyCode(btn) {
+    const code = document.getElementById('bookmarklet-code').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      btn.textContent = '✅ コピーしました！';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = '📋 コピー';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
