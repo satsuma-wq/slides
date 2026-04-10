@@ -402,14 +402,37 @@
 <script>
   function copyCode(btn) {
     const code = document.getElementById('bookmarklet-code').textContent;
-    navigator.clipboard.writeText(code).then(() => {
+
+    function onSuccess() {
       btn.textContent = '✅ コピーしました！';
       btn.classList.add('copied');
       setTimeout(() => {
         btn.textContent = '📋 コピー';
         btn.classList.remove('copied');
       }, 2000);
-    });
+    }
+
+    function fallbackCopy() {
+      const ta = document.createElement('textarea');
+      ta.value = code;
+      ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+        onSuccess();
+      } catch(e) {
+        alert('コピーに失敗しました。コードを手動で選択してコピーしてください。');
+      }
+      document.body.removeChild(ta);
+    }
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(code).then(onSuccess).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
   }
 </script>
 </body>
