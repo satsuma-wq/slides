@@ -13,8 +13,6 @@
       --gray-border: #e2e6ea;
       --text: #1a1a2e;
       --text-sub: #555;
-      --code-bg: #1e1e2e;
-      --code-text: #cdd6f4;
       --accent: #6c7fe8;
     }
 
@@ -28,12 +26,8 @@
       padding: 24px 16px 64px;
     }
 
-    .container {
-      max-width: 780px;
-      margin: 0 auto;
-    }
+    .container { max-width: 780px; margin: 0 auto; }
 
-    /* ヘッダー */
     .hero {
       background: linear-gradient(135deg, var(--green) 0%, var(--accent) 100%);
       border-radius: 20px;
@@ -54,7 +48,6 @@
       margin-top: 14px;
     }
 
-    /* カード */
     .card {
       background: #fff;
       border-radius: 16px;
@@ -86,7 +79,6 @@
       flex-shrink: 0;
     }
 
-    /* ショートカットキー表示 */
     kbd {
       background: var(--gray-bg);
       border: 1px solid var(--gray-border);
@@ -98,75 +90,59 @@
       box-shadow: 0 2px 0 var(--gray-border);
     }
 
-    /* テーブル */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 16px 0;
-      font-size: 0.95rem;
-    }
-    th {
-      background: var(--green-light);
-      color: var(--green-dark);
-      padding: 10px 14px;
-      text-align: left;
-      font-weight: 700;
-      border: 1px solid #c3ead8;
-    }
-    td {
-      padding: 10px 14px;
-      border: 1px solid var(--gray-border);
-      vertical-align: middle;
-    }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.95rem; }
+    th { background: var(--green-light); color: var(--green-dark); padding: 10px 14px; text-align: left; font-weight: 700; border: 1px solid #c3ead8; }
+    td { padding: 10px 14px; border: 1px solid var(--gray-border); vertical-align: middle; }
     tr:nth-child(even) td { background: var(--gray-bg); }
-    code {
-      background: var(--gray-bg);
-      border: 1px solid var(--gray-border);
-      border-radius: 5px;
-      padding: 2px 7px;
-      font-family: 'Courier New', monospace;
-      font-size: 0.88em;
-    }
+    code { background: var(--gray-bg); border: 1px solid var(--gray-border); border-radius: 5px; padding: 2px 7px; font-family: 'Courier New', monospace; font-size: 0.88em; }
 
-    /* コードブロック */
-    .code-block-wrap {
-      position: relative;
-      margin: 20px 0;
-    }
-    .code-block {
-      background: var(--code-bg);
-      color: var(--code-text);
-      border-radius: 12px;
-      padding: 20px 20px 20px 20px;
-      font-family: 'Courier New', monospace;
-      font-size: 0.82rem;
-      line-height: 1.6;
-      overflow-x: auto;
-      white-space: pre-wrap;
-      word-break: break-all;
-      border: 1px solid #313244;
-    }
-    .copy-btn {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      z-index: 10;
+    /* コードエリア */
+    .code-wrap { margin: 20px 0; }
+
+    .select-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 8px;
       background: var(--green);
       color: #fff;
       border: none;
-      border-radius: 8px;
-      padding: 7px 16px;
-      font-size: 0.82rem;
+      border-radius: 10px;
+      font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      user-select: none;
+      transition: background 0.2s;
     }
-    .copy-btn:hover { background: var(--green-dark); }
-    .copy-btn:active { transform: scale(0.96); }
-    .copy-btn.copied { background: #555; }
+    .select-btn:hover { background: var(--green-dark); }
+    .select-btn.selected { background: #2563eb; }
 
-    /* 警告 */
+    #bookmarklet-code {
+      width: 100%;
+      height: 130px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      padding: 14px;
+      border: 2px solid var(--gray-border);
+      border-radius: 10px;
+      background: #1e1e2e;
+      color: #cdd6f4;
+      resize: none;
+      cursor: text;
+    }
+    #bookmarklet-code:focus { outline: 2px solid var(--green); border-color: var(--green); }
+
+    .copy-steps {
+      background: var(--green-light);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-top: 12px;
+      font-size: 0.92rem;
+    }
+    .copy-steps p { margin-bottom: 4px; font-weight: 700; color: var(--green-dark); }
+    .copy-steps ol { padding-left: 20px; color: var(--text); }
+    .copy-steps li { margin-bottom: 4px; }
+
     .warning {
       background: #fff8e6;
       border-left: 4px solid #f5a623;
@@ -174,102 +150,42 @@
       padding: 12px 16px;
       font-size: 0.9rem;
       color: #7a5800;
-      margin: 16px 0;
+      margin: 14px 0;
     }
 
-    /* 手順リスト */
     ol { padding-left: 22px; }
     ol li { margin-bottom: 10px; }
 
-    /* 使い方 */
-    .steps {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      counter-reset: step-counter;
-    }
+    .steps { display: flex; flex-direction: column; gap: 12px; }
     .step-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      background: var(--green-light);
-      border-radius: 10px;
-      padding: 14px 18px;
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--green-light); border-radius: 10px; padding: 14px 18px;
     }
     .step-item .n {
-      background: var(--green);
-      color: #fff;
-      border-radius: 50%;
-      width: 26px; height: 26px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.85rem;
-      flex-shrink: 0;
-      margin-top: 2px;
+      background: var(--green); color: #fff; border-radius: 50%;
+      width: 26px; height: 26px; display: flex; align-items: center;
+      justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px;
     }
-    .step-item p { font-size: 0.95rem; color: var(--text); }
+    .step-item p { font-size: 0.95rem; }
     .step-item a { color: var(--green-dark); font-weight: 600; }
 
-    /* 注意事項 */
-    .notice-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .notice-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.93rem;
-      color: var(--text-sub);
-    }
-    .notice-list li::before {
-      content: '⚠️';
-      flex-shrink: 0;
-    }
+    .notice-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .notice-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.93rem; color: var(--text-sub); }
+    .notice-list li::before { content: '⚠️'; flex-shrink: 0; }
 
-    /* FAQ */
-    details {
-      border: 1px solid var(--gray-border);
-      border-radius: 10px;
-      margin-bottom: 10px;
-      overflow: hidden;
-    }
+    details { border: 1px solid var(--gray-border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
     summary {
-      padding: 14px 18px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      background: var(--gray-bg);
-      user-select: none;
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      padding: 14px 18px; font-weight: 700; font-size: 0.95rem;
+      cursor: pointer; background: var(--gray-bg); user-select: none;
+      list-style: none; display: flex; align-items: center; gap: 10px;
     }
     summary::before { content: '❓'; font-size: 1rem; }
     summary::-webkit-details-marker { display: none; }
     details[open] summary { background: var(--green-light); color: var(--green-dark); }
-    .faq-body {
-      padding: 16px 18px;
-      font-size: 0.92rem;
-      color: var(--text-sub);
-      line-height: 1.8;
-      background: #fff;
-    }
+    .faq-body { padding: 16px 18px; font-size: 0.92rem; color: var(--text-sub); line-height: 1.8; background: #fff; }
 
-    /* フッター */
-    footer {
-      text-align: center;
-      color: #aaa;
-      font-size: 0.8rem;
-      margin-top: 40px;
-    }
+    footer { text-align: center; color: #aaa; font-size: 0.8rem; margin-top: 40px; }
 
-    /* レスポンシブ */
     @media (max-width: 600px) {
       .hero { padding: 28px 22px; }
       .hero h1 { font-size: 1.3rem; }
@@ -280,7 +196,6 @@
 <body>
 <div class="container">
 
-  <!-- ヒーロー -->
   <div class="hero">
     <div class="hero-icon">✅</div>
     <h1>LINE WORKS 一括既読ツール</h1>
@@ -310,21 +225,35 @@
     <table>
       <tr><th>項目</th><th>入力する内容</th></tr>
       <tr><td><strong>名前</strong></td><td><code>LW全既読</code></td></tr>
-      <tr><td><strong>URL</strong></td><td>下の「コピー用コード」をそのまま貼り付け</td></tr>
+      <tr><td><strong>URL</strong></td><td>下の「ステップ3」のコードをコピーして貼り付け</td></tr>
     </table>
   </div>
 
   <!-- ステップ3 -->
   <div class="card">
-    <h2><span class="step-num">3</span>コピー用コードを登録する</h2>
-    <p>以下のコードを<strong>全てコピー</strong>し、ステップ2のURL欄に貼り付けてください。</p>
+    <h2><span class="step-num">3</span>コードをコピーしてブックマークに登録する</h2>
 
-    <div class="code-block-wrap">
-      <button class="copy-btn" onclick="copyCode(this)">📋 コピー</button>
-      <div class="code-block" id="bookmarklet-code">javascript:void((async()=>{if(!location.hostname.includes('worksmobile.com')){alert('LINE WORKSのトーク画面で実行してください');return}const sels=['.chat_list .item_chat','[class*=chat_list] [class*=item_chat]','[class*=chatList] [class*=chatItem]','[class*=channel_list] li','[class*=channelList] li','[class*=talkList] li'];let items=null;for(const s of sels){const r=document.querySelectorAll(s);if(r.length>0){items=r;break}}if(!items||!items.length){alert('トークルームが見つかりません\nトーク一覧を表示した状態で実行してください');return}const getFK=el=>Object.keys(el).find(k=>k.startsWith('__reactFiber')||k.startsWith('__reactInternalInstance'));const getPK=el=>Object.keys(el).find(k=>k.startsWith('__reactProps'));const walk=(node,test,max=30)=>{let n=node,d=0;while(n&&d++<max){const p=n.memoizedProps||n.pendingProps;if(p&&test(p))return p;n=n.return}return null};let cc=null;const uc=[];for(const item of items){const prk=getPK(item);if(prk){const p=item[prk];if(!cc&&typeof p?.clickChannel==='function')cc=p.clickChannel;if(!cc&&typeof p?.onClick==='function')cc=p.onClick;const ch=p?.channel||p?.channelInfo;if(ch&&ch.unreadCount>0)uc.push(ch);continue}const fk=getFK(item);if(!fk)continue;const fiber=item[fk];if(!cc){const p=walk(fiber,p=>typeof p.clickChannel==='function'||typeof p.onClickChannel==='function');if(p)cc=p.clickChannel||p.onClickChannel}const cp=walk(fiber,p=>p.channel&&p.channel.channelNo!==undefined);if(cp?.channel?.unreadCount>0)uc.push(cp.channel)}if(!cc||!uc.length){const bad=Array.from(items).filter(el=>{const b=el.querySelector('[class*=unread],[class*=badge],[class*=count],[class*=Count]');return b&&parseInt(b.textContent||'0')>0});if(!bad.length){alert('未読はありません！');return}if(!confirm(bad.length+'件の未読チャットをまとめて既読にしますか？'))return;let d=0;for(const el of bad){el.click();d++;document.title='既読処理中... '+d+'/'+bad.length;await new Promise(r=>setTimeout(r,800))}document.title='LINE WORKS';alert('完了！ '+d+'件を既読にしました');return}if(!uc.length){alert('未読はありません！');return}if(!confirm(uc.length+'件の未読チャットをまとめて既読にしますか？'))return;let d=0;for(const ch of uc){cc(ch);d++;document.title='既読処理中... '+d+'/'+uc.length;await new Promise(r=>setTimeout(r,500))}document.title='LINE WORKS';alert('完了！ '+d+'件を既読にしました')})())</div>
+    <div class="code-wrap">
+      <button class="select-btn" id="select-btn" onclick="selectCode()">
+        👆 クリックしてコードを全選択する
+      </button>
+      <textarea id="bookmarklet-code" readonly onclick="selectCode()" spellcheck="false">javascript:void((async()=>{if(!location.hostname.includes('worksmobile.com')){alert('LINE WORKSのトーク画面で実行してください');return}const sels=['.chat_list .item_chat','[class*=chat_list] [class*=item_chat]','[class*=chatList] [class*=chatItem]','[class*=channel_list] li','[class*=channelList] li','[class*=talkList] li'];let items=null;for(const s of sels){const r=document.querySelectorAll(s);if(r.length>0){items=r;break}}if(!items||!items.length){alert('トークルームが見つかりません\nトーク一覧を表示した状態で実行してください');return}const getFK=el=>Object.keys(el).find(k=>k.startsWith('__reactFiber')||k.startsWith('__reactInternalInstance'));const getPK=el=>Object.keys(el).find(k=>k.startsWith('__reactProps'));const walk=(node,test,max=30)=>{let n=node,d=0;while(n&&d++<max){const p=n.memoizedProps||n.pendingProps;if(p&&test(p))return p;n=n.return}return null};let cc=null;const uc=[];for(const item of items){const prk=getPK(item);if(prk){const p=item[prk];if(!cc&&typeof p?.clickChannel==='function')cc=p.clickChannel;if(!cc&&typeof p?.onClick==='function')cc=p.onClick;const ch=p?.channel||p?.channelInfo;if(ch&&ch.unreadCount>0)uc.push(ch);continue}const fk=getFK(item);if(!fk)continue;const fiber=item[fk];if(!cc){const p=walk(fiber,p=>typeof p.clickChannel==='function'||typeof p.onClickChannel==='function');if(p)cc=p.clickChannel||p.onClickChannel}const cp=walk(fiber,p=>p.channel&&p.channel.channelNo!==undefined);if(cp?.channel?.unreadCount>0)uc.push(cp.channel)}if(!cc||!uc.length){const bad=Array.from(items).filter(el=>{const b=el.querySelector('[class*=unread],[class*=badge],[class*=count],[class*=Count]');return b&&parseInt(b.textContent||'0')>0});if(!bad.length){alert('未読はありません！');return}if(!confirm(bad.length+'件の未読チャットをまとめて既読にしますか？'))return;let d=0;for(const el of bad){el.click();d++;document.title='既読処理中... '+d+'/'+bad.length;await new Promise(r=>setTimeout(r,800))}document.title='LINE WORKS';alert('完了！ '+d+'件を既読にしました');return}if(!uc.length){alert('未読はありません！');return}if(!confirm(uc.length+'件の未読チャットをまとめて既読にしますか？'))return;let d=0;for(const ch of uc){cc(ch);d++;document.title='既読処理中... '+d+'/'+uc.length;await new Promise(r=>setTimeout(r,500))}document.title='LINE WORKS';alert('完了！ '+d+'件を既読にしました')})()</textarea>
     </div>
 
-    <div class="warning">⚠️ コードは1行で非常に長いですが、途中で改行せずに全てコピーしてください</div>
+    <div class="copy-steps">
+      <p>📋 コピーの手順</p>
+      <ol>
+        <li>上の「👆 クリックしてコードを全選択する」ボタンを押す（テキストエリアが青くなります）</li>
+        <li><kbd>Ctrl</kbd>+<kbd>C</kbd>（Macは <kbd>⌘</kbd>+<kbd>C</kbd>）でコピー</li>
+        <li>ステップ2のブックマークURL欄に <kbd>Ctrl</kbd>+<kbd>V</kbd> で貼り付け</li>
+      </ol>
+    </div>
+
+    <div class="warning">
+      ⚠️ <strong>重要：</strong>ChromeはURLに貼り付けると先頭の <code>javascript:</code> が自動で消えることがあります。
+      貼り付け後、URLが <code>javascript:void</code> で始まっているか確認してください。
+      消えていた場合は手動で <code>javascript:</code> を先頭に追加してください。
+    </div>
   </div>
 
   <!-- 使い方 -->
@@ -382,7 +311,7 @@
 
     <details>
       <summary>「内部構造が見つかりません」と表示されます</summary>
-      <div class="faq-body">ページをリロード（<kbd>F5</kbd> または <kbd>Ctrl</kbd>+<kbd>R</kbd>）してから再度お試しください。それでも解決しない場合は、ブックマークレットのコードが古い可能性があります。このページの最新コードを再登録してください。</div>
+      <div class="faq-body">ページをリロード（<kbd>F5</kbd> または <kbd>Ctrl</kbd>+<kbd>R</kbd>）してから再度お試しください。それでも解決しない場合は、このページの最新コードを再登録してください。</div>
     </details>
 
     <details>
@@ -402,49 +331,17 @@
 </div>
 
 <script>
-  function copyCode(btn) {
-    // 即座に視覚フィードバック
-    btn.textContent = '⏳ コピー中...';
-    btn.disabled = true;
-
-    const code = document.getElementById('bookmarklet-code').textContent;
-
-    function onSuccess() {
-      btn.textContent = '✅ コピーしました！';
-      btn.classList.add('copied');
-      setTimeout(() => {
-        btn.textContent = '📋 コピー';
-        btn.classList.remove('copied');
-        btn.disabled = false;
-      }, 2500);
-    }
-
-    function promptFallback() {
-      // 最終手段：promptダイアログでコードを表示→ユーザーが手動Ctrl+C
-      btn.textContent = '📋 コピー';
-      btn.disabled = false;
-      window.prompt('下のコードを全選択(Ctrl+A)してコピー(Ctrl+C)してください：', code);
-    }
-
-    function execFallback() {
-      const ta = document.createElement('textarea');
-      ta.value = code;
-      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0.01;width:1px;height:1px';
-      document.body.appendChild(ta);
-      ta.focus();
-      ta.select();
-      const ok = document.execCommand('copy');
-      document.body.removeChild(ta);
-      if (ok) { onSuccess(); } else { promptFallback(); }
-    }
-
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(code)
-        .then(onSuccess)
-        .catch(execFallback);
-    } else {
-      execFallback();
-    }
+  function selectCode() {
+    const ta = document.getElementById('bookmarklet-code');
+    const btn = document.getElementById('select-btn');
+    ta.focus();
+    ta.select();
+    btn.textContent = '✅ 選択されました！ → Ctrl+C でコピーしてください';
+    btn.classList.add('selected');
+    setTimeout(() => {
+      btn.textContent = '👆 クリックしてコードを全選択する';
+      btn.classList.remove('selected');
+    }, 4000);
   }
 </script>
 </body>
