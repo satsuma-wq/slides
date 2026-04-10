@@ -16,33 +16,33 @@
   kbd{background:#eee;border:1px solid #ccc;border-radius:3px;padding:2px 6px;font-family:monospace}
   .badge{display:inline-block;background:#06c;color:white;font-size:.75em;padding:2px 8px;border-radius:12px;margin-left:8px;vertical-align:middle}
   .update{font-size:.85em;color:#888;margin:0 0 20px}
+  .ver{font-size:.8em;color:#aaa;text-align:right;margin-top:24px}
 </style>
 </head>
 <body>
-<h1>LINE WORKS 全既読ブックマークレット <span class="badge">React 17/18 対応</span></h1>
-<p class="update">2026-04-10 更新 — 未読バッジ検出を強化</p>
+<h1>LINE WORKS 全既読ブックマークレット <span class="badge">v3</span></h1>
+<p class="update">2026-04-10 v3 — 全要素バッジ検出・デバッグ情報付き</p>
 
 <div class="step">
   <h2>ステップ1：コードをコピーする</h2>
-  <textarea id="code" readonly>javascript:void((async()=>{if(!location.hostname.includes('worksmobile.com')){alert('LINE WORKSのトーク画面で実行してください');return}const sels=['.chat_list .item_chat','[class*=chat_list] [class*=item_chat]','[class*=chatList] [class*=chatItem]','[class*=channel_list] li','[class*=channelList] li','[class*=talkList] li'];let items=null;for(const s of sels){const r=document.querySelectorAll(s);if(r.length>0){items=r;break}}if(!items||!items.length){alert('トークルームが見つかりません\nトーク一覧を表示した状態で実行してください');return}const getFK=el=>Object.keys(el).find(k=>k.startsWith('__reactFiber')||k.startsWith('__reactInternalInstance'));const getPK=el=>Object.keys(el).find(k=>k.startsWith('__reactProps'));const walk=(node,test,max=30)=>{let n=node,d=0;while(n&&d++<max){const p=n.memoizedProps||n.pendingProps;if(p&&test(p))return p;n=n.return}return null};const isUnread=ch=>{if(!ch)return false;return['unreadCount','unread','unreadMessageCount','badgeCount','badge','newCount','newMessageCount','unreadMsgCount','unreadCnt','unreadMsg'].some(k=>typeof ch[k]==='number'&&ch[k]>0)};let cc=null;const uc=[];for(const item of items){const prk=getPK(item);if(prk){const p=item[prk];if(!cc&&typeof p?.clickChannel==='function')cc=p.clickChannel;if(!cc&&typeof p?.onClick==='function')cc=p.onClick;const ch=p?.channel||p?.channelInfo||p?.chatChannel||p?.data?.channel;if(ch&&isUnread(ch))uc.push(ch);continue}const fk=getFK(item);if(!fk)continue;const fiber=item[fk];if(!cc){const p=walk(fiber,p=>typeof p.clickChannel==='function'||typeof p.onClickChannel==='function'||typeof p.onChannelClick==='function');if(p)cc=p.clickChannel||p.onClickChannel||p.onChannelClick}const cp=walk(fiber,p=>{const ch=p?.channel||p?.channelInfo||p?.chatChannel;return ch&&ch.channelNo!=null});const ch=cp?.channel||cp?.channelInfo||cp?.chatChannel;if(ch&&isUnread(ch))uc.push(ch)}const hasBadge=el=>{const bsels=['[class*=unread]','[class*=badge]','[class*=Badge]','[class*=count]','[class*=Count]','[class*=noti]','[class*=Noti]','[class*=alert]','[class*=Alert]'];for(const s of bsels){try{const b=el.querySelector(s);if(b&&parseInt((b.textContent||'').trim())>0)return true}catch(e){}}for(const leaf of el.querySelectorAll('span,em,b,strong,i')){if(!leaf.children.length){const t=(leaf.textContent||'').trim();if(/^[1-9]\d{0,2}$/.test(t)){const r=leaf.getBoundingClientRect();if(r.width>0&&r.width<=36&&r.height<=36)return true}}}return false};if(!cc||!uc.length){const bad=Array.from(items).filter(hasBadge);if(!bad.length){const dbg=[...new Set(Array.from((items[0]||document.body).querySelectorAll('*')).flatMap(e=>typeof e.className==='string'?e.className.split(' '):[]).filter(c=>c.length>2))].slice(0,20).join(', ');alert('未読を検出できませんでした\n\n【デバッグ情報】\n検出アイテム数: '+items.length+'\nクラス例: '+dbg);return}if(!confirm(bad.length+'件の未読チャットをまとめて既読にしますか？'))return;let d=0;for(const el of bad){el.click();d++;document.title='既読処理中... '+d+'/'+bad.length;await new Promise(r=>setTimeout(r,800))}document.title='LINE WORKS';alert('完了！ '+d+'件を既読にしました');return}if(!uc.length){alert('未読はありません！');return}if(!confirm(uc.length+'件の未読チャットをまとめて既読にしますか？'))return;let d=0;for(const ch of uc){cc(ch);d++;document.title='既読処理中... '+d+'/'+uc.length;await new Promise(r=>setTimeout(r,500))}document.title='LINE WORKS';alert('完了！ '+d+'件を既読にしました')})())</textarea>
-  <button class="select-btn" onclick="var t=document.getElementById('code');t.focus();t.select();this.textContent='✅ 選択されました！ Ctrl+C でコピー'">
+  <textarea id="code" readonly>javascript:void((async()=>{if(!location.hostname.includes('worksmobile.com')){alert('LINE WORKSのトーク画面で実行してください');return}const sels=['.chat_list .item_chat','[class*=chat_list] [class*=item_chat]','[class*=chatList] [class*=chatItem]','[class*=channel_list] li','[class*=channelList] li','[class*=talkList] li'];let items=null;for(const s of sels){const r=document.querySelectorAll(s);if(r.length>0){items=r;break}}if(!items||!items.length){alert('トークルームが見つかりません\nトーク一覧を表示した状態で実行してください');return}const getFK=el=>Object.keys(el).find(k=>k.startsWith('__reactFiber')||k.startsWith('__reactInternalInstance'));const getPK=el=>Object.keys(el).find(k=>k.startsWith('__reactProps'));const walk=(node,test,max=30)=>{let n=node,d=0;while(n&&d++<max){const p=n.memoizedProps||n.pendingProps;if(p&&test(p))return p;n=n.return}return null};const isUnread=ch=>{if(!ch)return false;return['unreadCount','unread','unreadMessageCount','badgeCount','badge','newCount','newMessageCount','unreadMsgCount','unreadCnt','unreadMsg'].some(k=>typeof ch[k]==='number'&&ch[k]>0)};let cc=null;const uc=[];for(const item of items){const prk=getPK(item);if(prk){const p=item[prk];if(!cc&&typeof p?.clickChannel==='function')cc=p.clickChannel;if(!cc&&typeof p?.onClick==='function')cc=p.onClick;const ch=p?.channel||p?.channelInfo||p?.chatChannel||p?.data?.channel;if(ch&&isUnread(ch))uc.push(ch);continue}const fk=getFK(item);if(!fk)continue;const fiber=item[fk];if(!cc){const p=walk(fiber,p=>typeof p.clickChannel==='function'||typeof p.onClickChannel==='function'||typeof p.onChannelClick==='function');if(p)cc=p.clickChannel||p.onClickChannel||p.onChannelClick}const cp=walk(fiber,p=>{const ch=p?.channel||p?.channelInfo||p?.chatChannel;return ch&&ch.channelNo!=null});const ch=cp?.channel||cp?.channelInfo||cp?.chatChannel;if(ch&&isUnread(ch))uc.push(ch)}const hasBadge=el=>{const bsels=['[class*=unread]','[class*=badge]','[class*=Badge]','[class*=count]','[class*=Count]','[class*=noti]','[class*=Noti]','[class*=alert]','[class*=Alert]'];for(const s of bsels){try{const b=el.querySelector(s);if(b&&parseInt((b.textContent||'').trim())>0)return true}catch(e){}}for(const leaf of el.querySelectorAll('*')){if(!leaf.children.length){const t=(leaf.textContent||'').trim();if(/^[1-9]\d{0,2}$/.test(t)){const r=leaf.getBoundingClientRect();if(r.width>0&&r.width<=40&&r.height<=40)return true}}}return false};if(!cc||!uc.length){const bad=Array.from(items).filter(hasBadge);if(!bad.length){const dbg=[...new Set(Array.from((items[0]||document.body).querySelectorAll('*')).flatMap(e=>typeof e.className==='string'?e.className.split(' '):[]).filter(c=>c.length>2))].slice(0,20).join(', ');alert('未読を検出できませんでした\n\n【デバッグ情報】\n検出アイテム数: '+items.length+'\nクラス例: '+dbg);return}if(!confirm(bad.length+'件の未読チャットをまとめて既読にしますか？'))return;let d=0;for(const el of bad){el.click();d++;document.title='既読処理中... '+d+'/'+bad.length;await new Promise(r=>setTimeout(r,800))}document.title='LINE WORKS';alert('完了！ '+d+'件を既読にしました');return}if(!uc.length){alert('未読はありません！');return}if(!confirm(uc.length+'件の未読チャットをまとめて既読にしますか？'))return;let d=0;for(const ch of uc){cc(ch);d++;document.title='既読処理中... '+d+'/'+uc.length;await new Promise(r=>setTimeout(r,500))}document.title='LINE WORKS';alert('完了！ '+d+'件を既読にしました')})())</textarea>
+  <button class="select-btn" onclick="var t=document.getElementById('code');t.focus();t.select();this.textContent='✅ 選択されました！ → Ctrl+C でコピー'">
     👆 クリックしてコードを全選択する
   </button>
   <p style="margin:8px 0 0;font-size:.9em;color:#555">ボタンを押すとテキストが全選択されます。その後 <kbd>Ctrl</kbd>+<kbd>C</kbd> でコピーしてください。</p>
 </div>
 
 <div class="step">
-  <h2>ステップ2：ブックマークに登録する</h2>
+  <h2>ステップ2：ブックマークを更新する</h2>
   <ol>
-    <li>Chromeのブックマークバーで右クリック →「ページを追加」</li>
-    <li>名前：<strong>LW全既読</strong></li>
-    <li>URL欄にコピーしたコードを貼り付け</li>
+    <li>既存の「LW全既読」ブックマークを右クリック →「編集」</li>
+    <li>URL欄を全選択して、コピーしたコードを貼り付け</li>
     <li>保存</li>
   </ol>
   <div class="note">
     ⚠️ Chromeはブックマーク登録時に先頭の <code>javascript:</code> を消すことがあります。<br>
-    登録後に編集して URL が <code>javascript:void(</code> で始まっているか確認してください。<br>
-    消えていた場合は先頭に <code>javascript:</code> を手動で追加してください。
+    保存後に再度「編集」を開き、URLが <code>javascript:void(</code> で始まっているか確認してください。<br>
+    消えていた場合は先頭に <code>javascript:</code> を手動で追加して再保存してください。
   </div>
 </div>
 
@@ -52,12 +52,12 @@
     <li>LINE WORKSを開き、トーク一覧が表示されている状態にする</li>
     <li>ブックマークバーの「LW全既読」をクリック</li>
     <li>確認ダイアログで「OK」を押す</li>
-    <li>処理中はタブのタイトルに進捗が表示されます</li>
   </ol>
   <div class="note">
-    💡 もし「未読を検出できませんでした」と表示された場合は、<br>
-    アラート内の「クラス例」をコピーして開発者にお知らせください。
+    💡 もし「未読を検出できませんでした」と出た場合は、<br>
+    アラート内の「クラス例:」以降のテキストをコピーしてお知らせください。
   </div>
 </div>
+<p class="ver">v3 / 2026-04-10</p>
 </body>
 </html>
