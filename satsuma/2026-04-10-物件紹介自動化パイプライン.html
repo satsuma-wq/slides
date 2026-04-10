@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>物件紹介 自動化パイプライン｜アーキテクチャ説明</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+      background: #f0f2f5;
+      color: #1a2540;
+      line-height: 1.7;
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      background: linear-gradient(135deg, #1A365D 0%, #2d5a9e 100%);
+      color: white;
+      padding: 48px 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #DAA520, #f0c040, #DAA520);
+    }
+    .header-inner { max-width: 960px; margin: 0 auto; }
+    .header-tag {
+      display: inline-block;
+      background: rgba(218,165,32,0.25);
+      border: 1px solid rgba(218,165,32,0.6);
+      color: #f0c040;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .header p {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+    }
+    .header-meta {
+      margin-top: 20px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .header-meta span {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .header-meta span::before {
+      content: '●';
+      color: #DAA520;
+      font-size: 8px;
+    }
+
+    /* ─── MAIN ─── */
+    .main { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    /* ─── SECTION TITLE ─── */
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #2d5a9e;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #dde3f0;
+    }
+
+    /* ─── OVERVIEW CARDS ─── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .overview-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid #e8ecf5;
+      box-shadow: 0 2px 8px rgba(26,54,93,0.06);
+    }
+    .overview-card .num {
+      font-size: 36px;
+      font-weight: 800;
+      color: #1A365D;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .overview-card .num span { font-size: 14px; font-weight: 500; color: #6b7a9e; }
+    .overview-card .label { font-size: 12px; color: #6b7a9e; }
+
+    /* ─── PIPELINE ─── */
+    .pipeline-container {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      border: 1px solid #e8ecf5;
+      box-shadow: 0 4px 20px rgba(26,54,93,0.08);
+      margin-bottom: 48px;
+    }
+
+    .pipeline-trigger {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .trigger-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #f8f0d8;
+      border: 2px solid #DAA520;
+      border-radius: 12px;
+      padding: 14px 28px;
+      font-weight: 700;
+      color: #7a5000;
+    }
+    .trigger-box .icon { font-size: 20px; }
+
+    .arrow-down {
+      text-align: center;
+      color: #93a3c0;
+      font-size: 22px;
+      margin: 6px 0;
+      line-height: 1;
+    }
+
+    /* Steps */
+    .steps { display: flex; flex-direction: column; gap: 0; }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: stretch;
+      position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 60px;
+      bottom: -20px;
+      width: 2px;
+      background: #dde3f0;
+      z-index: 0;
+    }
+
+    .step-num-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1;
+    }
+    .step-badge {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      flex-shrink: 0;
+      border: 3px solid white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+    }
+
+    .step-body {
+      flex: 1;
+      background: #f7f9fc;
+      border: 1px solid #e4e9f5;
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .step-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a2540;
+    }
+    .skill-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+    .skill-chip::before { content: '⚙'; font-size: 10px; }
+
+    .step-desc { font-size: 13px; color: #4a5568; margin-bottom: 12px; }
+
+    .detail-list { list-style: none; }
+    .detail-list li {
+      font-size: 12.5px;
+      color: #5a6a8a;
+      padding: 4px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .detail-list li::before {
+      content: '→';
+      color: #93a3c0;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .status-transition {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #e0e8f5;
+      flex-wrap: wrap;
+    }
+    .st-label { font-size: 11px; color: #8a9ab0; font-weight: 600; }
+    .st-before, .st-after {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+    .st-before { background: #ffe4e4; color: #c0392b; }
+    .st-after  { background: #d4edda; color: #155724; }
+    .st-arrow  { color: #aab5cb; font-size: 14px; }
+
+    /* Step colors */
+    .step-1 .step-badge { background: linear-gradient(135deg,#1A365D,#2d5a9e); color:white; }
+    .step-1 .skill-chip { background:#e8eef8; color:#1A365D; border:1px solid #c5d2ea; }
+
+    .step-2 .step-badge { background: linear-gradient(135deg,#1a6e3c,#27a85f); color:white; }
+    .step-2 .skill-chip { background:#e6f4ec; color:#1a6e3c; border:1px solid #b8dfc7; }
+
+    .step-3 .step-badge { background: linear-gradient(135deg,#6b2fa0,#9b4fd4); color:white; }
+    .step-3 .skill-chip { background:#f0e8fa; color:#6b2fa0; border:1px solid #d4b8f0; }
+    .step-3 .skill-chip.secondary { background:#fff0e0; color:#b05000; border:1px solid #f0c890; }
+    .step-3 .skill-chip.secondary::before { content: '⚙'; }
+
+    .step-body.step-3-body { background: #fdf8ff; border-color: #e4d8f5; }
+
+    /* dual skill row */
+    .dual-skills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .dual-skill-card {
+      background: white;
+      border: 1px solid #e4d8f5;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .dual-skill-card .ds-title { font-size: 12px; font-weight: 700; color: #3a2560; margin-bottom: 4px; }
+    .dual-skill-card .ds-desc  { font-size: 11px; color: #6a5080; }
+
+    /* ─── STATUS TABLE ─── */
+    .status-section {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid #e8ecf5;
+      box-shadow: 0 4px 20px rgba(26,54,93,0.08);
+      margin-bottom: 48px;
+    }
+    .status-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .status-table th {
+      background: #1A365D;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 10px 16px;
+      text-align: left;
+      letter-spacing: 0.5px;
+    }
+    .status-table th:first-child { border-radius: 8px 0 0 0; }
+    .status-table th:last-child  { border-radius: 0 8px 0 0; }
+    .status-table td {
+      padding: 12px 16px;
+      font-size: 13px;
+      border-bottom: 1px solid #eef2fa;
+      vertical-align: middle;
+    }
+    .status-table tr:last-child td { border-bottom: none; }
+    .status-table tr:nth-child(even) td { background: #f7f9fc; }
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .badge-gray   { background:#e8ecf5; color:#4a5568; }
+    .badge-blue   { background:#e0eaff; color:#1A365D; }
+    .badge-green  { background:#d4f5e0; color:#155724; }
+    .badge-purple { background:#ede0ff; color:#5a1fa0; }
+    .badge-gold   { background:#fff3d0; color:#7a5000; }
+
+    /* ─── SPREADSHEET INFO ─── */
+    .spreadsheet-section {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid #e8ecf5;
+      box-shadow: 0 4px 20px rgba(26,54,93,0.08);
+      margin-bottom: 48px;
+    }
+    .col-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .col-table th {
+      background: #f0f4fc;
+      color: #1A365D;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 14px;
+      text-align: left;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 2px solid #dde3f0;
+    }
+    .col-table td {
+      padding: 10px 14px;
+      font-size: 12.5px;
+      border-bottom: 1px solid #eef2fa;
+    }
+    .col-table tr:last-child td { border-bottom: none; }
+    .col-key {
+      display: inline-block;
+      background: #1A365D;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      text-align: center;
+      line-height: 28px;
+    }
+    .col-highlight { background: #fffae8; }
+    .col-note { font-size: 11px; color: #8a9ab0; margin-top: 3px; }
+
+    /* ─── NOTES ─── */
+    .notes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .note-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid #e8ecf5;
+      border-left: 4px solid;
+    }
+    .note-card.warn  { border-color: #DAA520; }
+    .note-card.info  { border-color: #2d5a9e; }
+    .note-card.tip   { border-color: #27a85f; }
+    .note-card.caution { border-color: #c0392b; }
+    .note-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .note-card.warn h4    { color: #7a5000; }
+    .note-card.info h4    { color: #1A365D; }
+    .note-card.tip h4     { color: #1a6e3c; }
+    .note-card.caution h4 { color: #c0392b; }
+    .note-card p { font-size: 12.5px; color: #5a6a8a; }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      color: #8a9ab0;
+      border-top: 1px solid #e0e8f5;
+    }
+    .footer strong { color: #1A365D; }
+
+    /* ─── TRIGGER SECTION ─── */
+    .trigger-section {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid #e8ecf5;
+      box-shadow: 0 4px 20px rgba(26,54,93,0.08);
+      margin-bottom: 48px;
+    }
+    .trigger-intro {
+      font-size: 13px;
+      color: #5a6a8a;
+      margin-bottom: 24px;
+      padding: 12px 16px;
+      background: #fff8e8;
+      border-left: 3px solid #DAA520;
+      border-radius: 0 8px 8px 0;
+    }
+    .trigger-methods {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .trigger-method {
+      border-radius: 12px;
+      padding: 20px;
+      border: 2px solid;
+      position: relative;
+    }
+    .trigger-method.recommended {
+      border-color: #2d5a9e;
+      background: #f0f4fc;
+    }
+    .trigger-method.manual {
+      border-color: #e0e8f5;
+      background: #f7f9fc;
+    }
+    .trigger-method.gas {
+      border-color: #e0e8f5;
+      background: #f7f9fc;
+    }
+    .trigger-method .rec-badge {
+      position: absolute;
+      top: -10px;
+      left: 16px;
+      background: #2d5a9e;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 10px;
+      letter-spacing: 1px;
+    }
+    .trigger-method .tm-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .trigger-method .tm-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a2540;
+      margin-bottom: 6px;
+    }
+    .trigger-method .tm-desc {
+      font-size: 12px;
+      color: #5a6a8a;
+      line-height: 1.6;
+    }
+    .trigger-method .tm-cmd {
+      display: inline-block;
+      margin-top: 10px;
+      background: #1A365D;
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: monospace;
+    }
+    .trigger-method .tm-limit {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 10px;
+      font-size: 11px;
+      color: #c05000;
+      background: #fff0e0;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .scheduler-flow {
+      background: #f0f4fc;
+      border-radius: 12px;
+      padding: 20px 24px;
+      border: 1px solid #c5d2ea;
+    }
+    .scheduler-flow h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1A365D;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sched-steps {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .sched-step {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      border: 1px solid #c5d2ea;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 12px;
+      color: #1a2540;
+    }
+    .sched-step .ss-icon { font-size: 16px; }
+    .sched-arrow {
+      color: #93a3c0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .sched-note {
+      margin-top: 12px;
+      font-size: 11.5px;
+      color: #6a7a9a;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .sched-note::before { content: '※'; color: #DAA520; font-weight: 700; flex-shrink: 0; }
+
+    @media (max-width: 680px) {
+      .overview-grid { grid-template-columns: 1fr; }
+      .notes-grid    { grid-template-columns: 1fr; }
+      .dual-skills   { grid-template-columns: 1fr; }
+      .trigger-methods { grid-template-columns: 1fr; }
+      .pipeline-container { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-tag">System Architecture</div>
+    <h1>物件紹介 自動化パイプライン</h1>
+    <p>概要書作成 → 資料整理 → 配信登録を一括処理する販売マネージャーシステムの全体設計</p>
+    <div class="header-meta">
+      <span>対象：第二営業部スタッフ</span>
+      <span>管理スキル：hanbai-manager</span>
+      <span>更新：2026年4月</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- OVERVIEW -->
+  <div class="section-title">Overview</div>
+  <div class="overview-grid">
+    <div class="overview-card">
+      <div class="num">4<span> スキル</span></div>
+      <div class="label">連携して動作する自動化スキル数</div>
+    </div>
+    <div class="overview-card">
+      <div class="num">3<span> ステップ</span></div>
+      <div class="label">概要書 → 資料整理 → 配信登録</div>
+    </div>
+    <div class="overview-card">
+      <div class="num">1<span> 管理表</span></div>
+      <div class="label">物件紹介タブでステータスを一元管理</div>
+    </div>
+  </div>
+
+  <!-- TRIGGER -->
+  <div class="section-title">Trigger &amp; Scheduler</div>
+  <div class="trigger-section">
+    <div class="trigger-intro">
+      ⚠️ <strong>重要：</strong>スプレッドシートに案件が入力されても、システムは<strong>自動では起動しません</strong>。Coworkは「呼ばれたときだけ動く」設計のため、以下のいずれかの方法でトリガーする必要があります。
+    </div>
+
+    <div class="trigger-methods">
+
+      <!-- 手動 -->
+      <div class="trigger-method manual">
+        <div class="tm-icon">💬</div>
+        <div class="tm-title">① 手動トリガー</div>
+        <div class="tm-desc">Coworkを開いて声をかけるだけで起動。最もシンプルで確実な方法。<br><br>案件が入ったタイミングで随時実行できる。</div>
+        <div class="tm-cmd">販売マネージャー起動して</div>
+      </div>
+
+      <!-- スケジューラー -->
+      <div class="trigger-method recommended">
+        <div class="rec-badge">RECOMMENDED</div>
+        <div class="tm-icon">⏰</div>
+        <div class="tm-title">② スケジューラー（定期チェック）</div>
+        <div class="tm-desc">毎朝9時など、決まった時間に自動でスプレッドシートを確認。未処理案件があれば処理を開始する。<br><br>Coworkが起動中であれば完全自動で動作。</div>
+        <div class="tm-limit">⚠ Cowork起動中のみ実行</div>
+      </div>
+
+      <!-- GAS補助 -->
+      <div class="trigger-method gas">
+        <div class="tm-icon">📡</div>
+        <div class="tm-title">③ GAS通知（補助）</div>
+        <div class="tm-desc">Google Apps ScriptのonEditトリガーで、案件追加を検知してメール通知。Coworkの呼び出しは手動だが、入力漏れを防げる。</div>
+        <div class="tm-limit">⚠ GAS別途設定が必要</div>
+      </div>
+
+    </div>
+
+    <!-- スケジューラーの動作フロー -->
+    <div class="scheduler-flow">
+      <h4>⏰ スケジューラー設定時の動作フロー（毎朝9:00の例）</h4>
+      <div class="sched-steps">
+        <div class="sched-step">
+          <span class="ss-icon">🕘</span>
+          <span>毎朝9:00<br><small style="color:#8a9ab0">自動起動</small></span>
+        </div>
+        <span class="sched-arrow">→</span>
+        <div class="sched-step">
+          <span class="ss-icon">📋</span>
+          <span>スプレッドシートを確認<br><small style="color:#8a9ab0">F列をスキャン</small></span>
+        </div>
+        <span class="sched-arrow">→</span>
+        <div class="sched-step">
+          <span class="ss-icon">🔍</span>
+          <span>未処理案件を検出<br><small style="color:#8a9ab0">作成前 / 途中の案件</small></span>
+        </div>
+        <span class="sched-arrow">→</span>
+        <div class="sched-step">
+          <span class="ss-icon">⚙️</span>
+          <span>パイプライン実行<br><small style="color:#8a9ab0">概要書→整理→配信</small></span>
+        </div>
+        <span class="sched-arrow">→</span>
+        <div class="sched-step">
+          <span class="ss-icon">✅</span>
+          <span>ST自動更新<br><small style="color:#8a9ab0">配信登録済み</small></span>
+        </div>
+      </div>
+      <div class="sched-note">Coworkアプリが起動・ログイン状態であることが条件です。PCスリープ中やアプリを閉じている場合は翌日の定時まで待機します。スケジューラーの設定は「スケジュールを設定して」と声をかけることで行えます。</div>
+    </div>
+  </div>
+
+  <!-- PIPELINE -->
+  <div class="section-title">Pipeline Flow</div>
+  <div class="pipeline-container">
+
+    <!-- Trigger -->
+    <div class="pipeline-trigger">
+      <div class="trigger-box">
+        <span class="icon">📋</span>
+        <div>
+          <div style="font-size:12px;opacity:.7;margin-bottom:2px">トリガー</div>
+          <div>「物件紹介」スプレッドシートに案件が入力される</div>
+        </div>
+      </div>
+    </div>
+    <div class="arrow-down">↓</div>
+    <div style="text-align:center;margin-bottom:28px">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:#f0f4fc;border:1px solid #c5d2ea;border-radius:8px;padding:8px 20px;font-size:13px;font-weight:700;color:#1A365D">
+        🎯 販売マネージャー（hanbai-manager）が起動・進捗を監視
+      </div>
+    </div>
+    <div class="arrow-down">↓</div>
+
+    <!-- Steps -->
+    <div class="steps">
+
+      <!-- STEP 1 -->
+      <div class="step step-1">
+        <div class="step-num-col">
+          <div class="step-badge">1</div>
+        </div>
+        <div class="step-body">
+          <div class="step-header">
+            <div class="step-title">概要書作成</div>
+            <div class="skill-chip">fudosan-gaiyosho</div>
+          </div>
+          <div class="step-desc">物件フォルダの資料を読み込み、5ページ構成のHTML概要書を自動生成。完成後は共有フォルダへ自動アップロード。</div>
+          <ul class="detail-list">
+            <li>J列の物件フォルダURLから写真・資料を取得</li>
+            <li>K列（販売金額）・L列（路線価）を使って収支計算</li>
+            <li>A4横・5ページ構成のHTMLを生成・ローカル保存</li>
+            <li>共有フォルダ（J列フォルダ内）へ自動アップロード</li>
+          </ul>
+          <div class="status-transition">
+            <span class="st-label">ST更新</span>
+            <span class="st-before">契約予定 / 仕入れ契約済み 等</span>
+            <span class="st-arrow">→</span>
+            <span class="st-after">概要書作成済み</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step step-2">
+        <div class="step-num-col">
+          <div class="step-badge">2</div>
+        </div>
+        <div class="step-body">
+          <div class="step-header">
+            <div class="step-title">資料整理</div>
+            <div class="skill-chip" style="background:#e6f4ec;color:#1a6e3c;border:1px solid #b8dfc7">fudosan-shiryo-seiri</div>
+          </div>
+          <div class="step-desc">採番マスタに従いファイルをリネームし、バラバラフォルダ→墨消し→共有フォルダの順で整理する。</div>
+          <ul class="detail-list">
+            <li>物件フォルダ内のファイルを採番マスタでリネーム</li>
+            <li>「コピーを作成」でオーナーをsatsuma@reatex.co.jpに変更</li>
+            <li>バラバラフォルダへ配置後、墨消し処理（PyMuPDF）を実施</li>
+            <li>墨消し済みファイルを共有フォルダへコピー</li>
+          </ul>
+          <div class="status-transition">
+            <span class="st-label">ST更新</span>
+            <span class="st-before">概要書作成済み</span>
+            <span class="st-arrow">→</span>
+            <span class="st-after">資料整理済み</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step step-3">
+        <div class="step-num-col">
+          <div class="step-badge">3</div>
+        </div>
+        <div class="step-body step-3-body">
+          <div class="step-header">
+            <div class="step-title">配信登録</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <div class="skill-chip">melumaga-haishin</div>
+              <div class="skill-chip secondary">lstep-broadcast</div>
+            </div>
+          </div>
+          <div class="step-desc">メルマガ（配配メール）とLステップへ配信を同時登録し、在庫一覧表にも記録する。</div>
+          <div class="dual-skills">
+            <div class="dual-skill-card">
+              <div class="ds-title">📧 メルマガ配信（配配メール）</div>
+              <div class="ds-desc">投資家リスト（gid=21）に配信登録。1都3県 or 1,500万円以上の場合は業者リスト（gid=24）にも登録。在庫一覧表EB列を黄色でセット。</div>
+            </div>
+            <div class="dual-skill-card">
+              <div class="ds-title">📱 Lステップ一斉配信</div>
+              <div class="ds-desc">アンケート未回答者・回答者の2通を登録。エリアタグ（B05〜B16）と物件タグ（B17〜B22）で絞り込み。在庫一覧表に黄色でセット。</div>
+            </div>
+          </div>
+          <div class="status-transition">
+            <span class="st-label">ST更新</span>
+            <span class="st-before">資料整理済み</span>
+            <span class="st-arrow">→</span>
+            <span class="st-after">配信登録済み ✅</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /steps -->
+  </div><!-- /pipeline-container -->
+
+  <!-- STATUS TABLE -->
+  <div class="section-title">ステータス管理（F列）</div>
+  <div class="status-section">
+    <p style="font-size:13px;color:#5a6a8a;margin-bottom:20px">スプレッドシート「物件紹介」タブのF列（ST）がパイプライン全体の進捗を管理します。各スキルは完了時に自動更新します。</p>
+    <table class="status-table">
+      <thead>
+        <tr>
+          <th>ステータス値</th>
+          <th>意味</th>
+          <th>次のアクション</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="status-badge badge-gray">契約予定</span>&nbsp;<span class="status-badge badge-gray">仕入れ契約済み</span></td>
+          <td>新規案件が入力された状態</td>
+          <td>K・L列確認後、概要書作成を開始</td>
+        </tr>
+        <tr>
+          <td><span class="status-badge badge-blue">概要書作成済み</span></td>
+          <td>HTMLが共有フォルダに格納済み</td>
+          <td>資料整理スキルへ自動移行</td>
+        </tr>
+        <tr>
+          <td><span class="status-badge badge-green">資料整理済み</span></td>
+          <td>共有フォルダの整備が完了</td>
+          <td>メルマガ・Lステップ配信登録へ移行</td>
+        </tr>
+        <tr>
+          <td><span class="status-badge badge-gold">配信登録済み</span></td>
+          <td>全工程完了・配信スケジュール設定済み</td>
+          <td>M列・N列に配信日時が記録される</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SPREADSHEET COLUMNS -->
+  <div class="section-title">管理スプレッドシート 列定義</div>
+  <div class="spreadsheet-section">
+    <p style="font-size:13px;color:#5a6a8a;margin-bottom:20px">
+      <strong>物件管理表（第二営業部）&nbsp;›&nbsp;物件紹介タブ</strong><br>
+      <a href="https://docs.google.com/spreadsheets/d/1YX74czZ6-vPT8NrxJL4_eNcul4xv9KLr3UqStVRKmgU/edit?gid=1553531276" style="color:#2d5a9e;font-size:12px">スプレッドシートを開く →</a>
+    </p>
+    <table class="col-table">
+      <thead>
+        <tr><th>列</th><th>項目名</th><th>内容・備考</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="col-key">A</span></td><td>物件番号</td><td>p-XXXX / r-XXXX 形式</td></tr>
+        <tr><td><span class="col-key">B</span></td><td>日付</td><td>入力日</td></tr>
+        <tr><td><span class="col-key">C</span></td><td>問い合わせ者</td><td>担当者名</td></tr>
+        <tr><td><span class="col-key">D</span></td><td>経由</td><td>athome / rakumachi / line 等</td></tr>
+        <tr><td><span class="col-key">E</span></td><td>物件種目</td><td>1棟アパート / 戸建て / 1棟マンション 等</td></tr>
+        <tr class="col-highlight"><td><span class="col-key" style="background:#DAA520">F</span></td><td><strong>ST（ステータス）</strong></td><td><strong>パイプライン進捗を管理する中心列。自動更新。</strong></td></tr>
+        <tr><td><span class="col-key">G</span></td><td>物件住所</td><td>フルネーム（配信登録で使用）</td></tr>
+        <tr><td><span class="col-key">H</span></td><td>土地面積（㎡）</td><td></td></tr>
+        <tr><td><span class="col-key">I</span></td><td>建物面積（㎡）</td><td></td></tr>
+        <tr class="col-highlight"><td><span class="col-key" style="background:#2d5a9e">J</span></td><td><strong>物件URL</strong></td><td><strong>Google DriveフォルダURL。共有フォルダ・バラバラフォルダの親フォルダ。</strong></td></tr>
+        <tr class="col-highlight"><td><span class="col-key" style="background:#2d5a9e">K</span></td><td><strong>販売金額（万円）</strong></td><td><strong>手動入力。概要書作成の収支計算に使用。</strong></td></tr>
+        <tr class="col-highlight"><td><span class="col-key" style="background:#2d5a9e">L</span></td><td><strong>路線価（万円）</strong></td><td><strong>手動入力。概要書の土地積算評価に使用。</strong></td></tr>
+        <tr><td><span class="col-key">M</span></td><td>Lステップ配信日時</td><td>配信登録完了後に自動記録</td></tr>
+        <tr><td><span class="col-key">N</span></td><td>メルマガ配信日時</td><td>配信登録完了後に自動記録</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- NOTES -->
+  <div class="section-title">運用メモ</div>
+  <div class="notes-grid">
+    <div class="note-card warn">
+      <h4>⚠️ K列・L列は手動入力が必要</h4>
+      <p>販売金額（K列）と路線価（L列）はシステムが自動取得できません。案件登録時に必ず入力してください。未入力の場合、概要書作成開始前にシステムが確認を求めます。</p>
+    </div>
+    <div class="note-card info">
+      <h4>📁 フォルダ構造は統一が前提</h4>
+      <p>J列の物件フォルダの中には、必ず「共有フォルダ」と「バラバラフォルダ」の2つが存在する必要があります。概要書は共有フォルダ、資料整理作業はバラバラフォルダを使用します。</p>
+    </div>
+    <div class="note-card tip">
+      <h4>✅ 途中再開が可能</h4>
+      <p>各ステップ完了時にF列（ST）が更新されるため、途中で処理が中断されても「販売マネージャー起動して」と指示するだけで続きから再開できます。</p>
+    </div>
+    <div class="note-card caution">
+      <h4>🔍 墨消しは目視確認が必要</h4>
+      <p>資料整理の墨消しステップでは、処理内容を人の目で確認してから進めます。システムが自動で一時停止し確認を求めるため、見落としなく対応できます。</p>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<div class="footer">
+  <strong>株式会社リアテクス</strong>&nbsp;|&nbsp;第二営業部 物件紹介自動化パイプライン&nbsp;|&nbsp;2026年4月 作成
+</div>
+
+</body>
+</html>
