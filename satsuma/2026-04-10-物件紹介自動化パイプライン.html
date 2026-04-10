@@ -565,6 +565,292 @@
       .trigger-methods { grid-template-columns: 1fr; }
       .pipeline-container { padding: 24px 16px; }
     }
+
+    /* ─── BACKEND SPEC PAGE ─── */
+    .page-divider {
+      margin: 64px -24px 0;
+      padding: 48px 24px 40px;
+      background: linear-gradient(135deg, #0f2a4a 0%, #1a3f6f 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-divider::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #DAA520, #f0c040, #DAA520);
+    }
+    .page-divider::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #27a85f, #4ecf8f, #27a85f);
+    }
+    .page-divider-inner { max-width: 960px; margin: 0 auto; }
+    .page-divider-tag {
+      display: inline-block;
+      background: rgba(39,168,95,0.25);
+      border: 1px solid rgba(39,168,95,0.6);
+      color: #4ecf8f;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+    .page-divider h2 {
+      font-size: 24px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .page-divider p { color: rgba(255,255,255,0.7); font-size: 13px; }
+
+    /* Architecture box */
+    .arch-box {
+      background: #0d1f35;
+      border-radius: 12px;
+      padding: 24px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12px;
+      color: #a0c4e8;
+      line-height: 1.7;
+      border: 1px solid #1e3a5a;
+      margin-top: 8px;
+      overflow-x: auto;
+    }
+    .arch-box .arch-title { color: #4ecf8f; font-weight: 700; font-size: 11px; letter-spacing: 1px; margin-bottom: 12px; }
+    .arch-box .layer-label { color: #DAA520; }
+    .arch-box .component   { color: #7ec8f5; }
+    .arch-box .arrow       { color: #4ecf8f; }
+    .arch-box .comment     { color: #5a7a9a; font-style: italic; }
+
+    /* Tech table */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .tech-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #e8ecf5;
+      overflow: hidden;
+    }
+    .tech-card-head {
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: white;
+    }
+    .tc-blue   { background: #1A365D; }
+    .tc-green  { background: #1a6e3c; }
+    .tc-purple { background: #5a1fa0; }
+    .tc-orange { background: #b04000; }
+    .tech-card-body { padding: 12px 16px; }
+    .tech-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 6px 0;
+      border-bottom: 1px solid #f0f2f8;
+      gap: 12px;
+    }
+    .tech-row:last-child { border-bottom: none; }
+    .tech-cat  { font-size: 11px; color: #8a9ab0; flex-shrink: 0; width: 90px; }
+    .tech-val  { font-size: 12px; color: #1a2540; font-weight: 600; text-align: right; }
+    .tech-reason { font-size: 11px; color: #6a7a9a; }
+
+    /* Challenge table */
+    .challenge-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .challenge-table th {
+      background: #1A365D;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 10px 14px;
+      text-align: left;
+      letter-spacing: 0.5px;
+    }
+    .challenge-table th:first-child { border-radius: 8px 0 0 0; }
+    .challenge-table th:last-child  { border-radius: 0 8px 0 0; }
+    .challenge-table td {
+      padding: 10px 14px;
+      font-size: 12px;
+      border-bottom: 1px solid #eef2fa;
+      vertical-align: middle;
+    }
+    .challenge-table tr:last-child td { border-bottom: none; }
+    .challenge-table tr:nth-child(even) td { background: #f7f9fc; }
+    .diff-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .diff-low  { background: #d4f5e0; color: #155724; }
+    .diff-mid  { background: #fff3d0; color: #7a5000; }
+    .diff-high { background: #ffe4e4; color: #c0392b; }
+
+    /* Roadmap */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .roadmap-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #e8ecf5;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(26,54,93,0.05);
+    }
+    .roadmap-head {
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .rh-phase {
+      font-size: 10px;
+      font-weight: 800;
+      color: white;
+      background: #1A365D;
+      border-radius: 4px;
+      padding: 2px 8px;
+      letter-spacing: 1px;
+    }
+    .rh-title { font-size: 13px; font-weight: 700; color: #1a2540; }
+    .rh-period { font-size: 11px; color: #8a9ab0; margin-left: auto; flex-shrink: 0; }
+    .roadmap-body { padding: 10px 14px 14px; }
+    .roadmap-milestone {
+      font-size: 11px;
+      font-weight: 700;
+      color: white;
+      background: #27a85f;
+      border-radius: 6px;
+      padding: 3px 10px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .roadmap-items { list-style: none; }
+    .roadmap-items li {
+      font-size: 11.5px;
+      color: #5a6a8a;
+      padding: 3px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.5;
+    }
+    .roadmap-items li::before { content: '·'; color: #93a3c0; font-size: 16px; line-height: 1; flex-shrink: 0; margin-top: 1px; }
+
+    /* Risk table */
+    .risk-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .risk-table th {
+      background: #5a1fa0;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .risk-table th:first-child { border-radius: 8px 0 0 0; }
+    .risk-table th:last-child  { border-radius: 0 8px 0 0; }
+    .risk-table td {
+      padding: 10px 14px;
+      font-size: 12px;
+      border-bottom: 1px solid #eef2fa;
+      vertical-align: top;
+    }
+    .risk-table tr:last-child td { border-bottom: none; }
+    .risk-table tr:nth-child(even) td { background: #f9f7fd; }
+    .risk-high { color: #c0392b; font-weight: 700; }
+    .risk-mid  { color: #b05000; font-weight: 700; }
+    .risk-low  { color: #155724; font-weight: 700; }
+
+    /* Cost */
+    .cost-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .cost-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #e8ecf5;
+      padding: 16px;
+      text-align: center;
+    }
+    .cost-service { font-size: 11px; color: #8a9ab0; margin-bottom: 6px; }
+    .cost-amount  { font-size: 20px; font-weight: 800; color: #1A365D; line-height: 1; }
+    .cost-unit    { font-size: 10px; color: #8a9ab0; margin-top: 4px; }
+    .cost-total   {
+      background: linear-gradient(135deg, #1A365D, #2d5a9e);
+      color: white;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      grid-column: span 4;
+    }
+    .cost-total .cost-amount { color: #f0c040; font-size: 26px; }
+    .cost-total .cost-service { color: rgba(255,255,255,0.7); }
+    .cost-total .cost-unit { color: rgba(255,255,255,0.6); }
+
+    /* Security badges */
+    .sec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .sec-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #e8ecf5;
+      padding: 18px;
+      border-left: 4px solid #5a1fa0;
+    }
+    .sec-card h4 { font-size: 13px; font-weight: 700; color: #3a1060; margin-bottom: 8px; }
+    .sec-card p  { font-size: 12px; color: #5a6a8a; line-height: 1.6; }
+    .sec-card code {
+      background: #f0eaf8;
+      color: #5a1fa0;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: monospace;
+    }
+
+    /* Warning box */
+    .warn-box {
+      background: #fff8e8;
+      border: 1px solid #DAA520;
+      border-left: 4px solid #DAA520;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-top: 8px;
+    }
+    .warn-box .wb-title { font-size: 13px; font-weight: 700; color: #7a5000; margin-bottom: 6px; }
+    .warn-box p { font-size: 12px; color: #6a5000; line-height: 1.7; }
+    .warn-box code { background: #f0e8c0; color: #7a4000; padding: 1px 6px; border-radius: 4px; font-size: 11px; }
+
+    @media (max-width: 680px) {
+      .tech-grid    { grid-template-columns: 1fr; }
+      .roadmap-grid { grid-template-columns: 1fr; }
+      .cost-grid    { grid-template-columns: 1fr 1fr; }
+      .cost-total   { grid-column: span 2; }
+      .sec-grid     { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -872,10 +1158,383 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════════════════════════
+       BACKEND TECHNICAL SPEC PAGE
+  ══════════════════════════════════════════════════════════════ -->
+
+  <!-- PAGE DIVIDER / NEW PAGE HEADER -->
+  <div class="page-divider">
+    <div class="page-divider-inner">
+      <div class="page-divider-tag">Backend Technical Spec</div>
+      <h2>自動化パイプライン バックエンド技術仕様書</h2>
+      <p>Mac mini ローカル環境からサーバーサイドへの移行に必要なアーキテクチャ・技術選定・実装ロードマップ</p>
+    </div>
+  </div>
+
+  <!-- ① エグゼクティブサマリー -->
+  <div class="section-title" style="margin-top:48px">Summary</div>
+  <div class="status-section">
+    <p style="font-size:13px;color:#5a6a8a;line-height:1.8;margin-bottom:20px">
+      現行システムは <strong>Mac mini 上の Claude Cowork</strong> が中核を担い、Chrome ブラウザの自動操作（Claude in Chrome MCP）を通じて各種 SaaS を操作しています。<br>
+      バックエンド化により「<strong>24/7 稼働・並列処理・監査ログ・スケールアウト</strong>」が実現します。
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+      <div style="background:#f0f4fc;border-radius:12px;padding:16px;text-align:center;border:1px solid #c5d2ea">
+        <div style="font-size:28px;font-weight:800;color:#1A365D;line-height:1">24/7</div>
+        <div style="font-size:11px;color:#6b7a9e;margin-top:4px">Mac mini 依存なし<br>常時稼働</div>
+      </div>
+      <div style="background:#e6f4ec;border-radius:12px;padding:16px;text-align:center;border:1px solid #b8dfc7">
+        <div style="font-size:28px;font-weight:800;color:#1a6e3c;line-height:1">並列</div>
+        <div style="font-size:11px;color:#3a6e4a;margin-top:4px">複数案件の<br>同時処理</div>
+      </div>
+      <div style="background:#f0e8fa;border-radius:12px;padding:16px;text-align:center;border:1px solid #d4b8f0">
+        <div style="font-size:28px;font-weight:800;color:#5a1fa0;line-height:1">ログ</div>
+        <div style="font-size:11px;color:#6a3a90;margin-top:4px">全ステップの<br>監査ログ保持</div>
+      </div>
+      <div style="background:#fff3e0;border-radius:12px;padding:16px;text-align:center;border:1px solid #f0c870">
+        <div style="font-size:28px;font-weight:800;color:#b06000;line-height:1">安全</div>
+        <div style="font-size:11px;color:#8a5000;margin-top:4px">認証情報の<br>集中管理</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 全体アーキテクチャ -->
+  <div class="section-title">Architecture</div>
+  <div class="pipeline-container">
+    <div class="arch-box">
+      <div class="arch-title">▌ BACKEND ARCHITECTURE OVERVIEW</div>
+<pre style="margin:0;font-family:inherit;font-size:inherit;line-height:inherit;white-space:pre-wrap"><span class="layer-label">┌── トリガー層 ──────────────────────────────────────────────┐</span>
+│  <span class="component">[POST /pipeline/run]</span>  <span class="component">[GAS Webhook]</span>  <span class="component">[Cloud Scheduler 毎朝9:00]</span>   │
+<span class="layer-label">└────────────────────┬───────────────────────────────────────┘</span>
+                     <span class="arrow">↓</span>
+<span class="layer-label">┌── API サーバー層 (FastAPI / Cloud Run) ────────────────────┐</span>
+│  スプレッドシート読み込み → 案件振り分け → ジョブキュー投入     │
+<span class="layer-label">└────────────────────┬───────────────────────────────────────┘</span>
+                     <span class="arrow">↓</span>  タスクキュー (Redis / Celery)
+<span class="layer-label">┌── ワーカー層 (Celery Worker / Cloud Run Jobs) ─────────────┐</span>
+│  <span class="component">┌─ STEP 1 ────┐</span>  <span class="component">┌─ STEP 2 ──────┐</span>  <span class="component">┌─ STEP 3 ────────────┐</span>  │
+│  <span class="component">│ 概要書作成  │</span>  <span class="component">│ 資料整理      │</span>  <span class="component">│ 配信登録            │</span>  │
+│  <span class="component">│ Claude API  │</span>  <span class="component">│ Google API    │</span>  <span class="component">│ Playwright          │</span>  │
+│  <span class="component">│ GitHub API  │</span>  <span class="component">│ PyMuPDF       │</span>  <span class="component">│ (配配メール+Lステップ)│</span>  │
+│  <span class="component">└─────────────┘</span>  <span class="component">└───────────────┘</span>  <span class="component">└─────────────────────┘</span>  │
+<span class="layer-label">└────────────────────────────────────────────────────────────┘</span>
+                     <span class="arrow">↕</span>  外部サービス
+<span class="layer-label">┌── 外部サービス層 ──────────────────────────────────────────┐</span>
+│  <span class="component">Google Sheets / Drive</span>   <span class="component">GitHub Pages</span>   <span class="component">Anthropic API</span>              │
+│  <span class="component">配配メール (a23.hm-f.jp)</span>   <span class="component">Lステップ (lstep.app)</span>              │
+│  <span class="component">LINE Notify</span> <span class="comment">← Human-in-Loop 墨消し承認通知</span>                      │
+<span class="layer-label">└────────────────────────────────────────────────────────────┘</span></pre>
+    </div>
+  </div>
+
+  <!-- ③ 技術課題：ブラウザ自動化 -->
+  <div class="section-title">Technical Challenges</div>
+  <div class="status-section">
+    <p style="font-size:13px;color:#5a6a8a;margin-bottom:16px">最大の課題は <strong>配配メール・Lステップが公式 API を提供していない</strong>点。現行の Chrome UI 操作を <strong>Playwright ヘッドレスブラウザ</strong>で代替します。</p>
+    <table class="challenge-table">
+      <thead>
+        <tr><th>外部サービス</th><th>現行手法</th><th>バックエンド代替</th><th>難易度</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Google Drive / Sheets</strong></td>
+          <td>Chrome ブラウザ UI</td>
+          <td>Google REST API（公式 SDK）</td>
+          <td><span class="diff-badge diff-low">★☆☆ 低</span></td>
+        </tr>
+        <tr>
+          <td><strong>GitHub Pages</strong></td>
+          <td>git clone + push</td>
+          <td>GitHub Contents REST API</td>
+          <td><span class="diff-badge diff-low">★☆☆ 低</span></td>
+        </tr>
+        <tr>
+          <td><strong>Google Apps Script</strong></td>
+          <td>Chrome ブラウザ UI</td>
+          <td>Apps Script REST API</td>
+          <td><span class="diff-badge diff-mid">★★☆ 中</span></td>
+        </tr>
+        <tr>
+          <td><strong>配配メール</strong></td>
+          <td>Chrome + JavaScript injection</td>
+          <td>Playwright ヘッドレスブラウザ</td>
+          <td><span class="diff-badge diff-high">★★★ 高</span></td>
+        </tr>
+        <tr>
+          <td><strong>Lステップ</strong></td>
+          <td>Chrome ブラウザ UI</td>
+          <td>Playwright ヘッドレスブラウザ</td>
+          <td><span class="diff-badge diff-high">★★★ 高</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warn-box" style="margin-top:20px">
+      <div class="wb-title">⚠️ Playwright 実装の重要注意点（配配メール）</div>
+      <p>
+        <strong>①2画面エラー回避</strong>：編集画面への直接 URL アクセスで「不正なアクセス」が発生。必ずトップページ経由でナビゲートする。<br>
+        <strong>② htmlbody 注入</strong>：<code>ReEditGroupMailWithCustList</code> ページに textarea が存在しないため、<code>document.createElement('input')</code> で hidden input として DOM に追加する。<br>
+        <strong>③ 文字化け対策</strong>：HTML 内の <code>㎡</code>（U+33A1）を送信前に Python 側で <code>m²</code> に置換する。<br>
+        <strong>④ セッション管理</strong>：<code>browser_context.storage_state()</code> で Cookie を保存・再利用し、再ログインを最小化する。
+      </p>
+    </div>
+  </div>
+
+  <!-- ④ 推奨技術スタック -->
+  <div class="section-title">Technology Stack</div>
+  <div class="tech-grid">
+
+    <div class="tech-card">
+      <div class="tech-card-head tc-blue">🖥 コア・インフラ</div>
+      <div class="tech-card-body">
+        <div class="tech-row"><span class="tech-cat">言語</span><div><div class="tech-val">Python 3.11+</div><div class="tech-reason">PyMuPDF・Playwright 公式対応</div></div></div>
+        <div class="tech-row"><span class="tech-cat">API FW</span><div><div class="tech-val">FastAPI</div><div class="tech-reason">非同期対応・OpenAPI 自動生成</div></div></div>
+        <div class="tech-row"><span class="tech-cat">キュー</span><div><div class="tech-val">Celery + Redis</div><div class="tech-reason">タイムアウト・リトライ管理</div></div></div>
+        <div class="tech-row"><span class="tech-cat">デプロイ</span><div><div class="tech-val">Google Cloud Run</div><div class="tech-reason">GCP ネイティブ・スケールゼロ</div></div></div>
+        <div class="tech-row"><span class="tech-cat">シークレット</span><div><div class="tech-val">Secret Manager</div><div class="tech-reason">IAM 統合・PAT ハードコード廃止</div></div></div>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-card-head tc-green">⚙️ 処理・自動化</div>
+      <div class="tech-card-body">
+        <div class="tech-row"><span class="tech-cat">AI エンジン</span><div><div class="tech-val">Anthropic SDK</div><div class="tech-reason">claude-sonnet-4-6 を継続使用</div></div></div>
+        <div class="tech-row"><span class="tech-cat">ブラウザ</span><div><div class="tech-val">Playwright (Python)</div><div class="tech-reason">Docker ヘッドレス・async 対応</div></div></div>
+        <div class="tech-row"><span class="tech-cat">PDF 処理</span><div><div class="tech-val">PyMuPDF (fitz)</div><div class="tech-reason">現行スキルと同一・移植コストゼロ</div></div></div>
+        <div class="tech-row"><span class="tech-cat">Google API</span><div><div class="tech-val">google-api-python-client</div><div class="tech-reason">Drive・Sheets・GAS 公式 SDK</div></div></div>
+        <div class="tech-row"><span class="tech-cat">GitHub API</span><div><div class="tech-val">Contents REST API</div><div class="tech-reason">git clone 不要・直接ファイル投入</div></div></div>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-card-head tc-purple">📦 コンテナ構成（3サービス）</div>
+      <div class="tech-card-body">
+        <div class="tech-row"><span class="tech-cat">api-server</span><div><div class="tech-val">python:3.11-slim</div><div class="tech-reason">FastAPI 本体・スケール 0〜3</div></div></div>
+        <div class="tech-row"><span class="tech-cat">celery-worker</span><div><div class="tech-val">playwright/python ベース</div><div class="tech-reason">Playwright + PyMuPDF 同梱</div></div></div>
+        <div class="tech-row"><span class="tech-cat">celery-beat</span><div><div class="tech-val">python:3.11-slim</div><div class="tech-reason">定時スケジューラー・常時 1 台</div></div></div>
+        <div class="tech-row"><span class="tech-cat">redis</span><div><div class="tech-val">redis:7-alpine</div><div class="tech-reason">ブローカー兼セッション保持</div></div></div>
+        <div class="tech-row"><span class="tech-cat">CI/CD</span><div><div class="tech-val">GitHub Actions</div><div class="tech-reason">Cloud Run 自動デプロイ</div></div></div>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-card-head tc-orange">🔔 Human-in-Loop（墨消し承認）</div>
+      <div class="tech-card-body">
+        <div class="tech-row"><span class="tech-cat">通知</span><div><div class="tech-val">LINE Notify API</div><div class="tech-reason">承認リクエストを LINE で送信</div></div></div>
+        <div class="tech-row"><span class="tech-cat">承認受信</span><div><div class="tech-val">POST /pipeline/approve</div><div class="tech-reason">Webhook で承認イベントを受信</div></div></div>
+        <div class="tech-row"><span class="tech-cat">タイムアウト</span><div><div class="tech-val">30分 / 2時間 / 24時間</div><div class="tech-reason">段階的リマインド通知</div></div></div>
+        <div class="tech-row"><span class="tech-cat">差し戻し</span><div><div class="tech-val">reject → Celery 再キュー</div><div class="tech-reason">差し戻し理由をログに保存</div></div></div>
+        <div class="tech-row"><span class="tech-cat">状態保持</span><div><div class="tech-val">Redis 保留キュー</div><div class="tech-reason">承認待ちタスクを安全に管理</div></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ⑤ 実装ロードマップ -->
+  <div class="section-title" style="margin-top:48px">Implementation Roadmap</div>
+  <div class="roadmap-grid">
+
+    <div class="roadmap-card">
+      <div class="roadmap-head" style="background:#f0f4fc;border-bottom:1px solid #e0e8f5">
+        <span class="rh-phase" style="background:#4a6a9e">Phase 0</span>
+        <span class="rh-title">準備</span>
+        <span class="rh-period">1週間</span>
+      </div>
+      <div class="roadmap-body">
+        <span class="roadmap-milestone">✓ セキュリティ強化</span>
+        <ul class="roadmap-items">
+          <li>GitHub PAT をスキルファイルから削除し Secret Manager へ移行</li>
+          <li>GCP プロジェクト・サービスアカウント作成</li>
+          <li>Docker Compose 開発環境構築</li>
+          <li>Playwright の Chromium 起動確認</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="roadmap-card">
+      <div class="roadmap-head" style="background:#e8eef8;border-bottom:1px solid #d0d8f0">
+        <span class="rh-phase">Phase 1</span>
+        <span class="rh-title">Google API 置換</span>
+        <span class="rh-period">2週間</span>
+      </div>
+      <div class="roadmap-body">
+        <span class="roadmap-milestone">✓ STEP 1 API 化</span>
+        <ul class="roadmap-items">
+          <li>Drive API でファイル一覧・ダウンロード実装</li>
+          <li>Claude API で HTML 概要書生成（SKILL.md をプロンプトに使用）</li>
+          <li>GitHub Contents API でアップロード</li>
+          <li>Sheets API でステータス更新</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="roadmap-card">
+      <div class="roadmap-head" style="background:#e6f4ec;border-bottom:1px solid #c0dfc8">
+        <span class="rh-phase" style="background:#1a6e3c">Phase 2</span>
+        <span class="rh-title">PDF 処理・資料整理</span>
+        <span class="rh-period">2週間</span>
+      </div>
+      <div class="roadmap-body">
+        <span class="roadmap-milestone">✓ STEP 2 API 化</span>
+        <ul class="roadmap-items">
+          <li>PyMuPDF Docker 化・墨消しワーカー実装</li>
+          <li>Drive API でリネーム・コピー・移動</li>
+          <li>LINE Notify で Human-in-Loop 承認フロー</li>
+          <li>Webhook 受信エンドポイント実装</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="roadmap-card">
+      <div class="roadmap-head" style="background:#f0e8fa;border-bottom:1px solid #d8c8f0">
+        <span class="rh-phase" style="background:#5a1fa0">Phase 3</span>
+        <span class="rh-title">ブラウザ自動化</span>
+        <span class="rh-period">3週間</span>
+      </div>
+      <div class="roadmap-body">
+        <span class="roadmap-milestone">✓ STEP 3 API 化</span>
+        <ul class="roadmap-items">
+          <li>配配メール Playwright スクリプト実装（hidden input 注入方式）</li>
+          <li>Lステップ Playwright スクリプト実装（タグ選択・OR 条件）</li>
+          <li>セッション Cookie 保存・再利用実装</li>
+          <li>在庫一覧表 Sheets API 更新</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="roadmap-card">
+      <div class="roadmap-head" style="background:#fff3e0;border-bottom:1px solid #f0d890">
+        <span class="rh-phase" style="background:#b06000">Phase 4</span>
+        <span class="rh-title">統合・CI/CD</span>
+        <span class="rh-period">2週間</span>
+      </div>
+      <div class="roadmap-body">
+        <span class="roadmap-milestone">✓ 本番環境稼働</span>
+        <ul class="roadmap-items">
+          <li>Celery タスクキュー統合・FastAPI オーケストレーター完成</li>
+          <li>Cloud Run デプロイ（3コンテナ）</li>
+          <li>GitHub Actions CI/CD パイプライン設定</li>
+          <li>Cloud Logging + Sentry 監視設定</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="roadmap-card">
+      <div class="roadmap-head" style="background:#f0f0f0;border-bottom:1px solid #ddd">
+        <span class="rh-phase" style="background:#555">Phase 5</span>
+        <span class="rh-title">並行運用・移行</span>
+        <span class="rh-period">2週間</span>
+      </div>
+      <div class="roadmap-body">
+        <span class="roadmap-milestone">✓ 旧環境廃止</span>
+        <ul class="roadmap-items">
+          <li>Mac mini（旧）とバックエンド（新）を並行運用</li>
+          <li>実案件での動作確認・品質比較</li>
+          <li>スタッフ向け操作手順書更新</li>
+          <li>旧 Cowork スキル環境を廃止</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ⑥ リスクと対策 -->
+  <div class="section-title" style="margin-top:48px">Risks &amp; Mitigations</div>
+  <div class="status-section">
+    <table class="risk-table">
+      <thead>
+        <tr><th>リスク</th><th>影響</th><th>対策</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>配配メール / Lステップ の UI 変更</strong></td>
+          <td><span class="risk-high">高</span></td>
+          <td>Playwright セレクターを外部 YAML で管理。スクリーンショット差分監視で変更を早期検知。</td>
+        </tr>
+        <tr>
+          <td><strong>Google OAuth トークン期限切れ</strong></td>
+          <td><span class="risk-high">高</span></td>
+          <td>サービスアカウントを使用（有効期限なし）。オフラインリフレッシュトークンを定期更新。</td>
+        </tr>
+        <tr>
+          <td><strong>Anthropic API コスト増大</strong></td>
+          <td><span class="risk-mid">中</span></td>
+          <td>HTML 生成プロンプト最適化。リトライ時の再生成防止キャッシュ。月次コスト上限アラート。</td>
+        </tr>
+        <tr>
+          <td><strong>墨消しレビュー長期未承認</strong></td>
+          <td><span class="risk-mid">中</span></td>
+          <td>30分・2時間・24時間の段階的リマインド。タイムアウト後はアラートで手動対応を促す。</td>
+        </tr>
+        <tr>
+          <td><strong>Playwright セッション Cookie 失効</strong></td>
+          <td><span class="risk-mid">中</span></td>
+          <td>タスク実行前にセッション有効性を確認し、失効時は自動再ログイン処理を実行。</td>
+        </tr>
+        <tr>
+          <td><strong>Cloud Run コールドスタート</strong></td>
+          <td><span class="risk-low">低</span></td>
+          <td>Celery Worker は最小インスタンス 1 に設定。API サーバーのコールドスタートは許容。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ⑦ コスト試算 -->
+  <div class="section-title">Cost Estimate（月 30 案件想定）</div>
+  <div class="cost-grid" style="margin-bottom:48px">
+    <div class="cost-card">
+      <div class="cost-service">Anthropic API</div>
+      <div class="cost-amount">$15〜25</div>
+      <div class="cost-unit">/ 月</div>
+    </div>
+    <div class="cost-card">
+      <div class="cost-service">Cloud Run</div>
+      <div class="cost-amount">$20〜40</div>
+      <div class="cost-unit">/ 月</div>
+    </div>
+    <div class="cost-card">
+      <div class="cost-service">Redis (Memorystore)</div>
+      <div class="cost-amount">$30</div>
+      <div class="cost-unit">/ 月</div>
+    </div>
+    <div class="cost-card">
+      <div class="cost-service">Logging / Monitoring</div>
+      <div class="cost-amount">~$3</div>
+      <div class="cost-unit">/ 月</div>
+    </div>
+    <div class="cost-total">
+      <div class="cost-service">月額合計概算（約 30 案件）</div>
+      <div class="cost-amount">$70〜100</div>
+      <div class="cost-unit">月 約 1.1〜1.6 万円 ｜ GitHub Actions は無料枠内</div>
+    </div>
+  </div>
+
+  <!-- ⑧ セキュリティ -->
+  <div class="section-title">Security Design</div>
+  <div class="sec-grid" style="margin-bottom:48px">
+    <div class="sec-card">
+      <h4>🔑 認証情報の移行（最優先）</h4>
+      <p>スキルファイルにハードコードされている <code>GitHub PAT</code> は即時 <code>Secret Manager</code> へ移行し、ファイルから削除してください。配配メール・Lステップのログイン情報も同様に集中管理します。</p>
+    </div>
+    <div class="sec-card">
+      <h4>🛡 最小権限のサービスアカウント</h4>
+      <p>Google サービスアカウントには <code>roles/drive.file</code>（指定フォルダのみ）・<code>Sheets 読み書き</code>・<code>Secret Manager 特定シークレット読み取り</code> の最小権限のみ付与します。</p>
+    </div>
+    <div class="sec-card">
+      <h4>🌐 API エンドポイント保護</h4>
+      <p>外部公開エンドポイントは <code>Bearer Token (JWT)</code> または <code>Cloud IAM</code> で保護。GAS Webhook は <code>HMAC-SHA256 署名検証</code> を必須とします。</p>
+    </div>
+    <div class="sec-card">
+      <h4>🍪 Playwright セッション管理</h4>
+      <p>初回ログイン後のセッション Cookie を <code>storage_state()</code> で保存し <code>Secret Manager</code> に暗号化して格納。コード・ログへのパスワード出力は厳禁です。</p>
+    </div>
+  </div>
+
 </div><!-- /main -->
 
 <div class="footer">
-  <strong>株式会社リアテクス</strong>&nbsp;|&nbsp;第二営業部 物件紹介自動化パイプライン&nbsp;|&nbsp;2026年4月 作成
+  <strong>株式会社リアテクス</strong>&nbsp;|&nbsp;第二営業部 物件紹介自動化パイプライン&nbsp;|&nbsp;バックエンド技術仕様書 追記：2026年4月10日
 </div>
 
 </body>
