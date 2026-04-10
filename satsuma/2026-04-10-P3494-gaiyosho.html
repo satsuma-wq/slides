@@ -853,6 +853,130 @@
     border-radius: 3px;
     letter-spacing: 0.5px;
   }
+
+  /* ========================================
+     レスポンシブ対応（スマホ・タブレット）
+     ======================================== */
+  @media screen and (max-width: 900px) {
+
+    /* ページコンテナを画面幅に合わせる */
+    .page-container {
+      width: 100% !important;
+      min-height: unset;
+      padding: 0 8px;
+    }
+
+    /* ヘッダーを縦積みに */
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 12px 14px;
+    }
+    .header-right {
+      text-align: left;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .header-property-name { font-size: 13pt; }
+    .header-right a { font-size: 9pt; }
+
+    /* ハイライトボックスを2列に */
+    .highlight-box {
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px;
+    }
+    .highlight-item {
+      flex: 1 1 40%;
+      border-right: none;
+      border-bottom: 1px solid #e8d5a0;
+      padding-bottom: 8px;
+    }
+    .highlight-item:last-child { border-bottom: none; }
+    .highlight-value { font-size: 18pt; }
+
+    /* グリッドを1列に */
+    .two-col,
+    .three-col,
+    .overview-two-col,
+    .hero-section {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* KPIグリッドを2列に */
+    .kpi-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .kpi-value { font-size: 15pt; }
+
+    /* 環境カード・写真グリッドを2列に */
+    .env-grid,
+    .photo-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .env-card img, .photo-item img { height: 100px; }
+    .photo-main img { height: 160px; }
+
+    /* テーブルを横スクロール可能に */
+    .lentroll-table,
+    .finance-table,
+    .overview-table {
+      font-size: 9pt;
+    }
+    .overview-section,
+    .rent-spec-banner,
+    .finance-section {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* フォントサイズ拡大 */
+    body { font-size: 11pt; }
+    .section-title { font-size: 10pt; padding: 6px 12px; }
+    .points-list li { font-size: 10pt; }
+    .notes-box { font-size: 10pt; }
+
+    /* LINEチラシ縦積み */
+    .line-page { padding: 20px 14px; min-height: unset; }
+    .line-content { flex-direction: column; gap: 14px; }
+    .line-main-title { font-size: 22pt; }
+    .line-sub-title { font-size: 13pt; }
+    .line-btn { font-size: 13pt; padding: 12px 32px; }
+    .line-features { min-width: unset; width: 100%; }
+
+    /* フッター縦積み */
+    .footer-band {
+      flex-direction: column;
+      gap: 6px;
+      text-align: center;
+      padding: 10px 14px;
+    }
+    .footer-contact { text-align: center; }
+
+    /* ページ区切りをスクロールで仕切り線に */
+    .page-break,
+    .rent-spec-banner {
+      page-break-before: auto;
+      break-before: auto;
+      border-top: 4px solid #1A365D;
+      margin-top: 24px;
+      padding-top: 0;
+    }
+  }
+
+  /* さらに小さいスマホ（375px以下）*/
+  @media screen and (max-width: 480px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .env-grid,
+    .photo-grid { grid-template-columns: 1fr 1fr; }
+    .highlight-item { flex: 1 1 100%; }
+    .header-property-name { font-size: 12pt; }
+    .line-main-title { font-size: 18pt; }
+  }
 </style>
 </head>
 <body>
