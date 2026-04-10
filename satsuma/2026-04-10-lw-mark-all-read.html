@@ -150,6 +150,7 @@
       position: absolute;
       top: 12px;
       right: 12px;
+      z-index: 10;
       background: var(--green);
       color: #fff;
       border: none;
@@ -159,6 +160,7 @@
       font-weight: 700;
       cursor: pointer;
       transition: background 0.2s, transform 0.1s;
+      user-select: none;
     }
     .copy-btn:hover { background: var(--green-dark); }
     .copy-btn:active { transform: scale(0.96); }
@@ -401,6 +403,10 @@
 
 <script>
   function copyCode(btn) {
+    // 即座に視覚フィードバック
+    btn.textContent = '⏳ コピー中...';
+    btn.disabled = true;
+
     const code = document.getElementById('bookmarklet-code').textContent;
 
     function onSuccess() {
@@ -409,29 +415,35 @@
       setTimeout(() => {
         btn.textContent = '📋 コピー';
         btn.classList.remove('copied');
-      }, 2000);
+        btn.disabled = false;
+      }, 2500);
     }
 
-    function fallbackCopy() {
+    function promptFallback() {
+      // 最終手段：promptダイアログでコードを表示→ユーザーが手動Ctrl+C
+      btn.textContent = '📋 コピー';
+      btn.disabled = false;
+      window.prompt('下のコードを全選択(Ctrl+A)してコピー(Ctrl+C)してください：', code);
+    }
+
+    function execFallback() {
       const ta = document.createElement('textarea');
       ta.value = code;
-      ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px';
+      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0.01;width:1px;height:1px';
       document.body.appendChild(ta);
       ta.focus();
       ta.select();
-      try {
-        document.execCommand('copy');
-        onSuccess();
-      } catch(e) {
-        alert('コピーに失敗しました。コードを手動で選択してコピーしてください。');
-      }
+      const ok = document.execCommand('copy');
       document.body.removeChild(ta);
+      if (ok) { onSuccess(); } else { promptFallback(); }
     }
 
     if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(code).then(onSuccess).catch(fallbackCopy);
+      navigator.clipboard.writeText(code)
+        .then(onSuccess)
+        .catch(execFallback);
     } else {
-      fallbackCopy();
+      execFallback();
     }
   }
 </script>
