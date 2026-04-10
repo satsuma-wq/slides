@@ -966,6 +966,23 @@
       margin-top: 24px;
       padding-top: 0;
     }
+
+    /* インラインスタイルの width:267mm を上書き */
+    .page-wrapper {
+      width: 100% !important;
+      padding: 0 8px !important;
+    }
+
+    /* 写真グリッドのインラインスタイルを上書き */
+    .photo-grid-main {
+      grid-template-columns: 1fr !important;
+    }
+    .photo-grid-4 {
+      grid-template-columns: 1fr 1fr !important;
+    }
+    .photo-grid-2 {
+      grid-template-columns: 1fr !important;
+    }
   }
 
   /* さらに小さいスマホ（375px以下）*/
@@ -1226,7 +1243,7 @@
      PAGE 3: 収支シミュレーション・投資ポイント・周辺環境
      ============================================================ -->
 <div class="page-break"></div>
-<div style="width:267mm; margin:0 auto; padding: 0;">
+<div class="page-wrapper" style="width:267mm; margin:0 auto; padding: 0;">
 
   <div class="header" style="margin-bottom:8px;">
     <div class="header-left">
@@ -1367,7 +1384,7 @@
      PAGE 4: 写真・特記事項
      ============================================================ -->
 <div class="page-break"></div>
-<div style="width:267mm; margin:0 auto; padding: 0;">
+<div class="page-wrapper" style="width:267mm; margin:0 auto; padding: 0;">
 
   <div class="header" style="margin-bottom:8px;">
     <div class="header-left">
@@ -1389,7 +1406,7 @@
   <div class="section-title">物件写真</div>
 
   <!-- 外観メイン -->
-  <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:6px; margin-bottom:6px;">
+  <div class="photo-grid-main" style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:6px; margin-bottom:6px;">
     <div class="photo-item photo-main">
       <img src="https://drive.google.com/thumbnail?id=1VFDm4UytKjwHyKo1VxkE5quiDyUn3XP-&sz=w800"
            onerror="this.src='https://lh3.googleusercontent.com/d/1VFDm4UytKjwHyKo1VxkE5quiDyUn3XP-'; this.onerror=null;"
@@ -1411,7 +1428,7 @@
   </div>
 
   <!-- 地図・周辺写真 -->
-  <div style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:6px; margin:4px 0;">
+  <div class="photo-grid-4" style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:6px; margin:4px 0;">
     <div class="photo-item">
       <img src="https://drive.google.com/thumbnail?id=1p1w0GVOL53VJ_6l96i_IxBZAxwjAWzuZ&sz=w800"
            onerror="this.src='https://lh3.googleusercontent.com/d/1p1w0GVOL53VJ_6l96i_IxBZAxwjAWzuZ'; this.onerror=null;"
@@ -1438,7 +1455,7 @@
     </div>
   </div>
   <!-- 世界遺産・イオンモール（大きく強調） -->
-  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin:4px 0;">
+  <div class="photo-grid-2" style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin:4px 0;">
     <div class="photo-item" style="border:2px solid #DAA520; position:relative;">
       <img src="https://drive.google.com/thumbnail?id=1qLaVQCJrpKds160OGbqvSMrD9ZO9ENuh&sz=w800"
            onerror="this.src='https://lh3.googleusercontent.com/d/1qLaVQCJrpKds160OGbqvSMrD9ZO9ENuh'; this.onerror=null;"
@@ -1487,7 +1504,7 @@
      PAGE 5: 未公開プレミアム不動産チラシ（LINE）
      ============================================================ -->
 <div class="page-break"></div>
-<div style="width:267mm; margin:0 auto; padding: 0;">
+<div class="page-wrapper" style="width:267mm; margin:0 auto; padding: 0;">
   <div class="line-page">
     <div class="line-header-label">＼ ここだけの ㊙ 物件情報をお届け ／</div>
     <div class="line-main-title">未公開プレミアム不動産</div>
