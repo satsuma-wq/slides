@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】 新潟県長岡市栃尾宮沢 戸建て</title>
+<style>
+/* ===== リセット・基本 ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', 'Yu Gothic', sans-serif;
+  font-size: 9pt;
+  color: #333;
+  background: #fff;
+  line-height: 1.3;
+}
+
+/* ===== @page ===== */
+@page {
+  size: A4 landscape;
+  margin: 8mm 10mm;
+}
+
+/* ===== ページコンテナ（コンパクト） ===== */
+.page-container {
+  width: 277mm;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 16mm);
+  justify-content: space-between;
+}
+.page-wrapper {
+  width: 277mm;
+  margin: 0 auto;
+}
+
+/* ===== ヘッダー（コンパクト） ===== */
+.header {
+  background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+  padding: 6px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #DAA520;
+  border-radius: 4px 4px 0 0;
+}
+.header-left { display: flex; align-items: center; gap: 8px; }
+.header-logo {
+  height: 22px;
+  filter: brightness(0) invert(1);
+}
+.header-property-name {
+  color: #fff;
+  font-size: 13pt;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.header-right { text-align: right; color: #e8d5a0; font-size: 7.5pt; }
+.header-property-num { font-size: 7pt; color: #c8b87a; margin-top: 2px; }
+.detail-btn {
+  display: inline-block;
+  margin-top: 3px;
+  padding: 2px 8px;
+  background: #DAA520;
+  color: #1A365D;
+  border-radius: 3px;
+  font-size: 7pt;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ===== ハイライトボックス（コンパクト） ===== */
+.highlight-box {
+  display: flex;
+  background: linear-gradient(135deg, #fffdf0 0%, #fef9e7 100%);
+  border: 1px solid #DAA520;
+  border-radius: 0 0 4px 4px;
+  padding: 6px 10px;
+  gap: 0;
+}
+.highlight-item {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid #e8d5a0;
+  padding: 2px 8px;
+}
+.highlight-item:last-child { border-right: none; }
+.highlight-label { font-size: 7pt; color: #666; }
+.highlight-value { font-size: 20pt; font-weight: 900; color: #C41E3A; line-height: 1.1; }
+.highlight-sub { font-size: 7pt; color: #888; }
+.highlight-value.green { color: #1a7a1a; }
+
+/* ===== セクションタイトル ===== */
+.section-title {
+  background: #1A365D;
+  color: #fff;
+  padding: 3px 10px;
+  font-size: 8.5pt;
+  font-weight: 700;
+  border-radius: 3px;
+  margin: 5px 0 4px;
+  letter-spacing: 0.5px;
+}
+
+/* ===== 物件概要テーブル ===== */
+.overview-section { margin: 4px 0; }
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.overview-table td {
+  padding: 3px 6px;
+  border: 1px solid #ddd;
+  vertical-align: middle;
+}
+.overview-table .th {
+  background: #E8F0FE;
+  color: #1A365D;
+  font-weight: 700;
+  width: 22%;
+  white-space: nowrap;
+}
+.overview-table .val { width: 28%; }
+.price-val {
+  color: #C41E3A;
+  font-weight: 900;
+  font-size: 11pt;
+}
+.yield-val {
+  color: #1a7a1a;
+  font-weight: 900;
+  font-size: 11pt;
+}
+
+/* ===== KPIグリッド ===== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin: 4px 0;
+}
+.kpi-card {
+  background: #f8f9ff;
+  border: 1px solid #c8d8f8;
+  border-radius: 4px;
+  padding: 4px 6px;
+  text-align: center;
+}
+.kpi-label { font-size: 6.5pt; color: #666; }
+.kpi-value { font-size: 13pt; font-weight: 900; color: #1A365D; line-height: 1.1; }
+.kpi-unit { font-size: 6.5pt; color: #888; }
+
+/* ===== フッター帯 ===== */
+.footer-band {
+  background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+  color: #e8d5a0;
+  padding: 5px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 0 4px 4px;
+  margin-top: auto;
+  font-size: 7.5pt;
+}
+.footer-contact { text-align: right; font-size: 7pt; }
+
+/* ===== ページ区切り ===== */
+.page-break { break-before: page; }
+.avoid-break { break-inside: avoid; }
+
+/* ===== レントロールテーブル ===== */
+.rent-section { margin: 4px 0; }
+.rent-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.rent-table th {
+  background: #1A365D;
+  color: #fff;
+  padding: 3px 6px;
+  text-align: center;
+  font-size: 8pt;
+}
+.rent-table td {
+  padding: 3px 6px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+.rent-table .vacant { color: #999; font-style: italic; }
+.rent-summary {
+  background: #E8F0FE;
+  border: 1px solid #c8d8f8;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin: 5px 0;
+  display: flex;
+  gap: 20px;
+  font-size: 8.5pt;
+}
+.rent-summary-item { }
+.rent-summary-label { color: #666; font-size: 7.5pt; }
+.rent-summary-value { font-weight: 700; color: #1A365D; font-size: 10pt; }
+
+/* ===== 収支シミュレーション ===== */
+.finance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.finance-table td {
+  padding: 3px 8px;
+  border: 1px solid #ddd;
+}
+.finance-table .th {
+  background: #E8F0FE;
+  color: #1A365D;
+  font-weight: 700;
+  width: 35%;
+}
+.finance-table .subtotal {
+  background: #f0f4ff;
+  font-weight: 700;
+}
+.finance-table .total {
+  background: #1A365D;
+  color: #fff;
+  font-weight: 700;
+  font-size: 9.5pt;
+}
+
+/* ===== 投資ポイント ===== */
+.points-list {
+  list-style: none;
+  margin: 4px 0;
+}
+.points-list li {
+  padding: 3px 0 3px 18px;
+  position: relative;
+  font-size: 8.5pt;
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 1.4;
+}
+.points-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 2px;
+  color: #DAA520;
+  font-weight: 700;
+}
+
+/* ===== 特記事項ボックス ===== */
+.notes-box {
+  background: #fff8e1;
+  border: 1px solid #ffcc02;
+  border-left: 3px solid #DAA520;
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 8pt;
+  margin: 4px 0;
+  line-height: 1.5;
+}
+.caution-box {
+  background: #fff5f5;
+  border: 1px solid #ffcccc;
+  border-left: 3px solid #C41E3A;
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 7.5pt;
+  margin: 4px 0;
+  line-height: 1.5;
+  color: #c41e3a;
+}
+
+/* ===== 周辺環境 ===== */
+.env-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin: 4px 0;
+}
+.env-card {
+  background: #f8f9ff;
+  border: 1px solid #c8d8f8;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 7.5pt;
+}
+.env-icon { font-size: 14pt; text-align: center; }
+.env-name { font-weight: 700; color: #1A365D; font-size: 8pt; }
+.env-dist { color: #666; font-size: 7pt; }
+
+/* ===== 写真グリッド ===== */
+.photo-grid-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 4px;
+  margin: 4px 0;
+}
+.photo-grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 4px;
+  margin: 4px 0;
+}
+.photo-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin: 4px 0;
+}
+.photo-item { position: relative; }
+.photo-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+.photo-item .photo-main img { height: 160px; }
+.photo-caption {
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 6.5pt;
+  padding: 2px 5px;
+  border-radius: 0 0 4px 4px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* ===== LINEページ ===== */
+.line-page {
+  min-height: calc(100vh - 16mm);
+  background: linear-gradient(135deg, #00B900 0%, #009900 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 14px 16px 10px;
+  text-align: center;
+  border-radius: 4px;
+}
+.line-main-title {
+  color: #fff;
+  font-size: 22pt;
+  font-weight: 900;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.line-sub-title {
+  color: #d4ffd4;
+  font-size: 10pt;
+  margin-bottom: 10px;
+}
+.line-content {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.line-qr img {
+  width: 90px;
+  height: 90px;
+  border-radius: 6px;
+  background: #fff;
+  padding: 4px;
+}
+.line-features {
+  text-align: left;
+  color: #fff;
+  font-size: 9pt;
+  min-width: 180px;
+}
+.line-features li {
+  list-style: none;
+  padding: 2px 0;
+}
+.line-features li::before { content: '✅ '; }
+.line-btn {
+  display: inline-block;
+  background: #fff;
+  color: #00B900;
+  padding: 8px 28px;
+  border-radius: 40px;
+  font-size: 12pt;
+  font-weight: 900;
+  text-decoration: none;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.line-note { color: #d4ffd4; font-size: 7pt; }
+
+/* ===== @media print ===== */
+@media print {
+  body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .page-container { min-height: unset; }
+  .page-break { break-before: page; }
+  .rent-spec-banner { break-before: page; }
+  .avoid-break, .kpi-grid, .env-card, .notes-box, .caution-box { break-inside: avoid; }
+  .section-title, h2, h3 { break-after: avoid; }
+  table tr { break-inside: avoid; }
+  .header, .footer-band { break-before: avoid; }
+  .photo-grid-main { grid-template-columns: 2fr 1fr 1fr !important; }
+  .photo-grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr !important; }
+}
+
+/* ===== レスポンシブ ===== */
+@media screen and (max-width: 900px) {
+  .page-container, .page-wrapper { width: 100% !important; padding: 0 8px; }
+  .header { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .highlight-box { flex-wrap: wrap; gap: 6px; }
+  .highlight-item { flex: 1 1 40%; }
+  .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .overview-table .th, .overview-table .val { width: auto; }
+  .photo-grid-main, .photo-grid-4, .photo-grid-2 { grid-template-columns: 1fr 1fr !important; }
+  .photo-item img { height: 100px; }
+  .line-content { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== PAGE 1: 概要 ========== -->
+<div class="page-container">
+  <div>
+    <!-- ヘッダー -->
+    <div class="header">
+      <div class="header-left">
+        <img class="header-logo"
+          src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+          onerror="this.style.display='none'" alt="REATEX">
+        <div class="header-property-name">新潟県長岡市栃尾宮沢 ｜ 戸建て</div>
+      </div>
+      <div class="header-right">
+        <div>株式会社リアテクス</div>
+        <a href="https://drive.google.com/drive/folders/1W6yoV6tEpUiwZo6PDW9eEwVcQZt8rSuA"
+           target="_blank" class="detail-btn">📂 詳細はこちら</a>
+        <div class="header-property-num">物件番号: r-2437</div>
+      </div>
+    </div>
+
+    <!-- ハイライト -->
+    <div class="highlight-box">
+      <div class="highlight-item">
+        <div class="highlight-label">売買価格</div>
+        <div class="highlight-value">15<span style="font-size:12pt">万円</span></div>
+        <div class="highlight-sub">150,000円</div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">表面利回り（想定）</div>
+        <div class="highlight-value green">440<span style="font-size:12pt">%</span></div>
+        <div class="highlight-sub">年間賃料66万円ベース</div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">想定月額賃料</div>
+        <div class="highlight-value" style="font-size:17pt">55,000<span style="font-size:10pt">円</span></div>
+        <div class="highlight-sub">年間 660,000円</div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">土地面積</div>
+        <div class="highlight-value" style="font-size:16pt; color:#1A365D;">637<span style="font-size:10pt">㎡</span></div>
+        <div class="highlight-sub">192.85坪</div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">建物面積</div>
+        <div class="highlight-value" style="font-size:16pt; color:#1A365D;">161<span style="font-size:10pt">㎡</span></div>
+        <div class="highlight-sub">48.82坪</div>
+      </div>
+    </div>
+
+    <!-- 物件概要テーブル -->
+    <div class="section-title">■ 物件概要</div>
+    <div class="overview-section avoid-break">
+      <table class="overview-table">
+        <tr>
+          <td class="th">所在地</td>
+          <td class="val" colspan="3">
+            <a href="https://maps.google.com/?q=新潟県長岡市栃尾宮沢1500" target="_blank" style="color:#2563EB; text-decoration:none;">
+              新潟県長岡市栃尾宮沢1500 🗺
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td class="th">交通</td>
+          <td class="val" colspan="3">JR長岡駅 車約25分（約16.9km）</td>
+        </tr>
+        <tr>
+          <td class="th">物件種別</td>
+          <td class="val">戸建て</td>
+          <td class="th">構造</td>
+          <td class="val">木造2階建</td>
+        </tr>
+        <tr>
+          <td class="th">売買価格</td>
+          <td class="val"><span class="price-val">150,000円（15万円）</span></td>
+          <td class="th">築年月</td>
+          <td class="val">昭和44年6月（1969年）/ 築57年</td>
+        </tr>
+        <tr>
+          <td class="th">表面利回り</td>
+          <td class="val"><span class="yield-val">440%</span>（想定満室）</td>
+          <td class="th">現況利回り</td>
+          <td class="val"><span class="yield-val">0%</span>（現況空室）</td>
+        </tr>
+        <tr>
+          <td class="th">土地面積</td>
+          <td class="val">637.52㎡（192.85坪）</td>
+          <td class="th">建物面積</td>
+          <td class="val">161.39㎡（48.82坪）</td>
+        </tr>
+        <tr>
+          <td class="th">都市計画</td>
+          <td class="val">第一種住居地域</td>
+          <td class="th">建ぺい率/容積率</td>
+          <td class="val">60% / 200%</td>
+        </tr>
+        <tr>
+          <td class="th">接道状況</td>
+          <td class="val" colspan="3">北側・東側 42条1項2号道路</td>
+        </tr>
+        <tr>
+          <td class="th">設備</td>
+          <td class="val" colspan="3">公営水道・電力自由化・本下水・都市ガス</td>
+        </tr>
+        <tr>
+          <td class="th">再調達価格</td>
+          <td class="val">約1,937万円（12万円/㎡ × 161.39㎡）</td>
+          <td class="th">残存耐用年数</td>
+          <td class="val">0年（超過 ※木造22年）</td>
+        </tr>
+        <tr>
+          <td class="th">路線価</td>
+          <td class="val" colspan="3" style="color:#888;">調査中</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- KPIグリッド -->
+    <div class="kpi-grid avoid-break">
+      <div class="kpi-card">
+        <div class="kpi-label">物件価格</div>
+        <div class="kpi-value" style="color:#C41E3A; font-size:16pt;">15<span style="font-size:9pt">万円</span></div>
+        <div class="kpi-unit">150,000円</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">想定表面利回り</div>
+        <div class="kpi-value" style="color:#1a7a1a;">440<span style="font-size:8pt">%</span></div>
+        <div class="kpi-unit">満室想定ベース</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">想定年間賃料</div>
+        <div class="kpi-value">66<span style="font-size:8pt">万円</span></div>
+        <div class="kpi-unit">55,000円/月</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">投資回収期間</div>
+        <div class="kpi-value">0.2<span style="font-size:8pt">年</span></div>
+        <div class="kpi-unit">約3ヶ月</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div>株式会社リアテクス ｜ 〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506</div>
+    <div class="footer-contact">TEL: 03-6822-7297 ｜ MAIL: satsuma@reatex.co.jp</div>
+  </div>
+</div>
+
+<!-- ========== PAGE 2: 賃料想定・収支 ========== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+  <!-- ヘッダー（P2） -->
+  <div class="header">
+    <div class="header-left">
+      <img class="header-logo"
+        src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+        onerror="this.style.display='none'" alt="REATEX">
+      <div class="header-property-name">新潟県長岡市栃尾宮沢 ｜ 賃料想定・収支シミュレーション</div>
+    </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <div class="header-property-num">物件番号: r-2437</div>
+    </div>
+  </div>
+
+  <!-- 賃料想定 -->
+  <div class="section-title">■ 賃料想定</div>
+  <div class="rent-section avoid-break">
+    <table class="rent-table">
+      <thead>
+        <tr>
+          <th>区画</th>
+          <th>間取り</th>
+          <th>専有面積</th>
+          <th>現況</th>
+          <th>想定月額賃料</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>戸建て全体</td>
+          <td>—</td>
+          <td>161.39㎡（48.82坪）</td>
+          <td class="vacant">空室</td>
+          <td><strong>55,000円</strong></td>
+          <td>1棟貸し想定</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="rent-summary">
+      <div class="rent-summary-item">
+        <div class="rent-summary-label">満室想定月額</div>
+        <div class="rent-summary-value">55,000円</div>
+      </div>
+      <div class="rent-summary-item">
+        <div class="rent-summary-label">満室想定年額</div>
+        <div class="rent-summary-value">660,000円</div>
+      </div>
+      <div class="rent-summary-item">
+        <div class="rent-summary-label">現況月額</div>
+        <div class="rent-summary-value" style="color:#999;">0円（空室）</div>
+      </div>
+      <div class="rent-summary-item">
+        <div class="rent-summary-label">表面利回り（満室想定）</div>
+        <div class="rent-summary-value" style="color:#1a7a1a;">440%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 収支シミュレーション -->
+  <div class="section-title">■ 収支シミュレーション</div>
+  <div class="avoid-break">
+    <table class="finance-table">
+      <tr>
+        <td class="th">売買価格</td>
+        <td style="color:#C41E3A; font-weight:700;">150,000円</td>
+        <td class="th">諸費用（概算）</td>
+        <td>約30,000円（売買価格の20%）</td>
+      </tr>
+      <tr>
+        <td class="th">総投資額（概算）</td>
+        <td style="font-weight:700;">約180,000円</td>
+        <td class="th">自己資金</td>
+        <td>150,000円〜</td>
+      </tr>
+      <tr>
+        <td class="th total" colspan="2">年間賃料収入（満室想定）</td>
+        <td class="total" colspan="2">660,000円（55,000円 × 12ヶ月）</td>
+      </tr>
+      <tr>
+        <td class="th">固定資産税・都市計画税</td>
+        <td colspan="3" style="color:#888;">別途確認要</td>
+      </tr>
+      <tr>
+        <td class="th">管理費</td>
+        <td colspan="3" style="color:#888;">元データに記載なし</td>
+      </tr>
+      <tr class="subtotal">
+        <td class="th">NOI（簡易）</td>
+        <td colspan="3"><strong>660,000円/年</strong>（費用差引前・概算）</td>
+      </tr>
+      <tr>
+        <td class="th">表面利回り</td>
+        <td style="color:#1a7a1a; font-weight:700;">440%</td>
+        <td class="th">投資回収期間</td>
+        <td style="font-weight:700;">約0.2年（3ヶ月）</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 投資ポイント -->
+  <div class="section-title">■ 投資ポイント</div>
+  <ul class="points-list avoid-break">
+    <li><strong>超低価格での取得</strong>：売買価格15万円という破格値で、キャッシュフロー最大化が狙える希少物件</li>
+    <li><strong>広大な土地</strong>：637㎡（192坪）の広い敷地。農地を含む将来的な活用可能性あり</li>
+    <li><strong>インフラ完備</strong>：公営水道・本下水・都市ガス・電力自由化と生活インフラが全て揃っている</li>
+    <li><strong>利回り440%</strong>：仮に55,000円/月での賃貸が実現すれば、投資回収期間は約3ヶ月という異次元の利回り</li>
+    <li><strong>DIYリフォーム向き</strong>：築57年木造のため、安価なリフォームで収益改善の余地が大きい</li>
+  </ul>
+
+  <!-- 特記事項 -->
+  <div class="section-title">■ 特記事項・注意点</div>
+  <div class="notes-box avoid-break">
+    <strong>⚠️ 重要特記事項</strong><br>
+    ・農地含む（地目変更手続き中）｜ ・未登記建物あり ｜ ・境界非明示<br>
+    ・地目変更が完了していない部分については、農地法の適用を受ける可能性あり<br>
+    ・現地調査・法的確認のうえご検討ください
+  </div>
+  <div class="caution-box">
+    ※本資料は投資の勧誘を目的とするものではありません。記載内容は概算であり、実際の収益を保証するものではありません。物件の詳細・現地確認は必ず実施のうえご判断ください。
+  </div>
+</div>
+
+<!-- ========== PAGE 3: 写真 ========== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+  <!-- ヘッダー（P3） -->
+  <div class="header">
+    <div class="header-left">
+      <img class="header-logo"
+        src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+        onerror="this.style.display='none'" alt="REATEX">
+      <div class="header-property-name">新潟県長岡市栃尾宮沢 ｜ 物件写真・周辺環境</div>
+    </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <div class="header-property-num">物件番号: r-2437</div>
+    </div>
+  </div>
+
+  <!-- 物件写真（メイン） -->
+  <div class="section-title">■ 物件写真</div>
+  <div class="photo-grid-main avoid-break">
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa'"
+           alt="物件外観" style="width:100%; height:200px; object-fit:cover; border-radius:4px;">
+      <div class="photo-caption">外観メイン</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa&sz=w800&page=2"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa'; this.style.height='96px';"
+           alt="外観2" style="width:100%; height:96px; object-fit:cover; border-radius:4px; margin-bottom:4px; display:block;">
+      <div style="display:block; width:100%;">
+        <img src="https://drive.google.com/thumbnail?id=1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa&sz=w800&page=3"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa';"
+             alt="外観3" style="width:100%; height:96px; object-fit:cover; border-radius:4px; display:block;">
+      </div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa&sz=w800&page=4"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa'; this.style.height='96px';"
+           alt="室内1" style="width:100%; height:96px; object-fit:cover; border-radius:4px; margin-bottom:4px; display:block;">
+      <div style="display:block; width:100%;">
+        <img src="https://drive.google.com/thumbnail?id=1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa&sz=w800&page=5"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa';"
+             alt="室内2" style="width:100%; height:96px; object-fit:cover; border-radius:4px; display:block;">
+      </div>
+    </div>
+  </div>
+
+  <!-- 周辺環境 -->
+  <div class="section-title">■ 周辺環境</div>
+  <div class="env-grid avoid-break">
+    <div class="env-card">
+      <div class="env-icon">🚂</div>
+      <div class="env-name">JR長岡駅</div>
+      <div class="env-dist">車約25分（約16.9km）</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏙️</div>
+      <div class="env-name">長岡市中心部</div>
+      <div class="env-dist">車約30分</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏔️</div>
+      <div class="env-name">栃尾地区</div>
+      <div class="env-dist">山間部の静かな環境</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🌾</div>
+      <div class="env-name">農地隣接</div>
+      <div class="env-dist">農地含む（地目変更中）</div>
+    </div>
+  </div>
+
+  <!-- Google Mapsリンク -->
+  <div style="margin: 6px 0; text-align:center; padding: 6px; background:#f8f9ff; border-radius:4px; border:1px solid #c8d8f8;">
+    <a href="https://maps.google.com/?q=新潟県長岡市栃尾宮沢1500" target="_blank"
+       style="color:#2563EB; font-size:8.5pt; text-decoration:none; font-weight:700;">
+      🗺 Google Maps で現地を確認する → 新潟県長岡市栃尾宮沢1500
+    </a>
+  </div>
+</div>
+
+<!-- ========== PAGE 4: LINE誘導 ========== -->
+<div class="page-break"></div>
+<div class="line-page">
+  <div class="line-main-title">🏠 未公開プレミアム<br>不動産情報をLINEで受け取る</div>
+  <div class="line-sub-title">今だけ！先着順で未公開物件情報を優先配信中</div>
+  <div class="line-content">
+    <div class="line-qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq"
+           alt="LINE QR">
+    </div>
+    <ul class="line-features">
+      <li>未公開物件を最速でお届け</li>
+      <li>利回り10%超の高収益物件</li>
+      <li>購入サポート無料相談</li>
+      <li>市場に出回らない掘り出し物件</li>
+      <li>登録無料・いつでも退会OK</li>
+    </ul>
+  </div>
+  <a href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq"
+     target="_blank" class="line-btn">📲 LINEで友だち追加する</a>
+  <div class="line-note">株式会社リアテクス ｜ 03-6822-7297 ｜ satsuma@reatex.co.jp</div>
+</div>
+
+</body>
+</html>
