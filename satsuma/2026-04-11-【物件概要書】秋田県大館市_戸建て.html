@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件概要書 | 秋田県大館市三ノ丸34 戸建て</title>
+<style>
+  @page { size: A4 landscape; margin: 14mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; font-size: 10pt; color: #1A1A1A; background: #fff; }
+
+  /* ========== カラー変数 ========== */
+  :root {
+    --navy: #1A365D;
+    --gold: #C9A84C;
+    --light-gold: #F5EDD6;
+    --light-navy: #EBF0F8;
+  }
+
+  /* ========== ページ共通 ========== */
+  .page-container {
+    width: 267mm;
+    min-height: 183mm;
+    margin: 0 auto;
+    background: #fff;
+    position: relative;
+  }
+  .page-break { break-before: page; }
+
+  /* ========== ヘッダー ========== */
+  .header {
+    background: var(--navy);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    border-bottom: 3px solid var(--gold);
+  }
+  .header-left { flex: 1; }
+  .header-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 7pt;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-bottom: 3px;
+  }
+  .header-property-name { font-size: 15pt; font-weight: bold; letter-spacing: 1px; }
+  .header-address { font-size: 8pt; opacity: 0.85; margin-top: 2px; }
+  .header-right { text-align: right; }
+  .header-price { font-size: 9pt; opacity: 0.8; }
+  .header-price-value { font-size: 22pt; font-weight: bold; color: var(--gold); line-height: 1; }
+  .header-price-unit { font-size: 10pt; }
+  .header-price-sub { font-size: 7.5pt; opacity: 0.75; margin-top: 2px; }
+
+  /* ========== ハイライトボックス ========== */
+  .highlight-box {
+    display: flex;
+    background: var(--light-gold);
+    border: 1.5px solid var(--gold);
+    border-radius: 4px;
+    margin: 8px 0;
+    padding: 8px 12px;
+    gap: 0;
+  }
+  .highlight-item {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid #d4b870;
+    padding: 0 10px;
+  }
+  .highlight-item:last-child { border-right: none; }
+  .highlight-label { font-size: 7.5pt; color: var(--navy); font-weight: bold; margin-bottom: 2px; }
+  .highlight-value { font-size: 20pt; font-weight: bold; color: var(--navy); line-height: 1; }
+  .highlight-unit { font-size: 8pt; color: #666; }
+  .highlight-sub { font-size: 7.5pt; color: #888; margin-top: 1px; }
+
+  /* ========== セクションタイトル ========== */
+  .section-title {
+    background: var(--navy);
+    color: white;
+    font-size: 9pt;
+    font-weight: bold;
+    padding: 4px 12px;
+    margin: 6px 0 4px;
+    border-left: 4px solid var(--gold);
+  }
+
+  /* ========== 概要テーブル ========== */
+  .overview-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+  }
+  .overview-table td {
+    padding: 4px 8px;
+    border: 0.5px solid #ccc;
+    vertical-align: middle;
+  }
+  .overview-table .th {
+    background: var(--light-navy);
+    font-weight: bold;
+    color: var(--navy);
+    width: 18%;
+    white-space: nowrap;
+  }
+  .overview-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  /* ========== フッター帯 ========== */
+  .footer-band {
+    background: var(--navy);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 16px;
+    margin-top: 8px;
+    font-size: 8pt;
+  }
+  .footer-company { font-weight: bold; font-size: 9pt; }
+  .footer-contact { font-size: 7.5pt; opacity: 0.85; }
+
+  /* ========== ページ2: レントロール ========== */
+  .lentroll-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin-bottom: 8px;
+  }
+  .lentroll-table th {
+    background: var(--navy);
+    color: white;
+    padding: 5px 8px;
+    text-align: center;
+    font-weight: bold;
+    border: 0.5px solid #4a6fa5;
+  }
+  .lentroll-table td {
+    padding: 5px 8px;
+    border: 0.5px solid #ccc;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .lentroll-table tr:nth-child(even) td { background: var(--light-navy); }
+  .lentroll-table .vacant { color: #c00; font-weight: bold; }
+  .lentroll-table .summary-row td {
+    background: var(--light-gold);
+    font-weight: bold;
+    border-top: 2px solid var(--gold);
+  }
+  .income-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .income-card {
+    background: var(--light-navy);
+    border: 1px solid #b0c4de;
+    border-radius: 4px;
+    padding: 8px 12px;
+  }
+  .income-card-title { font-size: 8pt; color: var(--navy); font-weight: bold; margin-bottom: 3px; }
+  .income-card-value { font-size: 14pt; font-weight: bold; color: var(--navy); }
+  .income-card-unit { font-size: 8pt; color: #666; }
+  .expense-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin-top: 8px;
+  }
+  .expense-table th {
+    background: var(--navy);
+    color: white;
+    padding: 4px 8px;
+    border: 0.5px solid #4a6fa5;
+  }
+  .expense-table td {
+    padding: 4px 8px;
+    border: 0.5px solid #ccc;
+    text-align: right;
+  }
+  .expense-table .td-label { text-align: left; font-weight: bold; }
+  .expense-table .total-row td { background: var(--light-gold); font-weight: bold; border-top: 2px solid var(--gold); }
+
+  /* ========== ページ3: KPI・収支 ========== */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .kpi-card {
+    background: var(--light-navy);
+    border: 1px solid #b0c4de;
+    border-radius: 4px;
+    padding: 8px;
+    text-align: center;
+  }
+  .kpi-label { font-size: 7.5pt; color: var(--navy); font-weight: bold; margin-bottom: 2px; }
+  .kpi-value { font-size: 16pt; font-weight: bold; color: var(--navy); line-height: 1; }
+  .kpi-unit { font-size: 7.5pt; color: #666; }
+  .kpi-note { font-size: 7pt; color: #888; margin-top: 2px; }
+
+  .finance-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .finance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+  }
+  .finance-table th {
+    background: var(--navy);
+    color: white;
+    padding: 4px 8px;
+    border: 0.5px solid #4a6fa5;
+    text-align: left;
+  }
+  .finance-table td {
+    padding: 4px 8px;
+    border: 0.5px solid #ccc;
+    text-align: right;
+  }
+  .finance-table .td-label { text-align: left; color: var(--navy); font-weight: bold; }
+  .finance-table .total-row td { background: var(--light-gold); font-weight: bold; border-top: 2px solid var(--gold); }
+
+  .points-section {
+    background: var(--light-gold);
+    border: 1.5px solid var(--gold);
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+  }
+  .points-title { font-weight: bold; color: var(--navy); font-size: 9pt; margin-bottom: 5px; }
+  .points-list { list-style: none; }
+  .points-list li { font-size: 8.5pt; padding: 2px 0; }
+  .points-list li::before { content: "◆ "; color: var(--gold); font-weight: bold; }
+
+  .env-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .env-card {
+    background: #f8f8f8;
+    border: 0.5px solid #ccc;
+    border-radius: 3px;
+    padding: 6px;
+    text-align: center;
+  }
+  .env-icon { font-size: 14pt; }
+  .env-label { font-size: 7pt; color: #555; }
+  .env-value { font-size: 8.5pt; font-weight: bold; color: var(--navy); margin-top: 1px; }
+
+  /* ========== ページ4: 写真 ========== */
+  .photo-page { padding: 8px 0; }
+  .photo-grid-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+  .photo-grid-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+  .photo-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+  .photo-item { position: relative; overflow: hidden; border-radius: 3px; }
+  .photo-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    border-radius: 3px;
+    background: #eee;
+  }
+  .photo-item.large img { height: 150px; }
+  .photo-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(26,54,93,0.75);
+    color: white;
+    font-size: 7pt;
+    padding: 2px 5px;
+  }
+  .notes-box {
+    background: #fff8e8;
+    border: 1px solid #e0c060;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 8pt;
+    margin-top: 6px;
+  }
+  .notes-title { font-weight: bold; color: var(--navy); margin-bottom: 4px; font-size: 9pt; }
+
+  /* ========== ページ5: LINE ========== */
+  .line-page {
+    min-height: 183mm;
+    background: linear-gradient(135deg, #1A365D 0%, #2d5f8a 50%, #1A365D 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 18px 20px 14px;
+    color: white;
+    text-align: center;
+  }
+  .line-badge {
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 8pt;
+    font-weight: bold;
+    padding: 3px 16px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  .line-main-title {
+    font-size: 26pt;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .line-main-title span { color: var(--gold); }
+  .line-sub-title {
+    font-size: 10pt;
+    opacity: 0.85;
+    margin-bottom: 16px;
+  }
+  .line-content {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .line-qr-area { text-align: center; }
+  .line-qr-area img { border-radius: 8px; border: 4px solid white; }
+  .line-qr-label { font-size: 8pt; opacity: 0.8; margin-top: 5px; }
+  .line-features {
+    text-align: left;
+    min-width: 160px;
+  }
+  .line-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    font-size: 9pt;
+  }
+  .line-feature-icon { font-size: 14pt; }
+  .line-btn {
+    display: inline-block;
+    background: #06C755;
+    color: white;
+    font-size: 14pt;
+    font-weight: bold;
+    padding: 12px 40px;
+    border-radius: 30px;
+    text-decoration: none;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .line-footer { font-size: 7.5pt; opacity: 0.6; }
+
+  /* ========== 印刷設定 ========== */
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page-container { width: 267mm; min-height: unset; }
+    .page-break { break-before: page; }
+    .avoid-break { break-inside: avoid; }
+    .line-page { min-height: 183mm; }
+  }
+
+  /* ========== レスポンシブ ========== */
+  @media screen and (max-width: 900px) {
+    .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+    .page-wrapper { width: 100% !important; padding: 0 8px !important; }
+    .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+    .header-right { text-align: left; width: 100%; }
+    .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+    .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
+    .highlight-item:last-child { border-bottom: none; }
+    .highlight-value { font-size: 18pt; }
+    .two-col, .three-col, .overview-two-col, .finance-section { grid-template-columns: 1fr !important; }
+    .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
+    .photo-grid-main { grid-template-columns: 1fr !important; }
+    .photo-grid-4, .photo-grid-3 { grid-template-columns: 1fr 1fr !important; }
+    .line-page { padding: 20px 14px; min-height: unset; }
+    .line-content { flex-direction: column; gap: 14px; }
+    .line-main-title { font-size: 22pt; }
+    .footer-band { flex-direction: column; gap: 6px; text-align: center; }
+    .page-break { break-before: auto; border-top: 4px solid var(--navy); margin-top: 24px; }
+  }
+  @media screen and (max-width: 480px) {
+    .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
+    .highlight-item { flex: 1 1 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== PAGE 1: 概要 ===== -->
+<div class="page-container avoid-break">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">未公開物件 ｜ RKC限定</div>
+      <div class="header-property-name">秋田県大館市 戸建て</div>
+      <div class="header-address">📍 秋田県大館市三ノ丸34　｜　物件番号: r-2391</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">販売価格</div>
+      <div><span class="header-price-value">10</span><span class="header-price-unit">万円</span></div>
+      <div class="header-price-sub">税込・現状渡し</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <div class="highlight-item">
+      <div class="highlight-label">土地面積</div>
+      <div class="highlight-value">203</div>
+      <div class="highlight-unit">m²（61.4坪）</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">建物面積</div>
+      <div class="highlight-value">146.6</div>
+      <div class="highlight-unit">m²（44.3坪）</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">土地積算</div>
+      <div class="highlight-value">345.1</div>
+      <div class="highlight-unit">万円（34.5倍）</div>
+      <div class="highlight-sub">路線価1.7万円/m²</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">再調達価額</div>
+      <div class="highlight-value">1,759</div>
+      <div class="highlight-unit">万円（175.9倍）</div>
+      <div class="highlight-sub">木造12万円/m²</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">合計積算</div>
+      <div class="highlight-value">2,104</div>
+      <div class="highlight-unit">万円（210.4倍）</div>
+      <div class="highlight-sub">土地＋建物</div>
+    </div>
+  </div>
+
+  <div class="section-title">■ 物件概要</div>
+  <div class="overview-two-col">
+    <table class="overview-table">
+      <tr><td class="th">物件番号</td><td>r-2391</td></tr>
+      <tr><td class="th">所在地</td><td>秋田県大館市三ノ丸34</td></tr>
+      <tr><td class="th">物件種別</td><td>戸建て（木造）</td></tr>
+      <tr><td class="th">販売価格</td><td>10万円（税込・現状渡し）</td></tr>
+      <tr><td class="th">土地面積</td><td>203m²（61.4坪）</td></tr>
+      <tr><td class="th">建物面積</td><td>146.62m²（44.3坪）</td></tr>
+    </table>
+    <table class="overview-table">
+      <tr><td class="th">路線価</td><td>1.7万円/m²</td></tr>
+      <tr><td class="th">土地積算</td><td>345.1万円（34.5倍）</td></tr>
+      <tr><td class="th">再調達価額</td><td>1,759.4万円（175.9倍）</td></tr>
+      <tr><td class="th">現況</td><td>空き家（要確認）</td></tr>
+      <tr><td class="th">情報源</td><td>楽待</td></tr>
+      <tr><td class="th">担当</td><td>株式会社リアテクス</td></tr>
+    </table>
+  </div>
+
+  <div class="footer-band">
+    <div class="footer-company">株式会社リアテクス</div>
+    <div class="footer-contact">📞 お問い合わせはLINE公式アカウントへ　｜　未公開物件情報を毎週配信中</div>
+  </div>
+</div>
+
+<!-- ===== PAGE 2: レントロール ===== -->
+<div class="page-container page-break avoid-break">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">レントロール</div>
+      <div class="header-property-name">秋田県大館市 戸建て</div>
+      <div class="header-address">📍 秋田県大館市三ノ丸34　｜　r-2391</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">販売価格</div>
+      <div><span class="header-price-value">10</span><span class="header-price-unit">万円</span></div>
+    </div>
+  </div>
+
+  <div class="section-title">■ レントロール</div>
+  <table class="lentroll-table">
+    <thead>
+      <tr>
+        <th>部屋番号</th>
+        <th>間取り</th>
+        <th>専有面積</th>
+        <th>現況</th>
+        <th>現況賃料/月</th>
+        <th>想定賃料/月</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>101</td>
+        <td>戸建て全体</td>
+        <td>146.62m²</td>
+        <td class="vacant">空室</td>
+        <td class="vacant">—</td>
+        <td>要確認</td>
+        <td>現状渡し</td>
+      </tr>
+      <tr class="summary-row">
+        <td colspan="4"><strong>合計</strong></td>
+        <td><strong class="vacant">0円/月</strong></td>
+        <td><strong>—</strong></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="income-summary">
+    <div class="income-card">
+      <div class="income-card-title">現況 年間賃料収入</div>
+      <div><span class="income-card-value" style="color:#c00">0</span><span class="income-card-unit">円（空室中）</span></div>
+    </div>
+    <div class="income-card">
+      <div class="income-card-title">現況 稼働率</div>
+      <div><span class="income-card-value" style="color:#c00">0</span><span class="income-card-unit">%（空室）</span></div>
+    </div>
+  </div>
+
+  <div class="section-title">■ 年間支出</div>
+  <table class="expense-table">
+    <thead>
+      <tr><th class="td-label">費目</th><th>年間金額</th><th>備考</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-label">固定資産税・都市計画税</td>
+        <td>要確認</td>
+        <td>現所有者確認中</td>
+      </tr>
+      <tr class="total-row">
+        <td class="td-label">合計支出（年）</td>
+        <td>要確認</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer-band">
+    <div class="footer-company">株式会社リアテクス</div>
+    <div class="footer-contact">現況空室のため、入居後の収支改善余地が大きい物件です</div>
+  </div>
+</div>
+
+<!-- ===== PAGE 3: 収支シミュレーション ===== -->
+<div class="page-container page-break avoid-break">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">収支シミュレーション・投資ポイント</div>
+      <div class="header-property-name">秋田県大館市 戸建て</div>
+      <div class="header-address">📍 秋田県大館市三ノ丸34　｜　r-2391</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">販売価格</div>
+      <div><span class="header-price-value">10</span><span class="header-price-unit">万円</span></div>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">販売価格</div>
+      <div class="kpi-value">10</div>
+      <div class="kpi-unit">万円</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">土地積算</div>
+      <div class="kpi-value">345.1</div>
+      <div class="kpi-unit">万円</div>
+      <div class="kpi-note">路線価比 34.5倍</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">再調達価額</div>
+      <div class="kpi-value">1,759</div>
+      <div class="kpi-unit">万円</div>
+      <div class="kpi-note">建物比 175.9倍</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">合計積算</div>
+      <div class="kpi-value">2,104</div>
+      <div class="kpi-unit">万円</div>
+      <div class="kpi-note">積算比 210.4倍</div>
+    </div>
+  </div>
+
+  <div class="section-title">■ 積算評価サマリー</div>
+  <div class="finance-section">
+    <table class="finance-table">
+      <thead><tr><th colspan="2">土地積算評価</th></tr></thead>
+      <tbody>
+        <tr><td class="td-label">路線価</td><td>1.7万円/m²</td></tr>
+        <tr><td class="td-label">土地面積</td><td>203.00m²（61.4坪）</td></tr>
+        <tr><td class="td-label">土地積算価格</td><td>345.1万円</td></tr>
+        <tr class="total-row"><td class="td-label">販売価格に対する倍率</td><td><strong>34.51倍</strong></td></tr>
+      </tbody>
+    </table>
+    <table class="finance-table">
+      <thead><tr><th colspan="2">建物（再調達）評価</th></tr></thead>
+      <tbody>
+        <tr><td class="td-label">再調達単価</td><td>12万円/m²（木造）</td></tr>
+        <tr><td class="td-label">建物面積</td><td>146.62m²（44.3坪）</td></tr>
+        <tr><td class="td-label">再調達価額</td><td>1,759.44万円</td></tr>
+        <tr class="total-row"><td class="td-label">販売価格に対する倍率</td><td><strong>175.94倍</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="points-section avoid-break">
+    <div class="points-title">▶ 投資ポイント</div>
+    <ul class="points-list">
+      <li>販売価格10万円に対して土地積算だけで<strong>345万円超</strong>（34.5倍）という圧倒的な積算評価</li>
+      <li>土地・建物合計積算は<strong>2,100万円超（210倍）</strong>と超高積算物件</li>
+      <li>建物面積146m²超の大型戸建てを超格安で取得可能</li>
+      <li>空き家のため取得後の用途自由度が高い（賃貸・民泊・自己使用等）</li>
+      <li>大館市中心部に近い三ノ丸エリア、生活利便性良好</li>
+    </ul>
+  </div>
+
+  <div class="section-title">■ 周辺環境</div>
+  <div class="env-grid">
+    <div class="env-card">
+      <div class="env-icon">🚃</div>
+      <div class="env-label">最寄り駅</div>
+      <div class="env-value">大館駅<br><small>（奥羽本線）</small></div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏪</div>
+      <div class="env-label">スーパー</div>
+      <div class="env-value">要確認</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏥</div>
+      <div class="env-label">病院</div>
+      <div class="env-value">大館市立<br>総合病院</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏫</div>
+      <div class="env-label">学校</div>
+      <div class="env-value">要確認</div>
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <div class="footer-company">株式会社リアテクス</div>
+    <div class="footer-contact">※積算評価は参考値です。実際の評価は金融機関・不動産鑑定士にご確認ください</div>
+  </div>
+</div>
+
+<!-- ===== PAGE 4: 物件写真 ===== -->
+<div class="page-container page-break avoid-break">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">物件写真</div>
+      <div class="header-property-name">秋田県大館市 戸建て</div>
+      <div class="header-address">📍 秋田県大館市三ノ丸34　｜　r-2391</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">販売価格</div>
+      <div><span class="header-price-value">10</span><span class="header-price-unit">万円</span></div>
+    </div>
+  </div>
+
+  <div class="section-title">■ 物件写真</div>
+  <div class="photo-grid-main">
+    <div class="photo-item large">
+      <img src="https://drive.google.com/thumbnail?id=1aEQX78lr97fDBl46tlBDCHGCYP-wvC28&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1aEQX78lr97fDBl46tlBDCHGCYP-wvC28'" alt="物件外観1">
+      <div class="photo-label">外観①</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1OULOh8rh0xEOUUa0WB6ntDfe2u8VuhHq&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1OULOh8rh0xEOUUa0WB6ntDfe2u8VuhHq'" alt="物件外観2">
+      <div class="photo-label">外観②</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1FSXMxvD75KHmvZryhM1h5w24tQWSGErZ&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1FSXMxvD75KHmvZryhM1h5w24tQWSGErZ'" alt="写真3">
+      <div class="photo-label">室内・周辺①</div>
+    </div>
+  </div>
+
+  <div class="photo-grid-4">
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=12FfTJumrckF-F5-lxNtSpSvOxsEFHiB1&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/12FfTJumrckF-F5-lxNtSpSvOxsEFHiB1'" alt="写真4">
+      <div class="photo-label">室内②</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1UyEYHAyO4LWA7jiF3T13dmOVSScbxCbM&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1UyEYHAyO4LWA7jiF3T13dmOVSScbxCbM'" alt="写真5">
+      <div class="photo-label">室内③</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1Qe4wXqd4MMrlk3ZFRG47IpKV95LI9PU5&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1Qe4wXqd4MMrlk3ZFRG47IpKV95LI9PU5'" alt="写真6">
+      <div class="photo-label">室内④</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1mzUVJsjKGhAVU15mXrgn_ulBIiPsILNn&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1mzUVJsjKGhAVU15mXrgn_ulBIiPsILNn'" alt="写真7">
+      <div class="photo-label">室内⑤</div>
+    </div>
+  </div>
+
+  <div class="photo-grid-3">
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1_RCD8W32bvH1cIujwiApWVFYVQ7A1K6F&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1_RCD8W32bvH1cIujwiApWVFYVQ7A1K6F'" alt="写真8">
+      <div class="photo-label">室内⑥</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=12RCOJbnc-GEy6O2RpZNNa8KsSo_nDd8o&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/12RCOJbnc-GEy6O2RpZNNa8KsSo_nDd8o'" alt="土地地図">
+      <div class="photo-label">土地地図</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1LdtKrq9Rv1ZstpClP6YDkQ7AQM90RlU1&sz=w800"
+           onerror="this.src='https://lh3.googleusercontent.com/d/1LdtKrq9Rv1ZstpClP6YDkQ7AQM90RlU1'" alt="住宅地図">
+      <div class="photo-label">住宅地図</div>
+    </div>
+  </div>
+
+  <div class="notes-box">
+    <div class="notes-title">■ 特記事項</div>
+    <p>・現況空き家。内見希望の場合はお問い合わせください。</p>
+    <p>・土地・建物ともに詳細調査推奨。境界確認等は別途ご確認ください。</p>
+    <p>・本資料の数値はすべて参考値です。投資判断は自己責任にてお願いいたします。</p>
+  </div>
+
+  <div class="footer-band">
+    <div class="footer-company">株式会社リアテクス</div>
+    <div class="footer-contact">写真はイメージです。実際の状況は現地確認をお願いいたします</div>
+  </div>
+</div>
+
+<!-- ===== PAGE 5: LINEチラシ ===== -->
+<div class="page-container page-break avoid-break">
+  <div class="line-page">
+    <div class="line-badge">🏠 未公開プレミアム不動産情報</div>
+    <div class="line-main-title">毎週届く<span>未公開</span>物件<br>LINE で受け取る</div>
+    <div class="line-sub-title">今週も超高積算・格安物件が続々入荷中！会員限定で先行公開</div>
+
+    <div class="line-content">
+      <div class="line-qr-area">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq"
+             alt="LINE QR" style="width:100px;height:100px;border-radius:4px;">
+        <div class="line-qr-label">QRコードを読み取り<br>友だち追加</div>
+      </div>
+      <div class="line-features">
+        <div class="line-feature-item"><span class="line-feature-icon">✅</span> 毎週未公開物件を配信</div>
+        <div class="line-feature-item"><span class="line-feature-icon">✅</span> 積算評価・収支シミュ付き</div>
+        <div class="line-feature-item"><span class="line-feature-icon">✅</span> 先着順・無料で受け取れる</div>
+        <div class="line-feature-item"><span class="line-feature-icon">✅</span> 専門スタッフが個別対応</div>
+      </div>
+    </div>
+
+    <a class="line-btn" href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq">
+      LINE で友だち追加する
+    </a>
+
+    <div class="line-footer">株式会社リアテクス　｜　未公開物件専門　投資不動産　｜　登録無料・いつでも退会可</div>
+  </div>
+</div>
+
+</body>
+</html>
