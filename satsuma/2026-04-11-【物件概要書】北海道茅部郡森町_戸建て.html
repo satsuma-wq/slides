@@ -17,16 +17,14 @@ body {
 
 /* ========== ページ共通 ========== */
 .page-container {
-  width: 267mm;
-  margin: 0 auto 8mm;
+  width: 277mm;
+  margin: 0 auto;
   background: #fff;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 20mm);
-  justify-content: space-between;
 }
 .page-wrapper {
-  width: 267mm;
+  width: 277mm;
   margin: 0 auto;
   padding: 0;
 }
@@ -34,20 +32,21 @@ body {
 /* ========== ヘッダー ========== */
 .header {
   background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
-  border-bottom: 3px solid #DAA520;
-  padding: 12px 16px 10px;
+  border-bottom: 2px solid #DAA520;
+  padding: 5px 12px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   color: #fff;
+  border-radius: 4px 4px 0 0;
 }
 .header-left { display: flex; align-items: center; gap: 12px; }
 .logo { height: 32px; filter: brightness(0) invert(1); }
 .header-title-block { }
 .header-property-name {
-  font-size: 15pt;
+  font-size: 12pt;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   line-height: 1.2;
 }
 .header-sub { font-size: 8.5pt; color: #c8d8f0; margin-top: 2px; }
@@ -60,9 +59,9 @@ body {
   display: flex;
   background: linear-gradient(135deg, #fffbf0 0%, #fef9e7 100%);
   border: 1px solid #e8d5a0;
-  margin: 8px 0;
-  border-radius: 6px;
-  padding: 10px 14px;
+  margin: 4px 0;
+  border-radius: 4px;
+  padding: 5px 10px;
   gap: 0;
 }
 .highlight-item {
@@ -84,11 +83,12 @@ body {
 .section-title {
   background: #1A365D;
   color: #fff;
-  font-size: 9pt;
+  font-size: 8pt;
   font-weight: 700;
-  padding: 5px 12px;
-  border-radius: 3px 3px 0 0;
-  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.3px;
+  margin: 4px 0 3px;
 }
 .overview-two-col {
   display: grid;
@@ -108,14 +108,14 @@ body {
   background: #E8F0FE;
   color: #1A365D;
   font-weight: 600;
-  padding: 5px 8px;
+  padding: 2.5px 5px;
   width: 38%;
-  vertical-align: top;
+  vertical-align: middle;
   white-space: nowrap;
 }
 .overview-table td {
-  padding: 5px 8px;
-  vertical-align: top;
+  padding: 2.5px 5px;
+  vertical-align: middle;
   color: #333;
 }
 .price-val { color: #C41E3A; font-weight: 700; font-size: 11pt; }
@@ -123,14 +123,15 @@ body {
 
 /* ========== フッター帯 ========== */
 .footer-band {
-  background: #1A365D;
-  color: #fff;
-  padding: 7px 16px;
+  background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+  color: #e8d5a0;
+  padding: 4px 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 8pt;
-  margin-top: auto;
+  font-size: 7pt;
+  margin-top: 5px;
+  border-radius: 0 0 4px 4px;
 }
 .footer-contact { color: #c8d8f0; }
 
@@ -156,12 +157,13 @@ body {
 .lentroll-table th {
   background: #1A365D;
   color: #fff;
-  padding: 6px 8px;
+  padding: 2.5px 5px;
   text-align: center;
   border: 1px solid #2d4a7a;
+  font-size: 7.5pt;
 }
 .lentroll-table td {
-  padding: 6px 8px;
+  padding: 2.5px 5px;
   text-align: center;
   border: 1px solid #dce3f0;
 }
@@ -181,12 +183,12 @@ body {
 .finance-table th {
   background: #1A365D;
   color: #fff;
-  padding: 6px 10px;
+  padding: 2.5px 6px;
   text-align: left;
   border: 1px solid #2d4a7a;
 }
 .finance-table td {
-  padding: 6px 10px;
+  padding: 2.5px 6px;
   border: 1px solid #dce3f0;
 }
 .finance-table tr:nth-child(even) td { background: #f5f8ff; }
@@ -200,8 +202,8 @@ body {
 .kpi-card {
   background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
   border: 1px solid #c5d5f8;
-  border-radius: 6px;
-  padding: 8px 10px;
+  border-radius: 4px;
+  padding: 4px 6px;
   text-align: center;
 }
 .kpi-label { font-size: 7.5pt; color: #1A365D; font-weight: 600; margin-bottom: 3px; }
@@ -225,10 +227,10 @@ body {
   margin: 6px 0;
 }
 .env-card {
-  background: #f5f8ff;
-  border: 1px solid #dce3f0;
-  border-radius: 6px;
-  padding: 8px 10px;
+  background: #f8f9ff;
+  border: 1px solid #c8d8f8;
+  border-radius: 4px;
+  padding: 4px 6px;
 }
 .env-icon { font-size: 14pt; margin-bottom: 3px; }
 .env-name { font-size: 7.5pt; color: #1A365D; font-weight: 700; }
@@ -275,12 +277,13 @@ body {
   margin-top: 2px;
 }
 .note-box {
-  background: #fffbf0;
-  border: 1px solid #e8d5a0;
+  background: #fff8e1;
+  border: 1px solid #ffcc02;
+  border-left: 3px solid #DAA520;
   border-radius: 4px;
-  padding: 8px 12px;
-  font-size: 8.5pt;
-  margin: 6px 0;
+  padding: 4px 7px;
+  font-size: 7.5pt;
+  margin: 4px 0;
 }
 .note-box h4 { color: #1A365D; font-size: 9pt; margin-bottom: 4px; }
 
@@ -351,7 +354,7 @@ body {
 }
 
 /* ========== 印刷設定 ========== */
-@page { size: A4 landscape; margin: 14mm 15mm; }
+@page { size: A4 landscape; margin: 8mm 10mm; }
 @media print {
   body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   .page-container { min-height: unset; }

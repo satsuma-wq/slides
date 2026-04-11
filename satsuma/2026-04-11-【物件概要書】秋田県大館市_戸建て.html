@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>物件概要書 | 秋田県大館市三ノ丸34 戸建て</title>
 <style>
-  @page { size: A4 landscape; margin: 14mm 15mm; }
+  @page { size: A4 landscape; margin: 8mm 10mm; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; font-size: 10pt; color: #1A1A1A; background: #fff; }
 
@@ -19,13 +19,11 @@
 
   /* ========== ページ共通 ========== */
   .page-container {
-    width: 267mm;
-    margin: 0 auto 8mm;
+    width: 277mm;
+    margin: 0 auto;
     background: #fff;
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 20mm);
-    justify-content: space-between;
   }
   .page-break { break-before: page; }
 
@@ -36,8 +34,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 16px;
-    border-bottom: 3px solid var(--gold);
+    padding: 5px 12px;
+    border-bottom: 2px solid var(--gold);
+    border-radius: 4px 4px 0 0;
   }
   .header-left { flex: 1; }
   .header-badge {
@@ -50,7 +49,7 @@
     border-radius: 10px;
     margin-bottom: 3px;
   }
-  .header-property-name { font-size: 15pt; font-weight: bold; letter-spacing: 1px; }
+  .header-property-name { font-size: 12pt; font-weight: bold; letter-spacing: 0.3px; }
   .header-address { font-size: 8pt; opacity: 0.85; margin-top: 2px; }
   .header-right { text-align: right; }
   .header-price { font-size: 9pt; opacity: 0.8; }
@@ -62,10 +61,10 @@
   .highlight-box {
     display: flex;
     background: var(--light-gold);
-    border: 1.5px solid var(--gold);
+    border: 1px solid var(--gold);
     border-radius: 4px;
-    margin: 8px 0;
-    padding: 8px 12px;
+    margin: 4px 0;
+    padding: 5px 10px;
     gap: 0;
   }
   .highlight-item {
@@ -84,11 +83,11 @@
   .section-title {
     background: var(--navy);
     color: white;
-    font-size: 9pt;
+    font-size: 8pt;
     font-weight: bold;
-    padding: 4px 12px;
-    margin: 6px 0 4px;
-    border-left: 4px solid var(--gold);
+    padding: 3px 8px;
+    margin: 4px 0 3px;
+    border-radius: 3px;
   }
 
   /* ========== 概要テーブル ========== */
@@ -98,7 +97,7 @@
     font-size: 8.5pt;
   }
   .overview-table td {
-    padding: 4px 8px;
+    padding: 2.5px 5px;
     border: 0.5px solid #ccc;
     vertical-align: middle;
   }
@@ -118,13 +117,14 @@
   /* ========== フッター帯 ========== */
   .footer-band {
     background: var(--navy);
-    color: white;
+    color: #e8d5a0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 16px;
-    margin-top: 8px;
-    font-size: 8pt;
+    padding: 4px 12px;
+    margin-top: 5px;
+    font-size: 7pt;
+    border-radius: 0 0 4px 4px;
   }
   .footer-company { font-weight: bold; font-size: 9pt; }
   .footer-contact { font-size: 7.5pt; opacity: 0.85; }
@@ -139,13 +139,14 @@
   .lentroll-table th {
     background: var(--navy);
     color: white;
-    padding: 5px 8px;
+    padding: 2.5px 5px;
     text-align: center;
     font-weight: bold;
+    font-size: 7.5pt;
     border: 0.5px solid #4a6fa5;
   }
   .lentroll-table td {
-    padding: 5px 8px;
+    padding: 2.5px 5px;
     border: 0.5px solid #ccc;
     text-align: center;
     vertical-align: middle;
@@ -167,7 +168,7 @@
     background: var(--light-navy);
     border: 1px solid #b0c4de;
     border-radius: 4px;
-    padding: 8px 12px;
+    padding: 4px 8px;
   }
   .income-card-title { font-size: 8pt; color: var(--navy); font-weight: bold; margin-bottom: 3px; }
   .income-card-value { font-size: 14pt; font-weight: bold; color: var(--navy); }
@@ -181,11 +182,12 @@
   .expense-table th {
     background: var(--navy);
     color: white;
-    padding: 4px 8px;
+    padding: 2.5px 5px;
     border: 0.5px solid #4a6fa5;
+    font-size: 7.5pt;
   }
   .expense-table td {
-    padding: 4px 8px;
+    padding: 2.5px 5px;
     border: 0.5px solid #ccc;
     text-align: right;
   }
@@ -203,7 +205,7 @@
     background: var(--light-navy);
     border: 1px solid #b0c4de;
     border-radius: 4px;
-    padding: 8px;
+    padding: 4px 6px;
     text-align: center;
   }
   .kpi-label { font-size: 7.5pt; color: var(--navy); font-weight: bold; margin-bottom: 2px; }
@@ -225,12 +227,13 @@
   .finance-table th {
     background: var(--navy);
     color: white;
-    padding: 4px 8px;
+    padding: 2.5px 5px;
     border: 0.5px solid #4a6fa5;
     text-align: left;
+    font-size: 7.5pt;
   }
   .finance-table td {
-    padding: 4px 8px;
+    padding: 2.5px 5px;
     border: 0.5px solid #ccc;
     text-align: right;
   }
@@ -255,10 +258,10 @@
     gap: 6px;
   }
   .env-card {
-    background: #f8f8f8;
-    border: 0.5px solid #ccc;
-    border-radius: 3px;
-    padding: 6px;
+    background: #f8f9ff;
+    border: 1px solid #c8d8f8;
+    border-radius: 4px;
+    padding: 4px 6px;
     text-align: center;
   }
   .env-icon { font-size: 14pt; }
@@ -288,7 +291,7 @@
   .photo-item { position: relative; overflow: hidden; border-radius: 3px; }
   .photo-item img {
     width: 100%;
-    height: 100px;
+    height: 90px;
     object-fit: cover;
     display: block;
     border-radius: 3px;
@@ -306,12 +309,13 @@
     padding: 2px 5px;
   }
   .notes-box {
-    background: #fff8e8;
-    border: 1px solid #e0c060;
+    background: #fff8e1;
+    border: 1px solid #ffcc02;
+    border-left: 3px solid #DAA520;
     border-radius: 4px;
-    padding: 8px 12px;
-    font-size: 8pt;
-    margin-top: 6px;
+    padding: 4px 7px;
+    font-size: 7.5pt;
+    margin: 4px 0;
   }
   .notes-title { font-weight: bold; color: var(--navy); margin-bottom: 4px; font-size: 9pt; }
 
