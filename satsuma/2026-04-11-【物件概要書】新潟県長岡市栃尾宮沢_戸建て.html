@@ -21,24 +21,22 @@ body {
   margin: 8mm 10mm;
 }
 
-/* ===== ページコンテナ（コンパクト） ===== */
+/* ===== ページコンテナ ===== */
 .page-container {
   width: 277mm;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 16mm);
-  justify-content: space-between;
 }
 .page-wrapper {
   width: 277mm;
   margin: 0 auto;
 }
 
-/* ===== ヘッダー（コンパクト） ===== */
+/* ===== ヘッダー ===== */
 .header {
   background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
-  padding: 6px 12px;
+  padding: 5px 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,21 +45,21 @@ body {
 }
 .header-left { display: flex; align-items: center; gap: 8px; }
 .header-logo {
-  height: 22px;
+  height: 20px;
   filter: brightness(0) invert(1);
 }
 .header-property-name {
   color: #fff;
-  font-size: 13pt;
+  font-size: 12pt;
   font-weight: 700;
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 .header-right { text-align: right; color: #e8d5a0; font-size: 7.5pt; }
-.header-property-num { font-size: 7pt; color: #c8b87a; margin-top: 2px; }
+.header-property-num { font-size: 7pt; color: #c8b87a; margin-top: 1px; }
 .detail-btn {
   display: inline-block;
-  margin-top: 3px;
-  padding: 2px 8px;
+  margin-top: 2px;
+  padding: 2px 7px;
   background: #DAA520;
   color: #1A365D;
   border-radius: 3px;
@@ -70,48 +68,35 @@ body {
   text-decoration: none;
 }
 
-/* ===== ハイライトボックス（コンパクト） ===== */
-.highlight-box {
-  display: flex;
-  background: linear-gradient(135deg, #fffdf0 0%, #fef9e7 100%);
-  border: 1px solid #DAA520;
-  border-radius: 0 0 4px 4px;
-  padding: 6px 10px;
-  gap: 0;
+/* ===== 2カラムレイアウト ===== */
+.two-col {
+  display: grid;
+  gap: 6px;
 }
-.highlight-item {
-  flex: 1;
-  text-align: center;
-  border-right: 1px solid #e8d5a0;
-  padding: 2px 8px;
-}
-.highlight-item:last-child { border-right: none; }
-.highlight-label { font-size: 7pt; color: #666; }
-.highlight-value { font-size: 20pt; font-weight: 900; color: #C41E3A; line-height: 1.1; }
-.highlight-sub { font-size: 7pt; color: #888; }
-.highlight-value.green { color: #1a7a1a; }
+.two-col-6040 { grid-template-columns: 60% 40%; }
+.two-col-5545 { grid-template-columns: 55% 45%; }
+.two-col-5050 { grid-template-columns: 1fr 1fr; }
 
 /* ===== セクションタイトル ===== */
 .section-title {
   background: #1A365D;
   color: #fff;
-  padding: 3px 10px;
-  font-size: 8.5pt;
+  padding: 3px 8px;
+  font-size: 8pt;
   font-weight: 700;
   border-radius: 3px;
-  margin: 5px 0 4px;
-  letter-spacing: 0.5px;
+  margin: 4px 0 3px;
+  letter-spacing: 0.3px;
 }
 
 /* ===== 物件概要テーブル ===== */
-.overview-section { margin: 4px 0; }
 .overview-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 8.5pt;
+  font-size: 8pt;
 }
 .overview-table td {
-  padding: 3px 6px;
+  padding: 2.5px 5px;
   border: 1px solid #ddd;
   vertical-align: middle;
 }
@@ -119,106 +104,125 @@ body {
   background: #E8F0FE;
   color: #1A365D;
   font-weight: 700;
-  width: 22%;
   white-space: nowrap;
+  width: 30%;
 }
-.overview-table .val { width: 28%; }
 .price-val {
   color: #C41E3A;
   font-weight: 900;
-  font-size: 11pt;
+  font-size: 10.5pt;
 }
 .yield-val {
   color: #1a7a1a;
   font-weight: 900;
-  font-size: 11pt;
+  font-size: 10.5pt;
 }
 
-/* ===== KPIグリッド ===== */
+/* ===== ハイライト数値グリッド（右カラム） ===== */
+.hl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.hl-card {
+  background: linear-gradient(135deg, #fffdf0 0%, #fef9e7 100%);
+  border: 1px solid #DAA520;
+  border-radius: 4px;
+  padding: 5px 6px;
+  text-align: center;
+}
+.hl-label { font-size: 6.5pt; color: #666; margin-bottom: 1px; }
+.hl-value { font-size: 22pt; font-weight: 900; color: #C41E3A; line-height: 1.0; }
+.hl-value.green { color: #1a7a1a; }
+.hl-value.blue { color: #1A365D; }
+.hl-sub { font-size: 6.5pt; color: #888; margin-top: 1px; }
+
+/* ===== KPIグリッド（2×2） ===== */
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 4px;
-  margin: 4px 0;
+  margin-top: 5px;
 }
 .kpi-card {
-  background: #f8f9ff;
+  background: #f0f4ff;
   border: 1px solid #c8d8f8;
   border-radius: 4px;
   padding: 4px 6px;
   text-align: center;
 }
-.kpi-label { font-size: 6.5pt; color: #666; }
+.kpi-label { font-size: 6pt; color: #666; }
 .kpi-value { font-size: 13pt; font-weight: 900; color: #1A365D; line-height: 1.1; }
-.kpi-unit { font-size: 6.5pt; color: #888; }
+.kpi-unit { font-size: 6pt; color: #888; }
 
 /* ===== フッター帯 ===== */
 .footer-band {
   background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
   color: #e8d5a0;
-  padding: 5px 12px;
+  padding: 4px 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 0 0 4px 4px;
-  margin-top: auto;
-  font-size: 7.5pt;
+  margin-top: 5px;
+  font-size: 7pt;
 }
-.footer-contact { text-align: right; font-size: 7pt; }
+.footer-contact { text-align: right; font-size: 6.5pt; }
 
 /* ===== ページ区切り ===== */
 .page-break { break-before: page; }
 .avoid-break { break-inside: avoid; }
 
 /* ===== レントロールテーブル ===== */
-.rent-section { margin: 4px 0; }
 .rent-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 8.5pt;
+  font-size: 8pt;
 }
 .rent-table th {
   background: #1A365D;
   color: #fff;
-  padding: 3px 6px;
+  padding: 2.5px 5px;
   text-align: center;
-  font-size: 8pt;
+  font-size: 7.5pt;
 }
 .rent-table td {
-  padding: 3px 6px;
+  padding: 2.5px 5px;
   border: 1px solid #ddd;
   text-align: center;
 }
 .rent-table .vacant { color: #999; font-style: italic; }
+
+/* ===== 賃料サマリー ===== */
 .rent-summary {
   background: #E8F0FE;
   border: 1px solid #c8d8f8;
   border-radius: 4px;
-  padding: 5px 10px;
-  margin: 5px 0;
-  display: flex;
-  gap: 20px;
-  font-size: 8.5pt;
+  padding: 4px 8px;
+  margin: 4px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  font-size: 8pt;
 }
-.rent-summary-item { }
-.rent-summary-label { color: #666; font-size: 7.5pt; }
-.rent-summary-value { font-weight: 700; color: #1A365D; font-size: 10pt; }
+.rent-summary-label { color: #666; font-size: 6.5pt; }
+.rent-summary-value { font-weight: 700; color: #1A365D; font-size: 9.5pt; }
 
 /* ===== 収支シミュレーション ===== */
 .finance-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 8.5pt;
+  font-size: 8pt;
 }
 .finance-table td {
-  padding: 3px 8px;
+  padding: 2.5px 6px;
   border: 1px solid #ddd;
 }
 .finance-table .th {
   background: #E8F0FE;
   color: #1A365D;
   font-weight: 700;
-  width: 35%;
+  width: 38%;
 }
 .finance-table .subtotal {
   background: #f0f4ff;
@@ -228,20 +232,20 @@ body {
   background: #1A365D;
   color: #fff;
   font-weight: 700;
-  font-size: 9.5pt;
+  font-size: 9pt;
 }
 
 /* ===== 投資ポイント ===== */
 .points-list {
   list-style: none;
-  margin: 4px 0;
+  margin: 2px 0;
 }
 .points-list li {
-  padding: 3px 0 3px 18px;
+  padding: 2.5px 0 2.5px 16px;
   position: relative;
-  font-size: 8.5pt;
+  font-size: 8pt;
   border-bottom: 1px solid #f0f0f0;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 .points-list li::before {
   content: '✓';
@@ -257,8 +261,8 @@ body {
   border: 1px solid #ffcc02;
   border-left: 3px solid #DAA520;
   border-radius: 4px;
-  padding: 5px 8px;
-  font-size: 8pt;
+  padding: 4px 7px;
+  font-size: 7.5pt;
   margin: 4px 0;
   line-height: 1.5;
 }
@@ -267,11 +271,18 @@ body {
   border: 1px solid #ffcccc;
   border-left: 3px solid #C41E3A;
   border-radius: 4px;
-  padding: 5px 8px;
-  font-size: 7.5pt;
+  padding: 4px 7px;
+  font-size: 7pt;
   margin: 4px 0;
   line-height: 1.5;
   color: #c41e3a;
+}
+
+/* ===== P2右カラム ===== */
+.right-col-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 /* ===== 周辺環境 ===== */
@@ -299,27 +310,13 @@ body {
   gap: 4px;
   margin: 4px 0;
 }
-.photo-grid-4 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 4px;
-  margin: 4px 0;
-}
-.photo-grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px;
-  margin: 4px 0;
-}
 .photo-item { position: relative; }
 .photo-item img {
   width: 100%;
-  height: 120px;
   object-fit: cover;
   border-radius: 4px;
   display: block;
 }
-.photo-item .photo-main img { height: 160px; }
 .photo-caption {
   background: rgba(0,0,0,0.6);
   color: #fff;
@@ -399,26 +396,23 @@ body {
 /* ===== @media print ===== */
 @media print {
   body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-  .page-container { min-height: unset; }
   .page-break { break-before: page; }
-  .rent-spec-banner { break-before: page; }
-  .avoid-break, .kpi-grid, .env-card, .notes-box, .caution-box { break-inside: avoid; }
-  .section-title, h2, h3 { break-after: avoid; }
+  .avoid-break, .kpi-grid, .env-card, .notes-box, .caution-box, .hl-grid { break-inside: avoid; }
+  .section-title { break-after: avoid; }
   table tr { break-inside: avoid; }
   .header, .footer-band { break-before: avoid; }
   .photo-grid-main { grid-template-columns: 2fr 1fr 1fr !important; }
-  .photo-grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr !important; }
 }
 
 /* ===== レスポンシブ ===== */
 @media screen and (max-width: 900px) {
   .page-container, .page-wrapper { width: 100% !important; padding: 0 8px; }
-  .header { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .highlight-box { flex-wrap: wrap; gap: 6px; }
-  .highlight-item { flex: 1 1 40%; }
-  .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
-  .overview-table .th, .overview-table .val { width: auto; }
-  .photo-grid-main, .photo-grid-4, .photo-grid-2 { grid-template-columns: 1fr 1fr !important; }
+  .header { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .two-col-6040, .two-col-5545, .two-col-5050 { grid-template-columns: 1fr; }
+  .hl-grid { grid-template-columns: repeat(2, 1fr); }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-grid-main { grid-template-columns: 1fr 1fr !important; }
   .photo-item img { height: 100px; }
   .line-content { flex-direction: column; align-items: center; }
 }
@@ -428,59 +422,32 @@ body {
 
 <!-- ========== PAGE 1: 概要 ========== -->
 <div class="page-container">
-  <div>
-    <!-- ヘッダー -->
-    <div class="header">
-      <div class="header-left">
-        <img class="header-logo"
-          src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
-          onerror="this.style.display='none'" alt="REATEX">
-        <div class="header-property-name">新潟県長岡市栃尾宮沢 ｜ 戸建て</div>
-      </div>
-      <div class="header-right">
-        <div>株式会社リアテクス</div>
-        <a href="https://drive.google.com/drive/folders/1W6yoV6tEpUiwZo6PDW9eEwVcQZt8rSuA"
-           target="_blank" class="detail-btn">📂 詳細はこちら</a>
-        <div class="header-property-num">物件番号: r-2437</div>
-      </div>
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <img class="header-logo"
+        src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+        onerror="this.style.display='none'" alt="REATEX">
+      <div class="header-property-name">新潟県長岡市栃尾宮沢 ｜ 戸建て</div>
     </div>
-
-    <!-- ハイライト -->
-    <div class="highlight-box">
-      <div class="highlight-item">
-        <div class="highlight-label">売買価格</div>
-        <div class="highlight-value">15<span style="font-size:12pt">万円</span></div>
-        <div class="highlight-sub">150,000円</div>
-      </div>
-      <div class="highlight-item">
-        <div class="highlight-label">表面利回り（想定）</div>
-        <div class="highlight-value green">440<span style="font-size:12pt">%</span></div>
-        <div class="highlight-sub">年間賃料66万円ベース</div>
-      </div>
-      <div class="highlight-item">
-        <div class="highlight-label">想定月額賃料</div>
-        <div class="highlight-value" style="font-size:17pt">55,000<span style="font-size:10pt">円</span></div>
-        <div class="highlight-sub">年間 660,000円</div>
-      </div>
-      <div class="highlight-item">
-        <div class="highlight-label">土地面積</div>
-        <div class="highlight-value" style="font-size:16pt; color:#1A365D;">637<span style="font-size:10pt">㎡</span></div>
-        <div class="highlight-sub">192.85坪</div>
-      </div>
-      <div class="highlight-item">
-        <div class="highlight-label">建物面積</div>
-        <div class="highlight-value" style="font-size:16pt; color:#1A365D;">161<span style="font-size:10pt">㎡</span></div>
-        <div class="highlight-sub">48.82坪</div>
-      </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <a href="https://drive.google.com/drive/folders/1W6yoV6tEpUiwZo6PDW9eEwVcQZt8rSuA"
+         target="_blank" class="detail-btn">📂 詳細はこちら</a>
+      <div class="header-property-num">物件番号: r-2437</div>
     </div>
+  </div>
 
-    <!-- 物件概要テーブル -->
-    <div class="section-title">■ 物件概要</div>
-    <div class="overview-section avoid-break">
-      <table class="overview-table">
+  <!-- メインコンテンツ：2カラム -->
+  <div class="two-col two-col-6040" style="margin-top:5px;">
+
+    <!-- 左カラム：物件概要テーブル -->
+    <div>
+      <div class="section-title">■ 物件概要</div>
+      <table class="overview-table avoid-break">
         <tr>
           <td class="th">所在地</td>
-          <td class="val" colspan="3">
+          <td>
             <a href="https://maps.google.com/?q=新潟県長岡市栃尾宮沢1500" target="_blank" style="color:#2563EB; text-decoration:none;">
               新潟県長岡市栃尾宮沢1500 🗺
             </a>
@@ -488,81 +455,116 @@ body {
         </tr>
         <tr>
           <td class="th">交通</td>
-          <td class="val" colspan="3">JR長岡駅 車約25分（約16.9km）</td>
-        </tr>
-        <tr>
-          <td class="th">物件種別</td>
-          <td class="val">戸建て</td>
-          <td class="th">構造</td>
-          <td class="val">木造2階建</td>
+          <td>JR長岡駅 車約25分（約16.9km）</td>
         </tr>
         <tr>
           <td class="th">売買価格</td>
-          <td class="val"><span class="price-val">150,000円（15万円）</span></td>
-          <td class="th">築年月</td>
-          <td class="val">昭和44年6月（1969年）/ 築57年</td>
+          <td><span class="price-val">150,000円（15万円）</span></td>
         </tr>
         <tr>
           <td class="th">表面利回り</td>
-          <td class="val"><span class="yield-val">440%</span>（想定満室）</td>
-          <td class="th">現況利回り</td>
-          <td class="val"><span class="yield-val">0%</span>（現況空室）</td>
+          <td><span class="yield-val">440%</span>（想定）／ <span class="yield-val">0%</span>（現況空室）</td>
+        </tr>
+        <tr>
+          <td class="th">物件種別</td>
+          <td>戸建て ／ 木造2階建</td>
+        </tr>
+        <tr>
+          <td class="th">築年月</td>
+          <td>昭和44年6月（1969年）/ 築57年</td>
         </tr>
         <tr>
           <td class="th">土地面積</td>
-          <td class="val">637.52㎡（192.85坪）</td>
+          <td>637.52㎡（192.85坪）</td>
+        </tr>
+        <tr>
           <td class="th">建物面積</td>
-          <td class="val">161.39㎡（48.82坪）</td>
+          <td>161.39㎡（48.82坪）</td>
         </tr>
         <tr>
           <td class="th">都市計画</td>
-          <td class="val">第一種住居地域</td>
-          <td class="th">建ぺい率/容積率</td>
-          <td class="val">60% / 200%</td>
+          <td>第一種住居地域 ／ 建ぺい率60% ／ 容積率200%</td>
         </tr>
         <tr>
           <td class="th">接道状況</td>
-          <td class="val" colspan="3">北側・東側 42条1項2号道路</td>
+          <td>北側・東側 42条1項2号道路</td>
         </tr>
         <tr>
           <td class="th">設備</td>
-          <td class="val" colspan="3">公営水道・電力自由化・本下水・都市ガス</td>
+          <td>公営水道・電力自由化・本下水・都市ガス</td>
         </tr>
         <tr>
           <td class="th">再調達価格</td>
-          <td class="val">約1,937万円（12万円/㎡ × 161.39㎡）</td>
+          <td>約1,937万円（12万円/㎡ × 161.39㎡）</td>
+        </tr>
+        <tr>
           <td class="th">残存耐用年数</td>
-          <td class="val">0年（超過 ※木造22年）</td>
+          <td>0年（超過 ※木造22年）</td>
         </tr>
         <tr>
           <td class="th">路線価</td>
-          <td class="val" colspan="3" style="color:#888;">調査中</td>
+          <td style="color:#888;">調査中</td>
         </tr>
       </table>
     </div>
 
-    <!-- KPIグリッド -->
-    <div class="kpi-grid avoid-break">
-      <div class="kpi-card">
-        <div class="kpi-label">物件価格</div>
-        <div class="kpi-value" style="color:#C41E3A; font-size:16pt;">15<span style="font-size:9pt">万円</span></div>
-        <div class="kpi-unit">150,000円</div>
+    <!-- 右カラム：ハイライト数値 + KPI -->
+    <div>
+      <div class="section-title">■ 投資ハイライト</div>
+      <div class="hl-grid avoid-break">
+        <div class="hl-card">
+          <div class="hl-label">売買価格</div>
+          <div class="hl-value">15<span style="font-size:13pt">万円</span></div>
+          <div class="hl-sub">150,000円</div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-label">表面利回り（想定）</div>
+          <div class="hl-value green">440<span style="font-size:13pt">%</span></div>
+          <div class="hl-sub">年間賃料66万円ベース</div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-label">想定月額賃料</div>
+          <div class="hl-value blue" style="font-size:15pt;">55,000<span style="font-size:9pt">円</span></div>
+          <div class="hl-sub">年間 660,000円</div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-label">土地面積</div>
+          <div class="hl-value blue" style="font-size:17pt;">637<span style="font-size:9pt">㎡</span></div>
+          <div class="hl-sub">192.85坪（建物161㎡）</div>
+        </div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-label">想定表面利回り</div>
-        <div class="kpi-value" style="color:#1a7a1a;">440<span style="font-size:8pt">%</span></div>
-        <div class="kpi-unit">満室想定ベース</div>
+
+      <div class="kpi-grid avoid-break">
+        <div class="kpi-card">
+          <div class="kpi-label">投資回収期間</div>
+          <div class="kpi-value" style="color:#C41E3A;">0.2<span style="font-size:7pt">年</span></div>
+          <div class="kpi-unit">約3ヶ月</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">年間賃料収入（想定）</div>
+          <div class="kpi-value" style="color:#1a7a1a;">66<span style="font-size:7pt">万円</span></div>
+          <div class="kpi-unit">55,000円/月</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">再調達価格</div>
+          <div class="kpi-value" style="font-size:10pt;">1,937<span style="font-size:7pt">万円</span></div>
+          <div class="kpi-unit">12万円/㎡ × 161㎡</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">現況</div>
+          <div class="kpi-value" style="font-size:10pt; color:#C41E3A;">空室</div>
+          <div class="kpi-unit">DIYリフォーム向き</div>
+        </div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-label">想定年間賃料</div>
-        <div class="kpi-value">66<span style="font-size:8pt">万円</span></div>
-        <div class="kpi-unit">55,000円/月</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">投資回収期間</div>
-        <div class="kpi-value">0.2<span style="font-size:8pt">年</span></div>
-        <div class="kpi-unit">約3ヶ月</div>
-      </div>
+
+      <!-- 投資ポイント（簡略） -->
+      <div class="section-title" style="margin-top:5px;">■ 注目ポイント</div>
+      <ul class="points-list avoid-break">
+        <li><strong>超低価格</strong>：15万円取得で最大キャッシュフロー</li>
+        <li><strong>広大敷地</strong>：637㎡・農地含む将来活用の可能性</li>
+        <li><strong>インフラ完備</strong>：水道・下水・ガス・電力すべて整備済</li>
+        <li><strong>利回り440%</strong>：投資回収約3ヶ月の異次元スペック</li>
+      </ul>
     </div>
   </div>
 
@@ -590,112 +592,148 @@ body {
     </div>
   </div>
 
-  <!-- 賃料想定 -->
-  <div class="section-title">■ 賃料想定</div>
-  <div class="rent-section avoid-break">
-    <table class="rent-table">
-      <thead>
-        <tr>
-          <th>区画</th>
-          <th>間取り</th>
-          <th>専有面積</th>
-          <th>現況</th>
-          <th>想定月額賃料</th>
-          <th>備考</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>戸建て全体</td>
-          <td>—</td>
-          <td>161.39㎡（48.82坪）</td>
-          <td class="vacant">空室</td>
-          <td><strong>55,000円</strong></td>
-          <td>1棟貸し想定</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="rent-summary">
-      <div class="rent-summary-item">
-        <div class="rent-summary-label">満室想定月額</div>
-        <div class="rent-summary-value">55,000円</div>
+  <!-- メインコンテンツ：2カラム -->
+  <div class="two-col two-col-5545" style="margin-top:5px;">
+
+    <!-- 左カラム：賃料想定 + 収支 -->
+    <div>
+      <div class="section-title">■ 賃料想定</div>
+      <div class="avoid-break">
+        <table class="rent-table">
+          <thead>
+            <tr>
+              <th>区画</th>
+              <th>間取り</th>
+              <th>専有面積</th>
+              <th>現況</th>
+              <th>想定月額賃料</th>
+              <th>備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>戸建て全体</td>
+              <td>—</td>
+              <td>161.39㎡（48.82坪）</td>
+              <td class="vacant">空室</td>
+              <td><strong>55,000円</strong></td>
+              <td>1棟貸し想定</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="rent-summary" style="margin-top:4px;">
+          <div>
+            <div class="rent-summary-label">満室想定月額</div>
+            <div class="rent-summary-value">55,000円</div>
+          </div>
+          <div>
+            <div class="rent-summary-label">満室想定年額</div>
+            <div class="rent-summary-value">660,000円</div>
+          </div>
+          <div>
+            <div class="rent-summary-label">現況月額</div>
+            <div class="rent-summary-value" style="color:#999;">0円（空室）</div>
+          </div>
+          <div>
+            <div class="rent-summary-label">表面利回り（満室想定）</div>
+            <div class="rent-summary-value" style="color:#1a7a1a;">440%</div>
+          </div>
+        </div>
       </div>
-      <div class="rent-summary-item">
-        <div class="rent-summary-label">満室想定年額</div>
-        <div class="rent-summary-value">660,000円</div>
-      </div>
-      <div class="rent-summary-item">
-        <div class="rent-summary-label">現況月額</div>
-        <div class="rent-summary-value" style="color:#999;">0円（空室）</div>
-      </div>
-      <div class="rent-summary-item">
-        <div class="rent-summary-label">表面利回り（満室想定）</div>
-        <div class="rent-summary-value" style="color:#1a7a1a;">440%</div>
+
+      <div class="section-title">■ 収支シミュレーション</div>
+      <div class="avoid-break">
+        <table class="finance-table">
+          <tr>
+            <td class="th">売買価格</td>
+            <td style="color:#C41E3A; font-weight:700;">150,000円</td>
+            <td class="th">諸費用（概算）</td>
+            <td>約30,000円（売買価格の20%）</td>
+          </tr>
+          <tr>
+            <td class="th">総投資額（概算）</td>
+            <td style="font-weight:700;">約180,000円</td>
+            <td class="th">自己資金</td>
+            <td>150,000円〜</td>
+          </tr>
+          <tr>
+            <td class="th total" colspan="2">年間賃料収入（満室想定）</td>
+            <td class="total" colspan="2">660,000円（55,000円 × 12ヶ月）</td>
+          </tr>
+          <tr>
+            <td class="th">固定資産税・都市計画税</td>
+            <td colspan="3" style="color:#888;">別途確認要</td>
+          </tr>
+          <tr>
+            <td class="th">管理費</td>
+            <td colspan="3" style="color:#888;">元データに記載なし</td>
+          </tr>
+          <tr class="subtotal">
+            <td class="th">NOI（簡易）</td>
+            <td colspan="3"><strong>660,000円/年</strong>（費用差引前・概算）</td>
+          </tr>
+          <tr>
+            <td class="th">表面利回り</td>
+            <td style="color:#1a7a1a; font-weight:700;">440%</td>
+            <td class="th">投資回収期間</td>
+            <td style="font-weight:700;">約0.2年（3ヶ月）</td>
+          </tr>
+        </table>
       </div>
     </div>
+
+    <!-- 右カラム：投資ポイント + 特記事項 -->
+    <div class="right-col-inner">
+      <div class="section-title">■ 投資ポイント</div>
+      <ul class="points-list avoid-break">
+        <li><strong>超低価格での取得</strong>：売買価格15万円という破格値で、キャッシュフロー最大化が狙える希少物件</li>
+        <li><strong>広大な土地</strong>：637㎡（192坪）の広い敷地。農地を含む将来的な活用可能性あり</li>
+        <li><strong>インフラ完備</strong>：公営水道・本下水・都市ガス・電力自由化と生活インフラが全て揃っている</li>
+        <li><strong>利回り440%</strong>：仮に55,000円/月での賃貸が実現すれば、投資回収期間は約3ヶ月という異次元の利回り</li>
+        <li><strong>DIYリフォーム向き</strong>：築57年木造のため、安価なリフォームで収益改善の余地が大きい</li>
+      </ul>
+
+      <div class="section-title" style="margin-top:6px;">■ 特記事項・注意点</div>
+      <div class="notes-box avoid-break">
+        <strong>⚠️ 重要特記事項</strong><br>
+        ・農地含む（地目変更手続き中）｜ ・未登記建物あり ｜ ・境界非明示<br>
+        ・地目変更が完了していない部分については、農地法の適用を受ける可能性あり<br>
+        ・現地調査・法的確認のうえご検討ください
+      </div>
+      <div class="caution-box">
+        ※本資料は投資の勧誘を目的とするものではありません。記載内容は概算であり、実際の収益を保証するものではありません。物件の詳細・現地確認は必ず実施のうえご判断ください。
+      </div>
+
+      <!-- 収支サマリーカード -->
+      <div style="margin-top:6px; background:linear-gradient(135deg,#1a365d,#2d4a7a); border-radius:6px; padding:8px 10px; color:#fff; text-align:center;">
+        <div style="font-size:7pt; color:#e8d5a0; margin-bottom:3px;">📊 投資サマリー</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+          <div>
+            <div style="font-size:6.5pt; color:#c8b87a;">取得価格</div>
+            <div style="font-size:14pt; font-weight:900; color:#ffd700;">15<span style="font-size:8pt">万円</span></div>
+          </div>
+          <div>
+            <div style="font-size:6.5pt; color:#c8b87a;">想定利回り</div>
+            <div style="font-size:14pt; font-weight:900; color:#90ee90;">440<span style="font-size:8pt">%</span></div>
+          </div>
+          <div>
+            <div style="font-size:6.5pt; color:#c8b87a;">月額賃料</div>
+            <div style="font-size:11pt; font-weight:900; color:#fff;">55,000<span style="font-size:7pt">円</span></div>
+          </div>
+          <div>
+            <div style="font-size:6.5pt; color:#c8b87a;">回収期間</div>
+            <div style="font-size:11pt; font-weight:900; color:#fff;">約3<span style="font-size:7pt">ヶ月</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- 収支シミュレーション -->
-  <div class="section-title">■ 収支シミュレーション</div>
-  <div class="avoid-break">
-    <table class="finance-table">
-      <tr>
-        <td class="th">売買価格</td>
-        <td style="color:#C41E3A; font-weight:700;">150,000円</td>
-        <td class="th">諸費用（概算）</td>
-        <td>約30,000円（売買価格の20%）</td>
-      </tr>
-      <tr>
-        <td class="th">総投資額（概算）</td>
-        <td style="font-weight:700;">約180,000円</td>
-        <td class="th">自己資金</td>
-        <td>150,000円〜</td>
-      </tr>
-      <tr>
-        <td class="th total" colspan="2">年間賃料収入（満室想定）</td>
-        <td class="total" colspan="2">660,000円（55,000円 × 12ヶ月）</td>
-      </tr>
-      <tr>
-        <td class="th">固定資産税・都市計画税</td>
-        <td colspan="3" style="color:#888;">別途確認要</td>
-      </tr>
-      <tr>
-        <td class="th">管理費</td>
-        <td colspan="3" style="color:#888;">元データに記載なし</td>
-      </tr>
-      <tr class="subtotal">
-        <td class="th">NOI（簡易）</td>
-        <td colspan="3"><strong>660,000円/年</strong>（費用差引前・概算）</td>
-      </tr>
-      <tr>
-        <td class="th">表面利回り</td>
-        <td style="color:#1a7a1a; font-weight:700;">440%</td>
-        <td class="th">投資回収期間</td>
-        <td style="font-weight:700;">約0.2年（3ヶ月）</td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- 投資ポイント -->
-  <div class="section-title">■ 投資ポイント</div>
-  <ul class="points-list avoid-break">
-    <li><strong>超低価格での取得</strong>：売買価格15万円という破格値で、キャッシュフロー最大化が狙える希少物件</li>
-    <li><strong>広大な土地</strong>：637㎡（192坪）の広い敷地。農地を含む将来的な活用可能性あり</li>
-    <li><strong>インフラ完備</strong>：公営水道・本下水・都市ガス・電力自由化と生活インフラが全て揃っている</li>
-    <li><strong>利回り440%</strong>：仮に55,000円/月での賃貸が実現すれば、投資回収期間は約3ヶ月という異次元の利回り</li>
-    <li><strong>DIYリフォーム向き</strong>：築57年木造のため、安価なリフォームで収益改善の余地が大きい</li>
-  </ul>
-
-  <!-- 特記事項 -->
-  <div class="section-title">■ 特記事項・注意点</div>
-  <div class="notes-box avoid-break">
-    <strong>⚠️ 重要特記事項</strong><br>
-    ・農地含む（地目変更手続き中）｜ ・未登記建物あり ｜ ・境界非明示<br>
-    ・地目変更が完了していない部分については、農地法の適用を受ける可能性あり<br>
-    ・現地調査・法的確認のうえご検討ください
-  </div>
-  <div class="caution-box">
-    ※本資料は投資の勧誘を目的とするものではありません。記載内容は概算であり、実際の収益を保証するものではありません。物件の詳細・現地確認は必ず実施のうえご判断ください。
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div>株式会社リアテクス ｜ 〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506</div>
+    <div class="footer-contact">TEL: 03-6822-7297 ｜ MAIL: satsuma@reatex.co.jp</div>
   </div>
 </div>
 
@@ -722,28 +760,24 @@ body {
     <div class="photo-item">
       <img src="https://drive.google.com/thumbnail?id=1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa&sz=w800"
            onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa'"
-           alt="物件外観" style="width:100%; height:200px; object-fit:cover; border-radius:4px;">
+           alt="物件外観" style="height:200px;">
       <div class="photo-caption">外観メイン</div>
     </div>
     <div class="photo-item">
       <img src="https://drive.google.com/thumbnail?id=1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa&sz=w800&page=2"
-           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa'; this.style.height='96px';"
-           alt="外観2" style="width:100%; height:96px; object-fit:cover; border-radius:4px; margin-bottom:4px; display:block;">
-      <div style="display:block; width:100%;">
-        <img src="https://drive.google.com/thumbnail?id=1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa&sz=w800&page=3"
-             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa';"
-             alt="外観3" style="width:100%; height:96px; object-fit:cover; border-radius:4px; display:block;">
-      </div>
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa';"
+           alt="外観2" style="height:96px; margin-bottom:4px;">
+      <img src="https://drive.google.com/thumbnail?id=1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa&sz=w800&page=3"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa';"
+           alt="外観3" style="height:96px;">
     </div>
     <div class="photo-item">
       <img src="https://drive.google.com/thumbnail?id=1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa&sz=w800&page=4"
-           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa'; this.style.height='96px';"
-           alt="室内1" style="width:100%; height:96px; object-fit:cover; border-radius:4px; margin-bottom:4px; display:block;">
-      <div style="display:block; width:100%;">
-        <img src="https://drive.google.com/thumbnail?id=1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa&sz=w800&page=5"
-             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa';"
-             alt="室内2" style="width:100%; height:96px; object-fit:cover; border-radius:4px; display:block;">
-      </div>
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa';"
+           alt="室内1" style="height:96px; margin-bottom:4px;">
+      <img src="https://drive.google.com/thumbnail?id=1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa&sz=w800&page=5"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JCyAIucwXyfPxnkA6E9QKicZlm6omoDa';"
+           alt="室内2" style="height:96px;">
     </div>
   </div>
 
@@ -773,7 +807,7 @@ body {
   </div>
 
   <!-- Google Mapsリンク -->
-  <div style="margin: 6px 0; text-align:center; padding: 6px; background:#f8f9ff; border-radius:4px; border:1px solid #c8d8f8;">
+  <div style="margin: 5px 0; text-align:center; padding: 5px; background:#f8f9ff; border-radius:4px; border:1px solid #c8d8f8;">
     <a href="https://maps.google.com/?q=新潟県長岡市栃尾宮沢1500" target="_blank"
        style="color:#2563EB; font-size:8.5pt; text-decoration:none; font-weight:700;">
       🗺 Google Maps で現地を確認する → 新潟県長岡市栃尾宮沢1500
