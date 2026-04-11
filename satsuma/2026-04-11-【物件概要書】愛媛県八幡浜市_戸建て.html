@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】 愛媛県八幡浜市 戸建て</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif; font-size: 10pt; color: #1A365D; background: #fff; }
+
+  @page { size: A4 landscape; margin: 14mm 15mm; }
+
+  .page-container {
+    width: 277mm; margin: 0 auto;
+    display: flex; flex-direction: column;
+    min-height: calc(100vh - 20mm);
+    justify-content: space-between;
+  }
+  .page-wrapper { width: 277mm; margin: 0 auto; padding: 0; }
+  .page-break { break-before: page; }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+    color: white; padding: 12px 16px 10px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 3px solid #DAA520;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .header-property-name { font-size: 15pt; font-weight: 700; letter-spacing: 0.05em; }
+  .header-property-sub { font-size: 9pt; color: #DAA520; margin-top: 2px; }
+  .header-right { text-align: right; font-size: 8pt; }
+  .header-property-num { color: #DAA520; font-weight: 600; margin-top: 4px; }
+
+  /* HIGHLIGHT */
+  .highlight-box {
+    background: linear-gradient(135deg, #fffdf0 0%, #fef9e0 100%);
+    border: 2px solid #DAA520; border-radius: 6px;
+    padding: 12px 16px; margin: 10px 0;
+    display: flex; gap: 0; justify-content: space-around; align-items: center;
+  }
+  .highlight-item { text-align: center; flex: 1; border-right: 1px solid #e8d5a0; padding: 0 12px; }
+  .highlight-item:last-child { border-right: none; }
+  .highlight-label { font-size: 8pt; color: #7a5c00; margin-bottom: 3px; }
+  .highlight-value { font-size: 22pt; font-weight: 800; color: #C41E3A; }
+  .highlight-unit { font-size: 9pt; font-weight: 600; color: #C41E3A; }
+  .highlight-sub { font-size: 8pt; color: #666; margin-top: 2px; }
+
+  /* SECTION TITLE */
+  .section-title {
+    background: linear-gradient(90deg, #1A365D, #2d4a7a);
+    color: white; padding: 6px 14px; font-size: 9pt; font-weight: 700;
+    border-radius: 3px; margin: 8px 0 6px;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* TABLE */
+  .overview-table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+  .overview-table td { padding: 5px 8px; border: 1px solid #dee4ef; vertical-align: middle; }
+  .td-label { background: #E8F0FE; font-weight: 600; color: #1A365D; width: 30%; white-space: nowrap; }
+  .td-value { background: white; }
+  .price-highlight { color: #C41E3A; font-weight: 800; font-size: 13pt; }
+  a { color: #2563EB; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* TWO-COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* FOOTER BAND */
+  .footer-band {
+    background: linear-gradient(90deg, #1A365D, #2d4a7a); color: white;
+    padding: 8px 16px; display: flex; justify-content: space-between;
+    align-items: center; font-size: 8pt; margin-top: auto;
+    border-top: 3px solid #DAA520;
+  }
+
+  /* SANTEIKA */
+  .santeika-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; }
+  .santeika-card {
+    background: white; border-radius: 6px; padding: 14px;
+    border: 1px solid #c7d7f5; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .santeika-card-title { font-size: 9pt; font-weight: 700; color: #1A365D; border-bottom: 2px solid #DAA520; padding-bottom: 5px; margin-bottom: 8px; }
+  .santeika-row { display: flex; justify-content: space-between; padding: 3px 0; font-size: 9pt; border-bottom: 1px dashed #e5e7eb; }
+  .santeika-row:last-child { border-bottom: none; }
+  .santeika-total {
+    background: #1A365D; color: white; border-radius: 6px;
+    padding: 12px 16px; margin-top: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .santeika-total .val { font-size: 20pt; font-weight: 800; color: #DAA520; }
+  .santeika-total .ratio { font-size: 11pt; font-weight: 700; color: #4ade80; }
+
+  /* KPI */
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0; }
+  .kpi-card {
+    background: white; border: 1px solid #dee4ef; border-radius: 6px;
+    padding: 10px 12px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .kpi-label { font-size: 8pt; color: #666; margin-bottom: 4px; }
+  .kpi-value { font-size: 16pt; font-weight: 800; color: #1A365D; }
+  .kpi-unit { font-size: 8pt; color: #666; }
+
+  /* POINTS */
+  .points-box {
+    background: linear-gradient(135deg, #fffdf0 0%, #fef9e0 100%);
+    border: 2px solid #DAA520; border-radius: 6px; padding: 12px 16px; margin: 8px 0;
+  }
+  .points-list { list-style: none; }
+  .points-list li {
+    padding: 5px 0; border-bottom: 1px dashed #e8d5a0; font-size: 9.5pt;
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .points-list li:last-child { border-bottom: none; }
+  .points-list li::before { content: "✓"; color: #16a34a; font-weight: 800; flex-shrink: 0; }
+
+  /* CAUTION */
+  .caution-box { background: #fff1f0; border: 2px solid #C41E3A; border-radius: 6px; padding: 10px 14px; margin: 8px 0; }
+  .caution-title { font-size: 9pt; font-weight: 700; color: #C41E3A; margin-bottom: 6px; }
+  .caution-list { list-style: none; }
+  .caution-list li { padding: 3px 0; font-size: 9pt; display: flex; gap: 6px; }
+  .caution-list li::before { content: "⚠"; color: #C41E3A; flex-shrink: 0; }
+
+  /* PHOTOS */
+  .photo-grid-main { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6px; margin: 6px 0; }
+  .photo-grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; margin: 6px 0; }
+  .photo-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 6px 0; }
+  .photo-caption { font-size: 7.5pt; color: #666; text-align: center; margin-top: 2px; }
+
+  /* LINE PAGE */
+  .line-page {
+    background: linear-gradient(135deg, #0B1C3C 0%, #1a365d 40%, #0e2d5b 100%);
+    color: white; padding: 18px 20px 14px;
+    display: flex; flex-direction: column;
+    justify-content: flex-start; align-items: center;
+    min-height: 180mm;
+  }
+  .line-gold-bar { width: 100%; height: 4px; background: linear-gradient(90deg, #DAA520, #F7DC6F, #DAA520); border-radius: 2px; margin-bottom: 14px; }
+  .line-pre-title { font-size: 9pt; color: #DAA520; letter-spacing: 0.15em; margin-bottom: 6px; }
+  .line-main-title { font-size: 26pt; font-weight: 900; text-align: center; line-height: 1.2; margin-bottom: 6px; }
+  .line-main-title span { color: #DAA520; }
+  .line-sub-title { font-size: 10pt; color: #a0c4ff; text-align: center; margin-bottom: 16px; }
+  .line-content { display: flex; gap: 24px; align-items: flex-start; margin-bottom: 16px; }
+  .line-features { min-width: 180px; }
+  .line-feature-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 9pt;
+  }
+  .line-feature-icon { color: #DAA520; font-size: 11pt; flex-shrink: 0; }
+  .line-qr { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .line-qr-label { font-size: 8pt; color: #ccc; }
+  .line-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #06C755, #00A14B);
+    color: white; font-size: 13pt; font-weight: 700;
+    padding: 12px 40px; border-radius: 40px; text-decoration: none;
+    box-shadow: 0 4px 12px rgba(6,199,85,0.35); margin-bottom: 16px;
+  }
+
+  /* AVOID BREAK */
+  .avoid-break { break-inside: avoid; }
+
+  /* PRINT */
+  @media print {
+    body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .page-container { min-height: unset; }
+    .page-break { break-before: page; }
+    .avoid-break, .kpi-card, .santeika-card, .caution-box, .points-box { break-inside: avoid; }
+    .section-title, h2, h3 { break-after: avoid; }
+    table tr { break-inside: avoid; }
+    .header, .footer-band { break-before: avoid; }
+  }
+
+  /* RESPONSIVE */
+  @media screen and (max-width: 900px) {
+    .page-container { width: 100% !important; padding: 0 8px; }
+    .page-wrapper { width: 100% !important; padding: 0 8px !important; }
+    .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+    .header-right { text-align: left; }
+    .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+    .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
+    .highlight-item:last-child { border-bottom: none; }
+    .two-col, .santeika-grid { grid-template-columns: 1fr !important; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .photo-grid-main { grid-template-columns: 1fr !important; }
+    .photo-grid-4 { grid-template-columns: 1fr 1fr !important; }
+    .photo-grid-2 { grid-template-columns: 1fr !important; }
+    .line-content { flex-direction: column; gap: 14px; }
+    .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+    .page-break { break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+  }
+  @media screen and (max-width: 480px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .highlight-item { flex: 1 1 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== PAGE 1: 物件概要 ===== -->
+<div class="page-container">
+  <div class="header">
+    <div class="header-left">
+      <div>
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             onerror="this.style.display='none'" alt="REATEX"
+             style="height:28px; filter:brightness(0) invert(1);">
+      </div>
+      <div>
+        <div class="header-property-name">愛媛県八幡浜市 戸建て</div>
+        <div class="header-property-sub">保内町須川 ／ 広大な土地付き空き家</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <a href="https://drive.google.com/drive/folders/1llvXl_yYXd0P4QYploeRRPnhcQy8dULR" target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px; background:#DAA520; color:#1A365D; border-radius:4px; font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+      <div class="header-property-num">物件番号: r-2434</div>
+    </div>
+  </div>
+
+  <div class="highlight-box avoid-break">
+    <div class="highlight-item">
+      <div class="highlight-label">売買価格</div>
+      <div><span class="highlight-value">10</span><span class="highlight-unit">万円</span></div>
+      <div class="highlight-sub">現状引渡し</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">土地積算評価</div>
+      <div><span class="highlight-value">670</span><span class="highlight-unit">万円</span></div>
+      <div class="highlight-sub">路線価 × 土地面積</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">土地面積</div>
+      <div><span class="highlight-value">144</span><span class="highlight-unit">坪</span></div>
+      <div class="highlight-sub">478.58㎡</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">対積算比率</div>
+      <div><span class="highlight-value" style="color:#1A365D;">1.5</span><span class="highlight-unit" style="color:#1A365D;">%</span></div>
+      <div class="highlight-sub">驚異の割安物件</div>
+    </div>
+  </div>
+
+  <div class="section-title">📋 物件概要</div>
+  <div class="two-col avoid-break">
+    <table class="overview-table">
+      <tr>
+        <td class="td-label">所在地</td>
+        <td class="td-value">
+          <a href="https://maps.google.com/maps?q=愛媛県八幡浜市保内町須川227-2" target="_blank">
+            愛媛県八幡浜市保内町須川227-2 📍
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-label">交通</td>
+        <td class="td-value">車移動が基本のエリア（JR予讃線 八幡浜駅 周辺）</td>
+      </tr>
+      <tr>
+        <td class="td-label">物件種別</td>
+        <td class="td-value">戸建て（空き家）</td>
+      </tr>
+      <tr>
+        <td class="td-label">構造</td>
+        <td class="td-value">木骨コン造</td>
+      </tr>
+      <tr>
+        <td class="td-label">築年月</td>
+        <td class="td-value">不明（昭和中期推定・耐用年数超過）</td>
+      </tr>
+      <tr>
+        <td class="td-label">売買価格</td>
+        <td class="td-value"><span class="price-highlight">100,000円（10万円）</span></td>
+      </tr>
+      <tr>
+        <td class="td-label">現況</td>
+        <td class="td-value">空き家（約2年間空室）</td>
+      </tr>
+    </table>
+    <table class="overview-table">
+      <tr>
+        <td class="td-label">土地面積</td>
+        <td class="td-value">478.58㎡（144.87坪）</td>
+      </tr>
+      <tr>
+        <td class="td-label">建物面積</td>
+        <td class="td-value">251.23㎡（76.0坪）</td>
+      </tr>
+      <tr>
+        <td class="td-label">路線価</td>
+        <td class="td-value">14,000円/㎡（相続税路線価）</td>
+      </tr>
+      <tr>
+        <td class="td-label">土地積算価格</td>
+        <td class="td-value"><strong>6,700,120円（約670万円）</strong></td>
+      </tr>
+      <tr>
+        <td class="td-label">ガス</td>
+        <td class="td-value">プロパンガス</td>
+      </tr>
+      <tr>
+        <td class="td-label">下水</td>
+        <td class="td-value">汲取式（公共下水・合併浄化槽なし）</td>
+      </tr>
+      <tr>
+        <td class="td-label">引渡条件</td>
+        <td class="td-value">現状引渡し（瑕疵担保免責）</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="footer-band">
+    <div>株式会社リアテクス｜〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506</div>
+    <div>TEL: 03-6822-7297　MAIL: satsuma@reatex.co.jp</div>
+  </div>
+</div>
+
+<!-- ===== PAGE 2: 積算評価 ===== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+  <div class="header">
+    <div class="header-left">
+      <div>
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             onerror="this.style.display='none'" alt="REATEX"
+             style="height:28px; filter:brightness(0) invert(1);">
+      </div>
+      <div>
+        <div class="header-property-name">積算評価</div>
+        <div class="header-property-sub">愛媛県八幡浜市保内町須川 戸建て｜r-2434</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <div class="header-property-num">売価: 10万円</div>
+    </div>
+  </div>
+
+  <div class="section-title">🏗️ 積算評価内訳</div>
+  <div class="santeika-grid avoid-break">
+    <div class="santeika-card">
+      <div class="santeika-card-title">🌏 土地積算</div>
+      <div class="santeika-row"><span style="color:#666;">土地面積</span><span style="font-weight:600;">478.58㎡（144.87坪）</span></div>
+      <div class="santeika-row"><span style="color:#666;">路線価</span><span style="font-weight:600;">14,000円/㎡</span></div>
+      <div class="santeika-row"><span style="color:#666;">倍率</span><span style="font-weight:600;">1.0倍</span></div>
+      <div class="santeika-row" style="background:#e8f0fe; padding:5px 6px; border-radius:4px; margin-top:6px; border:none;">
+        <span style="font-weight:700;">土地積算価格</span>
+        <span style="font-size:12pt; color:#1A365D; font-weight:800;">6,700,120円</span>
+      </div>
+    </div>
+    <div class="santeika-card">
+      <div class="santeika-card-title">🏠 建物積算</div>
+      <div class="santeika-row"><span style="color:#666;">構造</span><span style="font-weight:600;">木骨コン造（木造準用）</span></div>
+      <div class="santeika-row"><span style="color:#666;">建物面積</span><span style="font-weight:600;">251.23㎡（76.0坪）</span></div>
+      <div class="santeika-row"><span style="color:#666;">再調達価格（㎡単価）</span><span style="font-weight:600;">12万円/㎡</span></div>
+      <div class="santeika-row"><span style="color:#666;">再調達総額</span><span style="font-weight:600;">30,147,600円</span></div>
+      <div class="santeika-row"><span style="color:#666;">法定耐用年数</span><span style="font-weight:600;">22年（木造）</span></div>
+      <div class="santeika-row"><span style="color:#666;">残存耐用年数</span><span style="font-weight:600; color:#C41E3A;">0年（超過）</span></div>
+      <div class="santeika-row" style="background:#fff1f0; padding:5px 6px; border-radius:4px; margin-top:6px; border:none;">
+        <span style="font-weight:700;">建物積算価格</span>
+        <span style="font-size:12pt; color:#C41E3A; font-weight:800;">0円（残存価値なし）</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="santeika-total avoid-break">
+    <div>
+      <div style="font-size:10pt; font-weight:600;">積算評価額合計（土地積算＋建物積算）</div>
+      <div style="font-size:8pt; color:#aaa; margin-top:2px;">売価10万円に対し土地積算のみで約670万円</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="val">6,700,120円（≈670万円）</div>
+      <div class="ratio">売価の67倍の積算価値</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:14px;">📊 投資指標サマリー</div>
+  <div class="kpi-grid avoid-break">
+    <div class="kpi-card">
+      <div class="kpi-label">売買価格</div>
+      <div class="kpi-value" style="color:#C41E3A; font-size:18pt;">10万</div>
+      <div class="kpi-unit">円</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">土地積算評価</div>
+      <div class="kpi-value">670万</div>
+      <div class="kpi-unit">円（路線価ベース）</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">対積算比率</div>
+      <div class="kpi-value" style="color:#16a34a;">1.5%</div>
+      <div class="kpi-unit">売価 ÷ 土地積算</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">土地面積</div>
+      <div class="kpi-value">144坪</div>
+      <div class="kpi-unit">（478.58㎡）</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">建物面積</div>
+      <div class="kpi-value">76坪</div>
+      <div class="kpi-unit">（251.23㎡）</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">坪単価（売価ベース）</div>
+      <div class="kpi-value">690</div>
+      <div class="kpi-unit">円/坪（土地）</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 3: 投資ポイント・特記事項 ===== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+  <div class="header">
+    <div class="header-left">
+      <div>
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             onerror="this.style.display='none'" alt="REATEX"
+             style="height:28px; filter:brightness(0) invert(1);">
+      </div>
+      <div>
+        <div class="header-property-name">投資ポイント・特記事項</div>
+        <div class="header-property-sub">愛媛県八幡浜市保内町須川 戸建て｜r-2434</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <div class="header-property-num">売価: 10万円</div>
+    </div>
+  </div>
+
+  <div class="two-col" style="gap:16px; margin-top:8px;">
+    <div>
+      <div class="section-title">✨ 投資ポイント</div>
+      <div class="points-box avoid-break">
+        <ul class="points-list">
+          <li>土地積算評価 <strong>670万円</strong> に対して売価 <strong>10万円</strong>——積算比わずか1.5%の圧倒的割安物件</li>
+          <li>土地面積 <strong>144坪（478㎡）</strong> の広大な敷地。地方でも希少な大型ロット</li>
+          <li>建物延床 <strong>76坪（251㎡）</strong>——リノベーション後の高利用ポテンシャル大</li>
+          <li>取得コストがほぼゼロのため、<strong>解体→更地売却</strong> or <strong>フルリノベ</strong> の両戦略が選択可能</li>
+          <li>空き家バンク活用・DIY賃貸・民泊など地方ならではの多様な出口戦略</li>
+        </ul>
+      </div>
+
+      <div class="section-title" style="margin-top:12px;">⚠️ 特記事項（リスク）</div>
+      <div class="caution-box avoid-break">
+        <div class="caution-title">購入前に必ずご確認ください</div>
+        <ul class="caution-list">
+          <li><strong>2階天井から雨漏りあり</strong>（修繕費別途要）</li>
+          <li>下水道：汲取式（公共下水・合併浄化槽なし）<br>→ 浄化槽設置工事が必要な場合あり</li>
+          <li>ガス：プロパンガス（都市ガス未引込み）</li>
+          <li>空き家期間：約2年間（通水・通電停止中の可能性あり）</li>
+          <li>築年数不明（昭和中期推定）・建物は耐用年数超過</li>
+          <li>現状引渡し・瑕疵担保免責での売買となります</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">🗺️ 周辺環境</div>
+      <table class="overview-table avoid-break" style="margin-bottom:12px;">
+        <tr>
+          <td class="td-label">エリア</td>
+          <td class="td-value">愛媛県八幡浜市 保内町（旧・西宇和郡保内町）</td>
+        </tr>
+        <tr>
+          <td class="td-label">最寄り交通</td>
+          <td class="td-value">車移動が基本（JR予讃線 八幡浜駅 周辺エリア）</td>
+        </tr>
+        <tr>
+          <td class="td-label">周辺</td>
+          <td class="td-value">スーパー・コンビニ・道の駅（保内）等</td>
+        </tr>
+        <tr>
+          <td class="td-label">自然環境</td>
+          <td class="td-value">宇和海まで車数分。みかん産地・漁業の町</td>
+        </tr>
+        <tr>
+          <td class="td-label">地域特性</td>
+          <td class="td-value">愛媛県八幡浜市（柑橘・漁業・移住促進エリア）</td>
+        </tr>
+      </table>
+
+      <div class="section-title">💡 活用アイデア</div>
+      <div class="points-box avoid-break">
+        <ul class="points-list">
+          <li><strong>解体・更地売却</strong>：土地積算670万円規模の更地として転売</li>
+          <li><strong>DIY賃貸・古民家リノベ</strong>：広い床面積を活かした長期賃貸活用</li>
+          <li><strong>民泊・グランピング</strong>：自然豊かな宇和海近接エリアの体験型施設</li>
+          <li><strong>農業・移住拠点</strong>：広大な敷地で農地転用や自給自足型移住</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 4: 物件写真 ===== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+  <div class="header">
+    <div class="header-left">
+      <div>
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             onerror="this.style.display='none'" alt="REATEX"
+             style="height:28px; filter:brightness(0) invert(1);">
+      </div>
+      <div>
+        <div class="header-property-name">物件写真</div>
+        <div class="header-property-sub">愛媛県八幡浜市保内町須川 戸建て｜r-2434</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <div class="header-property-num">売価: 10万円</div>
+    </div>
+  </div>
+
+  <!-- メイン写真 3枚 -->
+  <div class="photo-grid-main" style="margin-top:8px;">
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=178SKKj4i-sVhUxxAmeEL6w5KMmHwWE-8&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/178SKKj4i-sVhUxxAmeEL6w5KMmHwWE-8'"
+           alt="外観①" style="width:100%; height:200px; object-fit:cover; border-radius:4px; border:1px solid #dee4ef;">
+      <div class="photo-caption">外観①</div>
+    </div>
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=1isC50M1J72OxruvYgMmIq_2IBL8Fedxe&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1isC50M1J72OxruvYgMmIq_2IBL8Fedxe'"
+           alt="外観②" style="width:100%; height:200px; object-fit:cover; border-radius:4px; border:1px solid #dee4ef;">
+      <div class="photo-caption">外観②</div>
+    </div>
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=1Bsm8twCinT0q_-oeibZZ6jbOb8EPN6_V&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Bsm8twCinT0q_-oeibZZ6jbOb8EPN6_V'"
+           alt="外観③" style="width:100%; height:200px; object-fit:cover; border-radius:4px; border:1px solid #dee4ef;">
+      <div class="photo-caption">外観③</div>
+    </div>
+  </div>
+
+  <!-- 内観 4枚 -->
+  <div class="photo-grid-4" style="margin-top:6px;">
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=1CXT992xhGDW-fQH2hVN49wTQDD1SxO2C&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1CXT992xhGDW-fQH2hVN49wTQDD1SxO2C'"
+           alt="内部①" style="width:100%; height:130px; object-fit:cover; border-radius:4px; border:1px solid #dee4ef;">
+      <div class="photo-caption">内部①</div>
+    </div>
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=1UZ_jghRLp9hwVreYA5xzNiqgVelsnOs3&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1UZ_jghRLp9hwVreYA5xzNiqgVelsnOs3'"
+           alt="内部②" style="width:100%; height:130px; object-fit:cover; border-radius:4px; border:1px solid #dee4ef;">
+      <div class="photo-caption">内部②</div>
+    </div>
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=1KaNg5O8JGn_qqlKJJqEO6k2mfSQT7GPn&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1KaNg5O8JGn_qqlKJJqEO6k2mfSQT7GPn'"
+           alt="内部③" style="width:100%; height:130px; object-fit:cover; border-radius:4px; border:1px solid #dee4ef;">
+      <div class="photo-caption">内部③</div>
+    </div>
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=1zcQipUidhCaAS-pUVx3OdMSlQupK2ptl&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1zcQipUidhCaAS-pUVx3OdMSlQupK2ptl'"
+           alt="内部④" style="width:100%; height:130px; object-fit:cover; border-radius:4px; border:1px solid #dee4ef;">
+      <div class="photo-caption">内部④</div>
+    </div>
+  </div>
+
+  <!-- 残り 2枚 -->
+  <div class="photo-grid-2" style="margin-top:6px;">
+    <div>
+      <img src="https://drive.google.com/thumbnail?id=1dRTMlXFhW74URlfs0iSaQwNl-QQp1Qj4&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1dRTMlXFhW74URlfs0iSaQwNl-QQp1Qj4'"
+           alt="敷地・周辺" style="width:100%; height:130px; object-fit:cover; border-radius:4px; border:1px solid #dee4ef;">
+      <div class="photo-caption">敷地・周辺</div>
+    </div>
+    <div style="background:#f0f4ff; border-radius:4px; border:1px solid #dee4ef; height:130px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px;">
+      <div style="font-size:24pt;">📂</div>
+      <div style="font-size:9pt; color:#1A365D; font-weight:600;">追加資料・詳細はこちら</div>
+      <a href="https://drive.google.com/drive/folders/1llvXl_yYXd0P4QYploeRRPnhcQy8dULR" target="_blank"
+         style="font-size:8pt; background:#DAA520; color:#1A365D; padding:4px 12px; border-radius:4px; font-weight:700; text-decoration:none;">
+        資料フォルダを開く →
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 5: LINE チラシ ===== -->
+<div class="page-break"></div>
+<div class="line-page">
+  <div class="line-gold-bar"></div>
+  <div class="line-pre-title">▷ 未公開プレミアム不動産情報</div>
+  <div class="line-main-title">この物件が<span>LINE</span>で<br>受け取れます</div>
+  <div class="line-sub-title" style="margin-bottom:16px;">積算670万円の土地が10万円！愛媛県八幡浜市の激安空き家戸建て</div>
+
+  <div class="line-content">
+    <div class="line-features">
+      <div class="line-feature-item">
+        <span class="line-feature-icon">📍</span>
+        <span>愛媛県八幡浜市保内町須川<br>土地478㎡（144坪）の広大な敷地付き</span>
+      </div>
+      <div class="line-feature-item">
+        <span class="line-feature-icon">💰</span>
+        <span>売価<strong style="color:#DAA520;">10万円</strong> vs 土地積算<strong style="color:#DAA520;">670万円</strong><br>対積算比わずか1.5%の超割安物件</span>
+      </div>
+      <div class="line-feature-item">
+        <span class="line-feature-icon">🏠</span>
+        <span>建物251㎡（76坪）付き<br>解体売却・リノベ・民泊など多様な活用可</span>
+      </div>
+      <div class="line-feature-item">
+        <span class="line-feature-icon">🔔</span>
+        <span>LINE登録で未公開物件を<br>いち早くお届けします</span>
+      </div>
+    </div>
+    <div class="line-qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq"
+           alt="LINE QR" style="width:100px; height:100px; border-radius:6px;">
+      <div class="line-qr-label">QRコードで友だち追加</div>
+    </div>
+  </div>
+
+  <a href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq"
+     class="line-btn" target="_blank">
+    🟢 LINEで無料登録する
+  </a>
+
+  <div style="font-size:8pt; color:#aaa; text-align:center; line-height:1.6;">
+    株式会社リアテクス｜〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506<br>
+    TEL: 03-6822-7297　MAIL: satsuma@reatex.co.jp
+  </div>
+</div>
+
+</body>
+</html>
