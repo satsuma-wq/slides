@@ -20,10 +20,12 @@
   /* ========== ページ共通 ========== */
   .page-container {
     width: 267mm;
-    min-height: 183mm;
-    margin: 0 auto;
+    margin: 0 auto 8mm;
     background: #fff;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 20mm);
+    justify-content: space-between;
   }
   .page-break { break-before: page; }
 
@@ -315,7 +317,7 @@
 
   /* ========== ページ5: LINE ========== */
   .line-page {
-    min-height: 183mm;
+    min-height: 140mm;
     background: linear-gradient(135deg, #1A365D 0%, #2d5f8a 50%, #1A365D 100%);
     display: flex;
     flex-direction: column;
@@ -386,11 +388,14 @@
 
   /* ========== 印刷設定 ========== */
   @media print {
-    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .page-container { width: 267mm; min-height: unset; }
+    body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .page-container { min-height: unset; }
     .page-break { break-before: page; }
-    .avoid-break { break-inside: avoid; }
-    .line-page { min-height: 183mm; }
+    .rent-spec-banner { break-before: page; }
+    .avoid-break, .card, .kpi-grid, .investment-point, .env-card, .note-box, .notes-box, .caution-box { break-inside: avoid; }
+    .section-title, h2, h3 { break-after: avoid; }
+    table tr { break-inside: avoid; }
+    .header, .footer-band { break-before: avoid; }
   }
 
   /* ========== レスポンシブ ========== */
