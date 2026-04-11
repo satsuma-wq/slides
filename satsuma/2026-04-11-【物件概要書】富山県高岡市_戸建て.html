@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】 富山県高岡市五十里東町 戸建て</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Hiragino Sans', 'Meiryo', sans-serif; font-size: 9pt; color: #333; background: #fff; }
+
+  @page { size: A4 landscape; margin: 14mm 15mm; }
+
+  @media print {
+    body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .page-container { min-height: unset; }
+    .page-break { break-before: page; }
+    .rent-spec-banner { break-before: page; }
+    .avoid-break, .card, .kpi-grid, .investment-point, .env-card, .note-box, .caution-box { break-inside: avoid; }
+    .section-title, h2, h3 { break-after: avoid; }
+    table tr { break-inside: avoid; }
+    .header, .footer-band { break-before: avoid; }
+  }
+
+  /* ========== ページコンテナ ========== */
+  .page-container {
+    display: flex; flex-direction: column;
+    min-height: calc(100vh - 20mm);
+    justify-content: space-between;
+    width: 267mm; margin: 0 auto;
+  }
+  .page-wrapper { width: 267mm; margin: 0 auto; padding: 0; }
+
+  /* ========== ヘッダー ========== */
+  .header {
+    background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+    border-bottom: 3px solid #DAA520;
+    padding: 10px 16px 8px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-radius: 4px 4px 0 0;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .header-logo img { height: 28px; filter: brightness(0) invert(1); }
+  .header-title { color: #fff; }
+  .header-badge {
+    background: #DAA520; color: #1A365D;
+    font-size: 7pt; font-weight: 700; padding: 2px 8px; border-radius: 2px;
+  }
+  .header-property-name { font-size: 15pt; font-weight: 700; color: #fff; margin-top: 2px; }
+  .header-right { text-align: right; color: #fff; }
+  .header-company { font-size: 8pt; }
+  .header-property-num { font-size: 7pt; color: #DAA520; margin-top: 4px; }
+
+  /* ========== ハイライトボックス ========== */
+  .highlight-box {
+    background: linear-gradient(135deg, #fffbf0, #fef3d0);
+    border: 1px solid #e8d5a0;
+    border-radius: 4px; padding: 10px 16px;
+    display: flex; justify-content: space-around; align-items: center;
+    margin: 8px 0;
+  }
+  .highlight-item { text-align: center; padding: 0 12px; border-right: 1px solid #e8d5a0; }
+  .highlight-item:last-child { border-right: none; }
+  .highlight-label { font-size: 7pt; color: #666; }
+  .highlight-value { font-size: 20pt; font-weight: 700; color: #1A365D; line-height: 1.1; }
+  .highlight-sub { font-size: 7pt; color: #888; }
+  .highlight-value.price { color: #C41E3A; }
+
+  /* ========== 概要テーブル ========== */
+  .overview-section { margin: 6px 0; }
+  .section-title {
+    background: #1A365D; color: #fff;
+    font-size: 9pt; font-weight: 700; padding: 4px 12px;
+    border-radius: 2px; margin-bottom: 4px;
+  }
+  .overview-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .overview-table { width: 100%; border-collapse: collapse; font-size: 8pt; }
+  .overview-table tr:nth-child(even) { background: #f8f9fa; }
+  .overview-table th {
+    background: #E8F0FE; color: #1A365D;
+    padding: 4px 8px; text-align: left; font-weight: 600;
+    border: 1px solid #dce8ff; width: 35%;
+  }
+  .overview-table td { padding: 4px 8px; border: 1px solid #e5e7eb; }
+  .overview-table td.price-cell { color: #C41E3A; font-weight: 700; font-size: 11pt; }
+  .overview-table td.yield-cell { color: #059669; font-weight: 700; }
+  .overview-table td a { color: #2563EB; text-decoration: none; }
+
+  /* ========== フッター帯 ========== */
+  .footer-band {
+    background: linear-gradient(135deg, #1a365d, #2d4a7a);
+    color: #fff; padding: 6px 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-radius: 0 0 4px 4px; margin-top: auto;
+  }
+  .footer-company { font-size: 8pt; font-weight: 700; }
+  .footer-contact { font-size: 7pt; color: #DAA520; }
+
+  /* ========== レントロールページ ========== */
+  .lentroll-section { margin: 8px 0; }
+  .lentroll-table { width: 100%; border-collapse: collapse; font-size: 8pt; }
+  .lentroll-table th {
+    background: #1A365D; color: #fff;
+    padding: 5px 8px; text-align: center;
+    border: 1px solid #2d4a7a;
+  }
+  .lentroll-table td { padding: 5px 8px; border: 1px solid #e5e7eb; text-align: center; }
+  .lentroll-table tr:nth-child(even) td { background: #f8f9fa; }
+  .lentroll-table td.vacant { color: #888; font-style: italic; }
+
+  .income-summary {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    margin: 8px 0;
+  }
+  .income-card {
+    background: linear-gradient(135deg, #E8F0FE, #dce8ff);
+    border: 1px solid #2563EB; border-radius: 4px;
+    padding: 8px 12px; text-align: center;
+  }
+  .income-label { font-size: 7pt; color: #1A365D; }
+  .income-value { font-size: 14pt; font-weight: 700; color: #1A365D; }
+
+  .expense-section { margin: 8px 0; }
+  .expense-table { width: 100%; border-collapse: collapse; font-size: 8pt; }
+  .expense-table th { background: #E8F0FE; color: #1A365D; padding: 4px 8px; border: 1px solid #dce8ff; font-weight: 600; }
+  .expense-table td { padding: 4px 8px; border: 1px solid #e5e7eb; text-align: right; }
+  .expense-table td:first-child { text-align: left; }
+
+  /* ========== 収支シミュレーション ========== */
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+    margin: 8px 0;
+  }
+  .kpi-card {
+    background: linear-gradient(135deg, #1a365d, #2d4a7a);
+    border-radius: 4px; padding: 10px 12px; text-align: center; color: #fff;
+  }
+  .kpi-label { font-size: 7pt; color: #DAA520; }
+  .kpi-value { font-size: 16pt; font-weight: 700; }
+  .kpi-sub { font-size: 7pt; color: #aaa; }
+
+  .finance-section { margin: 8px 0; }
+  .finance-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+  .finance-table th { background: #1A365D; color: #fff; padding: 5px 10px; border: 1px solid #2d4a7a; text-align: left; }
+  .finance-table td { padding: 5px 10px; border: 1px solid #e5e7eb; }
+  .finance-table td:last-child { text-align: right; font-weight: 600; color: #1A365D; }
+  .finance-table tr.noi-row td { background: #E8F0FE; font-weight: 700; color: #059669; }
+
+  /* ========== 投資ポイント ========== */
+  .investment-point { margin: 8px 0; }
+  .points-list { list-style: none; padding: 0; }
+  .points-list li {
+    background: linear-gradient(135deg, #fffbf0, #fef3d0);
+    border-left: 4px solid #DAA520; border-radius: 0 4px 4px 0;
+    padding: 6px 12px; margin: 4px 0; font-size: 8.5pt;
+  }
+  .points-list li::before { content: "▶ "; color: #DAA520; font-weight: 700; }
+
+  /* ========== 周辺環境 ========== */
+  .env-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 6px 0; }
+  .env-card {
+    background: #f8f9fa; border: 1px solid #e5e7eb;
+    border-radius: 4px; padding: 8px; text-align: center;
+  }
+  .env-icon { font-size: 16pt; }
+  .env-name { font-size: 7pt; color: #666; margin-top: 2px; }
+  .env-dist { font-size: 8pt; font-weight: 700; color: #1A365D; }
+
+  /* ========== 写真ページ ========== */
+  .photo-section { margin: 6px 0; }
+  .photo-grid-main { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4px; margin-bottom: 4px; }
+  .photo-grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 4px; margin-bottom: 4px; }
+  .photo-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 4px; }
+  .photo-item { position: relative; overflow: hidden; border-radius: 4px; }
+  .photo-item img { width: 100%; height: 140px; object-fit: cover; display: block; }
+  .photo-main img { height: 200px; }
+  .photo-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(26,54,93,0.7); color: #fff;
+    font-size: 7pt; padding: 2px 6px;
+  }
+
+  .notes-box {
+    background: #fffbf0; border: 1px solid #e8d5a0;
+    border-radius: 4px; padding: 8px 12px; margin: 6px 0;
+    font-size: 8pt;
+  }
+  .notes-box h4 { color: #1A365D; font-size: 8.5pt; margin-bottom: 4px; }
+
+  /* ========== LINE チラシ ========== */
+  .line-page {
+    min-height: calc(100vh - 28mm);
+    background: linear-gradient(135deg, #1a365d 0%, #0f2540 40%, #1a3a5c 100%);
+    display: flex; flex-direction: column;
+    justify-content: flex-start;
+    padding: 18px 20px 14px;
+    border-radius: 4px;
+  }
+  .line-badge {
+    background: #DAA520; color: #1A365D;
+    font-size: 9pt; font-weight: 700; padding: 4px 12px;
+    border-radius: 2px; display: inline-block; margin-bottom: 16px;
+  }
+  .line-content { display: flex; align-items: flex-start; gap: 24px; margin-bottom: 16px; }
+  .line-main-title { font-size: 28pt; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 4px; }
+  .line-sub-title { font-size: 11pt; color: #DAA520; font-weight: 700; margin-bottom: 16px; }
+  .line-features { min-width: 200px; }
+  .line-feature-item {
+    background: rgba(255,255,255,0.1); border-left: 3px solid #DAA520;
+    color: #fff; padding: 6px 10px; margin: 4px 0; font-size: 8.5pt; border-radius: 0 4px 4px 0;
+  }
+  .line-btn {
+    display: inline-block; background: #06C755; color: #fff;
+    font-size: 14pt; font-weight: 700; padding: 14px 40px;
+    border-radius: 8px; text-decoration: none; margin-bottom: 16px;
+    border: 3px solid rgba(255,255,255,0.3);
+  }
+  .line-qr-section { display: flex; align-items: center; gap: 12px; color: #ccc; font-size: 8pt; }
+  .line-qr-section img { border-radius: 4px; background: #fff; padding: 4px; }
+
+  /* ========== レスポンシブ ========== */
+  @media screen and (max-width: 900px) {
+    .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+    .page-wrapper { width: 100% !important; padding: 0 8px !important; }
+    .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+    .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+    .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+    .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
+    .highlight-item:last-child { border-bottom: none; }
+    .highlight-value { font-size: 18pt; }
+    .two-col, .three-col, .overview-two-col { grid-template-columns: 1fr !important; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .env-grid { grid-template-columns: repeat(2, 1fr); }
+    .photo-grid-main { grid-template-columns: 1fr !important; }
+    .photo-grid-4 { grid-template-columns: 1fr 1fr !important; }
+    .photo-grid-2 { grid-template-columns: 1fr !important; }
+    .income-summary { grid-template-columns: 1fr; }
+    .line-page { padding: 20px 14px; min-height: unset; }
+    .line-content { flex-direction: column; gap: 14px; }
+    .line-main-title { font-size: 22pt; }
+    .line-btn { font-size: 13pt; padding: 12px 32px; }
+    .line-features { min-width: unset; width: 100%; }
+    .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+    .page-break, .rent-spec-banner { page-break-before: auto; break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+  }
+  @media screen and (max-width: 480px) {
+    .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
+    .highlight-item { flex: 1 1 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== PAGE 1: 概要 ===== -->
+<div class="page-container">
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             alt="REATEX" onerror="this.style.display='none'">
+      </div>
+      <div class="header-title">
+        <div class="header-badge">未公開物件</div>
+        <div class="header-property-name">富山県高岡市五十里東町 戸建て</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-company">株式会社リアテクス</div>
+      <a href="https://drive.google.com/drive/folders/1O5kuZcQ3_lO0JOPfdX7CzmWg-6yy5pDr?usp=drive_link"
+         target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+      <div class="header-property-num">物件番号: r-2397</div>
+    </div>
+  </div>
+
+  <!-- ハイライト -->
+  <div class="highlight-box">
+    <div class="highlight-item">
+      <div class="highlight-label">販売価格</div>
+      <div class="highlight-value price">20<span style="font-size:11pt">万円</span></div>
+      <div class="highlight-sub">売買価格</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">土地面積</div>
+      <div class="highlight-value">253.34<span style="font-size:10pt">m²</span></div>
+      <div class="highlight-sub">76.64坪</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">建物面積</div>
+      <div class="highlight-value">58.35<span style="font-size:10pt">m²</span></div>
+      <div class="highlight-sub">17.65坪</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">路線価</div>
+      <div class="highlight-value">1.3<span style="font-size:10pt">万円/m²</span></div>
+      <div class="highlight-sub">積算: 329.3万円</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">合計積算価格</div>
+      <div class="highlight-value">1,029<span style="font-size:11pt">万円</span></div>
+      <div class="highlight-sub">売価比 51.5倍</div>
+    </div>
+  </div>
+
+  <!-- 物件概要テーブル -->
+  <div class="overview-section avoid-break">
+    <div class="section-title">■ 物件概要</div>
+    <div class="overview-two-col">
+      <table class="overview-table">
+        <tr><th>所在地</th><td><a href="https://maps.google.com/?q=富山県高岡市五十里東町122" target="_blank">富山県高岡市五十里東町122</a></td></tr>
+        <tr><th>交通</th><td>あいの風とやま鉄道 高岡駅 車約15分</td></tr>
+        <tr><th>物件種別</th><td>戸建て（平家建）</td></tr>
+        <tr><th>構造</th><td>木造亜鉛メッキ鋼板葺 平家建</td></tr>
+        <tr><th>売買価格</th><td class="price-cell">20万円</td></tr>
+        <tr><th>表面利回り</th><td class="yield-cell">空室のため算定不可</td></tr>
+        <tr><th>現況利回り</th><td class="yield-cell">0%（空室）</td></tr>
+        <tr><th>現況</th><td>空室（リフォーム必須）</td></tr>
+      </table>
+      <table class="overview-table">
+        <tr><th>築年月</th><td>昭和46年12月（1971年）/ 築55年</td></tr>
+        <tr><th>土地面積</th><td>253.34m²（76.64坪）</td></tr>
+        <tr><th>建物面積</th><td>58.35m²（17.65坪）</td></tr>
+        <tr><th>都市計画</th><td>市街化調整区域</td></tr>
+        <tr><th>建ぺい率/容積率</th><td>定め無し / 定め無し</td></tr>
+        <tr><th>路線価</th><td>1.3万円/m²</td></tr>
+        <tr><th>土地積算価格</th><td>329.3万円（16.5倍）</td></tr>
+        <tr><th>再調達価格</th><td>700.2万円（35.0倍）</td></tr>
+        <tr><th>残存耐用年数</th><td>0年（超過）</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div class="footer-company">株式会社リアテクス</div>
+    <div class="footer-contact">〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506　TEL: 03-6822-7297　MAIL: satsuma@reatex.co.jp</div>
+  </div>
+</div>
+
+<!-- ===== PAGE 2: レントロール ===== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+  <div class="rent-spec-banner" style="background:linear-gradient(135deg,#1a365d,#2d4a7a);color:#fff;padding:8px 16px;border-radius:4px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-size:11pt;font-weight:700;">レントロール</span>
+    <span style="font-size:8pt;color:#DAA520;">富山県高岡市五十里東町122 戸建て</span>
+  </div>
+
+  <div class="lentroll-section avoid-break">
+    <div class="section-title">■ 賃貸状況（全戸）</div>
+    <table class="lentroll-table">
+      <thead>
+        <tr>
+          <th>部屋</th><th>間取り</th><th>専有面積</th><th>現況賃料</th><th>想定賃料</th><th>入居状況</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1F</td>
+          <td>木造平家</td>
+          <td>58.35m²</td>
+          <td class="vacant">-（空室）</td>
+          <td class="vacant">要相談</td>
+          <td class="vacant">空室</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="income-summary avoid-break">
+    <div class="income-card">
+      <div class="income-label">現況月間賃料収入</div>
+      <div class="income-value" style="color:#888;">0円</div>
+    </div>
+    <div class="income-card">
+      <div class="income-label">現況年間賃料収入</div>
+      <div class="income-value" style="color:#888;">0円</div>
+    </div>
+    <div class="income-card">
+      <div class="income-label">満室想定年間収入</div>
+      <div class="income-value" style="color:#888;">要相談</div>
+    </div>
+  </div>
+
+  <div class="expense-section avoid-break">
+    <div class="section-title">■ 年間支出（想定）</div>
+    <table class="expense-table">
+      <thead>
+        <tr><th>費目</th><th>内容</th><th>年間金額</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>固定資産税・都市計画税</td><td>令和8年度評価額: 調査中</td><td>-</td></tr>
+      </tbody>
+      <tfoot>
+        <tr style="background:#E8F0FE;font-weight:700;">
+          <td colspan="2">年間支出合計</td>
+          <td>調査中</td>
+        </tr>
+      </tfoot>
+    </table>
+    <p style="font-size:7pt;color:#888;margin-top:4px;">※固定資産税・都市計画税は令和8年度評価額調査中のため確認後お伝えします。</p>
+  </div>
+</div>
+
+<!-- ===== PAGE 3: 収支シミュレーション ===== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+  <div style="background:linear-gradient(135deg,#1a365d,#2d4a7a);color:#fff;padding:8px 16px;border-radius:4px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-size:11pt;font-weight:700;">収支シミュレーション・投資ポイント・周辺環境</span>
+    <span style="font-size:8pt;color:#DAA520;">富山県高岡市五十里東町122 戸建て</span>
+  </div>
+
+  <div class="kpi-grid avoid-break">
+    <div class="kpi-card">
+      <div class="kpi-label">販売価格</div>
+      <div class="kpi-value">20<span style="font-size:10pt">万円</span></div>
+      <div class="kpi-sub">超低価格</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">土地積算</div>
+      <div class="kpi-value">329<span style="font-size:10pt">万円</span></div>
+      <div class="kpi-sub">売価の16.5倍</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">合計積算</div>
+      <div class="kpi-value">1,029<span style="font-size:10pt">万円</span></div>
+      <div class="kpi-sub">売価の51.5倍</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">残存耐用年数</div>
+      <div class="kpi-value" style="font-size:12pt;">0年（超過）</div>
+      <div class="kpi-sub">築55年 木造</div>
+    </div>
+  </div>
+
+  <div class="finance-section avoid-break">
+    <div class="section-title">■ 積算価格内訳</div>
+    <table class="finance-table">
+      <thead>
+        <tr><th>項目</th><th>計算式</th><th>金額</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>土地積算価格</td><td>路線価 1.3万円/m² × 253.34m²</td><td>329.3万円（16.5倍）</td></tr>
+        <tr><td>再調達価格（建物）</td><td>12万円/m²（木造） × 58.35m²</td><td>700.2万円（35.0倍）</td></tr>
+        <tr class="noi-row"><td colspan="2">合計積算価格</td><td>1,029.5万円（51.5倍）</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:7pt;color:#888;margin-top:4px;">
+      ※積算価格は参考値です。実際の取引価格と異なる場合があります。<br>
+      ※残存耐用年数が超過しているため、融資の場合はキャッシュ購入が基本となります。
+    </p>
+  </div>
+
+  <div class="investment-point avoid-break">
+    <div class="section-title">■ 投資ポイント</div>
+    <ul class="points-list">
+      <li><strong>超低価格20万円での取得チャンス</strong> — 土地積算329.3万円・合計積算1,029万円に対し、わずか20万円で取得可能な超割安案件</li>
+      <li><strong>広大な土地面積（253.34m²）</strong> — 約76坪の広めの敷地。駐車場1台分確保済みで、活用の幅が広い</li>
+      <li><strong>公営インフラ完備</strong> — 公営水道・本下水・都市ガス・電気すべて揃っており、リフォーム後の活用が容易</li>
+      <li><strong>残置物処理・リフォーム後に付加価値大</strong> — 現況有姿渡しのため、リフォームコストを投じることで大幅な価値向上が期待できる</li>
+      <li><strong>高岡駅圏内の利便性</strong> — あいの風とやま鉄道 高岡駅まで車で約15分。富山市へのアクセスも良好</li>
+    </ul>
+  </div>
+
+  <div class="env-grid avoid-break" style="margin-top:8px;">
+    <div class="env-card">
+      <div class="env-icon">🚃</div>
+      <div class="env-name">あいの風とやま鉄道</div>
+      <div class="env-dist">高岡駅 車15分</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏪</div>
+      <div class="env-name">商業施設</div>
+      <div class="env-dist">高岡市内</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏥</div>
+      <div class="env-name">医療施設</div>
+      <div class="env-dist">高岡市内</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏫</div>
+      <div class="env-name">学校・教育施設</div>
+      <div class="env-dist">周辺エリア</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 4: 物件写真 ===== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+  <div style="background:linear-gradient(135deg,#1a365d,#2d4a7a);color:#fff;padding:8px 16px;border-radius:4px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-size:11pt;font-weight:700;">物件写真・特記事項</span>
+    <span style="font-size:8pt;color:#DAA520;">富山県高岡市五十里東町122 戸建て</span>
+  </div>
+
+  <div class="photo-grid-main">
+    <div class="photo-item photo-main">
+      <img src="https://drive.google.com/thumbnail?id=14QgkoYdnSC9WpVhtL3FgmLLL2Ti_aL6N&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/14QgkoYdnSC9WpVhtL3FgmLLL2Ti_aL6N'"
+           alt="外観1">
+      <div class="photo-label">外観</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1GqoAzS-TOGUMnQwUtWYo2XE94mlMNfrs&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1GqoAzS-TOGUMnQwUtWYo2XE94mlMNfrs'"
+           alt="外観2">
+      <div class="photo-label">外観②</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1S4DkCdEXzwkiXIZW1dViQkWGbLYJImPj&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1S4DkCdEXzwkiXIZW1dViQkWGbLYJImPj'"
+           alt="外観3">
+      <div class="photo-label">外観③</div>
+    </div>
+  </div>
+
+  <div class="photo-grid-4">
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1tfU80ZMaoDcNKgLJdeMRnFS6nHH63g2_&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1tfU80ZMaoDcNKgLJdeMRnFS6nHH63g2_'"
+           alt="室内1">
+      <div class="photo-label">室内①</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=11XpYuep2W2UO1aSFyDOIi2d3LX1zjysO&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/11XpYuep2W2UO1aSFyDOIi2d3LX1zjysO'"
+           alt="室内2">
+      <div class="photo-label">室内②</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1GoC_R_Arzd2C1uprd2WVHPfdINa5eVwN&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1GoC_R_Arzd2C1uprd2WVHPfdINa5eVwN'"
+           alt="室内3">
+      <div class="photo-label">室内③</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1nzs9xaVG85xinxrI6v7wZHUZQdG8FBGT&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1nzs9xaVG85xinxrI6v7wZHUZQdG8FBGT'"
+           alt="室内4">
+      <div class="photo-label">室内④</div>
+    </div>
+  </div>
+
+  <div class="photo-grid-4">
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=17WpC-dkvydmhzPTh0Y-XvZTosX_PzdGz&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/17WpC-dkvydmhzPTh0Y-XvZTosX_PzdGz'"
+           alt="敷地">
+      <div class="photo-label">敷地・庭</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=12GsaIptd2FKGlBPaRzZAeTVFZdEuX_Xj&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/12GsaIptd2FKGlBPaRzZAeTVFZdEuX_Xj'"
+           alt="周辺1">
+      <div class="photo-label">周辺環境①</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=14cTi9QfEWh7BiHtl3FqZpFjgmXm77lNm&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/14cTi9QfEWh7BiHtl3FqZpFjgmXm77lNm'"
+           alt="周辺2">
+      <div class="photo-label">周辺環境②</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1a3Up2rdSwAFACgS0tRmMUR9xFN9Ed3eV&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1a3Up2rdSwAFACgS0tRmMUR9xFN9Ed3eV'"
+           alt="住宅地図">
+      <div class="photo-label">住宅地図</div>
+    </div>
+  </div>
+
+  <div class="notes-box avoid-break">
+    <h4>■ 特記事項</h4>
+    <p>
+      ・現況有姿での引渡し（リフォーム必須）　・司法書士は売主指定　・境界非明示
+      ・令和8年度固定資産税評価額: 調査中　・残置物あり　・駐車場1台分あり
+    </p>
+  </div>
+</div>
+
+<!-- ===== PAGE 5: LINEチラシ ===== -->
+<div class="page-break"></div>
+<div class="line-page">
+  <div class="line-badge">📩 未公開プレミアム不動産情報</div>
+  <div class="line-sub-title">LINEで最新の未公開物件情報をお届けします</div>
+  <div class="line-content">
+    <div>
+      <div class="line-main-title">未公開物件<br>LINE配信中</div>
+      <div style="color:#ccc;font-size:9pt;margin-top:8px;">リアテクスの厳選した<br>未公開不動産情報を<br>LINEで受け取れます</div>
+    </div>
+    <div class="line-features">
+      <div class="line-feature-item">🏠 市場未公開の超低価格物件</div>
+      <div class="line-feature-item">📊 詳細な収支・積算データ付き</div>
+      <div class="line-feature-item">⚡ 新着物件をリアルタイム配信</div>
+      <div class="line-feature-item">🔒 会員限定の優先案内</div>
+    </div>
+  </div>
+  <a class="line-btn" href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq" target="_blank">
+    LINE友だち追加
+  </a>
+  <div class="line-qr-section">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq"
+         alt="LINE QR" style="width:100px;height:100px;">
+    <div>
+      <div style="color:#fff;font-size:9pt;font-weight:700;">QRコードを読み取ってLINE追加</div>
+      <div style="color:#aaa;font-size:8pt;margin-top:4px;">株式会社リアテクス 公式LINE</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
