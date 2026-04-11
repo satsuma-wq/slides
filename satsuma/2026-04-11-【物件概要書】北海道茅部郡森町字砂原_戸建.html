@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】 北海道茅部郡森町字砂原 戸建て</title>
+<style>
+  @page { size: A4 landscape; margin: 14mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', Meiryo, sans-serif; font-size: 10pt; color: #222; background: #fff; }
+
+  /* ===== ヘッダー ===== */
+  .header {
+    background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+    border-bottom: 3px solid #DAA520;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 14px; }
+  .header-logo img { height: 28px; filter: brightness(0) invert(1); }
+  .header-property-name { color: #fff; font-size: 16pt; font-weight: 700; letter-spacing: 0.04em; }
+  .header-sub { color: #DAA520; font-size: 9pt; margin-top: 2px; }
+  .header-right { text-align: right; color: #ccc; font-size: 8.5pt; line-height: 1.7; }
+  .header-property-num { color: #DAA520; font-size: 8pt; }
+  .detail-btn {
+    display: inline-block; margin-top: 5px; padding: 4px 10px;
+    background: #DAA520; color: #1A365D; border-radius: 4px;
+    font-size: 8pt; font-weight: 700; text-decoration: none;
+  }
+
+  /* ===== ハイライト ===== */
+  .highlight-box {
+    background: linear-gradient(135deg, #fffdf0 0%, #fdf6d3 100%);
+    border: 1px solid #e8d5a0;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 14px;
+    margin: 10px 0 8px;
+  }
+  .highlight-item { text-align: center; flex: 1; border-right: 1px solid #e8d5a0; padding: 4px 8px; }
+  .highlight-item:last-child { border-right: none; }
+  .highlight-label { font-size: 7.5pt; color: #888; margin-bottom: 2px; }
+  .highlight-value { font-size: 22pt; font-weight: 800; color: #1A365D; }
+  .highlight-unit { font-size: 9pt; color: #555; }
+  .highlight-value.price { color: #C41E3A; }
+  .highlight-value.yield { color: #16a34a; }
+
+  /* ===== セクションタイトル ===== */
+  .section-title {
+    background: linear-gradient(90deg, #1A365D, #2d4a7a);
+    color: #fff;
+    padding: 4px 12px;
+    font-size: 9pt;
+    font-weight: 700;
+    border-radius: 3px 3px 0 0;
+    margin-top: 10px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== 物件概要テーブル ===== */
+  .overview-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+  .overview-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+  .overview-table th {
+    background: #E8F0FE; color: #1A365D; font-weight: 700;
+    padding: 4px 8px; text-align: left; border: 1px solid #c5d1e8;
+    white-space: nowrap; width: 36%;
+  }
+  .overview-table td { padding: 4px 8px; border: 1px solid #ddd; }
+  .price-value { color: #C41E3A; font-weight: 800; font-size: 11pt; }
+  .yield-value { color: #16a34a; font-weight: 700; }
+
+  /* ===== フッター帯 ===== */
+  .footer-band {
+    background: #1A365D;
+    color: #fff;
+    padding: 7px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8pt;
+    margin-top: auto;
+  }
+  .footer-band a { color: #DAA520; text-decoration: none; }
+
+  /* ===== ページコンテナ ===== */
+  .page-container {
+    display: flex; flex-direction: column;
+    min-height: calc(100vh - 20mm);
+    justify-content: space-between;
+  }
+  .page-content { padding: 0 0 8px; flex: 1; }
+  .page-break { break-before: page; }
+  .page-wrapper { width: 267mm; margin: 0 auto; padding: 0; }
+
+  /* ===== レントロール ===== */
+  .lentroll-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin-top: 4px; }
+  .lentroll-table th {
+    background: #1A365D; color: #fff; padding: 5px 8px;
+    text-align: center; border: 1px solid #2d4a7a; font-size: 8pt;
+  }
+  .lentroll-table td { padding: 5px 8px; border: 1px solid #ddd; text-align: center; }
+  .lentroll-table tr:nth-child(even) { background: #f9fafc; }
+  .lentroll-total { background: #E8F0FE !important; font-weight: 700; color: #1A365D; }
+
+  /* ===== 収支サマリー ===== */
+  .finance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .finance-card {
+    background: #f8faff; border: 1px solid #c5d1e8; border-radius: 5px; padding: 10px 12px;
+  }
+  .finance-card-title { font-size: 8pt; color: #1A365D; font-weight: 700; margin-bottom: 6px; }
+  .finance-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+  .finance-table tr td:first-child { color: #555; padding: 3px 6px; }
+  .finance-table tr td:last-child { text-align: right; font-weight: 600; padding: 3px 6px; }
+  .finance-table tr { border-bottom: 1px solid #e8eef8; }
+  .finance-table .total-row td { font-weight: 800; color: #1A365D; border-top: 2px solid #1A365D; }
+
+  /* ===== KPIグリッド ===== */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px; }
+  .kpi-card {
+    background: linear-gradient(135deg, #f0f4ff, #e8eeff);
+    border: 1px solid #c5d1e8; border-radius: 5px;
+    padding: 8px 10px; text-align: center;
+  }
+  .kpi-label { font-size: 7pt; color: #666; margin-bottom: 3px; }
+  .kpi-value { font-size: 16pt; font-weight: 800; color: #1A365D; }
+  .kpi-unit { font-size: 7.5pt; color: #555; }
+
+  /* ===== 投資ポイント ===== */
+  .investment-section { margin-top: 12px; }
+  .points-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+  .points-list li {
+    background: #f0f7ff; border-left: 3px solid #1A365D;
+    padding: 6px 10px; font-size: 8.5pt; border-radius: 0 4px 4px 0;
+  }
+  .points-list li::before { content: "✓ "; color: #DAA520; font-weight: 700; }
+
+  /* ===== 周辺環境 ===== */
+  .env-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 6px; }
+  .env-card {
+    background: #fafbff; border: 1px solid #dde5f5;
+    border-radius: 5px; padding: 7px 10px; font-size: 8pt;
+  }
+  .env-card-title { color: #1A365D; font-weight: 700; margin-bottom: 4px; font-size: 8pt; }
+  .env-item { color: #444; padding: 2px 0; }
+
+  /* ===== 写真ページ ===== */
+  .photo-section { margin-top: 8px; }
+  .photo-main { margin-bottom: 10px; border-radius: 5px; overflow: hidden; }
+  .photo-main img { width: 100%; height: 220px; object-fit: cover; display: block; }
+  .photo-iframe-wrap { border-radius: 5px; overflow: hidden; border: 1px solid #ddd; }
+  .photo-caption { font-size: 7.5pt; color: #888; text-align: center; margin-top: 4px; }
+
+  /* ===== 特記事項 ===== */
+  .note-box {
+    background: #fffbf0; border: 1px solid #f0d090;
+    border-radius: 5px; padding: 10px 14px; margin-top: 10px;
+    font-size: 8.5pt; line-height: 1.7;
+  }
+  .note-box-title { color: #1A365D; font-weight: 700; margin-bottom: 5px; font-size: 9pt; }
+  .caution-box {
+    background: #fff5f5; border: 1px solid #f5a0a0;
+    border-radius: 5px; padding: 8px 12px; margin-top: 8px;
+    font-size: 7.5pt; color: #555; line-height: 1.6;
+  }
+
+  /* ===== 収支シミュレーション ===== */
+  .sim-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin-top: 4px; }
+  .sim-table th {
+    background: #1A365D; color: #fff; padding: 5px 10px;
+    text-align: left; border: 1px solid #2d4a7a;
+  }
+  .sim-table td { padding: 5px 10px; border: 1px solid #ddd; }
+  .sim-table .sim-total { background: #E8F0FE; font-weight: 800; color: #1A365D; }
+  .sim-table .highlight-row { background: #fff8e6; font-weight: 700; color: #C41E3A; }
+  .two-col-sim { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+
+  /* ===== LINEページ ===== */
+  .line-page {
+    background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+    min-height: 140mm; display: flex; flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 18px 20px 14px; text-align: center; gap: 0;
+  }
+  .line-badge {
+    background: #DAA520; color: #1A365D; font-size: 8pt; font-weight: 800;
+    padding: 4px 18px; border-radius: 20px; margin-bottom: 10px; letter-spacing: 0.1em;
+  }
+  .line-main-title { font-size: 28pt; font-weight: 900; color: #1A365D; line-height: 1.1; margin-bottom: 4px; }
+  .line-sub-title { font-size: 10pt; color: #1A365D; margin-bottom: 16px; }
+  .line-content { display: flex; gap: 30px; align-items: center; margin-bottom: 16px; }
+  .line-features { background: rgba(255,255,255,0.85); border-radius: 10px; padding: 14px 20px; text-align: left; min-width: 220px; }
+  .line-feature-item { font-size: 9.5pt; color: #1A365D; padding: 4px 0; border-bottom: 1px solid #ddd; }
+  .line-feature-item:last-child { border-bottom: none; }
+  .line-feature-item::before { content: "✅ "; }
+  .line-qr { text-align: center; }
+  .line-qr img { border-radius: 8px; border: 3px solid #fff; }
+  .line-qr-label { font-size: 8pt; color: #1A365D; margin-top: 4px; }
+  .line-btn {
+    background: #06C755; color: #fff; font-size: 14pt; font-weight: 800;
+    padding: 12px 40px; border-radius: 50px; text-decoration: none;
+    display: inline-block; margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(6,199,85,0.35);
+  }
+  .line-note { font-size: 7.5pt; color: #1A365D; opacity: 0.8; }
+
+  /* ===== avoid-break ===== */
+  .avoid-break { break-inside: avoid; }
+
+  /* ===== @media print ===== */
+  @media print {
+    body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .page-container { min-height: unset; }
+    .page-break { break-before: page; }
+    .rent-spec-banner { break-before: page; }
+    .avoid-break, .kpi-grid, .investment-point, .note-box, .caution-box { break-inside: avoid; }
+    .section-title, h2, h3 { break-after: avoid; }
+    table tr { break-inside: avoid; }
+    .header, .footer-band { break-before: avoid; }
+  }
+
+  /* ===== レスポンシブ ===== */
+  @media screen and (max-width: 900px) {
+    .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+    .page-wrapper { width: 100% !important; padding: 0 8px !important; }
+    .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+    .header-right { text-align: left; width: 100%; }
+    .highlight-box { flex-wrap: wrap; gap: 8px; }
+    .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; }
+    .overview-two-col, .finance-grid, .two-col-sim { grid-template-columns: 1fr !important; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .env-grid { grid-template-columns: repeat(2, 1fr); }
+    .points-list { grid-template-columns: 1fr; }
+    .line-content { flex-direction: column; gap: 14px; }
+    .line-main-title { font-size: 22pt; }
+    .line-btn { font-size: 12pt; padding: 10px 28px; }
+    .footer-band { flex-direction: column; gap: 6px; text-align: center; }
+    .page-break, .rent-spec-banner { break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+  }
+  @media screen and (max-width: 480px) {
+    .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
+    .highlight-item { flex: 1 1 100%; }
+    .line-main-title { font-size: 18pt; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1: 概要 ==================== -->
+<div class="page-container">
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             alt="REATEX" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <div class="header-property-name">北海道茅部郡森町字砂原　戸建て</div>
+        <div class="header-sub">JR函館本線「渡島砂原」駅 徒歩約11分｜木造2階建｜築47年</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <a href="https://drive.google.com/drive/folders/13a603m3_5NQ5HbEyWV29RdDGewKKZPqP?usp=drive_link"
+         target="_blank" class="detail-btn">📂 詳細はこちら</a>
+      <div class="header-property-num">物件番号: r-2320</div>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="page-wrapper">
+
+      <!-- ハイライト -->
+      <div class="highlight-box avoid-break">
+        <div class="highlight-item">
+          <div class="highlight-label">売買価格</div>
+          <div class="highlight-value price">15<span class="highlight-unit">万円</span></div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-label">表面利回り（想定）</div>
+          <div class="highlight-value yield">176.0<span class="highlight-unit">%</span></div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-label">想定月額賃料</div>
+          <div class="highlight-value">2.2<span class="highlight-unit">万円</span></div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-label">土地面積</div>
+          <div class="highlight-value">764<span class="highlight-unit">㎡</span></div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-label">建物面積</div>
+          <div class="highlight-value">137<span class="highlight-unit">㎡</span></div>
+        </div>
+      </div>
+
+      <!-- 物件概要テーブル -->
+      <div class="section-title">物件概要</div>
+      <div class="overview-two-col avoid-break">
+        <!-- 左カラム -->
+        <table class="overview-table">
+          <tr><th>所在地</th><td><a href="https://www.google.com/maps/search/北海道茅部郡森町字砂原4丁目110番地1" target="_blank" style="color:#2563EB;">北海道茅部郡森町字砂原4丁目110番地1</a></td></tr>
+          <tr><th>交通</th><td>JR函館本線「渡島砂原」駅 徒歩約11分</td></tr>
+          <tr><th>物件種別</th><td>戸建て（木造2階建）</td></tr>
+          <tr><th>構造</th><td>木造2階建</td></tr>
+          <tr><th>間取り</th><td>不明</td></tr>
+          <tr><th>売買価格</th><td><span class="price-value">15万円（税込）</span></td></tr>
+          <tr><th>表面利回り（想定）</th><td><span class="yield-value">176.0%</span></td></tr>
+          <tr><th>現況利回り</th><td><span class="yield-value">0%（空室）</span></td></tr>
+        </table>
+        <!-- 右カラム -->
+        <table class="overview-table">
+          <tr><th>築年月</th><td>昭和54年10月（1979年）築47年</td></tr>
+          <tr><th>土地面積</th><td>764.78㎡（231.35坪）</td></tr>
+          <tr><th>建物面積</th><td>137.83㎡（41.69坪）</td></tr>
+          <tr><th>都市計画</th><td>都市計画区域外</td></tr>
+          <tr><th>建ぺい率／容積率</th><td>無し／無し</td></tr>
+          <tr><th>路線価</th><td>なし（相続・固都税ともに路線価なし）</td></tr>
+          <tr><th>再調達価格</th><td>約1,654万円（12万円/㎡×137.83㎡）</td></tr>
+          <tr><th>残存耐用年数</th><td>0年（超過）</td></tr>
+        </table>
+      </div>
+
+    </div><!-- /page-wrapper -->
+  </div><!-- /page-content -->
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div>株式会社リアテクス｜〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506</div>
+    <div>TEL: <a href="tel:0368227297">03-6822-7297</a>｜MAIL: <a href="mailto:satsuma@reatex.co.jp">satsuma@reatex.co.jp</a></div>
+  </div>
+</div><!-- /page-container -->
+
+
+<!-- ==================== PAGE 2: レントロール ==================== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header" style="margin-bottom:10px;">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png" alt="REATEX" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <div class="header-property-name" style="font-size:13pt;">賃料・収支概要</div>
+        <div class="header-sub">北海道茅部郡森町字砂原　戸建て｜r-2320</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- レントロール -->
+  <div class="section-title">レントロール（賃料一覧）</div>
+  <table class="lentroll-table avoid-break">
+    <tr>
+      <th>号室</th><th>間取り</th><th>専有面積</th><th>現況</th><th>現況賃料（月額）</th><th>想定賃料（月額）</th><th>備考</th>
+    </tr>
+    <tr>
+      <td>1F/2F（全戸）</td>
+      <td>不明</td>
+      <td>137.83㎡</td>
+      <td>空室</td>
+      <td style="color:#888;">ー</td>
+      <td style="font-weight:700; color:#1A365D;">22,000円</td>
+      <td>リフォーム後入居想定</td>
+    </tr>
+    <tr class="lentroll-total">
+      <td colspan="4" style="text-align:right;">合計</td>
+      <td>0円</td>
+      <td>22,000円</td>
+      <td></td>
+    </tr>
+  </table>
+
+  <!-- 年間収支サマリー -->
+  <div class="finance-grid avoid-break" style="margin-top:14px;">
+    <div class="finance-card">
+      <div class="finance-card-title">📊 年間収入サマリー</div>
+      <table class="finance-table">
+        <tr><td>満室想定月額賃料</td><td>22,000円</td></tr>
+        <tr><td>年間賃料収入（満室）</td><td>264,000円</td></tr>
+        <tr><td>現況年間賃料収入</td><td style="color:#888;">0円（空室）</td></tr>
+        <tr class="total-row"><td>表面利回り（想定）</td><td style="color:#16a34a;">176.0%</td></tr>
+      </table>
+    </div>
+    <div class="finance-card">
+      <div class="finance-card-title">💴 年間支出概算</div>
+      <table class="finance-table">
+        <tr><td>管理費</td><td style="color:#888;">記載なし</td></tr>
+        <tr><td>修繕積立</td><td style="color:#888;">記載なし</td></tr>
+        <tr><td>固都税</td><td style="color:#888;">要確認</td></tr>
+        <tr class="total-row"><td>備考</td><td>詳細は要確認</td></tr>
+      </table>
+      <p style="font-size:7pt; color:#888; margin-top:6px;">※費用詳細は別途ご確認ください</p>
+    </div>
+  </div>
+
+  <!-- NOI概算 -->
+  <div style="margin-top:12px; background:#f0f7ff; border:1px solid #c5d1e8; border-radius:5px; padding:10px 14px;" class="avoid-break">
+    <div style="font-size:8.5pt; color:#1A365D; font-weight:700; margin-bottom:5px;">🏠 物件概要補足</div>
+    <div style="font-size:8.5pt; color:#444; line-height:1.8;">
+      <strong>現況</strong>：空室（即リフォーム可能）
+      <strong>引渡</strong>：相談
+      <strong>付属物</strong>：倉庫2棟付き、駐車場2台可能<br>
+      <strong>水道</strong>：現況使用不可（要確認）
+      <strong>電気</strong>：電力自由化
+      <strong>下水・ガス</strong>：要確認<br>
+      <strong>再調達価格</strong>：約1,654万円
+      <strong>残存耐用年数</strong>：0年（超過）
+      <strong>接道</strong>：北側・42条1項1号
+    </div>
+  </div>
+
+</div><!-- /page-wrapper -->
+
+
+<!-- ==================== PAGE 3: 収支シミュレーション ==================== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header" style="margin-bottom:10px;">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png" alt="REATEX" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <div class="header-property-name" style="font-size:13pt;">収支シミュレーション・投資ポイント</div>
+        <div class="header-sub">北海道茅部郡森町字砂原　戸建て｜r-2320</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-grid avoid-break">
+    <div class="kpi-card">
+      <div class="kpi-label">売買価格</div>
+      <div class="kpi-value" style="color:#C41E3A; font-size:18pt;">15</div>
+      <div class="kpi-unit">万円</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">表面利回り（想定）</div>
+      <div class="kpi-value" style="color:#16a34a;">176.0</div>
+      <div class="kpi-unit">%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">年間賃料収入（満室）</div>
+      <div class="kpi-value">26.4</div>
+      <div class="kpi-unit">万円</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">NOI（概算）</div>
+      <div class="kpi-value">26.4</div>
+      <div class="kpi-unit">万円</div>
+    </div>
+  </div>
+
+  <!-- 収支シミュレーション表 -->
+  <div class="section-title" style="margin-top:12px;">収支シミュレーション</div>
+  <div class="two-col-sim avoid-break">
+    <table class="sim-table">
+      <tr><th colspan="2">収入サイド</th></tr>
+      <tr><td>満室想定月額賃料</td><td style="text-align:right;">22,000円</td></tr>
+      <tr><td>年間賃料収入（満室想定）</td><td style="text-align:right;">264,000円（26.4万円）</td></tr>
+      <tr><td>現況賃料収入</td><td style="text-align:right; color:#888;">0円（空室）</td></tr>
+      <tr class="sim-total"><td>表面利回り（想定）</td><td style="text-align:right; color:#16a34a;">176.0%</td></tr>
+      <tr class="sim-total"><td>現況利回り</td><td style="text-align:right; color:#888;">0%（空室）</td></tr>
+    </table>
+    <table class="sim-table">
+      <tr><th colspan="2">投資指標</th></tr>
+      <tr><td>売買価格</td><td style="text-align:right; color:#C41E3A; font-weight:700;">150,000円（15万円）</td></tr>
+      <tr><td>再調達価格</td><td style="text-align:right;">約1,654万円</td></tr>
+      <tr><td>残存耐用年数</td><td style="text-align:right;">0年（超過）</td></tr>
+      <tr><td>路線価</td><td style="text-align:right; color:#888;">なし</td></tr>
+      <tr class="highlight-row"><td>NOI（年間・概算）</td><td style="text-align:right;">264,000円</td></tr>
+    </table>
+  </div>
+
+  <!-- 投資ポイント -->
+  <div class="section-title" style="margin-top:12px;">投資ポイント</div>
+  <ul class="points-list avoid-break">
+    <li><strong>超低価格・圧倒的利回り</strong>：販売価格わずか15万円で想定表面利回り176%という破格の投資機会</li>
+    <li><strong>大型土地付き</strong>：764.78㎡（約231坪）の宅地が付属。倉庫2棟・駐車場2台も利用可能</li>
+    <li><strong>JR駅近</strong>：JR函館本線「渡島砂原」駅から徒歩約11分。交通アクセス確保済み</li>
+    <li><strong>リフォームで再生可能</strong>：木造2階建137.83㎡の戸建て。リフォームにより入居率向上が見込める</li>
+    <li><strong>都市計画区域外</strong>：建蔽率・容積率の制限なし。利用用途の自由度が高い</li>
+    <li><strong>即引渡し可能</strong>：空室のため購入後すぐにリフォーム・入居付けが可能</li>
+  </ul>
+
+  <!-- 周辺環境 -->
+  <div class="section-title" style="margin-top:12px;">周辺環境</div>
+  <div class="env-grid">
+    <div class="env-card avoid-break">
+      <div class="env-card-title">🚉 交通アクセス</div>
+      <div class="env-item">JR函館本線「渡島砂原」駅 徒歩約11分</div>
+      <div class="env-item">函館市内へ約60分</div>
+    </div>
+    <div class="env-card avoid-break">
+      <div class="env-card-title">🌊 地域特性</div>
+      <div class="env-item">噴火湾沿岸エリア</div>
+      <div class="env-item">自然豊かな北海道道南地域</div>
+    </div>
+    <div class="env-card avoid-break">
+      <div class="env-card-title">🏫 生活利便</div>
+      <div class="env-item">森町役場・各種商業施設</div>
+      <div class="env-item">医療機関・学校（要確認）</div>
+    </div>
+  </div>
+
+</div><!-- /page-wrapper -->
+
+
+<!-- ==================== PAGE 4: 物件写真 ==================== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header" style="margin-bottom:10px;">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png" alt="REATEX" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <div class="header-property-name" style="font-size:13pt;">物件写真・特記事項</div>
+        <div class="header-sub">北海道茅部郡森町字砂原　戸建て｜r-2320</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 外観メイン写真 -->
+  <div class="photo-main avoid-break">
+    <img
+      src="https://drive.google.com/thumbnail?id=1UEBtcI4WPkk5bgAByH_ARe-O8ELvE3K2&sz=w800"
+      onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1UEBtcI4WPkk5bgAByH_ARe-O8ELvE3K2'"
+      alt="物件外観"
+      style="width:100%; height:200px; object-fit:cover; border-radius:5px;">
+    <p class="photo-caption">外観（木造2階建・北海道茅部郡森町字砂原4丁目110番地1）</p>
+  </div>
+
+  <!-- 写真PDFビューア埋め込み -->
+  <div style="margin-top:8px;">
+    <div class="section-title">物件写真一覧（全35枚）</div>
+    <div class="photo-iframe-wrap" style="margin-top:6px;">
+      <iframe
+        src="https://drive.google.com/file/d/1UEBtcI4WPkk5bgAByH_ARe-O8ELvE3K2/preview"
+        style="width:100%; height:280px; border:none;"
+        allow="autoplay">
+      </iframe>
+    </div>
+    <p class="photo-caption">※写真閲覧にはGoogleアカウントへのログインが必要な場合があります。詳細は「詳細はこちら」ボタンの共有フォルダをご覧ください。</p>
+  </div>
+
+  <!-- 特記事項 -->
+  <div class="note-box avoid-break" style="margin-top:10px;">
+    <div class="note-box-title">📋 特記事項</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px 20px; font-size:8.5pt; line-height:1.9;">
+      <div>※現況有姿での引渡しとなります</div>
+      <div>※倉庫2棟付き（敷地内）</div>
+      <div>※リフォーム推奨（現況要確認）</div>
+      <div>※駐車場2台分スペースあり</div>
+      <div>※司法書士は売主指定となります</div>
+      <div>※水道は現況使用不可（要確認）</div>
+      <div>※境界非明示（測量なし）</div>
+      <div>※面積は公図による簡易計測値</div>
+    </div>
+  </div>
+
+  <!-- 注意事項 -->
+  <div class="caution-box avoid-break">
+    ※本資料は投資家向け情報提供を目的として作成しております。記載内容は現時点での情報であり、
+    確定的なものではありません。実際の取引に際しては現地調査・法令確認等を行い、
+    専門家にご相談の上ご判断ください。利回り・価格等は変更になる場合があります。
+  </div>
+
+</div><!-- /page-wrapper -->
+
+
+<!-- ==================== PAGE 5: LINEチラシ ==================== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+  <div class="line-page">
+    <div class="line-badge">📣 未公開プレミアム不動産 先行情報</div>
+    <div class="line-main-title">未公開物件を<br>LINEで先行受取</div>
+    <div class="line-sub-title">リアテクスの投資家向けLINEに登録して<br>市場に出る前の物件情報をいち早くお届けします</div>
+
+    <div class="line-content">
+      <div class="line-features">
+        <div class="line-feature-item">市場未公開の投資物件を先行配信</div>
+        <div class="line-feature-item">北海道・全国エリアの収益物件</div>
+        <div class="line-feature-item">高利回り・低価格物件の優先案内</div>
+        <div class="line-feature-item">リアテクス専任スタッフが個別対応</div>
+        <div class="line-feature-item">登録・利用は完全無料</div>
+      </div>
+      <div class="line-qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq"
+             alt="LINE QR" style="width:120px; height:120px; border-radius:4px; border:3px solid #fff;">
+        <div class="line-qr-label">QRコードで読み取り</div>
+      </div>
+    </div>
+
+    <a href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq"
+       class="line-btn" target="_blank">
+      🔔 LINEで友だち追加
+    </a>
+
+    <div class="line-note">
+      株式会社リアテクス｜〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506<br>
+      TEL: 03-6822-7297｜satsuma@reatex.co.jp
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
