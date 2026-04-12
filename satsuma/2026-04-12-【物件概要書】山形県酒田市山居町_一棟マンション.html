@@ -28,7 +28,6 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 20mm);
   justify-content: space-between;
 }
 .page-wrapper {
@@ -543,7 +542,7 @@ body {
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
-  .page-container { min-height: unset; }
+  .page-container { min-height: 182mm; /* A4横 210mm - margins 28mm */ }
   .page-break { break-before: page; }
   .rent-spec-banner { break-before: page; }
   .avoid-break,
