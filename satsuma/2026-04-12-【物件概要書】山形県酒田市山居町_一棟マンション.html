@@ -78,33 +78,109 @@ body {
   text-decoration: none;
 }
 
-/* ========== ハイライトボックス ========== */
-.highlight-box {
-  background: linear-gradient(135deg, #fefdf8 0%, #fef9ec 100%);
-  border: 1px solid #e8d5a0;
-  border-radius: 0 0 4px 4px;
+/* ========== HERO SECTION（ページ1） ========== */
+.hero-section {
+  display: grid;
+  grid-template-columns: 56% 44%;
+  gap: 0;
+  margin: 6px 0 5px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1.5px solid #DAA520;
+  min-height: 68mm;
+}
+.hero-left {
+  background: linear-gradient(150deg, #0b1e3a 0%, #1a365d 55%, #1e4a7a 100%);
+  padding: 14px 20px 14px 18px;
   display: flex;
-  justify-content: space-around;
-  padding: 10px 16px;
-  margin-bottom: 10px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
 }
-.highlight-item {
-  text-align: center;
-  padding: 0 16px;
-  border-right: 1px solid #e8d5a0;
-  flex: 1;
+.hero-right {
+  position: relative;
+  overflow: hidden;
 }
-.highlight-item:last-child { border-right: none; }
-.highlight-label { font-size: 7.5pt; color: #666; margin-bottom: 2px; }
-.highlight-value {
-  font-size: 22pt;
-  font-weight: 800;
-  color: #1A365D;
-  line-height: 1.1;
+.hero-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(1.15) contrast(1.05) saturate(1.1);
 }
-.highlight-value.red { color: #C41E3A; }
-.highlight-value.green { color: #1a7a3c; }
-.highlight-sub { font-size: 7.5pt; color: #888; margin-top: 2px; }
+.hero-right-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  padding: 8px 10px 6px;
+  color: white;
+  font-size: 7pt;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.hero-tag {
+  display: inline-block;
+  font-size: 6.5pt;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #DAA520;
+  text-transform: uppercase;
+  background: rgba(218,165,32,0.12);
+  border: 1px solid rgba(218,165,32,0.4);
+  border-radius: 2px;
+  padding: 2px 7px;
+  margin-bottom: 5px;
+}
+.hero-metric { margin-bottom: 6px; }
+.hero-metric-label {
+  font-size: 7pt;
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 0;
+  line-height: 1.3;
+}
+.hero-metric-value {
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+.hero-v-red   { font-size: 32pt; color: #FF9500; text-shadow: 0 2px 12px rgba(255,149,0,0.55); }
+.hero-v-green { font-size: 32pt; color: #F5C518; text-shadow: 0 2px 12px rgba(245,197,24,0.5); }
+.hero-v-green-md { font-size: 20pt; color: #F5C518; }
+.hero-v-current {
+  font-size: 22pt; color: #FFD700; font-weight: 900;
+  line-height: 1; letter-spacing: -0.5px;
+  text-shadow: 0 1px 8px rgba(255,215,0,0.5);
+}
+.hero-current-box {
+  background: rgba(255,215,0,0.12);
+  border: 1px solid rgba(255,215,0,0.45);
+  border-radius: 4px;
+  padding: 4px 10px 5px;
+  margin-bottom: 5px;
+}
+.hero-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(218,165,32,0.5), transparent);
+  margin: 5px 0;
+}
+.hero-bottom-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.hero-badge {
+  background: rgba(218,165,32,0.15);
+  border: 1px solid rgba(218,165,32,0.5);
+  border-radius: 10px;
+  padding: 2px 9px;
+  font-size: 7pt;
+  color: #DAA520;
+  font-weight: 700;
+  white-space: nowrap;
+}
 
 /* ========== セクションタイトル ========== */
 .section-title {
@@ -292,7 +368,7 @@ body {
   line-height: 1.5;
 }
 .points-list li::before {
-  content: "✓";
+  content: "\2713";
   position: absolute;
   left: 6px;
   color: #DAA520;
@@ -426,7 +502,7 @@ body {
   padding: 3px 0 3px 16px;
   position: relative;
 }
-.line-features li::before { content: "✦"; color: #DAA520; position: absolute; left: 0; }
+.line-features li::before { content: "\2726"; color: #DAA520; position: absolute; left: 0; }
 .line-qr {
   background: white;
   border-radius: 8px;
@@ -484,20 +560,17 @@ body {
   .header, .footer-band { break-before: avoid; }
 }
 
-/* ========== レスポンシブ ========== */
+/* ========== レスポンシブ（タブレット・スマホ） ========== */
 @media screen and (max-width: 900px) {
   .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
-  .page-wrapper { width: 100% !important; padding: 0 8px !important; }
+  .page-wrapper   { width: 100% !important; padding: 0 8px !important; }
   .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
   .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
   .header-property-name { font-size: 13pt; }
-  .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
-  .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
-  .highlight-item:last-child { border-bottom: none; }
-  .highlight-value { font-size: 18pt; }
+  .hero-section { grid-template-columns: 1fr !important; }
   .two-col, .three-col, .income-summary { grid-template-columns: 1fr !important; }
-  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .kpi-grid  { grid-template-columns: repeat(2, 1fr); }
+  .env-grid  { grid-template-columns: repeat(2, 1fr); }
   .photo-grid-main { grid-template-columns: 1fr !important; }
   .kpi-value { font-size: 15pt; }
   .photo-item img { height: 140px; }
@@ -516,7 +589,6 @@ body {
 }
 @media screen and (max-width: 480px) {
   .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
-  .highlight-item { flex: 1 1 100%; }
   .header-property-name { font-size: 12pt; }
   .line-main-title { font-size: 18pt; }
 }
@@ -547,32 +619,56 @@ body {
       </div>
     </div>
 
-    <!-- ハイライト -->
-    <div class="highlight-box avoid-break">
-      <div class="highlight-item">
-        <div class="highlight-label">販売価格</div>
-        <div class="highlight-value red">5,000<span style="font-size:12pt">万円</span></div>
-        <div class="highlight-sub">（税込）</div>
+    <!-- ヒーローセクション（ページ1固定フォーマット） -->
+    <div class="hero-section" style="min-height:56mm;">
+
+      <!-- 左：KPIハイライト（濃紺背景） -->
+      <div class="hero-left" style="padding:10px 18px 10px 16px; gap:0;">
+        <div class="hero-tag">INVESTMENT PROPERTY ― 山形県酒田市 ｜ 物件番号：p-1090</div>
+
+        <!-- 上段：表面利回り + 現況利回り -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:4px;">
+          <div>
+            <div class="hero-metric-label">表面利回り（満室想定）</div>
+            <div class="hero-metric-value hero-v-green">20.06%</div>
+          </div>
+          <div class="hero-current-box">
+            <div class="hero-metric-label" style="color:rgba(255,215,0,0.7);">現況利回り（全室稼働中）</div>
+            <div class="hero-metric-value hero-v-current">20.06%</div>
+            <div style="font-size:6.5pt; color:rgba(255,215,0,0.6); margin-top:1px;">23室全室稼働 即収益物件</div>
+          </div>
+        </div>
+
+        <div class="hero-divider" style="margin:4px 0;"></div>
+
+        <!-- 下段：販売価格 + 土地積算比率 -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+          <div>
+            <div class="hero-metric-label">販売価格</div>
+            <div class="hero-metric-value hero-v-red">5,000万円</div>
+          </div>
+          <div>
+            <div class="hero-metric-label">土地積算比率</div>
+            <div class="hero-metric-value hero-v-green-md">土地積算 34.7%</div>
+            <div style="font-size:6.5pt; color:rgba(255,255,255,0.5); margin-top:1px;">土地価値1,735万円 ｜ 総積算2,632万円</div>
+          </div>
+        </div>
+
+        <!-- バッジ行 -->
+        <div class="hero-bottom-row" style="margin-top:5px;">
+          <span class="hero-badge">📍 JR酒田駅 車10分</span>
+          <span class="hero-badge">🏠 1LDK・2DK × 23戸</span>
+          <span class="hero-badge">⏱ 回収期間 約5.1年</span>
+          <span class="hero-badge">🅿 駐車場19台</span>
+        </div>
       </div>
-      <div class="highlight-item">
-        <div class="highlight-label">表面利回り（満室）</div>
-        <div class="highlight-value green">20.06<span style="font-size:12pt">%</span></div>
-        <div class="highlight-sub">年間想定 ¥10,029,600</div>
-      </div>
-      <div class="highlight-item">
-        <div class="highlight-label">現況利回り</div>
-        <div class="highlight-value green">20.06<span style="font-size:12pt">%</span></div>
-        <div class="highlight-sub">全室稼働中</div>
-      </div>
-      <div class="highlight-item">
-        <div class="highlight-label">総戸数</div>
-        <div class="highlight-value">23<span style="font-size:12pt">室</span></div>
-        <div class="highlight-sub">住宅22戸 + 店舗1区画</div>
-      </div>
-      <div class="highlight-item">
-        <div class="highlight-label">築年数</div>
-        <div class="highlight-value">45<span style="font-size:12pt">年</span></div>
-        <div class="highlight-sub">1980年4月（昭和55年4月）</div>
+
+      <!-- 右：外観写真（フルハイト） -->
+      <div class="hero-right">
+        <img src="https://drive.google.com/thumbnail?id=1R75p4VK9kFy-7QSXzDf-kQMjawYkUwdS&sz=w800"
+             onerror="this.src='https://lh3.googleusercontent.com/d/1R75p4VK9kFy-7QSXzDf-kQMjawYkUwdS'; this.onerror=null;"
+             alt="外観">
+        <div class="hero-right-overlay">外観｜山形県酒田市山居町 一棟マンション</div>
       </div>
     </div>
 
