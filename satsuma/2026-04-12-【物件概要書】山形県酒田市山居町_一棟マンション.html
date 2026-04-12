@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】 山形県酒田市山居町 一棟マンション</title>
+<style>
+/* ========== ベーシック ========== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+  font-size: 10pt;
+  color: #333;
+  background: #fff;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* ========== @page ========== */
+@page {
+  size: A4 landscape;
+  margin: 14mm 15mm;
+}
+
+/* ========== ページコンテナ ========== */
+.page-container {
+  width: 277mm;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 20mm);
+  justify-content: space-between;
+}
+.page-wrapper {
+  width: 277mm;
+  margin: 0 auto;
+  padding: 0;
+}
+.page-break { break-before: page; }
+.avoid-break { break-inside: avoid; }
+
+/* ========== ヘッダー ========== */
+.header {
+  background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+  border-bottom: 3px solid #DAA520;
+  color: white;
+  padding: 10px 16px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px 4px 0 0;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.header-logo img { height: 28px; filter: brightness(0) invert(1); }
+.header-property-name {
+  font-size: 15pt;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+.header-right {
+  text-align: right;
+  font-size: 8pt;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.6;
+}
+.header-property-num { font-size: 8pt; color: rgba(255,255,255,0.7); }
+.detail-btn {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 10px;
+  background: #DAA520;
+  color: #1A365D;
+  border-radius: 4px;
+  font-size: 8pt;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ========== ハイライトボックス ========== */
+.highlight-box {
+  background: linear-gradient(135deg, #fefdf8 0%, #fef9ec 100%);
+  border: 1px solid #e8d5a0;
+  border-radius: 0 0 4px 4px;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 16px;
+  margin-bottom: 10px;
+}
+.highlight-item {
+  text-align: center;
+  padding: 0 16px;
+  border-right: 1px solid #e8d5a0;
+  flex: 1;
+}
+.highlight-item:last-child { border-right: none; }
+.highlight-label { font-size: 7.5pt; color: #666; margin-bottom: 2px; }
+.highlight-value {
+  font-size: 22pt;
+  font-weight: 800;
+  color: #1A365D;
+  line-height: 1.1;
+}
+.highlight-value.red { color: #C41E3A; }
+.highlight-value.green { color: #1a7a3c; }
+.highlight-sub { font-size: 7.5pt; color: #888; margin-top: 2px; }
+
+/* ========== セクションタイトル ========== */
+.section-title {
+  background: linear-gradient(90deg, #1A365D 0%, #2d4a7a 100%);
+  color: white;
+  font-size: 9pt;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 3px;
+  margin: 8px 0 5px;
+  letter-spacing: 0.5px;
+}
+
+/* ========== 概要テーブル ========== */
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.overview-table td {
+  padding: 4px 8px;
+  border: 1px solid #dde3ed;
+  vertical-align: middle;
+}
+.overview-table .label {
+  background: #E8F0FE;
+  color: #1A365D;
+  font-weight: 700;
+  width: 22%;
+  white-space: nowrap;
+}
+.overview-table .value { background: #fff; }
+.overview-table .value.red { color: #C41E3A; font-weight: 800; font-size: 11pt; }
+.overview-table .value.green { color: #1a7a3c; font-weight: 700; }
+.google-link { color: #2563EB; text-decoration: none; }
+.google-link:hover { text-decoration: underline; }
+
+/* ========== フッター帯 ========== */
+.footer-band {
+  background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+  color: rgba(255,255,255,0.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 16px;
+  border-top: 3px solid #DAA520;
+  border-radius: 0 0 4px 4px;
+  margin-top: 8px;
+  font-size: 8pt;
+}
+.footer-company { font-weight: 700; font-size: 9pt; }
+.footer-contact { text-align: right; line-height: 1.5; }
+.footer-disclaimer {
+  font-size: 7pt;
+  color: rgba(255,255,255,0.6);
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* ========== レントロール ========== */
+.lentroll-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 7.8pt;
+}
+.lentroll-table th {
+  background: #1A365D;
+  color: white;
+  padding: 4px 5px;
+  border: 1px solid #2d4a7a;
+  text-align: center;
+  font-size: 7.5pt;
+}
+.lentroll-table td {
+  padding: 3px 5px;
+  border: 1px solid #dde3ed;
+  text-align: right;
+  vertical-align: middle;
+}
+.lentroll-table td.center { text-align: center; }
+.lentroll-table td.left { text-align: left; }
+.lentroll-table .row-even { background: #f8f9fd; }
+.lentroll-table .row-odd { background: #fff; }
+.lentroll-table .total-row {
+  background: #E8F0FE;
+  font-weight: 700;
+  color: #1A365D;
+}
+.lentroll-table .store-row { background: #fff8e8; }
+
+/* ========== 収入サマリー ========== */
+.income-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 8px 0;
+}
+.income-card {
+  background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+  border: 1px solid #c5d5f0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  text-align: center;
+}
+.income-card .ic-label { font-size: 8pt; color: #555; }
+.income-card .ic-value { font-size: 15pt; font-weight: 800; color: #1A365D; }
+.income-card .ic-sub { font-size: 7.5pt; color: #888; }
+
+/* ========== 年間支出テーブル ========== */
+.expense-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.expense-table th {
+  background: #E8F0FE;
+  color: #1A365D;
+  padding: 4px 8px;
+  border: 1px solid #c5d5f0;
+  font-weight: 700;
+}
+.expense-table td {
+  padding: 4px 8px;
+  border: 1px solid #dde3ed;
+  vertical-align: middle;
+}
+.expense-table .e-label { color: #333; }
+.expense-table .e-value { text-align: right; font-weight: 600; }
+.expense-table .total-row { background: #fff3cd; font-weight: 700; color: #856404; }
+.expense-table .total-row td { font-size: 9pt; }
+
+/* ========== KPI ========== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 8px 0;
+}
+.kpi-card {
+  background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+  color: white;
+  border-radius: 6px;
+  padding: 10px 8px;
+  text-align: center;
+}
+.kpi-label { font-size: 7.5pt; color: rgba(255,255,255,0.8); margin-bottom: 3px; }
+.kpi-value { font-size: 16pt; font-weight: 800; color: #DAA520; }
+.kpi-sub { font-size: 7pt; color: rgba(255,255,255,0.7); margin-top: 2px; }
+
+/* ========== 収支シミュレーション ========== */
+.finance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.finance-table th {
+  background: #1A365D;
+  color: white;
+  padding: 5px 10px;
+  border: 1px solid #2d4a7a;
+  text-align: center;
+}
+.finance-table td {
+  padding: 4px 10px;
+  border: 1px solid #dde3ed;
+}
+.finance-table .fl { background: #E8F0FE; font-weight: 700; color: #1A365D; }
+.finance-table .fv { text-align: right; }
+.finance-table .fv.positive { color: #1a7a3c; font-weight: 700; }
+.finance-table .fv.red { color: #C41E3A; font-weight: 700; }
+.finance-table .subtotal { background: #f0f4ff; font-weight: 600; }
+.finance-table .total { background: #1A365D; color: white; font-weight: 700; }
+.finance-table .total td { color: white; }
+
+/* ========== 投資ポイント ========== */
+.points-list { list-style: none; padding: 0; }
+.points-list li {
+  padding: 5px 10px 5px 22px;
+  border-left: 3px solid #DAA520;
+  margin: 5px 0;
+  background: #fefdf8;
+  border-radius: 0 4px 4px 0;
+  position: relative;
+  font-size: 8.5pt;
+  line-height: 1.5;
+}
+.points-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 6px;
+  color: #DAA520;
+  font-weight: 700;
+}
+
+/* ========== 周辺環境 ========== */
+.env-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 5px 0;
+}
+.env-card {
+  background: #f8faff;
+  border: 1px solid #dde3ed;
+  border-radius: 4px;
+  padding: 8px 10px;
+  text-align: center;
+}
+.env-icon { font-size: 18pt; margin-bottom: 3px; }
+.env-label { font-size: 7.5pt; font-weight: 700; color: #1A365D; margin-bottom: 2px; }
+.env-value { font-size: 7.5pt; color: #555; }
+
+/* ========== 写真ページ ========== */
+.photo-grid-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 8px 0;
+}
+.photo-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #dde3ed;
+}
+.photo-caption {
+  font-size: 7.5pt;
+  color: #666;
+  text-align: center;
+  margin-top: 3px;
+}
+.note-box {
+  background: #f8faff;
+  border: 1px solid #c5d5f0;
+  border-left: 4px solid #1A365D;
+  border-radius: 0 4px 4px 0;
+  padding: 8px 12px;
+  margin: 8px 0;
+  font-size: 8.5pt;
+  line-height: 1.6;
+}
+.caution-box {
+  background: #fff8e8;
+  border: 1px solid #e8d5a0;
+  border-left: 4px solid #DAA520;
+  border-radius: 0 4px 4px 0;
+  padding: 8px 12px;
+  margin: 8px 0;
+  font-size: 7.5pt;
+  line-height: 1.6;
+  color: #856404;
+}
+
+/* ========== LINEページ ========== */
+.line-page {
+  background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+  min-height: 140mm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 18px 20px 14px;
+  text-align: center;
+  gap: 0;
+  border-radius: 4px;
+}
+.line-badge {
+  background: #06C755;
+  color: white;
+  font-size: 8pt;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+.line-main-title {
+  font-size: 26pt;
+  font-weight: 900;
+  color: #1A365D;
+  text-shadow: 0 2px 6px rgba(26,54,93,0.15);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.line-sub-title {
+  font-size: 11pt;
+  color: #2d5080;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.line-content {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 220mm;
+}
+.line-features {
+  background: rgba(255,255,255,0.85);
+  border-radius: 8px;
+  padding: 12px 18px;
+  text-align: left;
+  min-width: 120mm;
+}
+.line-features h3 {
+  font-size: 9.5pt;
+  color: #1A365D;
+  font-weight: 700;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #c5d5f0;
+  padding-bottom: 4px;
+}
+.line-features li {
+  font-size: 8.5pt;
+  color: #333;
+  list-style: none;
+  padding: 3px 0 3px 16px;
+  position: relative;
+}
+.line-features li::before { content: "✦"; color: #DAA520; position: absolute; left: 0; }
+.line-qr {
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.line-qr p { font-size: 7pt; color: #666; margin-top: 4px; }
+.line-btn {
+  display: inline-block;
+  background: #06C755;
+  color: white;
+  font-size: 14pt;
+  font-weight: 800;
+  padding: 12px 40px;
+  border-radius: 40px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(6,199,85,0.35);
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.line-note { font-size: 8pt; color: rgba(26,54,93,0.7); }
+
+/* ========== 2カラム ========== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+/* ========== @media print ========== */
+@media print {
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .page-container { min-height: unset; }
+  .page-break { break-before: page; }
+  .rent-spec-banner { break-before: page; }
+  .avoid-break,
+  .kpi-grid,
+  .investment-point,
+  .env-card,
+  .note-box,
+  .caution-box,
+  .income-card {
+    break-inside: avoid;
+  }
+  .section-title, h2, h3 { break-after: avoid; }
+  table tr { break-inside: avoid; }
+  .header, .footer-band { break-before: avoid; }
+}
+
+/* ========== レスポンシブ ========== */
+@media screen and (max-width: 900px) {
+  .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+  .page-wrapper { width: 100% !important; padding: 0 8px !important; }
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+  .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+  .header-property-name { font-size: 13pt; }
+  .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+  .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
+  .highlight-item:last-child { border-bottom: none; }
+  .highlight-value { font-size: 18pt; }
+  .two-col, .three-col, .income-summary { grid-template-columns: 1fr !important; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-grid-main { grid-template-columns: 1fr !important; }
+  .kpi-value { font-size: 15pt; }
+  .photo-item img { height: 140px; }
+  .overview-section, .finance-section { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .lentroll-table, .finance-table, .overview-table { font-size: 8pt; }
+  body { font-size: 11pt; }
+  .section-title { font-size: 10pt; padding: 6px 12px; }
+  .line-page { padding: 20px 14px; min-height: unset; }
+  .line-content { flex-direction: column; gap: 14px; }
+  .line-main-title { font-size: 22pt; }
+  .line-btn { font-size: 13pt; padding: 12px 32px; }
+  .line-features { min-width: unset; width: 100%; }
+  .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+  .footer-contact { text-align: center; }
+  .page-break, .rent-spec-banner { page-break-before: auto; break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+}
+@media screen and (max-width: 480px) {
+  .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .highlight-item { flex: 1 1 100%; }
+  .header-property-name { font-size: 12pt; }
+  .line-main-title { font-size: 18pt; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- PAGE 1: 物件概要 -->
+<!-- ============================================================ -->
+<div class="page-container">
+
+  <!-- ヘッダー -->
+  <div>
+    <div class="header">
+      <div class="header-left">
+        <div class="header-logo">
+          <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+               alt="REATEX" onerror="this.style.display='none'">
+        </div>
+        <div class="header-property-name">山形県酒田市 一棟マンション</div>
+      </div>
+      <div class="header-right">
+        <div>株式会社リアテクス</div>
+        <a href="https://drive.google.com/drive/folders/1yZYcmC8LcL66MpyYnlETQtazNtDOMAWx"
+           target="_blank" class="detail-btn">📂 詳細はこちら</a>
+        <div class="header-property-num">物件番号: p-1090</div>
+      </div>
+    </div>
+
+    <!-- ハイライト -->
+    <div class="highlight-box avoid-break">
+      <div class="highlight-item">
+        <div class="highlight-label">販売価格</div>
+        <div class="highlight-value red">5,000<span style="font-size:12pt">万円</span></div>
+        <div class="highlight-sub">（税込）</div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">表面利回り（満室）</div>
+        <div class="highlight-value green">20.06<span style="font-size:12pt">%</span></div>
+        <div class="highlight-sub">年間想定 ¥10,029,600</div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">現況利回り</div>
+        <div class="highlight-value green">20.06<span style="font-size:12pt">%</span></div>
+        <div class="highlight-sub">全室稼働中</div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">総戸数</div>
+        <div class="highlight-value">23<span style="font-size:12pt">室</span></div>
+        <div class="highlight-sub">住宅22戸 + 店舗1区画</div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">築年数</div>
+        <div class="highlight-value">45<span style="font-size:12pt">年</span></div>
+        <div class="highlight-sub">1980年4月（昭和55年4月）</div>
+      </div>
+    </div>
+
+    <!-- 物件概要テーブル -->
+    <div class="avoid-break">
+      <div class="section-title">▌ 物件概要</div>
+      <div class="two-col" style="gap:8px;">
+        <!-- 左カラム -->
+        <table class="overview-table">
+          <tr>
+            <td class="label">所在地</td>
+            <td class="value">
+              <a href="https://www.google.com/maps/search/山形県酒田市山居町2-13-31" target="_blank" class="google-link">
+                山形県酒田市山居町二丁目13番31号
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">交通</td>
+            <td class="value">JR羽越本線 酒田駅 車10分</td>
+          </tr>
+          <tr>
+            <td class="label">物件種別</td>
+            <td class="value">一棟マンション（共同住宅・事務所・店舗）</td>
+          </tr>
+          <tr>
+            <td class="label">構造・規模</td>
+            <td class="value">鉄筋コンクリート造（RC）・5階建て</td>
+          </tr>
+          <tr>
+            <td class="label">総戸数</td>
+            <td class="value">23室（住宅22戸 + 店舗・事務所1区画）</td>
+          </tr>
+          <tr>
+            <td class="label">駐車場</td>
+            <td class="value">19台（敷地内）</td>
+          </tr>
+          <tr>
+            <td class="label">売買価格</td>
+            <td class="value red">5,000万円（税込）</td>
+          </tr>
+          <tr>
+            <td class="label">表面利回り</td>
+            <td class="value green">20.06%（年間想定収入 ¥10,029,600）</td>
+          </tr>
+          <tr>
+            <td class="label">現況利回り</td>
+            <td class="value green">20.06%（全室稼働中）</td>
+          </tr>
+          <tr>
+            <td class="label">土地権利</td>
+            <td class="value">所有権</td>
+          </tr>
+          <tr>
+            <td class="label">地目</td>
+            <td class="value">宅地</td>
+          </tr>
+        </table>
+        <!-- 右カラム -->
+        <table class="overview-table">
+          <tr>
+            <td class="label">築年月</td>
+            <td class="value">1980年4月（昭和55年4月）· 築45年</td>
+          </tr>
+          <tr>
+            <td class="label">土地面積</td>
+            <td class="value">694.19㎡（209.99坪）</td>
+          </tr>
+          <tr>
+            <td class="label">建物面積①</td>
+            <td class="value">406.30㎡（122.91坪）共同住宅</td>
+          </tr>
+          <tr>
+            <td class="label">建物面積②</td>
+            <td class="value">764.78㎡（231.35坪）共同住宅・事務所・店舗</td>
+          </tr>
+          <tr>
+            <td class="label">用途地域</td>
+            <td class="value">準工業地域</td>
+          </tr>
+          <tr>
+            <td class="label">都市計画</td>
+            <td class="value">市街化区域</td>
+          </tr>
+          <tr>
+            <td class="label">建ぺい率 / 容積率</td>
+            <td class="value">60% / 200%</td>
+          </tr>
+          <tr>
+            <td class="label">路線価</td>
+            <td class="value">25,000円/㎡（固定資産税路線価）</td>
+          </tr>
+          <tr>
+            <td class="label">土地積算価格</td>
+            <td class="value">¥17,354,750（対売価比率 34.7%）</td>
+          </tr>
+          <tr>
+            <td class="label">再調達価格①</td>
+            <td class="value">¥3,112,085（RC18万/㎡ × 残存2年/47年）</td>
+          </tr>
+          <tr>
+            <td class="label">再調達価格②</td>
+            <td class="value">¥5,857,889（RC18万/㎡ × 残存2年/47年）</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band avoid-break">
+    <div>
+      <div class="footer-company">株式会社リアテクス</div>
+      <div style="font-size:7.5pt; margin-top:2px;">〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506</div>
+    </div>
+    <div class="footer-disclaimer">
+      ※本資料は投資判断の参考情報であり、収益を保証するものではありません。物件の現況・詳細は必ず現地確認および専門家へご相談ください。
+    </div>
+    <div class="footer-contact">
+      <div>TEL: 03-6822-7297</div>
+      <div>MAIL: satsuma@reatex.co.jp</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 2: レントロール -->
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+
+  <div class="header" style="margin-bottom:8px; border-radius:4px;">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             alt="REATEX" onerror="this.style.display='none'">
+      </div>
+      <div class="header-property-name" style="font-size:12pt;">賃料一覧表（レントロール）｜山形県酒田市 一棟マンション</div>
+    </div>
+    <div class="header-right">
+      <div class="header-property-num">物件番号: p-1090</div>
+    </div>
+  </div>
+
+  <!-- レントロールテーブル -->
+  <div class="avoid-break">
+    <div class="section-title">▌ テナント状況一覧</div>
+    <table class="lentroll-table">
+      <thead>
+        <tr>
+          <th>部屋番号</th>
+          <th>間取り</th>
+          <th>状況</th>
+          <th>賃料（円）</th>
+          <th>共益費</th>
+          <th>駐車場</th>
+          <th>月額合計</th>
+          <th>敷金</th>
+          <th>契約開始</th>
+          <th>保証</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-odd"><td class="center">104</td><td class="center">1LDK</td><td class="center">契約中</td><td>32,000</td><td>1,500</td><td>3,300</td><td>36,800</td><td>32,000</td><td class="center">2024/5/1</td><td class="center">有</td></tr>
+        <tr class="row-even"><td class="center">105</td><td class="center">1LDK</td><td class="center">契約中</td><td>32,000</td><td>3,000</td><td>—</td><td>35,000</td><td>32,000</td><td class="center">2012/11/21</td><td class="center">有</td></tr>
+        <tr class="row-odd"><td class="center">201</td><td class="center">2DK</td><td class="center">契約中</td><td>27,000</td><td>3,000</td><td>—</td><td>30,000</td><td>27,000</td><td class="center">2011/3/29</td><td class="center">有</td></tr>
+        <tr class="row-even"><td class="center">202</td><td class="center">2DK</td><td class="center">契約中</td><td>32,000</td><td>3,000</td><td>—</td><td>35,000</td><td>32,000</td><td class="center">2019/6/29</td><td class="center">有</td></tr>
+        <tr class="row-odd"><td class="center">203</td><td class="center">2DK</td><td class="center">契約中</td><td>30,000</td><td>1,500</td><td>—</td><td>31,500</td><td>30,000</td><td class="center">2024/4/26</td><td class="center">有</td></tr>
+        <tr class="row-even"><td class="center">204</td><td class="center">1LDK</td><td class="center">契約中</td><td>32,000</td><td>1,500</td><td>3,300</td><td>36,800</td><td>—</td><td class="center">2025/11/23</td><td class="center">有</td></tr>
+        <tr class="row-odd"><td class="center">205</td><td class="center">1LDK</td><td class="center">契約中</td><td>32,000</td><td>1,500</td><td>3,300</td><td>36,800</td><td>32,000</td><td class="center">2025/3/29</td><td class="center">有</td></tr>
+        <tr class="row-even"><td class="center">301</td><td class="center">2DK</td><td class="center">契約中</td><td>32,000</td><td>3,000</td><td>—</td><td>35,000</td><td>—</td><td class="center">2014/4/26</td><td class="center">有</td></tr>
+        <tr class="row-odd"><td class="center">302</td><td class="center">2DK</td><td class="center">契約中</td><td>32,000</td><td>3,000</td><td>—</td><td>35,000</td><td>32,000</td><td class="center">2015/7/24</td><td class="center">有</td></tr>
+        <tr class="row-even"><td class="center">303</td><td class="center">2DK</td><td class="center">契約中</td><td>30,000</td><td>1,500</td><td>3,300</td><td>34,800</td><td>30,000</td><td class="center">2023/5/13</td><td class="center">有</td></tr>
+        <tr class="row-odd"><td class="center">304</td><td class="center">1LDK</td><td class="center">契約中</td><td>32,000</td><td>3,000</td><td>5,000</td><td>40,000</td><td>32,000</td><td class="center">2021/3/20</td><td class="center">有</td></tr>
+        <tr class="row-even"><td class="center">305</td><td class="center">1LDK</td><td class="center">契約中</td><td>32,000</td><td>1,500</td><td>3,300</td><td>36,800</td><td>32,000</td><td class="center">2024/7/27</td><td class="center">有</td></tr>
+        <tr class="row-odd"><td class="center">401</td><td class="center">2DK</td><td class="center">契約中</td><td>30,000</td><td>3,000</td><td>5,500</td><td>38,500</td><td>30,000</td><td class="center">2022/6/26</td><td class="center">有</td></tr>
+        <tr class="row-even"><td class="center">402</td><td class="center">2DK</td><td class="center">契約中</td><td>32,000</td><td>3,000</td><td>—</td><td>35,000</td><td>32,000</td><td class="center">2012/12/15</td><td class="center">無</td></tr>
+        <tr class="row-odd"><td class="center">403</td><td class="center">2DK</td><td class="center">契約中</td><td>32,000</td><td>3,000</td><td>5,000</td><td>40,000</td><td>32,000</td><td class="center">2012/7/1</td><td class="center">無</td></tr>
+        <tr class="row-even"><td class="center">404</td><td class="center">1LDK</td><td class="center">契約中</td><td>32,000</td><td>1,500</td><td>—</td><td>33,500</td><td>32,000</td><td class="center">2024/4/15</td><td class="center">有</td></tr>
+        <tr class="row-odd"><td class="center">405</td><td class="center">1LDK</td><td class="center">契約中</td><td>32,000</td><td>3,000</td><td>5,000</td><td>40,000</td><td>32,000</td><td class="center">2021/11/1</td><td class="center">有</td></tr>
+        <tr class="row-even"><td class="center">501</td><td class="center">1LDK</td><td class="center">契約中</td><td>32,000</td><td>3,000</td><td>—</td><td>35,000</td><td>—</td><td class="center">2014/12/27</td><td class="center">有</td></tr>
+        <tr class="row-odd"><td class="center">502</td><td class="center">1LDK</td><td class="center">契約中</td><td>30,000</td><td>—</td><td>5,000</td><td>35,000</td><td>30,000</td><td class="center">2015/10/13</td><td class="center">有</td></tr>
+        <tr class="row-even"><td class="center">503</td><td class="center">1LDK</td><td class="center">契約中</td><td>35,000</td><td>1,500</td><td>—</td><td>36,500</td><td>35,000</td><td class="center">2024/4/6</td><td class="center">有</td></tr>
+        <tr class="row-odd"><td class="center">504</td><td class="center">1LDK</td><td class="center">契約中</td><td>30,000</td><td>3,000</td><td>5,000</td><td>38,000</td><td>30,000</td><td class="center">2013/11/1</td><td class="center">無</td></tr>
+        <tr class="row-even"><td class="center">505</td><td class="center">1LDK</td><td class="center">契約中</td><td>32,000</td><td>1,500</td><td>3,300</td><td>36,800</td><td>32,000</td><td class="center">2024/9/12</td><td class="center">有</td></tr>
+        <tr class="store-row">
+          <td class="center">店舗・事務所</td><td class="center">49.90㎡</td><td class="center">契約中</td>
+          <td>44,000</td><td>—</td><td>—</td><td>44,000</td><td>40,000</td><td class="center">2017/5/15</td><td class="center">有</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="3" class="center">合計（月額）</td>
+          <td>¥736,000</td><td>¥49,500</td><td>¥50,300</td><td>¥835,800</td>
+          <td>¥576,000</td><td colspan="2" class="center">23室全室稼働</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 収入サマリー -->
+  <div class="income-summary avoid-break" style="margin-top:10px;">
+    <div class="income-card">
+      <div class="ic-label">月額収入（現況）</div>
+      <div class="ic-value">¥835,800</div>
+      <div class="ic-sub">賃料 ¥736,000 + 共益費 ¥49,500 + 駐車場 ¥50,300</div>
+    </div>
+    <div class="income-card">
+      <div class="ic-label">年間収入（現況・満室想定）</div>
+      <div class="ic-value">¥10,029,600</div>
+      <div class="ic-sub">月額 × 12ヶ月 ｜ 表面利回り 20.06%</div>
+    </div>
+  </div>
+
+  <!-- 年間支出 -->
+  <div class="avoid-break" style="margin-top:6px;">
+    <div class="section-title">▌ 年間支出（実績値）</div>
+    <table class="expense-table" style="width:60%;">
+      <thead>
+        <tr>
+          <th style="width:50%;">費目</th>
+          <th style="width:25%;">金額</th>
+          <th style="width:25%;">備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="e-label">固定資産税・都市計画税（固都税）</td><td class="e-value">¥180,941</td><td>年間実績</td></tr>
+        <tr><td class="e-label">共有部電気代</td><td class="e-value">¥48,843</td><td>年間実績</td></tr>
+        <tr><td class="e-label">エレベーター保守費</td><td class="e-value">¥27,500</td><td>年間実績</td></tr>
+        <tr class="total-row"><td>年間支出合計</td><td class="e-value">¥257,284</td><td></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:7pt; color:#888; margin-top:4px;">※管理費・修繕積立金は売主資料に記載なし。浄化槽費用（¥17,000）は上記合計に含まず。</p>
+  </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 3: 収支シミュレーション + 投資ポイント + 周辺環境 -->
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+
+  <div class="header" style="margin-bottom:8px; border-radius:4px;">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             alt="REATEX" onerror="this.style.display='none'">
+      </div>
+      <div class="header-property-name" style="font-size:12pt;">収支シミュレーション＆投資分析｜山形県酒田市 一棟マンション</div>
+    </div>
+    <div class="header-right">
+      <div class="header-property-num">物件番号: p-1090</div>
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-grid avoid-break">
+    <div class="kpi-card">
+      <div class="kpi-label">年間収入</div>
+      <div class="kpi-value">¥10,029,600</div>
+      <div class="kpi-sub">23室全室稼働中</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">年間支出</div>
+      <div class="kpi-value">¥257,284</div>
+      <div class="kpi-sub">固都税・電気代・EV保守</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">NOI（純収益）</div>
+      <div class="kpi-value">¥9,772,316</div>
+      <div class="kpi-sub">年間収入 − 年間支出</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">CCR（自己資金利回り）</div>
+      <div class="kpi-value">19.54%</div>
+      <div class="kpi-sub">NOI ÷ 売買価格</div>
+    </div>
+  </div>
+
+  <!-- 収支シミュレーション -->
+  <div class="two-col avoid-break" style="margin-top:8px; gap:12px;">
+    <div>
+      <div class="section-title">▌ 収支シミュレーション（自己資金購入）</div>
+      <table class="finance-table">
+        <tr><th colspan="2">収益計算</th></tr>
+        <tr><td class="fl">年間賃料収入（満室）</td><td class="fv">¥10,029,600</td></tr>
+        <tr><td class="fl">　うち 賃料</td><td class="fv">¥8,832,000</td></tr>
+        <tr><td class="fl">　うち 共益費</td><td class="fv">¥594,000</td></tr>
+        <tr><td class="fl">　うち 駐車場</td><td class="fv">¥603,600</td></tr>
+        <tr class="subtotal"><td class="fl">差引 年間支出</td><td class="fv">▲¥257,284</td></tr>
+        <tr><td class="fl">　固都税・都市計画税</td><td class="fv">¥180,941</td></tr>
+        <tr><td class="fl">　共有部電気代</td><td class="fv">¥48,843</td></tr>
+        <tr><td class="fl">　エレベーター保守費</td><td class="fv">¥27,500</td></tr>
+        <tr class="total"><td class="fl" style="color:white;">NOI（純収益）</td><td class="fv positive" style="color:#DAA520; font-size:12pt;">¥9,772,316</td></tr>
+        <tr><td class="fl">表面利回り</td><td class="fv green">20.06%</td></tr>
+        <tr><td class="fl">NOI利回り（CCR）</td><td class="fv green">19.54%</td></tr>
+        <tr><td class="fl">投資回収期間</td><td class="fv">約5.1年</td></tr>
+      </table>
+      <p style="font-size:7pt; color:#888; margin-top:3px;">※NOI = 年間収入 − 明示支出。管理費・修繕積立は売主資料に記載なし。</p>
+    </div>
+    <div>
+      <div class="section-title">▌ 積算評価サマリー</div>
+      <table class="finance-table">
+        <tr><th colspan="2">積算評価</th></tr>
+        <tr><td class="fl">土地面積</td><td class="fv">694.19㎡</td></tr>
+        <tr><td class="fl">固定資産税路線価</td><td class="fv">25,000円/㎡</td></tr>
+        <tr><td class="fl">土地積算価格</td><td class="fv">¥17,354,750</td></tr>
+        <tr><td class="fl">建物積算①（RC 406.30㎡）</td><td class="fv">¥3,112,085</td></tr>
+        <tr><td class="fl">建物積算②（RC 764.78㎡）</td><td class="fv">¥5,857,889</td></tr>
+        <tr class="subtotal"><td class="fl">建物積算合計</td><td class="fv">¥8,969,974</td></tr>
+        <tr class="total"><td class="fl" style="color:white;">総積算価格</td><td class="fv" style="color:#DAA520;">¥26,324,724</td></tr>
+        <tr><td class="fl">対売価比率</td><td class="fv green">52.6%</td></tr>
+        <tr><td class="fl">法定耐用年数（RC）</td><td class="fv">47年</td></tr>
+        <tr><td class="fl">残存耐用年数</td><td class="fv red">2年（超過なし）</td></tr>
+        <tr><td class="fl">再調達単価</td><td class="fv">18万円/㎡（RC造）</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 投資ポイント -->
+  <div class="avoid-break" style="margin-top:8px;">
+    <div class="section-title">▌ 投資ポイント</div>
+    <ul class="points-list">
+      <li><strong>高利回り20%超・全室稼働中</strong>：表面利回り20.06%、現況利回りも同等。23室全室で入居者が継続稼働しており、即収益物件として引き渡し可能。</li>
+      <li><strong>大型物件の規模の経済</strong>：23室（住宅22戸 + 店舗1区画）の大型物件。1戸あたりのコスト分散が効き、管理効率も高い。</li>
+      <li><strong>駐車場19台完備</strong>：敷地内に駐車場19台を確保。収益源の多様化と入居者の利便性向上に貢献。</li>
+      <li><strong>各区分登記済み</strong>：建物は各区分ごとに登記。将来的な区分売却・資産組み替えのオプションあり。</li>
+      <li><strong>積算価格52.6%の担保力</strong>：土地積算¥1,735万 + 建物積算¥897万の合計¥2,632万の実物資産価値。売価の約半分の実質担保があり金融機関評価にも有利。</li>
+    </ul>
+  </div>
+
+  <!-- 周辺環境 -->
+  <div class="avoid-break" style="margin-top:8px;">
+    <div class="section-title">▌ 周辺環境</div>
+    <div class="env-grid">
+      <div class="env-card avoid-break">
+        <div class="env-icon">🚃</div>
+        <div class="env-label">最寄り駅</div>
+        <div class="env-value">JR羽越本線<br>酒田駅 車10分</div>
+      </div>
+      <div class="env-card avoid-break">
+        <div class="env-icon">🏙️</div>
+        <div class="env-label">エリア概況</div>
+        <div class="env-value">山形県酒田市<br>日本海側の主要港湾都市</div>
+      </div>
+      <div class="env-card avoid-break">
+        <div class="env-icon">🏢</div>
+        <div class="env-label">用途地域</div>
+        <div class="env-value">準工業地域<br>市街化区域</div>
+      </div>
+      <div class="env-card avoid-break">
+        <div class="env-icon">🛒</div>
+        <div class="env-label">生活利便</div>
+        <div class="env-value">酒田市中心部近郊<br>生活インフラ充実</div>
+      </div>
+      <div class="env-card avoid-break">
+        <div class="env-icon">🚗</div>
+        <div class="env-label">道路アクセス</div>
+        <div class="env-value">前面西側公道 幅員18m<br>東側公道 幅員5.4m</div>
+      </div>
+      <div class="env-card avoid-break">
+        <div class="env-icon">🌊</div>
+        <div class="env-label">地域特性</div>
+        <div class="env-value">庄内エリア<br>安定した賃貸需要</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 4: 物件写真 + 特記事項 -->
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+
+  <div class="header" style="margin-bottom:8px; border-radius:4px;">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             alt="REATEX" onerror="this.style.display='none'">
+      </div>
+      <div class="header-property-name" style="font-size:12pt;">物件写真＆特記事項｜山形県酒田市 一棟マンション</div>
+    </div>
+    <div class="header-right">
+      <div class="header-property-num">物件番号: p-1090</div>
+    </div>
+  </div>
+
+  <div class="section-title">▌ 物件写真</div>
+  <div class="photo-grid-main avoid-break">
+    <div>
+      <img
+        src="https://drive.google.com/thumbnail?id=1WV6t9STwKiLUPQmHn5kdQQs10Tzgtp67&sz=w800"
+        onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1WV6t9STwKiLUPQmHn5kdQQs10Tzgtp67'"
+        alt="間取り図（全体）"
+        style="width:100%; height:220px; object-fit:cover; border-radius:6px; border:1px solid #dde3ed;">
+      <div class="photo-caption">間取り図（全体）</div>
+    </div>
+    <div>
+      <img
+        src="https://drive.google.com/thumbnail?id=1R75p4VK9kFy-7QSXzDf-kQMjawYkUwdS&sz=w800"
+        onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1R75p4VK9kFy-7QSXzDf-kQMjawYkUwdS'"
+        alt="物件写真"
+        style="width:100%; height:220px; object-fit:cover; border-radius:6px; border:1px solid #dde3ed;">
+      <div class="photo-caption">物件写真</div>
+    </div>
+  </div>
+
+  <!-- 特記事項 -->
+  <div style="margin-top:14px;">
+    <div class="section-title">▌ 特記事項</div>
+    <div class="note-box avoid-break">
+      <p style="font-weight:700; margin-bottom:6px; color:#1A365D;">■ 登記・法的事項</p>
+      <p>・各区分ごとに登記されております。</p>
+      <p>・建物①（共同住宅：406.30㎡、10戸）と建物②（共同住宅・事務所・店舗：764.78㎡、14戸）の2棟で構成されております。</p>
+    </div>
+    <div class="caution-box avoid-break" style="margin-top:8px;">
+      <p style="font-weight:700; margin-bottom:4px;">■ ご注意事項</p>
+      <p>※本資料は情報提供を目的として作成したものであり、収益・利回りを保証するものではありません。物件の現況・詳細はご自身で現地確認をお願いします。</p>
+      <p>※記載数値は資料作成時点のものであり、変更になる場合があります。</p>
+      <p>※投資判断の際は、税理士・不動産の専門家にご相談ください。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 5: LINEチラシ -->
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+  <div class="line-page">
+    <div class="line-badge">🔒 未公開プレミアム不動産情報</div>
+    <div class="line-main-title">LINE友だち限定<br>未公開物件を先行公開</div>
+    <div class="line-sub-title" style="margin-bottom:16px;">高利回り・厳選物件を投資家の皆様にいち早くお届けします</div>
+
+    <div class="line-content">
+      <div class="line-features">
+        <h3>🏆 LINE友だち特典</h3>
+        <ul>
+          <li>未公開物件の優先案内（市場流通前）</li>
+          <li>表面利回り10%超の厳選物件情報</li>
+          <li>無料物件査定・投資相談</li>
+          <li>最新市場動向レポートの配信</li>
+          <li>専属担当者による個別サポート</li>
+        </ul>
+      </div>
+      <div class="line-qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq"
+             alt="LINE QR" style="width:100px; height:100px; border-radius:4px;">
+        <p>QRコードを読み取り</p>
+      </div>
+    </div>
+
+    <a href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq"
+       target="_blank" class="line-btn">
+      ＋ LINE友だちになる
+    </a>
+
+    <div class="line-note">
+      株式会社リアテクス｜TEL: 03-6822-7297｜satsuma@reatex.co.jp<br>
+      〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
