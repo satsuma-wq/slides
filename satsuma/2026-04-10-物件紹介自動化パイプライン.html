@@ -1144,6 +1144,19 @@
         📊 A列=1の行を抽出 → G列（ST）に応じて適切なスキルを起動 → 完了後A列を0に戻し二重実行を防止
       </div>
     </div>
+
+    <!-- Google Remote 監視 -->
+    <div style="text-align:center;margin-bottom:28px">
+      <div style="display:inline-flex;align-items:center;gap:12px;background:#fef3e2;border:2px dashed #f0a030;border-radius:12px;padding:12px 24px;max-width:720px">
+        <span style="font-size:32px">📱</span>
+        <div style="text-align:left">
+          <div style="font-size:12px;font-weight:700;color:#7a5000;margin-bottom:4px">Google Chrome リモートデスクトップで外出先からも監視</div>
+          <div style="font-size:11px;color:#8a6a30;line-height:1.6">
+            Mac mini（appurunoMac-mini.local）にリモート接続し、スマートフォンからパイプラインの進捗をリアルタイムで確認・操作が可能。外出中でもCowork画面を見ながら「販売マネージャー起動して」と指示を出せる。
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="arrow-down">↓</div>
 
     <!-- Steps -->
@@ -1536,6 +1549,59 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       TOKEN省エネ対策 4箇条
+  ══════════════════════════════════════════════════════════════ -->
+
+  <div class="section-title" style="margin-top:48px">トークン省エネ対策 4箇条</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:48px">
+
+    <!-- ① スキル保存は1日1回 -->
+    <div style="background:white;border-radius:12px;padding:22px;border:1px solid #e8ecf5;border-left:5px solid #2d5a9e;box-shadow:0 2px 10px rgba(26,54,93,0.06)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#1A365D,#2d5a9e);color:white;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0">1</div>
+        <div style="font-size:14px;font-weight:700;color:#1A365D">スキルの保存は1日1回に制限</div>
+      </div>
+      <div style="font-size:12.5px;color:#5a6a8a;line-height:1.7">
+        スキルファイルの頻繁な保存はトークンを大量消費する。更新は<strong style="color:#1A365D">1日1回の定期メンテナンス</strong>にとどめ、作業中の細かな修正は会話内メモで管理する。保存のたびにファイル全体の読み書きが発生するため、回数を減らすだけでトークンが大幅に節約できる。
+      </div>
+    </div>
+
+    <!-- ② スプシの無駄を削除 -->
+    <div style="background:white;border-radius:12px;padding:22px;border:1px solid #e8ecf5;border-left:5px solid #27a85f;box-shadow:0 2px 10px rgba(26,54,93,0.06)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#1a6e3c,#27a85f);color:white;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0">2</div>
+        <div style="font-size:14px;font-weight:700;color:#1a6e3c">スプレッドシートの無駄な行・列を削除</div>
+      </div>
+      <div style="font-size:12.5px;color:#5a6a8a;line-height:1.7">
+        GASシートリーダーで読み込む範囲を最小化する。<strong style="color:#1a6e3c">空白行・使わない列・過去の完了済み案件</strong>を定期的に削除またはアーカイブし、AIが読み込むデータ量そのものを減らす。A列=1の行に絞る差分実行との組み合わせで効果倍増。
+      </div>
+    </div>
+
+    <!-- ③ スキルを作りすぎない・長くしない -->
+    <div style="background:white;border-radius:12px;padding:22px;border:1px solid #e8ecf5;border-left:5px solid #6b2fa0;box-shadow:0 2px 10px rgba(26,54,93,0.06)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#6b2fa0,#9b4fd4);color:white;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0">3</div>
+        <div style="font-size:14px;font-weight:700;color:#6b2fa0">スキルは作りすぎない・長くしない</div>
+      </div>
+      <div style="font-size:12.5px;color:#5a6a8a;line-height:1.7">
+        スキルファイルは起動時に全文が読み込まれるため、<strong style="color:#6b2fa0">数が多いほど・長いほどトークンを消費</strong>する。1スキルは必要最小限の記述に絞り、重複する手順は共通化する。未使用スキルは無効化またはアーカイブして常時ロードされないようにする。
+      </div>
+    </div>
+
+    <!-- ④ 作業前に省エネ確認 -->
+    <div style="background:white;border-radius:12px;padding:22px;border:1px solid #e8ecf5;border-left:5px solid #DAA520;box-shadow:0 2px 10px rgba(26,54,93,0.06)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#b08600,#DAA520);color:white;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0">4</div>
+        <div style="font-size:14px;font-weight:700;color:#7a5000">作業前に「省エネできるか？」を確認</div>
+      </div>
+      <div style="font-size:12.5px;color:#5a6a8a;line-height:1.7">
+        パイプライン実行前に<strong style="color:#7a5000">「この作業で省エネできるポイントはないか？」</strong>をAI自身に問いかける運用を導入。不要なスキル読み込み・重複処理・過剰なChrome操作がないかを事前チェックし、実行計画を最適化してから着手する。
+      </div>
+    </div>
+
   </div>
 
   <!-- ══════════════════════════════════════════════════════════════
