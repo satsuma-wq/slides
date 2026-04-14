@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】 江戸川区西篠崎 木造2階建てアパート</title>
+<style>
+/* ========== RESET & BASE ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Meiryo', sans-serif;
+  font-size: 10pt;
+  color: #1A365D;
+  background: #f4f4f4;
+  line-height: 1.4;
+}
+
+/* ========== PAGE LAYOUT ========== */
+@page {
+  size: A4 landscape;
+  margin: 14mm 15mm;
+}
+@media print {
+  body { print-color-adjust: exact; -webkit-print-color-adjust: exact; background: white; }
+  .page-container { min-height: 182mm; }
+  .page-break { break-before: page; }
+  .rent-spec-banner { break-before: page; }
+  .avoid-break, .card, .kpi-grid, .investment-point, .env-card, .note-box, .caution-box { break-inside: avoid; }
+  .section-title, h2, h3 { break-after: avoid; }
+  table tr { break-inside: avoid; }
+  .header, .footer-band { break-before: avoid; }
+}
+
+.page-container {
+  width: 277mm;
+  margin: 0 auto;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+.page-wrapper {
+  width: 277mm;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* ========== HEADER ========== */
+.header {
+  background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+  border-bottom: 3px solid #DAA520;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-logo img {
+  height: 28px;
+  filter: brightness(0) invert(1);
+}
+.header-center {
+  flex: 1;
+  text-align: center;
+  color: white;
+}
+.header-property-name {
+  font-size: 14pt;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  color: #FFD700;
+}
+.header-sub {
+  font-size: 7.5pt;
+  color: rgba(255,255,255,0.75);
+  margin-top: 1px;
+  letter-spacing: 0.5px;
+}
+.header-right {
+  text-align: right;
+  color: rgba(255,255,255,0.85);
+  font-size: 7.5pt;
+  line-height: 1.5;
+  min-width: 110px;
+}
+.header-property-num {
+  font-size: 7pt;
+  color: rgba(255,255,255,0.6);
+  margin-top: 3px;
+}
+
+/* ========== HERO SECTION（ページ1） ========== */
+.hero-section {
+  display: grid;
+  grid-template-columns: 56% 44%;
+  gap: 0;
+  margin: 6px 0 5px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1.5px solid #DAA520;
+  min-height: 68mm;
+}
+.hero-left {
+  background: linear-gradient(150deg, #0b1e3a 0%, #1a365d 55%, #1e4a7a 100%);
+  padding: 10px 18px 10px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+.hero-right {
+  position: relative;
+  overflow: hidden;
+}
+.hero-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(1.15) contrast(1.05) saturate(1.1);
+}
+.hero-right-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  padding: 8px 10px 6px;
+  color: white;
+  font-size: 7pt;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.hero-tag {
+  display: inline-block;
+  font-size: 6.5pt;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #DAA520;
+  text-transform: uppercase;
+  background: rgba(218,165,32,0.12);
+  border: 1px solid rgba(218,165,32,0.4);
+  border-radius: 2px;
+  padding: 2px 7px;
+  margin-bottom: 5px;
+}
+.hero-metric { margin-bottom: 6px; }
+.hero-metric-label {
+  font-size: 7pt;
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 0;
+  line-height: 1.3;
+}
+.hero-metric-value {
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+.hero-v-red   { font-size: 32pt; color: #FF9500; text-shadow: 0 2px 12px rgba(255,149,0,0.55); }
+.hero-v-green { font-size: 32pt; color: #F5C518; text-shadow: 0 2px 12px rgba(245,197,24,0.5); }
+.hero-v-green-md { font-size: 20pt; color: #F5C518; }
+.hero-v-current {
+  font-size: 22pt; color: #FFD700; font-weight: 900;
+  line-height: 1; letter-spacing: -0.5px;
+  text-shadow: 0 1px 8px rgba(255,215,0,0.5);
+}
+.hero-current-box {
+  background: rgba(255,215,0,0.12);
+  border: 1px solid rgba(255,215,0,0.45);
+  border-radius: 4px;
+  padding: 4px 10px 5px;
+  margin-bottom: 5px;
+}
+.hero-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(218,165,32,0.5), transparent);
+  margin: 4px 0;
+}
+.hero-bottom-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+.hero-badge {
+  background: rgba(218,165,32,0.15);
+  border: 1px solid rgba(218,165,32,0.5);
+  border-radius: 10px;
+  padding: 2px 9px;
+  font-size: 7pt;
+  color: #DAA520;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ========== OVERVIEW TABLE（物件概要テーブル） ========== */
+.section-title {
+  background: #1A365D;
+  color: white;
+  font-size: 9pt;
+  font-weight: 700;
+  padding: 5px 12px;
+  letter-spacing: 1px;
+  border-radius: 3px 3px 0 0;
+  margin-top: 8px;
+}
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+  margin-bottom: 0;
+}
+.overview-table th, .overview-table td {
+  border: 1px solid #c8d8f8;
+  padding: 4px 8px;
+  vertical-align: top;
+}
+.overview-table th {
+  background: #E8F0FE;
+  color: #1A365D;
+  font-weight: 700;
+  width: 28%;
+  white-space: nowrap;
+}
+.overview-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.overview-block { width: 100%; }
+.price-highlight { color: #C41E3A; font-weight: 900; font-size: 12pt; }
+.yield-highlight { color: #1a7a1a; font-weight: 700; }
+.map-link { color: #2563EB; text-decoration: none; font-size: 7.5pt; }
+.map-link:hover { text-decoration: underline; }
+
+/* ========== FOOTER BAND ========== */
+.footer-band {
+  background: linear-gradient(135deg, #1a365d, #2d4a7a);
+  border-top: 2px solid #DAA520;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px;
+  margin-top: 8px;
+  border-radius: 0 0 4px 4px;
+  font-size: 7.5pt;
+}
+.footer-company { font-weight: 700; letter-spacing: 0.5px; }
+.footer-contact { font-size: 7pt; color: rgba(255,255,255,0.8); text-align: right; }
+.footer-note { font-size: 6.5pt; color: rgba(255,255,255,0.6); }
+
+/* ========== PAGE 2: RENT ROLL ========== */
+.rent-spec-banner {
+  background: linear-gradient(135deg, #1a365d, #2d4a7a);
+  color: #FFD700;
+  font-size: 11pt;
+  font-weight: 900;
+  padding: 7px 16px;
+  letter-spacing: 2px;
+  border-bottom: 2px solid #DAA520;
+  margin-bottom: 8px;
+}
+.lentroll-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8pt;
+  margin-bottom: 8px;
+}
+.lentroll-table th {
+  background: #1A365D;
+  color: white;
+  padding: 5px 6px;
+  text-align: center;
+  font-size: 7.5pt;
+  border: 1px solid #2d4a7a;
+}
+.lentroll-table td {
+  border: 1px solid #c8d8f8;
+  padding: 4px 6px;
+  text-align: center;
+  vertical-align: middle;
+}
+.lentroll-table tr:nth-child(even) td { background: #F0F5FF; }
+.lentroll-table .subtotal td {
+  background: #E8F0FE;
+  font-weight: 700;
+  border-top: 2px solid #1A365D;
+}
+.lentroll-table .total td {
+  background: #1A365D;
+  color: white;
+  font-weight: 700;
+  font-size: 8.5pt;
+  border-top: 2px solid #DAA520;
+}
+.status-occupied { background: #d4edda; color: #155724; border-radius: 3px; padding: 1px 5px; font-size: 7pt; font-weight: 700; }
+
+.income-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.summary-card {
+  background: linear-gradient(135deg, #1a365d, #2d4a7a);
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: white;
+  border: 1px solid #DAA520;
+}
+.summary-card-title { font-size: 7.5pt; color: rgba(255,255,255,0.7); margin-bottom: 4px; }
+.summary-card-value { font-size: 18pt; font-weight: 900; color: #FFD700; line-height: 1; }
+.summary-card-sub { font-size: 7pt; color: rgba(255,255,255,0.6); margin-top: 3px; }
+
+.expense-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.expense-table th {
+  background: #E8F0FE;
+  color: #1A365D;
+  padding: 5px 10px;
+  text-align: left;
+  font-weight: 700;
+  border: 1px solid #c8d8f8;
+}
+.expense-table td {
+  border: 1px solid #c8d8f8;
+  padding: 4px 10px;
+}
+.expense-table .th { background: #F8FAFF; font-weight: 600; width: 35%; }
+.expense-table .total-row td { background: #1A365D; color: white; font-weight: 700; }
+
+/* ========== PAGE 3: SIMULATION & POINTS ========== */
+.simulation-section { margin-bottom: 10px; }
+.finance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+  margin-bottom: 0;
+}
+.finance-table th {
+  background: #E8F0FE;
+  color: #1A365D;
+  padding: 5px 10px;
+  font-weight: 700;
+  border: 1px solid #c8d8f8;
+}
+.finance-table td {
+  border: 1px solid #c8d8f8;
+  padding: 4px 10px;
+}
+.finance-table .th { background: #F8FAFF; font-weight: 600; width: 38%; }
+.finance-table .subtotal { background: #E8F0FE; font-weight: 700; }
+.finance-table .highlight-row td { background: #FFF3CD; font-weight: 700; }
+
+.investment-point {
+  background: linear-gradient(135deg, #f8f4e8, #fff9ed);
+  border: 1.5px solid #DAA520;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+}
+.investment-point h3 {
+  color: #1A365D;
+  font-size: 9.5pt;
+  font-weight: 900;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #DAA520;
+}
+.points-list { list-style: none; padding: 0; }
+.points-list li {
+  padding: 3px 0 3px 18px;
+  position: relative;
+  font-size: 8.5pt;
+  line-height: 1.5;
+}
+.points-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: #DAA520;
+  font-size: 9pt;
+}
+
+.env-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 6px;
+}
+.env-card {
+  background: #F0F5FF;
+  border: 1px solid #c8d8f8;
+  border-radius: 5px;
+  padding: 7px 9px;
+  text-align: center;
+}
+.env-icon { font-size: 14pt; margin-bottom: 2px; }
+.env-label { font-size: 7pt; color: #666; }
+.env-value { font-size: 8pt; font-weight: 700; color: #1A365D; }
+
+/* ========== PAGE 4: PHOTOS & NOTES ========== */
+.photo-grid-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.photo-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.photo-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.photo-item {
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #c8d8f8;
+}
+.photo-item img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  display: block;
+}
+.photo-main img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+.photo-label {
+  background: #1A365D;
+  color: white;
+  font-size: 6.5pt;
+  padding: 2px 6px;
+  text-align: center;
+}
+
+.note-box {
+  background: #FFF8E1;
+  border: 1.5px solid #FFB300;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 8pt;
+  line-height: 1.7;
+  margin-top: 8px;
+}
+.note-box h4 {
+  color: #E65100;
+  font-size: 8.5pt;
+  font-weight: 700;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #FFB300;
+  padding-bottom: 3px;
+}
+.caution-box {
+  background: #FFF3CD;
+  border: 1.5px solid #DAA520;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 8pt;
+  line-height: 1.7;
+  margin-top: 6px;
+}
+
+/* ========== PAGE 5: LINE CHIRA ========== */
+.line-page {
+  background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+  min-height: 140mm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 18px 20px 14px;
+  text-align: center;
+  gap: 0;
+}
+.line-main-title {
+  font-size: 28pt;
+  font-weight: 900;
+  color: #1A365D;
+  text-shadow: 1px 2px 6px rgba(0,0,0,0.12);
+  letter-spacing: 2px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.line-sub-title {
+  font-size: 11pt;
+  color: #2d4a7a;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.line-content {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.line-features {
+  background: white;
+  border-radius: 10px;
+  padding: 14px 20px;
+  text-align: left;
+  min-width: 220px;
+  border: 2px solid #DAA520;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+.line-features h4 {
+  color: #1A365D;
+  font-size: 9.5pt;
+  font-weight: 900;
+  margin-bottom: 8px;
+  text-align: center;
+  border-bottom: 2px solid #DAA520;
+  padding-bottom: 5px;
+}
+.line-features ul { list-style: none; padding: 0; }
+.line-features li {
+  padding: 4px 0;
+  font-size: 9pt;
+  color: #1A365D;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  border-bottom: 1px solid #f0f0f0;
+}
+.line-features li:last-child { border-bottom: none; }
+.line-qr-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.line-qr-block img { border-radius: 6px; box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
+.line-qr-label { font-size: 8pt; color: #2d4a7a; font-weight: 700; }
+.line-btn {
+  display: inline-block;
+  background: #06C755;
+  color: white;
+  font-size: 14pt;
+  font-weight: 900;
+  padding: 12px 40px;
+  border-radius: 40px;
+  text-decoration: none;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 18px rgba(6,199,85,0.4);
+  margin-bottom: 16px;
+  transition: all 0.2s;
+}
+.line-note { font-size: 8pt; color: #2d4a7a; margin-top: 4px; }
+
+/* ========== RESPONSIVE ========== */
+@media screen and (max-width: 900px) {
+  .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+  .page-wrapper   { width: 100% !important; padding: 0 8px !important; }
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+  .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+  .header-property-name { font-size: 13pt; }
+  .hero-section { grid-template-columns: 1fr !important; }
+  .overview-two-col, .income-summary { grid-template-columns: 1fr !important; }
+  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-grid-main { grid-template-columns: 1fr !important; }
+  .photo-grid-4    { grid-template-columns: 1fr 1fr !important; }
+  .photo-grid-2    { grid-template-columns: 1fr !important; }
+  .line-page { padding: 20px 14px; min-height: unset; }
+  .line-content { flex-direction: column; gap: 14px; }
+  .line-main-title { font-size: 22pt; }
+  .line-btn { font-size: 13pt; padding: 12px 32px; }
+  .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+  .page-break, .rent-spec-banner { page-break-before: auto; break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+}
+@media screen and (max-width: 480px) {
+  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .header-property-name { font-size: 12pt; }
+  .line-main-title { font-size: 18pt; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1: 概要 ==================== -->
+<div class="page-container">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-logo">
+      <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+           onerror="this.style.display='none'" alt="REATEX">
+    </div>
+    <div class="header-center">
+      <div class="header-property-name">東京都江戸川区西篠崎 ｜ 木造2階建てアパート</div>
+      <div class="header-sub">都営新宿線「篠崎」駅 徒歩12分 ｜ 再建築不可 ｜ 現況満室</div>
+    </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <a href="https://drive.google.com/drive/folders/1vJX0aKTwDj-T_nvK_wPZXWCxS4N6r_xL" target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+      <div class="header-property-num">物件番号: p-4697</div>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション -->
+  <div class="hero-section">
+    <!-- 左：KPIハイライト -->
+    <div class="hero-left">
+      <div class="hero-tag">INVESTMENT PROPERTY ― 江戸川区西篠崎 ｜ 物件番号：p-4697</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:4px;">
+        <div>
+          <div class="hero-metric-label">表面利回り（満室想定）</div>
+          <div class="hero-metric-value hero-v-green">11.03%</div>
+        </div>
+        <div class="hero-current-box">
+          <div class="hero-metric-label" style="color:rgba(255,215,0,0.7);">現況利回り（満室稼働中）</div>
+          <div class="hero-metric-value hero-v-current">11.03%</div>
+          <div style="font-size:6.5pt; color:rgba(255,215,0,0.6); margin-top:1px;">1F・2F 全室稼働中</div>
+        </div>
+      </div>
+      <div class="hero-divider"></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+        <div>
+          <div class="hero-metric-label">販売価格</div>
+          <div class="hero-metric-value hero-v-red">1,175万円</div>
+        </div>
+        <div>
+          <div class="hero-metric-label">土地積算比率</div>
+          <div class="hero-metric-value hero-v-green-md">土地積算 71.3%</div>
+          <div style="font-size:6.5pt; color:rgba(255,255,255,0.5); margin-top:1px;">土地価値838万円 vs 販売価格1,175万円</div>
+        </div>
+      </div>
+      <div class="hero-bottom-row">
+        <span class="hero-badge">📍 篠崎駅 徒歩12分</span>
+        <span class="hero-badge">🏠 1F+2F 計2室</span>
+        <span class="hero-badge">⏱ 回収期間 約9.6年</span>
+        <span class="hero-badge">🚂 都営新宿線 新宿直通</span>
+      </div>
+    </div>
+    <!-- 右：外観写真 -->
+    <div class="hero-right">
+      <img src="https://drive.google.com/thumbnail?id=1MJ12Y2kEZY6cGcGKjM6IDUfYqD4iIxuf&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1MJ12Y2kEZY6cGcGKjM6IDUfYqD4iIxuf'"
+           alt="外観写真">
+      <div class="hero-right-overlay">外観 ｜ 江戸川区西篠崎2丁目21-13</div>
+    </div>
+  </div>
+
+  <!-- 物件概要テーブル -->
+  <div class="avoid-break">
+    <div class="section-title">■ 物件概要</div>
+    <div class="overview-two-col">
+      <table class="overview-table">
+        <tr>
+          <th>所在地</th>
+          <td>
+            東京都江戸川区西篠崎2丁目21-13<br>
+            <a class="map-link" href="https://maps.google.com/?q=東京都江戸川区西篠崎2丁目21-13" target="_blank">📍 Googleマップで確認</a>
+          </td>
+        </tr>
+        <tr><th>交通</th><td>都営新宿線「篠崎」駅 徒歩12分</td></tr>
+        <tr><th>物件種別</th><td>1棟アパート（木造2階建て）</td></tr>
+        <tr><th>構造</th><td>木造2階建て</td></tr>
+        <tr><th>総室数</th><td>2室（1階・2階 各1室）</td></tr>
+        <tr>
+          <th>売買価格</th>
+          <td><span class="price-highlight">1,175万円</span><br><span style="font-size:7.5pt; color:#666;">（内、建物価格 79万円）</span></td>
+        </tr>
+        <tr><th>表面利回り</th><td><span class="yield-highlight">11.03%</span>（満室想定収入より）</td></tr>
+        <tr><th>現況利回り</th><td><span class="yield-highlight">11.03%</span>（現況満室稼働中）</td></tr>
+      </table>
+      <table class="overview-table">
+        <tr><th>築年月</th><td>1967年6月（昭和42年6月）・築58年</td></tr>
+        <tr><th>土地面積</th><td>55.50㎡（16.79坪）　※公簿</td></tr>
+        <tr><th>延床面積</th><td>39.65㎡（11.99坪）　※公簿</td></tr>
+        <tr><th>都市計画</th><td>市街化区域・第二種低層住居専用地域</td></tr>
+        <tr><th>建ぺい率/容積率</th><td>40% ／ 80%</td></tr>
+        <tr>
+          <th>路線価（固定資産税）</th>
+          <td>151,000円/㎡<br><span style="font-size:7.5pt; color:#666;">土地固定資産評価額 5,182,120円</span></td>
+        </tr>
+        <tr>
+          <th>土地積算価格</th>
+          <td>8,380,500円<br><span style="font-size:7.5pt; color:#666;">対売価比 71.3%（151,000×55.50㎡）</span></td>
+        </tr>
+        <tr>
+          <th>再調達価格</th>
+          <td>4,758,000円<br><span style="font-size:7.5pt; color:#666;">木造12万円/㎡ × 39.65㎡</span></td>
+        </tr>
+        <tr>
+          <th>残存耐用年数</th>
+          <td><strong>0年（超過）</strong><br><span style="font-size:7.5pt; color:#666;">法定耐用年数22年、築58年</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div>
+      <div class="footer-company">株式会社リアテクス</div>
+      <div class="footer-note">〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506</div>
+    </div>
+    <div class="footer-note">本資料は物件概要書であり宅建業法による重要事項ではありません。情報流出厳禁。</div>
+    <div class="footer-contact">TEL: 03-6822-7297</div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 2: レントロール ==================== -->
+<div class="page-wrapper">
+  <div class="rent-spec-banner">賃料一覧表（レントロール）｜ 江戸川区西篠崎2丁目21-13</div>
+
+  <div class="avoid-break">
+    <div class="section-title">■ テナント状況一覧</div>
+    <table class="lentroll-table">
+      <thead>
+        <tr>
+          <th>部屋</th>
+          <th>利用状況</th>
+          <th>間取り</th>
+          <th>賃料（円）</th>
+          <th>共益費（円）</th>
+          <th>月額合計（円）</th>
+          <th>年間収入（円）</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1階</td>
+          <td><span class="status-occupied">賃貸中</span></td>
+          <td>-</td>
+          <td style="text-align:right;">53,000</td>
+          <td style="text-align:right;">5,000</td>
+          <td style="text-align:right; font-weight:700;">58,000</td>
+          <td style="text-align:right;">696,000</td>
+          <td style="font-size:7pt;">生活保護受給者<br>安否確認サービス月2,200円（入居者負担）</td>
+        </tr>
+        <tr>
+          <td>2階</td>
+          <td><span class="status-occupied">賃貸中</span></td>
+          <td>-</td>
+          <td style="text-align:right;">50,000</td>
+          <td style="text-align:right;">-</td>
+          <td style="text-align:right; font-weight:700;">50,000</td>
+          <td style="text-align:right;">600,000</td>
+          <td style="font-size:7pt;"></td>
+        </tr>
+        <tr class="subtotal">
+          <td colspan="3" style="text-align:center;">合 計</td>
+          <td style="text-align:right;">103,000</td>
+          <td style="text-align:right;">5,000</td>
+          <td style="text-align:right; color:#C41E3A;">108,000</td>
+          <td style="text-align:right; color:#C41E3A;">1,296,000</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="income-summary avoid-break" style="margin-top:8px;">
+    <div class="summary-card">
+      <div class="summary-card-title">現況月額収入</div>
+      <div class="summary-card-value">108,000円</div>
+      <div class="summary-card-sub">年間 1,296,000円（現況利回り 11.03%）</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-card-title">満室想定月額収入</div>
+      <div class="summary-card-value">108,000円</div>
+      <div class="summary-card-sub">年間 1,296,000円（表面利回り 11.03%）</div>
+    </div>
+  </div>
+
+  <div class="avoid-break" style="margin-top:8px;">
+    <div class="section-title">■ 年間支出（元データ記載項目のみ）</div>
+    <table class="expense-table">
+      <thead>
+        <tr>
+          <th>費目</th>
+          <th>月額</th>
+          <th>年間金額</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="th">固定資産税・都市計画税</td>
+          <td style="text-align:right;">1,433円</td>
+          <td style="text-align:right;">17,200円</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="th">安否確認サービス会社支払い</td>
+          <td style="text-align:right;">1,738円</td>
+          <td style="text-align:right;">20,856円</td>
+          <td style="font-size:7.5pt;">1F高齢入居者の安否確認サービス（オーナー負担分）</td>
+        </tr>
+        <tr>
+          <td class="th">水道代</td>
+          <td style="text-align:right;">3,124円</td>
+          <td style="text-align:right;">37,488円</td>
+          <td></td>
+        </tr>
+        <tr class="total-row">
+          <td><strong>年間支出合計</strong></td>
+          <td style="text-align:right; font-weight:700;"></td>
+          <td style="text-align:right; font-weight:700;">75,544円</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="font-size:7pt; color:#666; margin-top:4px; padding: 0 4px;">
+      ※ 管理費・修繕積立金は元データに記載がないため省略。上記は元資料記載の費目のみを計上。
+    </div>
+  </div>
+
+  <div style="background:#F0F5FF; border:1px solid #c8d8f8; border-radius:5px; padding:8px 12px; margin-top:8px; font-size:8pt;">
+    <strong>【特記】</strong> 1F入居者（高齢者）：「生きてるかチェックサービス」を利用。入居者が月2,200円負担→オーナーがサービス会社に月1,738円を支払う（差額462円は入居者負担）。
+    令和7年12月、白蟻被害の駆除・修補工事完了済み（改修工事資料参照）。
+  </div>
+</div>
+
+<!-- ==================== PAGE 3: 収支シミュレーション ==================== -->
+<div class="page-wrapper page-break">
+  <div style="background:linear-gradient(135deg,#1a365d,#2d4a7a); color:#FFD700; font-size:11pt; font-weight:900; padding:7px 16px; letter-spacing:2px; border-bottom:2px solid #DAA520; margin-bottom:8px;">
+    収支シミュレーション ＆ 投資ポイント ｜ 江戸川区西篠崎2丁目21-13
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+    <!-- 左：収支シミュレーション -->
+    <div>
+      <div class="avoid-break">
+        <div class="section-title">■ 収支シミュレーション</div>
+        <table class="finance-table">
+          <thead>
+            <tr>
+              <th colspan="2" style="text-align:left;">年間収支</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="th">年間満室想定収入</td><td>1,296,000円（月108,000円）</td></tr>
+            <tr><td class="th">　うち賃料計</td><td>1,236,000円（年）</td></tr>
+            <tr><td class="th">　うち共益費計</td><td>60,000円（年）</td></tr>
+            <tr class="subtotal"><td class="th">年間支出合計</td><td>▲75,544円</td></tr>
+            <tr><td class="th">　固定資産税・都市計画税</td><td>▲17,200円</td></tr>
+            <tr><td class="th">　安否確認サービス支払い</td><td>▲20,856円</td></tr>
+            <tr><td class="th">　水道代</td><td>▲37,488円</td></tr>
+            <tr class="highlight-row">
+              <td class="th"><strong>NOI（純収益）</strong></td>
+              <td><strong style="color:#1a7a1a; font-size:10.5pt;">1,220,456円/年</strong></td>
+            </tr>
+            <tr><td class="th">表面利回り（GY）</td><td>11.03%</td></tr>
+            <tr><td class="th">現況利回り</td><td>11.03%</td></tr>
+            <tr><td class="th">NOI利回り（CCR）</td><td>10.39%（NOI÷販売価格）</td></tr>
+            <tr><td class="th">投資回収期間</td><td>約9.6年（販売価格÷NOI）</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:7pt; color:#666; margin-top:3px; padding:0 4px;">
+          ※NOI = 年間収入 - 元データ記載の費用（管理費・修繕積立は元データに記載なし）
+        </div>
+      </div>
+
+      <div class="avoid-break" style="margin-top:8px;">
+        <div class="section-title">■ 積算評価まとめ</div>
+        <table class="finance-table">
+          <tbody>
+            <tr>
+              <td class="th">土地積算評価</td>
+              <td>8,380,500円<br><span style="font-size:7.5pt; color:#666;">固定資産税路線価151,000円/㎡ × 55.50㎡</span></td>
+            </tr>
+            <tr>
+              <td class="th">再調達価格（建物）</td>
+              <td>4,758,000円<br><span style="font-size:7.5pt; color:#666;">木造12万円/㎡ × 39.65㎡</span></td>
+            </tr>
+            <tr>
+              <td class="th">残存耐用年数</td>
+              <td><strong>0年（超過）</strong> ／ 法定22年、築58年</td>
+            </tr>
+            <tr class="highlight-row">
+              <td class="th">土地積算比率</td>
+              <td><strong style="color:#1a7a1a;">71.3%</strong>（土地838万円÷販売価格1,175万円）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 右：投資ポイント＋周辺環境 -->
+    <div>
+      <div class="investment-point avoid-break">
+        <h3>🌟 投資ポイント</h3>
+        <ul class="points-list">
+          <li>都営新宿線「篠崎」駅から徒歩12分。新宿方面へ乗り換えなしでアクセスでき、都心就業者の入居需要が高い。</li>
+          <li>現況満室（2室稼働中）で、購入翌月から安定した家賃収入を得られる。3月末時点で満室確定。</li>
+          <li>表面利回り11.03%・NOI利回り10.39%と高水準。投資回収期間は約9.6年。</li>
+          <li>白蟻被害は令和7年12月に駆除・修補工事完了済み。大規模修繕の予定はなく、当面の追加コスト不要。</li>
+          <li>土地積算評価838万円（対売価比71.3%）で土地価値がある程度担保された物件。</li>
+          <li>周辺は住宅地に囲まれた落ち着いた環境で、長期入居が期待できるエリア。</li>
+        </ul>
+      </div>
+
+      <div class="avoid-break" style="margin-top:10px;">
+        <div class="section-title">■ 周辺環境</div>
+        <div class="env-grid">
+          <div class="env-card">
+            <div class="env-icon">🚉</div>
+            <div class="env-value">篠崎駅</div>
+            <div class="env-label">都営新宿線（徒歩12分）</div>
+          </div>
+          <div class="env-card">
+            <div class="env-icon">🏙️</div>
+            <div class="env-value">新宿方面直通</div>
+            <div class="env-label">乗り換えなしで都心へ</div>
+          </div>
+          <div class="env-card">
+            <div class="env-icon">🏡</div>
+            <div class="env-value">住宅地</div>
+            <div class="env-label">周辺は静かな住宅環境</div>
+          </div>
+          <div class="env-card">
+            <div class="env-icon">📍</div>
+            <div class="env-value">江戸川区</div>
+            <div class="env-label">東京都東部・下町エリア</div>
+          </div>
+          <div class="env-card">
+            <div class="env-icon">🔒</div>
+            <div class="env-value">安定エリア</div>
+            <div class="env-label">賃貸需要が比較的安定</div>
+          </div>
+          <div class="env-card">
+            <div class="env-icon">🚗</div>
+            <div class="env-value">前面道路</div>
+            <div class="env-label">南側私道 幅員約4m</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 4: 写真 ==================== -->
+<div class="page-wrapper page-break">
+  <div style="background:linear-gradient(135deg,#1a365d,#2d4a7a); color:#FFD700; font-size:11pt; font-weight:900; padding:7px 16px; letter-spacing:2px; border-bottom:2px solid #DAA520; margin-bottom:8px;">
+    物件写真 ＆ 特記事項 ｜ 江戸川区西篠崎2丁目21-13
+  </div>
+
+  <div class="section-title">■ 物件写真</div>
+  <div class="photo-grid-main" style="margin-top:6px;">
+    <div class="photo-item photo-main">
+      <img src="https://drive.google.com/thumbnail?id=1MJ12Y2kEZY6cGcGKjM6IDUfYqD4iIxuf&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1MJ12Y2kEZY6cGcGKjM6IDUfYqD4iIxuf'"
+           alt="外観写真">
+      <div class="photo-label">外観</div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:6px;">
+      <div class="photo-item" style="flex:1;">
+        <img src="https://drive.google.com/thumbnail?id=1Eac-ZE6aOsIPptHGw3RLpJ_6bqSEDOIz&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Eac-ZE6aOsIPptHGw3RLpJ_6bqSEDOIz'"
+             alt="写真1" style="width:100%; height:86px; object-fit:cover; display:block;">
+        <div class="photo-label">周辺・地図①</div>
+      </div>
+      <div class="photo-item" style="flex:1;">
+        <img src="https://drive.google.com/thumbnail?id=1gir3x3GrBSjedQoZ_at21r2unKSG1A2i&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1gir3x3GrBSjedQoZ_at21r2unKSG1A2i'"
+             alt="写真2" style="width:100%; height:86px; object-fit:cover; display:block;">
+        <div class="photo-label">周辺・地図②</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="photo-grid-2" style="margin-top:6px;">
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=18ZN6WkevbR7Lr4sP-brbd899pbWhjcEs&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/18ZN6WkevbR7Lr4sP-brbd899pbWhjcEs'"
+           alt="写真3" style="width:100%; height:100px; object-fit:cover; display:block;">
+      <div class="photo-label">周辺・地図③</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://lh3.googleusercontent.com/p/AF1QipMH_rHxU_dqMn6Ac_RKaFfRqG3Ywz2aJhkz8DfA=s1360-w1360-h1020"
+           onerror="this.onerror=null; this.style.display='none'"
+           alt="地図画像" style="width:100%; height:100px; object-fit:cover; display:block;">
+      <div class="photo-label">周辺環境</div>
+    </div>
+  </div>
+
+  <div class="note-box avoid-break">
+    <h4>📋 特記事項・注意事項</h4>
+    <ul style="list-style:none; padding:0; margin:0;">
+      <li style="padding:3px 0; border-bottom:1px solid #FFD54F; font-size:8pt;">
+        ⚠️ <strong>再建築不可</strong>（前面道路：南側私道、幅員約4m・接道約1.5m）
+      </li>
+      <li style="padding:3px 0; border-bottom:1px solid #FFD54F; font-size:8pt;">
+        ✅ 白蟻被害：過去に被害有。令和7年12月に駆除・修補工事完了済み（改修工事資料参照）
+      </li>
+      <li style="padding:3px 0; border-bottom:1px solid #FFD54F; font-size:8pt;">
+        👴 1F入居者（高齢者）：「生きてるかチェックサービス」利用中。入居者負担2,200円/月、オーナー支払い1,738円/月
+      </li>
+      <li style="padding:3px 0; border-bottom:1px solid #FFD54F; font-size:8pt;">
+        📄 現況引き渡し、公簿売買
+      </li>
+      <li style="padding:3px 0; font-size:8pt;">
+        🔒 本資料は物件概要書であり宅建業法による重要事項ではありません。情報流出厳禁。
+      </li>
+    </ul>
+  </div>
+
+  <div class="caution-box avoid-break">
+    <strong style="color:#E65100;">【その他制限事項】</strong>
+    準防火地域 ／ 高度地区（第一種） ／ 景観法 ／ 航空法 ／ 宅地造成及び特定盛土等規制法
+  </div>
+</div>
+
+<!-- ==================== PAGE 5: LINEチラシ ==================== -->
+<div class="page-wrapper page-break">
+  <div class="line-page">
+    <div class="line-main-title">未公開プレミアム不動産</div>
+    <div class="line-sub-title">LINE登録で最新物件情報をいち早くお届けします</div>
+
+    <div class="line-content">
+      <div class="line-features">
+        <h4>📌 会員限定の特典</h4>
+        <ul>
+          <li>🏠 市場未公開の高利回り物件情報</li>
+          <li>📊 詳細な収支シミュレーション付き</li>
+          <li>⚡ 新着物件をLINEでいち早く通知</li>
+          <li>👥 不動産投資の専門家に直接相談</li>
+          <li>🎯 あなたの条件に合った物件をご提案</li>
+        </ul>
+      </div>
+      <div class="line-qr-block">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq"
+             alt="LINE QR" style="width:110px; height:110px; border-radius:6px; box-shadow:0 2px 12px rgba(0,0,0,0.15);">
+        <div class="line-qr-label">QRコードをスキャン</div>
+      </div>
+    </div>
+
+    <a href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq"
+       class="line-btn" target="_blank">
+      LINE 友だち追加 ▶
+    </a>
+
+    <div class="line-note">
+      ※ 株式会社リアテクス公式LINEアカウント<br>
+      TEL: 03-6822-7297 ｜ 〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
