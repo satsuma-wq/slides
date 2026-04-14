@@ -253,6 +253,163 @@
       border-radius: 4px;
     }
 
+    /* ===== STOCK SECTION ===== */
+    .stock-section {
+      margin-bottom: 40px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-number span {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-light);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .stock-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .stock-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stock-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    }
+
+    .stock-type-bar {
+      padding: 7px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: white;
+    }
+
+    .type-mansion { background: #2563eb; }
+    .type-apart   { background: #7c3aed; }
+    .type-kodate  { background: #059669; }
+    .type-land    { background: #b45309; }
+
+    .stock-body {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .stock-address {
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .stock-price {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .stock-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .meta-chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--bg);
+      color: var(--text-light);
+    }
+
+    .meta-chip.yield-high {
+      background: #fef2f2;
+      color: #dc2626;
+    }
+
+    .stock-link {
+      display: block;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      padding: 10px;
+      border-top: 1px solid var(--border);
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .stock-link:hover {
+      background: #fff5f3;
+    }
+
+    .stock-more-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--primary);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .stock-more-btn:hover {
+      background: #253d5e;
+    }
+
     /* ===== LAND SECTION ===== */
     .land-section {
       background: var(--white);
@@ -417,6 +574,8 @@
       .land-area:first-child { border-right: none; border-bottom: 1px solid var(--border); }
       .summary-inner { padding: 12px 16px; gap: 12px; }
       .footer-link-section { flex-direction: column; align-items: flex-start; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .stock-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -547,6 +706,167 @@
     </div>
 
   </div><!-- /cards-grid -->
+
+  <!-- ===== STOCK ===== -->
+  <p class="section-title">現在の取扱物件</p>
+
+  <div class="stock-section">
+
+    <!-- 統計サマリー -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-number">49<span>件</span></div>
+        <div class="stat-label">取扱物件数</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">12<span>件</span></div>
+        <div class="stat-label">一棟売りアパート</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">7<span>件</span></div>
+        <div class="stat-label">一棟マンション</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">10<span>件</span></div>
+        <div class="stat-label">土地</div>
+      </div>
+    </div>
+
+    <!-- 物件カード（代表8件） -->
+    <div class="stock-grid">
+
+      <div class="stock-item">
+        <div class="stock-type-bar type-mansion">一棟マンション</div>
+        <div class="stock-body">
+          <div class="stock-address">山口県下関市豊浦町大字川棚</div>
+          <div class="stock-price">8,500万円</div>
+          <div class="stock-meta">
+            <span class="meta-chip">築33年</span>
+            <span class="meta-chip yield-high">表面利回り 14.01%</span>
+            <span class="meta-chip">No. p-86</span>
+          </div>
+        </div>
+        <a class="stock-link" href="https://qrcd.org/9IrA" target="_blank">詳細を見る →</a>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-type-bar type-apart">一棟売りアパート</div>
+        <div class="stock-body">
+          <div class="stock-address">山口県下関市椋野町1丁目11-7</div>
+          <div class="stock-price">370万円</div>
+          <div class="stock-meta">
+            <span class="meta-chip">築57年</span>
+            <span class="meta-chip yield-high">表面利回り 59.68%</span>
+            <span class="meta-chip">No. P-594</span>
+          </div>
+        </div>
+        <a class="stock-link" href="https://qrcd.org/9Sps" target="_blank">詳細を見る →</a>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-type-bar type-mansion">一棟マンション</div>
+        <div class="stock-body">
+          <div class="stock-address">岡山県倉敷市児島唐琴2丁目3-23</div>
+          <div class="stock-price">692万円</div>
+          <div class="stock-meta">
+            <span class="meta-chip">築54年</span>
+            <span class="meta-chip yield-high">表面利回り 42.90%</span>
+            <span class="meta-chip">No. p-776</span>
+          </div>
+        </div>
+        <a class="stock-link" href="https://qrcd.org/9oVn" target="_blank">詳細を見る →</a>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-type-bar type-apart">一棟売りアパート</div>
+        <div class="stock-body">
+          <div class="stock-address">北海道岩見沢市上幌向南一條3-1250-15</div>
+          <div class="stock-price">627万円</div>
+          <div class="stock-meta">
+            <span class="meta-chip">築49年</span>
+            <span class="meta-chip yield-high">表面利回り 31.58%</span>
+            <span class="meta-chip">No. p-71</span>
+          </div>
+        </div>
+        <a class="stock-link" href="https://x.gd/aKGf4" target="_blank">詳細を見る →</a>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-type-bar type-mansion">一棟マンション</div>
+        <div class="stock-body">
+          <div class="stock-address">山形県酒田市山居町二丁目13番31号</div>
+          <div class="stock-price">5,000万円</div>
+          <div class="stock-meta">
+            <span class="meta-chip">築47年</span>
+            <span class="meta-chip yield-high">表面利回り 20.06%</span>
+            <span class="meta-chip">No. p-1090</span>
+          </div>
+        </div>
+        <a class="stock-link" href="https://qrcd.org/9six" target="_blank">詳細を見る →</a>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-type-bar type-apart">一棟売りアパート</div>
+        <div class="stock-body">
+          <div class="stock-address">広島県広島市安芸区上瀬野1-26-29</div>
+          <div class="stock-price">560万円</div>
+          <div class="stock-meta">
+            <span class="meta-chip">築51年</span>
+            <span class="meta-chip yield-high">表面利回り 26.53%</span>
+            <span class="meta-chip">No. p-1561</span>
+          </div>
+        </div>
+        <a class="stock-link" href="https://qrcd.org/9iyn" target="_blank">詳細を見る →</a>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-type-bar type-kodate">OC戸建</div>
+        <div class="stock-body">
+          <div class="stock-address">福岡県八女市黒木町今字法釈寺1132-11</div>
+          <div class="stock-price">182万円</div>
+          <div class="stock-meta">
+            <span class="meta-chip">築71年</span>
+            <span class="meta-chip yield-high">表面利回り 25.09%</span>
+            <span class="meta-chip">No. p-263</span>
+          </div>
+        </div>
+        <a class="stock-link" href="https://qrcd.org/9RHC" target="_blank">詳細を見る →</a>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-type-bar type-apart">一棟売りアパート</div>
+        <div class="stock-body">
+          <div class="stock-address">三重県南牟婁郡紀宝町</div>
+          <div class="stock-price">728万円</div>
+          <div class="stock-meta">
+            <span class="meta-chip">築46年</span>
+            <span class="meta-chip yield-high">表面利回り 67.58%</span>
+            <span class="meta-chip">No. P-2316</span>
+          </div>
+        </div>
+        <a class="stock-link" href="https://qrcd.org/9npd" target="_blank">詳細を見る →</a>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-type-bar type-kodate">空室戸建</div>
+        <div class="stock-body">
+          <div class="stock-address">東京都世田谷区鎌田2丁目5番12</div>
+          <div class="stock-price">1,550万円</div>
+          <div class="stock-meta">
+            <span class="meta-chip yield-high">表面利回り 14.01%</span>
+            <span class="meta-chip">No. p-3373</span>
+          </div>
+        </div>
+        <a class="stock-link" href="https://x.gd/NicOU" target="_blank">詳細を見る →</a>
+      </div>
+
+    </div>
+
+    <a class="stock-more-btn" href="https://reatex-customer-site.vercel.app/stock" target="_blank">
+      全49件の物件を見る →
+    </a>
+
+  </div>
 
   <!-- ===== LAND ===== -->
   <p class="section-title">土地仕入れ条件</p>
