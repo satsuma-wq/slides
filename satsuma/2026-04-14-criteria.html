@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>物件買取クライテリア｜株式会社リアテクス</title>
+  <style>
+    :root {
+      --primary: #1a2e4a;
+      --accent: #e85d2f;
+      --accent-light: #f5a082;
+      --bg: #f4f6f9;
+      --white: #ffffff;
+      --text: #2d3748;
+      --text-light: #718096;
+      --border: #e2e8f0;
+      --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: var(--primary);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 280px;
+      height: 280px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.12;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: 30%;
+      width: 180px;
+      height: 180px;
+      background: var(--accent-light);
+      border-radius: 50%;
+      opacity: 0.08;
+    }
+
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 32px 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .company-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 4px 12px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    header h1 span {
+      color: var(--accent-light);
+    }
+
+    .header-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ===== SUMMARY CHIPS ===== */
+    .summary-bar {
+      background: white;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 16px 32px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .chip-icon {
+      font-size: 18px;
+    }
+
+    .chip strong {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .chip-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+    }
+
+    /* ===== MAIN ===== */
+    main {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 32px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ===== CARDS GRID ===== */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .card-header {
+      background: var(--primary);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-icon {
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .card-title {
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .card-body {
+      padding: 20px 24px;
+    }
+
+    .row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .row:first-child {
+      padding-top: 0;
+    }
+
+    .row-label {
+      color: var(--text-light);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      min-width: 90px;
+      padding-top: 2px;
+    }
+
+    .row-value {
+      color: var(--text);
+      font-weight: 500;
+      flex: 1;
+    }
+
+    .badge-yield {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), #c0392b);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    /* ===== LAND SECTION ===== */
+    .land-section {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .land-header {
+      background: var(--primary);
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .land-header-icon {
+      font-size: 28px;
+    }
+
+    .land-header-title {
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .land-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .land-area {
+      padding: 24px 28px;
+    }
+
+    .land-area:first-child {
+      border-right: 1px solid var(--border);
+    }
+
+    .land-area-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+
+    .land-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 8px 0;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .land-row:last-child {
+      border-bottom: none;
+    }
+
+    .land-label {
+      color: var(--text-light);
+      font-size: 12px;
+      font-weight: 600;
+      min-width: 80px;
+      padding-top: 1px;
+    }
+
+    .land-value {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-link-section {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--border);
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link-text h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .footer-link-text p {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      background: #c0392b;
+      transform: translateY(-1px);
+    }
+
+    footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      padding: 32px;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    footer .footer-company {
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    footer .footer-info {
+      margin-bottom: 4px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .header-inner { padding: 28px 20px; }
+      header h1 { font-size: 22px; }
+      main { padding: 0 16px; margin: 24px auto; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .land-grid { grid-template-columns: 1fr; }
+      .land-area:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+      .summary-inner { padding: 12px 16px; gap: 12px; }
+      .footer-link-section { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+    <div class="company-badge">株式会社リアテクス</div>
+    <h1>物件買取 <span>クライテリア</span></h1>
+    <p class="header-sub">不動産業界のブラックボックスを壊す — Reatex Inc.</p>
+  </div>
+</header>
+
+<!-- ===== SUMMARY BAR ===== -->
+<div class="summary-bar">
+  <div class="summary-inner">
+    <div class="chip">
+      <span class="chip-icon">🗾</span>
+      <span>対応エリア：<strong>全国</strong></span>
+    </div>
+    <div class="chip-divider"></div>
+    <div class="chip">
+      <span class="chip-icon">🏠</span>
+      <span>種別：<strong>全て（マンション・アパート・戸建・土地など）</strong></span>
+    </div>
+    <div class="chip-divider"></div>
+    <div class="chip">
+      <span class="chip-icon">💴</span>
+      <span>予算：<strong>最大 約10億円まで対応可能</strong></span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<main>
+
+  <p class="section-title">物件種別ごとの買取基準</p>
+
+  <div class="cards-grid">
+
+    <!-- 築浅1棟マンション -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-icon">🏢</span>
+        <span class="card-title">築浅 1棟マンション</span>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <span class="row-label">利回り</span>
+          <span class="row-value"><span class="badge-yield">7〜15%</span></span>
+        </div>
+        <div class="row">
+          <span class="row-label">判断基準</span>
+          <span class="row-value">積算評価と収益性のバランス</span>
+        </div>
+        <div class="row">
+          <span class="row-label">備考</span>
+          <span class="row-value">詳細確認のため、情報提供を求む</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 築古1棟アパート・マンション（OC） -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-icon">🏚</span>
+        <span class="card-title">築古 1棟アパート・マンション<br><small style="font-weight:400;font-size:12px;opacity:0.85">（オーナーチェンジ）</small></span>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <span class="row-label">現況利回り</span>
+          <span class="row-value"><span class="badge-yield">14〜30%</span></span>
+        </div>
+        <div class="row">
+          <span class="row-label">築年数</span>
+          <span class="row-value">不問</span>
+        </div>
+        <div class="row">
+          <span class="row-label">価格調整要因</span>
+          <span class="row-value">エリア／土地値／再建築不可などの特殊条件も可能</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 地方築古（全空・再生系） -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-icon">🏘</span>
+        <span class="card-title">地方築古 アパート・マンション<br><small style="font-weight:400;font-size:12px;opacity:0.85">（全空・再生系）</small></span>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <span class="row-label">表面利回り</span>
+          <span class="row-value"><span class="badge-yield">20〜40%</span></span>
+        </div>
+        <div class="row">
+          <span class="row-label">築年数</span>
+          <span class="row-value">不問</span>
+        </div>
+        <div class="row">
+          <span class="row-label">調整要因</span>
+          <span class="row-value">土地値・再建築不可でも可能。エリア・駐車場有無・空室率を考慮</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 戸建て（OC） -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-icon">🏠</span>
+        <span class="card-title">戸建て<br><small style="font-weight:400;font-size:12px;opacity:0.85">（オーナーチェンジ）</small></span>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <span class="row-label">利回り</span>
+          <span class="row-value"><span class="badge-yield">13〜30%</span></span>
+        </div>
+        <div class="row">
+          <span class="row-label">築年数</span>
+          <span class="row-value">不問</span>
+        </div>
+        <div class="row">
+          <span class="row-label">価格調整要因</span>
+          <span class="row-value">エリア／土地値／再建築不可などの特殊条件</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cards-grid -->
+
+  <!-- ===== LAND ===== -->
+  <p class="section-title">土地仕入れ条件</p>
+
+  <div class="land-section">
+    <div class="land-header">
+      <span class="land-header-icon">🌏</span>
+      <span class="land-header-title">土地仕入れ条件</span>
+    </div>
+    <div class="land-grid">
+      <div class="land-area">
+        <div class="land-area-title">関東エリア（16号線内側）</div>
+        <div class="land-row">
+          <span class="land-label">用途</span>
+          <span class="land-value">新築AP用地<br>建物ボリューム 延床 180㎡以上</span>
+        </div>
+        <div class="land-row">
+          <span class="land-label">価格帯</span>
+          <span class="land-value">1,000万〜1.5億円</span>
+        </div>
+      </div>
+      <div class="land-area">
+        <div class="land-area-title">地方エリア（政令指定都市）</div>
+        <div class="land-row">
+          <span class="land-label">用途</span>
+          <span class="land-value">新築AP用地<br>建物ボリューム 延床 250㎡以上</span>
+        </div>
+        <div class="land-row">
+          <span class="land-label">価格帯</span>
+          <span class="land-value">1,000万〜1億円</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CTA: 在庫表 ===== -->
+  <p class="section-title">在庫一覧</p>
+
+  <div class="footer-link-section">
+    <div class="footer-link-text">
+      <h3>📋 現在の在庫物件一覧</h3>
+      <p>リアテクスが取り扱う最新の投資用不動産物件はこちらからご確認いただけます。</p>
+    </div>
+    <a class="btn-primary" href="https://reatex-customer-site.vercel.app/stock" target="_blank">
+      在庫表を見る →
+    </a>
+  </div>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p class="footer-company">株式会社リアテクス</p>
+  <p class="footer-info">〒141-0021 東京都品川区上大崎2-15-19 MG目黒駅前2階</p>
+  <p class="footer-info">
+    <a href="mailto:info@reatex.co.jp">info@reatex.co.jp</a>
+    　｜
+    <a href="https://reatex.co.jp/" target="_blank">reatex.co.jp</a>
+  </p>
+  <p style="margin-top:12px;">Copyright © 2024 Reatex Inc. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
