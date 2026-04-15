@@ -1,377 +1,414 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>【物件概要書】 千葉県香取市小見川 1棟マンション（店舗+レジ）</title>
-    <style>
-        /* ========== 印刷・レイアウト最適化（必須） ========== */
-        @page { size: A4 landscape; margin: 14mm 15mm; }
-
-        body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            color: #333;
-            margin: 0; padding: 0;
-            background-color: #fff;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-        }
-
-        .page-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-sizing: border-box;
-            padding: 0;
-            width: 100%;
-        }
-
-        @media print {
-            body {
-                print-color-adjust: exact;
-                -webkit-print-color-adjust: exact;
-            }
-            .page-container {
-                min-height: 182mm;
-            }
-            .page-break { break-before: page; }
-            .avoid-break, .card, .kpi-grid, .investment-point, .env-card, .note-box, .caution-box { break-inside: avoid; }
-            .section-title, h2, h3 { break-after: avoid; }
-            table tr { break-inside: avoid; }
-            .header, .footer-band { break-before: avoid; }
-        }
-
-        /* PC画面用ページ区切り疑似表示 */
-        @media screen {
-            .page-container { margin-bottom: 40px; border-bottom: 2px dashed #ccc; padding-bottom: 20px;}
-            .page-break { margin-top: 40px; }
-        }
-
-        /* ========== 共通デザイン ========== */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(90deg, #1A365D 0%, #2d4a7a 100%);
-            border-bottom: 4px solid #DAA520;
-            padding: 10px 20px;
-            color: white;
-            border-radius: 8px 8px 0 0;
-        }
-        .header-left { display: flex; align-items: center; gap: 15px; }
-        .header-logo { height: 30px; filter: brightness(0) invert(1); }
-        .header-title { font-size: 18pt; font-weight: bold; margin: 0; }
-
-        .btn-detail {
-            background-color: #DAA520; color: #fff; padding: 8px 16px;
-            text-decoration: none; border-radius: 4px; font-weight: bold;
-            font-size: 11pt; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        h2 { font-size: 16pt; color: #1A365D; border-left: 5px solid #1A365D; padding-left: 10px; margin-top: 20px;}
-
-        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 10pt; }
-        th, td { border: 1px solid #ccc; padding: 6px 8px; }
-        th { background-color: #E8F0FE; color: #1A365D; text-align: center; font-weight: bold; }
-        td.text-right { text-align: right; }
-        td.text-center { text-align: center; }
-
-        /* ========== HERO SECTION（ページ1） ========== */
-        .hero-section {
-            display: grid;
-            grid-template-columns: 56% 44%;
-            gap: 0;
-            margin: 10px 0;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1.5px solid #DAA520;
-            min-height: 68mm;
-        }
-        .hero-left {
-            background: linear-gradient(150deg, #0b1e3a 0%, #1A365D 55%, #1e4a7a 100%);
-            padding: 14px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 0;
-        }
-        .hero-right { position: relative; overflow: hidden; background: #E8F0FE; display: flex; align-items: center; justify-content: center;}
-
-        .hero-tag {
-            display: inline-block; font-size: 8pt; font-weight: 700; letter-spacing: 2px;
-            color: #DAA520; text-transform: uppercase; background: rgba(218,165,32,0.12);
-            border: 1px solid rgba(218,165,32,0.4); border-radius: 2px; padding: 4px 8px; margin-bottom: 10px; width: max-content;
-        }
-        .hero-metric { margin-bottom: 10px; }
-        .hero-metric-label { font-size: 9pt; color: rgba(255,255,255,0.7); font-weight: 500; margin-bottom: 2px; }
-        .hero-v-red { font-size: 32pt; color: #FF9500; font-weight: 900; line-height: 1; text-shadow: 0 2px 12px rgba(255,149,0,0.55); }
-        .hero-v-green-md { font-size: 20pt; color: #F5C518; font-weight: 900; line-height: 1; }
-
-        .hero-current-box {
-            background: rgba(255,215,0,0.12); border: 1px solid rgba(255,215,0,0.45);
-            border-radius: 4px; padding: 8px 12px; margin: 10px 0;
-        }
-        .hero-v-current { font-size: 24pt; color: #FFD700; font-weight: 900; line-height: 1; text-shadow: 0 1px 8px rgba(255,215,0,0.5); }
-        .hero-divider { height: 1px; background: linear-gradient(90deg, rgba(218,165,32,0.5), transparent); margin: 10px 0; }
-
-        .footer-band { background: #1A365D; color: white; padding: 10px; text-align: center; font-size: 9pt; border-radius: 0 0 8px 8px; margin-top: auto;}
-
-        /* ========== LINEページ CSS ========== */
-        .line-page {
-            background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
-            min-height: 140mm;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 30px 20px;
-            text-align: center;
-        }
-        .line-title { color: #1A365D; font-size: 24pt; font-weight: bold; margin-bottom: 10px; }
-        .line-btn {
-            background-color: #06C755; color: white; padding: 15px 40px;
-            font-size: 18pt; font-weight: bold; border-radius: 30px; text-decoration: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2); margin-top: 20px; display: inline-block;
-        }
-        .line-qr { margin-top: 20px; background: #fff; padding: 15px; border-radius: 8px; }
-
-        /* その他ユーティリティ */
-        .highlight-bg { background: linear-gradient(to right, #fffdf2, #fff); }
-        .note-box { background: #fcfcfc; border: 1px solid #DAA520; border-left: 5px solid #DAA520; padding: 15px; border-radius: 4px; margin-bottom: 15px; }
-    </style>
+<meta charset="UTF-8">
+<title>【物件概要書】 千葉県香取市小見川 1棟マンション（店舗+レジ）</title>
+<style>
+/* ========== 印刷・レイアウト最適化（必須） ========== */
+@page { size: A4 landscape; margin: 14mm 15mm; }
+body {
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  color: #333; margin: 0; padding: 0; background-color: #fff;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.page-container {
+  display: flex; flex-direction: column; justify-content: space-between;
+  box-sizing: border-box; padding: 0; width: 100%;
+}
+@media print {
+  body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .page-container { min-height: 182mm; }
+  .page-break { break-before: page; }
+  .avoid-break, .card, .kpi-grid, .investment-point, .env-card, .note-box, .caution-box { break-inside: avoid; }
+  .section-title, h2, h3 { break-after: avoid; }
+  table tr { break-inside: avoid; }
+  .header, .footer-band { break-before: avoid; }
+}
+/* PC画面用ページ区切り疑似表示 */
+@media screen {
+  .page-container { margin-bottom: 40px; border-bottom: 2px dashed #ccc; padding-bottom: 20px;}
+  .page-break { margin-top: 40px; }
+}
+/* ========== 共通デザイン ========== */
+.header {
+  display: flex; justify-content: space-between; align-items: center;
+  background: linear-gradient(90deg, #1A365D 0%, #2d4a7a 100%);
+  border-bottom: 4px solid #DAA520; padding: 10px 20px; color: white;
+  border-radius: 8px 8px 0 0;
+}
+.header-left { display: flex; align-items: center; gap: 15px; }
+.header-logo { height: 30px; filter: brightness(0) invert(1); }
+.header-title { font-size: 18pt; font-weight: bold; margin: 0; }
+.btn-detail {
+  background-color: #DAA520; color: #fff; padding: 8px 16px;
+  text-decoration: none; border-radius: 4px; font-weight: bold;
+  font-size: 11pt; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+h2 { font-size: 16pt; color: #1A365D; border-left: 5px solid #1A365D; padding-left: 10px; margin-top: 20px;}
+h3 { font-size: 11pt; color: #1A365D; border-left: 4px solid #1A365D; padding-left: 8px; margin: 0 0 5px 0; }
+table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 10pt; }
+th, td { border: 1px solid #ccc; padding: 6px 8px; }
+th { background-color: #E8F0FE; color: #1A365D; text-align: center; font-weight: bold; }
+td.text-right { text-align: right; }
+td.text-center { text-align: center; }
+/* ========== HERO SECTION（ページ1） ========== */
+.hero-section {
+  display: grid; grid-template-columns: 56% 44%; gap: 0;
+  margin: 10px 0; border-radius: 8px; overflow: hidden;
+  border: 1.5px solid #DAA520; min-height: 68mm;
+}
+.hero-left {
+  background: linear-gradient(150deg, #0b1e3a 0%, #1A365D 55%, #1e4a7a 100%);
+  padding: 14px 20px; display: flex; flex-direction: column; justify-content: center; gap: 0;
+}
+.hero-right {
+  position: relative; overflow: hidden; background: #E8F0FE;
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-tag {
+  display: inline-block; font-size: 8pt; font-weight: 700; letter-spacing: 2px;
+  color: #DAA520; text-transform: uppercase; background: rgba(218,165,32,0.12);
+  border: 1px solid rgba(218,165,32,0.4); border-radius: 2px; padding: 4px 8px;
+  margin-bottom: 10px; width: max-content;
+}
+.hero-metric { margin-bottom: 10px; }
+.hero-metric-label { font-size: 9pt; color: rgba(255,255,255,0.7); font-weight: 500; margin-bottom: 2px; }
+.hero-v-red { font-size: 32pt; color: #FF9500; font-weight: 900; line-height: 1; text-shadow: 0 2px 12px rgba(255,149,0,0.55); }
+.hero-v-green-md { font-size: 20pt; color: #F5C518; font-weight: 900; line-height: 1; }
+.hero-current-box {
+  background: rgba(255,215,0,0.12); border: 1px solid rgba(255,215,0,0.45);
+  border-radius: 4px; padding: 8px 12px; margin: 10px 0;
+}
+.hero-v-current { font-size: 24pt; color: #FFD700; font-weight: 900; line-height: 1; text-shadow: 0 1px 8px rgba(255,215,0,0.5); }
+.hero-divider { height: 1px; background: linear-gradient(90deg, rgba(218,165,32,0.5), transparent); margin: 10px 0; }
+.footer-band {
+  background: #1A365D; color: white; padding: 10px; text-align: center;
+  font-size: 9pt; border-radius: 0 0 8px 8px; margin-top: auto;
+}
+/* ========== 土地・建物情報 2カラム ========== */
+.land-building-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px;
+}
+.land-building-grid table { font-size: 9pt; margin-bottom: 0; }
+.land-building-grid th { width: 42%; padding: 4px 6px; }
+.land-building-grid td { padding: 4px 6px; }
+/* ========== LINEページ CSS ========== */
+.line-page {
+  background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+  min-height: 140mm; display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-start;
+  padding: 30px 20px; text-align: center;
+}
+.line-title { color: #1A365D; font-size: 24pt; font-weight: bold; margin-bottom: 10px; }
+.line-btn {
+  background-color: #06C755; color: white; padding: 15px 40px;
+  font-size: 18pt; font-weight: bold; border-radius: 30px; text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2); margin-top: 20px; display: inline-block;
+}
+.line-qr { margin-top: 20px; background: #fff; padding: 15px; border-radius: 8px; }
+/* その他ユーティリティ */
+.highlight-bg { background: linear-gradient(to right, #fffdf2, #fff); }
+.note-box {
+  background: #fcfcfc; border: 1px solid #DAA520; border-left: 5px solid #DAA520;
+  padding: 15px; border-radius: 4px; margin-bottom: 15px;
+}
+</style>
 </head>
 <body>
 
-    <!-- 1ページ目：概要（固定フォーマット） -->
-    <div class="page-container">
-        <div>
-            <div class="header avoid-break">
-                <div class="header-left">
-                    <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png" alt="REATEX" class="header-logo" onerror="this.style.display='none'">
-                    <h1 class="header-title">【物件概要書】 千葉県香取市小見川 1棟マンション</h1>
-                </div>
-                <div class="header-right">
-                    <!-- 必須：「詳細はこちら」リンク -->
-                    <a href="https://drive.google.com/drive/u/0/folders/1eT0ep3OANb684ohZsjL6WLNaqfDWTeOV" target="_blank" class="btn-detail">📂 詳細はこちら</a>
-                </div>
-            </div>
-
-            <!-- 固定ヒーローセクション -->
-            <div class="hero-section avoid-break">
-                <div class="hero-left">
-                    <div class="hero-tag">Investment Highlight</div>
-                    <div class="hero-metric">
-                        <p class="hero-metric-label">販売価格</p>
-                        <div class="hero-v-red">2,320<span style="font-size: 14pt;">万円</span></div>
-                    </div>
-                    <div class="hero-divider"></div>
-                    <div class="hero-current-box">
-                        <p class="hero-metric-label" style="color: #666; margin:0 0 5px 0;">現況利回り</p>
-                        <div class="hero-v-current">17.01<span style="font-size: 14pt;">%</span></div>
-                    </div>
-                    <div class="hero-metric">
-                        <p class="hero-metric-label">満室想定利回り</p>
-                        <div class="hero-v-green-md">35.22<span style="font-size: 12pt;">%</span></div>
-                    </div>
-                </div>
-                <div class="hero-right">
-                    <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/gaikan_1.jpg"
-                         alt="外観" style="width:100%; height:100%; object-fit:cover;">
-                </div>
-            </div>
-
-            <div class="avoid-break">
-                <table>
-                    <tr>
-                        <th style="width: 15%;">物件番号</th><td style="width: 35%;">p-67</td>
-                        <th style="width: 15%;">物件種別</th><td style="width: 35%;">一般売買 / 1棟マンション（店舗+レジ）</td>
-                    </tr>
-                    <tr>
-                        <th>所在地</th><td colspan="3">千葉県香取市小見川812-4-</td>
-                    </tr>
-                    <tr>
-                        <th>現況収入</th><td class="text-right highlight-bg" style="font-weight:bold; color:#1A365D;">3,946,560 円/年</td>
-                        <th>満室想定収入</th><td class="text-right highlight-bg" style="font-weight:bold; color:#C41E3A;">8,170,200 円/年</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-        <div class="footer-band avoid-break">
-            株式会社リアテクス | 〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506 | TEL: 03-6822-7297
-        </div>
+<!-- 1ページ目：概要（固定フォーマット） -->
+<div class="page-container">
+  <div>
+    <div class="header avoid-break">
+      <div class="header-left">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png" alt="REATEX" class="header-logo" onerror="this.style.display='none'">
+        <h1 class="header-title">【物件概要書】 千葉県香取市小見川 1棟マンション</h1>
+      </div>
+      <div class="header-right">
+        <a href="https://drive.google.com/drive/u/0/folders/1eT0ep3OANb684ohZsjL6WLNaqfDWTeOV" target="_blank" class="btn-detail">📂 詳細はこちら</a>
+      </div>
     </div>
 
-    <!-- 2ページ目：レントロール・年間支出 -->
-    <div class="page-container page-break">
-        <h2 class="rent-spec-banner">テナント状況一覧（レントロール）</h2>
-        <table class="avoid-break">
-            <tr>
-                <th>部屋</th><th>種類</th><th>利用状況</th>
-                <th>現況賃料</th><th>現況共益費</th><th>現況その他</th><th>現況合計</th>
-                <th>想定賃料</th><th>想定合計</th><th>備考</th>
-            </tr>
-            <tr>
-                <td class="text-center">101</td><td class="text-center">店舗</td><td class="text-center">-</td>
-                <td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td>
-                <td class="text-right">70,000</td><td class="text-right">70,000</td><td>-</td>
-            </tr>
-            <tr>
-                <td class="text-center">102</td><td class="text-center">店舗</td><td class="text-center">賃貸中</td>
-                <td class="text-right">143,000</td><td class="text-right">3,850</td><td class="text-right">-</td><td class="text-right">146,850</td>
-                <td class="text-right">146,850</td><td class="text-right">146,850</td><td>H18.2〜 KDDI</td>
-            </tr>
-            <tr>
-                <td class="text-center">201</td><td class="text-center">店舗</td><td class="text-center">賃貸中</td>
-                <td class="text-right">55,000</td><td class="text-right">5,000</td><td class="text-right">2,000</td><td class="text-right">62,000</td>
-                <td class="text-right">62,000</td><td class="text-right">62,000</td><td>R3.5.1〜 洋風居酒屋</td>
-            </tr>
-            <tr>
-                <td class="text-center">202</td><td class="text-center">店舗</td><td class="text-center">賃貸中</td>
-                <td class="text-right">55,000</td><td class="text-right">5,000</td><td class="text-right">2,000</td><td class="text-right">62,000</td>
-                <td class="text-right">62,000</td><td class="text-right">62,000</td><td>R4.5.1〜 イタリアンレストラン</td>
-            </tr>
-            <tr>
-                <td class="text-center">301</td><td class="text-center">レジ</td><td class="text-center">-</td>
-                <td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td>
-                <td class="text-right">58,000</td><td class="text-right">58,000</td><td>トイレあり/風呂なし/内装◎</td>
-            </tr>
-            <tr>
-                <td class="text-center">302</td><td class="text-center">事務所orレジ</td><td class="text-center">-</td>
-                <td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td>
-                <td class="text-right">58,000</td><td class="text-right">58,000</td><td>トイレあり/風呂なし/事務所仕様/内装◎</td>
-            </tr>
-            <tr>
-                <td class="text-center">401＆402</td><td class="text-center">レジ</td><td class="text-center">-</td>
-                <td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td>
-                <td class="text-right">108,000</td><td class="text-right">108,000</td><td>ワンフロア/トイレ・風呂・洗濯機あり/内装◎</td>
-            </tr>
-            <tr>
-                <td class="text-center">501</td><td class="text-center">事務所orレジ</td><td class="text-center">-</td>
-                <td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td>
-                <td class="text-right">58,000</td><td class="text-right">58,000</td><td>シェアオフィス仕様/内装⚪</td>
-            </tr>
-            <tr>
-                <td class="text-center">502</td><td class="text-center">レジ</td><td class="text-center">賃貸中</td>
-                <td class="text-right">50,000</td><td class="text-right">5,000</td><td class="text-right">3,030</td><td class="text-right">58,030</td>
-                <td class="text-right">58,000</td><td class="text-right">58,000</td><td>R3.8.30〜 不動産会社</td>
-            </tr>
-            <tr style="font-weight:bold; background-color:#fcfcfc;">
-                <td colspan="3" class="text-center">月額合計</td>
-                <td class="text-right">303,000</td><td class="text-right">18,850</td><td class="text-right">7,030</td><td class="text-right">328,880</td>
-                <td class="text-right">-</td><td class="text-right">680,850</td><td>-</td>
-            </tr>
-            <tr style="font-weight:bold; background-color:#E8F0FE; color:#1A365D;">
-                <td colspan="3" class="text-center">年間額（月額×12ヵ月）</td>
-                <td colspan="4" class="text-center">現況収入：3,946,560 円</td>
-                <td colspan="3" class="text-center">満室想定収入：8,170,200 円</td>
-            </tr>
+    <!-- 固定ヒーローセクション -->
+    <div class="hero-section avoid-break">
+      <div class="hero-left">
+        <div class="hero-tag">Investment Highlight</div>
+        <div class="hero-metric">
+          <p class="hero-metric-label">販売価格</p>
+          <div class="hero-v-red">2,320<span style="font-size: 14pt;">万円</span></div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-current-box">
+          <p class="hero-metric-label" style="color: #666; margin:0 0 5px 0;">現況利回り</p>
+          <div class="hero-v-current">17.01<span style="font-size: 14pt;">%</span></div>
+        </div>
+        <div class="hero-metric">
+          <p class="hero-metric-label">満室想定利回り</p>
+          <div class="hero-v-green-md">35.22<span style="font-size: 12pt;">%</span></div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/gaikan_1.jpg" alt="外観" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+    </div>
+
+    <div class="avoid-break">
+      <table>
+        <tr>
+          <th style="width: 15%;">物件番号</th><td style="width: 35%;">p-67</td>
+          <th style="width: 15%;">物件種別</th><td style="width: 35%;">一般売買 / 1棟マンション（店舗+レジ）</td>
+        </tr>
+        <tr>
+          <th>所在地</th><td colspan="3">千葉県香取市小見川812-4</td>
+        </tr>
+        <tr>
+          <th>アクセス</th><td colspan="3">JR成田線 「小見川」駅 徒歩5分</td>
+        </tr>
+        <tr>
+          <th>現況収入</th><td class="text-right highlight-bg" style="font-weight:bold; color:#1A365D;">3,946,560 円/年</td>
+          <th>満室想定収入</th><td class="text-right highlight-bg" style="font-weight:bold; color:#C41E3A;">8,170,200 円/年</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="footer-band avoid-break">
+    株式会社リアテクス | 〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506 | TEL: 03-6822-7297
+  </div>
+</div>
+
+<!-- 2ページ目：土地情報・建物情報 -->
+<div class="page-container page-break">
+  <div>
+    <div class="header avoid-break">
+      <div class="header-left">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png" alt="REATEX" class="header-logo" onerror="this.style.display='none'">
+        <h1 class="header-title">【物件概要書】 千葉県香取市小見川 1棟マンション</h1>
+      </div>
+      <div class="header-right">
+        <a href="https://drive.google.com/drive/u/0/folders/1eT0ep3OANb684ohZsjL6WLNaqfDWTeOV" target="_blank" class="btn-detail">📂 詳細はこちら</a>
+      </div>
+    </div>
+
+    <div class="land-building-grid avoid-break">
+      <!-- 土地情報 -->
+      <div>
+        <h3>土地情報</h3>
+        <table>
+          <tr><th>地番</th><td>812番2、812番3、812番4</td></tr>
+          <tr><th>土地権利</th><td>所有権</td></tr>
+          <tr><th>地目</th><td>宅地</td></tr>
+          <tr><th>用途地域</th><td>商業地域</td></tr>
+          <tr><th>敷地面積（公簿）</th><td>204.93m² （61.99坪）</td></tr>
+          <tr><th>都市計画</th><td>市街化区域</td></tr>
+          <tr><th>建ぺい率</th><td>80%</td></tr>
+          <tr><th>容積率</th><td>400%</td></tr>
+          <tr>
+            <th>前面道路</th>
+            <td>
+              ①南東側　公道　幅員12.7m　接道約14.4m<br>
+              ②南西側　幅員約3.5m　接道約12.4m
+            </td>
+          </tr>
+          <tr><th>その他制限事項</th><td>防火地域・準防火地域</td></tr>
+          <tr><th>土地積算評価</th><td class="text-right">4,508,460 円</td></tr>
+          <tr><th>相続税路線価</th><td class="text-right">22,000 円/m²</td></tr>
+          <tr><th>坪単価</th><td class="text-right">37万円</td></tr>
+          <tr><th>土地固定資産評価額</th><td class="text-right">3,634,818 円</td></tr>
         </table>
+      </div>
 
-        <h2>年間支出（元データ記載分のみ）</h2>
-        <table class="avoid-break" style="width: 70%;">
-            <tr><th>項目</th><th>金額（円/年）</th><th>備考</th></tr>
-            <tr><td class="text-center">固都税</td><td class="text-right">513,052</td><td>令和3年評価額より概算</td></tr>
-            <tr><td class="text-center">エレベーター保守料</td><td class="text-right">158,400</td><td>13,200円/月</td></tr>
-            <tr><td class="text-center">水道代</td><td class="text-right">141,600</td><td>11,800円/月（直近4ヶ月平均）</td></tr>
-            <tr><td class="text-center">定期清掃代</td><td class="text-right">330,000</td><td>27,500円/月</td></tr>
-            <tr><td class="text-center">電気代</td><td class="text-right">297,600</td><td>24,800円/月（直近4ヶ月平均）</td></tr>
-            <tr style="font-weight:bold; background-color:#E8F0FE; color:#1A365D;">
-                <td class="text-center">合計</td><td class="text-right">1,440,652</td><td></td>
-            </tr>
+      <!-- 建物情報 -->
+      <div>
+        <h3>建物情報</h3>
+        <table>
+          <tr><th>用途</th><td>居宅</td></tr>
+          <tr><th>構造</th><td>鉄骨</td></tr>
+          <tr><th>延床面積（公簿）</th><td>492.78m² （149.07坪）</td></tr>
+          <tr><th>階数</th><td>7階建て</td></tr>
+          <tr><th>築年</th><td>1990年3月（平成2年3月）</td></tr>
+          <tr><th>耐用年数</th><td>34年</td></tr>
+          <tr><th>築年数 / 残存年数</th><td>築36年 / 残存年数 0年</td></tr>
+          <tr><th>総戸数</th><td>9戸</td></tr>
+          <tr><th>駐車場数</th><td>－</td></tr>
+          <tr><th>建物固定資産評価額</th><td class="text-right">28,948,509 円</td></tr>
+          <tr><th>建物積算評価</th><td class="text-right">0 円</td></tr>
         </table>
-        <p style="font-size: 8pt; color: #666;">※上記は元データに記載されている費目のみを計上しています。管理費・修繕積立金等の追加費用が発生する場合があります。</p>
+      </div>
     </div>
+  </div>
+  <div class="footer-band avoid-break">
+    株式会社リアテクス | 〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506 | TEL: 03-6822-7297
+  </div>
+</div>
 
-    <!-- 3ページ目：収支シミュレーション -->
-    <div class="page-container page-break">
-        <h2>収支シミュレーション（NOI）</h2>
-        <div class="avoid-break">
-            <table style="width: 80%;">
-                <tr>
-                    <th style="width: 30%;">満室時想定 NOI（純収益）</th>
-                    <td style="font-size: 16pt; font-weight: bold; color: #C41E3A;" class="text-right highlight-bg">
-                        6,729,548 円 / 年
-                    </td>
-                </tr>
-                <tr>
-                    <th>計算式</th>
-                    <td>
-                        満室想定収入 (8,170,200円) − 年間支出 (1,440,652円)
-                    </td>
-                </tr>
-            </table>
-        </div>
+<!-- 3ページ目：レントロール・年間支出 -->
+<div class="page-container page-break">
+  <h2 class="rent-spec-banner">テナント状況一覧（レントロール）</h2>
+  <table class="avoid-break">
+    <tr>
+      <th>部屋</th><th>種類</th><th>利用状況</th>
+      <th>現況賃料</th><th>現況共益費</th><th>現況その他</th><th>現況合計</th>
+      <th>想定賃料</th><th>想定合計</th><th>備考</th>
+    </tr>
+    <tr>
+      <td class="text-center">101</td><td class="text-center">店舗</td><td class="text-center">-</td>
+      <td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td>
+      <td class="text-right">70,000</td><td class="text-right">70,000</td><td>-</td>
+    </tr>
+    <tr>
+      <td class="text-center">102</td><td class="text-center">店舗</td><td class="text-center">賃貸中</td>
+      <td class="text-right">143,000</td><td class="text-right">3,850</td><td class="text-right">-</td><td class="text-right">146,850</td>
+      <td class="text-right">146,850</td><td class="text-right">146,850</td><td>H18.2〜 KDDI</td>
+    </tr>
+    <tr>
+      <td class="text-center">201</td><td class="text-center">店舗</td><td class="text-center">賃貸中</td>
+      <td class="text-right">55,000</td><td class="text-right">5,000</td><td class="text-right">2,000</td><td class="text-right">62,000</td>
+      <td class="text-right">62,000</td><td class="text-right">62,000</td><td>R3.5.1〜 洋風居酒屋</td>
+    </tr>
+    <tr>
+      <td class="text-center">202</td><td class="text-center">店舗</td><td class="text-center">賃貸中</td>
+      <td class="text-right">55,000</td><td class="text-right">5,000</td><td class="text-right">2,000</td><td class="text-right">62,000</td>
+      <td class="text-right">62,000</td><td class="text-right">62,000</td><td>R4.5.1〜 イタリアンレストラン</td>
+    </tr>
+    <tr>
+      <td class="text-center">301</td><td class="text-center">レジ</td><td class="text-center">-</td>
+      <td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td>
+      <td class="text-right">58,000</td><td class="text-right">58,000</td><td>トイレあり/風呂なし/内装◎</td>
+    </tr>
+    <tr>
+      <td class="text-center">302</td><td class="text-center">事務所orレジ</td><td class="text-center">-</td>
+      <td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td>
+      <td class="text-right">58,000</td><td class="text-right">58,000</td><td>トイレあり/風呂なし/事務所仕様/内装◎</td>
+    </tr>
+    <tr>
+      <td class="text-center">401＆402</td><td class="text-center">レジ</td><td class="text-center">-</td>
+      <td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td>
+      <td class="text-right">108,000</td><td class="text-right">108,000</td><td>ワンフロア/トイレ・風呂・洗濯機あり/内装◎</td>
+    </tr>
+    <tr>
+      <td class="text-center">501</td><td class="text-center">事務所orレジ</td><td class="text-center">-</td>
+      <td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td><td class="text-right">-</td>
+      <td class="text-right">58,000</td><td class="text-right">58,000</td><td>シェアオフィス仕様/内装⚪</td>
+    </tr>
+    <tr>
+      <td class="text-center">502</td><td class="text-center">レジ</td><td class="text-center">賃貸中</td>
+      <td class="text-right">50,000</td><td class="text-right">5,000</td><td class="text-right">3,030</td><td class="text-right">58,030</td>
+      <td class="text-right">58,000</td><td class="text-right">58,000</td><td>R3.8.30〜 不動産会社</td>
+    </tr>
+    <tr style="font-weight:bold; background-color:#fcfcfc;">
+      <td colspan="3" class="text-center">月額合計</td>
+      <td class="text-right">303,000</td><td class="text-right">18,850</td><td class="text-right">7,030</td><td class="text-right">328,880</td>
+      <td class="text-right">-</td><td class="text-right">680,850</td><td>-</td>
+    </tr>
+    <tr style="font-weight:bold; background-color:#E8F0FE; color:#1A365D;">
+      <td colspan="3" class="text-center">年間額（月額×12ヵ月）</td>
+      <td colspan="4" class="text-center">現況収入：3,946,560 円</td>
+      <td colspan="3" class="text-center">満室想定収入：8,170,200 円</td>
+    </tr>
+  </table>
+
+  <h2>年間支出（元データ記載分のみ）</h2>
+  <table class="avoid-break" style="width: 70%;">
+    <tr><th>項目</th><th>金額（円/年）</th><th>備考</th></tr>
+    <tr><td class="text-center">固都税</td><td class="text-right">513,052</td><td>令和3年評価額より概算</td></tr>
+    <tr><td class="text-center">エレベーター保守料</td><td class="text-right">158,400</td><td>13,200円/月</td></tr>
+    <tr><td class="text-center">水道代</td><td class="text-right">141,600</td><td>11,800円/月（直近4ヶ月平均）</td></tr>
+    <tr><td class="text-center">定期清掃代</td><td class="text-right">330,000</td><td>27,500円/月</td></tr>
+    <tr><td class="text-center">電気代</td><td class="text-right">297,600</td><td>24,800円/月（直近4ヶ月平均）</td></tr>
+    <tr style="font-weight:bold; background-color:#E8F0FE; color:#1A365D;">
+      <td class="text-center">合計</td><td class="text-right">1,440,652</td><td></td>
+    </tr>
+  </table>
+  <p style="font-size: 8pt; color: #666;">※上記は元データに記載されている費目のみを計上しています。管理費・修繕積立金等の追加費用が発生する場合があります。</p>
+</div>
+
+<!-- 4ページ目：収支シミュレーション -->
+<div class="page-container page-break">
+  <h2>収支シミュレーション（NOI）</h2>
+  <div class="avoid-break">
+    <table style="width: 80%;">
+      <tr>
+        <th style="width: 30%;">満室時想定 NOI（純収益）</th>
+        <td style="font-size: 16pt; font-weight: bold; color: #C41E3A;" class="text-right highlight-bg">
+          6,729,548 円 / 年
+        </td>
+      </tr>
+      <tr>
+        <th>計算式</th>
+        <td>
+          満室想定収入 (8,170,200円) − 年間支出 (1,440,652円)
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- 5ページ目：特記事項 -->
+<div class="page-container page-break">
+  <h2>特記事項</h2>
+  <div class="note-box avoid-break">
+    <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+      <li>101号室 自動ドア修理（平成26年6月）</li>
+      <li>エアコン工事済み（平成）</li>
+      <li>揚水ポンプ修繕（平成26年1月）、加圧ポンプ修繕（平成30年4月）済み</li>
+      <li>受水槽パイプ交換済み（令和1年7月）済み</li>
+      <li>令和6年1月 消防設備工事（140万円）済み</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 6ページ目：写真ギャラリー -->
+<div class="page-container page-break">
+  <h2>物件写真</h2>
+  <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:8px; margin-bottom:15px;">
+    <div style="text-align:center;">
+      <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/gaikan_1.jpg" alt="外観①" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
+      <p style="font-size:8pt; margin:3px 0; color:#555;">外観①</p>
     </div>
-
-    <!-- 4ページ目：特記事項（写真がないためスキップ可能ですが、特記事項があるため残します） -->
-    <div class="page-container page-break">
-        <h2>特記事項</h2>
-        <div class="note-box avoid-break">
-            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
-                <li>101号室 自動ドア修理（平成26年6月）</li>
-                <li>エアコン工事済み（平成）</li>
-                <li>揚水ポンプ修繕（平成26年1月）、加圧ポンプ修繕（平成30年4月）済み</li>
-                <li>受水槽パイプ交換済み（令和1年7月）済み</li>
-                <li>令和6年1月 消防設備工事（140万円）済み</li>
-            </ul>
-        </div>
+    <div style="text-align:center;">
+      <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/gaikan_2.jpg" alt="外観②（螺旋階段）" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
+      <p style="font-size:8pt; margin:3px 0; color:#555;">外観②（螺旋階段）</p>
     </div>
-
-    <!-- 5ページ目：写真ギャラリー -->
-    <div class="page-container page-break">
-        <h2>物件写真</h2>
-        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:8px; margin-bottom:15px;">
-            <div style="text-align:center;">
-                <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/gaikan_1.jpg" alt="外観①" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
-                <p style="font-size:8pt; margin:3px 0; color:#555;">外観①</p>
-            </div>
-            <div style="text-align:center;">
-                <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/gaikan_2.jpg" alt="外観②（螺旋階段）" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
-                <p style="font-size:8pt; margin:3px 0; color:#555;">外観②（螺旋階段）</p>
-            </div>
-            <div style="text-align:center;">
-                <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/gaikan_3.jpg" alt="エントランス" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
-                <p style="font-size:8pt; margin:3px 0; color:#555;">エントランス</p>
-            </div>
-            <div style="text-align:center;">
-                <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/r101_1.jpg" alt="1F（店舗）" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
-                <p style="font-size:8pt; margin:3px 0; color:#555;">1F（店舗）</p>
-            </div>
-            <div style="text-align:center;">
-                <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/r301_1.jpg" alt="301号室" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
-                <p style="font-size:8pt; margin:3px 0; color:#555;">301号室</p>
-            </div>
-            <div style="text-align:center;">
-                <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/r302_1.jpg" alt="302号室" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
-                <p style="font-size:8pt; margin:3px 0; color:#555;">302号室</p>
-            </div>
-            <div style="text-align:center;">
-                <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/r401_1.jpg" alt="401/402号室" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
-                <p style="font-size:8pt; margin:3px 0; color:#555;">401/402号室</p>
-            </div>
-            <div style="text-align:center;">
-                <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/r501_1.jpg" alt="501号室" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
-                <p style="font-size:8pt; margin:3px 0; color:#555;">501号室</p>
-            </div>
-        </div>
+    <div style="text-align:center;">
+      <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/gaikan_3.jpg" alt="エントランス" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
+      <p style="font-size:8pt; margin:3px 0; color:#555;">エントランス</p>
     </div>
-
-    <!-- 6ページ目：未公開プレミアム不動産LINEチラシ -->
-    <div class="page-container line-page page-break avoid-break">
-        <div class="line-title">未公開プレミアム不動産情報<br>LINEで先行配信中！</div>
-        <p style="font-size: 14pt; color: #333; margin-top: 10px; font-weight:bold;">
-            ネットに出回る前の高利回り物件や、<br>特別な非公開物件を優先的にお届けします。
-        </p>
-
-        <div class="line-qr">
-            <!-- LINE公式指定URLのQRコードを生成する外部API -->
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fliff-gateway.lineml.jp%2Flanding%3Ffollow%3D%2540388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq" alt="LINE友だち追加QRコード">
-        </div>
-
-        <a href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq" target="_blank" class="line-btn">
-            LINE友だち追加はこちら
-        </a>
+    <div style="text-align:center;">
+      <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/r101_1.jpg" alt="1F（店舗）" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
+      <p style="font-size:8pt; margin:3px 0; color:#555;">1F（店舗）</p>
     </div>
+    <div style="text-align:center;">
+      <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/r301_1.jpg" alt="301号室" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
+      <p style="font-size:8pt; margin:3px 0; color:#555;">301号室</p>
+    </div>
+    <div style="text-align:center;">
+      <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/r302_1.jpg" alt="302号室" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
+      <p style="font-size:8pt; margin:3px 0; color:#555;">302号室</p>
+    </div>
+    <div style="text-align:center;">
+      <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/r401_1.jpg" alt="401/402号室" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
+      <p style="font-size:8pt; margin:3px 0; color:#555;">401/402号室</p>
+    </div>
+    <div style="text-align:center;">
+      <img src="https://satsuma-wq.github.io/slides/satsuma/photos/p-67/r501_1.jpg" alt="501号室" style="width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid #ccc;">
+      <p style="font-size:8pt; margin:3px 0; color:#555;">501号室</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7ページ目：未公開プレミアム不動産LINEチラシ -->
+<div class="page-container line-page page-break avoid-break">
+  <div class="line-title">未公開プレミアム不動産情報<br>LINEで先行配信中！</div>
+  <p style="font-size: 14pt; color: #333; margin-top: 10px; font-weight:bold;">
+    ネットに出回る前の高利回り物件や、<br>特別な非公開物件を優先的にお届けします。
+  </p>
+  <div class="line-qr">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fliff-gateway.lineml.jp%2Flanding%3Ffollow%3D%2540388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq" alt="LINE友だち追加QRコード">
+  </div>
+  <a href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq" target="_blank" class="line-btn">
+    LINE友だち追加はこちら
+  </a>
+</div>
 
 </body>
 </html>
