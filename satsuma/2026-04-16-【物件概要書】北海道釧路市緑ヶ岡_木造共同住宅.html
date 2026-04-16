@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】 北海道釧路市緑ヶ岡 木造共同住宅</title>
+<style>
+/* ========== BASE ========== */
+@page { size: A4 landscape; margin: 14mm 15mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  font-size: 9pt;
+  color: #1A365D;
+  background: #fff;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* ========== PAGE ========== */
+.page-container {
+  width: 277mm;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ========== HEADER ========== */
+.header {
+  background: linear-gradient(135deg, #1a365d 0%, #2d4a7a 100%);
+  border-bottom: 3px solid #DAA520;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px 6px 0 0;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.header-logo img { height: 28px; filter: brightness(0) invert(1); }
+.header-property-name {
+  font-size: 14pt;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+.header-sub { font-size: 8pt; color: rgba(255,255,255,0.7); margin-top: 1px; }
+.header-right {
+  text-align: right;
+  color: rgba(255,255,255,0.9);
+  font-size: 8pt;
+}
+.header-property-num { font-size: 7.5pt; color: rgba(255,255,255,0.6); margin-top: 3px; }
+
+/* ========== HERO SECTION（ページ1） ========== */
+.hero-section {
+  display: grid;
+  grid-template-columns: 56% 44%;
+  gap: 0;
+  margin: 6px 0 5px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1.5px solid #DAA520;
+  min-height: 68mm;
+}
+.hero-left {
+  background: linear-gradient(150deg, #0b1e3a 0%, #1a365d 55%, #1e4a7a 100%);
+  padding: 10px 18px 10px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+.hero-right { position: relative; overflow: hidden; }
+.hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(1.15) contrast(1.05) saturate(1.1); }
+.hero-right-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  padding: 8px 10px 6px;
+  color: white; font-size: 7pt; font-weight: 700; letter-spacing: 0.5px;
+}
+.hero-tag {
+  display: inline-block;
+  font-size: 6.5pt; font-weight: 700; letter-spacing: 2px;
+  color: #DAA520; text-transform: uppercase;
+  background: rgba(218,165,32,0.12); border: 1px solid rgba(218,165,32,0.4);
+  border-radius: 2px; padding: 2px 7px; margin-bottom: 5px;
+}
+.hero-metric-label {
+  font-size: 7pt; color: rgba(255,255,255,0.55);
+  font-weight: 500; letter-spacing: 0.5px; margin-bottom: 0; line-height: 1.3;
+}
+.hero-metric-value { line-height: 1; font-weight: 900; letter-spacing: -1px; }
+.hero-v-red   { font-size: 32pt; color: #FF9500; text-shadow: 0 2px 12px rgba(255,149,0,0.55); }
+.hero-v-green { font-size: 32pt; color: #F5C518; text-shadow: 0 2px 12px rgba(245,197,24,0.5); }
+.hero-v-green-md { font-size: 20pt; color: #F5C518; }
+.hero-v-current {
+  font-size: 22pt; color: #FFD700; font-weight: 900;
+  line-height: 1; letter-spacing: -0.5px;
+  text-shadow: 0 1px 8px rgba(255,215,0,0.5);
+}
+.hero-current-box {
+  background: rgba(255,215,0,0.12);
+  border: 1px solid rgba(255,215,0,0.45);
+  border-radius: 4px; padding: 4px 10px 5px; margin-bottom: 5px;
+}
+.hero-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(218,165,32,0.5), transparent);
+  margin: 4px 0;
+}
+.hero-bottom-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.hero-badge {
+  background: rgba(218,165,32,0.15);
+  border: 1px solid rgba(218,165,32,0.5);
+  border-radius: 10px; padding: 2px 9px;
+  font-size: 7pt; color: #DAA520; font-weight: 700; white-space: nowrap;
+}
+.hero-confirm { font-size: 6.5pt; color: rgba(255,215,0,0.7); }
+
+/* ========== OVERVIEW TABLE ========== */
+.overview-section { margin: 5px 0; }
+.section-title {
+  background: linear-gradient(90deg, #1A365D, #2d4a7a);
+  color: #DAA520; font-size: 8.5pt; font-weight: 700;
+  padding: 4px 12px; border-radius: 3px 3px 0 0; letter-spacing: 1px;
+}
+.overview-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 8.5pt; border: 1px solid #c8d8f8;
+}
+.overview-table td {
+  padding: 4px 8px; border: 1px solid #c8d8f8; vertical-align: middle;
+}
+.overview-table .th {
+  background: #E8F0FE; color: #1A365D;
+  font-weight: 700; width: 22%; white-space: nowrap;
+}
+.overview-table .val { color: #1A365D; }
+.overview-table .val-red { color: #C41E3A; font-weight: 700; font-size: 10pt; }
+.overview-table .val-green { color: #1a7a1a; font-weight: 700; }
+.overview-table .val-confirm { color: #888; font-size: 7.5pt; }
+
+/* ========== FOOTER BAND ========== */
+.footer-band {
+  background: linear-gradient(90deg, #1a365d, #2d4a7a);
+  border-top: 2px solid #DAA520;
+  padding: 6px 16px; display: flex;
+  justify-content: space-between; align-items: center;
+  border-radius: 0 0 6px 6px; margin-top: auto;
+}
+.footer-company { color: #DAA520; font-weight: 700; font-size: 8.5pt; }
+.footer-contact { color: rgba(255,255,255,0.85); font-size: 7.5pt; }
+.footer-notice { color: rgba(255,255,255,0.5); font-size: 6.5pt; }
+
+/* ========== PAGE 2: RENTROLL ========== */
+.page-break { break-before: page; }
+.page-wrapper { width: 277mm; margin: 0 auto; padding: 0; }
+.lentroll-table {
+  width: 100%; border-collapse: collapse; font-size: 8pt;
+  border: 1px solid #c8d8f8; margin-top: 3px;
+}
+.lentroll-table th {
+  background: #1A365D; color: #DAA520;
+  padding: 5px 8px; border: 1px solid #2d4a7a; font-weight: 700;
+  text-align: center; font-size: 7.5pt;
+}
+.lentroll-table td {
+  padding: 4px 8px; border: 1px solid #c8d8f8;
+  text-align: center; vertical-align: middle;
+}
+.lentroll-table tr:nth-child(even) td { background: #f5f8ff; }
+.lentroll-table .total-row td {
+  background: #E8F0FE; font-weight: 700; color: #1A365D;
+}
+.lentroll-table .occupied { background: #f0fff0 !important; }
+.lentroll-table .vacant { background: #fff5f5 !important; color: #888; }
+
+.income-summary {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px;
+}
+.income-card {
+  background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+  border: 1px solid #c8d8f8; border-radius: 6px; padding: 8px 12px;
+}
+.income-card-title {
+  font-size: 7pt; color: #1A365D; font-weight: 700; margin-bottom: 4px;
+  border-bottom: 1px solid #c8d8f8; padding-bottom: 3px;
+}
+.income-card-value {
+  font-size: 16pt; font-weight: 900; color: #1a7a1a; line-height: 1;
+}
+.income-card-sub { font-size: 7pt; color: #666; margin-top: 2px; }
+
+.expense-table {
+  width: 100%; border-collapse: collapse; font-size: 8pt;
+  border: 1px solid #c8d8f8; margin-top: 6px;
+}
+.expense-table th {
+  background: #E8F0FE; color: #1A365D; padding: 4px 8px;
+  border: 1px solid #c8d8f8; font-weight: 700;
+}
+.expense-table td { padding: 4px 8px; border: 1px solid #c8d8f8; }
+.expense-table .th { background: #E8F0FE; font-weight: 700; color: #1A365D; }
+.expense-table .subtotal td {
+  background: #f8f0d0; font-weight: 700; color: #8B6914;
+}
+
+/* ========== PAGE 3: シミュレーション ========== */
+.finance-section { margin-top: 8px; }
+.finance-table {
+  width: 100%; border-collapse: collapse; font-size: 8pt;
+  border: 1px solid #c8d8f8; margin-top: 3px;
+}
+.finance-table td { padding: 4px 8px; border: 1px solid #c8d8f8; }
+.finance-table .th { background: #E8F0FE; font-weight: 700; color: #1A365D; width: 35%; }
+.finance-table .subtotal td { background: #f8f0d0; font-weight: 700; color: #8B6914; }
+.finance-table .total td { background: #1A365D; color: #DAA520; font-weight: 700; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 8px; }
+
+.points-list { list-style: none; padding: 0; margin-top: 4px; }
+.points-list li {
+  padding: 5px 8px 5px 20px;
+  border-left: 3px solid #DAA520;
+  margin-bottom: 4px; font-size: 8pt; position: relative;
+  background: #fafbff;
+}
+.points-list li::before {
+  content: "✓"; position: absolute; left: 5px;
+  color: #DAA520; font-weight: 700;
+}
+
+.env-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 5px; }
+.env-card {
+  background: linear-gradient(135deg, #f5f8ff, #ebf1ff);
+  border: 1px solid #c8d8f8; border-radius: 5px; padding: 7px 10px;
+  text-align: center;
+}
+.env-icon { font-size: 14pt; margin-bottom: 2px; }
+.env-name { font-size: 7pt; font-weight: 700; color: #1A365D; }
+.env-detail { font-size: 6.5pt; color: #555; }
+
+.notes-box {
+  background: #fffbf0; border: 1px solid #e8d5a0;
+  border-left: 4px solid #DAA520;
+  border-radius: 4px; padding: 8px 12px; margin-top: 8px;
+  font-size: 8pt; line-height: 1.7;
+}
+
+/* ========== PAGE 4: PHOTOS ========== */
+.photo-grid-main {
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  gap: 6px; margin-top: 5px;
+}
+.photo-grid-4 {
+  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 6px; margin-top: 6px;
+}
+.photo-grid-2 {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6px; margin-top: 6px;
+}
+.photo-item { position: relative; overflow: hidden; border-radius: 5px; border: 1px solid #c8d8f8; }
+.photo-item img {
+  width: 100%; object-fit: cover; border-radius: 4px;
+  display: block;
+}
+.photo-main img { height: 55mm; }
+.photo-sub img { height: 27mm; }
+.photo-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.5); color: #fff;
+  font-size: 6pt; padding: 2px 6px; font-weight: 600;
+}
+.photo-4 img { height: 25mm; }
+.photo-2 img { height: 30mm; }
+
+/* ========== PAGE 5: LINE FLYER ========== */
+.line-page {
+  background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+  min-height: 140mm;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: flex-start;
+  padding: 18px 20px 14px; text-align: center; gap: 0;
+  border-radius: 8px;
+}
+.line-logo { font-size: 28pt; font-weight: 900; color: #06C755; margin-bottom: 5px; }
+.line-main-title {
+  font-size: 26pt; font-weight: 900;
+  background: linear-gradient(135deg, #1a365d, #C41E3A);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  line-height: 1.1; margin-bottom: 5px;
+}
+.line-sub-title { font-size: 11pt; color: #1A365D; font-weight: 700; margin-bottom: 16px; }
+.line-content {
+  background: rgba(255,255,255,0.8); border-radius: 12px;
+  padding: 12px 24px; margin-bottom: 16px; width: 100%; max-width: 400px;
+}
+.line-features { list-style: none; text-align: left; font-size: 10pt; color: #1A365D; }
+.line-features li { padding: 4px 0; font-weight: 600; }
+.line-features li::before { content: "✅ "; }
+.line-btn {
+  display: inline-block; background: #06C755; color: white;
+  padding: 14px 48px; border-radius: 50px;
+  font-size: 15pt; font-weight: 900; text-decoration: none;
+  box-shadow: 0 4px 15px rgba(6,199,85,0.4);
+  margin-bottom: 16px;
+}
+.line-qr-section { display: flex; align-items: center; gap: 16px; }
+.line-qr-label { font-size: 8pt; color: #1A365D; font-weight: 600; }
+
+/* ========== PRINT ========== */
+@media print {
+  body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .page-container { min-height: 182mm; }
+  .page-break { break-before: page; }
+  .rent-spec-banner { break-before: page; }
+  .avoid-break, .card, .kpi-grid, .investment-point, .env-card, .note-box, .caution-box { break-inside: avoid; }
+  .section-title, h2, h3 { break-after: avoid; }
+  table tr { break-inside: avoid; }
+  .header, .footer-band { break-before: avoid; }
+}
+
+/* ========== レスポンシブ ========== */
+@media screen and (max-width: 900px) {
+  .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+  .page-wrapper   { width: 100% !important; padding: 0 8px !important; }
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+  .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+  .header-property-name { font-size: 13pt; }
+  .hero-section { grid-template-columns: 1fr !important; }
+  .two-col, .three-col, .income-summary { grid-template-columns: 1fr !important; }
+  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-grid-main { grid-template-columns: 1fr !important; }
+  .photo-grid-4 { grid-template-columns: 1fr 1fr !important; }
+  .photo-grid-2 { grid-template-columns: 1fr !important; }
+  .overview-table { font-size: 9pt; }
+  .page-break { break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+  .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+  .line-page { padding: 20px 14px; min-height: unset; }
+  .line-main-title { font-size: 18pt; }
+  .line-btn { font-size: 12pt; padding: 12px 32px; }
+}
+@media screen and (max-width: 480px) {
+  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .header-property-name { font-size: 12pt; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== PAGE 1: 概要 ========== -->
+<div class="page-container">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             onerror="this.style.display='none'" alt="REATEX">
+      </div>
+      <div>
+        <div class="header-property-name">サンハイツ（緑ヶ岡）</div>
+        <div class="header-sub">北海道釧路市緑ヶ岡1丁目6-13 ｜ 木造2階建 共同住宅</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <a href="https://drive.google.com/drive/folders/1YOzamkelXcjgoIeGGhYSgQI_3a-epzpQ" target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+      <div class="header-property-num">物件番号: p-4850</div>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション -->
+  <div class="hero-section" style="min-height:56mm;">
+    <!-- 左：KPIハイライト -->
+    <div class="hero-left">
+      <div class="hero-tag">INVESTMENT PROPERTY ― 北海道釧路市 ｜ 物件番号：p-4850</div>
+
+      <!-- 上段：表面利回り + 現況利回り -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:4px;">
+        <div>
+          <div class="hero-metric-label">表面利回り（満室想定）</div>
+          <div class="hero-metric-value hero-v-green">39.5%</div>
+        </div>
+        <div class="hero-current-box">
+          <div class="hero-metric-label" style="color:rgba(255,215,0,0.7);">現況利回り</div>
+          <div class="hero-metric-value hero-v-current hero-confirm">【確認中】</div>
+          <div style="font-size:6.5pt; color:rgba(255,215,0,0.6); margin-top:1px;">一部空室あり（修繕対応済み）</div>
+        </div>
+      </div>
+
+      <div class="hero-divider" style="margin:4px 0;"></div>
+
+      <!-- 下段：販売価格 + 土地積算比率 -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+        <div>
+          <div class="hero-metric-label">販売価格</div>
+          <div class="hero-metric-value hero-v-red">425万円</div>
+        </div>
+        <div>
+          <div class="hero-metric-label">土地積算比率</div>
+          <div class="hero-metric-value hero-v-green-md">土地積算 42.4%</div>
+          <div style="font-size:6.5pt; color:rgba(255,255,255,0.5); margin-top:1px;">土地価値180万円 ＜ 販売価格425万円</div>
+        </div>
+      </div>
+
+      <!-- バッジ行 -->
+      <div class="hero-bottom-row" style="margin-top:5px;">
+        <span class="hero-badge">📍 釧路市緑ヶ岡エリア</span>
+        <span class="hero-badge">🏠 共同住宅（推定4戸）</span>
+        <span class="hero-badge">⏱ 回収期間 約2.6年</span>
+        <span class="hero-badge">🌲 木造2階建 築約33年</span>
+      </div>
+    </div>
+
+    <!-- 右：外観写真 -->
+    <div class="hero-right">
+      <img src="https://drive.google.com/thumbnail?id=1lef0ZOh-4yi2qrvtDHl37-9SlveSjw3n&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1lef0ZOh-4yi2qrvtDHl37-9SlveSjw3n'"
+           alt="外観">
+      <div class="hero-right-overlay">外観｜サンハイツ（緑ヶ岡）</div>
+    </div>
+  </div>
+
+  <!-- 物件概要テーブル -->
+  <div class="overview-section avoid-break">
+    <div class="section-title">▌ 物件概要</div>
+    <table class="overview-table">
+      <tr>
+        <td class="th">所在地</td>
+        <td class="val">
+          <a href="https://www.google.com/maps/search/北海道釧路市緑ヶ岡1丁目6-13" target="_blank"
+             style="color:#2563EB; text-decoration:none;">📍 北海道釧路市緑ヶ岡1丁目6-13</a>
+        </td>
+        <td class="th">築年月</td>
+        <td class="val">平成4年（1992年）築 ／ 築約33年</td>
+      </tr>
+      <tr>
+        <td class="th">交通</td>
+        <td class="val val-confirm">【確認中】</td>
+        <td class="th">土地面積</td>
+        <td class="val">148.77㎡（45.00坪）</td>
+      </tr>
+      <tr>
+        <td class="th">物件種別</td>
+        <td class="val">共同住宅（木造2階建）</td>
+        <td class="th">建物面積（延床）</td>
+        <td class="val">132.84㎡（40.18坪）｜1階66.42㎡</td>
+      </tr>
+      <tr>
+        <td class="th">構造</td>
+        <td class="val">木造 2階建</td>
+        <td class="th">都市計画</td>
+        <td class="val">市街化区域</td>
+      </tr>
+      <tr>
+        <td class="th">総戸数</td>
+        <td class="val">推定4戸（101・102・201・202号）</td>
+        <td class="th">建ぺい率／容積率</td>
+        <td class="val val-confirm">【確認中】</td>
+      </tr>
+      <tr>
+        <td class="th">売買価格</td>
+        <td class="val val-red">425万円（税込）</td>
+        <td class="th">路線価</td>
+        <td class="val">1.21万円/㎡（相続税路線価）</td>
+      </tr>
+      <tr>
+        <td class="th">表面利回り</td>
+        <td class="val val-green">39.5%（満室想定168万円/年）</td>
+        <td class="th">土地積算価格</td>
+        <td class="val">約180万円（積算比率42.4%）</td>
+      </tr>
+      <tr>
+        <td class="th">現況利回り</td>
+        <td class="val val-confirm">【確認中】（一部空室）</td>
+        <td class="th">再調達価格</td>
+        <td class="val">1,594万円（12万円/㎡×132.84㎡）</td>
+      </tr>
+      <tr>
+        <td class="th">現況</td>
+        <td class="val">一部空室（201号入居前修繕済み）</td>
+        <td class="th">残存耐用年数</td>
+        <td class="val">0年（超過）｜法定22年-築33年</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div class="footer-company">株式会社リアテクス</div>
+    <div class="footer-contact">📞 03-6822-7297 ／ 〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506</div>
+    <div class="footer-notice">※本資料の数値は参考値です。投資判断は十分な調査のうえご自身の責任でお願いします。</div>
+  </div>
+</div><!-- /page-container -->
+
+
+<!-- ========== PAGE 2: レントロール ========== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             onerror="this.style.display='none'" alt="REATEX">
+      </div>
+      <div>
+        <div class="header-property-name">サンハイツ（緑ヶ岡）— レントロール</div>
+        <div class="header-sub">北海道釧路市緑ヶ岡1丁目6-13 ｜ 木造2階建 共同住宅 ｜ 推定4戸</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <div class="header-property-num">物件番号: p-4850</div>
+    </div>
+  </div>
+
+  <!-- レントロールテーブル -->
+  <div style="margin-top:8px;">
+    <div class="section-title">▌ 賃料一覧（想定）</div>
+    <table class="lentroll-table avoid-break">
+      <thead>
+        <tr>
+          <th>部屋番号</th>
+          <th>間取り</th>
+          <th>専有面積</th>
+          <th>月額賃料</th>
+          <th>年間賃料</th>
+          <th>現況</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="vacant">
+          <td>101号</td>
+          <td>1DK</td>
+          <td>約33.21㎡</td>
+          <td>30,000円</td>
+          <td>360,000円</td>
+          <td>空室</td>
+          <td>想定賃料</td>
+        </tr>
+        <tr class="vacant">
+          <td>102号</td>
+          <td>1DK</td>
+          <td>約33.21㎡</td>
+          <td>30,000円</td>
+          <td>360,000円</td>
+          <td>空室</td>
+          <td>想定賃料</td>
+        </tr>
+        <tr class="vacant">
+          <td>201号</td>
+          <td>1DK</td>
+          <td>約33.21㎡</td>
+          <td>30,000円</td>
+          <td>360,000円</td>
+          <td>入居待ち</td>
+          <td>修繕完了（2026/2）</td>
+        </tr>
+        <tr class="vacant">
+          <td>202号</td>
+          <td>1DK</td>
+          <td>約33.21㎡</td>
+          <td>30,000円</td>
+          <td>360,000円</td>
+          <td>空室</td>
+          <td>想定賃料</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="3"><strong>合計（満室想定）</strong></td>
+          <td><strong>120,000円/月</strong></td>
+          <td><strong>1,440,000円/年</strong></td>
+          <td colspan="2">※現況は全室空室（入居誘致段階）</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:7pt; color:#888; margin-top:3px;">※戸数・間取り・賃料は推定値です。レントロールは現在確認中。詳細は共有フォルダをご参照ください。</p>
+  </div>
+
+  <!-- 収入サマリー -->
+  <div class="income-summary avoid-break">
+    <div class="income-card">
+      <div class="income-card-title">📈 年間賃料収入（満室想定）</div>
+      <div class="income-card-value">144万円</div>
+      <div class="income-card-sub">月額 12万円 × 12ヶ月（4戸満室時）</div>
+    </div>
+    <div class="income-card">
+      <div class="income-card-title">💰 表面利回り（満室想定）</div>
+      <div class="income-card-value">39.5%</div>
+      <div class="income-card-sub">年間収入144万円 ÷ 販売価格425万円</div>
+    </div>
+  </div>
+
+  <!-- 年間支出テーブル -->
+  <div style="margin-top:10px;" class="avoid-break">
+    <div class="section-title">▌ 年間支出</div>
+    <table class="expense-table">
+      <thead>
+        <tr>
+          <th style="width:40%;">費目</th>
+          <th style="width:30%;">金額</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="th">固定資産税（土地）</td>
+          <td>6,000円</td>
+          <td>令和7年度公課証明より</td>
+        </tr>
+        <tr>
+          <td class="th">固定資産税（家屋）</td>
+          <td>48,326円</td>
+          <td>令和7年度公課証明より</td>
+        </tr>
+        <tr class="subtotal">
+          <td><strong>合計（固都税）</strong></td>
+          <td><strong>54,326円／年</strong></td>
+          <td>約5.4万円/年</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:7pt; color:#888; margin-top:3px;">※管理費・修繕積立は元データに記載なし。取得後の想定費用は購入前に別途ご確認ください。</p>
+  </div>
+
+</div><!-- /page-wrapper -->
+
+
+<!-- ========== PAGE 3: 収支シミュレーション + 投資ポイント + 周辺環境 ========== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             onerror="this.style.display='none'" alt="REATEX">
+      </div>
+      <div>
+        <div class="header-property-name">サンハイツ（緑ヶ岡）— 収支シミュレーション</div>
+        <div class="header-sub">北海道釧路市緑ヶ岡1丁目6-13 ｜ 販売価格425万円</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <div class="header-property-num">物件番号: p-4850</div>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:8px;">
+    <!-- 収支シミュレーション -->
+    <div class="avoid-break">
+      <div class="section-title">▌ 収支シミュレーション（満室想定）</div>
+      <table class="finance-table" style="margin-top:4px;">
+        <tr>
+          <td class="th">年間賃料収入（満室）</td>
+          <td style="color:#1a7a1a; font-weight:700;">1,440,000円（月12万×12）</td>
+        </tr>
+        <tr>
+          <td class="th">　固定資産税（土地）</td>
+          <td>−6,000円</td>
+        </tr>
+        <tr>
+          <td class="th">　固定資産税（家屋）</td>
+          <td>−48,326円</td>
+        </tr>
+        <tr class="subtotal">
+          <td><strong>NOI（純営業収益）</strong></td>
+          <td><strong style="color:#1a7a1a;">1,385,674円／年</strong></td>
+        </tr>
+        <tr>
+          <td class="th">販売価格（取得費）</td>
+          <td>4,250,000円</td>
+        </tr>
+        <tr>
+          <td class="th">CCR（キャッシュオンキャッシュ）</td>
+          <td style="color:#1a7a1a; font-weight:700;">32.6%</td>
+        </tr>
+        <tr>
+          <td class="th">投資回収期間</td>
+          <td style="color:#1a7a1a; font-weight:700;">約3.1年</td>
+        </tr>
+        <tr>
+          <td class="th">表面利回り（満室）</td>
+          <td style="color:#1a7a1a; font-weight:700;">33.9%</td>
+        </tr>
+      </table>
+      <p style="font-size:7pt; color:#888; margin-top:3px;">
+        ※管理費・修繕積立は元データに記載なし。NOIは固都税のみ控除。<br>
+        ※現況は空室のため、実際の収益は入居状況によります。
+      </p>
+    </div>
+
+    <!-- 投資ポイント -->
+    <div class="avoid-break">
+      <div class="section-title">▌ 投資ポイント</div>
+      <ul class="points-list" style="margin-top:4px;">
+        <li><strong>超高利回り物件</strong>：表面利回り33.9%（満室想定）は首都圏では絶対実現不可能な水準。低価格帯×賃貸需要がある釧路市エリアならでは。</li>
+        <li><strong>低価格・低リスク参入</strong>：販売価格425万円と少額から始められる投資物件。フルローン活用でキャッシュアウトを抑えながら高回収を狙える。</li>
+        <li><strong>修繕対応済み（201号）</strong>：直近（2026年2月）に201号の入居前修繕（クロス張替・清掃・ストーブ移設）を実施。すぐに入居者募集が可能な状態。</li>
+        <li><strong>土地資産としての担保力</strong>：土地面積148.77㎡（45坪）を保有。土地積算価格180万円と建物価値の積み上げで資産性を確保。</li>
+        <li><strong>木造2階建・共同住宅</strong>：維持コストが低い木造構造。耐用年数超過のため法人での取得なら減価償却を短期一括計上できる節税効果も期待可能。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 周辺環境 -->
+  <div style="margin-top:8px;" class="avoid-break">
+    <div class="section-title">▌ 周辺環境</div>
+    <div class="env-grid">
+      <div class="env-card">
+        <div class="env-icon">🏪</div>
+        <div class="env-name">スーパー・商業施設</div>
+        <div class="env-detail">釧路市内に複数のスーパーあり<br>生活利便性◎</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">🏥</div>
+        <div class="env-name">医療施設</div>
+        <div class="env-detail">釧路市内の総合病院・クリニック<br>医療環境整備</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">🏫</div>
+        <div class="env-name">教育施設</div>
+        <div class="env-detail">小・中・高校が市内に多数<br>ファミリー需要も期待</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">🚗</div>
+        <div class="env-name">交通アクセス</div>
+        <div class="env-detail">車生活中心の道東エリア<br>国道38号線へのアクセス良好</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">🌊</div>
+        <div class="env-name">自然環境</div>
+        <div class="env-detail">釧路湿原・太平洋に近い<br>自然豊かな環境</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">🏭</div>
+        <div class="env-name">産業・雇用</div>
+        <div class="env-detail">水産・食品加工・港湾関連<br>工場・事業所が周辺に多数</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-wrapper -->
+
+
+<!-- ========== PAGE 4: 物件写真 ========== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             onerror="this.style.display='none'" alt="REATEX">
+      </div>
+      <div>
+        <div class="header-property-name">サンハイツ（緑ヶ岡）— 物件写真</div>
+        <div class="header-sub">北海道釧路市緑ヶ岡1丁目6-13</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <div class="header-property-num">物件番号: p-4850</div>
+    </div>
+  </div>
+
+  <!-- 写真：メイン（外観・2枚） -->
+  <div class="section-title" style="margin-top:6px;">▌ 外観・建物</div>
+  <div class="photo-grid-main" style="margin-top:4px;">
+    <div class="photo-item photo-main">
+      <img src="https://drive.google.com/thumbnail?id=1lef0ZOh-4yi2qrvtDHl37-9SlveSjw3n&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1lef0ZOh-4yi2qrvtDHl37-9SlveSjw3n'"
+           alt="外観（メイン）">
+      <div class="photo-label">外観（メイン）</div>
+    </div>
+    <div class="photo-item photo-sub">
+      <img src="https://drive.google.com/thumbnail?id=1-uc3j2_vpn_hZPydsVwmvyQEdZ0_CZp2&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1-uc3j2_vpn_hZPydsVwmvyQEdZ0_CZp2'"
+           alt="外観②">
+      <div class="photo-label">外観②</div>
+    </div>
+    <div class="photo-item photo-sub">
+      <img src="https://drive.google.com/thumbnail?id=1a8w5SOPqXSPFG-KeYn9iZ0fJvC0AOdb0&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1a8w5SOPqXSPFG-KeYn9iZ0fJvC0AOdb0'"
+           alt="外観③">
+      <div class="photo-label">外観③</div>
+    </div>
+  </div>
+
+  <!-- 写真：室内・周辺 -->
+  <div class="section-title" style="margin-top:8px;">▌ 室内・敷地・周辺</div>
+  <div class="photo-grid-4" style="margin-top:4px;">
+    <div class="photo-item photo-4">
+      <img src="https://drive.google.com/thumbnail?id=1vLHsrvVkINkSdzc3naMbAfnBQWQZMZox&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1vLHsrvVkINkSdzc3naMbAfnBQWQZMZox'"
+           alt="室内④">
+      <div class="photo-label">室内④</div>
+    </div>
+    <div class="photo-item photo-4">
+      <img src="https://drive.google.com/thumbnail?id=1yfB4_UwMNBmHV5-UhkrqIRZG5uoZqHFu&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1yfB4_UwMNBmHV5-UhkrqIRZG5uoZqHFu'"
+           alt="室内⑤">
+      <div class="photo-label">室内⑤</div>
+    </div>
+    <div class="photo-item photo-4">
+      <img src="https://drive.google.com/thumbnail?id=1e_EQjsqbiNiQwCUVt4A-20FGZm_BPjDs&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1e_EQjsqbiNiQwCUVt4A-20FGZm_BPjDs'"
+           alt="室内⑥">
+      <div class="photo-label">室内⑥</div>
+    </div>
+    <div class="photo-item photo-4">
+      <img src="https://drive.google.com/thumbnail?id=1pLXe9koDajrMWXVA-oI2Hxa1yPdd_R5g&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1pLXe9koDajrMWXVA-oI2Hxa1yPdd_R5g'"
+           alt="室内⑦">
+      <div class="photo-label">室内⑦</div>
+    </div>
+  </div>
+
+  <div class="photo-grid-2" style="margin-top:6px;">
+    <div class="photo-item photo-2">
+      <img src="https://drive.google.com/thumbnail?id=1i2eoyHZnM1_BvzNCTRg7TfdglaVVilXH&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1i2eoyHZnM1_BvzNCTRg7TfdglaVVilXH'"
+           alt="室内⑧">
+      <div class="photo-label">室内⑧</div>
+    </div>
+    <div class="photo-item photo-2">
+      <img src="https://drive.google.com/thumbnail?id=1bHV80I0jBcyaM8u1EJOS68tAwF6UdEUr&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1bHV80I0jBcyaM8u1EJOS68tAwF6UdEUr'"
+           alt="室内⑨">
+      <div class="photo-label">室内⑨</div>
+    </div>
+  </div>
+
+  <!-- 特記事項 -->
+  <div class="notes-box avoid-break" style="margin-top:8px;">
+    <strong>■ 特記事項・注意点</strong><br>
+    ・現況：全室空室（201号は2026年2月に入居前修繕完了済み。クロス張替・清掃・ストーブ移設対応済み）<br>
+    ・戸数・間取りは公課証明の延床面積132.84㎡より推定（4戸×約33㎡）。確認資料入手後に更新予定<br>
+    ・築約33年（平成4年頃）、木造残存耐用年数0年（超過）。金融機関の担保評価は土地価値中心となります<br>
+    ・「筆界未定地について」の書類あり。購入前に境界確認・法務局への確認を推奨します<br>
+    ・現状引渡し条件。入居者募集・リフォーム費用は別途ご検討ください
+  </div>
+
+</div><!-- /page-wrapper -->
+
+
+<!-- ========== PAGE 5: LINE FLYER ========== -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">
+        <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+             onerror="this.style.display='none'" alt="REATEX">
+      </div>
+      <div>
+        <div class="header-property-name">未公開プレミアム不動産 公式LINE</div>
+        <div class="header-sub">株式会社リアテクス ｜ 厳選・未公開物件を先着でご案内</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div>株式会社リアテクス</div>
+      <div class="header-property-num">物件番号: p-4850</div>
+    </div>
+  </div>
+
+  <!-- LINE チラシ -->
+  <div class="line-page" style="margin-top:6px;">
+    <div class="line-logo">LINE</div>
+    <div class="line-main-title">未公開プレミアム不動産</div>
+    <div class="line-sub-title">🏡 非公開の高利回り物件を優先的にお届けします</div>
+
+    <div class="line-content">
+      <ul class="line-features">
+        <li>未公開・先行公開物件を最速でご案内</li>
+        <li>全国の高利回り収益物件情報を無料配信</li>
+        <li>今回のような高利回り物件（30%以上）も配信中</li>
+        <li>投資家向け物件情報・市場分析レポートも</li>
+        <li>登録・利用料は完全無料</li>
+      </ul>
+    </div>
+
+    <a href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq"
+       target="_blank" class="line-btn">
+      🟢 LINE友だち追加（無料）
+    </a>
+
+    <div class="line-qr-section">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq"
+           alt="LINE QR" style="width:100px;height:100px;border-radius:4px;">
+      <div class="line-qr-label">📱 QRコードを読み取って<br>友だち追加</div>
+    </div>
+  </div>
+
+</div><!-- /page-wrapper -->
+
+</body>
+</html>
