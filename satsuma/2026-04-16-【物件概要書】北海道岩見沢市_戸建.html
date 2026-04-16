@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>【物件概要書】 北海道岩見沢市 戸建</title>
+    <style>
+        /* ========== 印刷・レイアウト最適化（必須） ========== */
+        @page { size: A4 landscape; margin: 14mm 15mm; }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            color: #333;
+            margin: 0; padding: 0;
+            background-color: #fff;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+            padding: 0;
+            width: 100%;
+        }
+        @media print {
+            body {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .page-container {
+                min-height: 182mm;
+            }
+            .page-break { break-before: page; }
+            .avoid-break, .card, .kpi-grid, .investment-point, .env-card, .note-box, .caution-box { break-inside: avoid; }
+            .section-title, h2, h3 { break-after: avoid; }
+            table tr { break-inside: avoid; }
+            .header, .footer-band { break-before: avoid; }
+        }
+        /* PC画面用ページ区切り疑似表示 */
+        @media screen {
+            .page-container { margin-bottom: 40px; border-bottom: 2px dashed #ccc; padding-bottom: 20px;}
+            .page-break { margin-top: 40px; }
+        }
+        /* ========== 共通デザイン ========== */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #1A365D 0%, #2d4a7a 100%);
+            border-bottom: 4px solid #DAA520;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 8px 8px 0 0;
+        }
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .header-logo { height: 30px; filter: brightness(0) invert(1); }
+        .header-title { font-size: 18pt; font-weight: bold; margin: 0; }
+
+        .header-right { display: flex; align-items: center; }
+        .btn-detail {
+            background-color: #DAA520; color: #fff; padding: 8px 16px;
+            text-decoration: none; border-radius: 4px; font-weight: bold;
+            font-size: 11pt; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        h2 { font-size: 16pt; color: #1A365D; border-left: 5px solid #1A365D; padding-left: 10px; margin-top: 20px;}
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 10pt; }
+        th, td { border: 1px solid #ccc; padding: 6px 8px; }
+        th { background-color: #E8F0FE; color: #1A365D; text-align: center; font-weight: bold; }
+        td.text-right { text-align: right; }
+        td.text-center { text-align: center; }
+        td.highlight-bg { background: linear-gradient(to right, #fffdf2, #fff); }
+        /* ========== HERO SECTION（ページ1） ========== */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 56% 44%;
+            gap: 0;
+            margin: 6px 0 5px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1.5px solid #DAA520;
+            min-height: 68mm;
+        }
+        .hero-left {
+            background: linear-gradient(150deg, #0b1e3a 0%, #1A365D 55%, #1e4a7a 100%);
+            padding: 14px 20px 14px 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0;
+        }
+        .hero-right { position: relative; overflow: hidden; background: #E8F0FE; display: flex; align-items: center; justify-content: center;}
+
+        .hero-tag {
+            display: inline-block; font-size: 6.5pt; font-weight: 700; letter-spacing: 2px;
+            color: #DAA520; text-transform: uppercase; background: rgba(218,165,32,0.12);
+            border: 1px solid rgba(218,165,32,0.4); border-radius: 2px; padding: 2px 7px; margin-bottom: 5px; width: max-content;
+        }
+        .hero-metric { margin-bottom: 6px; }
+        .hero-metric-label { font-size: 7pt; color: rgba(255,255,255,0.55); font-weight: 500; letter-spacing: 0.5px; margin-bottom: 0; line-height: 1.3; }
+        .hero-metric-value { line-height: 1; font-weight: 900; letter-spacing: -1px; }
+        .hero-v-red { font-size: 32pt; color: #FF9500; text-shadow: 0 2px 12px rgba(255,149,0,0.55); }
+        .hero-v-green-md { font-size: 20pt; color: #F5C518; }
+
+        .hero-current-box {
+            background: rgba(255,215,0,0.12); border: 1px solid rgba(255,215,0,0.45);
+            border-radius: 4px; padding: 4px 10px 5px; margin-bottom: 5px;
+        }
+        .hero-v-current { font-size: 22pt; color: #FFD700; font-weight: 900; line-height: 1; letter-spacing: -0.5px; text-shadow: 0 1px 8px rgba(255,215,0,0.5); }
+        .hero-divider { height: 1px; background: linear-gradient(90deg, rgba(218,165,32,0.5), transparent); margin: 5px 0; }
+        .footer-band { background: #1A365D; color: white; padding: 10px; text-align: center; font-size: 9pt; border-radius: 0 0 8px 8px; margin-top: auto;}
+        /* ========== LINEページ CSS ========== */
+        .line-page {
+            background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+            min-height: 140mm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 18px 20px 14px;
+            text-align: center;
+            gap: 0;
+        }
+        .line-sub-title { margin-bottom: 16px; }
+        .line-content   { margin-bottom: 16px; }
+        .line-btn       { margin-bottom: 16px; background-color: #06C755; color: white; padding: 15px 40px; font-size: 18pt; font-weight: bold; border-radius: 30px; text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.2); display: inline-block; }
+        .line-qr { background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 16px; }
+        /* その他ユーティリティ */
+        .note-box { background: #fcfcfc; border: 1px solid #DAA520; border-left: 5px solid #DAA520; padding: 15px; border-radius: 4px; margin-bottom: 15px; }
+
+        /* レスポンシブ用ラッパー */
+        .content-wrapper { width: 100%; box-sizing: border-box; }
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+
+        @media screen and (max-width: 768px) {
+            .hero-section { grid-template-columns: 1fr; min-height: auto; }
+            .content-wrapper { padding: 10px; }
+            table { font-size: 8pt; }
+            .line-page { padding: 20px 10px; }
+            .line-btn { font-size: 14pt; padding: 10px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 1ページ目：概要（固定フォーマット） -->
+    <div class="page-container">
+        <div class="content-wrapper">
+            <div class="header avoid-break">
+                <div class="header-left">
+                    <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png" alt="REATEX" class="header-logo" onerror="this.style.display='none'">
+                    <h1 class="header-title">【物件概要書】 北海道岩見沢市 戸建</h1>
+                </div>
+                <div class="header-right">
+                    <a href="https://drive.google.com/drive/folders/1RJpU5ylg3W-q77LkHbihzVmjhr1n8gu8?usp=drive_link" target="_blank" class="btn-detail">📂 詳細はこちら</a>
+                </div>
+            </div>
+            <!-- 固定ヒーローセクション -->
+            <div class="hero-section avoid-break">
+                <div class="hero-left">
+                    <div class="hero-tag">Investment Highlight</div>
+                    <div class="hero-metric">
+                        <p class="hero-metric-label">販売価格</p>
+                        <div class="hero-metric-value hero-v-red">15<span style="font-size: 14pt;">万円</span></div>
+                    </div>
+                    <div class="hero-divider"></div>
+                    <div class="hero-current-box">
+                        <p class="hero-metric-label" style="color: #666; margin:0 0 5px 0;">現況利回り</p>
+                        <div class="hero-metric-value hero-v-current">0<span style="font-size: 14pt;">%</span></div>
+                    </div>
+                    <div class="hero-metric">
+                        <p class="hero-metric-label">満室想定利回り</p>
+                        <div class="hero-metric-value hero-v-green-md">136<span style="font-size: 12pt;">%</span></div>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <img src="https://drive.google.com/thumbnail?id=1cMLKF1K86VQxBTQpCwsifsrXw6_0_q8x&sz=w800"
+                         onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1cMLKF1K86VQxBTQpCwsifsrXw6_0_q8x'"
+                         alt="物件外観" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+            <div class="avoid-break">
+                <table>
+                    <tr>
+                        <th style="width: 15%;">物件番号</th><td style="width: 35%;">r-2539</td>
+                        <th style="width: 15%;">物件種別</th><td style="width: 35%;">戸建</td>
+                    </tr>
+                    <tr>
+                        <th>所在地</th><td colspan="3">北海道岩見沢市南町八条5丁目12ー18</td>
+                    </tr>
+                    <tr>
+                        <th>交通</th><td colspan="3">JR北海道・室蘭本線「志文」駅 車約4分</td>
+                    </tr>
+                    <tr>
+                        <th>現況収入</th><td class="text-right highlight-bg" style="font-weight:bold; color:#1A365D;">0 円/年</td>
+                        <th>満室想定収入</th><td class="text-right highlight-bg" style="font-weight:bold; color:#C41E3A;">204,000 円/年</td>
+                    </tr>
+                    <tr>
+                        <th>土地面積</th><td class="text-right">239 ㎡ (72.30坪)</td>
+                        <th>建物面積</th><td class="text-right">78.18 ㎡ (23.65坪)</td>
+                    </tr>
+                    <tr>
+                        <th>構造・階数</th><td class="text-center">木造</td>
+                        <th>築年月</th><td class="text-center">昭和50年12月15日 (築51年)</td>
+                    </tr>
+                    <tr>
+                        <th>残存耐用年数</th><td class="text-center">0年（超過）</td>
+                        <th>路線価</th><td class="text-center">0.52万円/㎡</td>
+                    </tr>
+                    <tr>
+                        <th>地目</th><td class="text-center">雑種地</td>
+                        <th>用途地域</th><td class="text-center">第二種中高層住居専用地域</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="footer-band avoid-break">
+            株式会社リアテクス | 〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506 | TEL: 03-6822-7297
+        </div>
+    </div>
+    <!-- 2ページ目：レントロール・年間支出 -->
+    <div class="page-container page-break">
+        <div class="content-wrapper">
+            <h2 class="rent-spec-banner">テナント状況（レントロール）</h2>
+            <table class="avoid-break">
+                <tr>
+                    <th>種類</th><th>利用状況</th>
+                    <th>現況賃料</th><th>現況共益費</th><th>現況その他</th><th>現況合計</th>
+                    <th>想定賃料</th><th>想定合計</th><th>備考</th>
+                </tr>
+                <tr>
+                    <td class="text-center">戸建</td><td class="text-center">空室</td>
+                    <td class="text-right">0</td><td class="text-right">0</td><td class="text-right">0</td><td class="text-right">0</td>
+                    <td class="text-right">17,000</td><td class="text-right">17,000</td><td>-</td>
+                </tr>
+                <tr style="font-weight:bold; background-color:#fcfcfc;">
+                    <td colspan="2" class="text-center">月額合計</td>
+                    <td class="text-right">0</td><td class="text-right">0</td><td class="text-right">0</td><td class="text-right">0</td>
+                    <td class="text-right">-</td><td class="text-right">17,000</td><td>-</td>
+                </tr>
+                <tr style="font-weight:bold; background-color:#E8F0FE; color:#1A365D;">
+                    <td colspan="2" class="text-center">年間額（月額×12ヵ月）</td>
+                    <td colspan="4" class="text-center">現況収入：0 円</td>
+                    <td colspan="3" class="text-center">満室想定収入：204,000 円</td>
+                </tr>
+            </table>
+            <h2>年間支出（元データ記載分のみ）</h2>
+            <table class="avoid-break" style="width: 70%;">
+                <tr><th>項目</th><th>金額（円/年）</th><th>備考</th></tr>
+                <tr><td class="text-center">各種経費</td><td class="text-right">【確認中】</td><td>データなし</td></tr>
+                <tr style="font-weight:bold; background-color:#E8F0FE; color:#1A365D;">
+                    <td class="text-center">合計</td><td class="text-right">【確認中】</td><td></td>
+                </tr>
+            </table>
+            <p style="font-size: 8pt; color: #666;">※上記は元データに記載されている費目のみを計上しています。維持管理費等が発生する場合があります。</p>
+        </div>
+    </div>
+    <!-- 3ページ目：収支シミュレーション (RKC用) -->
+    <div class="page-container page-break">
+        <div class="content-wrapper">
+            <h2>収支シミュレーション（RKCロジック）</h2>
+            <div class="avoid-break note-box">
+                <table style="width: 100%; border:none;">
+                    <tr>
+                        <th style="width: 30%; text-align:left; background:none; border:none; border-bottom:1px solid #ccc;">項目</th>
+                        <th style="text-align:right; background:none; border:none; border-bottom:1px solid #ccc;">金額</th>
+                        <th style="text-align:left; background:none; border:none; border-bottom:1px solid #ccc; padding-left:15px;">備考・計算式</th>
+                    </tr>
+                    <tr>
+                        <td style="border:none; border-bottom:1px dashed #eee; font-weight:bold;">1. 出口価格</td>
+                        <td style="border:none; border-bottom:1px dashed #eee; text-align:right; font-weight:bold;">1,020,000 円</td>
+                        <td style="border:none; border-bottom:1px dashed #eee; padding-left:15px;">年間家賃(20.4万円) ÷ 20%</td>
+                    </tr>
+                    <tr>
+                        <td style="border:none; border-bottom:1px dashed #eee;">2. 取得費用を差し引く</td>
+                        <td style="border:none; border-bottom:1px dashed #eee; text-align:right;">- 150,000 円</td>
+                        <td style="border:none; border-bottom:1px dashed #eee; padding-left:15px;">販売価格</td>
+                    </tr>
+                    <tr>
+                        <td style="border:none; border-bottom:1px solid #ccc;">3. 諸経費を差し引く</td>
+                        <td style="border:none; border-bottom:1px solid #ccc; text-align:right;">- 100,000 円</td>
+                        <td style="border:none; border-bottom:1px solid #ccc; padding-left:15px;">※要確認</td>
+                    </tr>
+                    <tr>
+                        <td style="border:none; font-weight:bold; color:#C41E3A; font-size:14pt; padding-top:10px;">想定売却益</td>
+                        <td style="border:none; text-align:right; font-weight:bold; color:#C41E3A; font-size:14pt; padding-top:10px;">770,000 円</td>
+                        <td style="border:none; padding-left:15px; padding-top:10px;">出口価格 － 取得費用 － 諸経費</td>
+                    </tr>
+                </table>
+            </div>
+            <h2>投資ポイント・設備</h2>
+            <div class="investment-point avoid-break">
+                <table style="width: 100%;">
+                    <tr><th>設備・その他</th><td class="text-left">公営水道 / 浄化槽 / プロパンガス / 5DK</td></tr>
+                    <tr><th>土地積算価格</th><td class="text-left">約 1,242,800 円 (路線価 0.52万円/㎡ × 239㎡)</td></tr>
+                    <tr><th>土地積算比率</th><td class="text-left">約 828.5 %</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- 4ページ目：特記事項・写真 -->
+    <div class="page-container page-break">
+        <div class="content-wrapper">
+            <h2>特記事項</h2>
+            <div class="note-box avoid-break">
+                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                    <li>現況有姿、境界非明示</li>
+                    <li>司法書士は弊社指定</li>
+                    <li>表記している広さは確定的な数字ではなく、公図にて簡易的に計測作成したものです。</li>
+                    <li>未登記建物あり</li>
+                    <li>駐車2台可能</li>
+                    <li>販売価格は各種掲載サイトをご確認ください。</li>
+                    <li>ライフライン・間取りについてはヒアリングをもとに記載しており、現況とは異なる可能性があります。</li>
+                    <li>本物件は築年数が経過しており、屋根や配管・室内設備などに自然損耗・経年劣化が見られます。これらは契約不適合に該当するものではなく、買主の責任と負担で補修するものとし、売主に法的請求・費用負担等を求めないものとします。</li>
+                </ul>
+            </div>
+
+            <h2>物件写真</h2>
+            <div class="photo-grid avoid-break">
+                <div>
+                    <img src="https://drive.google.com/thumbnail?id=1cMLKF1K86VQxBTQpCwsifsrXw6_0_q8x&sz=w800"
+                         onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1cMLKF1K86VQxBTQpCwsifsrXw6_0_q8x'"
+                         alt="物件写真" style="width:100%; height:220px; object-fit:cover; border-radius:6px; border:1px solid #c8d8f8;">
+                </div>
+                <div>
+                    <img src="https://drive.google.com/thumbnail?id=1DW074udBeY1ZVVsCRpxxgbOB2yMlk3Up&sz=w800"
+                         onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1DW074udBeY1ZVVsCRpxxgbOB2yMlk3Up'"
+                         alt="物件写真PDF" style="width:100%; height:220px; object-fit:cover; border-radius:6px; border:1px solid #c8d8f8;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 5ページ目：LINEチラシ -->
+    <div class="page-container line-page page-break avoid-break">
+        <div class="content-wrapper">
+            <h2 class="line-sub-title" style="color: #1A365D; font-size: 24pt; font-weight: bold;">未公開プレミアム不動産情報<br>LINEで先行配信中！</h2>
+            <p class="line-content" style="font-size: 14pt; color: #333; font-weight:bold;">
+                ネットに出回る前の高利回り物件や、<br>特別な非公開物件を優先的にお届けします。
+            </p>
+
+            <div class="line-qr">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fliff-gateway.lineml.jp%2Flanding%3Ffollow%3D%2540388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq" alt="LINE友だち追加QRコード">
+            </div>
+            <a href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq" target="_blank" class="line-btn">
+                LINE友だち追加はこちら
+            </a>
+        </div>
+    </div>
+</body>
+</html>
