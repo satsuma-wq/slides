@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【物件概要書】 秋田県能代市二ツ井町 戸建</title>
+  <style>
+    /* ========== 印刷・レイアウト最適化（必須） ========== */
+    @page { size: A4 landscape; margin: 14mm 15mm; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      color: #333; margin: 0; padding: 0; background-color: #fff;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+
+    .page-container {
+      display: flex; flex-direction: column; justify-content: space-between;
+      box-sizing: border-box; padding: 0; width: 100%;
+    }
+
+    @media print {
+      body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .page-container { min-height: 182mm; }
+      .page-break { break-before: page; }
+      .rent-spec-banner { break-before: page; }
+      .avoid-break, .card, .kpi-grid, .investment-point, .env-card, .note-box, .caution-box { break-inside: avoid; }
+      .section-title, h2, h3 { break-after: avoid; }
+      table tr { break-inside: avoid; }
+      .header, .footer-band { break-before: avoid; }
+    }
+
+    @media screen {
+      .page-container { margin-bottom: 40px; border-bottom: 2px dashed #ccc; padding-bottom: 20px; }
+      .page-break { margin-top: 40px; }
+    }
+
+    /* ========== 共通デザイン ========== */
+    .header {
+      display: flex; justify-content: space-between; align-items: center;
+      background: linear-gradient(90deg, #1A365D 0%, #2d4a7a 100%);
+      border-bottom: 4px solid #DAA520; padding: 10px 20px;
+      color: white; border-radius: 8px 8px 0 0;
+    }
+    .header-left { display: flex; align-items: center; gap: 15px; }
+    .header-logo { height: 30px; filter: brightness(0) invert(1); }
+    .header-title { font-size: 16pt; font-weight: bold; margin: 0; color: white; }
+    .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+    .header-property-num { font-size: 8pt; color: rgba(255,255,255,0.7); }
+
+    table { width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 10pt; }
+    th, td { border: 1px solid #ccc; padding: 5px 8px; }
+    th { background-color: #E8F0FE; color: #1A365D; text-align: left; font-weight: bold; }
+    td.th { background-color: #E8F0FE; color: #1A365D; font-weight: bold; width: 28%; }
+    .text-right { text-align: right; }
+    .text-center { text-align: center; }
+    .highlight-bg { background: linear-gradient(to right, #fffdf2, #fff); }
+
+    .section-title {
+      background: linear-gradient(90deg, #1A365D, #2d4a7a);
+      color: white; padding: 5px 14px; font-size: 10pt; font-weight: bold;
+      border-radius: 4px; margin: 10px 0 6px; display: flex; align-items: center; gap: 8px;
+    }
+
+    /* ========== HERO SECTION（ページ1） ========== */
+    .hero-section {
+      display: grid; grid-template-columns: 56% 44%;
+      gap: 0; margin: 6px 0 5px; border-radius: 8px;
+      overflow: hidden; border: 1.5px solid #DAA520; min-height: 68mm;
+    }
+    .hero-left {
+      background: linear-gradient(150deg, #0b1e3a 0%, #1A365D 55%, #1e4a7a 100%);
+      padding: 10px 18px 10px 16px; display: flex; flex-direction: column;
+      justify-content: center; gap: 0;
+    }
+    .hero-right { position: relative; overflow: hidden; background: #E8F0FE; display: flex; align-items: center; justify-content: center; }
+    .hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(1.15) contrast(1.05) saturate(1.1); }
+    .hero-right-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.55));
+      padding: 8px 10px 6px; color: white; font-size: 7pt; font-weight: 700; letter-spacing: 0.5px;
+    }
+    .hero-tag {
+      display: inline-block; font-size: 6.5pt; font-weight: 700; letter-spacing: 2px;
+      color: #DAA520; text-transform: uppercase; background: rgba(218,165,32,0.12);
+      border: 1px solid rgba(218,165,32,0.4); border-radius: 2px;
+      padding: 2px 7px; margin-bottom: 5px; width: max-content;
+    }
+    .hero-metric { margin-bottom: 4px; }
+    .hero-metric-label { font-size: 7pt; color: rgba(255,255,255,0.55); font-weight: 500; letter-spacing: 0.5px; margin-bottom: 0; line-height: 1.3; }
+    .hero-metric-value { line-height: 1; font-weight: 900; letter-spacing: -1px; }
+    .hero-v-red   { font-size: 32pt; color: #FF9500; text-shadow: 0 2px 12px rgba(255,149,0,0.55); }
+    .hero-v-green { font-size: 32pt; color: #F5C518; text-shadow: 0 2px 12px rgba(245,197,24,0.5); }
+    .hero-v-green-md { font-size: 20pt; color: #F5C518; }
+    .hero-v-current { font-size: 22pt; color: #FFD700; font-weight: 900; line-height: 1; letter-spacing: -0.5px; text-shadow: 0 1px 8px rgba(255,215,0,0.5); }
+    .hero-current-box {
+      background: rgba(255,215,0,0.12); border: 1px solid rgba(255,215,0,0.45);
+      border-radius: 4px; padding: 4px 10px 5px; margin-bottom: 0;
+    }
+    .hero-divider { height: 1px; background: linear-gradient(90deg, rgba(218,165,32,0.5), transparent); margin: 5px 0; }
+    .hero-badge {
+      background: rgba(218,165,32,0.15); border: 1px solid rgba(218,165,32,0.5);
+      border-radius: 10px; padding: 2px 9px; font-size: 7pt; color: #DAA520; font-weight: 700; white-space: nowrap;
+    }
+
+    /* ========== フッター帯 ========== */
+    .footer-band {
+      background: #1A365D; color: white; padding: 8px 16px;
+      border-radius: 0 0 8px 8px; margin-top: auto;
+      display: flex; justify-content: space-between; align-items: center; font-size: 8.5pt;
+    }
+
+    /* ========== 投資ポイント ========== */
+    .investment-point {
+      background: linear-gradient(135deg, #fffbf0, #fff8e8);
+      border: 1px solid #DAA520; border-left: 5px solid #DAA520;
+      border-radius: 6px; padding: 10px 14px; margin: 8px 0;
+    }
+    .points-list { margin: 0; padding-left: 16px; }
+    .points-list li { margin-bottom: 5px; font-size: 9.5pt; line-height: 1.5; }
+
+    /* ========== 周辺環境 ========== */
+    .env-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 0; }
+    .env-card { background: #f8fafe; border: 1px solid #c8d8f8; border-radius: 6px; padding: 8px 10px; }
+    .env-card-title { font-size: 8pt; color: #1A365D; font-weight: bold; margin-bottom: 4px; }
+    .env-card-content { font-size: 8.5pt; color: #444; line-height: 1.5; }
+
+    /* ========== ノートボックス ========== */
+    .note-box {
+      background: #fcfcfc; border: 1px solid #DAA520; border-left: 5px solid #DAA520;
+      padding: 10px 14px; border-radius: 4px; margin: 8px 0; font-size: 9pt; line-height: 1.6;
+    }
+    .caution-box {
+      background: #fff8f0; border: 1px solid #e06000; border-left: 5px solid #e06000;
+      padding: 10px 14px; border-radius: 4px; margin: 8px 0; font-size: 9pt; line-height: 1.6;
+    }
+
+    /* ========== 写真グリッド ========== */
+    .photo-grid-main { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6px; margin: 6px 0; }
+    .photo-grid-4    { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; margin: 6px 0; }
+    .photo-grid-2    { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 6px 0; }
+    .photo-item img { width: 100%; height: 110px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd; }
+    .photo-item-main img { width: 100%; height: 150px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd; }
+    .photo-caption { font-size: 7pt; color: #666; margin-top: 3px; text-align: center; }
+
+    /* ========== LINEページ CSS ========== */
+    .line-page {
+      background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+      min-height: 140mm; display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-start;
+      padding: 18px 20px 14px; text-align: center; gap: 0;
+    }
+    .line-sub-title  { margin-bottom: 16px; }
+    .line-content    { margin-bottom: 16px; }
+    .line-main-title { font-size: 26pt; font-weight: 900; color: #1A365D; line-height: 1.2; margin-bottom: 8px; }
+    .line-btn {
+      margin-bottom: 16px; background-color: #06C755; color: white;
+      padding: 15px 40px; font-size: 18pt; font-weight: bold; border-radius: 30px;
+      text-decoration: none; box-shadow: 0 4px 6px rgba(0,0,0,0.2); display: inline-block;
+    }
+    .line-features { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+    .line-feature-item {
+      background: rgba(255,255,255,0.85); border-radius: 8px; padding: 7px 12px;
+      font-size: 9.5pt; font-weight: bold; color: #1A365D;
+    }
+    .line-qr { background: #fff; padding: 12px; border-radius: 8px; margin-bottom: 12px; }
+
+    /* ========== レスポンシブ（タブレット・スマホ） ========== */
+    @media screen and (max-width: 900px) {
+      .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+      .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+      .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+      .hero-section { grid-template-columns: 1fr !important; min-height: unset; }
+      .env-grid { grid-template-columns: repeat(2, 1fr); }
+      .photo-grid-main { grid-template-columns: 1fr !important; }
+      .photo-grid-4    { grid-template-columns: 1fr 1fr !important; }
+      .photo-grid-2    { grid-template-columns: 1fr !important; }
+      .line-page { padding: 20px 14px; min-height: unset; }
+      .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+      .page-break, .rent-spec-banner { page-break-before: auto; break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+    }
+    @media screen and (max-width: 480px) {
+      .env-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== PAGE 1: 概要 ========== -->
+<div class="page-container">
+
+  <!-- ヘッダー -->
+  <div class="header avoid-break">
+    <div class="header-left">
+      <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+           alt="REATEX" class="header-logo" onerror="this.style.display='none'">
+      <h1 class="header-title">【物件概要書】 秋田県能代市二ツ井町 戸建</h1>
+    </div>
+    <div class="header-right">
+      <div style="font-size:9pt;color:rgba(255,255,255,0.8);">株式会社リアテクス</div>
+      <a href="https://drive.google.com/drive/folders/1ePWOXK046ZoXI0nD4fH3GllhG_5uoxnK?usp=drive_link"
+         target="_blank"
+         style="display:inline-block; margin-top:4px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+      <div class="header-property-num">物件番号: r-2511</div>
+    </div>
+  </div>
+
+  <!-- 固定ヒーローセクション -->
+  <div class="hero-section avoid-break">
+    <div class="hero-left" style="padding:10px 18px 10px 16px; gap:0;">
+      <div class="hero-tag">INVESTMENT PROPERTY ― 秋田県能代市 ｜ 物件番号：r-2511</div>
+
+      <!-- 上段：表面利回り + 現況利回り -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:4px;">
+        <div>
+          <div class="hero-metric-label">表面利回り（満室想定）</div>
+          <div class="hero-metric-value hero-v-green">180<span style="font-size:14pt;">%</span></div>
+        </div>
+        <div class="hero-current-box">
+          <div class="hero-metric-label" style="color:rgba(255,215,0,0.7);">現況利回り（空室）</div>
+          <div class="hero-metric-value hero-v-current">0<span style="font-size:14pt;">%</span></div>
+          <div style="font-size:6.5pt;color:rgba(255,215,0,0.6);margin-top:1px;">賃借人募集中</div>
+        </div>
+      </div>
+
+      <div class="hero-divider" style="margin:4px 0;"></div>
+
+      <!-- 下段：販売価格 + 想定月額賃料 -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+        <div>
+          <div class="hero-metric-label">販売価格</div>
+          <div class="hero-metric-value hero-v-red">10<span style="font-size:14pt;">万円</span></div>
+        </div>
+        <div>
+          <div class="hero-metric-label">想定月額賃料</div>
+          <div class="hero-metric-value hero-v-green-md">1.5<span style="font-size:12pt;">万円</span></div>
+          <div style="font-size:6.5pt;color:rgba(255,255,255,0.5);margin-top:1px;">年間18万円 ÷ 出口90万円想定</div>
+        </div>
+      </div>
+
+      <!-- バッジ行 -->
+      <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:5px;">
+        <span class="hero-badge">📍 奥羽線「二ッ井」駅 車5分</span>
+        <span class="hero-badge">🏠 戸建・居宅</span>
+        <span class="hero-badge">⏱ 回収期間 約7ヶ月</span>
+      </div>
+    </div>
+
+    <!-- 右：外観写真（フルハイト） -->
+    <div class="hero-right">
+      <img src="https://drive.google.com/thumbnail?id=1JRwkPtUTC089B8kKIuMjBJRiZdbyrBMX&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JRwkPtUTC089B8kKIuMjBJRiZdbyrBMX'"
+           alt="外観">
+      <div class="hero-right-overlay">外観｜秋田県能代市二ツ井町切石字大倉57-2</div>
+    </div>
+  </div>
+
+  <!-- 物件概要テーブル -->
+  <div class="avoid-break">
+    <table>
+      <tr>
+        <th style="width:15%;">物件番号</th><td style="width:35%;">r-2511</td>
+        <th style="width:15%;">物件種別</th><td style="width:35%;">戸建 / 居宅</td>
+      </tr>
+      <tr>
+        <th>所在地</th>
+        <td colspan="3">
+          <a href="https://maps.google.com/?q=秋田県能代市二ツ井町切石字大倉57-2" target="_blank" style="color:#2563EB;">
+            秋田県能代市二ツ井町切石字大倉 57-2
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <th>交通</th><td colspan="3">奥羽線「二ッ井」駅 車5分 ／ 五能線「能代」駅 車21分</td>
+      </tr>
+      <tr>
+        <th>構造</th><td>【確認中】</td>
+        <th>築年月</th><td>【確認中】</td>
+      </tr>
+      <tr>
+        <th>土地面積</th><td>【確認中】</td>
+        <th>建物面積</th><td>【確認中】</td>
+      </tr>
+      <tr>
+        <th>都市計画</th><td>【確認中】</td>
+        <th>建ぺい率／容積率</th><td>【確認中】</td>
+      </tr>
+      <tr>
+        <th>路線価</th><td>0.29万円/㎡</td>
+        <th>土地積算価格</th><td>【確認中】（土地面積確認後算出）</td>
+      </tr>
+      <tr>
+        <th>再調達価格</th><td>【確認中】（建物面積・構造確認後算出）</td>
+        <th>残存耐用年数</th><td>【確認中】</td>
+      </tr>
+      <tr>
+        <th>現況</th><td>空室（賃借人募集中）</td>
+        <th>引渡し</th><td>現状渡し</td>
+      </tr>
+      <tr>
+        <th>現況収入</th>
+        <td class="highlight-bg" style="font-weight:bold; color:#1A365D;">0 円/年</td>
+        <th>満室想定収入</th>
+        <td class="highlight-bg" style="font-weight:bold; color:#C41E3A;">180,000 円/年</td>
+      </tr>
+      <tr>
+        <th>売買価格</th>
+        <td class="highlight-bg" style="font-weight:bold;color:#C41E3A;font-size:12pt;">10万円</td>
+        <th>表面利回り（満室想定）</th>
+        <td class="highlight-bg" style="font-weight:bold;color:#1a7a1a;font-size:12pt;">180%</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div>株式会社リアテクス　〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前506</div>
+    <div>TEL: 03-6822-7297　※本資料は投資判断のご参考資料です。内容は変更となる場合があります。</div>
+  </div>
+</div>
+
+<!-- ========== PAGE 2: レントロール ========== -->
+<div class="page-break"></div>
+<div class="page-container">
+
+  <div class="header avoid-break">
+    <div class="header-left">
+      <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+           alt="REATEX" class="header-logo" onerror="this.style.display='none'">
+      <h1 class="header-title">レントロール</h1>
+    </div>
+    <div class="header-right">
+      <div style="font-size:9pt;color:rgba(255,255,255,0.8);">r-2511 ｜ 秋田県能代市二ツ井町 戸建</div>
+    </div>
+  </div>
+
+  <div style="margin-top:10px;">
+    <div class="section-title">📋 賃貸借状況</div>
+    <div class="avoid-break">
+      <table>
+        <tr>
+          <th style="width:8%;">部屋</th>
+          <th style="width:14%;">間取り</th>
+          <th style="width:14%;">専有面積</th>
+          <th style="width:13%;">月額賃料</th>
+          <th style="width:13%;">年間賃料</th>
+          <th style="width:12%;">現況</th>
+          <th>備考</th>
+        </tr>
+        <tr>
+          <td class="text-center">全戸</td>
+          <td class="text-center">【確認中】</td>
+          <td class="text-right">【確認中】</td>
+          <td class="text-right" style="color:#C41E3A;">0 円</td>
+          <td class="text-right" style="color:#C41E3A;">0 円</td>
+          <td class="text-center">空室</td>
+          <td>想定賃料：15,000円/月</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section-title">💰 収入サマリー</div>
+    <div class="avoid-break">
+      <table>
+        <tr>
+          <td class="th">現況月間賃料収入</td>
+          <td class="text-right highlight-bg" style="font-weight:bold;color:#1A365D;">0 円</td>
+          <td class="th">現況年間賃料収入</td>
+          <td class="text-right highlight-bg" style="font-weight:bold;color:#1A365D;">0 円</td>
+        </tr>
+        <tr>
+          <td class="th">満室想定月間賃料収入</td>
+          <td class="text-right highlight-bg" style="font-weight:bold;color:#C41E3A;">15,000 円</td>
+          <td class="th">満室想定年間賃料収入</td>
+          <td class="text-right highlight-bg" style="font-weight:bold;color:#C41E3A;">180,000 円</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section-title">📊 年間支出（想定）</div>
+    <div class="avoid-break">
+      <table>
+        <tr>
+          <td class="th">固定資産税・都市計画税</td>
+          <td class="text-right">【確認中】</td>
+        </tr>
+        <tr>
+          <td class="th" style="color:#C41E3A;font-weight:900;">年間支出合計（想定）</td>
+          <td class="text-right" style="font-weight:bold;color:#C41E3A;">【確認中】</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="note-box avoid-break">
+      ※ 年間支出は税務資料確認後に更新予定です。固定資産税・都市計画税については別途資料をご確認ください。<br>
+      ※ 想定賃料（15,000円/月）は周辺相場を参考にした想定値です。実際の賃料は市場状況により変動する場合があります。
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 3: 収支シミュレーション ========== -->
+<div class="page-break"></div>
+<div class="page-container">
+
+  <div class="header avoid-break">
+    <div class="header-left">
+      <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+           alt="REATEX" class="header-logo" onerror="this.style.display='none'">
+      <h1 class="header-title">収支シミュレーション・投資ポイント</h1>
+    </div>
+    <div class="header-right">
+      <div style="font-size:9pt;color:rgba(255,255,255,0.8);">r-2511 ｜ 秋田県能代市二ツ井町 戸建</div>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:10px;">
+
+    <!-- 左：収支シミュレーション -->
+    <div>
+      <div class="section-title">📈 RKC収支シミュレーション</div>
+      <div class="avoid-break">
+        <table>
+          <tr>
+            <td class="th">販売価格（取得費用）</td>
+            <td class="text-right">100,000 円</td>
+          </tr>
+          <tr>
+            <td class="th">諸経費（登記・司法書士等）</td>
+            <td class="text-right">30,000 円（想定）</td>
+          </tr>
+          <tr style="background:#fff3f3;">
+            <td class="th">RKC成功報酬費用</td>
+            <td class="text-right" style="font-weight:bold;color:#C41E3A;">100,000 円</td>
+          </tr>
+          <tr style="background:#f0f8f0;">
+            <td class="th">年間想定家賃収入（想定月額×12）</td>
+            <td class="text-right" style="font-weight:bold;color:#1a7a1a;">180,000 円（月15,000円 × 12ヶ月）</td>
+          </tr>
+          <tr>
+            <td class="th">想定利回り</td>
+            <td class="text-right" style="font-weight:bold;color:#1a7a1a;font-size:12pt;">180%</td>
+          </tr>
+          <tr>
+            <td class="th">想定出口価格（利回り20%想定）</td>
+            <td class="text-right" style="font-weight:bold;">
+              900,000 円<br>
+              <span style="font-size:8pt;color:#888;">（年間家賃18万円 ÷ 20% = 90万円）</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="th">　− 取得費用</td>
+            <td class="text-right">− 100,000 円</td>
+          </tr>
+          <tr>
+            <td class="th">　− 諸経費</td>
+            <td class="text-right">− 30,000 円</td>
+          </tr>
+          <tr style="background:#e8ffe8;">
+            <td class="th"><strong>想定売却益</strong></td>
+            <td class="text-right" style="color:#C41E3A;font-weight:900;font-size:13pt;"><strong>770,000 円</strong></td>
+          </tr>
+        </table>
+      </div>
+      <div class="caution-box avoid-break">
+        ⚠️ <strong>RKC成功報酬費用として10万円を別途申し受けます</strong><br>
+        ※ 想定出口価格は利回り20%想定の試算値です。市場状況により変動します。<br>
+        ※ 諸経費は登記費用等の概算値です。
+      </div>
+    </div>
+
+    <!-- 右：投資ポイント＋周辺環境 -->
+    <div>
+      <div class="section-title">⭐ 投資ポイント</div>
+      <div class="investment-point avoid-break">
+        <ul class="points-list">
+          <li><strong>超低価格・超高利回り：</strong>販売価格わずか10万円、満室想定利回り<strong>180%</strong></li>
+          <li><strong>大きな出口価格：</strong>利回り20%想定の出口価格は約<strong>90万円</strong>（取得の9倍）</li>
+          <li><strong>想定売却益：</strong>諸費用差引後も約<strong>77万円</strong>の利益が見込める</li>
+          <li><strong>交通アクセス：</strong>JR奥羽本線「二ッ井」駅から車5分。五能線「能代」駅も車21分</li>
+          <li><strong>RKC特別案件：</strong>利回り100%戸建クラブ（RKC）対象。低価格で高リターンを狙える</li>
+        </ul>
+      </div>
+
+      <div class="section-title" style="margin-top:10px;">🌍 周辺環境</div>
+      <div class="env-grid avoid-break">
+        <div class="env-card">
+          <div class="env-card-title">🚉 交通</div>
+          <div class="env-card-content">奥羽線「二ッ井」駅 車5分<br>五能線「能代」駅 車21分</div>
+        </div>
+        <div class="env-card">
+          <div class="env-card-title">🏥 医療</div>
+          <div class="env-card-content">【確認中】</div>
+        </div>
+        <div class="env-card">
+          <div class="env-card-title">🏫 学校</div>
+          <div class="env-card-content">【確認中】</div>
+        </div>
+        <div class="env-card">
+          <div class="env-card-title">🛒 商業</div>
+          <div class="env-card-content">【確認中】</div>
+        </div>
+        <div class="env-card">
+          <div class="env-card-title">🏞️ 自然環境</div>
+          <div class="env-card-content">能代市二ツ井町。米代川流域の自然豊かな地域</div>
+        </div>
+        <div class="env-card">
+          <div class="env-card-title">📍 エリア特性</div>
+          <div class="env-card-content">秋田県北部・能代市。移住・二地域居住に適した閑静な環境</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 4: 物件写真・特記事項 ========== -->
+<div class="page-break"></div>
+<div class="page-container">
+
+  <div class="header avoid-break">
+    <div class="header-left">
+      <img src="https://reatex.co.jp/wp-content/uploads/2022/04/REATEX_logo_2yoko-e1650642286624.png"
+           alt="REATEX" class="header-logo" onerror="this.style.display='none'">
+      <h1 class="header-title">物件写真・特記事項</h1>
+    </div>
+    <div class="header-right">
+      <div style="font-size:9pt;color:rgba(255,255,255,0.8);">r-2511 ｜ 秋田県能代市二ツ井町 戸建</div>
+    </div>
+  </div>
+
+  <div style="margin-top:8px;">
+    <div class="section-title">📸 外観・接道・車庫</div>
+    <div class="photo-grid-main" style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:6px; margin:6px 0;">
+      <div class="photo-item-main">
+        <img src="https://drive.google.com/thumbnail?id=1JRwkPtUTC089B8kKIuMjBJRiZdbyrBMX&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JRwkPtUTC089B8kKIuMjBJRiZdbyrBMX'"
+             alt="外観">
+        <div class="photo-caption">外観</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1fqxGSpUHxyl8Q7zX6qpTe_r6sWefMtj2&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1fqxGSpUHxyl8Q7zX6qpTe_r6sWefMtj2'"
+             alt="外観②">
+        <div class="photo-caption">外観②</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1I3MGLmFv6BLGv8med47AoA-7jf88Rg07&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1I3MGLmFv6BLGv8med47AoA-7jf88Rg07'"
+             alt="外観③">
+        <div class="photo-caption">外観③</div>
+      </div>
+    </div>
+
+    <div class="photo-grid-4" style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:6px; margin:6px 0;">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1gwjlgxoMILyWvPLg7jLPhHnctgk6nslF&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1gwjlgxoMILyWvPLg7jLPhHnctgk6nslF'"
+             alt="接道">
+        <div class="photo-caption">接道</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1Gi7AnWrLravdqBBplUgyl0u_-xqrEV-q&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Gi7AnWrLravdqBBplUgyl0u_-xqrEV-q'"
+             alt="接道②">
+        <div class="photo-caption">接道②</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1uqw11NM-nZEWnQ0fGDslqVMr2ozkQ1aq&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1uqw11NM-nZEWnQ0fGDslqVMr2ozkQ1aq'"
+             alt="車庫">
+        <div class="photo-caption">車庫</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1WxSPrlbAe85mP8p_1U2IycPxdmrgp6dn&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1WxSPrlbAe85mP8p_1U2IycPxdmrgp6dn'"
+             alt="玄関">
+        <div class="photo-caption">玄関</div>
+      </div>
+    </div>
+
+    <div class="section-title">🏠 内観</div>
+    <div class="photo-grid-4" style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:6px; margin:6px 0;">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1uIOcbZbnGMMevVCRey8CISHfxqzR2_OV&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1uIOcbZbnGMMevVCRey8CISHfxqzR2_OV'"
+             alt="居室">
+        <div class="photo-caption">居室</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1sngPslsSRff63wOk8X6tEUhwceYsqtle&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1sngPslsSRff63wOk8X6tEUhwceYsqtle'"
+             alt="キッチン">
+        <div class="photo-caption">キッチン</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1RWzXuI4zFs69xki_3SdMrDlH-5_vq2bg&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1RWzXuI4zFs69xki_3SdMrDlH-5_vq2bg'"
+             alt="トイレ">
+        <div class="photo-caption">トイレ</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1rTR9ti2YdAVW4X-SoT3vuwUGMAvksMbI&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1rTR9ti2YdAVW4X-SoT3vuwUGMAvksMbI'"
+             alt="縁側">
+        <div class="photo-caption">縁側</div>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:6px;">📝 特記事項</div>
+    <div class="note-box avoid-break">
+      <ul style="margin:0; padding-left:16px; line-height:1.8; font-size:9pt;">
+        <li>現況：空室（賃借人募集中）</li>
+        <li>現状渡し</li>
+        <li><strong>RKC成功報酬費用として10万円を別途申し受けます</strong></li>
+        <li>路線価：0.29万円/㎡</li>
+        <li>土地面積・建物面積・構造・築年月は資料確認後に更新予定（現在【確認中】）</li>
+        <li>本資料は投資判断のご参考資料です。詳細については別途ご確認・ご相談ください。</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE 5: 未公開プレミアム不動産 LINEチラシ ========== -->
+<div class="page-break"></div>
+<div class="page-container">
+  <div class="line-page">
+    <div class="line-sub-title">
+      <div style="font-size:10pt; color:#1A365D; font-weight:700; letter-spacing:2px;">利回り100%戸建クラブ（RKC）</div>
+    </div>
+
+    <div class="line-main-title">未公開プレミアム不動産<br>情報配信中</div>
+
+    <div class="line-content">
+      <div style="font-size:11pt; color:#2d4a7a; margin-bottom:10px; font-weight:600;">
+        こんな物件が届きます
+      </div>
+      <div class="line-features">
+        <div class="line-feature-item">🏠 超低価格戸建（10万円〜）</div>
+        <div class="line-feature-item">📈 利回り100%超の物件</div>
+        <div class="line-feature-item">💰 出口売却益が大きい</div>
+        <div class="line-feature-item">🎯 厳選プレミアム情報</div>
+      </div>
+    </div>
+
+    <a href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq"
+       target="_blank" class="line-btn">
+      ▶ LINE友だち追加
+    </a>
+
+    <div class="line-qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq"
+           alt="LINE QR" style="width:100px; height:100px; border-radius:4px;">
+      <div style="font-size:8pt; color:#2d4a7a; margin-top:6px;">QRコードでも友だち追加できます</div>
+    </div>
+
+    <div style="font-size:8pt; color:#2d4a7a; opacity:0.8;">
+      株式会社リアテクス　TEL: 03-6822-7297
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
