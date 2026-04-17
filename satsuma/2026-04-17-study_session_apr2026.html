@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>業者ネットワークを制す者が市場を制す｜2026年4月勉強会</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&family=Noto+Serif+JP:wght@500;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1B3B;
+    --navy-2:#142755;
+    --navy-3:#1E3A6F;
+    --gold:#C9A86A;
+    --gold-2:#E0C58A;
+    --ink:#0F172A;
+    --ink-2:#334155;
+    --ink-3:#64748B;
+    --bg:#F4F1EA;
+    --bg-2:#FFFFFF;
+    --line:#E5E1D6;
+    --accent:#B83A3A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:#1a1a1a;
+    font-family:"Noto Sans JP","Inter","Helvetica Neue",Arial,sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  body{
+    display:flex;flex-direction:column;align-items:center;
+    padding:32px 16px 120px;
+    min-height:100vh;
+  }
+
+  /* ===== Slide canvas (16:9, 1280×720 base) ===== */
+  .slide{
+    width:min(1280px, 100%);
+    aspect-ratio: 16/9;
+    background:var(--bg-2);
+    border-radius:6px;
+    overflow:hidden;
+    position:relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,.45), 0 4px 16px rgba(0,0,0,.25);
+    margin-bottom:36px;
+    color:var(--ink);
+  }
+  .slide-inner{
+    position:absolute;inset:0;
+    padding:60px 72px 72px;
+    display:flex;flex-direction:column;
+  }
+
+  /* ===== Header bar (slide top) ===== */
+  .top-bar{
+    display:flex;align-items:center;justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    padding-bottom:14px;margin-bottom:28px;
+  }
+  .brand{
+    font-family:"Inter","Noto Sans JP",sans-serif;
+    font-weight:700;letter-spacing:.18em;
+    font-size:11px;color:var(--navy);
+    display:flex;align-items:center;gap:10px;
+  }
+  .brand .dot{width:8px;height:8px;background:var(--gold);border-radius:50%;display:inline-block}
+  .page-num{
+    font-family:"Inter",sans-serif;
+    font-size:11px;letter-spacing:.16em;color:var(--ink-3);
+  }
+
+  /* ===== Chapter tag ===== */
+  .chap-tag{
+    display:inline-flex;align-items:center;gap:10px;
+    color:var(--gold);font-family:"Inter",sans-serif;
+    font-size:11px;font-weight:700;letter-spacing:.28em;
+    margin-bottom:14px;
+  }
+  .chap-tag::before{
+    content:"";display:block;width:28px;height:1px;background:var(--gold);
+  }
+
+  /* ===== Heading ===== */
+  h1.slide-title{
+    font-family:"Noto Serif JP",serif;
+    font-weight:700;
+    color:var(--navy);
+    font-size:42px;
+    line-height:1.35;
+    letter-spacing:.02em;
+    margin-bottom:10px;
+  }
+  h2.slide-title{
+    font-family:"Noto Serif JP",serif;
+    font-weight:700;color:var(--navy);
+    font-size:34px;line-height:1.4;letter-spacing:.02em;
+    margin-bottom:8px;
+  }
+  .subhead{
+    color:var(--ink-3);font-size:15px;letter-spacing:.04em;
+    margin-bottom:24px;
+  }
+
+  /* ===== Body content area ===== */
+  .body-area{flex:1;display:flex;flex-direction:column;gap:20px}
+  .lead{font-size:18px;color:var(--ink-2);line-height:1.85;max-width:60ch}
+
+  /* ===== Footer ===== */
+  .foot{
+    position:absolute;left:72px;right:72px;bottom:24px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:"Inter",sans-serif;font-size:10px;color:var(--ink-3);
+    letter-spacing:.18em;
+  }
+  .foot .left{display:flex;gap:14px;align-items:center}
+  .foot .left::before{content:"";display:block;width:18px;height:1px;background:var(--gold)}
+
+  /* ===== Cover slide ===== */
+  .cover{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(201,168,106,.18), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(30,58,111,.45), transparent 55%),
+      linear-gradient(140deg, var(--navy) 0%, var(--navy-2) 60%, var(--navy-3) 100%);
+    color:#fff;
+  }
+  .cover .slide-inner{padding:72px 84px}
+  .cover .top-bar{border-color:rgba(255,255,255,.18)}
+  .cover .brand{color:#fff}
+  .cover .page-num{color:rgba(255,255,255,.6)}
+  .cover-grid{flex:1;display:grid;grid-template-columns:1fr;align-content:center;gap:18px}
+  .cover .eyebrow{
+    font-family:"Inter",sans-serif;letter-spacing:.32em;
+    font-size:12px;color:var(--gold-2);font-weight:600;
+  }
+  .cover h1{
+    font-family:"Noto Serif JP",serif;
+    font-weight:900;font-size:78px;line-height:1.18;letter-spacing:.02em;
+    color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.15);
+  }
+  .cover h1 .accent{color:var(--gold-2)}
+  .cover .sub{
+    margin-top:6px;font-size:22px;color:rgba(255,255,255,.85);
+    letter-spacing:.16em;font-weight:300;
+  }
+  .cover .meta{
+    display:flex;gap:32px;align-items:center;margin-top:30px;
+    font-family:"Inter",sans-serif;font-size:13px;letter-spacing:.18em;
+    color:rgba(255,255,255,.7);
+  }
+  .cover .meta b{color:var(--gold-2);font-weight:600;letter-spacing:.22em}
+  .cover .foot{color:rgba(255,255,255,.55)}
+  .cover .foot .left::before{background:var(--gold-2)}
+
+  /* ===== Agenda ===== */
+  .agenda-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:18px 36px;
+    margin-top:8px;
+  }
+  .agenda-item{
+    display:flex;gap:18px;align-items:flex-start;
+    padding:18px 20px;border:1px solid var(--line);border-radius:4px;
+    background:#fff;transition:.2s;
+  }
+  .agenda-num{
+    font-family:"Inter",sans-serif;font-weight:700;
+    color:var(--gold);font-size:22px;letter-spacing:.04em;
+    min-width:42px;
+  }
+  .agenda-text{font-size:17px;font-weight:500;color:var(--navy);line-height:1.5}
+  .agenda-sub{font-size:12px;color:var(--ink-3);margin-top:4px;letter-spacing:.04em}
+
+  /* ===== Profile ===== */
+  .profile{
+    display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:flex-start;
+    margin-top:8px;
+  }
+  .profile-photo{
+    width:240px;height:240px;border-radius:6px;
+    background:linear-gradient(135deg, var(--navy) 0%, var(--navy-3) 100%);
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-family:"Noto Serif JP",serif;font-size:64px;font-weight:700;
+    border:1px solid var(--line);
+    position:relative;overflow:hidden;
+  }
+  .profile-photo::after{
+    content:"";position:absolute;inset:auto -30% -30% auto;width:200px;height:200px;
+    background:radial-gradient(circle, rgba(201,168,106,.4), transparent 60%);
+  }
+  .profile-meta .label{
+    font-family:"Inter",sans-serif;font-size:11px;letter-spacing:.28em;
+    color:var(--gold);font-weight:700;margin-bottom:8px;
+  }
+  .profile-meta .name{
+    font-family:"Noto Serif JP",serif;font-size:46px;font-weight:700;color:var(--navy);
+    line-height:1.2;margin-bottom:6px;
+  }
+  .profile-meta .name-en{
+    font-family:"Inter",sans-serif;font-size:14px;letter-spacing:.18em;
+    color:var(--ink-3);margin-bottom:18px;
+  }
+  .profile-meta .company{
+    font-size:14px;color:var(--ink-2);letter-spacing:.04em;margin-bottom:20px;
+    padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  .profile-bullets{display:flex;flex-direction:column;gap:10px}
+  .profile-bullets li{
+    list-style:none;font-size:15px;color:var(--ink-2);line-height:1.7;
+    padding-left:22px;position:relative;
+  }
+  .profile-bullets li::before{
+    content:"";position:absolute;left:0;top:11px;
+    width:10px;height:1px;background:var(--gold);
+  }
+
+  /* ===== Two-column compare ===== */
+  .compare{
+    display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:6px;
+  }
+  .compare-card{
+    border:1px solid var(--line);border-radius:4px;padding:28px 28px 32px;
+    background:#fff;position:relative;overflow:hidden;
+  }
+  .compare-card.highlight{
+    background:linear-gradient(180deg, #fff 0%, #FBF7EE 100%);
+    border-color:var(--gold);
+  }
+  .compare-card .num{
+    font-family:"Inter",sans-serif;font-size:11px;letter-spacing:.28em;
+    color:var(--gold);font-weight:700;margin-bottom:8px;
+  }
+  .compare-card .h{
+    font-family:"Noto Serif JP",serif;font-size:24px;font-weight:700;
+    color:var(--navy);margin-bottom:10px;line-height:1.4;
+  }
+  .compare-card .desc{font-size:14px;color:var(--ink-2);line-height:1.75}
+  .compare-card .tag{
+    display:inline-block;font-size:11px;letter-spacing:.18em;font-weight:600;
+    color:var(--gold);border:1px solid var(--gold);padding:4px 10px;border-radius:2px;
+    margin-bottom:12px;
+  }
+
+  /* ===== Conclusion box ===== */
+  .conclusion{
+    margin-top:auto;padding:18px 24px;
+    background:var(--navy);color:#fff;border-radius:4px;
+    display:flex;gap:18px;align-items:center;
+    font-size:15px;letter-spacing:.04em;
+  }
+  .conclusion b{color:var(--gold-2);font-weight:700;letter-spacing:.08em}
+  .conclusion::before{
+    content:"結論";font-family:"Noto Serif JP",serif;font-weight:700;
+    font-size:13px;letter-spacing:.24em;color:var(--gold-2);
+    border-right:1px solid rgba(255,255,255,.25);padding-right:18px;
+  }
+
+  /* ===== Numbered/Bullet list ===== */
+  .num-list{display:flex;flex-direction:column;gap:14px;margin-top:6px}
+  .num-list .item{
+    display:grid;grid-template-columns:64px 1fr;gap:18px;
+    padding:18px 22px;background:#fff;border:1px solid var(--line);border-radius:4px;
+    align-items:center;
+  }
+  .num-list .n{
+    font-family:"Noto Serif JP",serif;font-size:36px;font-weight:700;
+    color:var(--gold);line-height:1;letter-spacing:.02em;
+  }
+  .num-list .t{font-size:18px;color:var(--navy);font-weight:600;line-height:1.5}
+  .num-list .t small{display:block;color:var(--ink-3);font-weight:400;font-size:13px;margin-top:4px;letter-spacing:.04em}
+
+  /* ===== Big quote ===== */
+  .pull-quote{
+    margin:auto 0;padding:36px 44px;
+    background:linear-gradient(135deg, #FBF7EE 0%, #fff 100%);
+    border-left:3px solid var(--gold);border-radius:2px;
+    font-family:"Noto Serif JP",serif;
+    font-size:32px;font-weight:700;color:var(--navy);line-height:1.6;
+    position:relative;
+  }
+  .pull-quote::before{
+    content:"\201C";position:absolute;left:14px;top:-8px;
+    font-family:"Noto Serif JP",serif;color:var(--gold);
+    font-size:80px;line-height:1;opacity:.45;
+  }
+  .pull-quote .small{display:block;font-size:14px;color:var(--ink-3);font-weight:400;letter-spacing:.16em;margin-top:14px;font-family:"Inter",sans-serif;}
+
+  /* ===== Three columns ===== */
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:6px}
+  .three .card{
+    background:#fff;border:1px solid var(--line);border-radius:4px;
+    padding:24px;display:flex;flex-direction:column;gap:10px;
+    position:relative;overflow:hidden;
+  }
+  .three .card .icon{
+    width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--navy);color:var(--gold-2);
+    font-family:"Inter",sans-serif;font-weight:700;font-size:14px;
+    margin-bottom:6px;
+  }
+  .three .card .h{
+    font-family:"Noto Serif JP",serif;font-size:20px;font-weight:700;
+    color:var(--navy);line-height:1.4;
+  }
+  .three .card .desc{font-size:13px;color:var(--ink-2);line-height:1.7}
+
+  /* ===== Question slide style ===== */
+  .question-mark{
+    font-family:"Noto Serif JP",serif;font-weight:900;
+    color:var(--gold);font-size:160px;line-height:1;
+    position:absolute;right:60px;top:80px;opacity:.16;
+  }
+
+  /* ===== Bullets simple ===== */
+  .bullets{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+  .bullets li{
+    list-style:none;font-size:18px;color:var(--ink-2);line-height:1.7;
+    padding-left:28px;position:relative;
+  }
+  .bullets li::before{
+    content:"";position:absolute;left:0;top:14px;width:14px;height:2px;background:var(--gold);
+  }
+  .bullets li b{color:var(--navy);font-weight:700}
+
+  /* ===== Highlight box ===== */
+  .hl-box{
+    background:#FBF7EE;border:1px solid var(--gold);border-radius:4px;
+    padding:24px 28px;display:flex;flex-direction:column;gap:8px;
+  }
+  .hl-box .label{
+    font-family:"Inter",sans-serif;font-size:11px;letter-spacing:.28em;
+    color:var(--gold);font-weight:700;
+  }
+  .hl-box .text{
+    font-family:"Noto Serif JP",serif;font-size:24px;font-weight:700;color:var(--navy);
+    line-height:1.5;
+  }
+
+  /* ===== VS layout ===== */
+  .vs-row{
+    display:grid;grid-template-columns:1fr 60px 1fr;gap:20px;align-items:stretch;
+    margin-top:14px;
+  }
+  .vs-card{
+    background:#fff;border:1px solid var(--line);border-radius:4px;
+    padding:24px;display:flex;flex-direction:column;gap:6px;
+  }
+  .vs-card.win{border-color:var(--gold);background:linear-gradient(180deg,#fff 0%,#FBF7EE 100%)}
+  .vs-card .label{
+    font-family:"Inter",sans-serif;font-size:11px;letter-spacing:.24em;
+    color:var(--ink-3);font-weight:600;
+  }
+  .vs-card .label.win{color:var(--gold)}
+  .vs-card .h{font-family:"Noto Serif JP",serif;font-size:24px;font-weight:700;color:var(--navy);line-height:1.4}
+  .vs-card .desc{font-size:14px;color:var(--ink-2);line-height:1.7;margin-top:4px}
+  .vs-divider{
+    display:flex;align-items:center;justify-content:center;
+    font-family:"Noto Serif JP",serif;font-weight:900;color:var(--gold);
+    font-size:32px;letter-spacing:.06em;
+  }
+
+  /* ===== Section divider slide ===== */
+  .section-divider{
+    background:
+      radial-gradient(900px 500px at 100% 0%, rgba(201,168,106,.16), transparent 60%),
+      linear-gradient(140deg, var(--navy) 0%, var(--navy-2) 100%);
+    color:#fff;
+  }
+  .section-divider .slide-inner{padding:72px 96px}
+  .section-divider .top-bar{border-color:rgba(255,255,255,.16)}
+  .section-divider .brand{color:#fff}
+  .section-divider .page-num{color:rgba(255,255,255,.6)}
+  .section-divider .center{flex:1;display:flex;flex-direction:column;justify-content:center;gap:18px}
+  .section-divider .ch-num{
+    font-family:"Inter",sans-serif;font-weight:700;letter-spacing:.32em;
+    color:var(--gold-2);font-size:14px;
+  }
+  .section-divider .ch-title{
+    font-family:"Noto Serif JP",serif;font-weight:900;font-size:64px;line-height:1.25;
+    color:#fff;letter-spacing:.02em;
+  }
+  .section-divider .ch-sub{
+    font-size:18px;color:rgba(255,255,255,.75);letter-spacing:.12em;
+  }
+  .section-divider .foot{color:rgba(255,255,255,.55)}
+  .section-divider .foot .left::before{background:var(--gold-2)}
+
+  /* ===== Final summary big ===== */
+  .final-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:6px}
+  .final-card{
+    background:linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+    color:#fff;border-radius:4px;padding:28px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .final-card .n{
+    font-family:"Inter",sans-serif;font-weight:900;font-size:14px;
+    letter-spacing:.32em;color:var(--gold-2);
+  }
+  .final-card .t{
+    font-family:"Noto Serif JP",serif;font-size:22px;font-weight:700;line-height:1.5;
+  }
+  .final-card .d{font-size:13px;color:rgba(255,255,255,.75);line-height:1.7}
+
+  /* ===== Print ===== */
+  @media print{
+    body{background:#fff;padding:0}
+    .slide{box-shadow:none;margin:0;page-break-after:always;border-radius:0}
+  }
+
+  /* ===== Watermark ===== */
+  .wm{
+    position:absolute;right:-30px;bottom:-30px;width:240px;height:240px;
+    background:radial-gradient(circle, rgba(201,168,106,.10), transparent 60%);
+    pointer-events:none;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ====================================================== -->
+<!-- P1 : COVER -->
+<!-- ====================================================== -->
+<section class="slide cover" id="p1">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;Real&nbsp;Estate&nbsp;Consulting</div>
+      <div class="page-num">001 / 041</div>
+    </div>
+    <div class="cover-grid">
+      <div class="eyebrow">2026.04 &nbsp;&nbsp; MONTHLY STUDY SESSION</div>
+      <h1>業者ネットワークを<br>制す者が<span class="accent">市場</span>を制す</h1>
+      <div class="sub">〜 信頼構築から取引獲得までの極意 〜</div>
+      <div class="meta">
+        <span><b>SPEAKER</b>&nbsp;&nbsp; 黒滝 脩人</span>
+        <span><b>DATE</b>&nbsp;&nbsp; April 2026</span>
+        <span><b>HOST</b>&nbsp;&nbsp; 株式会社リアテクス</span>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="left">REATEX MONTHLY KICK-OFF</div>
+      <div>CONFIDENTIAL</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P2 : AGENDA -->
+<!-- ====================================================== -->
+<section class="slide" id="p2">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">002 / 041</div>
+    </div>
+    <div class="chap-tag">AGENDA</div>
+    <h1 class="slide-title">本日の流れ</h1>
+    <div class="subhead">受け身から「引き寄せ手」への意識転換を、実例を交えて解説します</div>
+
+    <div class="agenda-grid">
+      <div class="agenda-item">
+        <div class="agenda-num">01</div>
+        <div><div class="agenda-text">講師紹介</div><div class="agenda-sub">SPEAKER PROFILE</div></div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">02</div>
+        <div><div class="agenda-text">勉強会の目的</div><div class="agenda-sub">PURPOSE</div></div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">03</div>
+        <div><div class="agenda-text">なぜ「業者ネットワーク」か</div><div class="agenda-sub">WHY NOW</div></div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">04</div>
+        <div><div class="agenda-text">信頼構築の極意</div><div class="agenda-sub">TRUST BUILDING</div></div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">05</div>
+        <div><div class="agenda-text">取引獲得の実戦</div><div class="agenda-sub">DEAL ACQUISITION</div></div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-num">06</div>
+        <div><div class="agenda-text">まとめ</div><div class="agenda-sub">SUMMARY</div></div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 01　INTRODUCTION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P3 : PROFILE -->
+<!-- ====================================================== -->
+<section class="slide" id="p3">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">003 / 041</div>
+    </div>
+    <div class="chap-tag">SPEAKER PROFILE</div>
+    <h1 class="slide-title">講師紹介</h1>
+
+    <div class="profile">
+      <div class="profile-photo">黒</div>
+      <div class="profile-meta">
+        <div class="label">REATEX INC.&nbsp;&nbsp;|&nbsp;&nbsp;REAL ESTATE CONSULTING DIVISION</div>
+        <div class="name">黒滝 脩人</div>
+        <div class="name-en">KUROTAKI&nbsp;&nbsp;SHUTO</div>
+        <div class="company">株式会社リアテクス　不動産コンサルティング事業部</div>
+        <ul class="profile-bullets">
+          <li>2024年に株式会社リアテクスへ入社。</li>
+          <li>インサイドセールスチーム（テレアポ業務）にて、毎日ひたすら電話を回す日々を経験。</li>
+          <li>現在はコンサル部門にて、売買業務を兼任しながら会員様のサポートを担当。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 01　INTRODUCTION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+    <div class="wm"></div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P4 : QUESTION -->
+<!-- ====================================================== -->
+<section class="slide" id="p4">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">004 / 041</div>
+    </div>
+    <div class="chap-tag">QUESTION</div>
+    <h1 class="slide-title">不動産売買の「情報の質」とは？</h1>
+    <div class="subhead">皆様に、まず一つ問いを投げかけます</div>
+    <div class="question-mark">?</div>
+
+    <div class="body-area">
+      <p class="lead" style="margin-bottom:12px">売買で勝つために必要な<b style="color:var(--navy)">「質の高い情報」</b>は、いったいどこにあるのでしょうか。情報を取りに行く先には、大きく分けて2つのルートが存在します。</p>
+
+      <div class="compare">
+        <div class="compare-card">
+          <div class="tag">ROUTE 01</div>
+          <div class="h">ポータルサイト</div>
+          <div class="desc">アットホーム・楽待など、誰もがアクセスできる<b style="color:var(--navy)">公開情報</b>。明日からでも触れられる窓口。</div>
+        </div>
+        <div class="compare-card highlight">
+          <div class="tag">ROUTE 02</div>
+          <div class="h">業者ネットワーク</div>
+          <div class="desc">担当者の頭の中にある、まだ世に出ていない<b style="color:var(--navy)">水面下情報</b>。自分にだけ届く一次情報。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 01　INTRODUCTION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P5 : ESSENCE -->
+<!-- ====================================================== -->
+<section class="slide" id="p5">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">005 / 041</div>
+    </div>
+    <div class="chap-tag">ESSENCE</div>
+    <h1 class="slide-title">情報の「料理法」と「優先順位」</h1>
+    <div class="subhead">どちらの情報も大切。だが、戦い方と利益率の源泉は明確に異なる</div>
+
+    <div class="vs-row">
+      <div class="vs-card">
+        <div class="label">PORTAL</div>
+        <div class="h">ポータル情報</div>
+        <div class="desc">既出情報に対し、<b style="color:var(--navy)">交渉・背景を「時間をかけて落とす」</b>。磨けば光る原石。</div>
+      </div>
+      <div class="vs-divider">vs</div>
+      <div class="vs-card win">
+        <div class="label win">NETWORK</div>
+        <div class="h">ネットワーク情報</div>
+        <div class="desc">争奪戦が起こる前に、<b style="color:var(--navy)">競合なしを「スピードで掴む」</b>。獲れたての鮮魚。</div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:28px">
+      どちらも大切。だが、<b>利益率の源泉は「ネットワーク」</b>にある。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 01　INTRODUCTION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P6 : PURPOSE 1 -->
+<!-- ====================================================== -->
+<section class="slide" id="p6">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">006 / 041</div>
+    </div>
+    <div class="chap-tag">02 &nbsp; PURPOSE</div>
+    <h1 class="slide-title">勉強会の目的</h1>
+    <div class="subhead">「なんとなくの付き合い」を「収益のインフラ」へ</div>
+
+    <div class="compare" style="margin-top:14px">
+      <div class="compare-card">
+        <div class="num">METHOD</div>
+        <div class="h">収益化メソッドの習得</div>
+        <div class="desc">業者ネットワークを構築し、売買実務で<b style="color:var(--navy)">収益化するための工程</b>を体系的に学びます。</div>
+      </div>
+      <div class="compare-card highlight">
+        <div class="num">PRACTICE</div>
+        <div class="h">実践・自分への適用</div>
+        <div class="desc">「なんとなくの付き合い」を<b style="color:var(--navy)">「収益のインフラ」</b>へ変え、明日から実践に移します。</div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:32px">
+      ゴールは「仲の良い業者を増やす」ことではなく、<b>安定的に案件を供給するインフラを築く</b>こと。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 01　INTRODUCTION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P7 : PURPOSE 2 -->
+<!-- ====================================================== -->
+<section class="slide" id="p7">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">007 / 041</div>
+    </div>
+    <div class="chap-tag">02 &nbsp; PURPOSE</div>
+    <h1 class="slide-title">取引の選択肢を広げる</h1>
+    <div class="subhead">仲介・買取・再販… あらゆる売買手法における"引き出し"を増やす</div>
+
+    <div class="hl-box" style="margin-top:14px">
+      <div class="label">KEY MESSAGE</div>
+      <div class="text">情報の「受け取り手」から、情報の「引き寄せ手」へ。</div>
+    </div>
+
+    <ul class="bullets" style="margin-top:24px">
+      <li>これだけをやるのではなく、<b>今の実務にプラスアルファ</b>で新たな「引き出し」を増やす</li>
+      <li>受け身でポータルを眺めるだけでなく、<b>自分から情報を「引き寄せる」武器</b>を手に入れる</li>
+      <li>仲介・買取・再販、あらゆる売買手法に応用できる<b>汎用スキル</b>として身につける</li>
+    </ul>
+
+    <div class="foot">
+      <div class="left">CHAPTER 01　INTRODUCTION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P8 : WHY NOW -->
+<!-- ====================================================== -->
+<section class="slide" id="p8">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">008 / 041</div>
+    </div>
+    <div class="chap-tag">03 &nbsp; WHY NETWORK NOW</div>
+    <h1 class="slide-title">なぜ今、業者ネットワークか？</h1>
+    <div class="subhead">ポータルサイトは、実は「営業先リスト」である</div>
+
+    <div class="pull-quote" style="margin-top:6px">
+      ポータルに載っているのは<span style="color:var(--gold)">「物件」</span>ではない。<br>
+      今まさに案件を抱えて動いている<span style="color:var(--gold)">「業者の名簿」</span>である。
+      <span class="small">— REATEX&nbsp;|&nbsp;Network First Principle</span>
+    </div>
+
+    <div class="vs-row" style="margin-top:14px">
+      <div class="vs-card">
+        <div class="label">SHALLOW</div>
+        <div class="h">物件を探す場所</div>
+        <div class="desc">単発の購入を狙う、表面的な使い方。</div>
+      </div>
+      <div class="vs-divider">→</div>
+      <div class="vs-card win">
+        <div class="label win">DEEP</div>
+        <div class="h">「動いている担当者」を探す場所</div>
+        <div class="desc">1件の成約以上に、<b style="color:var(--navy)">その先の10件をくれる担当者</b>を見つける。</div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 01　INTRODUCTION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- CHAPTER 2 DIVIDER -->
+<!-- ====================================================== -->
+<section class="slide section-divider" id="ch2">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">CHAPTER&nbsp;02</div>
+    </div>
+    <div class="center">
+      <div class="ch-num">CHAPTER 02</div>
+      <div class="ch-title">信頼構築の極意</div>
+      <div class="ch-sub">— 「特別な一人」として記憶に刻まれる方法 —</div>
+    </div>
+    <div class="foot">
+      <div class="left">TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P9 : THREE WALLS -->
+<!-- ====================================================== -->
+<section class="slide" id="p9">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">009 / 041</div>
+    </div>
+    <div class="chap-tag">04 &nbsp; TRUST BUILDING</div>
+    <h1 class="slide-title">業者ネットワーク構築を阻む「3つの壁」</h1>
+    <div class="subhead">毎日何十人と名刺交換をしている担当者にとって、あなたは「その他大勢」の一人</div>
+
+    <div class="three" style="margin-top:6px">
+      <div class="card">
+        <div class="icon">01</div>
+        <div class="h">接点がない</div>
+        <div class="desc">そもそもきっかけが掴めない。最初の電話・訪問の入り口で躓く。</div>
+      </div>
+      <div class="card">
+        <div class="icon">02</div>
+        <div class="h">覚えられない</div>
+        <div class="desc">名刺の山に埋もれてしまう。「あの人、誰だっけ？」で終わる。</div>
+      </div>
+      <div class="card">
+        <div class="icon">03</div>
+        <div class="h">情報が来ない</div>
+        <div class="desc">優先順位を上げてもらえず、二番手・三番手で情報が回ってくる。</div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:28px">
+      最短で<b>「特別な一人」として記憶に刻まれる</b>方法を身につける。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P10 : TARGETING -->
+<!-- ====================================================== -->
+<section class="slide" id="p10">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">010 / 041</div>
+    </div>
+    <div class="chap-tag">04 &nbsp; TARGETING</div>
+    <h1 class="slide-title">どの業者を「主戦場」にするか？</h1>
+    <div class="subhead">ターゲットを絞り、集中的にアプローチして"特性"に慣れる</div>
+
+    <div class="three" style="margin-top:6px">
+      <div class="card">
+        <div class="icon">A</div>
+        <div class="h">大手仲介の若手</div>
+        <div class="desc">行動量が多く、スピード感がある。<b style="color:var(--navy)">4月に新入社員が入る今</b>こそ「2周目の営業」のチャンス。</div>
+      </div>
+      <div class="card">
+        <div class="icon">B</div>
+        <div class="h">地場の老舗業者</div>
+        <div class="desc">地主との繋がりが深く、表に出ない<b style="color:var(--navy)">未公開の宝</b>を抱えていることが多い。</div>
+      </div>
+      <div class="card">
+        <div class="icon">C</div>
+        <div class="h">管理専門会社</div>
+        <div class="desc">売却予備軍の物件・空き家情報を<b style="color:var(--navy)">最も早く把握する立場</b>にある。</div>
+      </div>
+    </div>
+
+    <div class="hl-box" style="margin-top:24px">
+      <div class="label">TIMING TIP &nbsp;｜&nbsp; 4月の新人配属タイミングは"2周目営業"の絶好機</div>
+      <div class="text" style="font-size:18px">担当者が変わっている可能性大。一度断られた先こそ、もう一度ノックする価値がある。</div>
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P11 : 3 MIN RULE -->
+<!-- ====================================================== -->
+<section class="slide" id="p11">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">011 / 041</div>
+    </div>
+    <div class="chap-tag">RULE 01 &nbsp; FIRST IMPRESSION</div>
+    <h1 class="slide-title">最初の「3分」で勝負は決まる</h1>
+    <div class="subhead">相手もプロ。挨拶からの数分で「任せられるか」を瞬時に値踏みしている</div>
+
+    <ul class="bullets" style="margin-top:8px">
+      <li>営業マンとして、常に<b>「値踏み」されている</b>と心得る</li>
+      <li>知識・マナー・清潔感&nbsp;＝&nbsp;<b>プロとしての安心感</b>そのもの</li>
+      <li>最初の3分で安心感を渡せなければ、その後どれだけ通っても「本当の裏情報」は出てこない</li>
+    </ul>
+
+    <div class="conclusion" style="margin-top:32px">
+      ゴールは、相手に<b>「この人なら任せられる」</b>と思わせること。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P12 : PHONE PRACTICE -->
+<!-- ====================================================== -->
+<section class="slide" id="p12">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">012 / 041</div>
+    </div>
+    <div class="chap-tag">FIELD PRACTICE</div>
+    <h1 class="slide-title">ガチャ切りされない電話の一言</h1>
+    <div class="subhead">相手の脳内に「特定のフォルダ」を作らせるフックを渡す</div>
+
+    <div class="hl-box" style="margin-top:8px">
+      <div class="label">TEMPLATE &nbsp;｜&nbsp; 丁寧な挨拶 ＋ 専門性の提示</div>
+      <div class="text">「弊社は<span style="color:var(--accent)">訳あり物件専門</span>で買っています！」</div>
+    </div>
+
+    <ul class="bullets" style="margin-top:24px">
+      <li>もちろん<b>丁寧な挨拶</b>は前提。その上で「専門性」を一言で刺し込む</li>
+      <li>担当者の頭の中に<b>「普通の物件は大手、訳ありは黒滝さん」</b>というフォルダができる</li>
+      <li>インサイドセールス現場で学んだ"フック"の原則 ＝ <b>記憶のための差別化</b></li>
+    </ul>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P13 : VISIT MANNERS -->
+<!-- ====================================================== -->
+<section class="slide" id="p13">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">013 / 041</div>
+    </div>
+    <div class="chap-tag">VISIT</div>
+    <h1 class="slide-title">訪問の作法：菓子折りより「情報」</h1>
+    <div class="subhead">こちらの手札をさらけ出してこそ、返報性のサイクルが回り始める</div>
+
+    <div class="vs-row">
+      <div class="vs-card">
+        <div class="label">OLD STYLE</div>
+        <div class="h">菓子折りを持参</div>
+        <div class="desc">体裁は整うが、相手にとっての"価値"は限定的。記憶にも残りにくい。</div>
+      </div>
+      <div class="vs-divider">→</div>
+      <div class="vs-card win">
+        <div class="label win">NEW STYLE</div>
+        <div class="h">自社の「武器」を共有</div>
+        <div class="desc">未公開物件の情報＋具体的なニーズと<b style="color:var(--navy)">その根拠</b>を伝える。</div>
+      </div>
+    </div>
+
+    <div class="hl-box" style="margin-top:28px">
+      <div class="label">RECIPROCITY &nbsp;｜&nbsp; 返報性は"情報"で起こす</div>
+      <div class="text" style="font-size:20px">「この人には情報を出す価値がある」と判断されれば、相手の手札が動き出す。</div>
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P14 : DESIGN MERIT -->
+<!-- ====================================================== -->
+<section class="slide" id="p14">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">014 / 041</div>
+    </div>
+    <div class="chap-tag">DESIGN</div>
+    <h1 class="slide-title">相手の「メリット」を設計する</h1>
+    <div class="subhead">「何かあったら言ってください」は、実は相手に"考える負担"を与えている</div>
+
+    <div class="hl-box" style="margin-top:6px">
+      <div class="label">EXAMPLE PHRASE</div>
+      <div class="text">「<span style="color:var(--accent)">旧耐震・ボロ物件でも即答</span>します」</div>
+    </div>
+
+    <ul class="bullets" style="margin-top:24px">
+      <li>万能の便利屋を装うのではなく、<b>得意分野を絞って</b>明確に伝える</li>
+      <li>相手が困った瞬間に、あなたの顔が真っ先に浮かぶ<b>「想起フック」</b>を渡しておく</li>
+      <li>「先にギブする」が返報性の出発点。<b>取りに行く前に、配る</b></li>
+    </ul>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P15 : 1HOUR FOLLOWUP -->
+<!-- ====================================================== -->
+<section class="slide" id="p15">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">015 / 041</div>
+    </div>
+    <div class="chap-tag">SPEED</div>
+    <h1 class="slide-title">名刺交換後の「1時間」以内</h1>
+    <div class="subhead">小さなスピード感が「物件を投げても仕事が早い」という安心感に変わる</div>
+
+    <div class="pull-quote" style="margin-top:6px">
+      別れた直後にお礼メールを送る。<br>
+      <span style="color:var(--gold)">スピード ＝ 誠実さ ＝ 信頼</span>。
+      <span class="small">— 駅に向かう道中で、もう信頼の貯金は始まっている</span>
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P16 : RESPONSE SPEED -->
+<!-- ====================================================== -->
+<section class="slide" id="p16">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">016 / 041</div>
+    </div>
+    <div class="chap-tag">RESPONSE</div>
+    <h1 class="slide-title">圧倒的な「レスポンス速度」</h1>
+    <div class="subhead">業者が一番ストレスを感じるのは"連絡待ち"の時間</div>
+
+    <div class="hl-box" style="margin-top:6px">
+      <div class="label">PRINCIPLE</div>
+      <div class="text">速さは「熱意」であり「リスペクト」である。</div>
+    </div>
+
+    <ul class="bullets" style="margin-top:24px">
+      <li>物件確認・資料請求・質問への回答は<b>即レス</b>を徹底</li>
+      <li>検討中でも「<b>確認しました。〇時までにお答えします</b>」と一次返答を返す</li>
+      <li>その積み重ねで、<b>あなたの優先順位は勝手に上がる</b></li>
+    </ul>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P17 : DISLIKED -->
+<!-- ====================================================== -->
+<section class="slide" id="p17">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">017 / 041</div>
+    </div>
+    <div class="chap-tag">PITFALLS</div>
+    <h1 class="slide-title">嫌われる業者の共通点</h1>
+    <div class="subhead">情報の「奪い取り」ばかりの相手は、すぐにネットワークから排除される</div>
+
+    <div class="num-list" style="margin-top:6px">
+      <div class="item">
+        <div class="n">×</div>
+        <div class="t">自分の利益（手数料）しか考えていない<small>相手の事情・社内動線を無視した一方通行のやりとり</small></div>
+      </div>
+      <div class="item">
+        <div class="n">×</div>
+        <div class="t">調査不足を相手（元付）のせいにする<small>自分で調べればわかることを何度も聞き返す姿勢</small></div>
+      </div>
+      <div class="item">
+        <div class="n">×</div>
+        <div class="t">条件が合わない理由を一方的に押しつける<small>「相手の担当者も人間」という前提を忘れる</small></div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:24px">
+      <b>「相手が社内で動きやすいかどうか」</b>を配慮できる人だけが、長く選ばれ続ける。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P18 : SMALL PROMISES -->
+<!-- ====================================================== -->
+<section class="slide" id="p18">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">018 / 041</div>
+    </div>
+    <div class="chap-tag">DISCIPLINE</div>
+    <h1 class="slide-title">小さな約束を「絶対」守る</h1>
+    <div class="subhead">大きな信頼は、いきなりは築けない</div>
+
+    <div class="pull-quote" style="margin-top:6px">
+      「明日送る」「一度確認する」<br>
+      <span style="color:var(--gold)">些細な約束の積み重ね</span>が、「大きな案件」を呼ぶ。
+      <span class="small">— 数千万円・数億円の案件は、"当たり前"を徹底できる人にだけ託される</span>
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P19 : LABELING -->
+<!-- ====================================================== -->
+<section class="slide" id="p19">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">019 / 041</div>
+    </div>
+    <div class="chap-tag">BRANDING</div>
+    <h1 class="slide-title">黒滝流：記憶に残るラベリング</h1>
+    <div class="subhead">「色々やってます」は、結局誰の記憶にも残らない</div>
+
+    <div class="hl-box" style="margin-top:6px">
+      <div class="label">FORMULA</div>
+      <div class="text">「<span style="color:var(--accent)">リアテクス＝〇〇の相談ができる会社</span>」<br>と一言で言わせる。</div>
+    </div>
+
+    <ul class="bullets" style="margin-top:24px">
+      <li>相手の脳内に<b>「特定のフォルダ」</b>を作ってもらう</li>
+      <li>強みは<b>一つに絞って伝え続ける</b>。多面体は記憶に残らない</li>
+      <li>結果として、<b>多くの相談を呼ぶ近道</b>になる（"絞ることで広がる"逆説）</li>
+    </ul>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P20 : RANK -->
+<!-- ====================================================== -->
+<section class="slide" id="p20">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">020 / 041</div>
+    </div>
+    <div class="chap-tag">PORTFOLIO</div>
+    <h1 class="slide-title">関係性の「ランク分け」とリソース配分</h1>
+    <div class="subhead">100人の薄い知り合いより、10人の「密なパートナー」</div>
+
+    <div class="num-list" style="margin-top:6px">
+      <div class="item">
+        <div class="n">A</div>
+        <div class="t">週1接触：常に案件が動くキーマン<small>情報をくれる可能性が高い／出口の相性が良い担当者を特定</small></div>
+      </div>
+      <div class="item">
+        <div class="n">B</div>
+        <div class="t">月1接触：将来のパートナー候補<small>関係を腐らせずに温めておく</small></div>
+      </div>
+      <div class="item">
+        <div class="n">C</div>
+        <div class="t">必要時のみ接触：単発取引中心<small>挨拶・年賀状ベースの関係を維持</small></div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:24px">
+      <b>全方位外交はやめる。</b>密度の濃いAランクを増やすことが、最短で成約スピードを上げる。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P21 : LINE -->
+<!-- ====================================================== -->
+<section class="slide" id="p21">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">021 / 041</div>
+    </div>
+    <div class="chap-tag">CHANNEL</div>
+    <h1 class="slide-title">LINE交換のタイミングと口実</h1>
+    <div class="subhead">事務連絡を「口実」にして、個人の懐に入る</div>
+
+    <div class="hl-box" style="margin-top:6px">
+      <div class="label">PHRASE TEMPLATE</div>
+      <div class="text">「<span style="color:var(--accent)">LINE</span>の方が早く資料送れますよね？」</div>
+    </div>
+
+    <ul class="bullets" style="margin-top:24px">
+      <li>メールよりも<b>距離が縮まり、やり取りが圧倒的にスムーズ</b>になる</li>
+      <li>提案のコツは「私が楽したい」ではなく、<b>「相手のメリット」</b>として伝える</li>
+      <li>個人の連絡ルートを確保できるかが、<b>未公開情報を最速で掴む鍵</b></li>
+    </ul>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P22 : CHAPTER 2 SUMMARY (placeholder marker) -->
+<!-- ====================================================== -->
+<section class="slide" id="p22">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">022 / 041</div>
+    </div>
+    <div class="chap-tag">CHAPTER 02 SUMMARY</div>
+    <h1 class="slide-title">第2章まとめ：信頼の三原則</h1>
+    <div class="subhead">「あなたに一番に教えたい」と言わせる状態へ</div>
+
+    <div class="three" style="margin-top:6px">
+      <div class="card">
+        <div class="icon">技</div>
+        <div class="h">技術</div>
+        <div class="desc">正しい知識・調査・段取り。プロとしての"安心感"の土台。</div>
+      </div>
+      <div class="card">
+        <div class="icon">人</div>
+        <div class="h">人間力</div>
+        <div class="desc">相手を思いやる配慮。社内で動きやすい状態を一緒につくる姿勢。</div>
+      </div>
+      <div class="card">
+        <div class="icon">速</div>
+        <div class="h">スピード</div>
+        <div class="desc">圧倒的なレスポンス。優先順位を勝手に上げる最大の武器。</div>
+      </div>
+    </div>
+
+    <div class="hl-box" style="margin-top:24px">
+      <div class="label">EQUATION</div>
+      <div class="text">信頼&nbsp;＝&nbsp;技術&nbsp;×&nbsp;人間力&nbsp;×&nbsp;スピード</div>
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 02　TRUST BUILDING</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- CHAPTER 3 DIVIDER -->
+<!-- ====================================================== -->
+<section class="slide section-divider" id="ch3">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">CHAPTER&nbsp;03</div>
+    </div>
+    <div class="center">
+      <div class="ch-num">CHAPTER 03</div>
+      <div class="ch-title">案件獲得<br>情報を引き出し、案件に変える技術</div>
+      <div class="ch-sub">— DEAL ACQUISITION —</div>
+    </div>
+    <div class="foot">
+      <div class="left">DEAL ACQUISITION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P23 : Portal to Network -->
+<!-- ====================================================== -->
+<section class="slide" id="p23">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">023 / 041</div>
+    </div>
+    <div class="chap-tag">05 &nbsp; DEAL ACQUISITION</div>
+    <h1 class="slide-title">ポータル反響を「ネットワーク」へ昇華させる</h1>
+    <div class="subhead">物件の話だけで終わらせない。負けた時こそ"次"への種まき</div>
+
+    <div class="vs-row">
+      <div class="vs-card">
+        <div class="label">BAD</div>
+        <div class="h">「失礼しました」と切る</div>
+        <div class="desc">単発の情報収集で終了。担当者との接点も切れる。</div>
+      </div>
+      <div class="vs-divider">→</div>
+      <div class="vs-card win">
+        <div class="label win">GOOD</div>
+        <div class="h">"営業の入り口"に変える</div>
+        <div class="desc">一本の電話を、その担当者と<b style="color:var(--navy)">繋がるきっかけ</b>として活用する。</div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:28px">
+      負けた時こそ、<b>次への種まきチャンス</b>。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 03　DEAL ACQUISITION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P26 : Excavate -->
+<!-- ====================================================== -->
+<section class="slide" id="p26">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">024 / 041</div>
+    </div>
+    <div class="chap-tag">EXCAVATE</div>
+    <h1 class="slide-title">担当者の「頭の中」を掘り起こす</h1>
+    <div class="subhead">資料になる前の"タネ"を掴む</div>
+
+    <div class="hl-box" style="margin-top:6px">
+      <div class="label">SCRIPT</div>
+      <div class="text">「今、<span style="color:var(--accent)">査定中で社内にあるもの</span>、全部教えてください」</div>
+    </div>
+
+    <ul class="bullets" style="margin-top:24px">
+      <li>担当者の頭の中には、まだマイソクになっていない<b>「査定中」「受託直前」</b>の案件がある</li>
+      <li>こちらから突っついて<b>引き出す</b>。「表に出ていないもので相談に乗れるものは？」</li>
+      <li>ポータルに出る前の<b>鮮度の高い情報</b>がポロッと出てくる</li>
+    </ul>
+
+    <div class="foot">
+      <div class="left">CHAPTER 03　DEAL ACQUISITION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P27 : Magic Question -->
+<!-- ====================================================== -->
+<section class="slide" id="p27">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">025 / 041</div>
+    </div>
+    <div class="chap-tag">MAGIC QUESTION</div>
+    <h1 class="slide-title">魔法の質問：相手の「弱み」に寄り添う</h1>
+    <div class="subhead">単に「物件ください」ではなく、相手を助けるスタンスで</div>
+
+    <div class="pull-quote" style="margin-top:6px">
+      「今、一番<span style="color:var(--gold)">困っている案件</span>は何ですか？」
+      <span class="small">— 相手の"問題児"こそ、私たちの出番</span>
+    </div>
+
+    <ul class="bullets" style="margin-top:22px">
+      <li>「なかなか売れなくて困っている」「出口に苦労している」案件を聞き出す</li>
+      <li>相手の<b>困りごとを解決する</b>姿勢が、最も強固なネットワーク構築に繋がる</li>
+    </ul>
+
+    <div class="foot">
+      <div class="left">CHAPTER 03　DEAL ACQUISITION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P28 : Stop the leak -->
+<!-- ====================================================== -->
+<section class="slide" id="p28">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">026 / 041</div>
+    </div>
+    <div class="chap-tag">COMMITMENT</div>
+    <h1 class="slide-title">情報の「横流し」を止める約束</h1>
+    <div class="subhead">なんとなく待つのではなく、明確に約束を取り付ける</div>
+
+    <div class="hl-box" style="margin-top:6px">
+      <div class="label">CLOSING SCRIPT</div>
+      <div class="text">「他社に投げる前に、<span style="color:var(--accent)">まず私に振ってください</span>」</div>
+    </div>
+
+    <ul class="bullets" style="margin-top:24px">
+      <li>「訳あり案件なら<b>即決</b>するから、レインズやポータルに載せる前に」</li>
+      <li>「その代わり、<b>私もどこより早く回答</b>します」</li>
+      <li>双方向の口約束が、公開情報を<b>"自分だけの未公開情報"</b>に変える</li>
+    </ul>
+
+    <div class="foot">
+      <div class="left">CHAPTER 03　DEAL ACQUISITION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P29 : When you lose -->
+<!-- ====================================================== -->
+<section class="slide" id="p29">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">027 / 041</div>
+    </div>
+    <div class="chap-tag">REMINDER</div>
+    <h1 class="slide-title">負けた時こそ「お礼」と「リマインド」</h1>
+    <div class="subhead">引き際の良さ＋リマインドが、次の案件を引き寄せる</div>
+
+    <div class="num-list" style="margin-top:6px">
+      <div class="item">
+        <div class="n">01</div>
+        <div class="t">担当者を労う<small>「決まって良かったですね！」と、まず相手の気持ちに寄り添う</small></div>
+      </div>
+      <div class="item">
+        <div class="n">02</div>
+        <div class="t">良い空気の中で印象づけ<small>「次こそは私が一番に手を挙げたい」と意思表示</small></div>
+      </div>
+      <div class="item">
+        <div class="n">03</div>
+        <div class="t">条件を再リマインド<small>「似たような訳あり案件が出たら、ぜひ真っ先に教えてください」</small></div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 03　DEAL ACQUISITION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P30 : Power Difference -->
+<!-- ====================================================== -->
+<section class="slide" id="p30">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">028 / 041</div>
+    </div>
+    <div class="chap-tag">DIFFERENTIATOR</div>
+    <h1 class="slide-title">大手の「稟議」を待つか、私の「即決」を取るか</h1>
+    <div class="subhead">業者ネットワーク最大の武器は"資金力"ではなく"速度"</div>
+
+    <div class="vs-row">
+      <div class="vs-card">
+        <div class="label">MAJOR</div>
+        <div class="h">大手の1週間</div>
+        <div class="desc">上司ハンコ・稟議・コンプラチェックで数日〜数週間。</div>
+      </div>
+      <div class="vs-divider">vs</div>
+      <div class="vs-card win">
+        <div class="label win">REATEX</div>
+        <div class="h">私の数分</div>
+        <div class="desc">その場で回答。担当者の<b style="color:var(--navy)">数字を確定</b>させてあげる。</div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:28px">
+      <b>「即断・即決」は仲介担当者への最大のギブ。</b>大手と対等以上に渡り合える最強の武器。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 03　DEAL ACQUISITION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P31 : Minimize Burden -->
+<!-- ====================================================== -->
+<section class="slide" id="p31">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">029 / 041</div>
+    </div>
+    <div class="chap-tag">EFFICIENCY</div>
+    <h1 class="slide-title">担当者の「報告の手間」を最小化する</h1>
+    <div class="subhead">相手が"社内報告しやすい材料"をこちらで作る</div>
+
+    <ul class="bullets" style="margin-top:6px">
+      <li>「検討のための質問」を<b>整理して一括で投げる</b>（バラ撒かない）</li>
+      <li>こちらの<b>購入意図を箇条書き</b>で送り、コピペで使える状態にする</li>
+      <li>相手の手間を減らす ＝ 相手が<b>「次もあなたに情報を投げたい」と思う動機</b>になる</li>
+    </ul>
+
+    <div class="hl-box" style="margin-top:24px">
+      <div class="label">PRINCIPLE</div>
+      <div class="text">「やり取りのしやすさ」が、優先順位の決定因子。</div>
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 03　DEAL ACQUISITION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P32 : Negotiation -->
+<!-- ====================================================== -->
+<section class="slide" id="p32">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">030 / 041</div>
+    </div>
+    <div class="chap-tag">NEGOTIATION</div>
+    <h1 class="slide-title">指値交渉の極意</h1>
+    <div class="subhead">感情ではなく「数字」で売主様を説得する材料を渡す</div>
+
+    <div class="num-list" style="margin-top:6px">
+      <div class="item">
+        <div class="n">01</div>
+        <div class="t">具体的な「根拠」をこちらから提供<small>「修繕に〇〇万かかるので、この買取価格になります」と数字で示す</small></div>
+      </div>
+      <div class="item">
+        <div class="n">02</div>
+        <div class="t">出口の想定までさらけ出す<small>「再生して利回り◯%で回したいので、逆算するとこの仕入れ価格」</small></div>
+      </div>
+      <div class="item">
+        <div class="n">03</div>
+        <div class="t">担当者が売主様に説明できる材料へ<small>「だからこの指値なんだな」と納得し、より強く交渉してくれる</small></div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:24px">
+      指値とは<b>「価格交渉」ではなく「説得材料の供給」</b>。担当者を介して売主様を動かす。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 03　DEAL ACQUISITION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P33 : Real Case -->
+<!-- ====================================================== -->
+<section class="slide" id="p33">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">031 / 041</div>
+    </div>
+    <div class="chap-tag">CASE STUDY</div>
+    <h1 class="slide-title">1本の「断られた電話」から始まった成約</h1>
+    <div class="subhead">ネットワークの力を体現する、現場のリアルストーリー</div>
+
+    <div class="num-list" style="margin-top:6px">
+      <div class="item">
+        <div class="n">01</div>
+        <div class="t">ポータル物件に問合せ → <b>すでに他決</b><small>そのまま終わらせない。「訳あり専門で買っていること」を伝える</small></div>
+      </div>
+      <div class="item">
+        <div class="n">02</div>
+        <div class="t">丁寧なお礼で電話を切る<small>"負け方"が後の信頼につながる</small></div>
+      </div>
+      <div class="item">
+        <div class="n">03</div>
+        <div class="t">1ヶ月後、同じ担当者から着信<small>「ネットに載せる前の物件があるんですが、買ってくれますか？」</small></div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:24px">
+      これが<b>"ネットワークの力"</b>。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 03　DEAL ACQUISITION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P34 : Why this info came -->
+<!-- ====================================================== -->
+<section class="slide" id="p34">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">032 / 041</div>
+    </div>
+    <div class="chap-tag">REVERSE ENGINEER</div>
+    <h1 class="slide-title">なぜ、その情報は自分に届いたのか？</h1>
+    <div class="subhead">特別なスキルではなく、当たり前の徹底が結果を呼ぶ</div>
+
+    <div class="pull-quote" style="margin-top:6px">
+      「黒滝さんは<span style="color:var(--gold)">何を買いたいかハッキリ</span>していたし、<br>
+      前回の<span style="color:var(--gold)">対応がすごく丁寧</span>だったから、真っ先に顔が浮かんだ」
+      <span class="small">— 担当者本人の言葉</span>
+    </div>
+
+    <ul class="bullets" style="margin-top:18px">
+      <li><b>条件の明確さ</b>（買いたい像が一言で伝わる）</li>
+      <li><b>断り方の綺麗さ</b>（負けた時の振る舞いが次を呼ぶ）</li>
+      <li>ターゲットに刺さる<b>キーワードを伝え続けていた</b>から</li>
+    </ul>
+
+    <div class="foot">
+      <div class="left">CHAPTER 03　DEAL ACQUISITION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P35 : Chapter 3 Summary -->
+<!-- ====================================================== -->
+<section class="slide" id="p35">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">033 / 041</div>
+    </div>
+    <div class="chap-tag">CHAPTER 03 SUMMARY</div>
+    <h1 class="slide-title">情報を「引き寄せる」体質へ</h1>
+    <div class="subhead">あらゆる接点を「ネットワーク」への入り口に変える</div>
+
+    <div class="three" style="margin-top:6px">
+      <div class="card">
+        <div class="icon">①</div>
+        <div class="h">ポータルへの問合せ</div>
+        <div class="desc">物件確認で終わらせない。担当者と繋がる入口に変える。</div>
+      </div>
+      <div class="card">
+        <div class="icon">②</div>
+        <div class="h">レインズからの打診</div>
+        <div class="desc">マッチングだけでなく、自分の強みを刷り込む機会に。</div>
+      </div>
+      <div class="card">
+        <div class="icon">③</div>
+        <div class="h">訪問営業・テレアポ</div>
+        <div class="desc">単発の手段で終わらせず、長期パートナー候補を見極める。</div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:28px">
+      <b>「手法」はきっかけに過ぎない。</b>その先の"担当者"と繋がる。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 03　DEAL ACQUISITION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- CHAPTER 4 DIVIDER -->
+<!-- ====================================================== -->
+<section class="slide section-divider" id="ch4">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">CHAPTER&nbsp;04</div>
+    </div>
+    <div class="center">
+      <div class="ch-num">CHAPTER 04</div>
+      <div class="ch-title">成約の実務</div>
+      <div class="ch-sub">— CLOSING IN PRACTICE —</div>
+    </div>
+    <div class="foot">
+      <div class="left">CLOSING IN PRACTICE</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P36 : First reaction -->
+<!-- ====================================================== -->
+<section class="slide" id="p36">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">034 / 041</div>
+    </div>
+    <div class="chap-tag">06 &nbsp; CLOSING</div>
+    <h1 class="slide-title">案件が届いた瞬間の「初動」で勝負が決まる</h1>
+    <div class="subhead">良い情報は生モノ。寝かせた瞬間に鮮度は落ちる</div>
+
+    <div class="hl-box" style="margin-top:6px">
+      <div class="label">PRINCIPLE</div>
+      <div class="text">案件を寝かせない。<span style="color:var(--accent)">即座に反応</span>し、<br>会話のキャッチボールを始める。</div>
+    </div>
+
+    <ul class="bullets" style="margin-top:24px">
+      <li>受信箱に放置せず、<b>その場・数分以内</b>に反応を返す</li>
+      <li>その瞬間に<b>会話のキャッチボール</b>を開始する</li>
+      <li>これが<b>成約への第一歩</b>。スピードは熱意でもある</li>
+    </ul>
+
+    <div class="foot">
+      <div class="left">CHAPTER 04　CLOSING IN PRACTICE</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P37 : First reply -->
+<!-- ====================================================== -->
+<section class="slide" id="p37">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">035 / 041</div>
+    </div>
+    <div class="chap-tag">FIRST REPLY</div>
+    <h1 class="slide-title">担当者を味方につける「一次回答」術</h1>
+    <div class="subhead">完璧な金額提示は不要。「対話を始めること」がゴール</div>
+
+    <div class="num-list" style="margin-top:6px">
+      <div class="item">
+        <div class="n">01</div>
+        <div class="t">感謝<small>「貴重な情報を一番にありがとうございます！」</small></div>
+      </div>
+      <div class="item">
+        <div class="n">02</div>
+        <div class="t">ざっくりとした想定<small>「このエリアならざっくりこれくらいのイメージですが…」</small></div>
+      </div>
+      <div class="item">
+        <div class="n">03</div>
+        <div class="t">疑問点の解消<small>「残置物ってどうなりそうですか？」と確認しながら追加情報を引き出す</small></div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:24px">
+      対話の中で<b>「実は売主さんが急いでいて…」</b>という"本音の落とし所"が出てくる。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 04　CLOSING IN PRACTICE</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P38 : Decision Speed -->
+<!-- ====================================================== -->
+<section class="slide" id="p38">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">036 / 041</div>
+    </div>
+    <div class="chap-tag">DECISION</div>
+    <h1 class="slide-title">大手には真似できない「意思決定のスピード」</h1>
+    <div class="subhead">仲介担当者にとっての"確実な着地"が、次の優先情報を呼ぶ</div>
+
+    <div class="vs-row">
+      <div class="vs-card">
+        <div class="label">MAJOR</div>
+        <div class="h">何重もの組織の壁</div>
+        <div class="desc">いつ結論が出るか分からない待ち時間。担当者の最大ストレス。</div>
+      </div>
+      <div class="vs-divider">vs</div>
+      <div class="vs-card win">
+        <div class="label win">REATEX</div>
+        <div class="h">数時間以内の結論</div>
+        <div class="desc">「<b style="color:var(--navy)">いつまでに回答が来るか</b>」が明確という安心感。</div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:28px">
+      スピード差は、担当者にとっての<b>「確実な着地という信頼」</b>に変わる。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 04　CLOSING IN PRACTICE</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- CHAPTER 5 DIVIDER -->
+<!-- ====================================================== -->
+<section class="slide section-divider" id="ch5">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">CHAPTER&nbsp;05</div>
+    </div>
+    <div class="center">
+      <div class="ch-num">CHAPTER 05</div>
+      <div class="ch-title">仕組み化<br>ネットワークを資産に変える</div>
+      <div class="ch-sub">— SYSTEMATIZE YOUR NETWORK —</div>
+    </div>
+    <div class="foot">
+      <div class="left">SYSTEMATIZE</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P39 : List is alive -->
+<!-- ====================================================== -->
+<section class="slide" id="p39">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">037 / 041</div>
+    </div>
+    <div class="chap-tag">07 &nbsp; SYSTEMATIZE</div>
+    <h1 class="slide-title">業者リストは「動くもの」と心得る</h1>
+    <div class="subhead">人の出入りや異動が激しい業界。リストは"生きたもの"として扱う</div>
+
+    <ul class="bullets" style="margin-top:6px">
+      <li>名刺交換で終わりにせず、<b>定期的なクリーニングとアップデート</b>を行う</li>
+      <li>異動・退職・昇進…担当者の<b>「今」を追い続ける</b></li>
+      <li>常に最新の<b>「生きたリスト」</b>に維持することが、安定した案件獲得への近道</li>
+    </ul>
+
+    <div class="hl-box" style="margin-top:24px">
+      <div class="label">CHECKPOINT</div>
+      <div class="text">四半期に一度、Aランク全員に"近況確認"の連絡を。</div>
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 05　SYSTEMATIZE</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P40 : Routinize -->
+<!-- ====================================================== -->
+<section class="slide" id="p40">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">038 / 041</div>
+    </div>
+    <div class="chap-tag">ROUTINE</div>
+    <h1 class="slide-title">ツールを活用した「ルーチン化」</h1>
+    <div class="subhead">根性に頼る営業は長続きしない。仕組みに組み込む</div>
+
+    <div class="three" style="margin-top:6px">
+      <div class="card">
+        <div class="icon">L</div>
+        <div class="h">LINE</div>
+        <div class="desc">Aランク業者へ、毎週決まった時間に1メッセージ。距離感を維持。</div>
+      </div>
+      <div class="card">
+        <div class="icon">C</div>
+        <div class="h">カレンダー</div>
+        <div class="desc">接触リマインドを定期登録。"思い出す力"に頼らない。</div>
+      </div>
+      <div class="card">
+        <div class="icon">S</div>
+        <div class="h">スプレッドシート</div>
+        <div class="desc">業者リスト・接触履歴・案件状況を一元管理。属人化を防ぐ。</div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:28px">
+      <b>「時間が空いたから連絡する」</b>のではなく、<b>「仕組みとして連絡する」</b>状態へ。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 05　SYSTEMATIZE</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P41 : FINAL SUMMARY -->
+<!-- ====================================================== -->
+<section class="slide" id="p41">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;業者ネットワーク勉強会</div>
+      <div class="page-num">039 / 041</div>
+    </div>
+    <div class="chap-tag">CONCLUSION</div>
+    <h1 class="slide-title">本日のまとめ</h1>
+    <div class="subhead">明日から、いえ"今日この後"から、たった一通のメッセージから始める</div>
+
+    <div class="final-grid" style="margin-top:6px">
+      <div class="final-card">
+        <div class="n">01</div>
+        <div class="t">ネットワークは<br>「最上流の情報」を掴む鍵</div>
+        <div class="d">激しい争奪戦から抜け出し、自分だけの戦場を作る。</div>
+      </div>
+      <div class="final-card">
+        <div class="n">02</div>
+        <div class="t">信頼は「挨拶＋メリット」と<br>「爆速のレス」で作る</div>
+        <div class="d">専門性で記憶に残し、スピードでリスペクトを示す。</div>
+      </div>
+      <div class="final-card">
+        <div class="n">03</div>
+        <div class="t">速度は<br>価格差を埋める最大の武器</div>
+        <div class="d">即決と即レスが、大手と対等以上に渡り合う原資。</div>
+      </div>
+    </div>
+
+    <div class="conclusion" style="margin-top:28px">
+      まずは<b>一人の担当者への「爆速レス」</b>から始めてみてください。
+    </div>
+
+    <div class="foot">
+      <div class="left">CHAPTER 05　SYSTEMATIZE / CONCLUSION</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P42 : THANK YOU / SUPPLEMENT -->
+<!-- ====================================================== -->
+<section class="slide cover" id="p42">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;Real&nbsp;Estate&nbsp;Consulting</div>
+      <div class="page-num">040 / 041</div>
+    </div>
+    <div class="cover-grid">
+      <div class="eyebrow">SUPPLEMENT &nbsp;｜&nbsp; IF TIME REMAINS</div>
+      <h1>リアサポ会員様の<br><span class="accent">成約実績</span>のご紹介</h1>
+      <div class="sub">— 現場で実践している会員様のリアルな成果 —</div>
+      <div class="meta">
+        <span><b>SCHEDULED</b>&nbsp;&nbsp; 時間調整次第</span>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="left">SUPPLEMENT</div>
+      <div>REATEX 2026.04</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- P43 : THANK YOU -->
+<!-- ====================================================== -->
+<section class="slide cover" id="p43">
+  <div class="slide-inner">
+    <div class="top-bar">
+      <div class="brand"><span class="dot"></span>REATEX&nbsp;|&nbsp;Real&nbsp;Estate&nbsp;Consulting</div>
+      <div class="page-num">041 / 041</div>
+    </div>
+    <div class="cover-grid">
+      <div class="eyebrow">THANK YOU</div>
+      <h1 style="font-size:108px"><span class="accent">Thank&nbsp;</span>You.</h1>
+      <div class="sub">本日はご参加いただきありがとうございました。</div>
+      <div class="meta">
+        <span><b>REATEX&nbsp;INC.</b></span>
+        <span><b>SPEAKER</b>&nbsp;&nbsp; 黒滝 脩人</span>
+        <span><b>2026.04</b></span>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="left">END OF SESSION</div>
+      <div>CONFIDENTIAL</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
