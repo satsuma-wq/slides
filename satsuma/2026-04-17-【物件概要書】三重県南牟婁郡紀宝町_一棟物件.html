@@ -181,6 +181,7 @@
   .lentroll-table td { border: 1px solid #c8d8f8; padding: 3px 6px; text-align: center; }
   .lentroll-table tr:nth-child(even) td { background: #f0f4ff; }
   .lentroll-total td { background: #eef2ff !important; font-weight: 700; }
+  .lentroll-section td { background: #dce8ff !important; font-weight: 700; color: #1A365D; text-align: left; }
 
   /* 収支シミュレーション */
   .finance-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
@@ -310,8 +311,8 @@
   <div class="header">
     <div class="header-left">
       <div class="company-name">株式会社リアテクス｜未公開プレミアム不動産</div>
-      <div class="header-property-name">三重県南牟婁郡紀宝町</div>
-      <div class="header-address">📍 三重県南牟婁郡紀宝町1486-2</div>
+      <div class="header-property-name">三重県南牟婁郡紀宝町｜3棟AP＋戸建</div>
+      <div class="header-address">📍 三重県南牟婁郡紀宝町1486-2　JR鵜殿駅 徒歩約4分</div>
     </div>
     <div class="header-right">
       <div class="header-case-num">案件番号：p-2316</div>
@@ -337,52 +338,53 @@
           <div class="highlight-unit">万円</div>
         </div>
         <div class="highlight-item">
-          <div class="highlight-label">表面利回り</div>
-          <div class="highlight-value" id="hyomen-yield">【確認中】</div>
-          <div class="highlight-unit">%</div>
+          <div class="highlight-label">表面利回り（満室）</div>
+          <div class="highlight-value" style="font-size:13pt; color:#C41E3A;">67%超え</div>
+          <div class="highlight-unit">現況28%</div>
         </div>
         <div class="highlight-item">
           <div class="highlight-label">積算評価</div>
-          <div class="highlight-value" id="sekisan-val">【確認中】</div>
-          <div class="highlight-unit">万円</div>
+          <div class="highlight-value">3,230</div>
+          <div class="highlight-unit">万円（売値の約4.8倍）</div>
         </div>
       </div>
 
       <div class="kpi-grid">
         <div class="kpi-card">
           <div class="kpi-label">物件種別</div>
-          <div class="kpi-value" style="font-size:9pt;">【確認中】</div>
+          <div class="kpi-value" style="font-size:8pt;">3棟AP＋戸建</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">構造</div>
-          <div class="kpi-value" style="font-size:9pt;">【確認中】</div>
+          <div class="kpi-value" style="font-size:9pt;">木造</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">築年数</div>
-          <div class="kpi-value" style="font-size:9pt;">【確認中】</div>
+          <div class="kpi-label">戸建て築年数</div>
+          <div class="kpi-value" style="font-size:9pt;">46年</div>
+          <div class="kpi-sub">1980年1月（昭和55年）</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">土地面積</div>
-          <div class="kpi-value" style="font-size:9pt;">【確認中】</div>
-          <div class="kpi-sub">㎡</div>
+          <div class="kpi-value" style="font-size:9pt;">2,168.02</div>
+          <div class="kpi-sub">㎡（655.83坪）</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">延床面積</div>
-          <div class="kpi-value" style="font-size:9pt;">【確認中】</div>
-          <div class="kpi-sub">㎡</div>
+          <div class="kpi-label">総戸数</div>
+          <div class="kpi-value" style="font-size:9pt;">13戸</div>
+          <div class="kpi-sub">AP12戸＋戸建1戸</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">路線価</div>
-          <div class="kpi-value" style="font-size:9pt;">1.49</div>
-          <div class="kpi-sub">万円/㎡</div>
+          <div class="kpi-label">固定資産税路線価</div>
+          <div class="kpi-value" style="font-size:9pt;">14,900</div>
+          <div class="kpi-sub">円/㎡（1.49万円/㎡）</div>
         </div>
       </div>
     </div>
 
     <!-- 右：外観写真 -->
     <div class="hero-photo">
-      <img src="https://drive.google.com/thumbnail?id=1rJ1L3xzuHgGdCqjtCaDQzSjKpGZFfY2h&sz=w800"
-           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1rJ1L3xzuHgGdCqjtCaDQzSjKpGZFfY2h'; this.onerror=function(){this.parentElement.innerHTML='<div class=\'photo-placeholder\'>📷<br>写真準備中</div>'}"
+      <img src="https://drive.google.com/thumbnail?id=143G9kV1VNWRsYlFSzkbn1J-ntd_iF0y3&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/143G9kV1VNWRsYlFSzkbn1J-ntd_iF0y3'; this.onerror=function(){this.parentElement.innerHTML='<div class=\'photo-placeholder\'>📷<br>写真準備中</div>'}"
            alt="物件外観" style="width:100%; max-height:90mm; object-fit:cover; border-radius:6px; border:1px solid #c8d8f8;">
     </div>
   </div>
@@ -392,55 +394,73 @@
   <table class="overview-table">
     <tr>
       <td class="th">所在地</td>
-      <td colspan="3">三重県南牟婁郡紀宝町1486-2</td>
+      <td colspan="3">三重県南牟婁郡紀宝町1486-2（地番：1486番の2、1453番の1、1454番の1）</td>
+    </tr>
+    <tr>
+      <td class="th">アクセス</td>
+      <td colspan="3">JR紀勢本線 鵜殿駅 徒歩約4分 ／ JR紀勢本線 新宮駅 約4km</td>
     </tr>
     <tr>
       <td class="th">物件種別</td>
-      <td>【確認中】</td>
+      <td>3棟アパート＋戸建（木造）</td>
       <td class="th">構造・規模</td>
-      <td>【確認中】</td>
+      <td>木造 / 1・2階建て</td>
     </tr>
     <tr>
-      <td class="th">築年月</td>
-      <td>【確認中】</td>
+      <td class="th">築年月（戸建て）</td>
+      <td>1980年1月（昭和55年）</td>
+      <td class="th">築年月（AP棟）</td>
+      <td>未登記のため不明</td>
+    </tr>
+    <tr>
       <td class="th">土地面積</td>
-      <td>【確認中】㎡（【確認中】坪）</td>
+      <td>2,168.02㎡（655.83坪）</td>
+      <td class="th">土地権利</td>
+      <td>所有権（山林・宅地）</td>
     </tr>
     <tr>
-      <td class="th">延床面積</td>
-      <td>【確認中】㎡</td>
-      <td class="th">建物面積</td>
-      <td>【確認中】㎡</td>
+      <td class="th">延床面積（戸建登記）</td>
+      <td>65.18㎡（19.72坪）</td>
+      <td class="th">延床面積（AP棟）</td>
+      <td>未登記のため不明</td>
     </tr>
     <tr>
       <td class="th">用途地域</td>
-      <td>【確認中】</td>
+      <td>都市計画区域外（区域区分なし）</td>
       <td class="th">建蔽率 / 容積率</td>
-      <td>【確認中】% / 【確認中】%</td>
+      <td>60% / 200%</td>
     </tr>
     <tr>
       <td class="th">接道状況</td>
-      <td>【確認中】</td>
+      <td colspan="3">都市計画区域外のため接道義務の適用なし</td>
+    </tr>
+    <tr>
       <td class="th">現況</td>
-      <td>【確認中】</td>
+      <td>一部入居中（現況利回り28%）</td>
+      <td class="th">戸数</td>
+      <td>13戸（AP棟12戸＋戸建て1戸）</td>
     </tr>
     <tr>
       <td class="th">入居状況</td>
-      <td>【確認中】</td>
-      <td class="th">戸数</td>
-      <td>【確認中】戸</td>
+      <td>一部入居（詳細確認中）</td>
+      <td class="th">引渡し</td>
+      <td>相談</td>
     </tr>
     <tr>
-      <td class="th">総収入（満室時）</td>
-      <td>【確認中】万円 / 年</td>
-      <td class="th">引渡し</td>
-      <td>【確認中】</td>
+      <td class="th">設備</td>
+      <td colspan="3">公営上水道、汲取り式トイレ（入居者負担）、プロパンガス、電気</td>
+    </tr>
+    <tr>
+      <td class="th">駐車場</td>
+      <td>4台中1台利用中（戸建て部分）</td>
+      <td class="th">固定資産評価額（土地）</td>
+      <td>3,322,283円</td>
     </tr>
     <tr>
       <td class="th">路線価</td>
-      <td>1.49万円/㎡</td>
-      <td class="th">積算評価</td>
-      <td>【確認中】万円</td>
+      <td>14,900円/㎡（1.49万円/㎡）</td>
+      <td class="th">積算評価合計</td>
+      <td style="font-weight:700; color:#1A365D;">3,230万円（売値の約4.8倍）</td>
     </tr>
     <tr>
       <td class="th">販売価格</td>
@@ -493,40 +513,29 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>101</td>
-          <td>【確認中】</td>
-          <td>【確認中】</td>
-          <td>【確認中】円</td>
-          <td>【確認中】</td>
-          <td></td>
+        <!-- AP棟（3棟計12戸・2階建て・未登記） -->
+        <tr class="lentroll-section">
+          <td colspan="6">▶ AP棟（3棟 計12戸・木造2階建て・未登記）</td>
         </tr>
-        <tr>
-          <td>102</td>
-          <td>【確認中】</td>
-          <td>【確認中】</td>
-          <td>【確認中】円</td>
-          <td>【確認中】</td>
-          <td></td>
+        <tr><td>A棟-101</td><td>【確認中】</td><td>【確認中】</td><td>【確認中】円</td><td>【確認中】</td><td></td></tr>
+        <tr><td>A棟-102</td><td>【確認中】</td><td>【確認中】</td><td>【確認中】円</td><td>【確認中】</td><td></td></tr>
+        <tr><td>A棟-201</td><td>【確認中】</td><td>【確認中】</td><td>【確認中】円</td><td>【確認中】</td><td></td></tr>
+        <tr><td>A棟-202</td><td>【確認中】</td><td>【確認中】</td><td>【確認中】円</td><td>【確認中】</td><td></td></tr>
+        <tr><td>B棟-101</td><td>【確認中】</td><td>【確認中】</td><td>【確認中】円</td><td>【確認中】</td><td></td></tr>
+        <tr><td>B棟-102</td><td>【確認中】</td><td>【確認中】</td><td>【確認中】円</td><td>【確認中】</td><td></td></tr>
+        <tr><td>B棟-201</td><td>【確認中】</td><td>【確認中】</td><td>【確認中】円</td><td>【確認中】</td><td></td></tr>
+        <tr><td>B棟-202</td><td>【確認中】</td><td>【確認中】</td><td>【確認中】円</td><td>【確認中】</td><td></td></tr>
+        <tr><td>C棟-101</td><td>【確認中】</td><td>【確認中】</td><td>【確認中】円</td><td>【確認中】</td><td></td></tr>
+        <tr><td>C棟-102</td><td>【確認中】</td><td>【確認中】</td><td>【確認中】円</td><td>【確認中】</td><td></td></tr>
+        <tr><td>C棟-201</td><td>【確認中】</td><td>【確認中】</td><td>【確認中】円</td><td>【確認中】</td><td></td></tr>
+        <tr><td>C棟-202</td><td>【確認中】</td><td>【確認中】</td><td>【確認中】円</td><td>【確認中】</td><td></td></tr>
+        <!-- 戸建て -->
+        <tr class="lentroll-section">
+          <td colspan="6">▶ 戸建て（1戸・木造1階建て・登記済 65.18㎡）</td>
         </tr>
-        <tr>
-          <td>201</td>
-          <td>【確認中】</td>
-          <td>【確認中】</td>
-          <td>【確認中】円</td>
-          <td>【確認中】</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>202</td>
-          <td>【確認中】</td>
-          <td>【確認中】</td>
-          <td>【確認中】円</td>
-          <td>【確認中】</td>
-          <td></td>
-        </tr>
+        <tr><td>戸建て</td><td>【確認中】</td><td>65.18</td><td>【確認中】円</td><td>【確認中】</td><td>駐車場4台付（1台利用中）</td></tr>
         <tr class="lentroll-total">
-          <td colspan="3"><strong>合計</strong></td>
+          <td colspan="3"><strong>合計（13戸）</strong></td>
           <td><strong>【確認中】円 / 月</strong></td>
           <td colspan="2"></td>
         </tr>
@@ -537,20 +546,24 @@
     <div class="two-col" style="gap:10px;">
       <table class="finance-table">
         <tr>
-          <td class="th">満室想定月収</td>
-          <td style="text-align:right; font-weight:700;">【確認中】円</td>
+          <td class="th">満室想定月収（目安）</td>
+          <td style="text-align:right; font-weight:700;">約379,000円以上</td>
         </tr>
         <tr>
-          <td class="th">満室想定年収</td>
-          <td style="text-align:right; font-weight:700; color:#1a7a1a;">【確認中】万円</td>
+          <td class="th">満室想定年収（目安）</td>
+          <td style="text-align:right; font-weight:700; color:#1a7a1a;">約4,549,000円以上</td>
         </tr>
         <tr>
-          <td class="th">現況月収</td>
-          <td style="text-align:right;">【確認中】円</td>
+          <td class="th">現況月収（目安）</td>
+          <td style="text-align:right;">約158,000円</td>
         </tr>
         <tr>
-          <td class="th">表面利回り（満室）</td>
-          <td style="text-align:right; font-weight:700; color:#1A365D; font-size:1.1em;">【確認中】%</td>
+          <td class="th">表面利回り（満室想定）</td>
+          <td style="text-align:right; font-weight:700; color:#C41E3A; font-size:1.1em;">67%超え</td>
+        </tr>
+        <tr>
+          <td class="th">現況利回り</td>
+          <td style="text-align:right; font-weight:700; color:#1A365D; font-size:1.1em;">28%</td>
         </tr>
       </table>
 
@@ -564,6 +577,10 @@
           <td style="text-align:right;">【確認中】円</td>
         </tr>
         <tr>
+          <td class="th">汲取り清掃費（年額）</td>
+          <td style="text-align:right;">入居者負担</td>
+        </tr>
+        <tr>
           <td class="th">その他支出</td>
           <td style="text-align:right;">【確認中】円</td>
         </tr>
@@ -572,6 +589,11 @@
           <td style="text-align:right; font-weight:700;">【確認中】円</td>
         </tr>
       </table>
+    </div>
+    <div class="notes-box" style="margin-top:6px; font-size:7.5pt;">
+      ※ 満室想定月収・年収は表面利回り67%を基に算出した目安値です。<br>
+      ※ 現況月収は現況利回り28%を基に算出した目安値です（各部屋の賃料は賃貸借契約書をご確認ください）。<br>
+      ※ 汲取り式トイレの清掃費はシルバー人材センターへ委託。入居者負担のためランニングコスト低減。
     </div>
 
     <div class="footer-band" style="border-radius:6px; margin-top:10px;">
@@ -615,11 +637,15 @@
           </tr>
           <tr>
             <td class="th">満室想定年収（A）</td>
-            <td style="text-align:right; color:#1a7a1a; font-weight:700;">【確認中】円</td>
+            <td style="text-align:right; color:#1a7a1a; font-weight:700;">4,549,300円以上<br><span style="font-size:0.85em; color:#666;">（表面利回り67%以上で算出）</span></td>
           </tr>
           <tr>
-            <td class="th">表面利回り</td>
-            <td style="text-align:right; color:#1a7a1a; font-weight:700;">【確認中】%</td>
+            <td class="th">表面利回り（満室）</td>
+            <td style="text-align:right; color:#C41E3A; font-weight:700; font-size:1.1em;">67%超え</td>
+          </tr>
+          <tr>
+            <td class="th">現況年収（目安）</td>
+            <td style="text-align:right;">1,901,200円<br><span style="font-size:0.85em; color:#666;">（現況利回り28%より算出）</span></td>
           </tr>
           <tr>
             <td class="th">年間支出合計（B）</td>
@@ -646,9 +672,9 @@
         </table>
 
         <div class="notes-box" style="margin-top:8px;">
-          ※ NOI = 年間収入 - 年間支出（管理費・修繕積立を除く）<br>
+          ※ 満室年収は表面利回り67%超えの目安値です。<br>
+          ※ 汲取り式トイレ清掃は入居者負担のため支出に含まず。<br>
           ※ 上記は概算値であり、保証するものではありません。<br>
-          ※ ローン条件・税制等は個別にご確認ください。<br>
           ※ <strong style="color:#C41E3A;">価格改定実施済み。詳細は特記事項欄をご参照ください。</strong>
         </div>
       </div>
@@ -657,24 +683,24 @@
       <div>
         <div class="section-title">投資ポイント</div>
         <ul class="points-list">
-          <li>三重県南牟婁郡紀宝町の収益不動産。熊野川河口エリアに位置し、自然環境豊か。</li>
-          <li>路線価1.49万円/㎡の土地評価。積算評価をベースとした安定資産。</li>
-          <li><strong style="color:#C41E3A;">価格改定（値下げ）により、さらに高利回りを実現。</strong>スピード決断がチャンス。</li>
-          <li>三重県南部エリアの希少物件。競合物件が少なく、安定した賃貸需要が見込める。</li>
-          <li>現状渡し。購入後すぐに賃貸経営・運用が可能。</li>
+          <li><strong style="color:#C41E3A;">現況利回り28%・表面利回り67%超えの超高利回り物件！</strong>即日キャッシュフロー黒字化が可能。</li>
+          <li><strong>売値679万円 &lt;&lt; 積算評価3,230万円（約4.8倍）。</strong>含み資産たっぷりで資産価値◎</li>
+          <li>汲取りは<strong>入居者負担</strong>！清掃はシルバー人材センターへ委託でランニングコストを最小化。</li>
+          <li>JR紀勢本線 <strong>鵜殿駅 徒歩約4分</strong>。新宮駅まで約4km。エリア内の希少収益物件。</li>
+          <li>令和6年6月・令和5年12月に修繕履歴あり。管理状態良好。現状渡し・相談可。</li>
         </ul>
 
         <div class="section-title" style="margin-top:10px;">周辺環境</div>
         <div class="env-grid">
           <div class="env-card">
             <div class="env-icon">🚃</div>
-            <div class="env-label">最寄り駅</div>
-            <div class="env-info">紀宝町内</div>
+            <div class="env-label">JR紀勢本線</div>
+            <div class="env-info">鵜殿駅 徒歩約4分</div>
           </div>
           <div class="env-card">
-            <div class="env-icon">🏫</div>
-            <div class="env-label">学校</div>
-            <div class="env-info">【確認中】</div>
+            <div class="env-icon">🚉</div>
+            <div class="env-label">JR紀勢本線</div>
+            <div class="env-info">新宮駅 約4km</div>
           </div>
           <div class="env-card">
             <div class="env-icon">🏪</div>
@@ -695,19 +721,27 @@
     <table class="finance-table">
       <tr>
         <td class="th">土地面積</td>
-        <td>【確認中】㎡</td>
-        <td class="th">路線価</td>
-        <td>1.49万円/㎡</td>
+        <td>2,168.02㎡（655.83坪）</td>
+        <td class="th">固定資産税路線価</td>
+        <td>14,900円/㎡（1.49万円/㎡）</td>
       </tr>
       <tr>
-        <td class="th">土地積算価格</td>
-        <td>【確認中】万円（土地面積 × 路線価）</td>
-        <td class="th">建物積算価格</td>
-        <td>【確認中】万円</td>
+        <td class="th">土地積算評価</td>
+        <td style="font-weight:700; color:#1A365D;">32,303,498円（≈3,230万円）<br><span style="font-size:0.85em; font-weight:400; color:#666;">（2,168.02㎡ × 14,900円）</span></td>
+        <td class="th">建物積算評価</td>
+        <td>0円（残存耐用年数 0年）</td>
+      </tr>
+      <tr>
+        <td class="th">土地固定資産評価額</td>
+        <td>3,322,283円</td>
+        <td class="th">建物固定資産評価額</td>
+        <td>戸建て：972,762円 ／ AP棟：未登記</td>
       </tr>
       <tr class="subtotal">
         <td class="th"><strong>積算評価合計</strong></td>
-        <td colspan="3" style="font-weight:700;">【確認中】万円（土地＋建物）</td>
+        <td colspan="3" style="font-weight:700; color:#1A365D; font-size:1.05em;">
+          <strong>3,230万円（土地のみ。建物残存耐用年数0年につき建物積算0円）</strong>
+        </td>
       </tr>
     </table>
 
@@ -741,20 +775,71 @@
       </div>
     </div>
 
-    <div class="section-title" style="margin-top:10px;">物件写真</div>
-    <!-- 写真はフォルダから動的取得のため、フォルダIDで参照 -->
+    <div class="section-title" style="margin-top:10px;">物件写真（港ケ丘荘）</div>
+
+    <!-- メイン外観3枚 -->
     <div class="photo-grid-main avoid-break">
       <div class="photo-item">
-        <img src="https://drive.google.com/thumbnail?id=1rJ1L3xzuHgGdCqjtCaDQzSjKpGZFfY2h&sz=w800"
-             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1rJ1L3xzuHgGdCqjtCaDQzSjKpGZFfY2h'; this.onerror=function(){this.style.display='none'}"
-             alt="外観" style="width:100%; height:140px; object-fit:cover; border-radius:4px; border:1px solid #d0daea;">
-        <div class="photo-caption">外観</div>
+        <img src="https://drive.google.com/thumbnail?id=143G9kV1VNWRsYlFSzkbn1J-ntd_iF0y3&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/143G9kV1VNWRsYlFSzkbn1J-ntd_iF0y3'; this.onerror=function(){this.style.display='none'}"
+             alt="外観①" style="width:100%; height:140px; object-fit:cover; border-radius:4px; border:1px solid #d0daea;">
+        <div class="photo-caption">外観①</div>
       </div>
-      <div class="photo-item" style="background:#f0f4ff; border-radius:4px; display:flex; align-items:center; justify-content:center; height:140px; color:#aaa; font-size:9pt; border:1px dashed #c0d0e0;">
-        写真準備中
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=151kciaFtZzB9viDW1uDy1-LZ9DDsM_n3&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/151kciaFtZzB9viDW1uDy1-LZ9DDsM_n3'; this.onerror=function(){this.style.display='none'}"
+             alt="外観②" style="width:100%; height:140px; object-fit:cover; border-radius:4px; border:1px solid #d0daea;">
+        <div class="photo-caption">外観②</div>
       </div>
-      <div class="photo-item" style="background:#f0f4ff; border-radius:4px; display:flex; align-items:center; justify-content:center; height:140px; color:#aaa; font-size:9pt; border:1px dashed #c0d0e0;">
-        写真準備中
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1519_tUAutW6g1U2fk1EBEWrhHtMdnkTT&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1519_tUAutW6g1U2fk1EBEWrhHtMdnkTT'; this.onerror=function(){this.style.display='none'}"
+             alt="外観③" style="width:100%; height:140px; object-fit:cover; border-radius:4px; border:1px solid #d0daea;">
+        <div class="photo-caption">外観③</div>
+      </div>
+    </div>
+
+    <!-- 4枚グリッド -->
+    <div class="photo-grid-4 avoid-break">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1PbFNAGesisZDZbg2ZzzkPSEwWlkA5iSr&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1PbFNAGesisZDZbg2ZzzkPSEwWlkA5iSr'; this.onerror=function(){this.style.display='none'}"
+             alt="敷地①" style="width:100%; height:85px; object-fit:cover; border-radius:4px; border:1px solid #d0daea;">
+        <div class="photo-caption">敷地①</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1MQ_pX9GAqWlVsXe7NGY9DyJazMn6NmQ1&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1MQ_pX9GAqWlVsXe7NGY9DyJazMn6NmQ1'; this.onerror=function(){this.style.display='none'}"
+             alt="敷地②" style="width:100%; height:85px; object-fit:cover; border-radius:4px; border:1px solid #d0daea;">
+        <div class="photo-caption">敷地②</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1AQ2NCMEUSTPvKziwPOQbzy7udgOHAgEt&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1AQ2NCMEUSTPvKziwPOQbzy7udgOHAgEt'; this.onerror=function(){this.style.display='none'}"
+             alt="周辺①" style="width:100%; height:85px; object-fit:cover; border-radius:4px; border:1px solid #d0daea;">
+        <div class="photo-caption">周辺①</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1vca8Qkha62wksDOV8qXV5DSjl0GAJAks&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1vca8Qkha62wksDOV8qXV5DSjl0GAJAks'; this.onerror=function(){this.style.display='none'}"
+             alt="周辺②" style="width:100%; height:85px; object-fit:cover; border-radius:4px; border:1px solid #d0daea;">
+        <div class="photo-caption">周辺②</div>
+      </div>
+    </div>
+
+    <!-- 2枚グリッド -->
+    <div class="photo-grid-2 avoid-break">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=13b8E4BcRyb78jiiPoiIAmOSZdIbUBKuP&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/13b8E4BcRyb78jiiPoiIAmOSZdIbUBKuP'; this.onerror=function(){this.style.display='none'}"
+             alt="周辺③" style="width:100%; height:85px; object-fit:cover; border-radius:4px; border:1px solid #d0daea;">
+        <div class="photo-caption">周辺③</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1_8bKn1331bioHGXQGyeBsiVhC1mb7VoB&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1_8bKn1331bioHGXQGyeBsiVhC1mb7VoB'; this.onerror=function(){this.style.display='none'}"
+             alt="周辺④" style="width:100%; height:85px; object-fit:cover; border-radius:4px; border:1px solid #d0daea;">
+        <div class="photo-caption">周辺④</div>
       </div>
     </div>
 
@@ -763,10 +848,13 @@
     <div class="notes-box">
       <ul class="points-list" style="margin:0; padding:0;">
         <li><strong style="color:#C41E3A;">【価格改定のお知らせ】本物件は価格改定（値下げ）を実施いたしました。新販売価格：679万円（税込）。</strong></li>
-        <li>現状引渡し。</li>
-        <li>買主都合による瑕疵担保責任の範囲については、売買契約書の内容に準じます。</li>
-        <li>本資料の情報は2025年時点の参考情報です。最新情報は弊社へお問い合わせください。</li>
-        <li>掲載写真は現況と異なる場合がございます。詳細は現地確認をお願いいたします。</li>
+        <li><strong>【修繕履歴】</strong>令和6年6月 洗濯水栓修理済み。令和5年12月 給湯器取り換え済み。</li>
+        <li><strong>【設備】</strong>公営上水道・汲取り式トイレ（入居者負担）・プロパンガス・電気。汲取り清掃はシルバー人材センターへ委託。</li>
+        <li><strong>【駐車場】</strong>戸建て部分に4台分。うち1台利用中。</li>
+        <li><strong>【土地情報】</strong>地番：1486番の2・1453番の1・1454番の1。地目：山林・宅地。土地区画整理事業区域内。</li>
+        <li><strong>【接道・計画】</strong>都市計画区域外（区域区分なし）のため接道義務の適用なし。建蔽率60%・容積率200%。</li>
+        <li><strong>【AP棟】</strong>建物登記なし（未登記）。延床面積・築年月は不明。</li>
+        <li>現状引渡し。買主都合による瑕疵担保責任の範囲については、売買契約書の内容に準じます。</li>
         <li>本物件は未公開物件です。第三者への情報開示はご遠慮ください。</li>
       </ul>
     </div>
