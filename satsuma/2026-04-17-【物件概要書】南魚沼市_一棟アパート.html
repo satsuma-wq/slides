@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件概要書 コーポM&K｜新潟県南魚沼市</title>
+<style>
+/* ===== 基本設定 ===== */
+@page { size: A4 landscape; margin: 14mm 15mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Hiragino Kaku Gothic ProN','Meiryo',sans-serif; font-size: 10pt; color: #1a1a1a; background: #fff; }
+a { color: inherit; text-decoration: none; }
+
+/* ===== ヘッダー帯 ===== */
+.header {
+  display: flex; justify-content: space-between; align-items: center;
+  background: linear-gradient(135deg, #1A365D 0%, #2B5086 100%);
+  color: #fff; padding: 8px 16px; border-radius: 4px 4px 0 0;
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+.header-left { display: flex; flex-direction: column; gap: 2px; }
+.header-label { font-size: 7pt; opacity: 0.75; letter-spacing: 1px; }
+.header-property-name { font-size: 16pt; font-weight: 800; letter-spacing: 1px; }
+.header-address { font-size: 8pt; opacity: 0.9; }
+.header-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.header-price { font-size: 20pt; font-weight: 800; color: #FFD700; }
+.header-yield { font-size: 9pt; background: rgba(255,255,255,0.15); padding: 2px 8px; border-radius: 3px; }
+
+/* ===== ハイライトボックス ===== */
+.highlight-box {
+  display: flex; background: #FFF8E1; border: 1px solid #DAA520;
+  border-radius: 4px; margin: 6px 0; padding: 8px 12px;
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+.highlight-item {
+  flex: 1; text-align: center; border-right: 1px solid #e8d5a0; padding: 0 12px;
+}
+.highlight-item:last-child { border-right: none; }
+.highlight-label { font-size: 7pt; color: #7a6520; margin-bottom: 2px; }
+.highlight-value { font-size: 16pt; font-weight: 800; color: #1A365D; }
+.highlight-unit { font-size: 8pt; color: #555; }
+
+/* ===== KPIグリッド ===== */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 6px 0; }
+.kpi-card {
+  background: #f0f4ff; border-left: 3px solid #1A365D; border-radius: 4px; padding: 6px 8px;
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+.kpi-label { font-size: 7pt; color: #555; margin-bottom: 2px; }
+.kpi-value { font-size: 14pt; font-weight: 800; color: #1A365D; }
+.kpi-sub { font-size: 7pt; color: #777; }
+
+/* ===== セクションタイトル ===== */
+.section-title {
+  background: #1A365D; color: #fff; padding: 4px 12px;
+  font-size: 8.5pt; font-weight: 700; border-radius: 3px; margin: 8px 0 4px;
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+
+/* ===== 物件概要テーブル ===== */
+.overview-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+.overview-table td { padding: 4px 8px; border: 1px solid #d0d8e8; vertical-align: top; }
+.overview-table td.th {
+  background: #e8eef8; font-weight: 700; color: #1A365D; width: 90px; white-space: nowrap;
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+
+/* ===== ヒーローセクション ===== */
+.hero-section { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 6px 0; }
+.hero-main-photo img { width: 100%; height: 88mm; object-fit: cover; border-radius: 6px; border: 1px solid #c8d8f8; }
+.hero-kpi-wrap { display: flex; flex-direction: column; gap: 6px; }
+
+/* ===== ページ区切り ===== */
+.page-break { break-before: page; page-break-before: always; }
+.avoid-break { break-inside: avoid; }
+.page-wrapper { width: 267mm; margin: 0 auto; padding: 0; }
+.page-container { }
+
+/* ===== レントロールテーブル ===== */
+.lentroll-table { width: 100%; border-collapse: collapse; font-size: 8pt; }
+.lentroll-table th {
+  background: #1A365D; color: #fff; padding: 4px 6px; text-align: center;
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+.lentroll-table td { padding: 4px 6px; border: 1px solid #d0d8e8; text-align: center; }
+.lentroll-table tr:nth-child(even) td { background: #f5f7fc; }
+.lentroll-table .total-row td { background: #1A365D; color: #fff; font-weight: 700; print-color-adjust: exact; }
+
+/* ===== 収入サマリー ===== */
+.income-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0; }
+.summary-card {
+  background: #f0f4ff; border: 1px solid #c8d8f8; border-radius: 4px; padding: 8px 12px;
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+.summary-title { font-size: 8pt; color: #1A365D; font-weight: 700; margin-bottom: 4px; }
+.summary-value { font-size: 14pt; font-weight: 800; color: #1A365D; }
+.summary-note { font-size: 7pt; color: #777; margin-top: 2px; }
+
+/* ===== 財務テーブル ===== */
+.finance-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+.finance-table td { padding: 5px 8px; border: 1px solid #d0d8e8; }
+.finance-table td.th {
+  background: #e8eef8; font-weight: 700; color: #1A365D; width: 50%;
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+.finance-table tr.subtotal td { background: #1A365D; color: #fff; font-weight: 700; print-color-adjust: exact; }
+.finance-table tr.positive td:last-child { color: #1a7a1a; font-weight: 700; }
+
+/* ===== 3カラムグリッド ===== */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+/* ===== 投資ポイント ===== */
+.points-list { list-style: none; padding: 0; }
+.points-list li { padding: 4px 0; padding-left: 18px; position: relative; font-size: 8.5pt; border-bottom: 1px dotted #ddd; }
+.points-list li:before { content: '◆'; position: absolute; left: 0; color: #DAA520; font-size: 8pt; }
+
+/* ===== 周辺環境 ===== */
+.env-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.env-card {
+  background: #f5f7fc; border-radius: 4px; padding: 6px 8px; border-left: 3px solid #DAA520;
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+.env-title { font-size: 7pt; color: #7a6520; font-weight: 700; margin-bottom: 2px; }
+.env-detail { font-size: 8pt; }
+
+/* ===== 写真グリッド ===== */
+.photo-grid-main { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4px; margin-bottom: 4px; }
+.photo-grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 4px; margin-bottom: 4px; }
+.photo-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; margin-bottom: 4px; }
+.photo-item { position: relative; }
+.photo-item img { width: 100%; border-radius: 4px; border: 1px solid #ddd; object-fit: cover; display: block; }
+.photo-item .photo-label {
+  position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.55);
+  color: #fff; font-size: 7pt; text-align: center; padding: 2px; border-radius: 0 0 4px 4px;
+}
+.photo-main-img { height: 72mm; }
+.photo-sub-img { height: 35mm; }
+.photo-sm-img { height: 30mm; }
+
+/* ===== フッター帯 ===== */
+.footer-band {
+  background: #1A365D; color: #fff; padding: 5px 14px;
+  display: flex; justify-content: space-between; align-items: center; margin-top: 6px;
+  border-radius: 0 0 4px 4px; font-size: 7.5pt;
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+.footer-contact { font-size: 8pt; }
+
+/* ===== 備考・特記事項 ===== */
+.notes-box { background: #fff8e1; border: 1px solid #e8c830; border-radius: 4px; padding: 6px 10px; font-size: 8pt; margin-top: 6px; }
+
+/* ===== LINEページ ===== */
+.line-page {
+  background: linear-gradient(160deg, #1A365D 0%, #0f4c2a 100%);
+  min-height: 170mm; display: flex; flex-direction: column;
+  justify-content: flex-start; align-items: center; color: #fff;
+  padding: 18px 20px 14px; border-radius: 6px;
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+.line-badge { background: #DAA520; color: #1A365D; font-weight: 800; font-size: 8pt; padding: 3px 12px; border-radius: 20px; margin-bottom: 8px; }
+.line-main-title { font-size: 26pt; font-weight: 900; text-align: center; color: #FFD700; line-height: 1.2; margin-bottom: 6px; }
+.line-sub-title { font-size: 10pt; text-align: center; opacity: 0.9; margin-bottom: 14px; }
+.line-content { display: flex; gap: 20px; width: 100%; margin-bottom: 14px; }
+.line-features { background: rgba(255,255,255,0.1); border-radius: 6px; padding: 10px 14px; min-width: 180px; flex: 1; }
+.line-feature-item { display: flex; align-items: center; gap: 6px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.2); font-size: 9pt; }
+.line-feature-item:last-child { border-bottom: none; }
+.line-feature-icon { font-size: 14pt; }
+.line-qr-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.line-qr-wrap img { border-radius: 6px; background: #fff; padding: 4px; }
+.line-btn {
+  background: #06C755; color: #fff; font-size: 14pt; font-weight: 800; padding: 12px 40px;
+  border-radius: 40px; display: inline-block; margin-bottom: 14px; letter-spacing: 1px;
+  print-color-adjust: exact; -webkit-print-color-adjust: exact;
+}
+
+/* ===== レスポンシブ ===== */
+@media print {
+  .page-container { min-height: 182mm; }
+  .header-right { display: flex; }
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+@media screen and (max-width: 900px) {
+  .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+  .page-wrapper { width: 100% !important; padding: 0 8px !important; }
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+  .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+  .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+  .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
+  .hero-section { grid-template-columns: 1fr !important; }
+  .two-col, .three-col { grid-template-columns: 1fr !important; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-grid-main { grid-template-columns: 1fr !important; }
+  .photo-grid-4 { grid-template-columns: 1fr 1fr !important; }
+  .photo-grid-3 { grid-template-columns: 1fr 1fr !important; }
+  .income-summary { grid-template-columns: 1fr; }
+  .page-break { break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+  .line-content { flex-direction: column; gap: 14px; }
+  .line-page { min-height: unset; }
+}
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     PAGE 1：物件概要
+     ====================================================== -->
+<div class="page-wrapper page-container">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <span class="header-label">未公開プレミアム不動産｜物件概要書　p-5370</span>
+      <span class="header-property-name">コーポM&amp;K</span>
+      <span class="header-address">新潟県南魚沼市黒土新田445-6</span>
+    </div>
+    <div class="header-right">
+      <span class="header-price">4,450万円</span>
+      <span class="header-yield">表面利回り 15.00%（年間家賃6,696,000円）</span>
+      <a href="https://drive.google.com/drive/folders/1Zp_h96S-OHIqY6qHko_FxEdG5WfeHDVu" target="_blank"
+         style="display:inline-block; margin-top:4px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <!-- ハイライト -->
+  <div class="highlight-box">
+    <div class="highlight-item">
+      <div class="highlight-label">販売価格</div>
+      <div class="highlight-value">4,450<span class="highlight-unit">万円</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">表面利回り</div>
+      <div class="highlight-value">15.00<span class="highlight-unit">%</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">総戸数 / 稼働</div>
+      <div class="highlight-value">12<span class="highlight-unit">室</span> / 12<span class="highlight-unit">室</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">築年月</div>
+      <div class="highlight-value">H19.3<span class="highlight-unit">（約19年）</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">積算評価</div>
+      <div class="highlight-value">5,953<span class="highlight-unit">万円</span></div>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション：写真 + KPI -->
+  <div class="hero-section">
+    <div class="hero-main-photo">
+      <img src="https://drive.google.com/thumbnail?id=1ODbg_HeYtDoC_6yHZ5On_eG3Oe5dn50G&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1ODbg_HeYtDoC_6yHZ5On_eG3Oe5dn50G'"
+           alt="物件外観" style="width:100%; height:88mm; object-fit:cover; border-radius:6px; border:1px solid #c8d8f8;">
+    </div>
+    <div class="hero-kpi-wrap">
+      <div class="kpi-grid" style="grid-template-columns: repeat(2,1fr);">
+        <div class="kpi-card">
+          <div class="kpi-label">月間家賃収入</div>
+          <div class="kpi-value" style="font-size:12pt;">528,000円</div>
+          <div class="kpi-sub">¥44,000×12室</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">年間家賃収入</div>
+          <div class="kpi-value" style="font-size:12pt;">669.6万円</div>
+          <div class="kpi-sub">駐車場込</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">NOI（実質収益）</div>
+          <div class="kpi-value" style="font-size:12pt;">541.9万円</div>
+          <div class="kpi-sub">実質利回り12.18%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">積算評価</div>
+          <div class="kpi-value" style="font-size:12pt;">5,953万円</div>
+          <div class="kpi-sub">積算比 74.7%</div>
+        </div>
+      </div>
+      <!-- 間取り図 -->
+      <img src="https://drive.google.com/thumbnail?id=19Yk7l9arQPKZ2FKjy4C6rjvrRkPk4Skw&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/19Yk7l9arQPKZ2FKjy4C6rjvrRkPk4Skw'"
+           alt="間取り図" style="width:100%; height:42mm; object-fit:contain; border-radius:4px; border:1px solid #ddd; background:#f8f9fc;">
+    </div>
+  </div>
+
+  <!-- 物件概要テーブル -->
+  <div class="section-title">物件概要</div>
+  <table class="overview-table">
+    <tr>
+      <td class="th">物件名</td><td>コーポM&amp;K</td>
+      <td class="th">価格</td><td style="font-weight:700; color:#1A365D;">4,450万円（坪単価 相談）</td>
+    </tr>
+    <tr>
+      <td class="th">所在地</td><td>新潟県南魚沼市黒土新田445-6</td>
+      <td class="th">地番</td><td>445-6、446-11</td>
+    </tr>
+    <tr>
+      <td class="th">交通</td><td>JR上越線 浦佐駅 車10分（約5.1km）</td>
+      <td class="th">構造</td><td>木・鉄筋コンクリート造合金メッキ鋼板ぶき</td>
+    </tr>
+    <tr>
+      <td class="th">築年月</td><td>平成19年3月（2007年3月）3階建</td>
+      <td class="th">延床面積</td><td>446.67m²（135.12坪）</td>
+    </tr>
+    <tr>
+      <td class="th">地積</td><td>684.17m²（206.96坪）</td>
+      <td class="th">各室面積</td><td>24.03m²（1K × 12室）</td>
+    </tr>
+    <tr>
+      <td class="th">用途地域</td><td>白地地域（都市計画区域外）</td>
+      <td class="th">建蔽率/容積率</td><td>70% / 200%</td>
+    </tr>
+    <tr>
+      <td class="th">接道</td><td>東側：国道291号線（1項1号）、南側：浦佐黒土新田線（市道）</td>
+      <td class="th">駐車場</td><td>12台（車庫6台＋青空6台）6台使用中</td>
+    </tr>
+    <tr>
+      <td class="th">管理形態</td><td>自主管理</td>
+      <td class="th">インターネット</td><td>共用インターネット設備あり（月¥29,400）</td>
+    </tr>
+    <tr>
+      <td class="th">電気</td><td>東北電力（オール電化）</td>
+      <td class="th">上下水道</td><td>公営・公共</td>
+    </tr>
+    <tr>
+      <td class="th">法的規制</td><td colspan="3">景観法：田園集落区域　特定盛土等規制区域　防火地域：無し</td>
+    </tr>
+    <tr>
+      <td class="th">備考</td><td colspan="3">現況有姿売買、契約不適合責任免責。三為契約。</td>
+    </tr>
+  </table>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>株式会社リアテクス　未公開プレミアム不動産</span>
+    <span class="footer-contact">TEL: 03-6822-7297　|　p-5370　2026/4/17</span>
+  </div>
+</div>
+
+<!-- ======================================================
+     PAGE 2：レントロール
+     ====================================================== -->
+<div class="page-wrapper page-container page-break">
+
+  <div class="header" style="border-radius:4px 4px 0 0;">
+    <div class="header-left">
+      <span class="header-label">レントロール</span>
+      <span class="header-property-name">コーポM&amp;K</span>
+      <span class="header-address">新潟県南魚沼市黒土新田445-6</span>
+    </div>
+    <div class="header-right">
+      <span class="header-price" style="font-size:16pt;">4,450万円</span>
+      <span class="header-yield">表面利回り 15.00%</span>
+      <a href="https://drive.google.com/drive/folders/1Zp_h96S-OHIqY6qHko_FxEdG5WfeHDVu" target="_blank"
+         style="display:inline-block; margin-top:4px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div class="section-title">賃料一覧（全12室・満室稼働）</div>
+  <table class="lentroll-table">
+    <thead>
+      <tr>
+        <th>号室</th><th>用途</th><th>間取り</th><th>専有面積</th>
+        <th>月額賃料</th><th>共益費</th><th>月額合計</th><th>年間合計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>201</td><td>居宅</td><td>1K</td><td>24.03m²</td><td style="text-align:right;">¥40,000</td><td style="text-align:right;">¥4,000</td><td style="text-align:right;">¥44,000</td><td style="text-align:right;">¥528,000</td></tr>
+      <tr><td>202</td><td>居宅</td><td>1K</td><td>24.03m²</td><td style="text-align:right;">¥40,000</td><td style="text-align:right;">¥4,000</td><td style="text-align:right;">¥44,000</td><td style="text-align:right;">¥528,000</td></tr>
+      <tr><td>203</td><td>居宅</td><td>1K</td><td>24.03m²</td><td style="text-align:right;">¥40,000</td><td style="text-align:right;">¥4,000</td><td style="text-align:right;">¥44,000</td><td style="text-align:right;">¥528,000</td></tr>
+      <tr><td>205</td><td>居宅</td><td>1K</td><td>24.03m²</td><td style="text-align:right;">¥40,000</td><td style="text-align:right;">¥4,000</td><td style="text-align:right;">¥44,000</td><td style="text-align:right;">¥528,000</td></tr>
+      <tr><td>206</td><td>居宅</td><td>1K</td><td>24.03m²</td><td style="text-align:right;">¥40,000</td><td style="text-align:right;">¥4,000</td><td style="text-align:right;">¥44,000</td><td style="text-align:right;">¥528,000</td></tr>
+      <tr><td>207</td><td>居宅</td><td>1K</td><td>24.03m²</td><td style="text-align:right;">¥40,000</td><td style="text-align:right;">¥4,000</td><td style="text-align:right;">¥44,000</td><td style="text-align:right;">¥528,000</td></tr>
+      <tr><td>301</td><td>居宅</td><td>1K</td><td>24.03m²</td><td style="text-align:right;">¥40,000</td><td style="text-align:right;">¥4,000</td><td style="text-align:right;">¥44,000</td><td style="text-align:right;">¥528,000</td></tr>
+      <tr><td>302</td><td>居宅</td><td>1K</td><td>24.03m²</td><td style="text-align:right;">¥40,000</td><td style="text-align:right;">¥4,000</td><td style="text-align:right;">¥44,000</td><td style="text-align:right;">¥528,000</td></tr>
+      <tr><td>303</td><td>居宅</td><td>1K</td><td>24.03m²</td><td style="text-align:right;">¥40,000</td><td style="text-align:right;">¥4,000</td><td style="text-align:right;">¥44,000</td><td style="text-align:right;">¥528,000</td></tr>
+      <tr><td>305</td><td>居宅</td><td>1K</td><td>24.03m²</td><td style="text-align:right;">¥40,000</td><td style="text-align:right;">¥4,000</td><td style="text-align:right;">¥44,000</td><td style="text-align:right;">¥528,000</td></tr>
+      <tr><td>306</td><td>居宅</td><td>1K</td><td>24.03m²</td><td style="text-align:right;">¥40,000</td><td style="text-align:right;">¥4,000</td><td style="text-align:right;">¥44,000</td><td style="text-align:right;">¥528,000</td></tr>
+      <tr><td>307</td><td>居宅</td><td>1K</td><td>24.03m²</td><td style="text-align:right;">¥40,000</td><td style="text-align:right;">¥4,000</td><td style="text-align:right;">¥44,000</td><td style="text-align:right;">¥528,000</td></tr>
+      <tr class="total-row">
+        <td colspan="4" style="text-align:center;">合計（12室・空室0室）</td>
+        <td style="text-align:right;">¥480,000</td>
+        <td style="text-align:right;">¥48,000</td>
+        <td style="text-align:right;">¥528,000</td>
+        <td style="text-align:right;">¥6,336,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 収入サマリー -->
+  <div class="section-title" style="margin-top:10px;">収入サマリー</div>
+  <div class="income-summary">
+    <div class="summary-card">
+      <div class="summary-title">現況家賃収入（年間・共益費含む）</div>
+      <div class="summary-value">6,336,000円</div>
+      <div class="summary-note">¥44,000/室 × 12室 × 12ヶ月</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-title">駐車場収入（年間）</div>
+      <div class="summary-value">360,000円</div>
+      <div class="summary-note">¥5,000/台 × 6台 × 12ヶ月（12台中6台使用）</div>
+    </div>
+    <div class="summary-card" style="background:#e8f4e8; border-color:#4CAF50;">
+      <div class="summary-title" style="color:#2a6a2a;">総収入（年間）</div>
+      <div class="summary-value" style="color:#1a5a1a; font-size:16pt;">6,696,000円</div>
+      <div class="summary-note">表面利回り 15.00%</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-title">満室稼働率</div>
+      <div class="summary-value" style="font-size:20pt;">100<span style="font-size:12pt;">%</span></div>
+      <div class="summary-note">全12室稼働中（空室0室）</div>
+    </div>
+  </div>
+
+  <!-- 年間支出 -->
+  <div class="section-title">年間支出（ランニングコスト）</div>
+  <table class="finance-table">
+    <tr><td class="th">固定資産税</td><td style="text-align:right;">224,800円</td><td class="th">警備保障</td><td style="text-align:right;">213,840円</td></tr>
+    <tr><td class="th">インターネット設備費</td><td style="text-align:right;">352,800円</td><td class="th">共用部電気代</td><td style="text-align:right;">384,000円</td></tr>
+    <tr><td class="th">清掃費用</td><td style="text-align:right;">85,800円</td><td class="th">町内会費</td><td style="text-align:right;">15,000円</td></tr>
+    <tr class="subtotal">
+      <td style="text-align:right;" colspan="3">年間支出合計（確認済み）</td>
+      <td style="text-align:right;">1,276,240円</td>
+    </tr>
+  </table>
+  <div class="notes-box" style="margin-top:6px; font-size:7.5pt;">
+    ※ 管理費：自主管理のため0円　※ 消防点検費用：要確認（上記支出に含まず）<br>
+    ※ 修繕積立：元データに記載なし（計上外）　※ 警備：新潟綜合警備保障(株) ¥17,820/月
+  </div>
+
+  <div class="footer-band">
+    <span>株式会社リアテクス　未公開プレミアム不動産</span>
+    <span class="footer-contact">TEL: 03-6822-7297　|　p-5370　2026/4/17</span>
+  </div>
+</div>
+
+<!-- ======================================================
+     PAGE 3：収支シミュレーション・投資ポイント・周辺環境
+     ====================================================== -->
+<div class="page-wrapper page-container page-break">
+
+  <div class="header" style="border-radius:4px 4px 0 0;">
+    <div class="header-left">
+      <span class="header-label">収支シミュレーション・投資分析</span>
+      <span class="header-property-name">コーポM&amp;K</span>
+      <span class="header-address">新潟県南魚沼市黒土新田445-6</span>
+    </div>
+    <div class="header-right">
+      <span class="header-price" style="font-size:16pt;">4,450万円</span>
+      <a href="https://drive.google.com/drive/folders/1Zp_h96S-OHIqY6qHko_FxEdG5WfeHDVu" target="_blank"
+         style="display:inline-block; margin-top:4px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:8px;">
+    <!-- 左：収支シミュレーション -->
+    <div>
+      <div class="section-title">収支シミュレーション</div>
+      <table class="finance-table">
+        <tr class="positive"><td class="th">総収入（年間・駐車場込）</td><td style="text-align:right; font-size:11pt;">6,696,000円</td></tr>
+        <tr><td class="th" style="padding-left:14px;">　賃料収入（共益費込）</td><td style="text-align:right;">6,336,000円</td></tr>
+        <tr><td class="th" style="padding-left:14px;">　駐車場収入</td><td style="text-align:right;">360,000円</td></tr>
+        <tr><td class="th">年間支出（確認済み）</td><td style="text-align:right;">▲ 1,276,240円</td></tr>
+        <tr><td class="th" style="padding-left:14px;">　固定資産税</td><td style="text-align:right;">224,800円</td></tr>
+        <tr><td class="th" style="padding-left:14px;">　警備保障費</td><td style="text-align:right;">213,840円</td></tr>
+        <tr><td class="th" style="padding-left:14px;">　インターネット設備費</td><td style="text-align:right;">352,800円</td></tr>
+        <tr><td class="th" style="padding-left:14px;">　共用部電気代</td><td style="text-align:right;">384,000円</td></tr>
+        <tr><td class="th" style="padding-left:14px;">　清掃費・町内会費等</td><td style="text-align:right;">100,800円</td></tr>
+        <tr class="subtotal">
+          <td><strong>NOI（年間純収益）</strong></td>
+          <td style="text-align:right; font-size:13pt;"><strong>5,419,760円</strong></td>
+        </tr>
+        <tr>
+          <td class="th">実質利回り（NOI÷販売価格）</td>
+          <td style="text-align:right; color:#1a7a1a; font-weight:700; font-size:11pt;">12.18%</td>
+        </tr>
+        <tr>
+          <td class="th">表面利回り（総収入÷販売価格）</td>
+          <td style="text-align:right; color:#1a7a1a; font-weight:700; font-size:11pt;">15.00%</td>
+        </tr>
+      </table>
+
+      <div class="section-title" style="margin-top:10px;">積算評価</div>
+      <table class="finance-table">
+        <tr>
+          <td class="th">土地積算評価</td>
+          <td style="text-align:right;">6,302,590円（630万円）<br>
+            <span style="font-size:7.5pt; color:#666;">路線価0.9211万円/m² × 684.17m²</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="th">建物積算評価</td>
+          <td style="text-align:right;">53,225,745円（5,323万円）<br>
+            <span style="font-size:7.5pt; color:#666;">RC造・法定47年・築19年・残28年<br>200,000円/m² × 446.67m² × 28/47</span>
+          </td>
+        </tr>
+        <tr class="subtotal">
+          <td><strong>積算評価合計</strong></td>
+          <td style="text-align:right; font-size:13pt;"><strong>59,528,000円（5,953万円）</strong></td>
+        </tr>
+        <tr>
+          <td class="th">積算比（販売価格÷積算評価）</td>
+          <td style="text-align:right; color:#1a7a1a; font-weight:700; font-size:11pt;">74.7%（割安水準）</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 右：投資ポイント・周辺環境 -->
+    <div>
+      <div class="section-title">投資ポイント</div>
+      <ul class="points-list">
+        <li><strong>満室稼働中・安定キャッシュフロー</strong>：全12室入居済み。空室リスクゼロで即収益スタート。</li>
+        <li><strong>高表面利回り15%</strong>：年間総収入669.6万円。駐車場6台稼働で収入底上げ。</li>
+        <li><strong>積算評価5,953万円に対し4,450万円</strong>：積算比74.7%の割安プライシング。融資評価・担保力も良好。</li>
+        <li><strong>オール電化・省コスト運営</strong>：ガス設備不要でランニングコスト低減。電気温水器設置済み。</li>
+        <li><strong>自主管理で管理費ゼロ</strong>：管理委託費0円で高NOIを維持。</li>
+        <li><strong>インターネット設備完備</strong>：入居者ニーズの高い共用Wi-Fi導入済み。</li>
+        <li><strong>複数接道・使いやすい立地</strong>：東側国道291号線・南側市道の2方向接道。車庫・青空各6台の充実駐車場。</li>
+        <li><strong>二筆の土地を一括取得</strong>：445-6・446-11の2筆を含む安定した敷地構成。</li>
+      </ul>
+
+      <div class="section-title" style="margin-top:10px;">周辺環境・立地</div>
+      <div class="env-grid">
+        <div class="env-card">
+          <div class="env-title">🚉 最寄り駅</div>
+          <div class="env-detail">JR上越線 浦佐駅<br>車10分（約5.1km）</div>
+        </div>
+        <div class="env-card">
+          <div class="env-title">🛣️ 前面道路</div>
+          <div class="env-detail">東側：国道291号線<br>南側：市道</div>
+        </div>
+        <div class="env-card">
+          <div class="env-title">🏔️ エリア特性</div>
+          <div class="env-detail">南魚沼市・田園集落区域<br>上越新幹線 浦佐駅圏内</div>
+        </div>
+        <div class="env-card">
+          <div class="env-title">🗾 広域マップ</div>
+          <div class="env-detail">
+            <img src="https://drive.google.com/thumbnail?id=1EmEu0JPTMSAxbfwgfTTjLu_Y1y_fB_cA&sz=w400"
+                 onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1EmEu0JPTMSAxbfwgfTTjLu_Y1y_fB_cA'"
+                 alt="広域マップ" style="width:100%; height:28mm; object-fit:cover; border-radius:3px;">
+          </div>
+        </div>
+        <div class="env-card">
+          <div class="env-title">📍 狭域マップ</div>
+          <div class="env-detail">
+            <img src="https://drive.google.com/thumbnail?id=1u2k1j_DPzieWFEXb5VrEl-CHZnlSrdxa&sz=w400"
+                 onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1u2k1j_DPzieWFEXb5VrEl-CHZnlSrdxa'"
+                 alt="狭域マップ" style="width:100%; height:28mm; object-fit:cover; border-radius:3px;">
+          </div>
+        </div>
+        <div class="env-card">
+          <div class="env-title">⚡ インフラ</div>
+          <div class="env-detail">電気：東北電力<br>上下水道：公営公共<br>オール電化</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <span>株式会社リアテクス　未公開プレミアム不動産</span>
+    <span class="footer-contact">TEL: 03-6822-7297　|　p-5370　2026/4/17</span>
+  </div>
+</div>
+
+<!-- ======================================================
+     PAGE 4：物件写真
+     ====================================================== -->
+<div class="page-wrapper page-container page-break">
+
+  <div class="header" style="border-radius:4px 4px 0 0;">
+    <div class="header-left">
+      <span class="header-label">物件写真</span>
+      <span class="header-property-name">コーポM&amp;K</span>
+      <span class="header-address">新潟県南魚沼市黒土新田445-6</span>
+    </div>
+    <div class="header-right">
+      <span class="header-price" style="font-size:16pt;">4,450万円</span>
+      <a href="https://drive.google.com/drive/folders/1Zp_h96S-OHIqY6qHko_FxEdG5WfeHDVu" target="_blank"
+         style="display:inline-block; margin-top:4px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <!-- 外観メイン（3列） -->
+  <div class="section-title" style="margin-top:6px;">外観</div>
+  <div class="photo-grid-main">
+    <div class="photo-item">
+      <img class="photo-main-img" src="https://drive.google.com/thumbnail?id=1ODbg_HeYtDoC_6yHZ5On_eG3Oe5dn50G&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1ODbg_HeYtDoC_6yHZ5On_eG3Oe5dn50G'"
+           alt="外観1" style="width:100%; height:55mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">外観①</div>
+    </div>
+    <div class="photo-item">
+      <img class="photo-sub-img" src="https://drive.google.com/thumbnail?id=1aj9d6Y7x1CH01caAgcRTZxwhWYpkjtXN&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1aj9d6Y7x1CH01caAgcRTZxwhWYpkjtXN'"
+           alt="外観2" style="width:100%; height:55mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">外観②</div>
+    </div>
+    <div class="photo-item">
+      <img class="photo-sub-img" src="https://drive.google.com/thumbnail?id=1Aw5zD7Mwdk3hR5SdNM4_pZa4JZYor7vo&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Aw5zD7Mwdk3hR5SdNM4_pZa4JZYor7vo'"
+           alt="外観・前面道路" style="width:100%; height:55mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">外観③・前面道路</div>
+    </div>
+  </div>
+
+  <!-- 室内写真（4列） -->
+  <div class="section-title">室内・設備</div>
+  <div class="photo-grid-4">
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1qDg6pVyi59Crsx0SuN3YLvVDB8vic8Sj&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1qDg6pVyi59Crsx0SuN3YLvVDB8vic8Sj'"
+           alt="室内" style="width:100%; height:32mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">室内</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1UdcmK86ivbYVwhYPzn-6KrQsbtoIimFq&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1UdcmK86ivbYVwhYPzn-6KrQsbtoIimFq'"
+           alt="室内2" style="width:100%; height:32mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">室内②</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1peY9FAd7DqmkfGpSZwLJY_544jr4MUne&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1peY9FAd7DqmkfGpSZwLJY_544jr4MUne'"
+           alt="室内3" style="width:100%; height:32mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">室内③</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1JlNdIfvmlnE-8Pvll8rDJr43nlTOzaX9&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JlNdIfvmlnE-8Pvll8rDJr43nlTOzaX9'"
+           alt="キッチン" style="width:100%; height:32mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">キッチン</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1nRnNtS1sQYDXpGYnCkcS3zWqi7hY0JKN&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1nRnNtS1sQYDXpGYnCkcS3zWqi7hY0JKN'"
+           alt="浴室" style="width:100%; height:32mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">浴室</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1KtvQZWk2xlQpAnByPf0cHYtpVlf1rmpr&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1KtvQZWk2xlQpAnByPf0cHYtpVlf1rmpr'"
+           alt="トイレ" style="width:100%; height:32mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">トイレ</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1zyQnECXszbW1eu73F-GQU_k5Bau7Y0Nw&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1zyQnECXszbW1eu73F-GQU_k5Bau7Y0Nw'"
+           alt="玄関" style="width:100%; height:32mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">玄関</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1DfqENW-0JKJCL3f5AvvDNIBb4Y49LYW9&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1DfqENW-0JKJCL3f5AvvDNIBb4Y49LYW9'"
+           alt="ベランダ" style="width:100%; height:32mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">ベランダ</div>
+    </div>
+  </div>
+
+  <!-- その他設備（4列） -->
+  <div class="section-title">設備・共用部</div>
+  <div class="photo-grid-4">
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=13FCxrKN_xyz1cRcmZeAk1l7nkA06tCN5&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/13FCxrKN_xyz1cRcmZeAk1l7nkA06tCN5'"
+           alt="洗濯機置場" style="width:100%; height:28mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">洗濯機置場</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=125CnjVaMa_q37nn_BJ8-Xn0g1Vfmv60R&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/125CnjVaMa_q37nn_BJ8-Xn0g1Vfmv60R'"
+           alt="電気温水器" style="width:100%; height:28mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">電気温水器</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1yySiD6bXJt5ZtDf1oG_L1d5AoySlgjB6&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1yySiD6bXJt5ZtDf1oG_L1d5AoySlgjB6'"
+           alt="収納" style="width:100%; height:28mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">収納</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1RA3xFwyllzuvHHFJC_HqHBDO66fPfb3-&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1RA3xFwyllzuvHHFJC_HqHBDO66fPfb3-'"
+           alt="車庫" style="width:100%; height:28mm; object-fit:cover; border-radius:4px;">
+      <div class="photo-label">車庫</div>
+    </div>
+  </div>
+
+  <!-- 特記事項 -->
+  <div class="notes-box" style="margin-top:6px;">
+    <strong>【特記事項・注意事項】</strong><br>
+    ・現況有姿売買・契約不適合責任免責。三為契約。<br>
+    ・本物件は未公開物件です。第三者への情報漏洩はお断りします。<br>
+    ・記載情報は現時点での調査に基づくものであり、詳細は別途資料をご確認ください。
+  </div>
+
+  <div class="footer-band">
+    <span>株式会社リアテクス　未公開プレミアム不動産</span>
+    <span class="footer-contact">TEL: 03-6822-7297　|　p-5370　2026/4/17</span>
+  </div>
+</div>
+
+<!-- ======================================================
+     PAGE 5：LINEチラシ
+     ====================================================== -->
+<div class="page-wrapper page-container page-break">
+
+  <div class="line-page">
+    <div class="line-badge">未公開プレミアム不動産　会員限定情報</div>
+    <div class="line-main-title">非公開の優良物件を<br>いち早くお届けします</div>
+    <div class="line-sub-title">LINE登録者だけに届く｜未公開収益物件・厳選情報</div>
+
+    <div class="line-content">
+      <div class="line-features">
+        <div class="line-feature-item">
+          <span class="line-feature-icon">🏢</span>
+          <span>一棟アパート・マンション・戸建など幅広い物件タイプ</span>
+        </div>
+        <div class="line-feature-item">
+          <span class="line-feature-icon">📊</span>
+          <span>収支シミュレーション付きで即判断できる</span>
+        </div>
+        <div class="line-feature-item">
+          <span class="line-feature-icon">🔒</span>
+          <span>市場に出る前の未公開物件を優先ご案内</span>
+        </div>
+        <div class="line-feature-item">
+          <span class="line-feature-icon">💬</span>
+          <span>個別相談・融資サポートも対応</span>
+        </div>
+        <div class="line-feature-item">
+          <span class="line-feature-icon">⚡</span>
+          <span>新着情報をLINEにリアルタイム配信</span>
+        </div>
+      </div>
+      <div class="line-qr-wrap">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq"
+             alt="LINE QR" style="width:110px; height:110px; border-radius:6px; background:#fff; padding:4px;">
+        <span style="font-size:8pt; opacity:0.8;">QRコードを読み取り</span>
+      </div>
+    </div>
+
+    <a href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq"
+       target="_blank" class="line-btn">
+      LINE登録はこちら 👆
+    </a>
+
+    <div style="font-size:8pt; opacity:0.7; text-align:center;">
+      株式会社リアテクス　未公開プレミアム不動産<br>
+      TEL: 03-6822-7297　|　登録無料・いつでも退会可
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <span>株式会社リアテクス　未公開プレミアム不動産</span>
+    <span class="footer-contact">TEL: 03-6822-7297　|　p-5370　2026/4/17</span>
+  </div>
+</div>
+
+</body>
+</html>
