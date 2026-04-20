@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】七浦戸建（西棟・中棟・東棟）</title>
+<style>
+/* ===== BASE ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; font-size: 9pt; color: #1a1a1a; background: #e8e8e8; }
+
+/* ===== PAGE ===== */
+.page-container {
+  width: 267mm;
+  margin: 0 auto 20px;
+  background: #fff;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.page-wrapper { width: 267mm; margin: 0 auto; padding: 0; }
+
+/* ===== HEADER ===== */
+.header {
+  background: linear-gradient(135deg, #1A365D 0%, #2d5a8e 100%);
+  color: #fff;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.header-left { flex: 1; }
+.header-tag {
+  font-size: 7pt;
+  background: #DAA520;
+  color: #1A365D;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.header-property-name {
+  font-size: 15pt;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+.header-address { font-size: 8pt; opacity: 0.85; }
+.header-right { text-align: right; flex-shrink: 0; }
+.header-price { font-size: 10pt; color: #DAA520; font-weight: 700; }
+.header-price span { font-size: 20pt; }
+.header-yield { font-size: 7.5pt; color: #a8c8f8; margin-top: 2px; }
+.header-no { font-size: 7pt; opacity: 0.7; margin-top: 2px; }
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  gap: 0;
+  min-height: 52mm;
+}
+.hero-left { padding: 10px 12px 8px 16px; }
+.highlight-box {
+  display: flex;
+  gap: 0;
+  border: 1.5px solid #c8d8f8;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 9px;
+}
+.highlight-item {
+  flex: 1;
+  text-align: center;
+  padding: 7px 5px;
+  border-right: 1px solid #e0e8f8;
+  background: linear-gradient(180deg, #fafcff 0%, #f0f4ff 100%);
+}
+.highlight-item:last-child { border-right: none; }
+.highlight-label { font-size: 7pt; color: #666; margin-bottom: 2px; }
+.highlight-value { font-size: 17pt; font-weight: 700; color: #1A365D; line-height: 1; }
+.highlight-unit { font-size: 7.5pt; color: #888; }
+.highlight-value.accent { color: #C41E3A; }
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+.kpi-item {
+  background: #f8faff;
+  border: 1px solid #dde8f8;
+  border-radius: 4px;
+  padding: 5px 6px;
+  text-align: center;
+}
+.kpi-label { font-size: 7pt; color: #666; margin-bottom: 2px; }
+.kpi-value { font-size: 10pt; font-weight: 700; color: #1A365D; }
+.kpi-unit { font-size: 7pt; color: #888; }
+
+.hero-right {
+  background: #2d4a7a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 52mm;
+}
+.hero-right img { width: 100%; height: 100%; object-fit: cover; }
+.photo-placeholder {
+  color: rgba(255,255,255,0.45);
+  font-size: 10pt;
+  text-align: center;
+  padding: 20px;
+}
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+  background: linear-gradient(90deg, #1A365D 0%, #2d5a8e 100%);
+  color: #fff;
+  font-size: 8.5pt;
+  font-weight: 700;
+  padding: 4px 12px;
+  margin: 8px 16px 5px;
+  border-radius: 2px;
+}
+
+/* ===== OVERVIEW TABLE ===== */
+.overview-section { padding: 0 16px 8px; }
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.overview-table td {
+  border: 1px solid #c8d8f8;
+  padding: 3px 7px;
+  vertical-align: top;
+}
+.overview-table .th {
+  background: #e8f0fb;
+  font-weight: 700;
+  color: #1A365D;
+  width: 18%;
+  white-space: nowrap;
+}
+.overview-table .th2 {
+  background: #e8f0fb;
+  font-weight: 700;
+  color: #1A365D;
+  width: 16%;
+  white-space: nowrap;
+}
+
+/* ===== FOOTER BAND ===== */
+.footer-band {
+  background: linear-gradient(90deg, #1A365D 0%, #2d5a8e 100%);
+  color: rgba(255,255,255,0.75);
+  font-size: 7pt;
+  padding: 5px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===== PAGE BREAK ===== */
+.page-break { break-before: page; page-break-before: always; }
+.avoid-break { break-inside: avoid; page-break-inside: avoid; }
+
+/* ===== LENTROLL TABLE ===== */
+.lentroll-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.lentroll-table th {
+  background: #1A365D;
+  color: #fff;
+  padding: 5px 7px;
+  text-align: center;
+  border: 1px solid #2d5a8e;
+  font-size: 8.5pt;
+}
+.lentroll-table td {
+  border: 1px solid #c8d8f8;
+  padding: 4px 8px;
+  text-align: right;
+}
+.lentroll-table td.center { text-align: center; }
+.lentroll-table td.left { text-align: left; }
+.lentroll-table tr:nth-child(even) td { background: #f4f7ff; }
+.lentroll-table tr.total-row td {
+  background: #1A365D;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ===== FINANCE TABLE ===== */
+.finance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.finance-table td {
+  border: 1px solid #c8d8f8;
+  padding: 4px 8px;
+}
+.finance-table .th {
+  background: #e8f0fb;
+  font-weight: 700;
+  color: #1A365D;
+  width: 52%;
+}
+.finance-table tr.subtotal td {
+  background: #1A365D;
+  color: #fff;
+  font-weight: 700;
+}
+.finance-table tr.subtotal .th {
+  background: #1A365D;
+  color: #fff;
+}
+
+/* ===== POINTS LIST ===== */
+.points-list { list-style: none; padding: 0; margin: 0; }
+.points-list li {
+  font-size: 8.5pt;
+  padding: 4px 0 4px 18px;
+  position: relative;
+  border-bottom: 1px dotted #dde8f8;
+  line-height: 1.45;
+}
+.points-list li:last-child { border-bottom: none; }
+.points-list li::before { content: '✓'; position: absolute; left: 0; color: #DAA520; font-weight: 700; }
+
+/* ===== NOTES BOX ===== */
+.notes-box {
+  background: #fff8e8;
+  border: 1px solid #e8c050;
+  border-left: 4px solid #DAA520;
+  border-radius: 4px;
+  padding: 7px 10px;
+  font-size: 8pt;
+  line-height: 1.6;
+  color: #5a4a00;
+}
+.caution-box {
+  background: #fff0f0;
+  border: 1px solid #f0c0c0;
+  border-left: 4px solid #C41E3A;
+  border-radius: 4px;
+  padding: 7px 10px;
+  font-size: 8pt;
+  line-height: 1.6;
+  color: #5a0000;
+}
+
+/* ===== TWO-COL ===== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ===== ENV GRID ===== */
+.env-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+.env-item {
+  background: #f8faff;
+  border: 1px solid #dde8f8;
+  border-radius: 4px;
+  padding: 5px 8px;
+}
+.env-label { font-size: 7pt; color: #888; }
+.env-value { font-size: 8.5pt; font-weight: 700; color: #1A365D; }
+
+/* ===== MAINT TABLE ===== */
+.maint-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8pt;
+}
+.maint-table th {
+  background: #1A365D;
+  color: #fff;
+  padding: 4px 7px;
+  text-align: left;
+  border: 1px solid #2d5a8e;
+  font-size: 7.5pt;
+}
+.maint-table td {
+  border: 1px solid #c8d8f8;
+  padding: 3px 7px;
+  vertical-align: top;
+  font-size: 7.5pt;
+  line-height: 1.4;
+}
+.maint-table tr:nth-child(even) td { background: #f4f7ff; }
+.maint-tag {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 7pt;
+  font-weight: 700;
+}
+.tag-nishi { background: #e4f4e4; color: #1a5c1a; }
+.tag-naka  { background: #e4eeff; color: #1a1a8c; }
+.tag-higashi { background: #fff0e4; color: #8c3c00; }
+
+/* ===== PRINT ===== */
+@media print {
+  body { background: #fff; }
+  .page-container {
+    width: 267mm;
+    min-height: 182mm;
+    margin: 0;
+    box-shadow: none;
+    page-break-after: always;
+  }
+  @page { size: A4 landscape; margin: 14mm 15mm; }
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width: 900px) {
+  .page-container { width: 100% !important; min-height: unset; padding: 0 8px; box-shadow: none; }
+  .page-wrapper   { width: 100% !important; padding: 0 8px !important; }
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+  .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+  .header-property-name { font-size: 13pt; }
+  .highlight-box { flex-wrap: wrap; }
+  .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e0e8f8; }
+  .highlight-item:last-child { border-bottom: none; }
+  .highlight-value { font-size: 18pt; }
+  .two-col { grid-template-columns: 1fr !important; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .kpi-value { font-size: 15pt; }
+  .hero-section { grid-template-columns: 1fr !important; }
+  .lentroll-table, .finance-table, .overview-table { font-size: 9pt; }
+  body { font-size: 11pt; }
+  .section-title { font-size: 10pt; padding: 6px 12px; }
+  .footer-band { flex-direction: column; gap: 4px; text-align: center; padding: 8px 14px; }
+  .page-break { page-break-before: auto; break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+}
+@media screen and (max-width: 480px) {
+  .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .highlight-item { flex: 1 1 100%; }
+  .header-property-name { font-size: 12pt; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 1：物件概要
+     ============================================================ -->
+<div class="page-container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-tag">収益物件 ｜ 一棟3戸戸建 ｜ 満室稼働中</div>
+      <div class="header-property-name">七浦戸建（西棟・中棟・東棟）</div>
+      <div class="header-address">📍 福岡県大牟田市七浦町109-2</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">販売価格 <span>500</span>万円</div>
+      <div class="header-yield">表面利回り 約25.0%　｜　年間賃料収入 124.8万円</div>
+      <div class="header-no">案件番号：p-4782</div>
+      <a href="https://drive.google.com/drive/folders/1uSkjIPyFcvCy9hOmI9rpPmurcJM-iiwZ" target="_blank"
+         style="display:inline-block; margin-top:5px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <div class="hero-section">
+    <div class="hero-left">
+      <!-- HIGHLIGHT BOX -->
+      <div class="highlight-box">
+        <div class="highlight-item">
+          <div class="highlight-label">販売価格</div>
+          <div class="highlight-value">500</div>
+          <div class="highlight-unit">万円</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-label">表面利回り</div>
+          <div class="highlight-value accent">25.0</div>
+          <div class="highlight-unit">%</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-label">月間収入</div>
+          <div class="highlight-value">10.4</div>
+          <div class="highlight-unit">万円</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-label">稼働状況</div>
+          <div class="highlight-value" style="font-size:12pt; color:#1a7a1a;">満室</div>
+          <div class="highlight-unit">3戸 / 3戸</div>
+        </div>
+      </div>
+      <!-- KPI GRID -->
+      <div class="kpi-grid">
+        <div class="kpi-item">
+          <div class="kpi-label">構造・築年月</div>
+          <div class="kpi-value" style="font-size:9pt; line-height:1.3;">木造2階建</div>
+          <div class="kpi-unit">1984年11月築（築41年）</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">土地面積</div>
+          <div class="kpi-value">640.34</div>
+          <div class="kpi-unit">㎡（約193.70坪）</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">建物延面積</div>
+          <div class="kpi-value">68</div>
+          <div class="kpi-unit">㎡（約20.57坪）</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">積算評価（概算）</div>
+          <div class="kpi-value" style="font-size:9pt;">約493万円</div>
+          <div class="kpi-unit">土地のみ（建物耐用年数超）</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">間取り</div>
+          <div class="kpi-value">3DK</div>
+          <div class="kpi-unit">全3戸（3棟）</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-label">預かり敷金合計</div>
+          <div class="kpi-value">22.4</div>
+          <div class="kpi-unit">万円（3戸合計）</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="photo-placeholder">
+        <div style="font-size:36pt; margin-bottom:8px;">🏘️</div>
+        <div style="font-size:10pt;">物件写真</div>
+        <div style="font-size:7.5pt; margin-top:4px;">七浦戸建（西棟・中棟・東棟）</div>
+        <div style="font-size:7pt; margin-top:8px; opacity:0.55;">写真は共有フォルダをご参照ください</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW TABLE -->
+  <div class="section-title">■ 物件概要</div>
+  <div class="overview-section">
+    <table class="overview-table">
+      <tr>
+        <td class="th">所在地</td>
+        <td colspan="3">福岡県大牟田市七浦町109-2（地番）</td>
+      </tr>
+      <tr>
+        <td class="th">物件種別</td>
+        <td>一棟3戸戸建（西棟・中棟・東棟）</td>
+        <td class="th2">間取り</td>
+        <td>3DK（和室6畳/和室6畳/和室6畳/DK8畳）</td>
+      </tr>
+      <tr>
+        <td class="th">築年月</td>
+        <td>1984年11月（昭和59年築・築約41年）</td>
+        <td class="th2">構造</td>
+        <td>木造 地上2階建</td>
+      </tr>
+      <tr>
+        <td class="th">土地面積</td>
+        <td>公簿 640.34㎡（約193.70坪）</td>
+        <td class="th2">建物延面積</td>
+        <td>68㎡（約20.57坪）</td>
+      </tr>
+      <tr>
+        <td class="th">土地権利</td>
+        <td>所有権</td>
+        <td class="th2">用途地域</td>
+        <td>第一種住居地域</td>
+      </tr>
+      <tr>
+        <td class="th">建蔽率/容積率</td>
+        <td>60% / 200%</td>
+        <td class="th2">都市計画</td>
+        <td>市街化区域</td>
+      </tr>
+      <tr>
+        <td class="th">交通</td>
+        <td colspan="3">鹿児島本線 大牟田駅 徒歩23分（1,768m）／ 西鉄天神大牟田線 大牟田駅 徒歩28分（2,226m）</td>
+      </tr>
+      <tr>
+        <td class="th">設備</td>
+        <td colspan="3">給湯・シャワー・バス・トイレ別・室内洗濯機置場・収納スペース・プロパンガス</td>
+      </tr>
+      <tr>
+        <td class="th">現況</td>
+        <td>賃貸中（3戸満室）・引渡し：即時</td>
+        <td class="th2">駐車場</td>
+        <td>有（1台無料、スペース有）</td>
+      </tr>
+      <tr>
+        <td class="th">小学校区</td>
+        <td>大牟田市立大牟田中央小学校（1,414m）</td>
+        <td class="th2">中学校区</td>
+        <td>大牟田市立宅峰中学校（2,288m）</td>
+      </tr>
+      <tr>
+        <td class="th">路線価</td>
+        <td>0.77万円/㎡</td>
+        <td class="th2">法令制限等</td>
+        <td>公拡法・建基法2項道路（接道詳細は特記事項参照）</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-band">
+    <div>案件番号：p-4782　／　七浦戸建（西棟・中棟・東棟）</div>
+    <div>作成日：2026年4月20日</div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 2：レントロール
+     ============================================================ -->
+<div class="page-container page-break">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-tag">レントロール ｜ 賃料収入明細</div>
+      <div class="header-property-name">七浦戸建（西棟・中棟・東棟）</div>
+      <div class="header-address">📍 福岡県大牟田市七浦町109-2</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">販売価格 <span>500</span>万円</div>
+      <div class="header-yield">表面利回り 約25.0%</div>
+      <a href="https://drive.google.com/drive/folders/1uSkjIPyFcvCy9hOmI9rpPmurcJM-iiwZ" target="_blank"
+         style="display:inline-block; margin-top:5px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div style="padding: 10px 16px;">
+
+    <div class="section-title" style="margin: 0 0 7px;">■ レントロール（賃料明細）</div>
+    <table class="lentroll-table avoid-break">
+      <thead>
+        <tr>
+          <th style="width:10%;">号室</th>
+          <th style="width:9%;">タイプ</th>
+          <th style="width:12%;">家賃</th>
+          <th style="width:10%;">共益費</th>
+          <th style="width:12%;">現況家賃</th>
+          <th style="width:12%;">現況共益費</th>
+          <th style="width:14%;">預かり敷金</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center">西棟</td>
+          <td class="center">3DK</td>
+          <td>40,000</td>
+          <td class="center">—</td>
+          <td>40,000</td>
+          <td class="center">0</td>
+          <td>160,000</td>
+          <td class="left">2000年〜　契約中</td>
+        </tr>
+        <tr>
+          <td class="center">中棟</td>
+          <td class="center">3DK</td>
+          <td>32,000</td>
+          <td class="center">—</td>
+          <td>32,000</td>
+          <td class="center">0</td>
+          <td>0</td>
+          <td class="left">2025年〜　契約中</td>
+        </tr>
+        <tr>
+          <td class="center">東棟</td>
+          <td class="center">3DK</td>
+          <td>32,000</td>
+          <td class="center">—</td>
+          <td>32,000</td>
+          <td class="center">0</td>
+          <td>64,000</td>
+          <td class="left">2025年〜　契約中</td>
+        </tr>
+        <tr class="total-row">
+          <td class="left" colspan="2">合計（3戸）</td>
+          <td>104,000</td>
+          <td class="center">—</td>
+          <td>104,000</td>
+          <td class="center">0</td>
+          <td>224,000</td>
+          <td class="left">満室稼働中</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top: 14px;" class="two-col">
+      <div>
+        <div class="section-title" style="margin: 0 0 7px;">■ 収入サマリー</div>
+        <table class="finance-table avoid-break">
+          <tr>
+            <td class="th">月間賃料収入（満室）</td>
+            <td style="text-align:right; font-weight:700; color:#1a7a1a;">104,000円</td>
+          </tr>
+          <tr>
+            <td class="th">年間賃料収入（満室）</td>
+            <td style="text-align:right; font-weight:700; color:#1a7a1a;">1,248,000円</td>
+          </tr>
+          <tr>
+            <td class="th">販売価格</td>
+            <td style="text-align:right;">5,000,000円</td>
+          </tr>
+          <tr class="subtotal">
+            <td class="th">表面利回り（現況満室）</td>
+            <td style="text-align:right; font-size:1.1em;">約 25.0%</td>
+          </tr>
+        </table>
+
+        <div class="section-title" style="margin: 12px 0 7px;">■ 預かり敷金内訳</div>
+        <table class="finance-table avoid-break">
+          <tr>
+            <td class="th">西棟　敷金</td>
+            <td style="text-align:right;">160,000円（家賃4ヶ月相当）</td>
+          </tr>
+          <tr>
+            <td class="th">中棟　敷金</td>
+            <td style="text-align:right;">0円</td>
+          </tr>
+          <tr>
+            <td class="th">東棟　敷金</td>
+            <td style="text-align:right;">64,000円（家賃2ヶ月相当）</td>
+          </tr>
+          <tr class="subtotal">
+            <td class="th">敷金合計</td>
+            <td style="text-align:right;">224,000円</td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <div class="section-title" style="margin: 0 0 7px;">■ 賃料・入居状況の補足</div>
+        <div class="notes-box avoid-break" style="margin-bottom: 8px;">
+          <strong>【西棟】</strong>　賃料：月額 40,000円<br>
+          2000年より長期入居中。居住期間が非常に長いため、賃料を現状水準に据え置きとしています。<br>
+          ※退去時の原状回復義務は免除となり請求不可。<br>
+          現時点での退去予定はありません。<br><br>
+          <strong>【中棟・東棟】</strong>　賃料：各月額 32,000円<br>
+          2025年より新規入居。直近の入居で安定稼働中です。
+        </div>
+        <div class="caution-box avoid-break">
+          ⚠️ <strong>西棟：退去後のリフォームについて</strong><br>
+          居住期間が長期にわたるため、退去後に賃貸物件として維持する場合はかなり大規模なリフォーム工事が必要となる可能性があります。退去時の原状回復請求は不可となります。なお、現時点での退去予定はありません。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <div>案件番号：p-4782　／　七浦戸建（西棟・中棟・東棟）</div>
+    <div>作成日：2026年4月20日</div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 3：収益シミュレーション・投資ポイント・周辺環境
+     ============================================================ -->
+<div class="page-container page-break">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-tag">収益シミュレーション ｜ 投資ポイント ｜ 周辺環境</div>
+      <div class="header-property-name">七浦戸建（西棟・中棟・東棟）</div>
+      <div class="header-address">📍 福岡県大牟田市七浦町109-2</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">販売価格 <span>500</span>万円</div>
+      <div class="header-yield">表面利回り 約25.0%</div>
+      <a href="https://drive.google.com/drive/folders/1uSkjIPyFcvCy9hOmI9rpPmurcJM-iiwZ" target="_blank"
+         style="display:inline-block; margin-top:5px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div style="padding: 10px 16px;">
+    <div class="two-col">
+
+      <!-- LEFT COLUMN -->
+      <div>
+        <div class="section-title" style="margin: 0 0 7px;">■ 収益シミュレーション</div>
+        <table class="finance-table avoid-break">
+          <tr>
+            <td class="th">販売価格</td>
+            <td style="text-align:right;">5,000,000円</td>
+          </tr>
+          <tr style="background:#f0faf0;">
+            <td class="th">年間賃料収入（満室・現況）</td>
+            <td style="text-align:right; color:#1a7a1a; font-weight:700;">1,248,000円</td>
+          </tr>
+          <tr>
+            <td class="th" style="padding-left:16px;">うち 西棟（月40,000円）</td>
+            <td style="text-align:right;">480,000円</td>
+          </tr>
+          <tr>
+            <td class="th" style="padding-left:16px;">うち 中棟（月32,000円）</td>
+            <td style="text-align:right;">384,000円</td>
+          </tr>
+          <tr>
+            <td class="th" style="padding-left:16px;">うち 東棟（月32,000円）</td>
+            <td style="text-align:right;">384,000円</td>
+          </tr>
+          <tr class="subtotal">
+            <td class="th">表面利回り（現況満室）</td>
+            <td style="text-align:right; font-size:1.1em;">約 25.0%</td>
+          </tr>
+        </table>
+
+        <div class="section-title" style="margin: 12px 0 7px;">■ 積算評価（概算）</div>
+        <table class="finance-table avoid-break">
+          <tr>
+            <td class="th">路線価単価</td>
+            <td style="text-align:right;">7,700円/㎡</td>
+          </tr>
+          <tr>
+            <td class="th">土地面積（公簿）</td>
+            <td style="text-align:right;">640.34㎡</td>
+          </tr>
+          <tr>
+            <td class="th">土地積算評価</td>
+            <td style="text-align:right; font-weight:700;">約4,930,000円（約493万円）</td>
+          </tr>
+          <tr>
+            <td class="th">建物積算評価</td>
+            <td style="text-align:right; color:#888;">
+              0円<br>
+              <span style="font-size:7pt;">※木造耐用年数22年に対し築41年（超過）のため</span>
+            </td>
+          </tr>
+          <tr class="subtotal">
+            <td class="th">積算評価合計（概算）</td>
+            <td style="text-align:right; font-size:1.1em;">約 493万円</td>
+          </tr>
+        </table>
+        <div class="notes-box" style="margin-top:7px; font-size:8pt;">
+          💡 <strong>販売価格500万円に対し、積算評価（土地）は約493万円。</strong><br>
+          ほぼ土地値水準での取得となり、建物3棟からの賃料収入（年124.8万円）は実質おまけに近い水準です。
+        </div>
+
+        <div class="section-title" style="margin: 10px 0 7px;">■ 周辺環境</div>
+        <div class="env-grid avoid-break">
+          <div class="env-item">
+            <div class="env-label">最寄り駅（JR）</div>
+            <div class="env-value">大牟田駅（JR鹿児島本線）</div>
+            <div style="font-size:7pt; color:#888;">徒歩23分 / 1,768m</div>
+          </div>
+          <div class="env-item">
+            <div class="env-label">最寄り駅（西鉄）</div>
+            <div class="env-value">大牟田駅（西鉄天神大牟田線）</div>
+            <div style="font-size:7pt; color:#888;">徒歩28分 / 2,226m</div>
+          </div>
+          <div class="env-item">
+            <div class="env-label">小学校</div>
+            <div class="env-value">大牟田市立大牟田中央小</div>
+            <div style="font-size:7pt; color:#888;">1,414m</div>
+          </div>
+          <div class="env-item">
+            <div class="env-label">中学校</div>
+            <div class="env-value">大牟田市立宅峰中学校</div>
+            <div style="font-size:7pt; color:#888;">2,288m</div>
+          </div>
+          <div class="env-item">
+            <div class="env-label">公園</div>
+            <div class="env-value">七浦公園</div>
+            <div style="font-size:7pt; color:#888;">近隣</div>
+          </div>
+          <div class="env-item">
+            <div class="env-label">ガス種別</div>
+            <div class="env-value">プロパンガス</div>
+            <div style="font-size:7pt; color:#888;">都市ガス未整備エリア</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+        <div class="section-title" style="margin: 0 0 7px;">■ 投資のポイント</div>
+        <ul class="points-list avoid-break" style="margin-bottom: 10px;">
+          <li>
+            <strong>3棟同時取得・購入直後から満室稼働</strong><br>
+            3戸すべてが入居済みのオーナーチェンジ。購入翌月から月10.4万円の賃料収入が入ります。
+          </li>
+          <li>
+            <strong>表面利回り約25.0%の高収益物件</strong><br>
+            年間賃料124.8万円に対し販売価格500万円。500万円台では希少な高利回り水準です。
+          </li>
+          <li>
+            <strong>積算評価（土地）とほぼ同額での取得</strong><br>
+            路線価ベースの土地評価約493万円に対し販売価格500万円。実質土地値で建物3棟がついてくる水準です。
+          </li>
+          <li>
+            <strong>高台空地も一括売買対象・多用途展開が可能</strong><br>
+            高台の空地も含む売買。ドッグランや家庭菜園として活用できるほか、将来的な利用価値も期待できます。
+          </li>
+          <li>
+            <strong>東棟は2017年（H29）に大規模リフォーム済み</strong><br>
+            DKフローリング張替・トイレ洋式化・複合型給湯器交換・浴室シャワー設置など約58万円を投資。入居付けしやすい状態です。
+          </li>
+          <li>
+            <strong>中棟・東棟は2025年より新規入居で安定稼働</strong><br>
+            直近入居のため退去リスクが低い状態。2025年以降の新規入居者が安定的に家賃を支払っています。
+          </li>
+          <li>
+            <strong>オーナーによる適切なメンテナンス実施の履歴あり</strong><br>
+            2026年2月にも給湯器修理・配管修繕を実施。問題が発生した際に適切に対処してきた実績があります。
+          </li>
+          <li>
+            <strong>二方向接道（西棟・中棟）で将来の建替えにも対応</strong><br>
+            西棟・中棟は建築基準法上の接道要件を満たしており、将来の建替え計画も立てやすい環境です。
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <div>案件番号：p-4782　／　七浦戸建（西棟・中棟・東棟）</div>
+    <div>作成日：2026年4月20日</div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 4：メンテナンス履歴・特記事項
+     ============================================================ -->
+<div class="page-container page-break">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-tag">メンテナンス履歴 ｜ 特記事項・重要注意点</div>
+      <div class="header-property-name">七浦戸建（西棟・中棟・東棟）</div>
+      <div class="header-address">📍 福岡県大牟田市七浦町109-2</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">販売価格 <span>500</span>万円</div>
+      <div class="header-yield">表面利回り 約25.0%</div>
+      <a href="https://drive.google.com/drive/folders/1uSkjIPyFcvCy9hOmI9rpPmurcJM-iiwZ" target="_blank"
+         style="display:inline-block; margin-top:5px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div style="padding: 10px 16px;">
+    <div class="two-col">
+
+      <!-- LEFT：メンテ履歴 -->
+      <div>
+        <div class="section-title" style="margin: 0 0 7px;">■ メンテナンス履歴（確認できる範囲）</div>
+        <table class="maint-table avoid-break">
+          <thead>
+            <tr>
+              <th style="width:14%;">年月</th>
+              <th style="width:13%;">棟</th>
+              <th style="width:42%;">内容</th>
+              <th>対応・費用</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>H24.2</td>
+              <td><span class="maint-tag tag-nishi">西棟</span></td>
+              <td>給湯器 お湯出ない</td>
+              <td>業者修理</td>
+            </tr>
+            <tr>
+              <td>H27.11</td>
+              <td><span class="maint-tag tag-naka">中棟</span></td>
+              <td>台所湯沸器 設置</td>
+              <td>新設</td>
+            </tr>
+            <tr>
+              <td>H29.6</td>
+              <td><span class="maint-tag tag-higashi">東棟</span></td>
+              <td>TVブースター 交換</td>
+              <td>16,200円</td>
+            </tr>
+            <tr>
+              <td>H29.6</td>
+              <td><span class="maint-tag tag-higashi">東棟</span></td>
+              <td>畳18畳 表替</td>
+              <td>68,040円</td>
+            </tr>
+            <tr>
+              <td>H29.6</td>
+              <td><span class="maint-tag tag-higashi">東棟</span></td>
+              <td>室内大規模リフォーム<br>（DKフローリング貼・トイレ簡易水洗洋式変更）</td>
+              <td>500,580円</td>
+            </tr>
+            <tr>
+              <td>H29.6</td>
+              <td><span class="maint-tag tag-higashi">東棟</span></td>
+              <td>台所湯沸器・複合型給湯器 交換</td>
+              <td>交換済み</td>
+            </tr>
+            <tr>
+              <td>H29.6</td>
+              <td><span class="maint-tag tag-higashi">東棟</span></td>
+              <td>浴室シャワー 設置</td>
+              <td>新設</td>
+            </tr>
+            <tr>
+              <td>H29.7</td>
+              <td><span class="maint-tag tag-nishi">西棟</span></td>
+              <td>玄関引き戸 開閉不良</td>
+              <td>業者戸車調整</td>
+            </tr>
+            <tr>
+              <td>R3.1</td>
+              <td><span class="maint-tag tag-nishi">西棟</span></td>
+              <td>台所外 水道管水漏れ</td>
+              <td>業者修理</td>
+            </tr>
+            <tr>
+              <td>R5.7</td>
+              <td><span class="maint-tag tag-nishi">西棟</span></td>
+              <td>トイレ入口天井板たわみ／扉開閉不良</td>
+              <td>ベニヤ交換・調整</td>
+            </tr>
+            <tr>
+              <td>R8.2</td>
+              <td><span class="maint-tag tag-nishi">西棟</span></td>
+              <td>給湯器 お湯出ない</td>
+              <td>業者修理（2026年2月）</td>
+            </tr>
+            <tr>
+              <td>R8.2</td>
+              <td><span class="maint-tag tag-naka">中棟</span></td>
+              <td>給湯器配管 水漏れ</td>
+              <td>業者修理（2026年2月）</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="notes-box" style="margin-top:8px; font-size:7.5pt;">
+          💡 <strong>東棟は2017年（H29）に約58万円の大規模リフォームを実施。</strong>DKフローリング・トイレ洋式化・給湯器交換・シャワー新設と徹底的に整備済みです。最新のメンテナンス（R8.2月）も迅速に業者対応しており、適切な管理が行われてきた物件です。
+        </div>
+      </div>
+
+      <!-- RIGHT：特記事項 -->
+      <div>
+        <div class="section-title" style="margin: 0 0 7px;">■ 特記事項・重要確認事項</div>
+
+        <div class="caution-box avoid-break" style="margin-bottom: 8px;">
+          <strong>【接道条件について】（重要）</strong><br>
+          3棟中、<strong>西棟・中棟の2棟は接道条件を満たしています</strong>が、<strong>東棟は現状で接道要件を満たしていません</strong>。<br>
+          建築基準法上の2項道路に1.44m接道のため、確認申請等が必要な場合は現状2棟のみ申請可能です。<br>
+          ※西側隣地を50cm程度賃借または売買で取得し2m接道を確保することで、3棟すべての確認申請が可能となります。
+        </div>
+
+        <div class="caution-box avoid-break" style="margin-bottom: 8px;">
+          <strong>【排水設備について（汲み取り）】</strong><br>
+          本区域は下水道予定区域内ですが、現状は未整備のため汲み取りとなっています。<br>
+          ・ <strong>中棟・東棟</strong>：汲み取り式簡易水洗<br>
+          ・ <strong>西棟</strong>：汲み取り和式（ドッポン）<br>
+          ※下水道整備後は接続工事が必要となります。
+        </div>
+
+        <div class="notes-box avoid-break" style="margin-bottom: 8px;">
+          <strong>【高台空地について】</strong><br>
+          高台部分の空地も売買対象です。<br>
+          ・建築基準法上の2項道路に2m接道（一部セットバック必要）<br>
+          ・前面道路幅員1.8〜2m（2mに満たない部分はセットバックが必要）<br>
+          ・高台部分には水道の引き込みなし<br>
+          ・<strong>ドッグランや家庭菜園用地としての活用が最適</strong><br>
+          ・本物件の高低差はMAX2mのため福岡県の崖条例は非該当<br>
+          ⚠️ 石積擁壁に一部欠損箇所あり（要確認）
+        </div>
+
+        <div class="notes-box avoid-break" style="margin-bottom: 8px;">
+          <strong>【西棟の長期入居について】</strong><br>
+          西棟は2000年より長期入居中（現時点で退去予定なし）。居住期間が長期にわたるため、退去時の原状回復義務は免除となり、請求はできません。そのため賃料を現在の水準（月40,000円）で据え置きとしています。退去後は賃貸物件として維持する場合、大規模なリフォーム工事の実施が想定されます。
+        </div>
+
+        <div class="notes-box avoid-break">
+          <strong>【その他参考情報】</strong><br>
+          ・ガス：プロパンガス（都市ガス未整備エリア）<br>
+          ・駐車場：1台無料（スペースがあれば追加駐車可）<br>
+          ・引渡し：即時（賃貸中のままオーナーチェンジ）<br>
+          ・現状有姿での引渡し<br>
+          ・取引態様：専任媒介<br>
+          ・本資料の情報は2026年4月時点のものです。最新情報は詳細資料をご確認ください。
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <div>案件番号：p-4782　／　七浦戸建（西棟・中棟・東棟）　※本資料の情報は2026年4月時点のものです。</div>
+    <div>作成日：2026年4月20日</div>
+  </div>
+</div>
+
+</body>
+</html>
