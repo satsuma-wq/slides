@@ -58,8 +58,9 @@ body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo
   grid-template-columns: 1.5fr 0.75fr;
   gap: 0;
   height: 62mm;
+  overflow: hidden;
 }
-.hero-left { padding: 10px 12px 8px 16px; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; }
+.hero-left { padding: 10px 12px 8px 16px; display: flex; flex-direction: column; overflow: hidden; }
 .highlight-box {
   display: flex;
   gap: 0;
@@ -91,16 +92,15 @@ body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo
   display: flex;
   gap: 4px;
   margin-top: 5px;
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
+  height: 78px;
+  flex-shrink: 0;
 }
 .mini-photo-strip img {
   flex: 1;
   object-fit: cover;
   border-radius: 3px;
   border: 1px solid #dde8f8;
-  min-height: 0;
+  min-width: 0;
   width: 0;
 }
 .kpi-item {
