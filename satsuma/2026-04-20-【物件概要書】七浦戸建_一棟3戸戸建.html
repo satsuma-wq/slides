@@ -59,7 +59,7 @@ body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo
   gap: 0;
   min-height: 52mm;
 }
-.hero-left { padding: 10px 12px 8px 16px; }
+.hero-left { padding: 10px 12px 8px 16px; display: flex; flex-direction: column; }
 .highlight-box {
   display: flex;
   gap: 0;
@@ -85,6 +85,19 @@ body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
+  flex: 1;
+}
+.mini-photo-strip {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  height: 52px;
+}
+.mini-photo-strip img {
+  flex: 1;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid #dde8f8;
 }
 .kpi-item {
   background: #f8faff;
@@ -479,6 +492,18 @@ body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo
           <div class="kpi-value">22.4</div>
           <div class="kpi-unit">万円（3戸合計）</div>
         </div>
+      </div>
+      <!-- MINI PHOTO STRIP -->
+      <div class="mini-photo-strip">
+        <img src="https://drive.google.com/thumbnail?id=15FA4vGpCAp9GI7GHG-Ju3KW23niTZn6J&sz=w400"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/15FA4vGpCAp9GI7GHG-Ju3KW23niTZn6J'"
+             alt="東棟（駐車時）">
+        <img src="https://drive.google.com/thumbnail?id=1tvdafdH2swzJh064aWSw2yQJqrcwBHoT&sz=w400"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1tvdafdH2swzJh064aWSw2yQJqrcwBHoT'"
+             alt="敷地">
+        <img src="https://drive.google.com/thumbnail?id=1gq70gtT8VuSZjRu0Gl6vKFZXxfeiITiD&sz=w400"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1gq70gtT8VuSZjRu0Gl6vKFZXxfeiITiD'"
+             alt="和室（縁側）">
       </div>
     </div>
     <div class="hero-right">
