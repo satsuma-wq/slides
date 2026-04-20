@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】南魚沼市 戸建（r-2585）</title>
+<style>
+@page { size: A4 landscape; margin: 14mm 15mm; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Yu Gothic', 'Meiryo', sans-serif;
+  font-size: 10pt; color: #222; background: #f5f5f5;
+  line-height: 1.5;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+
+.page-container {
+  width: 297mm; max-width: 100%; margin: 0 auto 12mm; background: #fff;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  padding: 0;
+}
+
+/* ========== ヘッダー ========== */
+.header {
+  display: flex; justify-content: space-between; align-items: center;
+  background: linear-gradient(135deg, #1A365D 0%, #2d4a7a 100%);
+  color: #fff; padding: 10px 18px;
+}
+.header-left { flex: 1; }
+.header-property-name { font-size: 15pt; font-weight: 700; letter-spacing: 0.04em; }
+.header-property-id { font-size: 9pt; opacity: 0.85; margin-top: 2px; }
+.header-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.header-price-label { font-size: 8pt; opacity: 0.75; }
+.header-price { font-size: 18pt; font-weight: 800; color: #FFD700; }
+
+/* ========== セクションタイトル ========== */
+.section-title {
+  font-size: 11pt; font-weight: 700; color: #fff;
+  background: linear-gradient(90deg, #1A365D 0%, #2d4a7a 100%);
+  padding: 6px 14px; margin: 14px 0 10px;
+  border-left: 5px solid #DAA520;
+  letter-spacing: 0.05em;
+}
+
+/* ========== ヒーローセクション ========== */
+.hero-section {
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: 14px;
+  padding: 14px 18px 0;
+}
+.hero-kpi {
+  background: linear-gradient(135deg, #fff9ec 0%, #fef3d7 100%);
+  border: 2px solid #DAA520; border-radius: 8px;
+  padding: 14px; display: flex; flex-direction: column; justify-content: center;
+}
+.hero-kpi h2 {
+  font-size: 11pt; color: #1A365D; margin-bottom: 10px; font-weight: 700;
+  border-bottom: 2px solid #DAA520; padding-bottom: 4px;
+}
+.kpi-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.kpi-box {
+  background: #fff; border-radius: 6px; padding: 8px 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border-left: 3px solid #DAA520;
+}
+.kpi-label { font-size: 8pt; color: #666; }
+.kpi-value { font-size: 14pt; font-weight: 800; color: #1A365D; letter-spacing: -0.01em; }
+.kpi-unit { font-size: 8pt; color: #888; margin-left: 2px; }
+.kpi-highlight .kpi-value { color: #C41E3A; }
+
+.hero-image-wrap {
+  border-radius: 8px; overflow: hidden; border: 1px solid #c8d8f8;
+  background: #2d4a7a; display: flex; align-items: center; justify-content: center;
+  min-height: 90mm;
+}
+.hero-image-wrap img {
+  width: 100%; height: 100%; max-height: 90mm;
+  object-fit: cover; display: block;
+}
+
+/* ========== ハイライト帯 ========== */
+.highlight-box {
+  display: flex; justify-content: space-around; align-items: center;
+  background: linear-gradient(135deg, #fff9ec 0%, #fef3d7 100%);
+  border: 1px solid #DAA520; border-radius: 6px;
+  margin: 10px 18px; padding: 10px 14px;
+}
+.highlight-item { text-align: center; flex: 1; border-right: 1px solid #e8d5a0; padding: 0 8px; }
+.highlight-item:last-child { border-right: none; }
+.highlight-label { font-size: 8pt; color: #666; }
+.highlight-value { font-size: 14pt; font-weight: 800; color: #1A365D; }
+.highlight-value.red { color: #C41E3A; }
+
+/* ========== 物件概要テーブル ========== */
+.overview-section { padding: 0 18px; }
+.overview-table {
+  width: 100%; border-collapse: collapse; font-size: 9.5pt;
+}
+.overview-table th, .overview-table td {
+  border: 1px solid #c8d8f8; padding: 6px 10px; text-align: left; vertical-align: middle;
+}
+.overview-table th {
+  background: #eaf1fa; color: #1A365D; font-weight: 700; width: 18%;
+  font-size: 9pt;
+}
+.overview-table td { background: #fff; }
+.overview-table tr:nth-child(even) td { background: #fafcff; }
+
+/* ========== レントロール ========== */
+.lentroll-table, .finance-table {
+  width: 100%; border-collapse: collapse; font-size: 9.5pt;
+  margin: 0 auto;
+}
+.lentroll-table th, .lentroll-table td,
+.finance-table th, .finance-table td {
+  border: 1px solid #c8d8f8; padding: 6px 10px; text-align: left;
+}
+.lentroll-table th, .finance-table .th {
+  background: #eaf1fa; color: #1A365D; font-weight: 700; width: 40%;
+}
+.finance-table .subtotal td { background: #fff5f0; font-weight: 700; }
+
+/* ========== 投資ポイント ========== */
+.points-list { list-style: none; padding: 0; }
+.points-list li {
+  background: #fff; border-left: 4px solid #DAA520;
+  padding: 8px 14px; margin-bottom: 6px; border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  font-size: 10pt;
+}
+
+/* ========== 特記事項 ========== */
+.notes-box {
+  background: #fff5f0; border: 1px solid #f5c2a5; border-radius: 4px;
+  padding: 10px 14px; font-size: 9.5pt; color: #444;
+  margin: 0 18px;
+}
+
+/* ========== フッター帯 ========== */
+.footer-band {
+  background: linear-gradient(135deg, #1A365D 0%, #2d4a7a 100%);
+  color: #fff; padding: 8px 18px; margin-top: 14px;
+  font-size: 8pt; text-align: center;
+}
+
+/* ========== ページ区切り ========== */
+.page-break { break-before: page; }
+.avoid-break { break-inside: avoid; }
+
+/* ========== 印刷用 ========== */
+@media print {
+  body { background: #fff; }
+  .page-container {
+    width: 297mm; min-height: 182mm;
+    box-shadow: none; margin: 0 auto;
+    page-break-after: always;
+  }
+  .page-container:last-child { page-break-after: auto; }
+}
+
+/* ========== レスポンシブ（タブレット・スマホ） ========== */
+@media screen and (max-width: 900px) {
+  .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+  .page-wrapper { width: 100% !important; padding: 0 8px !important; }
+
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+  .header-right { text-align: left; width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px; }
+  .header-property-name { font-size: 13pt; }
+
+  .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+  .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
+  .highlight-item:last-child { border-bottom: none; }
+  .highlight-value { font-size: 18pt; }
+
+  .hero-section { grid-template-columns: 1fr !important; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .kpi-value { font-size: 15pt; }
+
+  .overview-section, .finance-section { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .lentroll-table, .finance-table, .overview-table { font-size: 9pt; }
+
+  body { font-size: 11pt; }
+  .section-title { font-size: 10pt; padding: 6px 12px; }
+  .points-list li, .notes-box { font-size: 10pt; }
+
+  .footer-band { padding: 10px 14px; }
+  .page-break { page-break-before: auto; break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+}
+@media screen and (max-width: 480px) {
+  .kpi-grid { grid-template-columns: 1fr; }
+  .highlight-item { flex: 1 1 100%; }
+  .header-property-name { font-size: 12pt; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- ページ1：概要 -->
+<!-- ============================================================ -->
+<div class="page-container">
+
+<!-- ヘッダー -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-property-name">新潟県南魚沼市 戸建</div>
+    <div class="header-property-id">物件番号：r-2585　　所在地：新潟県南魚沼市坂戸671-2</div>
+  </div>
+  <div class="header-right">
+    <div>
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">200,000円</div>
+    </div>
+    <a href="https://drive.google.com/drive/folders/1pF5UI0i3-QbnLoZ9mwO71xSeC2T7HTAI" target="_blank"
+       style="display:inline-block; margin-top:6px; padding:4px 10px;
+              background:#DAA520; color:#1A365D; border-radius:4px;
+              font-size:8pt; font-weight:700; text-decoration:none;">
+      📂 詳細はこちら
+    </a>
+  </div>
+</div>
+
+<!-- ヒーローセクション -->
+<div class="hero-section">
+  <div class="hero-kpi">
+    <h2>物件ハイライト</h2>
+    <div class="kpi-grid">
+      <div class="kpi-box">
+        <div class="kpi-label">販売価格</div>
+        <div class="kpi-value">20<span class="kpi-unit">万円</span></div>
+      </div>
+      <div class="kpi-box kpi-highlight">
+        <div class="kpi-label">想定利回り</div>
+        <div class="kpi-value">90.0<span class="kpi-unit">%</span></div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-label">想定月額賃料</div>
+        <div class="kpi-value">15,000<span class="kpi-unit">円</span></div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-label">年間想定家賃</div>
+        <div class="kpi-value">180,000<span class="kpi-unit">円</span></div>
+      </div>
+      <div class="kpi-box kpi-highlight">
+        <div class="kpi-label">想定出口価格</div>
+        <div class="kpi-value">90<span class="kpi-unit">万円</span></div>
+      </div>
+      <div class="kpi-box kpi-highlight">
+        <div class="kpi-label">想定売却益</div>
+        <div class="kpi-value">50<span class="kpi-unit">万円</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-image-wrap">
+    <img src="https://drive.google.com/thumbnail?id=1Rt_z-9c64t5RfSxOx7lt5I3PDyqs3C6M&sz=w800"
+         onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Rt_z-9c64t5RfSxOx7lt5I3PDyqs3C6M';"
+         alt="物件外観">
+  </div>
+</div>
+
+<!-- ハイライト帯 -->
+<div class="highlight-box">
+  <div class="highlight-item">
+    <div class="highlight-label">種別</div>
+    <div class="highlight-value" style="font-size:13pt;">戸建</div>
+  </div>
+  <div class="highlight-item">
+    <div class="highlight-label">エリア</div>
+    <div class="highlight-value" style="font-size:13pt;">新潟県南魚沼市</div>
+  </div>
+  <div class="highlight-item">
+    <div class="highlight-label">路線価</div>
+    <div class="highlight-value" style="font-size:13pt;">9,700円/㎡</div>
+  </div>
+  <div class="highlight-item">
+    <div class="highlight-label">現況</div>
+    <div class="highlight-value red" style="font-size:13pt;">空室</div>
+  </div>
+</div>
+
+<!-- 物件概要テーブル -->
+<div class="section-title">物件概要</div>
+<div class="overview-section">
+<table class="overview-table">
+  <tr>
+    <th>所在地</th><td>新潟県南魚沼市坂戸671-2</td>
+    <th>最寄駅</th><td>JR上越線・上越新幹線「六日町」駅</td>
+  </tr>
+  <tr>
+    <th>物件種別</th><td>戸建</td>
+    <th>用途地域</th><td>【確認中】</td>
+  </tr>
+  <tr>
+    <th>土地面積</th><td>【確認中】</td>
+    <th>建物面積</th><td>【確認中】</td>
+  </tr>
+  <tr>
+    <th>構造</th><td>【確認中】</td>
+    <th>築年</th><td>【確認中】</td>
+  </tr>
+  <tr>
+    <th>間取り</th><td>【確認中】</td>
+    <th>駐車場</th><td>【確認中】</td>
+  </tr>
+  <tr>
+    <th>現況</th><td>空室</td>
+    <th>引渡し</th><td>現況有姿</td>
+  </tr>
+  <tr>
+    <th>路線価</th><td>9,700円/㎡</td>
+    <th>取引態様</th><td>仲介</td>
+  </tr>
+  <tr>
+    <th>販売価格</th>
+    <td colspan="3" style="color:#C41E3A; font-weight:700; font-size:11pt;">200,000円（20万円）</td>
+  </tr>
+</table>
+</div>
+
+<!-- フッター帯 -->
+<div class="footer-band">
+  物件番号 r-2585　／　作成日：2026年4月20日　／　詳細資料は共有フォルダをご参照ください
+</div>
+
+</div><!-- /page1 -->
+
+
+<!-- ============================================================ -->
+<!-- ページ2：レントロール＋収益シミュレーション -->
+<!-- ============================================================ -->
+<div class="page-container page-break">
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-property-name">新潟県南魚沼市 戸建</div>
+    <div class="header-property-id">物件番号：r-2585　／　レントロール＆収益シミュレーション</div>
+  </div>
+  <div class="header-right">
+    <div class="header-price-label">販売価格</div>
+    <div class="header-price">200,000円</div>
+  </div>
+</div>
+
+<div class="page-wrapper" style="padding: 0 18px;">
+
+<!-- レントロール -->
+<div class="section-title">レントロール（想定賃料）</div>
+<table class="lentroll-table">
+  <tr>
+    <th style="background:#1A365D; color:#fff;">号室</th>
+    <th style="background:#1A365D; color:#fff;">間取り</th>
+    <th style="background:#1A365D; color:#fff;">面積</th>
+    <th style="background:#1A365D; color:#fff;">現況</th>
+    <th style="background:#1A365D; color:#fff; text-align:right;">想定月額賃料</th>
+  </tr>
+  <tr>
+    <td>1戸（戸建）</td>
+    <td>【確認中】</td>
+    <td>【確認中】</td>
+    <td style="color:#C41E3A; font-weight:700;">空室</td>
+    <td style="text-align:right; font-weight:700;">15,000円</td>
+  </tr>
+  <tr style="background:#fff9ec;">
+    <td colspan="4" style="text-align:right; font-weight:700;">合計（月額）</td>
+    <td style="text-align:right; font-weight:700; color:#1A365D;">15,000円</td>
+  </tr>
+  <tr style="background:#fff9ec;">
+    <td colspan="4" style="text-align:right; font-weight:700;">年間想定家賃収入</td>
+    <td style="text-align:right; font-weight:800; color:#C41E3A; font-size:11pt;">180,000円</td>
+  </tr>
+</table>
+
+<!-- RKC収支シミュレーション -->
+<div class="section-title">RKC収支シミュレーション</div>
+<table class="finance-table">
+  <tr>
+    <td class="th">① 販売価格（取得費用）</td>
+    <td style="text-align:right;">200,000円</td>
+  </tr>
+  <tr style="background:#f0faf0;">
+    <td class="th">年間想定家賃収入（想定月額×12）</td>
+    <td style="text-align:right; color:#1a7a1a; font-weight:700;">
+      180,000円（月15,000円 × 12ヶ月）
+    </td>
+  </tr>
+  <tr style="background:#f0faf0;">
+    <td class="th">想定利回り</td>
+    <td style="text-align:right; color:#1a7a1a; font-weight:700;">90.0%</td>
+  </tr>
+  <tr>
+    <td class="th">② 想定出口価格（利回り20%想定）</td>
+    <td style="text-align:right;">
+      900,000円<br>
+      <span style="font-size:0.85em; color:#666;">（年間家賃180,000円 ÷ 20% = 900,000円）</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="th" style="padding-left:20px;">− ① 取得費用</td>
+    <td style="text-align:right;">−200,000円</td>
+  </tr>
+  <tr>
+    <td class="th" style="padding-left:20px;">− ③ 諸経費（想定）</td>
+    <td style="text-align:right;">−100,000円（登記費用等概算）</td>
+  </tr>
+  <tr>
+    <td class="th" style="padding-left:20px;">− ④ RKC成功報酬費用</td>
+    <td style="text-align:right; color:#C41E3A;">−100,000円</td>
+  </tr>
+  <tr class="subtotal">
+    <td class="th"><strong>想定売却益（②−①−③−④）</strong></td>
+    <td style="text-align:right; color:#C41E3A; font-weight:700; font-size:1.15em;">
+      <strong>500,000円</strong>
+    </td>
+  </tr>
+</table>
+<div class="notes-box" style="margin-top:8px; font-size:8.5pt; color:#666; background:#fafafa; border-color:#ddd;">
+  ⚠️ RKC成功報酬費用として10万円を別途申し受けます<br>
+  ※ 想定出口価格は利回り20%想定の試算値です。市場状況により変動します。<br>
+  ※ 諸経費は登記費用等の概算値です。実費はケースにより変動します。<br>
+  ※ 想定賃料は周辺相場を参考にした試算値であり、実際の賃料を保証するものではありません。
+</div>
+
+</div><!-- /page-wrapper -->
+
+<div class="footer-band">物件番号 r-2585　／　作成日：2026年4月20日</div>
+
+</div><!-- /page2 -->
+
+
+<!-- ============================================================ -->
+<!-- ページ3：投資ポイント＋立地環境 -->
+<!-- ============================================================ -->
+<div class="page-container page-break">
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-property-name">新潟県南魚沼市 戸建</div>
+    <div class="header-property-id">物件番号：r-2585　／　投資ポイント＆立地環境</div>
+  </div>
+  <div class="header-right">
+    <div class="header-price-label">販売価格</div>
+    <div class="header-price">200,000円</div>
+  </div>
+</div>
+
+<div class="page-wrapper" style="padding: 0 18px;">
+
+<!-- 投資ポイント -->
+<div class="section-title">投資ポイント</div>
+<ul class="points-list">
+  <li><strong>販売価格20万円・想定利回り90%</strong>の超低価格帯高利回り物件。</li>
+  <li><strong>想定出口価格90万円・売却益50万円</strong>の試算（利回り20%想定）。</li>
+  <li>所在地は<strong>新潟県南魚沼市坂戸671-2</strong>。六日町駅エリア・上越新幹線アクセス圏。</li>
+  <li>現況空室・現況有姿引渡しのため、スピード決済が可能。</li>
+  <li>築古・低価格帯のため、短期保有→賃貸付け→再販売による出口戦略に適した1棟。</li>
+  <li>初期投資20万円＋諸経費10万円＋RKC費用10万円＝<strong>総投資40万円</strong>規模の案件。</li>
+</ul>
+
+<!-- 立地・エリア情報 -->
+<div class="section-title">立地・エリア情報</div>
+<table class="overview-table">
+  <tr>
+    <th>エリア特性</th>
+    <td>
+      新潟県南魚沼市。JR上越線・上越新幹線が通り、東京駅から新幹線で約80分でアクセス可能。
+      米どころ・スキーリゾート地として全国的に知名度が高いエリア。
+    </td>
+  </tr>
+  <tr>
+    <th>最寄駅</th>
+    <td>JR上越線・上越新幹線「六日町」駅【徒歩/距離は確認中】</td>
+  </tr>
+  <tr>
+    <th>周辺環境</th>
+    <td>
+      スーパー・コンビニ・病院・学校等の生活インフラが徒歩～車圏内に点在。
+      詳細は共有フォルダ内の物件資料および地図をご参照ください。
+    </td>
+  </tr>
+  <tr>
+    <th>用途地域</th>
+    <td>【確認中】（重要事項説明書をご確認ください）</td>
+  </tr>
+  <tr>
+    <th>ハザード情報</th>
+    <td>【確認中】（共有フォルダ内のハザードマップ資料をご参照ください）</td>
+  </tr>
+</table>
+
+</div><!-- /page-wrapper -->
+
+<div class="footer-band">物件番号 r-2585　／　作成日：2026年4月20日</div>
+
+</div><!-- /page3 -->
+
+
+<!-- ============================================================ -->
+<!-- ページ4：物件写真＋特記事項 -->
+<!-- ============================================================ -->
+<div class="page-container page-break">
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-property-name">新潟県南魚沼市 戸建</div>
+    <div class="header-property-id">物件番号：r-2585　／　物件写真＆特記事項</div>
+  </div>
+  <div class="header-right">
+    <div class="header-price-label">販売価格</div>
+    <div class="header-price">200,000円</div>
+  </div>
+</div>
+
+<div class="page-wrapper" style="padding: 0 18px;">
+
+<!-- 物件写真 -->
+<div class="section-title">物件写真</div>
+<div class="photo-grid-main" style="display:grid; grid-template-columns:1fr; gap:10px;">
+  <div style="border:1px solid #c8d8f8; border-radius:6px; overflow:hidden;">
+    <img src="https://drive.google.com/thumbnail?id=1Rt_z-9c64t5RfSxOx7lt5I3PDyqs3C6M&sz=w1600"
+         onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Rt_z-9c64t5RfSxOx7lt5I3PDyqs3C6M';"
+         alt="物件外観"
+         style="width:100%; max-height:110mm; object-fit:cover; display:block;">
+    <div style="padding:6px 10px; background:#f5f8ff; font-size:8.5pt; color:#666;">物件外観</div>
+  </div>
+</div>
+<div style="font-size:8.5pt; color:#666; margin-top:6px;">
+  ※ 追加の物件写真・図面・登記事項証明書・公図等は共有フォルダをご参照ください。
+</div>
+
+<!-- 特記事項 -->
+<div class="section-title">特記事項・注意点</div>
+<div class="notes-box">
+  <ul style="padding-left:18px; margin:0;">
+    <li><strong>RKC成功報酬費用として10万円を別途申し受けます</strong></li>
+    <li>現況有姿での引渡しとなります。</li>
+    <li>想定賃料は周辺相場を参考にした試算値であり、賃料・入居を保証するものではありません。</li>
+    <li>建物の築年数・構造等の詳細は共有フォルダ内の資料（登記事項証明書・重要事項説明書等）をご確認ください。</li>
+    <li>用途地域・建築制限・ハザード情報等の法令上の制限は、重要事項説明書および共有フォルダ内資料をご確認ください。</li>
+    <li>越境・境界・再建築可否・接道状況など、物件現地確認の上、仲介業者までお問い合わせください。</li>
+    <li>記載内容は作成時点の想定値を含みます。最終的なご判断はご紹介業者にご確認の上、現地確認の上でお願いいたします。</li>
+  </ul>
+</div>
+
+<!-- お問い合わせ -->
+<div class="section-title">お問い合わせ</div>
+<div style="padding:12px 16px; background:#f5f8ff; border:1px solid #c8d8f8; border-radius:6px; text-align:center;">
+  <div style="font-size:11pt; color:#1A365D; font-weight:700; margin-bottom:4px;">
+    詳細資料・現地確認・ご購入に関するお問い合わせ
+  </div>
+  <div style="font-size:10pt; color:#444;">
+    ご紹介業者様までお問い合わせください
+  </div>
+  <div style="margin-top:8px;">
+    <a href="https://drive.google.com/drive/folders/1pF5UI0i3-QbnLoZ9mwO71xSeC2T7HTAI" target="_blank"
+       style="display:inline-block; padding:6px 18px; background:#DAA520; color:#1A365D;
+              border-radius:4px; font-size:9pt; font-weight:700; text-decoration:none;">
+      📂 共有フォルダで詳細資料を見る
+    </a>
+  </div>
+</div>
+
+</div><!-- /page-wrapper -->
+
+<div class="footer-band">物件番号 r-2585　／　作成日：2026年4月20日　／　END</div>
+
+</div><!-- /page4 -->
+
+</body>
+</html>
