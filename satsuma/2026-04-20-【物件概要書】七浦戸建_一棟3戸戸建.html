@@ -309,6 +309,47 @@ body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo
 .tag-naka  { background: #e4eeff; color: #1a1a8c; }
 .tag-higashi { background: #fff0e4; color: #8c3c00; }
 
+/* ===== PHOTO PAGE ===== */
+.photo-section-label {
+  font-size: 7.5pt;
+  font-weight: 700;
+  color: #1A365D;
+  background: #e8f0fb;
+  padding: 3px 8px;
+  border-left: 3px solid #1A365D;
+  margin-bottom: 5px;
+  margin-top: 8px;
+}
+.photo-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin-bottom: 6px;
+}
+.photo-item {
+  overflow: hidden;
+  border-radius: 3px;
+  background: #2d4a7a;
+  position: relative;
+  height: 88px;
+}
+.photo-item.tall { height: 130px; }
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.58);
+  color: #fff;
+  font-size: 6.5pt;
+  padding: 2px 5px;
+  text-align: center;
+}
+
 /* ===== PRINT ===== */
 @media print {
   body { background: #fff; }
@@ -441,12 +482,9 @@ body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo
       </div>
     </div>
     <div class="hero-right">
-      <div class="photo-placeholder">
-        <div style="font-size:36pt; margin-bottom:8px;">🏘️</div>
-        <div style="font-size:10pt;">物件写真</div>
-        <div style="font-size:7.5pt; margin-top:4px;">七浦戸建（西棟・中棟・東棟）</div>
-        <div style="font-size:7pt; margin-top:8px; opacity:0.55;">写真は共有フォルダをご参照ください</div>
-      </div>
+      <img src="https://drive.google.com/thumbnail?id=1uEWzqXmSVV_Lzd51vlcbmPKsxzxO1S9G&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1uEWzqXmSVV_Lzd51vlcbmPKsxzxO1S9G'"
+           alt="東棟 外観" style="width:100%; height:100%; object-fit:cover; display:block;">
     </div>
   </div>
 
@@ -851,7 +889,133 @@ body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo
 
 
 <!-- ============================================================
-     PAGE 4：メンテナンス履歴・特記事項
+     PAGE 4：物件写真
+     ============================================================ -->
+<div class="page-container page-break">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-tag">物件写真</div>
+      <div class="header-property-name">七浦戸建（西棟・中棟・東棟）</div>
+      <div class="header-address">📍 福岡県大牟田市七浦町109-2</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">販売価格 <span>500</span>万円</div>
+      <div class="header-yield">表面利回り 約25.0%</div>
+      <a href="https://drive.google.com/drive/folders/1uSkjIPyFcvCy9hOmI9rpPmurcJM-iiwZ" target="_blank"
+         style="display:inline-block; margin-top:5px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div style="padding: 8px 16px 10px;">
+
+    <!-- 外観 -->
+    <div class="photo-section-label">🏠 外観</div>
+    <div class="photo-grid-3">
+      <div class="photo-item tall">
+        <img src="https://drive.google.com/thumbnail?id=1uEWzqXmSVV_Lzd51vlcbmPKsxzxO1S9G&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1uEWzqXmSVV_Lzd51vlcbmPKsxzxO1S9G'"
+             alt="東棟 外観">
+        <div class="photo-label">東棟 外観</div>
+      </div>
+      <div class="photo-item tall">
+        <img src="https://drive.google.com/thumbnail?id=15FA4vGpCAp9GI7GHG-Ju3KW23niTZn6J&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/15FA4vGpCAp9GI7GHG-Ju3KW23niTZn6J'"
+             alt="東棟（駐車時）">
+        <div class="photo-label">東棟（駐車した場合）</div>
+      </div>
+      <div class="photo-item tall">
+        <img src="https://drive.google.com/thumbnail?id=1tvdafdH2swzJh064aWSw2yQJqrcwBHoT&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1tvdafdH2swzJh064aWSw2yQJqrcwBHoT'"
+             alt="敷地">
+        <div class="photo-label">敷地</div>
+      </div>
+    </div>
+
+    <!-- 室内 -->
+    <div class="photo-section-label">🛋️ 室内</div>
+    <div class="photo-grid-3">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1gq70gtT8VuSZjRu0Gl6vKFZXxfeiITiD&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1gq70gtT8VuSZjRu0Gl6vKFZXxfeiITiD'"
+             alt="和室（縁側）">
+        <div class="photo-label">和室（縁側付き）</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1jWa5umUmLrEY3ZejqQuD3kbyyMcF0ovH&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1jWa5umUmLrEY3ZejqQuD3kbyyMcF0ovH'"
+             alt="台所">
+        <div class="photo-label">台所</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1jXeSLxCPHKOZev_ehr_cxRyjmckyaCVI&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1jXeSLxCPHKOZev_ehr_cxRyjmckyaCVI'"
+             alt="和室">
+        <div class="photo-label">和室</div>
+      </div>
+    </div>
+
+    <!-- 水回り -->
+    <div class="photo-section-label">🚿 水回り</div>
+    <div class="photo-grid-3">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1wsZUHS5uWBpCT3KFnQrIrG0v-tKDkrh0&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1wsZUHS5uWBpCT3KFnQrIrG0v-tKDkrh0'"
+             alt="浴室">
+        <div class="photo-label">浴室</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=17XayfR0ifptnmZ9cj00t4KO6k3YPPWgv&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/17XayfR0ifptnmZ9cj00t4KO6k3YPPWgv'"
+             alt="浴室（シャワー）">
+        <div class="photo-label">浴室（シャワー）</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1SmD-5v9rUzI6C4q2BZ363GSSTtLPpEBg&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1SmD-5v9rUzI6C4q2BZ363GSSTtLPpEBg'"
+             alt="トイレ">
+        <div class="photo-label">トイレ（東棟：簡易水洗洋式）</div>
+      </div>
+    </div>
+
+    <!-- 玄関・共用部 -->
+    <div class="photo-section-label">🚪 玄関・共用部</div>
+    <div class="photo-grid-3">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=14hW_q7je6VegRgTeS1X6VhjvE7pHGODh&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/14hW_q7je6VegRgTeS1X6VhjvE7pHGODh'"
+             alt="玄関">
+        <div class="photo-label">玄関</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=14TUH0i5RW9JlfoIDXn5mz4AgLB1cl8si&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/14TUH0i5RW9JlfoIDXn5mz4AgLB1cl8si'"
+             alt="廊下・台所">
+        <div class="photo-label">廊下・台所</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1jbM8QHMZzvoYD9KjONMCnGb5W-y9JXA3&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1jbM8QHMZzvoYD9KjONMCnGb5W-y9JXA3'"
+             alt="洗面台">
+        <div class="photo-label">洗面台</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-band">
+    <div>案件番号：p-4782　／　七浦戸建（西棟・中棟・東棟）</div>
+    <div>作成日：2026年4月20日</div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 5：メンテナンス履歴・特記事項
      ============================================================ -->
 <div class="page-container page-break">
 
