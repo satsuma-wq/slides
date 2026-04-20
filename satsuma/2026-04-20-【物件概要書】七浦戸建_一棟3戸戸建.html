@@ -55,7 +55,7 @@ body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo
 /* ===== HERO SECTION ===== */
 .hero-section {
   display: grid;
-  grid-template-columns: 1.2fr 0.9fr;
+  grid-template-columns: 1.5fr 0.75fr;
   gap: 0;
   min-height: 52mm;
 }
@@ -66,49 +66,51 @@ body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo
   border: 1.5px solid #c8d8f8;
   border-radius: 6px;
   overflow: hidden;
-  margin-bottom: 9px;
+  margin-bottom: 6px;
 }
 .highlight-item {
   flex: 1;
   text-align: center;
-  padding: 7px 5px;
+  padding: 5px 4px;
   border-right: 1px solid #e0e8f8;
   background: linear-gradient(180deg, #fafcff 0%, #f0f4ff 100%);
 }
 .highlight-item:last-child { border-right: none; }
-.highlight-label { font-size: 7pt; color: #666; margin-bottom: 2px; }
-.highlight-value { font-size: 17pt; font-weight: 700; color: #1A365D; line-height: 1; }
-.highlight-unit { font-size: 7.5pt; color: #888; }
+.highlight-label { font-size: 7pt; color: #666; margin-bottom: 1px; }
+.highlight-value { font-size: 14pt; font-weight: 700; color: #1A365D; line-height: 1; }
+.highlight-unit { font-size: 7pt; color: #888; }
 .highlight-value.accent { color: #C41E3A; }
 
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-  flex: 1;
+  gap: 3px;
+  align-content: start;
 }
 .mini-photo-strip {
   display: flex;
   gap: 4px;
-  margin-top: 6px;
-  height: 52px;
+  margin-top: 5px;
+  flex: 1;
+  min-height: 65px;
 }
 .mini-photo-strip img {
   flex: 1;
   object-fit: cover;
   border-radius: 3px;
   border: 1px solid #dde8f8;
+  min-height: 0;
 }
 .kpi-item {
   background: #f8faff;
   border: 1px solid #dde8f8;
   border-radius: 4px;
-  padding: 5px 6px;
+  padding: 3px 5px;
   text-align: center;
 }
-.kpi-label { font-size: 7pt; color: #666; margin-bottom: 2px; }
-.kpi-value { font-size: 10pt; font-weight: 700; color: #1A365D; }
-.kpi-unit { font-size: 7pt; color: #888; }
+.kpi-label { font-size: 6.5pt; color: #666; margin-bottom: 1px; }
+.kpi-value { font-size: 9pt; font-weight: 700; color: #1A365D; }
+.kpi-unit { font-size: 6.5pt; color: #888; }
 
 .hero-right {
   background: #2d4a7a;
