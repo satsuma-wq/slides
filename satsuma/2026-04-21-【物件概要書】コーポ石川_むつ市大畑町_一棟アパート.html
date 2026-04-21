@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】コーポ石川_むつ市大畑町_一棟アパート</title>
+<style>
+  /* ==================== 基本設定 ==================== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', 'Yu Gothic', 'Meiryo', sans-serif; font-size: 10pt; color: #1a2a3a; background: #f0f2f5; }
+
+  /* ==================== ページ設定 ==================== */
+  @page { size: A4 landscape; margin: 14mm 15mm; }
+
+  @media print {
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { background: white; }
+    .page-break { break-before: page; }
+    .avoid-break { break-inside: avoid; }
+    .page-container { min-height: 182mm; margin-bottom: 0; }
+    .no-print { display: none !important; }
+  }
+
+  .page-container {
+    width: 267mm;
+    margin: 0 auto 24px auto;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .page-break { break-before: page; }
+  .avoid-break { break-inside: avoid; }
+
+  /* ==================== ヘッダー ==================== */
+  .header {
+    background: linear-gradient(135deg, #1A365D 0%, #2a5298 100%);
+    color: white;
+    padding: 11px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-left { flex: 1; }
+  .header-badge {
+    background: rgba(255,255,255,0.18);
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 3px;
+    font-size: 7.5pt;
+    margin-bottom: 3px;
+  }
+  .header-property-name {
+    font-size: 15pt;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+  .header-address {
+    font-size: 8pt;
+    opacity: 0.85;
+    margin-top: 2px;
+  }
+  .header-right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .header-price {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #FFD700;
+  }
+  .header-case-no {
+    font-size: 7.5pt;
+    opacity: 0.75;
+  }
+
+  /* ==================== ハイライトボックス ==================== */
+  .highlight-box {
+    background: linear-gradient(135deg, #fff9e8, #fef0c0);
+    border-bottom: 1px solid #e8d5a0;
+    display: flex;
+    padding: 8px 14px;
+    gap: 0;
+  }
+  .highlight-item {
+    flex: 1;
+    text-align: center;
+    padding: 4px 10px;
+    border-right: 1px solid #e8d5a0;
+  }
+  .highlight-item:last-child { border-right: none; }
+  .highlight-label { font-size: 7pt; color: #7a5500; font-weight: 700; }
+  .highlight-value { font-size: 19pt; font-weight: 900; color: #C41E3A; line-height: 1.1; }
+  .highlight-unit { font-size: 7.5pt; color: #7a5500; }
+  .highlight-sub { font-size: 6.5pt; color: #999; margin-top: 1px; }
+
+  /* ==================== ヒーローセクション ==================== */
+  .hero-section {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    min-height: 98mm;
+  }
+  .hero-left {
+    padding: 12px 14px;
+    background: #f8faff;
+    border-right: 1px solid #d8e8f8;
+  }
+  .hero-right { position: relative; overflow: hidden; background: #ddd; }
+  .hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* ==================== セクションタイトル ==================== */
+  .section-title {
+    background: linear-gradient(90deg, #1A365D, #2a5298);
+    color: white;
+    padding: 5px 12px;
+    font-size: 9pt;
+    font-weight: 700;
+    margin-bottom: 8px;
+    border-radius: 2px;
+  }
+
+  /* ==================== 物件概要テーブル ==================== */
+  .overview-table { width: 100%; border-collapse: collapse; font-size: 8pt; }
+  .overview-table td { padding: 4px 7px; border: 1px solid #d0dff0; vertical-align: top; }
+  .overview-table .th { background: #e8eef8; font-weight: 700; color: #1A365D; width: 22%; white-space: nowrap; }
+  .overview-table .th2 { background: #f0f5ff; font-weight: 700; color: #2a4a8a; width: 20%; white-space: nowrap; }
+
+  /* ==================== フッター帯 ==================== */
+  .footer-band {
+    background: linear-gradient(90deg, #1A365D, #2a5298);
+    color: rgba(255,255,255,0.8);
+    padding: 6px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.5pt;
+    margin-top: 0;
+  }
+
+  /* ==================== ページ2: レントロール ==================== */
+  .lentroll-table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+  .lentroll-table th { background: #1A365D; color: white; padding: 7px 10px; text-align: center; font-weight: 700; }
+  .lentroll-table td { padding: 7px 10px; border: 1px solid #d0dff0; text-align: center; }
+  .lentroll-table tr:nth-child(even) td { background: #f5f8ff; }
+  .lentroll-table .occupied { color: #1a7a1a; font-weight: 700; }
+  .lentroll-table .vacant { color: #C41E3A; }
+  .lentroll-table .subtotal td { background: #e8eef8; font-weight: 700; }
+  .lentroll-table .total-row td { background: #1A365D; color: white; font-weight: 700; font-size: 10pt; }
+
+  /* ==================== 収入サマリー ==================== */
+  .income-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .summary-card {
+    background: linear-gradient(135deg, #f0f5ff, #e8eef8);
+    border: 1px solid #c0d0e8;
+    border-radius: 6px;
+    padding: 12px 16px;
+  }
+  .summary-card-title { font-size: 8pt; color: #555; font-weight: 700; margin-bottom: 4px; }
+  .summary-card-value { font-size: 17pt; font-weight: 800; color: #1A365D; }
+  .summary-card-value.red { color: #C41E3A; }
+  .summary-card-unit { font-size: 8pt; color: #777; }
+
+  /* ==================== 年間支出テーブル ==================== */
+  .finance-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin-top: 10px; }
+  .finance-table td { padding: 5px 10px; border: 1px solid #d0dff0; }
+  .finance-table .th { background: #e8eef8; font-weight: 700; color: #1A365D; width: 55%; }
+  .finance-table .total-row td { background: #1A365D; color: white; font-weight: 700; }
+  .finance-table .total-row td:last-child { color: #FFD700; }
+
+  /* ==================== ページ3: 収支シミュレーション ==================== */
+  .sim-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+  .sim-table td { padding: 6px 10px; border: 1px solid #d0dff0; }
+  .sim-table .th { background: #e8eef8; font-weight: 700; color: #1A365D; width: 55%; }
+  .sim-table .result-row td { background: #C41E3A; color: white; font-weight: 800; font-size: 10.5pt; }
+
+  /* ==================== 積算テーブル ==================== */
+  .sanseki-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin-top: 10px; }
+  .sanseki-table td { padding: 5px 10px; border: 1px solid #d0dff0; }
+  .sanseki-table .th { background: #e8eef8; font-weight: 700; color: #1A365D; width: 55%; }
+  .sanseki-table .total-row td { background: #e8eef8; font-weight: 700; color: #1A365D; }
+
+  /* ==================== 投資ポイント ==================== */
+  .points-list { list-style: none; padding: 0; }
+  .points-list li {
+    padding: 6px 10px;
+    border-left: 3px solid #DAA520;
+    margin-bottom: 5px;
+    background: #fffdf0;
+    font-size: 8pt;
+    line-height: 1.55;
+  }
+  .points-list li::before { content: "✦ "; color: #DAA520; font-weight: 700; }
+
+  /* ==================== 注意事項 ==================== */
+  .notes-box {
+    background: #fff5f5;
+    border: 1px solid #ffc0c0;
+    border-left: 3px solid #C41E3A;
+    padding: 9px 12px;
+    font-size: 7.5pt;
+    line-height: 1.7;
+    margin-top: 8px;
+    border-radius: 2px;
+  }
+
+  /* ==================== 2列レイアウト ==================== */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  /* ==================== 周辺環境グリッド ==================== */
+  .env-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .env-card {
+    background: #f8faff;
+    border: 1px solid #d0dff0;
+    border-radius: 4px;
+    padding: 8px;
+    text-align: center;
+  }
+  .env-icon { font-size: 16pt; }
+  .env-name { font-size: 7.5pt; color: #1A365D; font-weight: 700; margin-top: 2px; }
+  .env-dist { font-size: 7pt; color: #777; }
+
+  /* ==================== ページ4: 写真 ==================== */
+  .photo-grid-main { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 5px; margin-bottom: 6px; }
+  .photo-grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 5px; margin-bottom: 6px; }
+  .photo-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-bottom: 6px; }
+  .photo-item { overflow: hidden; border-radius: 3px; border: 1px solid #ddd; }
+  .photo-item img { width: 100%; height: 90px; object-fit: cover; display: block; }
+  .photo-main img { height: 160px; }
+  .photo-label { font-size: 7pt; color: #555; padding: 2px 4px; background: #f5f5f5; text-align: center; }
+
+  /* ==================== レスポンシブ ==================== */
+  @media screen and (max-width: 900px) {
+    .page-container { width: 100% !important; padding: 0 4px; }
+    .hero-section { grid-template-columns: 1fr !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .income-summary { grid-template-columns: 1fr !important; }
+    .env-grid { grid-template-columns: repeat(2, 1fr); }
+    .photo-grid-main { grid-template-columns: 1fr !important; }
+    .photo-grid-4 { grid-template-columns: 1fr 1fr !important; }
+    .photo-grid-3 { grid-template-columns: 1fr 1fr !important; }
+    .header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .header-right { text-align: left; width: 100%; align-items: flex-start; }
+    .footer-band { flex-direction: column; gap: 4px; text-align: center; }
+    .highlight-box { flex-wrap: wrap; }
+    .highlight-item { flex: 1 1 40%; border-bottom: 1px solid #e8d5a0; }
+  }
+  @media screen and (max-width: 480px) {
+    .highlight-item { flex: 1 1 100%; }
+    .photo-grid-4 { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================== PAGE 1: 物件概要 ================== -->
+<div class="page-container">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">中古一棟売りアパート</div>
+      <div class="header-property-name">コーポ石川</div>
+      <div class="header-address">📍 青森県むつ市大畑町南町43-1</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">販売価格：<span style="font-size:15pt; font-weight:900;">500万円</span></div>
+      <div class="header-case-no">案件番号：p-4287</div>
+      <a href="https://drive.google.com/drive/folders/13JCQ2jcNAf8nLhilE0HseuXHiY0XHnvH" target="_blank"
+         style="display:inline-block; margin-top:4px; padding:4px 10px; background:#DAA520; color:#1A365D; border-radius:4px; font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <!-- ハイライトボックス -->
+  <div class="highlight-box">
+    <div class="highlight-item">
+      <div class="highlight-label">満室時表面利回り</div>
+      <div class="highlight-value">33.6%</div>
+      <div class="highlight-sub">年収168万 ÷ 500万円</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">現況利回り（2戸稼働）</div>
+      <div class="highlight-value">16.8%</div>
+      <div class="highlight-sub">現況年収84万円</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">積算価格（参考）</div>
+      <div class="highlight-value" style="font-size:15pt;">約93万円</div>
+      <div class="highlight-sub">土地のみ（建物残存0年）</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">戸数 / 間取り</div>
+      <div class="highlight-value" style="font-size:15pt;">4戸</div>
+      <div class="highlight-sub">全室 2LDK</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">固定資産税評価額</div>
+      <div class="highlight-value" style="font-size:14pt;">406万円</div>
+      <div class="highlight-sub">令和7年度評価</div>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション -->
+  <div class="hero-section">
+    <!-- 左：物件概要テーブル -->
+    <div class="hero-left">
+      <div class="section-title">📋 物件概要</div>
+      <table class="overview-table">
+        <tr>
+          <td class="th">物件名</td>
+          <td colspan="3">コーポ石川（中古一棟売りアパート）</td>
+        </tr>
+        <tr>
+          <td class="th">所在地</td>
+          <td colspan="3">青森県むつ市大畑町南町43-1（家屋番号：62番5）</td>
+        </tr>
+        <tr>
+          <td class="th">交通</td>
+          <td colspan="3">JR東日本 大湊線「下北」駅 車で約28分</td>
+        </tr>
+        <tr>
+          <td class="th">構造</td>
+          <td>木造亜鉛メッキ鋼板葺2階建</td>
+          <td class="th2">築年月</td>
+          <td>平成4年4月（築34年）</td>
+        </tr>
+        <tr>
+          <td class="th">土地面積</td>
+          <td>264.79㎡（80.09坪）</td>
+          <td class="th2">延床面積</td>
+          <td>246.76㎡（74.64坪）</td>
+        </tr>
+        <tr>
+          <td class="th">用途地域</td>
+          <td>第二種住居地域</td>
+          <td class="th2">建蔽率/容積率</td>
+          <td>60% / 200%</td>
+        </tr>
+        <tr>
+          <td class="th">地目</td>
+          <td>宅地</td>
+          <td class="th2">駐車場</td>
+          <td>4台</td>
+        </tr>
+        <tr>
+          <td class="th">電気</td>
+          <td>東北電力</td>
+          <td class="th2">ガス</td>
+          <td>プロパンガス</td>
+        </tr>
+        <tr>
+          <td class="th">上水道</td>
+          <td>公営</td>
+          <td class="th2">下水道</td>
+          <td>浄化槽</td>
+        </tr>
+        <tr>
+          <td class="th">接道状況</td>
+          <td colspan="3">西側 公道 幅員5.60m（26.07m接） / 北東側 公道 幅員6.50m（10.37m接）<br>南側 2項道路 幅員2.50m（10.34m接）<span style="color:#C41E3A; font-weight:700;">※セットバック必要</span></td>
+        </tr>
+        <tr>
+          <td class="th">確認済証</td>
+          <td>実施済</td>
+          <td class="th2">検査済証</td>
+          <td>未実施</td>
+        </tr>
+        <tr>
+          <td class="th">地番</td>
+          <td colspan="3">南町43番5、本町61番7、本町62番5</td>
+        </tr>
+        <tr>
+          <td class="th">その他規制</td>
+          <td colspan="3" style="font-size:7.5pt;">景観計画区域、法22条区域、立地適正化計画（都市機能誘導区域・居住誘導区域）</td>
+        </tr>
+      </table>
+
+      <!-- 固定資産税評価 -->
+      <div style="margin-top:8px; background:#f5f8ff; border:1px solid #c8d8f0; border-radius:3px; padding:7px 10px;">
+        <div style="font-size:7.5pt; font-weight:700; color:#1A365D; margin-bottom:4px;">令和7年度 固定資産税評価額</div>
+        <div style="display:flex; gap:16px; font-size:8pt;">
+          <span>土地：<strong>¥1,197,379</strong></span>
+          <span>建物：<strong>¥2,863,224</strong></span>
+          <span>合計：<strong style="color:#C41E3A;">¥4,060,603</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右：外観写真 -->
+    <div class="hero-right">
+      <img src="https://drive.google.com/thumbnail?id=12ZMh0pH7YrqPzpHEGRPNBTihaa-6FOA4&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/12ZMh0pH7YrqPzpHEGRPNBTihaa-6FOA4'"
+           alt="コーポ石川 外観">
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>p-4287 ｜ コーポ石川 ｜ 青森県むつ市大畑町南町43-1</span>
+    <span>作成日：2026年4月21日　1/4</span>
+  </div>
+</div>
+
+
+<!-- ================== PAGE 2: レントロール ================== -->
+<div class="page-container page-break">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">レントロール</div>
+      <div class="header-property-name">コーポ石川</div>
+      <div class="header-address">📍 青森県むつ市大畑町南町43-1</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">販売価格：<span style="font-size:15pt; font-weight:900;">500万円</span></div>
+      <div class="header-case-no">案件番号：p-4287</div>
+      <a href="https://drive.google.com/drive/folders/13JCQ2jcNAf8nLhilE0HseuXHiY0XHnvH" target="_blank"
+         style="display:inline-block; margin-top:4px; padding:4px 10px; background:#DAA520; color:#1A365D; border-radius:4px; font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div style="padding:14px 16px;">
+
+    <div class="section-title">🏠 レントロール（現況賃料一覧）</div>
+    <table class="lentroll-table">
+      <thead>
+        <tr>
+          <th>号室</th>
+          <th>階数</th>
+          <th>間取り</th>
+          <th>月額賃料</th>
+          <th>年間賃料（想定）</th>
+          <th>入居状況</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>101</strong></td>
+          <td>1階</td>
+          <td>2LDK</td>
+          <td class="vacant">¥35,000</td>
+          <td class="vacant">¥420,000</td>
+          <td><span style="background:#ffeaea; color:#C41E3A; padding:2px 10px; border-radius:10px; font-size:8pt; font-weight:700;">空室</span></td>
+          <td style="font-size:7.5pt; color:#888;">未リフォーム</td>
+        </tr>
+        <tr>
+          <td><strong>102</strong></td>
+          <td>1階</td>
+          <td>2LDK</td>
+          <td class="vacant">¥35,000</td>
+          <td class="vacant">¥420,000</td>
+          <td><span style="background:#ffeaea; color:#C41E3A; padding:2px 10px; border-radius:10px; font-size:8pt; font-weight:700;">空室</span></td>
+          <td style="font-size:7.5pt; color:#888;">未リフォーム</td>
+        </tr>
+        <tr>
+          <td><strong>201</strong></td>
+          <td>2階</td>
+          <td>2LDK</td>
+          <td class="occupied">¥35,000</td>
+          <td class="occupied">¥420,000</td>
+          <td><span style="background:#eafaea; color:#1a7a1a; padding:2px 10px; border-radius:10px; font-size:8pt; font-weight:700;">入居中</span></td>
+          <td style="font-size:7.5pt; color:#888;">—</td>
+        </tr>
+        <tr>
+          <td><strong>202</strong></td>
+          <td>2階</td>
+          <td>2LDK</td>
+          <td class="occupied">¥35,000</td>
+          <td class="occupied">¥420,000</td>
+          <td><span style="background:#eafaea; color:#1a7a1a; padding:2px 10px; border-radius:10px; font-size:8pt; font-weight:700;">入居中</span></td>
+          <td style="font-size:7.5pt; color:#888;">—</td>
+        </tr>
+        <tr class="subtotal">
+          <td colspan="3" style="text-align:right;">現況稼働（2戸）合計</td>
+          <td style="color:#1a7a1a; font-weight:700;">¥70,000/月</td>
+          <td style="color:#1a7a1a; font-weight:700;">¥840,000/年</td>
+          <td colspan="2">稼働率 50%（2/4戸）</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="3" style="text-align:right;">満室時合計</td>
+          <td>¥140,000/月</td>
+          <td>¥1,680,000/年</td>
+          <td colspan="2">表面利回り <strong>33.6%</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 収入サマリー -->
+    <div class="income-summary">
+      <div class="summary-card">
+        <div class="summary-card-title">📊 現況月収（2戸稼働中）</div>
+        <div class="summary-card-value red">¥70,000</div>
+        <div class="summary-card-unit">/ 月（稼働率50%）</div>
+        <div style="font-size:7.5pt; color:#666; margin-top:6px; line-height:1.6;">
+          現況年収：¥840,000<br>
+          現況表面利回り：<strong style="color:#C41E3A;">16.8%</strong><br>
+          現況NOI：¥687,153（経費差引後）
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-card-title">🎯 満室時月収（全4戸稼働時）</div>
+        <div class="summary-card-value">¥140,000</div>
+        <div class="summary-card-unit">/ 月</div>
+        <div style="font-size:7.5pt; color:#666; margin-top:6px; line-height:1.6;">
+          満室時年収：¥1,680,000<br>
+          満室時表面利回り：<strong style="color:#C41E3A;">33.6%</strong><br>
+          満室時NOI：¥1,527,153（経費差引後）
+        </div>
+      </div>
+    </div>
+
+    <!-- 年間ランニングコスト -->
+    <div style="margin-top:14px;">
+      <div class="section-title">💰 年間ランニングコスト（実績・想定値）</div>
+      <table class="finance-table">
+        <tr>
+          <td class="th">固定資産税（令和7年度実績）</td>
+          <td style="text-align:right;">¥56,847</td>
+        </tr>
+        <tr>
+          <td class="th">共用電気代（月約3,000円 × 12ヶ月）</td>
+          <td style="text-align:right;">¥36,000</td>
+        </tr>
+        <tr>
+          <td class="th">浄化槽清掃費（年間想定）</td>
+          <td style="text-align:right;">¥60,000</td>
+        </tr>
+        <tr class="total-row">
+          <td class="th" style="background:#1A365D; color:white;"><strong>年間経費合計</strong></td>
+          <td style="text-align:right;"><strong>¥152,847</strong></td>
+        </tr>
+      </table>
+      <div style="font-size:7.5pt; color:#888; margin-top:5px; line-height:1.6;">
+        ※ 管理費は未計上（現況自主管理）。自主管理が可能な方向けの物件です。<br>
+        ※ むつ市内管理会社への委託は困難な状況のため、自主管理可能な方向けとなります。
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-band">
+    <span>p-4287 ｜ コーポ石川 ｜ 青森県むつ市大畑町南町43-1</span>
+    <span>作成日：2026年4月21日　2/4</span>
+  </div>
+</div>
+
+
+<!-- ================== PAGE 3: 収支シミュレーション ================== -->
+<div class="page-container page-break">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">収支シミュレーション・投資ポイント</div>
+      <div class="header-property-name">コーポ石川</div>
+      <div class="header-address">📍 青森県むつ市大畑町南町43-1</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">販売価格：<span style="font-size:15pt; font-weight:900;">500万円</span></div>
+      <div class="header-case-no">案件番号：p-4287</div>
+      <a href="https://drive.google.com/drive/folders/13JCQ2jcNAf8nLhilE0HseuXHiY0XHnvH" target="_blank"
+         style="display:inline-block; margin-top:4px; padding:4px 10px; background:#DAA520; color:#1A365D; border-radius:4px; font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div style="padding:14px 16px;">
+    <div class="two-col">
+
+      <!-- 左：収支シミュレーション + 積算 -->
+      <div>
+        <div class="section-title">📈 収支シミュレーション（満室時）</div>
+        <table class="sim-table">
+          <tr>
+            <td class="th">販売価格（取得費）</td>
+            <td style="text-align:right;">¥5,000,000</td>
+          </tr>
+          <tr style="background:#f0faf0;">
+            <td class="th">満室時年間賃料収入（35,000×4戸×12）</td>
+            <td style="text-align:right; color:#1a7a1a; font-weight:700;">¥1,680,000</td>
+          </tr>
+          <tr>
+            <td class="th" style="padding-left:14px;">− 年間経費（固定資産税・共用電気・浄化槽）</td>
+            <td style="text-align:right; color:#C41E3A;">−¥152,847</td>
+          </tr>
+          <tr class="result-row">
+            <td><strong>満室時NOI（年間純収益）</strong></td>
+            <td style="text-align:right;"><strong>¥1,527,153</strong></td>
+          </tr>
+          <tr>
+            <td class="th">満室時NOI利回り</td>
+            <td style="text-align:right; color:#C41E3A; font-weight:800; font-size:12pt;">30.5%</td>
+          </tr>
+        </table>
+
+        <div style="margin-top:12px;">
+          <div class="section-title">📊 収支シミュレーション（現況2戸稼働）</div>
+          <table class="sim-table">
+            <tr style="background:#f0faf0;">
+              <td class="th">現況年間賃料収入（35,000×2戸×12）</td>
+              <td style="text-align:right; color:#1a7a1a; font-weight:700;">¥840,000</td>
+            </tr>
+            <tr>
+              <td class="th" style="padding-left:14px;">− 年間経費</td>
+              <td style="text-align:right; color:#C41E3A;">−¥152,847</td>
+            </tr>
+            <tr class="result-row">
+              <td><strong>現況NOI（年間純収益）</strong></td>
+              <td style="text-align:right;"><strong>¥687,153</strong></td>
+            </tr>
+            <tr>
+              <td class="th">現況NOI利回り</td>
+              <td style="text-align:right; color:#C41E3A; font-weight:800; font-size:12pt;">13.7%</td>
+            </tr>
+          </table>
+        </div>
+
+        <div style="margin-top:12px;">
+          <div class="section-title">🏗️ 積算価格（参考）</div>
+          <table class="sanseki-table">
+            <tr>
+              <td class="th">土地積算価格</td>
+              <td style="text-align:right;">0.35万円/㎡ × 264.79㎡ ≒ <strong>93万円</strong></td>
+            </tr>
+            <tr>
+              <td class="th">建物積算価格</td>
+              <td style="text-align:right; color:#999;">0円（木造築34年：耐用年数22年超過）</td>
+            </tr>
+            <tr class="total-row">
+              <td class="th"><strong>積算合計</strong></td>
+              <td style="text-align:right; font-weight:700; color:#1A365D;"><strong>約93万円</strong></td>
+            </tr>
+          </table>
+          <div style="font-size:7pt; color:#888; margin-top:4px; line-height:1.5;">
+            ※ 本物件は路線価倍率地域のため参考値として掲載。<br>
+            ※ 固定資産税評価額合計：¥4,060,603（土地¥1,197,379 + 建物¥2,863,224）
+          </div>
+        </div>
+      </div>
+
+      <!-- 右：投資ポイント + 周辺環境 + 特記事項 -->
+      <div>
+        <div class="section-title">⭐ 投資ポイント</div>
+        <ul class="points-list">
+          <li><strong>超高利回り物件</strong> — 満室時表面利回り33.6%。500万円という低価格帯でキャッシュフロー重視の収益投資に最適。</li>
+          <li><strong>購入直後からキャッシュフロー発生</strong> — 201・202号室が入居中のため、即時に現況月収7万円（年収84万円）の収益が見込める。</li>
+          <li><strong>稼働率向上で利回り大幅UPの余地あり</strong> — 空室2戸（101・102）に入居が決まれば満室利回り33.6%に到達。稼働率向上によるキャピタル効果も期待できる。</li>
+          <li><strong>4台分駐車場完備</strong> — 東北地方では自動車が生活必需品。全戸駐車場確保済みは入居者ニーズに直結。</li>
+          <li><strong>自主管理・遠隔管理可能な方向け</strong> — むつ市内管理会社への委託は困難。自主管理または遠隔自主管理が可能な方に限定。</li>
+        </ul>
+
+        <div style="margin-top:12px;">
+          <div class="section-title">🏙️ 周辺環境</div>
+          <div class="env-grid">
+            <div class="env-card">
+              <div class="env-icon">🚗</div>
+              <div class="env-name">JR下北駅</div>
+              <div class="env-dist">車で約28分</div>
+            </div>
+            <div class="env-card">
+              <div class="env-icon">🛒</div>
+              <div class="env-name">イオンSC</div>
+              <div class="env-dist">近隣（徒歩圏）</div>
+            </div>
+            <div class="env-card">
+              <div class="env-icon">🏙️</div>
+              <div class="env-name">むつ市街地</div>
+              <div class="env-dist">生活インフラ充実</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <div class="section-title">⚠️ 特記事項・注意点</div>
+          <div class="notes-box">
+            ・現状有姿、不適合責任免責、境界非明示<br>
+            ・現況自主管理（ガス会社継承条件：ENEOSグローブエナジー株式会社）<br>
+            ・空室（101・102号室）は未リフォーム<br>
+            ・南側2項道路（幅員2.50m）に接するためセットバック必要<br>
+            ・景観計画区域、法22条区域、立地適正化計画（都市機能誘導区域・居住誘導区域）に該当<br>
+            ・むつ市内管理会社への委託引き受けは困難（自主管理可能な方向け）<br>
+            ・令和7年度固定資産税額：¥56,847<br>
+            ・売主様多忙につきご質問等のレスポンスにお時間をいただく場合がございます
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <span>p-4287 ｜ コーポ石川 ｜ 青森県むつ市大畑町南町43-1</span>
+    <span>作成日：2026年4月21日　3/4</span>
+  </div>
+</div>
+
+
+<!-- ================== PAGE 4: 物件写真 ================== -->
+<div class="page-container page-break">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">物件写真</div>
+      <div class="header-property-name">コーポ石川</div>
+      <div class="header-address">📍 青森県むつ市大畑町南町43-1</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">販売価格：<span style="font-size:15pt; font-weight:900;">500万円</span></div>
+      <div class="header-case-no">案件番号：p-4287</div>
+      <a href="https://drive.google.com/drive/folders/13JCQ2jcNAf8nLhilE0HseuXHiY0XHnvH" target="_blank"
+         style="display:inline-block; margin-top:4px; padding:4px 10px; background:#DAA520; color:#1A365D; border-radius:4px; font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div style="padding:12px 16px;">
+
+    <div class="section-title">📸 外観写真</div>
+
+    <!-- メイン写真（大）+ サブ2枚 -->
+    <div class="photo-grid-main">
+      <div class="photo-item photo-main">
+        <img src="https://drive.google.com/thumbnail?id=12ZMh0pH7YrqPzpHEGRPNBTihaa-6FOA4&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/12ZMh0pH7YrqPzpHEGRPNBTihaa-6FOA4'"
+             alt="外観 メイン">
+        <div class="photo-label">外観（メイン）</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1YZPIypIuzz3HpJzKwZlHdnAHQSzxx0CI&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1YZPIypIuzz3HpJzKwZlHdnAHQSzxx0CI'"
+             alt="外観①">
+        <div class="photo-label">外観①</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=19ioRmr2_vzYtvDLZBxGaqAwGNx0MrVFX&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/19ioRmr2_vzYtvDLZBxGaqAwGNx0MrVFX'"
+             alt="外観②">
+        <div class="photo-label">外観②</div>
+      </div>
+    </div>
+
+    <!-- 外観 4枚 -->
+    <div class="photo-grid-4">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1PMkbBoc1FWKj_3Z-0NFUXo-bjRRfdROb&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1PMkbBoc1FWKj_3Z-0NFUXo-bjRRfdROb'"
+             alt="外観③">
+        <div class="photo-label">外観③</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=13ukKhabP44X5XYGCbSW9LWrQ4LBBC7-S&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/13ukKhabP44X5XYGCbSW9LWrQ4LBBC7-S'"
+             alt="外観④">
+        <div class="photo-label">外観④</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1Og48CeqTAF-SURSzyfpqcxzf98DX3r3f&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Og48CeqTAF-SURSzyfpqcxzf98DX3r3f'"
+             alt="外観⑤">
+        <div class="photo-label">外観⑤</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=10DYktx6ujk3KfhDvl0P8kVw9ySSCk45J&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/10DYktx6ujk3KfhDvl0P8kVw9ySSCk45J'"
+             alt="外観⑥">
+        <div class="photo-label">外観⑥</div>
+      </div>
+    </div>
+
+    <!-- 外観 さらに4枚 -->
+    <div class="photo-grid-4">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1HIw5tRWrArQPmHodP6TufP0uC8vbKv5V&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1HIw5tRWrArQPmHodP6TufP0uC8vbKv5V'"
+             alt="外観⑦">
+        <div class="photo-label">外観⑦</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1ElBMxqX5LzY9oeSA-Ec6C3EWQphqoSc7&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1ElBMxqX5LzY9oeSA-Ec6C3EWQphqoSc7'"
+             alt="外観⑧">
+        <div class="photo-label">外観⑧</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1lvCo99zYSPj6axzZlMQsOickWhFGujS5&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1lvCo99zYSPj6axzZlMQsOickWhFGujS5'"
+             alt="外観⑨">
+        <div class="photo-label">外観⑨</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=12-dS6Q90P84IYyDlpbWP8XxN-Mjd7jiy&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/12-dS6Q90P84IYyDlpbWP8XxN-Mjd7jiy'"
+             alt="外観⑩">
+        <div class="photo-label">外観⑩</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-band">
+    <span>p-4287 ｜ コーポ石川 ｜ 青森県むつ市大畑町南町43-1</span>
+    <span>作成日：2026年4月21日　4/4</span>
+  </div>
+</div>
+
+</body>
+</html>
