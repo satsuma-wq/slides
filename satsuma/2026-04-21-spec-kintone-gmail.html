@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>仕様書：Kintone → スプレッドシート → Gmail 自動返信</title>
+  <style>
+    :root {
+      --primary: #1a56db;
+      --primary-light: #ebf0fd;
+      --accent: #0e9f6e;
+      --accent-light: #e8f8f3;
+      --warn: #e3a008;
+      --warn-light: #fdf6e3;
+      --danger: #e02424;
+      --danger-light: #fde8e8;
+      --text: #1f2a37;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #f9fafb;
+      --white: #ffffff;
+      --radius: 8px;
+      --shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Meiryo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ======= Header ======= */
+    .page-header {
+      background: linear-gradient(135deg, #1a3a6c 0%, #1a56db 100%);
+      color: white;
+      padding: 40px 48px 32px;
+    }
+    .page-header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 20px;
+      padding: 2px 12px;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    .page-header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .page-header .sub {
+      font-size: 13px;
+      opacity: 0.75;
+    }
+    .meta-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      background: rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 8px 16px;
+      font-size: 12px;
+    }
+    .meta-item strong { display: block; opacity: 0.7; font-size: 10px; letter-spacing: 0.05em; margin-bottom: 2px; }
+
+    /* ======= Layout ======= */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 32px 24px 64px;
+    }
+
+    /* ======= Section ======= */
+    .section {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+      border-left: 4px solid var(--primary);
+      padding-left: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title .num {
+      background: var(--primary);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 1px 7px;
+    }
+
+    /* ======= Flow Diagram ======= */
+    .flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      margin: 8px 0 20px;
+    }
+    .flow-box {
+      background: var(--primary-light);
+      border: 1.5px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 12px 18px;
+      text-align: center;
+      min-width: 140px;
+    }
+    .flow-box .label {
+      font-size: 10px;
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+    .flow-box .name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .flow-box.green {
+      background: var(--accent-light);
+      border-color: var(--accent);
+    }
+    .flow-box.green .label { color: var(--accent); }
+    .flow-box.orange {
+      background: var(--warn-light);
+      border-color: var(--warn);
+    }
+    .flow-box.orange .label { color: var(--warn); }
+    .flow-arrow {
+      font-size: 20px;
+      color: var(--text-muted);
+      padding: 0 10px;
+      flex-shrink: 0;
+    }
+    .flow-arrow .trigger {
+      font-size: 9px;
+      color: var(--text-muted);
+      display: block;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* ======= Table ======= */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 2px solid var(--primary);
+      font-size: 12px;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f6f8ff; }
+    .tag {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 1px 7px;
+      margin-right: 4px;
+    }
+    .tag.green { background: var(--accent-light); color: var(--accent); }
+    .tag.orange { background: var(--warn-light); color: var(--warn); }
+    .tag.red { background: var(--danger-light); color: var(--danger); }
+
+    /* ======= Info Box ======= */
+    .info-box {
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+    .info-box.blue { background: var(--primary-light); border-left: 4px solid var(--primary); }
+    .info-box.green { background: var(--accent-light); border-left: 4px solid var(--accent); }
+    .info-box.orange { background: var(--warn-light); border-left: 4px solid var(--warn); }
+    .info-box.red { background: var(--danger-light); border-left: 4px solid var(--danger); }
+    .info-box strong { display: block; margin-bottom: 4px; font-size: 12px; letter-spacing: 0.04em; }
+
+    /* ======= Code Block ======= */
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      font-size: 12px;
+      overflow-x: auto;
+      line-height: 1.6;
+      margin: 12px 0;
+    }
+    code {
+      font-family: 'SFMono-Regular', 'Consolas', 'Monaco', monospace;
+    }
+    .inline-code {
+      background: #f1f5f9;
+      color: #e02424;
+      border-radius: 3px;
+      padding: 1px 6px;
+      font-family: 'SFMono-Regular', 'Consolas', 'Monaco', monospace;
+      font-size: 12px;
+    }
+
+    /* ======= Step List ======= */
+    .step-list { list-style: none; }
+    .step-list li {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+    .step-num {
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-content { flex: 1; }
+    .step-content strong { display: block; font-size: 13px; margin-bottom: 2px; }
+    .step-content span { color: var(--text-muted); font-size: 12px; }
+
+    /* ======= Member Cards ======= */
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .member-card {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      text-align: center;
+    }
+    .member-card .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 8px;
+    }
+    .member-card .name { font-weight: 700; font-size: 14px; }
+    .member-card .note { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+    /* ======= Checklist ======= */
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist .chk {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--border);
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ======= Link ======= */
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ======= Divider ======= */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+    /* ======= Responsive ======= */
+    @media (max-width: 600px) {
+      .page-header { padding: 24px 20px; }
+      .container { padding: 20px 16px 48px; }
+      .section { padding: 20px 18px; }
+      .flow { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== Page Header ===== -->
+<div class="page-header">
+  <div class="badge">ENGINEER SPEC v1.0</div>
+  <h1>Kintone → スプレッドシート → Gmail 自動返信システム</h1>
+  <p class="sub">メールアドレス獲得時の自動お礼メール送信フロー　／　株式会社リアテクス</p>
+  <div class="meta-row">
+    <div class="meta-item"><strong>作成日</strong>2026-04-21</div>
+    <div class="meta-item"><strong>依頼元</strong>薩摩賢幸（取締役）</div>
+    <div class="meta-item"><strong>ステータス</strong>新規開発依頼</div>
+    <div class="meta-item"><strong>優先度</strong>高</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ===== 1. 概要 ===== -->
+  <div class="section">
+    <div class="section-title"><span class="num">01</span>概要・背景</div>
+    <p style="margin-bottom:16px;">
+      営業担当者が1日架電活動を行い、不動産業者のメールアドレスを取得した際、
+      現状は手動でお礼メールを作成・送付している。本システムはこのプロセスを自動化し、
+      <strong>Kintone でステータスが「メールアドレス獲得」になったレコードを自動検知し、
+      Google スプレッドシートへ転送後、Gmail から担当者名義でお礼メールを自動送信</strong>するものである。
+    </p>
+
+    <div class="flow">
+      <div class="flow-box">
+        <div class="label">STEP 1</div>
+        <div class="name">架電活動<br><small style="color:#6b7280;font-size:11px;">担当者が手動入力</small></div>
+      </div>
+      <div class="flow-arrow">
+        →<span class="trigger">ステータス更新</span>
+      </div>
+      <div class="flow-box">
+        <div class="label">STEP 2</div>
+        <div class="name">Kintone<br><small style="color:#6b7280;font-size:11px;">架電結果「メールアドレス獲得」</small></div>
+      </div>
+      <div class="flow-arrow">
+        →<span class="trigger">自動連携</span>
+      </div>
+      <div class="flow-box green">
+        <div class="label">STEP 3</div>
+        <div class="name">Google<br>スプレッドシート<br><small style="color:#6b7280;font-size:11px;">自動転記</small></div>
+      </div>
+      <div class="flow-arrow">
+        →<span class="trigger">自動送信</span>
+      </div>
+      <div class="flow-box orange">
+        <div class="label">STEP 4</div>
+        <div class="name">Gmail<br><small style="color:#6b7280;font-size:11px;">お礼メール自動送信</small></div>
+      </div>
+    </div>
+
+    <div class="info-box orange">
+      <strong>⏰ 現行の運用タイミング</strong>
+      1日架電 → FAX番号取得 → 18:30頃にKintoneから取得済みFAX番号を絞り込み → 手動でメール作成・送付。
+      本システム導入後は上記を自動化する。
+    </div>
+  </div>
+
+  <!-- ===== 2. システム構成 ===== -->
+  <div class="section">
+    <div class="section-title"><span class="num">02</span>システム構成・関連リソース</div>
+    <table>
+      <thead>
+        <tr>
+          <th>システム</th>
+          <th>用途</th>
+          <th>URL / 識別子</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag">Kintone</span>03A_不動産業者リスト【RTX】</td>
+          <td>架電結果・メールアドレスの管理</td>
+          <td><a href="https://evmtmtzb54p1.cybozu.com/k/13/" target="_blank">https://evmtmtzb54p1.cybozu.com/k/13/</a></td>
+          <td>アプリID: <span class="inline-code">13</span></td>
+        </tr>
+        <tr>
+          <td><span class="tag green">Sheets</span>08_不動産業者リスト_kintone連携</td>
+          <td>Kintoneからデータを受け取り、メール送信トリガー管理</td>
+          <td><a href="https://docs.google.com/spreadsheets/d/1PwyK1B2CcCXT3M6NgmX3vgjvVjJEgQZpw6KqhsxnTzs/edit?gid=0#gid=0" target="_blank">スプレッドシートを開く</a></td>
+          <td>gid=0 がメインシート</td>
+        </tr>
+        <tr>
+          <td><span class="tag orange">Gmail</span>kaitori@reatex.co.jp</td>
+          <td>お礼メール送信元アドレス</td>
+          <td>kaitori@reatex.co.jp</td>
+          <td>担当者名でFrom名を変更して送信</td>
+        </tr>
+        <tr>
+          <td><span class="tag">GAS</span>Google Apps Script</td>
+          <td>実装基盤（推奨）</td>
+          <td>スプレッドシートにコンテナバインド</td>
+          <td>Kintone Webhook も利用可</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== 3. Kintone側仕様 ===== -->
+  <div class="section">
+    <div class="section-title"><span class="num">03</span>Kintone 側の仕様</div>
+
+    <h3 style="font-size:14px;margin-bottom:12px;color:#374151;">3-1. 連携トリガーとなるフィールド</h3>
+    <table>
+      <thead>
+        <tr><th>フィールド名</th><th>フィールドコード（要確認）</th><th>トリガー値</th><th>説明</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>架電結果・シナリオST</td>
+          <td><span class="inline-code">kaden_result</span>（要確認）</td>
+          <td><span class="tag green">メールアドレス獲得</span></td>
+          <td>このドロップダウン値になった時に連携を実行する</td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><span class="inline-code">email</span>（要確認）</td>
+          <td>–</td>
+          <td>取得したメールアドレス（送信先）</td>
+        </tr>
+        <tr>
+          <td>会社名</td>
+          <td><span class="inline-code">company_name</span>（要確認）</td>
+          <td>–</td>
+          <td>送信先会社名（メール本文に使用）</td>
+        </tr>
+        <tr>
+          <td>担当者名（先方）</td>
+          <td><span class="inline-code">contact_name</span>（要確認）</td>
+          <td>–</td>
+          <td>宛名に使用</td>
+        </tr>
+        <tr>
+          <td>担当者（自社）</td>
+          <td><span class="inline-code">staff_name</span>（要確認）</td>
+          <td>–</td>
+          <td>差出人名の判定に使用（後述）</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box blue" style="margin-top:16px;">
+      <strong>📋 エンジニア確認事項</strong>
+      上記フィールドコードは仮称。Kintone 管理画面のフォーム設定でフィールドコードを確認・修正すること。
+      cybozu.com のサブドメインは <span class="inline-code">evmtmtzb54p1</span>。
+    </div>
+
+    <hr class="divider" />
+
+    <h3 style="font-size:14px;margin-bottom:12px;color:#374151;">3-2. 連携方式（2択）</h3>
+    <table>
+      <thead>
+        <tr><th>方式</th><th>仕組み</th><th>推奨度</th><th>注意点</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A. Kintone Webhook</strong></td>
+          <td>レコード更新時にGASのWebApp URLへPOST</td>
+          <td><span class="tag green">◎ 推奨</span></td>
+          <td>GASをWebアプリとしてデプロイする必要あり</td>
+        </tr>
+        <tr>
+          <td><strong>B. GAS 定期ポーリング</strong></td>
+          <td>時間トリガーで定期的にKintone APIを呼び出し</td>
+          <td><span class="tag orange">△ 代替案</span></td>
+          <td>Kintone REST API の認証情報が必要。18:30のタイマー発火に向いている。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:14px;margin-top:20px;margin-bottom:10px;color:#374151;">3-3. Kintone REST API 情報（方式B の場合）</h3>
+    <pre><code># レコード取得例（架電結果=メールアドレス獲得）
+GET https://evmtmtzb54p1.cybozu.com/k/v1/records.json
+  ?app=13
+  &query=架電結果・シナリオST="メールアドレス獲得" and メール送信済み != "済"
+
+# 認証ヘッダー
+X-Cybozu-API-Token: [APIトークン ※別途発行・共有]</code></pre>
+    <div class="info-box orange">
+      <strong>⚠️ APIトークンの発行</strong>
+      Kintone管理者（薩摩）がアプリ設定 → APIトークンから発行してエンジニアに共有すること。
+    </div>
+  </div>
+
+  <!-- ===== 4. スプレッドシート仕様 ===== -->
+  <div class="section">
+    <div class="section-title"><span class="num">04</span>Google スプレッドシート 仕様</div>
+
+    <h3 style="font-size:14px;margin-bottom:12px;color:#374151;">4-1. スプレッドシート列構成（案）</h3>
+    <table>
+      <thead>
+        <tr><th>列</th><th>カラム名</th><th>内容</th><th>備考</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>A</td><td>kintone_record_id</td><td>KintoneレコードID</td><td>重複チェック用</td></tr>
+        <tr><td>B</td><td>company_name</td><td>会社名</td><td></td></tr>
+        <tr><td>C</td><td>contact_name</td><td>先方担当者名</td><td></td></tr>
+        <tr><td>D</td><td>email</td><td>送信先メールアドレス</td><td></td></tr>
+        <tr><td>E</td><td>staff_name</td><td>自社担当者名</td><td>佐藤 / 中野 / 小松 / 庄島</td></tr>
+        <tr><td>F</td><td>synced_at</td><td>Kintoneから転記された日時</td><td>自動入力</td></tr>
+        <tr><td>G</td><td>mail_status</td><td>メール送信ステータス</td><td><span class="inline-code">未送信</span> / <span class="inline-code">送信済</span> / <span class="inline-code">エラー</span></td></tr>
+        <tr><td>H</td><td>sent_at</td><td>送信日時</td><td>自動入力</td></tr>
+        <tr><td>I</td><td>error_message</td><td>エラー詳細</td><td>送信失敗時に記録</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box blue" style="margin-top:16px;">
+      <strong>📌 重複防止</strong>
+      kintone_record_id (A列) をキーとして、既にスプレッドシートに存在するレコードは転記・送信しない。
+    </div>
+  </div>
+
+  <!-- ===== 5. メール送信仕様 ===== -->
+  <div class="section">
+    <div class="section-title"><span class="num">05</span>メール送信 仕様</div>
+
+    <h3 style="font-size:14px;margin-bottom:12px;color:#374151;">5-1. 基本情報</h3>
+    <table>
+      <thead>
+        <tr><th>項目</th><th>値</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>送信元アドレス (From)</td><td><span class="inline-code">kaitori@reatex.co.jp</span></td></tr>
+        <tr><td>送信元名 (From Name)</td><td>担当者名（後述の対応表に従う）例：<span class="inline-code">佐藤 | 株式会社リアテクス</span></td></tr>
+        <tr><td>件名 (Subject)</td><td>先方が決定（下記テンプレート参照）</td></tr>
+        <tr><td>添付ファイル</td><td>買取概要書 1枚 (<a href="https://qrcd.org/9trG" target="_blank">https://qrcd.org/9trG</a>)<br>※ PDFを事前にGoogleドライブに配置してIDで参照する</td></tr>
+        <tr><td>送信方式</td><td>GmailApp.sendEmail() または Gmail API</td></tr>
+        <tr><td>HTML メール</td><td>プレーンテキスト でも可（先方と要確認）</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="divider" />
+
+    <h3 style="font-size:14px;margin-bottom:12px;color:#374151;">5-2. 送信担当者と名刺情報の対応</h3>
+    <p style="margin-bottom:12px;color:var(--text-muted);font-size:12px;">
+      Kintoneの「担当者（自社）」フィールドの値で差出人名を切り替える。
+      名刺データ一覧：<a href="https://qrcd.org/9trF" target="_blank">https://qrcd.org/9trF</a>
+    </p>
+
+    <div class="member-grid">
+      <div class="member-card">
+        <div class="avatar">佐</div>
+        <div class="name">佐藤</div>
+        <div class="note">名刺情報は<br>名刺一覧参照</div>
+      </div>
+      <div class="member-card">
+        <div class="avatar">中</div>
+        <div class="name">中野</div>
+        <div class="note">名刺情報は<br>名刺一覧参照</div>
+      </div>
+      <div class="member-card">
+        <div class="avatar">小</div>
+        <div class="name">小松</div>
+        <div class="note">名刺情報は<br>名刺一覧参照</div>
+      </div>
+      <div class="member-card">
+        <div class="avatar">庄</div>
+        <div class="name">庄島</div>
+        <div class="note">名刺情報は<br>名刺一覧参照</div>
+      </div>
+    </div>
+
+    <div class="info-box orange" style="margin-top:16px;">
+      <strong>⚠️ 担当者マッピング実装方針</strong>
+      GASのスクリプトプロパティもしくはスプレッドシートの設定シートに、担当者名→メール署名のマッピングテーブルを持つことを推奨。
+      後からメンバーが増えた場合もコード変更なしで対応できる。
+    </div>
+
+    <hr class="divider" />
+
+    <h3 style="font-size:14px;margin-bottom:12px;color:#374151;">5-3. メール本文テンプレート（案）</h3>
+    <div class="info-box blue">
+      <strong>📧 件名テンプレート</strong>
+      お世話になります。株式会社リアテクスの[担当者名]でございます。
+    </div>
+    <pre><code>[先方担当者名] 様
+
+お世話になっております。
+株式会社リアテクスの[担当者名]でございます。
+
+本日はお電話にてご対応いただきまして、誠にありがとうございました。
+
+弊社の不動産買取に関する概要書をお送りさせていただきます。
+ご検討いただけますと幸いです。
+
+何かご不明な点がございましたら、お気軽にお申し付けください。
+
+--------------------------------------
+[担当者名]
+株式会社リアテクス
+〒141-0021 東京都品川区上大崎二丁目15-19
+MG目黒駅前506
+TEL：03-6822-7297
+FAX：03-6740-1747
+--------------------------------------</code></pre>
+    <div class="info-box blue">
+      <strong>📝 本文は要調整</strong>
+      実際に使用している文面があれば、そちらを正式テンプレートとして採用すること。
+      担当者ごとに署名の電話番号・FAXが異なる場合は、名刺データ一覧（<a href="https://qrcd.org/9trF" target="_blank">https://qrcd.org/9trF</a>）を参照してマッピングを作成すること。
+    </div>
+  </div>
+
+  <!-- ===== 6. 実装方針 ===== -->
+  <div class="section">
+    <div class="section-title"><span class="num">06</span>実装方針・推奨アーキテクチャ</div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>GAS WebApp（受信エンドポイント）を作成</strong>
+          <span>スプレッドシートにコンテナバインドで作成。<span class="inline-code">doPost(e)</span> 関数でKintoneのWebhookを受け取る。</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Kintone 側でWebhookを設定</strong>
+          <span>アプリ設定 → Webhook → 「レコードの編集」イベント時に GAS WebApp URL へPOST。条件は<span class="inline-code">架電結果・シナリオST == "メールアドレス獲得"</span>。</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>スプレッドシートへ転記</strong>
+          <span>受信したレコードを重複チェック後にスプレッドシートの最終行に追記。<span class="inline-code">mail_status = "未送信"</span> で記録。</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Gmail 送信処理</strong>
+          <span>転記後すぐにメール送信を実行、または18:30の時間トリガーで未送信レコードを一括送信（バッチ方式）。送信後に <span class="inline-code">mail_status = "送信済"</span> と <span class="inline-code">sent_at</span> を更新。</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>エラーハンドリング</strong>
+          <span>送信失敗時は <span class="inline-code">mail_status = "エラー"</span>、<span class="inline-code">error_message</span> に詳細を記録。管理者（薩摩）宛にエラー通知メールを送る。</span>
+        </div>
+      </li>
+    </ul>
+
+    <hr class="divider" />
+
+    <h3 style="font-size:14px;margin-bottom:12px;color:#374151;">推奨フロー（即時送信 vs バッチ）</h3>
+    <table>
+      <thead>
+        <tr><th>方式</th><th>タイミング</th><th>推奨度</th><th>備考</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>即時送信</strong></td>
+          <td>Webhook受信直後</td>
+          <td><span class="tag">△</span></td>
+          <td>1日中メールが飛ぶ可能性あり。業者への連絡タイミングの統制が難しい</td>
+        </tr>
+        <tr>
+          <td><strong>バッチ送信（18:30）</strong></td>
+          <td>GAS 時間ベーストリガー</td>
+          <td><span class="tag green">◎ 推奨</span></td>
+          <td>現行運用に合わせた夕方一括送信。未送信レコードをまとめて送付</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== 7. 添付ファイル ===== -->
+  <div class="section">
+    <div class="section-title"><span class="num">07</span>添付ファイルの管理</div>
+    <table>
+      <thead>
+        <tr><th>項目</th><th>内容</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ファイル名</td>
+          <td>買取概要書（1枚）</td>
+        </tr>
+        <tr>
+          <td>参照URL</td>
+          <td><a href="https://qrcd.org/9trG" target="_blank">https://qrcd.org/9trG</a></td>
+        </tr>
+        <tr>
+          <td>保管場所（推奨）</td>
+          <td>Google ドライブの特定フォルダに配置し、ファイルIDをGASスクリプトプロパティに保持</td>
+        </tr>
+        <tr>
+          <td>取得方法</td>
+          <td><span class="inline-code">DriveApp.getFileById(fileId)</span> でバイナリ取得し、<span class="inline-code">GmailApp.sendEmail()</span> の <span class="inline-code">attachments</span> オプションで添付</td>
+        </tr>
+        <tr>
+          <td>ファイル更新時</td>
+          <td>ドライブ上のファイルを差し替えるだけで対応可（IDが変わらなければコード変更不要）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== 8. テスト要件 ===== -->
+  <div class="section">
+    <div class="section-title"><span class="num">08</span>テスト要件</div>
+    <ul class="checklist">
+      <li><div class="chk"></div>Kintoneのテストレコードで「架電結果」を「メールアドレス獲得」に変更 → スプレッドシートに転記されること</li>
+      <li><div class="chk"></div>スプレッドシートに重複なく追記されること（同レコードID で2回目は転記されない）</li>
+      <li><div class="chk"></div>18:30 時間トリガー（または即時）でメールが <span class="inline-code">kaitori@reatex.co.jp</span> から送信されること</li>
+      <li><div class="chk"></div>From 名が担当者名（佐藤 / 中野 / 小松 / 庄島）で正しく切り替わること</li>
+      <li><div class="chk"></div>買取概要書が添付されること</li>
+      <li><div class="chk"></div>本文の宛名・担当者名が正しく差し込まれること</li>
+      <li><div class="chk"></div>送信後 <span class="inline-code">mail_status</span> が「送信済」に更新されること</li>
+      <li><div class="chk"></div>送信エラー時に <span class="inline-code">mail_status = "エラー"</span> となり、管理者にエラー通知が届くこと</li>
+      <li><div class="chk"></div>架電結果が「メールアドレス獲得」以外のレコードは転記・送信されないこと</li>
+    </ul>
+  </div>
+
+  <!-- ===== 9. 確認事項 ===== -->
+  <div class="section">
+    <div class="section-title"><span class="num">09</span>エンジニアへの確認・依頼事項</div>
+    <div class="info-box red">
+      <strong>🔴 着手前に薩摩に確認が必要な項目</strong>
+    </div>
+    <table style="margin-top:12px;">
+      <thead>
+        <tr><th>#</th><th>確認事項</th><th>担当</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Kintone 各フィールドの正式なフィールドコードを共有</td>
+          <td>薩摩 → エンジニア</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Kintone APIトークン（読み取り権限）の発行・共有</td>
+          <td>薩摩 → エンジニア</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><span class="inline-code">kaitori@reatex.co.jp</span> の Gmail 送信権限をGASに付与（OAuth 認証）</td>
+          <td>薩摩 or 管理者</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>メール本文の正式文面の確認・提供（現在手動送信している文面）</td>
+          <td>薩摩 → エンジニア</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>担当者4名（佐藤・中野・小松・庄島）の名刺情報（署名で使う電話・FAXが異なる場合）</td>
+          <td>薩摩 → エンジニア（名刺一覧 <a href="https://qrcd.org/9trF" target="_blank">https://qrcd.org/9trF</a>）</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>買取概要書PDFをGoogleドライブの指定フォルダに配置・IDを共有</td>
+          <td>薩摩 → エンジニア</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>送信タイミング：即時送信 or 18:30バッチ送信、どちらを希望するか</td>
+          <td>薩摩</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <div style="text-align:center;color:var(--text-muted);font-size:12px;margin-top:32px;">
+    株式会社リアテクス　取締役 薩摩賢幸　｜　作成日：2026-04-21　｜　本仕様書はエンジニア向け開発依頼書です
+  </div>
+
+</div>
+</body>
+</html>
