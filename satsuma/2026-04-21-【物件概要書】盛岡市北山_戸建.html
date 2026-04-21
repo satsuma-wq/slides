@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件概要書 | 岩手県盛岡市北山 戸建 | p-6004</title>
+<style>
+/* ============================================================
+   基本設定
+   ============================================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', Meiryo, sans-serif;
+  font-size: 10pt;
+  color: #1a1a2e;
+  background: #f5f7fa;
+}
+
+/* ============================================================
+   印刷設定
+   ============================================================ */
+@page { size: A4 landscape; margin: 14mm 15mm; }
+@media print {
+  body { background: #fff; }
+  .page-container { min-height: 182mm; }
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* ============================================================
+   ページコンテナ
+   ============================================================ */
+.page-container {
+  background: #fff;
+  width: 267mm;
+  margin: 0 auto 20px;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.page-wrapper { width: 267mm; margin: 0 auto; padding: 0; }
+.page-break { break-before: page; }
+.avoid-break { break-inside: avoid; }
+.page-padding { padding: 14px; }
+
+/* ============================================================
+   ヘッダー
+   ============================================================ */
+.header {
+  background: linear-gradient(135deg, #1A365D 0%, #2B5892 100%);
+  color: #fff;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-left { display: flex; flex-direction: column; gap: 2px; }
+.header-tag {
+  font-size: 7pt;
+  background: rgba(255,255,255,0.2);
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-bottom: 2px;
+}
+.header-property-name { font-size: 16pt; font-weight: 700; letter-spacing: 0.03em; }
+.header-sub { font-size: 8.5pt; opacity: 0.85; margin-top: 2px; }
+.header-right { text-align: right; font-size: 8pt; opacity: 0.9; }
+.header-price { font-size: 22pt; font-weight: 700; color: #FFD700; line-height: 1.1; }
+.header-price-unit { font-size: 11pt; }
+.header-detail-link {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 12px;
+  background: #DAA520;
+  color: #1A365D;
+  border-radius: 4px;
+  font-size: 8pt;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ============================================================
+   ハイライトボックス（KPI帯）
+   ============================================================ */
+.highlight-box {
+  display: flex;
+  background: linear-gradient(90deg, #1a365d 0%, #2B5892 60%, #1a365d 100%);
+  padding: 0;
+  border-bottom: 3px solid #DAA520;
+}
+.highlight-item {
+  flex: 1;
+  text-align: center;
+  padding: 10px 8px;
+  border-right: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+}
+.highlight-item:last-child { border-right: none; }
+.highlight-label { font-size: 7.5pt; opacity: 0.8; margin-bottom: 3px; display: block; }
+.highlight-value { font-size: 20pt; font-weight: 800; line-height: 1.1; color: #FFD700; }
+.highlight-unit { font-size: 10pt; color: #FFD700; }
+.highlight-note { font-size: 7pt; opacity: 0.75; margin-top: 2px; }
+.highlight-accent { background: linear-gradient(90deg, #8b0000, #C41E3A) !important; }
+
+/* ============================================================
+   ヒーローセクション（P1）
+   ============================================================ */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 0;
+  padding: 14px 14px 10px;
+  background: #fff;
+}
+.hero-left { padding-right: 14px; }
+.hero-right img {
+  width: 100%;
+  height: 88mm;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #c8d8f8;
+}
+
+/* ============================================================
+   セクションタイトル
+   ============================================================ */
+.section-title {
+  background: linear-gradient(90deg, #1A365D, #2B5892);
+  color: #fff;
+  padding: 5px 12px;
+  font-size: 9pt;
+  font-weight: 700;
+  margin: 10px 0 6px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   物件概要テーブル
+   ============================================================ */
+.overview-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+.overview-table th {
+  background: #e8f0fb;
+  color: #1A365D;
+  font-weight: 700;
+  padding: 5px 8px;
+  border: 1px solid #b8cce8;
+  white-space: nowrap;
+  width: 18%;
+}
+.overview-table td { padding: 5px 8px; border: 1px solid #b8cce8; background: #fff; }
+
+/* ============================================================
+   積算価格アピールバナー
+   ============================================================ */
+.sansan-banner {
+  background: linear-gradient(135deg, #0d2040 0%, #1A365D 100%);
+  border: 2px solid #DAA520;
+  border-radius: 8px;
+  padding: 14px 20px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.sansan-left { text-align: center; color: #fff; flex: 1; }
+.sansan-label-sm { font-size: 8pt; opacity: 0.75; margin-bottom: 2px; }
+.sansan-value-lg { font-size: 26pt; font-weight: 800; color: #FFD700; line-height: 1.1; }
+.sansan-unit-lg { font-size: 12pt; color: #FFD700; }
+.sansan-arrow { font-size: 20pt; color: #DAA520; flex-shrink: 0; }
+.sansan-right { flex: 2; color: #fff; }
+.sansan-ratio-num { font-size: 36pt; font-weight: 800; color: #FFD700; line-height: 1; }
+.sansan-ratio-pct { font-size: 20pt; color: #FFD700; }
+.sansan-ratio-sub { font-size: 9pt; color: rgba(255,255,255,0.8); margin-top: 4px; }
+
+/* ============================================================
+   KPIカードグリッド
+   ============================================================ */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 10px; }
+.kpi-card {
+  background: linear-gradient(135deg, #1A365D 0%, #2B5892 100%);
+  border-radius: 6px;
+  padding: 10px 8px;
+  text-align: center;
+  color: #fff;
+}
+.kpi-label { font-size: 7.5pt; opacity: 0.8; margin-bottom: 4px; }
+.kpi-value { font-size: 18pt; font-weight: 800; color: #FFD700; line-height: 1.1; }
+.kpi-unit { font-size: 9pt; color: #FFD700; }
+.kpi-sub { font-size: 7pt; opacity: 0.7; margin-top: 2px; }
+.kpi-card-accent { background: linear-gradient(135deg, #8b0000 0%, #C41E3A 100%) !important; }
+.kpi-card-green { background: linear-gradient(135deg, #1a4a1a 0%, #2d7a2d 100%) !important; }
+
+/* ============================================================
+   収益シミュレーションテーブル
+   ============================================================ */
+.sim-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-bottom: 10px; }
+.sim-table th {
+  background: #1A365D;
+  color: #fff;
+  padding: 6px 10px;
+  border: 1px solid #2B5892;
+  text-align: center;
+}
+.sim-table td { padding: 6px 10px; border: 1px solid #c0cfe8; }
+.sim-table .th-sub { background: #e8f0fb; color: #1A365D; font-weight: 700; text-align: left; }
+.sim-table .val-right { text-align: right; }
+.sim-table .val-highlight { color: #C41E3A; font-weight: 700; text-align: right; }
+.sim-table .val-positive { color: #1a7a1a; font-weight: 700; text-align: right; }
+.sim-table .subtotal { background: #fff8e8; font-weight: 700; }
+
+/* ============================================================
+   投資ポイント
+   ============================================================ */
+.points-section {
+  background: linear-gradient(135deg, #f8f4e8, #fff8e8);
+  border: 1px solid #DAA520;
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.points-title {
+  font-size: 10.5pt;
+  font-weight: 700;
+  color: #1A365D;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #DAA520;
+}
+.points-list { list-style: none; }
+.points-list li {
+  font-size: 9pt;
+  padding: 4px 0;
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.55;
+}
+.points-list li::before {
+  content: '▶';
+  color: #DAA520;
+  position: absolute;
+  left: 0;
+  font-size: 8pt;
+  top: 5px;
+}
+.big-point { font-size: 10pt !important; font-weight: 700; color: #C41E3A !important; }
+
+/* ============================================================
+   周辺環境グリッド
+   ============================================================ */
+.env-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+.env-card {
+  background: #f0f4fb;
+  border-radius: 6px;
+  padding: 8px 10px;
+  border: 1px solid #b8cce8;
+}
+.env-icon { font-size: 14pt; margin-bottom: 4px; }
+.env-label { font-size: 7.5pt; color: #666; margin-bottom: 2px; }
+.env-value { font-size: 9pt; font-weight: 700; color: #1A365D; }
+
+/* ============================================================
+   特記事項
+   ============================================================ */
+.notes-box {
+  background: #fff8e8;
+  border: 1px solid #DAA520;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 8.5pt;
+  line-height: 1.8;
+  color: #333;
+}
+.notes-box strong { color: #C41E3A; }
+
+/* ============================================================
+   写真ページ（P4）
+   ============================================================ */
+.photo-grid-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.photo-grid-main img { width: 100%; height: 55mm; object-fit: cover; border-radius: 4px; border: 1px solid #b8cce8; }
+.photo-grid-main .photo-main img { height: 62mm; }
+.photo-grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+.photo-grid-4 img { width: 100%; height: 45mm; object-fit: cover; border-radius: 4px; border: 1px solid #b8cce8; }
+.photo-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.photo-grid-2 img { width: 100%; height: 40mm; object-fit: cover; border-radius: 4px; border: 1px solid #b8cce8; }
+.photo-caption { font-size: 7pt; color: #666; text-align: center; margin-top: 2px; }
+
+/* ============================================================
+   汎用レイアウト
+   ============================================================ */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+/* ============================================================
+   フッター
+   ============================================================ */
+.footer-band {
+  background: #1A365D;
+  color: rgba(255,255,255,0.7);
+  padding: 6px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 7.5pt;
+  margin-top: 10px;
+}
+
+/* ============================================================
+   レスポンシブ（タブレット・スマホ）
+   ============================================================ */
+@media screen and (max-width: 900px) {
+  .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+  .page-wrapper   { width: 100% !important; padding: 0 8px !important; }
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+  .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+  .header-property-name { font-size: 13pt; }
+  .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+  .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
+  .highlight-item:last-child { border-bottom: none; }
+  .highlight-value { font-size: 18pt; }
+  .hero-section { grid-template-columns: 1fr !important; }
+  .two-col, .three-col { grid-template-columns: 1fr !important; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-grid-main { grid-template-columns: 1fr !important; }
+  .photo-grid-4    { grid-template-columns: 1fr 1fr !important; }
+  .photo-grid-2    { grid-template-columns: 1fr !important; }
+  .sansan-banner { flex-direction: column; }
+  .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+  .page-break { page-break-before: auto; break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+}
+@media screen and (max-width: 480px) {
+  .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .highlight-item { flex: 1 1 100%; }
+  .header-property-name { font-size: 12pt; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     P1: 物件概要
+     ============================================================ -->
+<div class="page-container">
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <span class="header-tag">収益物件 ｜ 一般販売</span>
+      <div class="header-property-name">岩手県盛岡市北山 戸建</div>
+      <div class="header-sub">岩手県盛岡市北山2丁目22-12 ｜ JR山田線 上盛岡駅 徒歩約19分（1.2km）</div>
+    </div>
+    <div class="header-right">
+      <div style="font-size:8pt;opacity:0.8;">販売価格</div>
+      <div class="header-price">220<span class="header-price-unit"> 万円（税込）</span></div>
+      <div style="font-size:7.5pt;opacity:0.75;margin-top:2px;">案件番号：p-6004</div>
+      <a href="https://drive.google.com/drive/folders/1D5B4FvIy1g6Z6UvuDKATZlwA3N5BQ1AY" target="_blank" class="header-detail-link">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <!-- KPIハイライト帯 -->
+  <div class="highlight-box">
+    <div class="highlight-item highlight-accent">
+      <span class="highlight-label">積算価格</span>
+      <div><span class="highlight-value">666.5</span><span class="highlight-unit"> 万円</span></div>
+      <div class="highlight-note">販売価格の約3.0倍</div>
+    </div>
+    <div class="highlight-item">
+      <span class="highlight-label">積算比率</span>
+      <div><span class="highlight-value">303</span><span class="highlight-unit">%</span></div>
+      <div class="highlight-note">路線価 3.1万円/㎡</div>
+    </div>
+    <div class="highlight-item">
+      <span class="highlight-label">想定表面利回り</span>
+      <div><span class="highlight-value">30.0</span><span class="highlight-unit">%</span></div>
+      <div class="highlight-note">月額55,000円想定</div>
+    </div>
+    <div class="highlight-item">
+      <span class="highlight-label">土地面積</span>
+      <div><span class="highlight-value">65.15</span><span class="highlight-unit"> 坪</span></div>
+      <div class="highlight-note">215.37㎡</div>
+    </div>
+    <div class="highlight-item">
+      <span class="highlight-label">販売価格</span>
+      <div><span class="highlight-value">220</span><span class="highlight-unit"> 万円</span></div>
+      <div class="highlight-note">空家・現況有姿</div>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション -->
+  <div class="hero-section">
+    <div class="hero-left">
+      <div class="section-title">■ 物件概要</div>
+      <table class="overview-table avoid-break">
+        <tr>
+          <th>所在地</th>
+          <td colspan="3">岩手県盛岡市北山2丁目22-12</td>
+        </tr>
+        <tr>
+          <th>交通</th>
+          <td colspan="3">JR山田線 上盛岡駅 徒歩約19分（1.2km）</td>
+        </tr>
+        <tr>
+          <th>土地面積</th>
+          <td>215.37㎡（65.15坪）</td>
+          <th>地目</th>
+          <td>宅地</td>
+        </tr>
+        <tr>
+          <th>権利</th>
+          <td>所有権</td>
+          <th>接道状況</th>
+          <td>調査中</td>
+        </tr>
+        <tr>
+          <th>建蔽率</th>
+          <td>50%</td>
+          <th>容積率</th>
+          <td>80%</td>
+        </tr>
+        <tr>
+          <th>都市計画</th>
+          <td>市街化区域</td>
+          <th>用途地域</th>
+          <td>第一種低層住居専用地域</td>
+        </tr>
+        <tr>
+          <th>築年月日</th>
+          <td colspan="3">建物未登記の為不明</td>
+        </tr>
+        <tr>
+          <th>構造</th>
+          <td>不明</td>
+          <th>建物床面積</th>
+          <td>建物未登記</td>
+        </tr>
+        <tr>
+          <th>電気</th>
+          <td>電力自由化</td>
+          <th>水道／下水／ガス</th>
+          <td>調査中</td>
+        </tr>
+        <tr>
+          <th>現況</th>
+          <td>空家（空室）</td>
+          <th>引渡し時期</th>
+          <td>相談</td>
+        </tr>
+        <tr>
+          <th>販売価格</th>
+          <td colspan="3" style="font-size:12pt;font-weight:700;color:#C41E3A;">220 万円（税込）</td>
+        </tr>
+      </table>
+    </div>
+    <!-- 外観写真 -->
+    <div class="hero-right">
+      <img src="https://drive.google.com/thumbnail?id=1GUOYVP79NHfw5N_Lp34Nswd34rS1X91o&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1GUOYVP79NHfw5N_Lp34Nswd34rS1X91o'"
+           alt="物件外観">
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>案件番号：p-6004 ｜ 岩手県盛岡市北山 戸建</span>
+    <span>作成日：2026年4月21日 ｜ 1/4</span>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     P2: 積算価格・収益シミュレーション
+     ============================================================ -->
+<div class="page-container page-break">
+  <div class="header" style="padding:8px 16px;">
+    <div class="header-left">
+      <div class="header-property-name" style="font-size:13pt;">岩手県盛岡市北山 戸建</div>
+      <div class="header-sub">p-6004 ｜ 販売価格 220万円</div>
+    </div>
+    <div class="header-right">
+      <a href="https://drive.google.com/drive/folders/1D5B4FvIy1g6Z6UvuDKATZlwA3N5BQ1AY" target="_blank" class="header-detail-link">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <div class="page-padding">
+
+    <!-- 積算価格アピールバナー -->
+    <div class="sansan-banner avoid-break">
+      <div class="sansan-left">
+        <div class="sansan-label-sm">積算価格（土地）</div>
+        <div><span class="sansan-value-lg">666.5</span><span class="sansan-unit-lg"> 万円</span></div>
+        <div style="font-size:8pt;color:rgba(255,255,255,0.65);margin-top:4px;">路線価 3.1万円/㎡ × 215.37㎡</div>
+        <div style="font-size:8pt;color:rgba(255,255,255,0.5);margin-top:2px;">※建物未登記のため土地評価のみ</div>
+      </div>
+      <div class="sansan-arrow">▶▶</div>
+      <div class="sansan-right">
+        <div style="font-size:8pt;color:rgba(255,255,255,0.7);margin-bottom:4px;">販売価格（220万円）に対して</div>
+        <div>
+          <span class="sansan-ratio-num">303</span>
+          <span class="sansan-ratio-pct">%</span>
+        </div>
+        <div class="sansan-ratio-sub">
+          販売価格の約 <strong style="color:#FFD700;font-size:16pt;">3.0倍</strong> の積算評価<br>
+          <span style="font-size:7.5pt;">購入直後から圧倒的な資産価値を保有</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPIカード -->
+    <div class="kpi-grid avoid-break">
+      <div class="kpi-card kpi-card-accent">
+        <div class="kpi-label">積算価格</div>
+        <div><span class="kpi-value">666.5</span><span class="kpi-unit"> 万円</span></div>
+        <div class="kpi-sub">販売価格の3.0倍</div>
+      </div>
+      <div class="kpi-card kpi-card-green">
+        <div class="kpi-label">想定表面利回り</div>
+        <div><span class="kpi-value">30.0</span><span class="kpi-unit">%</span></div>
+        <div class="kpi-sub">年間家賃収入66万円</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">想定月額賃料</div>
+        <div><span class="kpi-value">5.5</span><span class="kpi-unit"> 万円</span></div>
+        <div class="kpi-sub">55,000円／月</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">土地面積</div>
+        <div><span class="kpi-value">65.15</span><span class="kpi-unit"> 坪</span></div>
+        <div class="kpi-sub">215.37㎡</div>
+      </div>
+    </div>
+
+    <!-- 収益シミュレーション -->
+    <div class="section-title">■ 収益シミュレーション</div>
+    <div class="two-col avoid-break">
+      <div>
+        <table class="sim-table">
+          <thead>
+            <tr><th colspan="2">収益（想定）</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="th-sub">想定月額賃料</td>
+              <td class="val-right">55,000 円</td>
+            </tr>
+            <tr>
+              <td class="th-sub">年間想定家賃収入</td>
+              <td class="val-positive">660,000 円</td>
+            </tr>
+            <tr class="subtotal">
+              <td class="th-sub">想定表面利回り</td>
+              <td class="val-positive">30.0%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <table class="sim-table">
+          <thead>
+            <tr><th colspan="2">積算評価</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="th-sub">販売価格</td>
+              <td class="val-right">2,200,000 円</td>
+            </tr>
+            <tr>
+              <td class="th-sub">路線価</td>
+              <td class="val-right">3.1万円/㎡</td>
+            </tr>
+            <tr>
+              <td class="th-sub">土地積算価格</td>
+              <td class="val-right">6,665,000 円</td>
+            </tr>
+            <tr class="subtotal">
+              <td class="th-sub">積算比率（担保評価目安）</td>
+              <td class="val-highlight">約303%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="notes-box avoid-break" style="margin-top:10px;">
+      ※ 想定賃料は近隣相場を参考にした参考値です。賃料収入を保証するものではありません。<br>
+      ※ 積算価格は路線価を基にした土地評価額です（建物未登記のため建物評価は0円として計算）。<br>
+      ※ 諸費用（登記費用・仲介手数料等）は別途発生します。金融機関の融資審査は各金融機関の基準によります。
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>案件番号：p-6004 ｜ 岩手県盛岡市北山 戸建</span>
+    <span>2/4</span>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     P3: 投資ポイント＋周辺環境＋特記事項
+     ============================================================ -->
+<div class="page-container page-break">
+  <div class="header" style="padding:8px 16px;">
+    <div class="header-left">
+      <div class="header-property-name" style="font-size:13pt;">岩手県盛岡市北山 戸建</div>
+      <div class="header-sub">p-6004 ｜ 販売価格 220万円</div>
+    </div>
+    <div class="header-right">
+      <a href="https://drive.google.com/drive/folders/1D5B4FvIy1g6Z6UvuDKATZlwA3N5BQ1AY" target="_blank" class="header-detail-link">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <div class="page-padding">
+    <!-- 投資ポイント -->
+    <div class="points-section avoid-break">
+      <div class="points-title">🏆 投資ポイント ─ この物件が選ばれる理由</div>
+      <ul class="points-list">
+        <li class="big-point">積算価格666.5万円は販売価格220万円の約<strong>3.0倍（303%）</strong> ─ 購入直後から高い資産価値を確保</li>
+        <li>路線価 3.1万円/㎡ × 215.37㎡（65.15坪）の広大な土地。高い積算評価が<strong>担保力・資産性</strong>を裏付ける</li>
+        <li class="big-point">想定月額賃料55,000円で、<strong>表面利回り30.0%</strong>という高利回り物件</li>
+        <li>空家（空室）のため、<strong>賃貸・リノベーション・転売</strong>いずれの戦略にも即対応可能</li>
+        <li>宅地・市街化区域 ─ 将来的な建替え・再開発の自由度が高い</li>
+        <li>岩手県最大の都市・盛岡市内立地。JR山田線「上盛岡駅」徒歩19分で安定した賃貸需要が期待できる</li>
+        <li>第一種低層住居専用地域（建蔽率50%・容積率80%）で良好な住環境が保護された閑静なエリア</li>
+      </ul>
+    </div>
+
+    <!-- 周辺環境 -->
+    <div class="section-title">■ 周辺環境</div>
+    <div class="env-grid avoid-break">
+      <div class="env-card">
+        <div class="env-icon">🚃</div>
+        <div class="env-label">最寄り駅</div>
+        <div class="env-value">上盛岡駅（JR山田線）</div>
+        <div style="font-size:7.5pt;color:#444;">徒歩約19分（1.2km）</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">🏙️</div>
+        <div class="env-label">所在エリア</div>
+        <div class="env-value">岩手県盛岡市</div>
+        <div style="font-size:7.5pt;color:#444;">岩手県の県庁所在地</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">🏗️</div>
+        <div class="env-label">都市計画</div>
+        <div class="env-value">市街化区域</div>
+        <div style="font-size:7.5pt;color:#444;">第一種低層住居専用地域</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">📐</div>
+        <div class="env-label">建蔽率/容積率</div>
+        <div class="env-value">50% / 80%</div>
+        <div style="font-size:7.5pt;color:#444;">新築・建替えも検討可能</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">💧</div>
+        <div class="env-label">ライフライン</div>
+        <div class="env-value">電気（電力自由化）</div>
+        <div style="font-size:7.5pt;color:#444;">水道・下水・ガス：調査中</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">📏</div>
+        <div class="env-label">土地面積</div>
+        <div class="env-value">215.37㎡（65.15坪）</div>
+        <div style="font-size:7.5pt;color:#444;">ゆとりある広大な敷地</div>
+      </div>
+    </div>
+
+    <!-- 特記事項 -->
+    <div class="section-title">■ 特記事項・注意事項</div>
+    <div class="notes-box avoid-break">
+      <strong>⚠️ 以下の事項をご確認の上、ご検討ください</strong><br><br>
+      ・現況有姿での引渡しとなります<br>
+      ・境界非明示（境界標の確認・確定測量が必要な場合は別途費用が発生します）<br>
+      ・<strong>告知事項あり</strong>（詳細は重要事項説明書をご参照ください）<br>
+      ・駐車場なし<br>
+      ・建物未登記（建物の登記手続きが完了していません）<br>
+      ・引渡し時期は相談（詳細はご紹介業者様までお問い合わせください）
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>案件番号：p-6004 ｜ 岩手県盛岡市北山 戸建</span>
+    <span>3/4</span>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     P4: 物件写真
+     ============================================================ -->
+<div class="page-container page-break">
+  <div class="header" style="padding:8px 16px;">
+    <div class="header-left">
+      <div class="header-property-name" style="font-size:13pt;">岩手県盛岡市北山 戸建 ─ 物件写真</div>
+      <div class="header-sub">p-6004 ｜ 販売価格 220万円</div>
+    </div>
+    <div class="header-right">
+      <a href="https://drive.google.com/drive/folders/1D5B4FvIy1g6Z6UvuDKATZlwA3N5BQ1AY" target="_blank" class="header-detail-link">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <div class="page-padding">
+    <!-- メイン3列 -->
+    <div class="photo-grid-main avoid-break">
+      <div class="photo-main">
+        <img src="https://drive.google.com/thumbnail?id=1GUOYVP79NHfw5N_Lp34Nswd34rS1X91o&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1GUOYVP79NHfw5N_Lp34Nswd34rS1X91o'"
+             alt="外観①">
+        <div class="photo-caption">外観①</div>
+      </div>
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=1zqLgkPa4BZa8GPxMX59qSGHEX8c75HOw&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1zqLgkPa4BZa8GPxMX59qSGHEX8c75HOw'"
+             alt="外観②">
+        <div class="photo-caption">外観②</div>
+      </div>
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=1W1WvssVpvyiWzasQ4g9wid0xtbMTu2fS&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1W1WvssVpvyiWzasQ4g9wid0xtbMTu2fS'"
+             alt="外観③">
+        <div class="photo-caption">外観③</div>
+      </div>
+    </div>
+
+    <!-- 4列グリッド（1段目） -->
+    <div class="photo-grid-4 avoid-break">
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=1cDCqGiEQQPRcUt5w3YfhbI_fupdNxlP1&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1cDCqGiEQQPRcUt5w3YfhbI_fupdNxlP1'"
+             alt="室内①">
+        <div class="photo-caption">室内①</div>
+      </div>
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=1-OSRQrd6krs6dhWUnaXGONPZUqVvW8SV&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1-OSRQrd6krs6dhWUnaXGONPZUqVvW8SV'"
+             alt="室内②">
+        <div class="photo-caption">室内②</div>
+      </div>
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=1QfBbMzQikMM7p4bBjlDg9tmLp4t40tPO&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1QfBbMzQikMM7p4bBjlDg9tmLp4t40tPO'"
+             alt="室内③">
+        <div class="photo-caption">室内③</div>
+      </div>
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=15pLrcab50WygNcprTa9moEzXZ0EbKnHB&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/15pLrcab50WygNcprTa9moEzXZ0EbKnHB'"
+             alt="室内④">
+        <div class="photo-caption">室内④</div>
+      </div>
+    </div>
+
+    <!-- 4列グリッド（2段目） -->
+    <div class="photo-grid-4 avoid-break">
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=1TI3NIDppmeFSWqe9H_axWamAPEJJ-YTX&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1TI3NIDppmeFSWqe9H_axWamAPEJJ-YTX'"
+             alt="室内⑤">
+        <div class="photo-caption">室内⑤</div>
+      </div>
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=157wFsNCvwAk0hSvDjab2vF94PoZbeCRV&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/157wFsNCvwAk0hSvDjab2vF94PoZbeCRV'"
+             alt="室内⑥">
+        <div class="photo-caption">室内⑥</div>
+      </div>
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=1NshdQ-KOJZSEFIV_wzygXLFNHUNidrLK&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1NshdQ-KOJZSEFIV_wzygXLFNHUNidrLK'"
+             alt="室内⑦">
+        <div class="photo-caption">室内⑦</div>
+      </div>
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=1TKHewiMl2kqhqwEmC1e9tmR9OD1JmGLw&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1TKHewiMl2kqhqwEmC1e9tmR9OD1JmGLw'"
+             alt="室内⑧">
+        <div class="photo-caption">室内⑧</div>
+      </div>
+    </div>
+
+    <!-- 地図＋追加写真 -->
+    <div class="photo-grid-2 avoid-break">
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=1BOdZG7CvvsN5bcY6LN38YSw1xZZDC-Mu&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1BOdZG7CvvsN5bcY6LN38YSw1xZZDC-Mu'"
+             alt="室内⑨">
+        <div class="photo-caption">室内⑨</div>
+      </div>
+      <div>
+        <img src="https://drive.google.com/thumbnail?id=1PDBIMIIChBpO9H5BxkAIDn90zvdUdf3T&sz=w800"
+             onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1PDBIMIIChBpO9H5BxkAIDn90zvdUdf3T'"
+             alt="地図">
+        <div class="photo-caption">地図</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>案件番号：p-6004 ｜ 岩手県盛岡市北山 戸建</span>
+    <span>4/4</span>
+  </div>
+</div>
+
+</body>
+</html>
