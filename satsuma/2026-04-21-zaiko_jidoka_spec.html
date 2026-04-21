@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在庫一覧表 自動化システム 開発仕様書 | 株式会社リアテクス</title>
+<style>
+  :root {
+    --primary: #1F4E79;
+    --secondary: #2E75B6;
+    --accent: #D6E4F0;
+    --light: #EBF3FA;
+    --white: #FFFFFF;
+    --gray: #F2F2F2;
+    --red: #C00000;
+    --green: #375623;
+    --text: #1A1A1A;
+    --border: #CCCCCC;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Meiryo", "Arial", sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: #F0F4F8;
+    line-height: 1.7;
+  }
+
+  /* ─── サイドバー ─────────────────────────── */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 240px; height: 100vh;
+    background: var(--primary);
+    color: #fff;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 40px 0;
+  }
+  .sidebar-logo {
+    padding: 24px 20px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .sidebar-logo .company { font-size: 11px; opacity: 0.7; margin-bottom: 4px; }
+  .sidebar-logo .doc-title { font-size: 13px; font-weight: bold; line-height: 1.4; }
+  .sidebar nav { padding: 16px 0; }
+  .sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 12px;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .sidebar nav a:hover,
+  .sidebar nav a.active {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border-left-color: #5BA3D9;
+  }
+  .sidebar nav .nav-section {
+    padding: 16px 20px 4px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.5;
+    margin-top: 8px;
+  }
+
+  /* ─── メインコンテンツ ───────────────────── */
+  .main {
+    margin-left: 240px;
+    min-height: 100vh;
+  }
+
+  /* ─── 表紙ヒーロー ───────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: #fff;
+    padding: 80px 60px 60px;
+  }
+  .hero .company-label {
+    font-size: 13px;
+    opacity: 0.75;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .hero .subtitle {
+    font-size: 20px;
+    opacity: 0.85;
+    margin-bottom: 40px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    font-size: 13px;
+    opacity: 0.8;
+    border-top: 1px solid rgba(255,255,255,0.25);
+    padding-top: 24px;
+    margin-top: 24px;
+  }
+  .hero-meta div span { display: block; opacity: 0.65; font-size: 11px; margin-bottom: 2px; }
+
+  /* ─── コンテンツ本体 ─────────────────────── */
+  .content { padding: 48px 60px; max-width: 960px; }
+
+  /* ─── セクション ─────────────────────────── */
+  .section { margin-bottom: 56px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .section-num {
+    background: var(--primary);
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-size: 22px;
+    color: var(--primary);
+    font-weight: bold;
+  }
+  .subsection { margin-bottom: 32px; }
+  .subsection h3 {
+    font-size: 16px;
+    color: var(--secondary);
+    font-weight: bold;
+    margin-bottom: 12px;
+    padding-left: 10px;
+    border-left: 4px solid var(--secondary);
+  }
+  p { margin-bottom: 12px; }
+
+  /* ─── 課題カード ─────────────────────────── */
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .challenge-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--red);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+  .challenge-card .num {
+    font-size: 11px;
+    color: var(--red);
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .challenge-card h4 { font-size: 14px; font-weight: bold; margin-bottom: 6px; }
+  .challenge-card p { font-size: 13px; color: #555; margin: 0; }
+
+  /* ─── テーブル ───────────────────────────── */
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  thead tr { background: var(--primary); color: #fff; }
+  thead th {
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+  }
+  tbody tr:nth-child(even) { background: var(--light); }
+  tbody tr:hover { background: #DCF0FF; }
+  td { padding: 10px 14px; border-bottom: 1px solid #E8EEF4; vertical-align: top; }
+  td.center { text-align: center; }
+  td strong { color: var(--primary); }
+
+  /* ─── フローチャート ─────────────────────── */
+  .flow { margin: 20px 0; }
+  .flow-step {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 2px;
+  }
+  .flow-phase {
+    background: var(--primary);
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    min-width: 90px;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.3;
+    border-radius: 6px 0 0 6px;
+  }
+  .flow-body {
+    flex: 1;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-left: none;
+    padding: 14px 18px;
+    border-radius: 0 6px 6px 0;
+  }
+  .flow-body strong { color: var(--secondary); font-size: 14px; display: block; margin-bottom: 4px; }
+  .flow-body p { font-size: 13px; color: #555; margin: 0; }
+  .flow-arrow {
+    text-align: center;
+    color: var(--secondary);
+    font-size: 20px;
+    padding: 4px 0;
+    margin-left: 45px;
+  }
+
+  /* ─── アラート判定 ───────────────────────── */
+  .alert-table .alert-red td:first-child { color: var(--red); font-weight: bold; }
+  .alert-table .alert-ok td:first-child { color: var(--green); font-weight: bold; }
+
+  /* ─── ノートボックス ─────────────────────── */
+  .note-box {
+    background: var(--light);
+    border-left: 4px solid var(--secondary);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    margin: 16px 0;
+    color: #333;
+  }
+
+  /* ─── スコアカード ───────────────────────── */
+  .score-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .score-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .score-card .label {
+    font-size: 12px;
+    color: var(--secondary);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .score-card .points {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .score-card .points span { font-size: 16px; }
+  .score-card p { font-size: 12px; color: #666; margin: 0; }
+
+  /* ─── ファイル構成 ───────────────────────── */
+  .file-tree {
+    background: #1e1e2e;
+    border-radius: 8px;
+    padding: 20px 24px;
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    color: #CDD6F4;
+    margin: 16px 0;
+    line-height: 2;
+  }
+  .file-tree .folder { color: #89B4FA; }
+  .file-tree .py { color: #A6E3A1; }
+  .file-tree .txt { color: #F38BA8; }
+  .file-tree .json { color: #FAB387; }
+  .file-tree .env { color: #CBA6F7; }
+  .file-tree .comment { color: #6C7086; font-style: italic; }
+
+  /* ─── 拡張リスト ─────────────────────────── */
+  .future-list {
+    list-style: none;
+    margin: 12px 0;
+  }
+  .future-list li {
+    padding: 10px 16px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .future-list li::before {
+    content: "→";
+    color: var(--secondary);
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  /* ─── フッター ───────────────────────────── */
+  .footer {
+    background: var(--primary);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    margin-left: 0;
+  }
+
+  /* ─── レスポンシブ ───────────────────────── */
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .hero { padding: 40px 24px; }
+    .content { padding: 24px; }
+    .challenge-grid { grid-template-columns: 1fr; }
+    .score-grid { grid-template-columns: 1fr; }
+  }
+
+  /* 印刷 */
+  @media print {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    body { background: #fff; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ サイドバー ═══════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="company">株式会社リアテクス</div>
+    <div class="doc-title">在庫一覧表<br>自動化システム<br>開発仕様書</div>
+  </div>
+  <nav>
+    <div class="nav-section">目次</div>
+    <a href="#background">1. 背景・現状の課題</a>
+    <a href="#overview">2. システム概要</a>
+    <a href="#spec">3. 機能仕様</a>
+    <a href="#phase1">　Phase 1：スクレイピング</a>
+    <a href="#phase2">　Phase 2：中間シート</a>
+    <a href="#phase3">　Phase 3：照合</a>
+    <a href="#phase4">　Phase 4：URL挿入</a>
+    <a href="#phase5">　Phase 5：AI品質チェック</a>
+    <a href="#phase6">　Phase 6：アラート判定</a>
+    <a href="#tech">4. 技術仕様</a>
+    <a href="#schedule">5. 実行スケジュール</a>
+    <a href="#future">6. 将来的な拡張</a>
+  </nav>
+</aside>
+
+<!-- ═══════════════ メインコンテンツ ═══════════════ -->
+<div class="main">
+
+  <!-- 表紙ヒーロー -->
+  <div class="hero">
+    <div class="company-label">株式会社リアテクス　社内システム開発</div>
+    <h1>在庫一覧表<br>自動化システム</h1>
+    <div class="subtitle">開発仕様書</div>
+    <div class="hero-meta">
+      <div><span>作成日</span>2026年4月21日</div>
+      <div><span>作成者</span>株式会社リアテクス</div>
+      <div><span>バージョン</span>v1.0</div>
+      <div><span>ステータス</span>ドラフト</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ════════════════════════════════════════
+         1. 背景・現状の課題
+    ════════════════════════════════════════ -->
+    <div class="section" id="background">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <h2>背景・現状の課題</h2>
+      </div>
+
+      <div class="subsection">
+        <h3>1.1 在庫一覧表の概要</h3>
+        <p>弊社では投資用不動産の仕入れ・販売業務において、社内の在庫一覧表（Googleスプレッドシート）を中心にすべての物件情報を管理している。在庫一覧表は以下の2つの領域で構成されており、物件の基本情報から各ポータルサイトへの掲載状況まで一元管理している。</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>列範囲</th><th>区分</th><th>主な管理項目</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>A列 〜 M列</strong></td>
+                <td>案件の基本情報</td>
+                <td>営業担当 / BO担当 / 物件No / 所在地 / 売値 / 物件種別 / 築年数 / 想定利回り / 現況利回り / 物件詳細URL / 内見方法 / 内見可否 / みらいえ登録番号</td>
+              </tr>
+              <tr>
+                <td><strong>N列 以降</strong></td>
+                <td>ポータルサイト掲載状況</td>
+                <td>各ポータルサイトの掲載ステータス（掲載中 / 掲載不要 / 掲載中リンク）・ハイパーリンクURL</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>1.2 掲載管理対象のポータルサイト</h3>
+        <p>以下のポータルサイトに自社物件を掲載しており、各サイトへの掲載情報を在庫一覧表で管理している。</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>ポータルサイト名</th><th>在庫表の列名（ステータス）</th><th>備考</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>REINS（レインズ）</td><td>不可/REINS</td><td>業者間流通システム</td></tr>
+              <tr><td>SUUMO</td><td>自動返信/SUUMO</td><td>大手総合不動産ポータル</td></tr>
+              <tr><td>健美家・HOMES</td><td>自動返信/健美家・homes</td><td>投資用不動産専門</td></tr>
+              <tr><td>Yahoo!不動産</td><td>不可/Yahoo!不動産</td><td></td></tr>
+              <tr><td>at home（アットホーム）</td><td>自動返信/at home</td><td></td></tr>
+              <tr><td>楽待（らくまち）</td><td>不可/楽待</td><td>不動産投資専門</td></tr>
+              <tr><td>不動産連合体</td><td>自動返信/不動産連合体</td><td></td></tr>
+              <tr><td>ジモティ</td><td>自動返信/ジモティ</td><td>地域密着型</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>1.3 現状の課題</h3>
+        <p>現状、在庫一覧表の管理はすべて手作業で行われており、以下の課題が発生している。</p>
+        <div class="challenge-grid">
+          <div class="challenge-card">
+            <div class="num">ISSUE 01</div>
+            <h4>手作業の入力負担</h4>
+            <p>各ポータルサイトを手動で確認し、掲載URLや掲載ステータスを1件ずつ在庫表に入力している。物件数が増えるにつれ作業量が増大し、担当者の業務を圧迫している。</p>
+          </div>
+          <div class="challenge-card">
+            <div class="num">ISSUE 02</div>
+            <h4>リンク切れの見落とし</h4>
+            <p>掲載URLのリンク切れ（404エラー等）を手動でチェックする仕組みがなく、気づかないまま古いURLが在庫表に残り続けるケースが発生している。</p>
+          </div>
+          <div class="challenge-card">
+            <div class="num">ISSUE 03</div>
+            <h4>掲載ミス・入力ミス</h4>
+            <p>手動入力のため、ポータルサイトと在庫表の情報の不一致（掲載中なのに未記入、掲載不要なのにURLが残っている等）が散発している。</p>
+          </div>
+          <div class="challenge-card">
+            <div class="num">ISSUE 04</div>
+            <h4>掲載文の品質管理不足</h4>
+            <p>各ポータルに掲載している物件紹介文の品質（誤字・訴求力・マーケティング表現）を体系的にチェックする仕組みがなく、品質のばらつきが生じている。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         2. システム概要
+    ════════════════════════════════════════ -->
+    <div class="section" id="overview">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <h2>システム概要</h2>
+      </div>
+
+      <div class="subsection">
+        <h3>2.1 目的</h3>
+        <p>本システムは、在庫一覧表の管理業務を自動化することにより、以下を実現する。</p>
+        <ul style="padding-left:20px; margin: 12px 0; font-size:13px; line-height:2.2;">
+          <li>各ポータルサイトから自社物件の掲載URLを自動取得し、在庫一覧表に自動挿入する</li>
+          <li>掲載URLのリンク切れを自動検知し、アラートで通知する</li>
+          <li>掲載文の品質（誤字・訴求力）をAIで自動評価し、問題のある物件を担当者に通知する</li>
+          <li>手作業の入力工数をゼロに近づけ、担当者が本来業務に集中できる環境を作る</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>2.2 全体フロー</h3>
+        <p>本システムは以下の6つのフェーズで構成される。</p>
+        <div class="flow" style="margin-top:20px;">
+          <div class="flow-step">
+            <div class="flow-phase">Phase<br>1</div>
+            <div class="flow-body">
+              <strong>スクレイピング（既存）</strong>
+              <p>各ポータルサイトで「株式会社リアテクス」を売主名で検索 → 自社物件の掲載URL・所在地・価格を自動取得</p>
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <div class="flow-phase">Phase<br>2</div>
+            <div class="flow-body">
+              <strong>中間シートへの書き込み</strong>
+              <p>スクレイピング結果をGoogleスプレッドシートの「スクレイピング結果」シートに保存・リンク切れも同時チェック</p>
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <div class="flow-phase">Phase<br>3</div>
+            <div class="flow-body">
+              <strong>在庫表との照合</strong>
+              <p>所在地・価格・物件種別をキーにスコアリングで在庫表の各行と照合し、物件Noを紐付ける</p>
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <div class="flow-phase">Phase<br>4</div>
+            <div class="flow-body">
+              <strong>URLの自動挿入</strong>
+              <p>照合済み物件の掲載URLを在庫表の該当ポータル列にハイパーリンクで自動挿入・掲載ステータスも更新</p>
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <div class="flow-phase">Phase<br>5</div>
+            <div class="flow-body">
+              <strong>AI品質チェック</strong>
+              <p>掲載URLのページを取得・テキスト抽出 → Claude APIで誤字チェック・マーケティング訴求力を評価（0〜100点）</p>
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">
+            <div class="flow-phase">Phase<br>6</div>
+            <div class="flow-body">
+              <strong>アラート判定・シートへの反映</strong>
+              <p>80点以下・内容不十分・誤字あり → 🔴アラートを在庫表と結果シートに記録し担当者に通知</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         3. 機能仕様
+    ════════════════════════════════════════ -->
+    <div class="section" id="spec">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <h2>機能仕様</h2>
+      </div>
+
+      <!-- Phase 1 -->
+      <div class="subsection" id="phase1">
+        <h3>Phase 1：スクレイピング（既存機能）</h3>
+        <p>本フェーズは既存のスクレイピング基盤を使用する。新規実装は不要。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>項目</th><th>内容</th></tr></thead>
+            <tbody>
+              <tr><td><strong>検索方法</strong></td><td>各ポータルサイトで売主名「株式会社リアテクス」または「リアテクス」で検索</td></tr>
+              <tr><td><strong>取得対象</strong></td><td>自社掲載物件の物件タイトル・所在地・価格・物件種別・掲載URL</td></tr>
+              <tr><td><strong>対象サイト</strong></td><td>楽待 / 健美家 / HOMES / at home / SUUMO / 不動産連合体 / ジモティ</td></tr>
+              <tr><td><strong>出力形式</strong></td><td>JSON または CSV（Phase 2 が読み込める形式）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="subsection" id="phase2">
+        <h3>Phase 2：中間シートへの書き込み</h3>
+        <p>スクレイピング結果を保存するための中間シート「スクレイピング結果」をスプレッドシートに新設し、Pythonで書き込む。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th class="center" style="width:40px">No</th><th>列名</th><th>内容・備考</th></tr></thead>
+            <tbody>
+              <tr><td class="center">1</td><td><strong>取得日時</strong></td><td>スクレイピング実行日時（YYYY/MM/DD HH:MM）</td></tr>
+              <tr><td class="center">2</td><td><strong>ポータル名</strong></td><td>楽待 / 健美家 / athome / suumo 等</td></tr>
+              <tr><td class="center">3</td><td><strong>物件タイトル</strong></td><td>ポータルサイト上の掲載タイトル</td></tr>
+              <tr><td class="center">4</td><td><strong>所在地（スクレイプ）</strong></td><td>ポータルサイト上の所在地テキスト</td></tr>
+              <tr><td class="center">5</td><td><strong>価格</strong></td><td>掲載価格（文字列）</td></tr>
+              <tr><td class="center">6</td><td><strong>物件種別</strong></td><td>戸建 / アパート / マンション 等</td></tr>
+              <tr><td class="center">7</td><td><strong>掲載URL</strong></td><td>物件詳細ページのURL</td></tr>
+              <tr><td class="center">8</td><td><strong>リンク状態</strong></td><td>HTTPステータス確認結果（OK / リンク切れ / エラー）</td></tr>
+              <tr><td class="center">9</td><td><strong>照合ステータス</strong></td><td>照合済 / 要確認 / 未照合</td></tr>
+              <tr><td class="center">10</td><td><strong>照合先物件No</strong></td><td>在庫表の物件Noと紐付けた値</td></tr>
+              <tr><td class="center">11</td><td><strong>AIスコア</strong></td><td>Phase 5のAI評価スコア（0〜100点）</td></tr>
+              <tr><td class="center">12</td><td><strong>判定</strong></td><td>✅ / 🟡 / 🔴</td></tr>
+              <tr><td class="center">13</td><td><strong>誤字チェック結果</strong></td><td>検出された誤字・表現ミスの一覧</td></tr>
+              <tr><td class="center">14</td><td><strong>マーケティングコメント</strong></td><td>AIが生成した販売マーケティングコメント（100〜200文字）</td></tr>
+              <tr><td class="center">15</td><td><strong>改善提案</strong></td><td>AIが提案する改善点（箇条書き）</td></tr>
+              <tr><td class="center">16</td><td><strong>アラートメッセージ</strong></td><td>担当者向けの注意メッセージ</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="subsection" id="phase3">
+        <h3>Phase 3：在庫表との照合</h3>
+        <p>スクレイピング結果と在庫一覧表の行を照合し、同一物件を特定する。住所の表記ゆれに対応するため、スコアリング方式で照合する。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>優先度</th><th>照合キー</th><th>配点</th><th>備考</th></tr></thead>
+            <tbody>
+              <tr><td>1位</td><td><strong>所在地の部分一致</strong></td><td class="center">60点</td><td>スクレイプ住所に在庫表住所の主要部分が含まれているか</td></tr>
+              <tr><td>2位</td><td><strong>価格の一致</strong></td><td class="center">30点</td><td>万円単位で一致しているか（表記ゆれを吸収して比較）</td></tr>
+              <tr><td>3位</td><td><strong>物件種別の一致</strong></td><td class="center">10点</td><td>戸建 / アパート / マンション の大分類が一致しているか</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap" style="margin-top:16px;">
+          <table>
+            <thead><tr><th>合計スコア</th><th>照合結果</th><th>処理</th></tr></thead>
+            <tbody>
+              <tr><td><strong>70点以上</strong></td><td>照合済</td><td>在庫表に自動でURLを挿入する</td></tr>
+              <tr><td><strong>40〜69点</strong></td><td>要確認</td><td>「要確認」フラグを立て、担当者が手動で確認する</td></tr>
+              <tr><td><strong>39点以下</strong></td><td>未照合</td><td>新規物件の可能性あり。担当者に確認を促す</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="subsection" id="phase4">
+        <h3>Phase 4：URLの自動挿入</h3>
+        <p>照合済みの物件に対し、在庫一覧表の該当列に掲載URLをハイパーリンク形式で自動挿入する。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ポータルサイト</th><th>在庫表への書き込み列</th><th>書き込み内容</th></tr></thead>
+            <tbody>
+              <tr><td>SUUMO</td><td>自動返信/SUUMO 列</td><td>掲載URLをハイパーリンクで挿入・ステータスを「掲載中」に更新</td></tr>
+              <tr><td>健美家・HOMES</td><td>自動返信/健美家・homes 列</td><td>同上</td></tr>
+              <tr><td>at home</td><td>自動返信/at home 列</td><td>同上</td></tr>
+              <tr><td>楽待</td><td>不可/楽待 列</td><td>同上</td></tr>
+              <tr><td>不動産連合体</td><td>自動返信/不動産連合体 列</td><td>同上</td></tr>
+              <tr><td>ジモティ</td><td>自動返信/ジモティ 列</td><td>同上</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note-box">⚠ リンク切れ（HTTP 404）が検出された場合は、該当セルを赤背景にし、URLの隣に「⚠ リンク切れ」と表示する。</div>
+      </div>
+
+      <!-- Phase 5 -->
+      <div class="subsection" id="phase5">
+        <h3>Phase 5：AI品質チェック</h3>
+        <p>在庫一覧表に挿入されたURLのページを取得し、Claude APIを使って掲載文の品質を自動評価する。</p>
+        <div class="score-grid">
+          <div class="score-card">
+            <div class="label">① 誤字・表現チェック</div>
+            <div class="points">20<span>点満点</span></div>
+            <p>漢字ミス・送り仮名・数字の表記ゆれ・不自然な文章の有無を検出する</p>
+          </div>
+          <div class="score-card">
+            <div class="label">② マーケティング訴求チェック</div>
+            <div class="points">80<span>点満点</span></div>
+            <p>投資家の購買意欲を引き出す訴求か・数字の使い方・キャッチコピーの具体性を評価する</p>
+          </div>
+        </div>
+        <div class="subsection" style="margin-top:16px;">
+          <p><strong>AI出力項目（JSON形式）</strong></p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>フィールド名</th><th>型</th><th>内容</th></tr></thead>
+              <tbody>
+                <tr><td>total_score</td><td>int</td><td>総合スコア（0〜100）</td></tr>
+                <tr><td>typo_check.has_issues</td><td>bool</td><td>誤字・表現ミスの有無</td></tr>
+                <tr><td>typo_check.issues</td><td>list</td><td>検出された誤字・表現ミスのリスト</td></tr>
+                <tr><td>marketing_check.score</td><td>int</td><td>マーケティング評価スコア（0〜80）</td></tr>
+                <tr><td>marketing_check.is_content_insufficient</td><td>bool</td><td>内容が著しく不十分かどうか</td></tr>
+                <tr><td>marketing_check.comment</td><td>str</td><td>マーケティングコメント（100〜200文字）</td></tr>
+                <tr><td>improvement_suggestions</td><td>list</td><td>改善提案のリスト</td></tr>
+                <tr><td>rewrite_needed</td><td>bool</td><td>紹介文の再作成が必要かどうか</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 6 -->
+      <div class="subsection" id="phase6">
+        <h3>Phase 6：アラート判定・シートへの反映</h3>
+        <p>AI評価の結果に基づいてアラートレベルを判定し、スプレッドシートに反映する。</p>
+        <div class="table-wrap">
+          <table class="alert-table">
+            <thead><tr><th>判定</th><th>条件</th><th>アラートメッセージ</th></tr></thead>
+            <tbody>
+              <tr class="alert-red">
+                <td>🔴 要対応</td>
+                <td>AIスコアが80点以下</td>
+                <td>「AIスコアが{score}点です。掲載文の改善を推奨します」</td>
+              </tr>
+              <tr class="alert-red">
+                <td>🔴 要対応</td>
+                <td>コメント内容が不十分（is_content_insufficient = true）</td>
+                <td>「訴求内容が不十分です。紹介文の再作成を推奨します」</td>
+              </tr>
+              <tr class="alert-red">
+                <td>🔴 要対応</td>
+                <td>誤字・表現ミスが検出された（has_issues = true）</td>
+                <td>「誤字が検出されました：{誤字の内容}」</td>
+              </tr>
+              <tr class="alert-red">
+                <td>🔴 要対応</td>
+                <td>リンク切れ（HTTP 404等）</td>
+                <td>「リンク切れを検出しました。URLを確認してください」</td>
+              </tr>
+              <tr class="alert-ok">
+                <td>✅ 問題なし</td>
+                <td>上記いずれにも該当しない</td>
+                <td>アラートなし</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note-box">🔴 が1件以上発生した物件は、在庫一覧表の該当行の判定列に🔴を表示する。担当者は🔴の案件を優先して紹介文の修正を行う。</div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         4. 技術仕様
+    ════════════════════════════════════════ -->
+    <div class="section" id="tech">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <h2>技術仕様</h2>
+      </div>
+
+      <div class="subsection">
+        <h3>4.1 使用技術・ライブラリ</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>種別</th><th>ライブラリ／サービス</th><th>用途</th></tr></thead>
+            <tbody>
+              <tr><td><strong>言語</strong></td><td>Python 3.10 以上</td><td>メインの実装言語</td></tr>
+              <tr><td><strong>AIモデル</strong></td><td>Claude API（anthropic SDK）</td><td>掲載文の品質評価</td></tr>
+              <tr><td><strong>スプレッドシート連携</strong></td><td>gspread + google-auth</td><td>Googleスプレッドシートの読み書き</td></tr>
+              <tr><td><strong>Webスクレイピング</strong></td><td>requests + BeautifulSoup4 + lxml</td><td>ポータルサイトからのテキスト抽出</td></tr>
+              <tr><td><strong>設定管理</strong></td><td>python-dotenv</td><td>APIキー等の環境変数管理</td></tr>
+              <tr><td><strong>スクレイピング基盤</strong></td><td>既存スクレイパー（流用）</td><td>各ポータルサイトの物件URL取得</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>4.2 ファイル構成</h3>
+        <div class="file-tree">
+          <span class="folder">quality_checker/</span><br>
+          &nbsp;&nbsp;├── <span class="py">main.py</span>&nbsp;&nbsp;<span class="comment"># 全体を統括して実行するエントリーポイント</span><br>
+          &nbsp;&nbsp;├── <span class="py">config.py</span>&nbsp;&nbsp;<span class="comment"># スプレッドシートID・列マッピング・閾値などの設定</span><br>
+          &nbsp;&nbsp;├── <span class="py">page_fetcher.py</span>&nbsp;&nbsp;<span class="comment"># URLを取得しテキストを抽出する</span><br>
+          &nbsp;&nbsp;├── <span class="py">ai_reviewer.py</span>&nbsp;&nbsp;<span class="comment"># Claude APIで誤字・マーケティング評価を実行</span><br>
+          &nbsp;&nbsp;├── <span class="py">alert_generator.py</span>&nbsp;&nbsp;<span class="comment"># アラートレベルと通知メッセージを生成</span><br>
+          &nbsp;&nbsp;├── <span class="py">sheet_manager.py</span>&nbsp;&nbsp;<span class="comment"># スプレッドシートの読み書き</span><br>
+          &nbsp;&nbsp;├── <span class="txt">requirements.txt</span>&nbsp;&nbsp;<span class="comment"># 依存ライブラリの一覧</span><br>
+          &nbsp;&nbsp;├── <span class="json">service_account.json</span>&nbsp;&nbsp;<span class="comment"># Google Sheets API認証キー（要発行）</span><br>
+          &nbsp;&nbsp;└── <span class="env">.env</span>&nbsp;&nbsp;<span class="comment"># ANTHROPIC_API_KEY 等（Gitに含めないこと）</span>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>4.3 認証・APIキーの設定</h3>
+        <ul style="padding-left:20px; font-size:13px; line-height:2.2;">
+          <li>Anthropic APIキー：環境変数 <code style="background:#eee;padding:2px 6px;border-radius:3px;">ANTHROPIC_API_KEY</code> に設定する</li>
+          <li>Google Sheets API：GCPでサービスアカウントを作成し、<code style="background:#eee;padding:2px 6px;border-radius:3px;">service_account.json</code> を配置する</li>
+          <li>スプレッドシートにサービスアカウントのメールアドレスを編集者として共有する</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         5. 実行スケジュール
+    ════════════════════════════════════════ -->
+    <div class="section" id="schedule">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <h2>実行スケジュール・運用</h2>
+      </div>
+      <div class="subsection">
+        <h3>5.1 推奨実行タイミング</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>実行タイミング</th><th>実行頻度</th><th>実行内容</th></tr></thead>
+            <tbody>
+              <tr><td>毎朝（業務開始前）</td><td>毎日</td><td>Phase 1〜4（スクレイピング・URL挿入・リンク切れ検知）</td></tr>
+              <tr><td>週1回（月曜朝）</td><td>週次</td><td>Phase 5〜6（AI品質チェック・アラート）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3>5.2 実行方法</h3>
+        <ul style="padding-left:20px; font-size:13px; line-height:2.2;">
+          <li>サーバー・PC上でcronジョブとして定期実行する</li>
+          <li>Google Cloud Scheduler + Cloud Run での実行も可能</li>
+          <li>手動実行：<code style="background:#eee;padding:2px 6px;border-radius:3px;">python main.py</code> コマンドで任意のタイミングで実行可能</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         6. 将来的な拡張
+    ════════════════════════════════════════ -->
+    <div class="section" id="future">
+      <div class="section-header">
+        <div class="section-num">6</div>
+        <h2>将来的な拡張（参考）</h2>
+      </div>
+      <p>本仕様書の範囲外だが、将来的に以下の拡張が考えられる。</p>
+      <ul class="future-list" style="margin-top:16px;">
+        <li>アラート発生時にSlack・LINE WORKS・メールで担当者に自動通知する</li>
+        <li>AIが生成した改善提案をもとに紹介文の再作成案を自動生成する</li>
+        <li>kintoneとのリアルタイム双方向連携（在庫表の更新をkintoneに即時反映）</li>
+        <li>掲載文のポータル別最適化（各サイトの特性に合わせた文章の自動調整）</li>
+      </ul>
+    </div>
+
+    <p style="text-align:right; margin-top:40px; font-size:13px; color:#888;">以上</p>
+
+  </div><!-- /content -->
+
+  <div class="footer">
+    株式会社リアテクス　社外秘　|　在庫一覧表 自動化システム 開発仕様書 v1.0　|　2026年4月21日
+  </div>
+</div><!-- /main -->
+
+<script>
+// アクティブナビゲーション
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.sidebar nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>
