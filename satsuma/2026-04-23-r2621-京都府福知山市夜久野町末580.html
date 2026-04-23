@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件概要書 - 京都府福知山市夜久野町末580 [r-2621]</title>
+<style>
+  /* === 印刷設定 === */
+  @page { size: A4 landscape; margin: 14mm 15mm; }
+  @media print {
+    body { margin: 0; padding: 0; background: #fff; }
+    .page-break { break-before: page; }
+    * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .page-container { min-height: 182mm; box-shadow: none; margin: 0 auto; }
+  }
+
+  /* === ベース === */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', 'MS Gothic', sans-serif;
+    font-size: 10pt;
+    color: #1a1a1a;
+    background: #f0f2f5;
+  }
+
+  /* === ページコンテナ === */
+  .page-container {
+    width: 267mm;
+    background: #fff;
+    margin: 16px auto;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+  }
+  .page-wrapper { width: 267mm; margin: 0 auto; padding: 0; }
+  .page-break { break-before: page; }
+  .avoid-break { break-inside: avoid; }
+
+  /* === ヘッダー === */
+  .header {
+    background: linear-gradient(135deg, #1A365D 0%, #2d5a9e 100%);
+    color: #fff;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .header-left { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+  .header-badge {
+    background: #DAA520;
+    color: #1A365D;
+    font-size: 7pt;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    width: fit-content;
+    margin-bottom: 2px;
+  }
+  .header-property-name { font-size: 14pt; font-weight: 700; color: #fff; line-height: 1.2; }
+  .header-address { font-size: 8pt; color: rgba(255,255,255,0.8); margin-top: 2px; }
+  .header-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 3px; flex-shrink: 0; }
+  .header-price-label { font-size: 7.5pt; color: rgba(255,255,255,0.7); }
+  .header-price { font-size: 22pt; font-weight: 700; color: #FFD700; line-height: 1; }
+  .header-price span { font-size: 11pt; }
+  .header-case { font-size: 7.5pt; color: rgba(255,255,255,0.7); }
+
+  /* === ハイライトボックス === */
+  .highlight-box {
+    background: linear-gradient(90deg, #f8f4e8 0%, #fffdf5 100%);
+    border-bottom: 1px solid #e8d5a0;
+    border-left: 4px solid #DAA520;
+    padding: 8px 16px;
+    display: flex;
+    gap: 0;
+  }
+  .highlight-item {
+    flex: 1;
+    text-align: center;
+    padding: 3px 8px;
+    border-right: 1px solid #e8d5a0;
+  }
+  .highlight-item:last-child { border-right: none; }
+  .highlight-label { font-size: 7pt; color: #888; margin-bottom: 1px; }
+  .highlight-value { font-size: 16pt; font-weight: 700; color: #1A365D; line-height: 1.1; }
+  .highlight-unit { font-size: 8pt; color: #666; }
+
+  /* === ヒーローセクション === */
+  .hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding: 12px 16px 10px;
+    background: #fff;
+  }
+
+  /* === KPIグリッド === */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .kpi-card {
+    background: linear-gradient(135deg, #1A365D 0%, #2d4a7a 100%);
+    color: #fff;
+    border-radius: 6px;
+    padding: 7px 10px;
+    text-align: center;
+  }
+  .kpi-label { font-size: 6.5pt; color: rgba(255,255,255,0.75); margin-bottom: 2px; }
+  .kpi-value { font-size: 14pt; font-weight: 700; color: #FFD700; line-height: 1.1; }
+  .kpi-unit { font-size: 7pt; color: rgba(255,255,255,0.8); }
+
+  /* === セクションタイトル === */
+  .section-title {
+    background: linear-gradient(90deg, #1A365D 0%, #2d5a9e 100%);
+    color: #fff;
+    font-size: 8.5pt;
+    font-weight: 700;
+    padding: 4px 12px;
+    margin-bottom: 6px;
+    border-radius: 3px;
+  }
+
+  /* === テーブル共通 === */
+  .overview-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+  .overview-table td { padding: 4px 8px; border: 1px solid #dde3ed; vertical-align: top; line-height: 1.4; }
+  .overview-table .th { background: #f0f4f8; font-weight: 700; color: #1A365D; width: 26%; }
+
+  /* === レントロールテーブル === */
+  .lentroll-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin-bottom: 6px; }
+  .lentroll-table th { background: #1A365D; color: #fff; padding: 5px 8px; text-align: center; font-size: 8pt; border: 1px solid #0f2a4a; }
+  .lentroll-table td { padding: 4px 8px; border: 1px solid #dde3ed; }
+  .lentroll-table tfoot td { background: #f0f4f8; font-weight: 700; }
+
+  /* === ファイナンステーブル === */
+  .finance-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin-bottom: 6px; }
+  .finance-table td { padding: 4px 8px; border: 1px solid #dde3ed; vertical-align: top; }
+  .finance-table .th { background: #f0f4f8; font-weight: 700; color: #1A365D; width: 55%; }
+  .subtotal { background: #fff8e1; }
+
+  /* === 2列・3列グリッド === */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+  /* === 投資ポイント === */
+  .points-list { list-style: none; padding: 0; margin: 0; }
+  .points-list li {
+    padding: 4px 0 4px 18px;
+    position: relative;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 8.5pt;
+    line-height: 1.4;
+  }
+  .points-list li:before { content: "▶"; color: #DAA520; position: absolute; left: 0; font-size: 7.5pt; top: 5px; }
+  .points-list li:last-child { border-bottom: none; }
+
+  /* === 周辺環境 === */
+  .env-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .env-item {
+    background: #f8f9fc;
+    border-left: 3px solid #DAA520;
+    padding: 5px 8px;
+    border-radius: 0 4px 4px 0;
+  }
+  .env-label { color: #888; font-size: 7pt; margin-bottom: 1px; }
+  .env-value { font-weight: 700; color: #1A365D; font-size: 8.5pt; }
+
+  /* === 写真ページ === */
+  .photo-page-content { padding: 10px 16px 12px; }
+  .photo-grid-main { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+  .photo-grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+  .photo-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+  .photo-item img { width: 100%; object-fit: cover; border-radius: 4px; border: 1px solid #dde3ed; display: block; }
+  .photo-main img { width: 100%; height: 115px; object-fit: cover; border-radius: 4px; border: 1px solid #dde3ed; display: block; }
+  .photo-sub img { width: 100%; height: 80px; object-fit: cover; border-radius: 4px; border: 1px solid #dde3ed; display: block; }
+  .photo-4 img { width: 100%; height: 68px; object-fit: cover; border-radius: 4px; border: 1px solid #dde3ed; display: block; }
+  .photo-3 img { width: 100%; height: 80px; object-fit: cover; border-radius: 4px; border: 1px solid #dde3ed; display: block; }
+  .photo-label { font-size: 6.5pt; color: #aaa; text-align: center; margin-top: 2px; }
+
+  /* === 特記事項 === */
+  .notes-box {
+    background: #fffde7;
+    border: 1px solid #f0d060;
+    border-left: 3px solid #DAA520;
+    padding: 8px 10px;
+    font-size: 8pt;
+    line-height: 1.7;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* === フッター帯 === */
+  .footer-band {
+    background: linear-gradient(90deg, #1A365D 0%, #2d5a9e 100%);
+    color: rgba(255,255,255,0.75);
+    font-size: 7.5pt;
+    padding: 5px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  /* === ページ内パディング === */
+  .page-content { padding: 10px 16px; }
+
+  /* ========== レスポンシブ（タブレット・スマホ） ========== */
+  @media screen and (max-width: 900px) {
+    .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+    .page-wrapper   { width: 100% !important; padding: 0 8px !important; }
+    .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+    .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+    .header-property-name { font-size: 13pt; }
+    .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+    .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
+    .highlight-item:last-child { border-bottom: none; }
+    .highlight-value { font-size: 18pt; }
+    .two-col, .three-col, .hero-section { grid-template-columns: 1fr !important; }
+    .kpi-grid  { grid-template-columns: repeat(2, 1fr); }
+    .env-grid  { grid-template-columns: repeat(2, 1fr); }
+    .kpi-value { font-size: 15pt; }
+    .photo-grid-main { grid-template-columns: 1fr !important; }
+    .photo-grid-4    { grid-template-columns: 1fr 1fr !important; }
+    .photo-grid-3    { grid-template-columns: 1fr 1fr !important; }
+    body { font-size: 11pt; }
+    .section-title { font-size: 10pt; padding: 6px 12px; }
+    .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+    .page-break { page-break-before: auto; break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+  }
+  @media screen and (max-width: 480px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .highlight-item { flex: 1 1 100%; }
+    .header-property-name { font-size: 12pt; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =====================================================
+     ページ1: 概要
+     ===================================================== -->
+<div class="page-container">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">RKC 収益物件</div>
+      <div class="header-property-name">京都府福知山市 夜久野町末580</div>
+      <div class="header-address">📍 京都府福知山市夜久野町末580　｜　JR山陰本線 下夜久野駅 約4,900m</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">20<span>万円</span></div>
+      <div class="header-case">案件番号: r-2621</div>
+      <a href="https://drive.google.com/drive/folders/1MoEv0Ck96a9sVwnMzpjwbv1udsCN_pl5?usp=drive_link"
+         target="_blank"
+         style="display:inline-block; margin-top:4px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <!-- ハイライトボックス -->
+  <div class="highlight-box">
+    <div class="highlight-item">
+      <div class="highlight-label">販売価格</div>
+      <div class="highlight-value">20<span class="highlight-unit">万円</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">想定利回り</div>
+      <div class="highlight-value">15.6<span class="highlight-unit">%</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">想定月額賃料</div>
+      <div class="highlight-value" style="font-size:12pt;">2,600<span class="highlight-unit">円</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">築年月</div>
+      <div class="highlight-value" style="font-size:12pt;">1976年1月</div>
+      <div class="highlight-unit">（築50年）</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">建物構造</div>
+      <div class="highlight-value" style="font-size:12pt;">木造</div>
+      <div class="highlight-unit">1階建</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">土地権利</div>
+      <div class="highlight-value" style="font-size:12pt;">所有権</div>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション -->
+  <div class="hero-section">
+    <!-- 左：KPI＋積算評価 -->
+    <div>
+      <div class="section-title">投資指標</div>
+      <div class="kpi-grid" style="margin-bottom:10px;">
+        <div class="kpi-card">
+          <div class="kpi-label">販売価格</div>
+          <div class="kpi-value">20<span class="kpi-unit">万円</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">想定利回り</div>
+          <div class="kpi-value">15.6<span class="kpi-unit">%</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">年間想定収入</div>
+          <div class="kpi-value" style="font-size:10pt;">31,200<span class="kpi-unit">円</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">路線価</div>
+          <div class="kpi-value" style="font-size:10pt;">2<span class="kpi-unit">万円/㎡</span></div>
+        </div>
+      </div>
+
+      <div class="section-title">積算評価</div>
+      <table class="overview-table" style="margin-bottom:0;">
+        <tr>
+          <td class="th">路線価</td>
+          <td>2万円/㎡</td>
+          <td class="th">土地面積</td>
+          <td>【確認中】</td>
+        </tr>
+        <tr>
+          <td class="th">土地積算評価</td>
+          <td colspan="3">路線価 × 土地面積（確認中）</td>
+        </tr>
+        <tr>
+          <td class="th">建物積算評価</td>
+          <td colspan="3" style="color:#C41E3A;">0円（木造築50年・残存耐用年数0年）</td>
+        </tr>
+        <tr>
+          <td class="th">総積算評価</td>
+          <td colspan="3">土地積算のみ（土地面積確認後算出）</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 右：外観写真 -->
+    <div>
+      <div class="section-title">物件外観写真</div>
+      <img src="https://drive.google.com/thumbnail?id=1-JJZWZB5XuMdteXfgmpAQenDMaDLbJk8&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1-JJZWZB5XuMdteXfgmpAQenDMaDLbJk8'"
+           alt="物件外観"
+           style="width:100%; max-height:88mm; object-fit:cover; border-radius:6px; border:1px solid #c8d8f8; display:block;">
+    </div>
+  </div>
+
+  <!-- 物件概要テーブル -->
+  <div style="padding: 0 16px 10px;">
+    <div class="section-title">物件概要</div>
+    <table class="overview-table">
+      <tr>
+        <td class="th">所在地</td>
+        <td colspan="3">京都府福知山市夜久野町末580</td>
+      </tr>
+      <tr>
+        <td class="th">交通</td>
+        <td colspan="3">JR山陰本線 下夜久野駅 約4,900m（徒歩約61分）</td>
+      </tr>
+      <tr>
+        <td class="th">築年月</td>
+        <td>1976年1月（築50年）</td>
+        <td class="th">建物構造</td>
+        <td>木造　1階建</td>
+      </tr>
+      <tr>
+        <td class="th">間取り</td>
+        <td>【確認中】</td>
+        <td class="th">建物面積</td>
+        <td>【確認中】</td>
+      </tr>
+      <tr>
+        <td class="th">土地面積</td>
+        <td>【確認中】</td>
+        <td class="th">土地権利</td>
+        <td>所有権</td>
+      </tr>
+      <tr>
+        <td class="th">用途地域</td>
+        <td>指定なし</td>
+        <td class="th">都市計画</td>
+        <td>都市計画区域外</td>
+      </tr>
+      <tr>
+        <td class="th">建ぺい率/容積率</td>
+        <td>【確認中】</td>
+        <td class="th">現況</td>
+        <td>空家</td>
+      </tr>
+      <tr>
+        <td class="th">取引態様</td>
+        <td>売主</td>
+        <td class="th">引渡</td>
+        <td>相談</td>
+      </tr>
+      <tr>
+        <td class="th">管理費/修繕積立</td>
+        <td>なし</td>
+        <td class="th">情報登録日</td>
+        <td>2026年4月17日</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div>r-2621 ｜ 京都府福知山市夜久野町末580</div>
+    <div>作成日：2026年4月23日</div>
+  </div>
+
+</div><!-- /page-container page1 -->
+
+
+<!-- =====================================================
+     ページ2: レントロール
+     ===================================================== -->
+<div class="page-container page-break">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">RKC｜レントロール</div>
+      <div class="header-property-name">京都府福知山市 夜久野町末580</div>
+      <div class="header-address">📍 JR山陰本線 下夜久野駅 約4,900m　｜　木造1階建 築50年</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">20<span>万円</span></div>
+      <div class="header-case">案件番号: r-2621</div>
+      <a href="https://drive.google.com/drive/folders/1MoEv0Ck96a9sVwnMzpjwbv1udsCN_pl5?usp=drive_link"
+         target="_blank"
+         style="display:inline-block; margin-top:4px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="section-title">レントロール（想定）</div>
+    <table class="lentroll-table avoid-break">
+      <thead>
+        <tr>
+          <th>部屋</th>
+          <th>間取り</th>
+          <th>建物面積</th>
+          <th>現況</th>
+          <th>想定月額賃料</th>
+          <th>年間想定収入</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align:center;">1戸（全体）</td>
+          <td style="text-align:center;">【確認中】</td>
+          <td style="text-align:center;">【確認中】</td>
+          <td style="text-align:center;">空室</td>
+          <td style="text-align:right; font-weight:700; color:#1a7a1a;">2,600円</td>
+          <td style="text-align:right; font-weight:700; color:#1a7a1a;">31,200円</td>
+          <td style="font-size:7.5pt;">戸建丸ごと貸出想定</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" style="text-align:right; font-weight:700;">合計（満室時）</td>
+          <td style="text-align:right; font-weight:700; color:#1a7a1a;">2,600円/月</td>
+          <td style="text-align:right; font-weight:700; color:#1a7a1a;">31,200円/年</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="two-col" style="margin-top:14px; gap:16px;">
+      <!-- 収入サマリー -->
+      <div>
+        <div class="section-title">年間収入サマリー</div>
+        <table class="finance-table avoid-break">
+          <tr>
+            <td class="th">想定月額賃料</td>
+            <td style="text-align:right; font-weight:700; color:#1a7a1a;">2,600円</td>
+          </tr>
+          <tr>
+            <td class="th">年間想定収入（満室時）</td>
+            <td style="text-align:right; font-weight:700; color:#1a7a1a;">31,200円</td>
+          </tr>
+          <tr>
+            <td class="th">販売価格</td>
+            <td style="text-align:right; font-weight:700;">200,000円（20万円）</td>
+          </tr>
+          <tr style="background:#fff8e1;">
+            <td class="th"><strong>想定表面利回り</strong></td>
+            <td style="text-align:right; font-weight:700; color:#1A365D; font-size:1.1em;"><strong>15.6%</strong></td>
+          </tr>
+        </table>
+        <div class="notes-box" style="font-size:7.5pt; margin-top:6px;">
+          ※ 想定賃料は参考値です。実際の賃料は市場状況により変動します。<br>
+          ※ ホームズ掲載の参考月収は5万円（年収60万円）の記載あり。
+        </div>
+      </div>
+
+      <!-- 年間支出 -->
+      <div>
+        <div class="section-title">年間支出（固定費）</div>
+        <table class="finance-table avoid-break">
+          <tr>
+            <td class="th">管理費</td>
+            <td style="text-align:right;">なし</td>
+          </tr>
+          <tr>
+            <td class="th">修繕積立金</td>
+            <td style="text-align:right;">なし</td>
+          </tr>
+          <tr>
+            <td class="th">固定資産税・都市計画税</td>
+            <td style="text-align:right;">【確認中】</td>
+          </tr>
+          <tr class="subtotal">
+            <td class="th"><strong>年間支出合計（概算）</strong></td>
+            <td style="text-align:right;"><strong>【確認中】</strong></td>
+          </tr>
+        </table>
+        <div class="notes-box" style="font-size:7.5pt; margin-top:6px;">
+          ※ 管理費・修繕積立金は元データに記載なし（戸建のため不要）。<br>
+          ※ 固定資産税等は別途確認が必要です。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div>r-2621 ｜ 京都府福知山市夜久野町末580</div>
+    <div>作成日：2026年4月23日</div>
+  </div>
+
+</div><!-- /page-container page2 -->
+
+
+<!-- =====================================================
+     ページ3: RKC収支シミュレーション＋投資ポイント＋周辺環境
+     ===================================================== -->
+<div class="page-container page-break">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">RKC｜収支シミュレーション</div>
+      <div class="header-property-name">京都府福知山市 夜久野町末580</div>
+      <div class="header-address">📍 JR山陰本線 下夜久野駅 約4,900m　｜　木造1階建 築50年</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">20<span>万円</span></div>
+      <div class="header-case">案件番号: r-2621</div>
+      <a href="https://drive.google.com/drive/folders/1MoEv0Ck96a9sVwnMzpjwbv1udsCN_pl5?usp=drive_link"
+         target="_blank"
+         style="display:inline-block; margin-top:4px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div class="two-col" style="padding: 12px 16px 10px; gap:14px;">
+
+    <!-- RKC収支シミュレーション -->
+    <div>
+      <div class="section-title">RKC収支シミュレーション</div>
+      <table class="finance-table avoid-break">
+        <tr>
+          <td class="th">① 販売価格（取得費用）</td>
+          <td style="text-align:right;">200,000円</td>
+        </tr>
+        <tr style="background:#f0faf0;">
+          <td class="th">年間想定家賃収入<br>（月2,600円 × 12ヶ月）</td>
+          <td style="text-align:right; color:#1a7a1a; font-weight:700;">31,200円</td>
+        </tr>
+        <tr style="background:#f0faf0;">
+          <td class="th">想定利回り</td>
+          <td style="text-align:right; color:#1a7a1a; font-weight:700;">15.6%</td>
+        </tr>
+        <tr>
+          <td class="th">② 想定出口価格（利回り20%想定）</td>
+          <td style="text-align:right;">
+            156,000円<br>
+            <span style="font-size:7.5pt; color:#888;">（年間31,200円 ÷ 20% = 156,000円）</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="th" style="padding-left:18px;">− ① 取得費用</td>
+          <td style="text-align:right;">−200,000円</td>
+        </tr>
+        <tr>
+          <td class="th" style="padding-left:18px;">− ③ 諸経費（想定）</td>
+          <td style="text-align:right;">−100,000円（登記費用等概算）</td>
+        </tr>
+        <tr>
+          <td class="th" style="padding-left:18px;">− ④ RKC成功報酬費用</td>
+          <td style="text-align:right; color:#C41E3A;">−100,000円</td>
+        </tr>
+        <tr class="subtotal">
+          <td class="th"><strong>想定売却益（②−①−③−④）</strong></td>
+          <td style="text-align:right; color:#C41E3A; font-weight:700; font-size:1.1em;">
+            <strong>−244,000円</strong>
+          </td>
+        </tr>
+      </table>
+      <div class="notes-box" style="margin-top:6px; font-size:7.5pt;">
+        ⚠️ RKC成功報酬費用として10万円を別途申し受けます<br>
+        ※ 想定出口価格は利回り20%想定の試算値です。市場状況により変動します。<br>
+        ※ 諸経費は登記費用等の概算値です（固定）。<br>
+        ※ 想定賃料はRKC案件表N列の値を使用しています。
+      </div>
+    </div>
+
+    <!-- 投資ポイント＋周辺環境 -->
+    <div>
+      <div class="section-title">投資ポイント</div>
+      <ul class="points-list avoid-break" style="margin-bottom:12px;">
+        <li>販売価格<strong>20万円</strong>の超低価格帯戸建案件</li>
+        <li>京都府福知山市・夜久野町の<strong>空き家再生</strong>物件</li>
+        <li>木造1階建・築50年・<strong>現状引渡</strong>（DIYリノベ対象）</li>
+        <li>土地権利は<strong>所有権</strong>（借地なし）</li>
+        <li>都市計画区域外・用途地域指定なし（自由度高）</li>
+        <li>JR山陰本線 下夜久野駅から約4.9km圏内</li>
+        <li>建物積算評価0円（築50年木造）、土地のみ評価対象</li>
+      </ul>
+
+      <div class="section-title">周辺環境</div>
+      <div class="env-grid avoid-break">
+        <div class="env-item">
+          <div class="env-label">最寄駅</div>
+          <div class="env-value">JR山陰本線 下夜久野駅</div>
+          <div class="env-label">約4,900m</div>
+        </div>
+        <div class="env-item">
+          <div class="env-label">エリア</div>
+          <div class="env-value">福知山市夜久野町末</div>
+          <div class="env-label">京都府北部・中国山地近接</div>
+        </div>
+        <div class="env-item">
+          <div class="env-label">都市計画</div>
+          <div class="env-value">区域外</div>
+          <div class="env-label">用途地域：指定なし</div>
+        </div>
+        <div class="env-item">
+          <div class="env-label">周辺施設</div>
+          <div class="env-value">【確認中】</div>
+          <div class="env-label">スーパー・医療機関等</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div>r-2621 ｜ 京都府福知山市夜久野町末580</div>
+    <div>作成日：2026年4月23日</div>
+  </div>
+
+</div><!-- /page-container page3 -->
+
+
+<!-- =====================================================
+     ページ4: 物件写真＋特記事項
+     ===================================================== -->
+<div class="page-container page-break">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">RKC｜物件写真</div>
+      <div class="header-property-name">京都府福知山市 夜久野町末580</div>
+      <div class="header-address">📍 JR山陰本線 下夜久野駅 約4,900m　｜　木造1階建 築50年</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">20<span>万円</span></div>
+      <div class="header-case">案件番号: r-2621</div>
+      <a href="https://drive.google.com/drive/folders/1MoEv0Ck96a9sVwnMzpjwbv1udsCN_pl5?usp=drive_link"
+         target="_blank"
+         style="display:inline-block; margin-top:4px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div class="photo-page-content">
+    <div class="section-title">物件写真（共有フォルダより）</div>
+
+    <!-- メイン＋サブ写真 -->
+    <div class="photo-grid-main">
+      <div class="photo-main">
+        <img src="https://drive.google.com/thumbnail?id=1-JJZWZB5XuMdteXfgmpAQenDMaDLbJk8&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1-JJZWZB5XuMdteXfgmpAQenDMaDLbJk8'"
+             alt="外観メイン">
+        <div class="photo-label">外観（メイン）</div>
+      </div>
+      <div class="photo-sub">
+        <img src="https://drive.google.com/thumbnail?id=13z2IWcs5CrMBiqHD7Z9AZh5thH0-FDYE&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/13z2IWcs5CrMBiqHD7Z9AZh5thH0-FDYE'"
+             alt="外観2">
+        <div class="photo-label">外観2</div>
+      </div>
+      <div class="photo-sub">
+        <img src="https://drive.google.com/thumbnail?id=16DQhdpOgy7sxpLpImMvh-WOj9WVx9tAc&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/16DQhdpOgy7sxpLpImMvh-WOj9WVx9tAc'"
+             alt="外観3">
+        <div class="photo-label">外観3</div>
+      </div>
+    </div>
+
+    <!-- 4枚グリッド1段目 -->
+    <div class="photo-grid-4">
+      <div class="photo-4">
+        <img src="https://drive.google.com/thumbnail?id=16_rsUhEiHuVONtSukrSSxRtOYwLFMaWA&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/16_rsUhEiHuVONtSukrSSxRtOYwLFMaWA'"
+             alt="室内1">
+        <div class="photo-label">室内1</div>
+      </div>
+      <div class="photo-4">
+        <img src="https://drive.google.com/thumbnail?id=19z1J-Tuc07tm8RkcMJHk_oKaUUN87NHG&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/19z1J-Tuc07tm8RkcMJHk_oKaUUN87NHG'"
+             alt="室内2">
+        <div class="photo-label">室内2</div>
+      </div>
+      <div class="photo-4">
+        <img src="https://drive.google.com/thumbnail?id=1FTTUEZhRA3j82x_o9zrnmZsGuALrjcxG&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1FTTUEZhRA3j82x_o9zrnmZsGuALrjcxG'"
+             alt="室内3">
+        <div class="photo-label">室内3</div>
+      </div>
+      <div class="photo-4">
+        <img src="https://drive.google.com/thumbnail?id=1FVMr76qk-8k_z1YjzwUcvujDneSKvBOf&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1FVMr76qk-8k_z1YjzwUcvujDneSKvBOf'"
+             alt="室内4">
+        <div class="photo-label">室内4</div>
+      </div>
+    </div>
+
+    <!-- 4枚グリッド2段目 -->
+    <div class="photo-grid-4">
+      <div class="photo-4">
+        <img src="https://drive.google.com/thumbnail?id=1M-Vma9bVJbQ5slpryL3V9V9rtoVwJeq9&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1M-Vma9bVJbQ5slpryL3V9V9rtoVwJeq9'"
+             alt="室内5">
+        <div class="photo-label">室内5</div>
+      </div>
+      <div class="photo-4">
+        <img src="https://drive.google.com/thumbnail?id=1SoDUZcJW09e7iocW1B1LDUVTAZgqx285&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1SoDUZcJW09e7iocW1B1LDUVTAZgqx285'"
+             alt="室内6">
+        <div class="photo-label">室内6</div>
+      </div>
+      <div class="photo-4">
+        <img src="https://drive.google.com/thumbnail?id=1_X9MYSQafMOoA6qJfugMT3dWP1m-Ei_U&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1_X9MYSQafMOoA6qJfugMT3dWP1m-Ei_U'"
+             alt="室内7">
+        <div class="photo-label">室内7</div>
+      </div>
+      <div class="photo-4">
+        <img src="https://drive.google.com/thumbnail?id=1aICSPgiiu5_I5YibBlpsRkFleQWmsT2T&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1aICSPgiiu5_I5YibBlpsRkFleQWmsT2T'"
+             alt="室内8">
+        <div class="photo-label">室内8</div>
+      </div>
+    </div>
+
+    <!-- 3枚グリッド -->
+    <div class="photo-grid-3" style="margin-bottom:10px;">
+      <div class="photo-3">
+        <img src="https://drive.google.com/thumbnail?id=1gKFCKxeBtJBtwDa3cyZne9rQ6OCl90QH&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1gKFCKxeBtJBtwDa3cyZne9rQ6OCl90QH'"
+             alt="室内9">
+        <div class="photo-label">室内9</div>
+      </div>
+      <div class="photo-3">
+        <img src="https://drive.google.com/thumbnail?id=1jr_qBKlB2zHPEyLBoCnD_vXiPD-QQpxa&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1jr_qBKlB2zHPEyLBoCnD_vXiPD-QQpxa'"
+             alt="室内10">
+        <div class="photo-label">室内10</div>
+      </div>
+      <div class="photo-3">
+        <img src="https://drive.google.com/thumbnail?id=1jsR6pK5nfaBoAmVWXDU5j3M3ObgwLJwg&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1jsR6pK5nfaBoAmVWXDU5j3M3ObgwLJwg'"
+             alt="室内11">
+        <div class="photo-label">室内11</div>
+      </div>
+    </div>
+
+    <!-- 特記事項 -->
+    <div class="section-title">特記事項・注意点</div>
+    <div class="notes-box">
+      ・現状引渡しとなります（空家）。内部の状況は写真・詳細資料にてご確認ください。<br>
+      ・都市計画区域外・用途地域指定なしの物件です（建物用途の自由度が高いエリアです）。<br>
+      ・築50年の木造建物のため、リフォーム・修繕費用を十分にご考慮の上ご検討ください。<br>
+      ・間取り・土地面積・建物面積等の詳細は別途詳細資料をご確認ください。<br>
+      ・<strong>RKC成功報酬費用として10万円を別途申し受けます。</strong><br>
+      ・詳細はご紹介業者様までお問い合わせください。
+    </div>
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div>r-2621 ｜ 京都府福知山市夜久野町末580</div>
+    <div>作成日：2026年4月23日</div>
+  </div>
+
+</div><!-- /page-container page4 -->
+
+</body>
+</html>
