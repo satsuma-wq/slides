@@ -39,9 +39,9 @@
 
     .container-full {
       width: 1600px;
-      height: 900px;
-      padding: var(--space-12) var(--space-16);
-      overflow: hidden;
+      min-height: 900px;
+      padding: var(--space-8) var(--space-16) var(--space-10);
+      overflow: visible;
     }
 
     /* Navy テーマ */
@@ -83,8 +83,8 @@
     /* Header */
     .header {
       border-bottom: 2px solid #1E3A5F;
-      padding-bottom: 10px;
-      margin-bottom: var(--space-8);
+      padding-bottom: 8px;
+      margin-bottom: var(--space-5);
     }
     .header-title {
       font-size: var(--text-3xl);
@@ -113,10 +113,10 @@
       background: #F8FAFC;
       border: 1.5px solid #CBD5E1;
       border-radius: var(--radius-xl);
-      padding: var(--space-6) var(--space-6) var(--space-6) var(--space-6);
+      padding: var(--space-5) var(--space-5);
       display: flex;
       flex-direction: column;
-      gap: var(--space-4);
+      gap: var(--space-3);
       position: relative;
     }
 
@@ -151,7 +151,7 @@
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
       border-radius: var(--radius-lg);
-      padding: var(--space-3) var(--space-4);
+      padding: var(--space-2) var(--space-4);
     }
     .tool-icon {
       width: 34px;
@@ -228,7 +228,7 @@
       display: flex;
       align-items: center;
       gap: var(--space-3);
-      padding: var(--space-2) var(--space-3);
+      padding: 8px var(--space-3);
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
       border-radius: var(--radius-md);
@@ -256,9 +256,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 20px;
+      height: 14px;
       color: #94A3B8;
-      font-size: var(--text-xl);
+      font-size: var(--text-lg);
     }
 
     /* Phase header row */
@@ -266,7 +266,7 @@
       display: flex;
       align-items: center;
       gap: var(--space-3);
-      margin-bottom: var(--space-2);
+      margin-bottom: 0;
     }
 
     /* Highlight tag */
@@ -294,7 +294,7 @@
       color: #1E3A5F;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: var(--space-2);
+      margin-bottom: 0;
     }
   </style>
 </head>
@@ -345,7 +345,7 @@
         </div>
       </div>
 
-      <div style="margin-top:var(--space-2);padding:var(--space-3) var(--space-4);background:#EFF6FF;border-radius:var(--radius-lg);border:1px solid #BFDBFE;">
+      <div style="padding:var(--space-3) var(--space-4);background:#EFF6FF;border-radius:var(--radius-lg);border:1px solid #BFDBFE;">
         <div style="font-size:var(--text-lg);color:#1E40AF;font-weight:600;">ターゲット</div>
         <div style="font-size:var(--text-lg);color:#1E3A5F);margin-top:4px;">一都三県のみ</div>
         <div style="font-size:var(--text-lg);color:#475569;margin-top:4px;">約12.6万件のリスト<br>（2〜3周サイクル）</div>
@@ -373,7 +373,7 @@
         <div class="kpi-label">有効架電数（目標）</div>
       </div>
 
-      <div style="margin-top:var(--space-2);padding:var(--space-3) var(--space-4);background:#FFFFFF;border:1px solid #E2E8F0;border-radius:var(--radius-lg);">
+      <div style="padding:var(--space-3) var(--space-4);background:#FFFFFF;border:1px solid #E2E8F0;border-radius:var(--radius-lg);">
         <div style="font-size:var(--text-lg);font-weight:600;color:#1E3A5F;margin-bottom:6px;">有効架電の定義</div>
         <div style="display:flex;align-items:center;gap:var(--space-2);">
           <img src="https://unpkg.com/lucide-static@latest/icons/clock.svg" width="24" height="24" alt="" style="opacity:0.6;flex-shrink:0;">
@@ -416,7 +416,7 @@
         </div>
       </div>
 
-      <div class="section-label" style="margin-top:var(--space-2);">フォローフロー</div>
+      <div class="section-label">フォローフロー</div>
 
       <div class="sub-flow">
         <div class="sub-step">
@@ -462,7 +462,7 @@
         </div>
       </div>
 
-      <div class="section-label" style="margin-top:var(--space-2);">処理ステップ</div>
+      <div class="section-label">処理ステップ</div>
 
       <div class="sub-flow">
         <div class="sub-step">
