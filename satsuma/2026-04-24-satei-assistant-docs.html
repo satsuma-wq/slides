@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リアテクス 査定アシスタント ドキュメント</title>
+<style>
+  :root {
+    --blue: #1F4E79;
+    --mid-blue: #2E75B6;
+    --light-blue: #D6E4F0;
+    --bg: #F4F8FB;
+    --white: #ffffff;
+    --gray: #6c757d;
+    --border: #dce6f0;
+    --green: #1a7a4a;
+    --amber: #856404;
+    --amber-bg: #fff8e1;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif; background: var(--bg); color: #222; font-size: 15px; line-height: 1.7; }
+
+  /* Header */
+  .site-header {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--mid-blue) 100%);
+    color: white; padding: 32px 24px 0; text-align: center;
+  }
+  .site-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 6px; }
+  .site-header p { font-size: 1rem; opacity: 0.85; margin-bottom: 24px; }
+  .badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 3px 14px; font-size: 0.8rem; margin: 0 4px 16px; }
+
+  /* Tabs */
+  .tabs { display: flex; justify-content: center; gap: 4px; padding-bottom: 0; }
+  .tab-btn {
+    background: rgba(255,255,255,0.15); border: none; color: white;
+    padding: 10px 28px; border-radius: 8px 8px 0 0; cursor: pointer;
+    font-size: 0.95rem; font-weight: 600; transition: all 0.2s;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,0.25); }
+  .tab-btn.active { background: var(--bg); color: var(--blue); }
+
+  /* Content */
+  .content { max-width: 900px; margin: 0 auto; padding: 32px 20px 64px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Section */
+  h2.section-title {
+    font-size: 1.35rem; color: var(--blue); font-weight: 700;
+    border-bottom: 3px solid var(--mid-blue); padding-bottom: 8px;
+    margin: 36px 0 16px;
+  }
+  h2.section-title:first-of-type { margin-top: 0; }
+  h3.sub-title { font-size: 1.05rem; color: var(--mid-blue); font-weight: 700; margin: 24px 0 10px; }
+  p { margin-bottom: 12px; }
+
+  /* Info box */
+  .info-box { background: #EBF3FB; border-left: 4px solid var(--mid-blue); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 14px 0; color: #1A5276; font-size: 0.93rem; }
+  .warning-box { background: var(--amber-bg); border-left: 4px solid #ffc107; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 14px 0; color: var(--amber); font-size: 0.93rem; }
+  .success-box { background: #e8f5e9; border-left: 4px solid #28a745; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 14px 0; color: var(--green); font-size: 0.93rem; }
+
+  /* Table */
+  .tbl-wrap { overflow-x: auto; margin: 14px 0 20px; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  table { width: 100%; border-collapse: collapse; background: white; }
+  thead th { background: var(--mid-blue); color: white; padding: 10px 14px; text-align: left; font-size: 0.88rem; font-weight: 700; white-space: nowrap; }
+  tbody tr:nth-child(even) td { background: #F0F7FF; }
+  tbody td { padding: 9px 14px; border-bottom: 1px solid var(--border); font-size: 0.88rem; vertical-align: top; }
+
+  /* Steps */
+  .steps { counter-reset: step; margin: 14px 0; }
+  .step { display: flex; gap: 14px; margin-bottom: 14px; }
+  .step-num { counter-increment: step; min-width: 32px; height: 32px; background: var(--mid-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+  .step-body { padding-top: 4px; }
+  .step-title { font-weight: 700; color: var(--blue); margin-bottom: 4px; }
+
+  /* Bullets */
+  ul.doc-list { padding-left: 22px; margin: 10px 0; }
+  ul.doc-list li { margin-bottom: 6px; font-size: 0.92rem; }
+
+  /* Code */
+  pre { background: #1e1e2e; color: #cdd6f4; padding: 16px 18px; border-radius: 8px; font-size: 0.82rem; overflow-x: auto; margin: 12px 0; line-height: 1.55; }
+  code { font-family: 'Consolas', 'Courier New', monospace; }
+
+  /* Q&A */
+  .qa { background: white; border-radius: 10px; padding: 16px 20px; margin: 12px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .qa-q { font-weight: 700; color: var(--blue); margin-bottom: 8px; }
+  .qa-a { color: #444; font-size: 0.92rem; }
+
+  /* Flow */
+  .flow { display: flex; flex-direction: column; gap: 6px; margin: 16px 0; }
+  .flow-item { display: flex; align-items: flex-start; gap: 12px; background: white; border-radius: 8px; padding: 10px 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .flow-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+  .flow-label { font-size: 0.8rem; color: var(--gray); }
+  .flow-text { font-size: 0.9rem; font-weight: 600; }
+  .flow-arrow { text-align: center; color: var(--mid-blue); font-size: 1.2rem; line-height: 1; }
+
+  /* Card grid */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 14px 0; }
+  .card { background: white; border-radius: 10px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); border-top: 3px solid var(--mid-blue); }
+  .card-label { font-size: 0.78rem; color: var(--gray); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .card-val { font-weight: 700; color: var(--blue); font-size: 0.95rem; }
+
+  /* Deploy options */
+  .option-box { background: white; border-radius: 10px; padding: 18px 20px; margin: 14px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.08); border-left: 4px solid var(--mid-blue); }
+  .option-title { font-weight: 700; color: var(--blue); margin-bottom: 8px; font-size: 1.0rem; }
+
+  /* Footer */
+  .doc-footer { text-align: center; color: var(--gray); font-size: 0.82rem; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); }
+
+  /* Print */
+  @media print { .tabs, .tab-btn { display: none; } .tab-panel { display: block !important; } }
+  @media (max-width: 600px) { .site-header h1 { font-size: 1.4rem; } .tab-btn { padding: 8px 14px; font-size: 0.82rem; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>🏠 リアテクス 査定アシスタント</h1>
+  <p>Gmail Add-on × Gemini AI 自動査定システム</p>
+  <div>
+    <span class="badge">2026年4月</span>
+    <span class="badge">株式会社リアテクス</span>
+    <span class="badge">社内限定</span>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('user')">📘 使い方・仕様書</button>
+    <button class="tab-btn" onclick="switchTab('dev')">🔧 技術ドキュメント</button>
+  </div>
+</header>
+
+<div class="content">
+
+<!-- ===================== USER TAB ===================== -->
+<div id="tab-user" class="tab-panel active">
+
+  <h2 class="section-title">1. 概要</h2>
+  <p>本アドオンは、Gmailで受信した業者からの物件情報メールを開くと、自動的にGoogle DriveのPDF（物件概要書・レントロール）を読み取り、リアテクス独自の査定ロジックで<strong>査定額・買付価格を計算して表示するAIツール</strong>です。</p>
+  <div class="info-box">✅ 作業時間の大幅短縮：手作業で30分以上かかっていた査定業務が、メールを開くだけで自動化されます。</div>
+
+  <h2 class="section-title">2. 利用条件</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>項目</th><th>要件</th></tr></thead>
+    <tbody>
+      <tr><td>メール環境</td><td>Gmail（Google Workspace）</td></tr>
+      <tr><td>ブラウザ</td><td>Google Chrome 推奨</td></tr>
+      <tr><td>権限</td><td>物件フォルダへのGoogleドライブ閲覧権限</td></tr>
+      <tr><td>インストール</td><td>管理者から提供されるリンクからインストール</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="section-title">3. インストール方法（初回のみ）</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Gmailを開く</div><div>ブラウザでGmailにアクセスする</div></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">テストデプロイURLにアクセス</div><div>管理者から共有された「インストール用URL」をクリック</div></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">「インストール」をクリック</div><div>Googleアカウントを選択し「許可」をクリック</div></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">完了確認</div><div>Gmailの右サイドバーに 🏠 アイコンが表示されれば完了</div></div></div>
+  </div>
+  <div class="warning-box">⚠️ 「このアプリはGoogleによって確認されていません」と表示された場合は「詳細」→「リアテクス査定アシスタント（安全ではないページ）に移動」→「許可」を選択してください。</div>
+
+  <h2 class="section-title">4. 使い方</h2>
+  <h3 class="sub-title">4-1. 基本的な使い方</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>ステップ</th><th>操作</th><th>説明</th></tr></thead>
+    <tbody>
+      <tr><td>①</td><td>メールを開く</td><td>業者から届いた物件情報メールをGmailで開く</td></tr>
+      <tr><td>②</td><td>自動解析開始</td><td>右サイドバーに「査定アシスタント」が起動（20〜60秒）</td></tr>
+      <tr><td>③</td><td>結果を確認</td><td>査定額・買付価格・各種指標が自動表示される</td></tr>
+      <tr><td>④</td><td>補正（任意）</td><td>誤りがあれば下部の入力欄に補正内容を入力して再計算</td></tr>
+    </tbody>
+  </table></div>
+  <div class="warning-box">⚠️ 読み込みに20〜60秒かかります。PDFサイズによってはさらに時間がかかる場合があります。</div>
+
+  <h3 class="sub-title">4-2. 補正・再計算機能</h3>
+  <p>査定結果の下部にある入力欄から、パラメーターの補正ができます。</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>補正したい内容</th><th>入力例</th></tr></thead>
+    <tbody>
+      <tr><td>店舗割合を修正</td><td>店舗割合は実際は100%です</td></tr>
+      <tr><td>路線価を指定</td><td>路線価は5.8万円/㎡です</td></tr>
+      <tr><td>入居率を修正</td><td>入居率は83%です、空室数は4室です</td></tr>
+      <tr><td>複数同時補正</td><td>店舗割合100%、再建築不可、路線価5.8万円</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="section-title">5. 表示される査定内容</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>セクション</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>【基本情報】</td><td>築年数・構造・路線価・住所</td></tr>
+      <tr><td>【物件詳細】</td><td>土地・建物面積、家賃収入、経費、原状回復費用</td></tr>
+      <tr><td>【補正情報】</td><td>入居率・部屋数・店舗割合・駐車場・借地等</td></tr>
+      <tr><td>【計算途中値】</td><td>積算価格・耐用年数・路線価丸め値</td></tr>
+      <tr><td>【利回り】</td><td>基準利回り・各補正値・最終必要利回り</td></tr>
+      <tr><td>＜客出し価格目安＞</td><td>プロパー・滋賀銀行・AGB各ローンの査定額</td></tr>
+      <tr><td>【買付価格】</td><td>利益率・仲介手数料・最終買付価格</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="section-title">6. よくある質問</h2>
+  <div class="qa"><div class="qa-q">Q. 「Googleドライブのリンクが見つかりません」と表示される</div><div class="qa-a">→ メール本文にGoogleドライブのリンクが含まれていません。物件情報を格納したフォルダリンクが記載されたメールを開いてください。</div></div>
+  <div class="qa"><div class="qa-q">Q. 路線価が「不明」と表示される</div><div class="qa-a">→ メール本文に路線価の記載がありません。補正欄に「路線価は○○万円です」と入力して再計算してください。</div></div>
+  <div class="qa"><div class="qa-q">Q. 結果が出るまでに時間がかかる</div><div class="qa-a">→ PDFの読み取りとAI解析に20〜60秒かかります。仕様上の制限です。しばらくお待ちください。</div></div>
+  <div class="qa"><div class="qa-q">Q. 査定額に誤りがある</div><div class="qa-a">→ 画面下部の補正欄に修正内容を入力して「補正して再計算」を押してください。本ツールの結果は参考値です。重要案件は必ず正規ロジックで再確認してください。</div></div>
+  <div class="qa"><div class="qa-q">Q. 住所が間違っている</div><div class="qa-a">→ 補正欄に「住所は○○です」と入力して再計算してください。メールスレッドの構造によって誤検知する場合があります。</div></div>
+
+  <h2 class="section-title">7. 注意事項</h2>
+  <ul class="doc-list">
+    <li>本ツールの査定結果は参考値です。最終的な判断は担当者が行ってください。</li>
+    <li>Google DriveのPDFへのアクセス権限が必要です。</li>
+    <li>メールスレッドに複数のGoogleドライブリンクがある場合、最初に登場したリンクを使用します。</li>
+    <li>PDFが非常に大きい場合（20MB超）、タイムアウトエラーが発生することがあります。</li>
+    <li>本ツールで処理した物件情報はGemini APIに送信されます。機密性の高い情報の取り扱いにご注意ください。</li>
+  </ul>
+
+  <div class="doc-footer">お問い合わせ：satsuma@reatex.co.jp　／　株式会社リアテクス　社内限定資料</div>
+</div>
+
+<!-- ===================== DEV TAB ===================== -->
+<div id="tab-dev" class="tab-panel">
+
+  <h2 class="section-title">1. プロジェクト概要</h2>
+  <p>業者からのメールに含まれるGoogleドライブリンクを検知し、物件概要書PDFをGemini APIに送信して自動解析・査定額を算出するGmailアドオン。Gmailのサイドバーに結果を表示し、補正再計算も可能。</p>
+  <div class="card-grid">
+    <div class="card"><div class="card-label">開発基盤</div><div class="card-val">Google Apps Script</div></div>
+    <div class="card"><div class="card-label">AI / LLM</div><div class="card-val">Gemini 2.5 Flash</div></div>
+    <div class="card"><div class="card-label">ファイルアクセス</div><div class="card-val">Google Drive API</div></div>
+    <div class="card"><div class="card-label">メールアクセス</div><div class="card-val">Gmail API</div></div>
+    <div class="card"><div class="card-label">状態管理</div><div class="card-val">CacheService（6h）</div></div>
+    <div class="card"><div class="card-label">シークレット管理</div><div class="card-val">PropertiesService</div></div>
+    <div class="card"><div class="card-label">デプロイ方式</div><div class="card-val">Googleアドオン</div></div>
+    <div class="card"><div class="card-label">開発期間</div><div class="card-val">2026年4月</div></div>
+  </div>
+
+  <h2 class="section-title">2. システムアーキテクチャ</h2>
+  <h3 class="sub-title">2-1. 処理フロー</h3>
+  <div class="flow">
+    <div class="flow-item"><div class="flow-icon">📧</div><div><div class="flow-label">① トリガー</div><div class="flow-text">メールを開く → contextualTrigger発火</div></div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-item"><div class="flow-icon">🔍</div><div><div class="flow-label">② スレッド検索</div><div class="flow-text">古い順に全メッセージを走査してDrive URLを探索</div></div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-item"><div class="flow-icon">📁</div><div><div class="flow-label">③ PDF取得</div><div class="flow-text">DriveApp でフォルダ内の概要書・レントロールを自動選択→Base64変換</div></div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-item"><div class="flow-icon">📝</div><div><div class="flow-label">④ メール情報抽出</div><div class="flow-text">正規表現で物件ID・路線価・住所を抽出（引用部除外）</div></div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-item"><div class="flow-icon">🤖</div><div><div class="flow-label">⑤ Gemini API送信</div><div class="flow-text">PDF + 査定プロンプトを送信（最大8192トークン出力）</div></div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-item"><div class="flow-icon">📊</div><div><div class="flow-label">⑥ カード表示</div><div class="flow-text">結果を複数セクションに分割してGmailサイドバーに表示</div></div></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-item"><div class="flow-icon">✏️</div><div><div class="flow-label">⑦ 補正再計算（任意）</div><div class="flow-text">CacheService から前回結果を取得 → 補正指示で再計算</div></div></div>
+  </div>
+
+  <h3 class="sub-title">2-2. 主要関数一覧</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>関数名</th><th>役割</th></tr></thead>
+    <tbody>
+      <tr><td><code>buildGmailContextCard(e)</code></td><td>メール開封時のメインエントリポイント</td></tr>
+      <tr><td><code>buildResultCard(resultText)</code></td><td>査定結果カード（複数セクション）を構築</td></tr>
+      <tr><td><code>buildSimpleCard(message)</code></td><td>シンプルな1枚カードを構築</td></tr>
+      <tr><td><code>extractDriveUrl(body)</code></td><td>本文からDrive URLを正規表現で抽出</td></tr>
+      <tr><td><code>extractEmailInfo(body)</code></td><td>物件ID・路線価・住所を抽出（引用部除外）</td></tr>
+      <tr><td><code>resolveFiles(url)</code></td><td>Drive URL → ファイルBase64配列に変換</td></tr>
+      <tr><td><code>findPDFsInFolder(folderId)</code></td><td>フォルダから概要書+レントロールを自動選択</td></tr>
+      <tr><td><code>runGeminiAnalysis(emailInfo, pdfs)</code></td><td>PDF+プロンプトをGeminiに送信し結果取得</td></tr>
+      <tr><td><code>handleCorrection(e)</code></td><td>補正ボタン押下時の再計算処理</td></tr>
+      <tr><td><code>runGeminiCorrection(prev, text)</code></td><td>前回結果+補正指示でGemini再計算</td></tr>
+      <tr><td><code>buildPrompt(emailInfo, fileName)</code></td><td>査定プロンプト文字列を構築</td></tr>
+      <tr><td><code>debugDriveAccess()</code></td><td>Driveアクセス確認用デバッグ関数</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="section-title">3. セットアップ手順</h2>
+  <h3 class="sub-title">3-1. 新規環境への導入</h3>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Google Apps Scriptプロジェクトを新規作成</div><div>script.google.com → 「新しいプロジェクト」</div></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Code.gs にコードをペースト</div><div>最新版のCode.gsを貼り付けて保存（Ctrl+S）</div></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">appsscript.json を設定</div><div>エディタ設定 →「appsscript.jsonをエディタで表示する」をON → 以下に設定</div></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">GEMINI_API_KEY を登録</div><div>「プロジェクトの設定」→「スクリプトプロパティ」→ キー：<code>GEMINI_API_KEY</code> で追加</div></div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">デプロイ</div><div>「デプロイ」→「新しいデプロイ」→ 種類：アドオン →「デプロイ」</div></div></div>
+  </div>
+
+  <h3 class="sub-title">3-2. appsscript.json（マニフェスト設定）</h3>
+  <pre><code>{
+  "timeZone": "Asia/Tokyo",
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/gmail.addons.execute",
+    "https://www.googleapis.com/auth/gmail.readonly",
+    "https://www.googleapis.com/auth/drive",
+    "https://www.googleapis.com/auth/script.external_request"
+  ],
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "addOns": {
+    "common": {
+      "name": "リアテクス 査定アシスタント",
+      "logoUrl": "https://ssl.gstatic.com/docs/script/images/logo/script-64.png",
+      "homepageTrigger": { "runFunction": "buildHomepage" }
+    },
+    "gmail": {
+      "contextualTriggers": [{
+        "unconditional": {},
+        "onTriggerFunction": "buildGmailContextCard"
+      }]
+    }
+  }
+}</code></pre>
+
+  <h3 class="sub-title">3-3. 必要なOAuthスコープと理由</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>スコープ</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td><code>gmail.addons.execute</code></td><td>Gmailアドオンの実行権限</td></tr>
+      <tr><td><code>gmail.readonly</code></td><td>メール本文の読み取り（Drive URL・物件情報抽出）</td></tr>
+      <tr><td><code>drive</code></td><td>DriveフォルダからPDFファイルを取得</td></tr>
+      <tr><td><code>script.external_request</code></td><td>Gemini API（外部URL）へのHTTPリクエスト</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="section-title">4. 社内全員への展開方法</h2>
+  <div class="option-box">
+    <div class="option-title">🟢 オプションA：テストデプロイURLを共有（推奨・最も簡単）</div>
+    <ul class="doc-list">
+      <li>デプロイ後に表示される「テストデプロイURL」を全社員にメールで共有</li>
+      <li>各自がURLにアクセスし「インストール」を実行</li>
+      <li>初回のみ権限承認が必要</li>
+    </ul>
+    <div class="warning-box" style="margin-top:10px;">⚠️ テストデプロイは「テストユーザー」として追加されたアカウントのみ利用可能。「デプロイを管理」→「テストユーザーを管理」から各社員のGmailアドレスを追加してください。</div>
+  </div>
+  <div class="option-box">
+    <div class="option-title">🔵 オプションB：Google Workspaceドメイン内部公開（本格運用）</div>
+    <ul class="doc-list">
+      <li>Google Workspace管理者がAdmin Console → アプリ → Marketplace → アプリを管理から社内公開</li>
+      <li>全員が自動的に利用可能になる（「承認されていません」警告なし）</li>
+    </ul>
+    <div class="warning-box" style="margin-top:10px;">⚠️ Google Workspace有料プランが必要です。</div>
+  </div>
+
+  <h2 class="section-title">5. Gemini API設定</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>項目</th><th>詳細</th></tr></thead>
+    <tbody>
+      <tr><td>APIエンドポイント</td><td><code>https://generativelanguage.googleapis.com/v1beta/models/</code></td></tr>
+      <tr><td>使用モデル</td><td><code>gemini-2.5-flash</code></td></tr>
+      <tr><td>APIキー管理</td><td>スクリプトプロパティ「<code>GEMINI_API_KEY</code>」</td></tr>
+      <tr><td>maxOutputTokens</td><td>8192（査定結果の全文出力に必要）</td></tr>
+      <tr><td>temperature</td><td>0.05（再現性重視・低ランダム性）</td></tr>
+      <tr><td>PDF送信方式</td><td>inline_data（Base64エンコード）</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="section-title">6. 既知の制限事項と対策</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>制限</th><th>状況</th><th>対策</th></tr></thead>
+    <tbody>
+      <tr><td>処理時間</td><td>20〜60秒（PDF→Gemini送信）</td><td>仕様上の制限。Gemini File APIで改善可能</td></tr>
+      <tr><td>PDFサイズ</td><td>UrlFetchApp上限50MB</td><td>通常の概要書は問題なし</td></tr>
+      <tr><td>キャッシュ有効期限</td><td>6時間</td><td>補正機能はメール再読み込みで再取得可能</td></tr>
+      <tr><td>出力トークン上限</td><td>8192トークン</td><td>通常の査定結果には十分</td></tr>
+      <tr><td>Drive権限</td><td>DriveApp組み込み利用</td><td>共有フォルダへのアクセス権が必要</td></tr>
+      <tr><td>並列処理</td><td>同期処理のみ</td><td>Apps Scriptの仕様上、非同期処理は不可</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="section-title">7. 今後の改善候補</h2>
+  <ul class="doc-list">
+    <li>Gemini File APIによる事前PDF登録（処理時間短縮）</li>
+    <li>スプレッドシートへの査定結果自動記録</li>
+    <li>LINE WORKS / Slack連携（査定結果の自動投稿）</li>
+    <li>正規の査定botロジック（参照テーブル）との完全統合</li>
+    <li>Google Workspace Marketplaceへの社内公開</li>
+  </ul>
+
+  <div class="doc-footer">技術的な問い合わせ：satsuma@reatex.co.jp　／　株式会社リアテクス　社内機密資料</div>
+</div>
+
+</div><!-- .content -->
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
