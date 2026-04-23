@@ -1,583 +1,352 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>物件買取クライテリア｜株式会社リアテクス</title>
-  <style>
-    :root {
-      --primary: #1a2e4a;
-      --accent: #e85d2f;
-      --accent-light: #f5a082;
-      --bg: #f4f6f9;
-      --white: #ffffff;
-      --text: #2d3748;
-      --text-light: #718096;
-      --border: #e2e8f0;
-      --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
-
-    /* ===== HEADER ===== */
-    header {
-      background: var(--primary);
-      padding: 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -60px;
-      right: -60px;
-      width: 280px;
-      height: 280px;
-      background: var(--accent);
-      border-radius: 50%;
-      opacity: 0.12;
-    }
-
-    header::after {
-      content: '';
-      position: absolute;
-      bottom: -40px;
-      left: 30%;
-      width: 180px;
-      height: 180px;
-      background: var(--accent-light);
-      border-radius: 50%;
-      opacity: 0.08;
-    }
-
-    .header-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 40px 32px 36px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .company-badge {
-      display: inline-block;
-      background: var(--accent);
-      color: white;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      padding: 4px 12px;
-      border-radius: 2px;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    header h1 {
-      font-size: 28px;
-      font-weight: 800;
-      color: white;
-      letter-spacing: 0.04em;
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
-
-    header h1 span {
-      color: var(--accent-light);
-    }
-
-    .header-sub {
-      color: rgba(255,255,255,0.65);
-      font-size: 13px;
-      letter-spacing: 0.06em;
-    }
-
-    /* ===== SUMMARY CHIPS ===== */
-    .summary-bar {
-      background: white;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .summary-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 16px 32px;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .chip {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      color: var(--text);
-    }
-
-    .chip-icon {
-      font-size: 18px;
-    }
-
-    .chip strong {
-      color: var(--primary);
-      font-weight: 700;
-    }
-
-    .chip-divider {
-      width: 1px;
-      height: 20px;
-      background: var(--border);
-    }
-
-    /* ===== MAIN ===== */
-    main {
-      max-width: 960px;
-      margin: 40px auto;
-      padding: 0 32px;
-    }
-
-    .section-title {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ===== CARDS GRID ===== */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-
-    .card {
-      background: var(--white);
-      border-radius: 12px;
-      box-shadow: var(--card-shadow);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-    }
-
-    .card-header {
-      background: var(--primary);
-      padding: 18px 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .card-icon {
-      font-size: 26px;
-      line-height: 1;
-    }
-
-    .card-title {
-      color: white;
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 1.4;
-    }
-
-    .card-body {
-      padding: 20px 24px;
-    }
-
-    .row {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 14px;
-    }
-
-    .row:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .row:first-child {
-      padding-top: 0;
-    }
-
-    .row-label {
-      color: var(--text-light);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-      min-width: 90px;
-      padding-top: 2px;
-    }
-
-    .row-value {
-      color: var(--text);
-      font-weight: 500;
-      flex: 1;
-    }
-
-    .badge-yield {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--accent), #c0392b);
-      color: white;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 4px;
-    }
-
-    /* ===== STOCK SECTION ===== */
-    .stock-section {
-      margin-bottom: 40px;
-    }
-
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-
-    .stat-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 18px 20px;
-      text-align: center;
-      box-shadow: var(--card-shadow);
-    }
-
-    .stat-number {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--primary);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .stat-number span {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    .stat-label {
-      font-size: 11px;
-      color: var(--text-light);
-      font-weight: 600;
-      letter-spacing: 0.06em;
-    }
-
-    .stock-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    .stock-item {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      box-shadow: var(--card-shadow);
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .stock-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
-    }
-
-    .stock-type-bar {
-      padding: 7px 14px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: white;
-    }
-
-    .type-mansion { background: #2563eb; }
-    .type-apart   { background: #7c3aed; }
-    .type-kodate  { background: #059669; }
-    .type-land    { background: #b45309; }
-
-    .stock-body {
-      padding: 16px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .stock-address {
-      font-size: 13px;
-      color: var(--text);
-      font-weight: 600;
-      line-height: 1.4;
-    }
-
-    .stock-price {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--primary);
-    }
-
-    .stock-meta {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: auto;
-    }
-
-    .meta-chip {
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 4px;
-      background: var(--bg);
-      color: var(--text-light);
-    }
-
-    .meta-chip.yield-high {
-      background: #fef2f2;
-      color: #dc2626;
-    }
-
-    .stock-link {
-      display: block;
-      text-align: center;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--accent);
-      padding: 10px;
-      border-top: 1px solid var(--border);
-      text-decoration: none;
-      transition: background 0.15s;
-    }
-
-    .stock-link:hover {
-      background: #fff5f3;
-    }
-
-    .stock-more-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: var(--primary);
-      color: white;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 14px 28px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.2s;
-      width: fit-content;
-      margin: 0 auto;
-    }
-
-    .stock-more-btn:hover {
-      background: #253d5e;
-    }
-
-    /* ===== LAND SECTION ===== */
-    .land-section {
-      background: var(--white);
-      border-radius: 12px;
-      box-shadow: var(--card-shadow);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      margin-bottom: 40px;
-    }
-
-    .land-header {
-      background: var(--primary);
-      padding: 18px 28px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .land-header-icon {
-      font-size: 28px;
-    }
-
-    .land-header-title {
-      color: white;
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    .land-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-    }
-
-    .land-area {
-      padding: 24px 28px;
-    }
-
-    .land-area:first-child {
-      border-right: 1px solid var(--border);
-    }
-
-    .land-area-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 14px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--accent);
-      display: inline-block;
-    }
-
-    .land-row {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      padding: 8px 0;
-      font-size: 14px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .land-row:last-child {
-      border-bottom: none;
-    }
-
-    .land-label {
-      color: var(--text-light);
-      font-size: 12px;
-      font-weight: 600;
-      min-width: 80px;
-      padding-top: 1px;
-    }
-
-    .land-value {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    /* ===== FOOTER ===== */
-    .footer-link-section {
-      background: var(--white);
-      border-radius: 12px;
-      box-shadow: var(--card-shadow);
-      border: 1px solid var(--border);
-      padding: 28px 32px;
-      margin-bottom: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .footer-link-text h3 {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 4px;
-    }
-
-    .footer-link-text p {
-      font-size: 13px;
-      color: var(--text-light);
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--accent);
-      color: white;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      white-space: nowrap;
-    }
-
-    .btn-primary:hover {
-      background: #c0392b;
-      transform: translateY(-1px);
-    }
-
-    footer {
-      background: var(--primary);
-      color: rgba(255,255,255,0.55);
-      text-align: center;
-      padding: 32px;
-      font-size: 12px;
-      letter-spacing: 0.04em;
-    }
-
-    footer a {
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: white;
-    }
-
-    footer .footer-company {
-      color: white;
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    footer .footer-info {
-      margin-bottom: 4px;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 640px) {
-      .header-inner { padding: 28px 20px; }
-      header h1 { font-size: 22px; }
-      main { padding: 0 16px; margin: 24px auto; }
-      .cards-grid { grid-template-columns: 1fr; }
-      .land-grid { grid-template-columns: 1fr; }
-      .land-area:first-child { border-right: none; border-bottom: 1px solid var(--border); }
-      .summary-inner { padding: 12px 16px; gap: 12px; }
-      .footer-link-section { flex-direction: column; align-items: flex-start; }
-      .stats-row { grid-template-columns: repeat(2, 1fr); }
-      .stock-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件買取クライテリア｜株式会社リアテクス</title>
+<style>
+:root {
+  --primary: #1a2e4a;
+  --accent: #e85d2f;
+  --accent-light: #f5a082;
+  --bg: #f4f6f9;
+  --white: #ffffff;
+  --text: #2d3748;
+  --text-light: #718096;
+  --border: #e2e8f0;
+  --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+/* ===== HEADER ===== */
+header {
+  background: var(--primary);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0.12;
+}
+header::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: 30%;
+  width: 180px; height: 180px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  opacity: 0.08;
+}
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 32px 36px;
+  position: relative;
+  z-index: 1;
+}
+.company-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 4px 12px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+header h1 span { color: var(--accent-light); }
+.header-sub {
+  color: rgba(255,255,255,0.65);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+/* ===== SUMMARY CHIPS ===== */
+.summary-bar {
+  background: white;
+  border-bottom: 1px solid var(--border);
+}
+.summary-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.chip { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text); }
+.chip-icon { font-size: 18px; }
+.chip strong { color: var(--primary); font-weight: 700; }
+.chip-divider { width: 1px; height: 20px; background: var(--border); }
+/* ===== MAIN ===== */
+main { max-width: 960px; margin: 40px auto; padding: 0 32px; }
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+/* ===== CARDS GRID ===== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+.card-header {
+  background: var(--primary);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.card-icon { font-size: 26px; line-height: 1; }
+.card-title { color: white; font-size: 15px; font-weight: 700; line-height: 1.4; }
+.card-body { padding: 20px 24px; }
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.row:last-child { border-bottom: none; padding-bottom: 0; }
+.row:first-child { padding-top: 0; }
+.row-label {
+  color: var(--text-light);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  min-width: 90px;
+  padding-top: 2px;
+}
+.row-value { color: var(--text); font-weight: 500; flex: 1; }
+.badge-yield {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent), #c0392b);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+.note-text {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 3px;
+  line-height: 1.6;
+}
+/* ===== STOCK SECTION ===== */
+.stock-section { margin-bottom: 40px; }
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+}
+.stat-number { font-size: 28px; font-weight: 800; color: var(--primary); line-height: 1; margin-bottom: 6px; }
+.stat-number span { font-size: 16px; font-weight: 600; color: var(--accent); }
+.stat-label { font-size: 11px; color: var(--text-light); font-weight: 600; letter-spacing: 0.06em; }
+.stock-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.stock-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.stock-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+}
+.stock-type-bar { padding: 7px 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: white; }
+.type-mansion { background: #2563eb; }
+.type-apart   { background: #7c3aed; }
+.type-kodate  { background: #059669; }
+.type-land    { background: #b45309; }
+.stock-body { padding: 16px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.stock-address { font-size: 13px; color: var(--text); font-weight: 600; line-height: 1.4; }
+.stock-price { font-size: 18px; font-weight: 800; color: var(--primary); }
+.stock-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+.meta-chip { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; background: var(--bg); color: var(--text-light); }
+.meta-chip.yield-high { background: #fef2f2; color: #dc2626; }
+.stock-link {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  padding: 10px;
+  border-top: 1px solid var(--border);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.stock-link:hover { background: #fff5f3; }
+.stock-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--primary);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+  width: fit-content;
+  margin: 0 auto;
+}
+.stock-more-btn:hover { background: #253d5e; }
+/* ===== LAND SECTION ===== */
+.land-section {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+.land-header {
+  background: var(--primary);
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.land-header-icon { font-size: 28px; }
+.land-header-title { color: white; font-size: 16px; font-weight: 700; }
+.land-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.land-area { padding: 24px 28px; }
+.land-area:first-child { border-right: 1px solid var(--border); }
+.land-area-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+.land-row { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; font-size: 14px; border-bottom: 1px solid var(--border); }
+.land-row:last-child { border-bottom: none; }
+.land-label { color: var(--text-light); font-size: 12px; font-weight: 600; min-width: 80px; padding-top: 1px; }
+.land-value { color: var(--text); font-weight: 500; }
+/* ===== FOOTER ===== */
+.footer-link-section {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+  padding: 28px 32px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-link-text h3 { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+.footer-link-text p { font-size: 13px; color: var(--text-light); }
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.btn-primary:hover { background: #c0392b; transform: translateY(-1px); }
+footer {
+  background: var(--primary);
+  color: rgba(255,255,255,0.55);
+  text-align: center;
+  padding: 32px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+footer a { color: rgba(255,255,255,0.75); text-decoration: none; }
+footer a:hover { color: white; }
+footer .footer-company { color: white; font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+footer .footer-info { margin-bottom: 4px; }
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .header-inner { padding: 28px 20px; }
+  header h1 { font-size: 22px; }
+  main { padding: 0 16px; margin: 24px auto; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .land-grid { grid-template-columns: 1fr; }
+  .land-area:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+  .summary-inner { padding: 12px 16px; gap: 12px; }
+  .footer-link-section { flex-direction: column; align-items: flex-start; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .stock-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
@@ -612,9 +381,7 @@
 
 <!-- ===== MAIN ===== -->
 <main>
-
   <p class="section-title">物件種別ごとの買取基準</p>
-
   <div class="cards-grid">
 
     <!-- 築浅1棟マンション -->
@@ -705,11 +472,76 @@
       </div>
     </div>
 
+    <!-- ★ 新規追加：再建築不可の不動産 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-icon">🚧</span>
+        <span class="card-title">再建築不可の不動産</span>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <span class="row-label">エリア</span>
+          <span class="row-value">全国</span>
+        </div>
+        <div class="row">
+          <span class="row-label">金額（1棟系）</span>
+          <span class="row-value">〜10,000万円程度</span>
+        </div>
+        <div class="row">
+          <span class="row-label">金額（戸建）</span>
+          <span class="row-value">〜5,000万円程度<br><span class="note-text">※築古やボロ戸建OK!!</span></span>
+        </div>
+        <div class="row">
+          <span class="row-label">特殊条件</span>
+          <span class="row-value">〜30,000万円程度<br><span class="note-text">※建蔽率・容積率超過、旧耐震物件なども対応</span></span>
+        </div>
+        <div class="row">
+          <span class="row-label">備考</span>
+          <span class="row-value">
+            <span class="note-text">※積算重視で検討いたします。</span><br>
+            <span class="note-text">※1〜7のグロス帯で検討いたします。</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ★ 新規追加：共有持分のみの不動産 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-icon">🤝</span>
+        <span class="card-title">共有持分のみの不動産</span>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <span class="row-label">エリア</span>
+          <span class="row-value">全国</span>
+        </div>
+        <div class="row">
+          <span class="row-label">金額（標準）</span>
+          <span class="row-value">〜5,000万円程度</span>
+        </div>
+        <div class="row">
+          <span class="row-label">金額（大型）</span>
+          <span class="row-value">〜15,000万円程度</span>
+        </div>
+        <div class="row">
+          <span class="row-label">得意案件</span>
+          <span class="row-value">地代の支払いをめぐり、滞納などで揉めている案件</span>
+        </div>
+        <div class="row">
+          <span class="row-label">備考</span>
+          <span class="row-value">
+            <span class="note-text">※1〜7のグロス帯で検討いたします。</span><br>
+            <span class="note-text">※分割協議中の目線出しでもOK!!</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /cards-grid -->
 
   <!-- ===== LAND ===== -->
   <p class="section-title">土地仕入れ条件</p>
-
   <div class="land-section">
     <div class="land-header">
       <span class="land-header-icon">🌏</span>
@@ -743,9 +575,7 @@
 
   <!-- ===== STOCK ===== -->
   <p class="section-title">現在の取扱物件一覧（買取実績）</p>
-
   <div class="stock-section">
-
     <!-- 統計サマリー -->
     <div class="stats-row">
       <div class="stat-card">
@@ -768,7 +598,6 @@
 
     <!-- 物件カード（代表9件） -->
     <div class="stock-grid">
-
       <div class="stock-item">
         <div class="stock-type-bar type-mansion">一棟マンション</div>
         <div class="stock-body">
@@ -782,7 +611,6 @@
         </div>
         <a class="stock-link" href="https://qrcd.org/9IrA" target="_blank">詳細を見る →</a>
       </div>
-
       <div class="stock-item">
         <div class="stock-type-bar type-apart">一棟売りアパート</div>
         <div class="stock-body">
@@ -796,7 +624,6 @@
         </div>
         <a class="stock-link" href="https://qrcd.org/9Sps" target="_blank">詳細を見る →</a>
       </div>
-
       <div class="stock-item">
         <div class="stock-type-bar type-mansion">一棟マンション</div>
         <div class="stock-body">
@@ -810,7 +637,6 @@
         </div>
         <a class="stock-link" href="https://qrcd.org/9oVn" target="_blank">詳細を見る →</a>
       </div>
-
       <div class="stock-item">
         <div class="stock-type-bar type-apart">一棟売りアパート</div>
         <div class="stock-body">
@@ -824,7 +650,6 @@
         </div>
         <a class="stock-link" href="https://x.gd/aKGf4" target="_blank">詳細を見る →</a>
       </div>
-
       <div class="stock-item">
         <div class="stock-type-bar type-mansion">一棟マンション</div>
         <div class="stock-body">
@@ -838,7 +663,6 @@
         </div>
         <a class="stock-link" href="https://qrcd.org/9six" target="_blank">詳細を見る →</a>
       </div>
-
       <div class="stock-item">
         <div class="stock-type-bar type-apart">一棟売りアパート</div>
         <div class="stock-body">
@@ -852,7 +676,6 @@
         </div>
         <a class="stock-link" href="https://qrcd.org/9iyn" target="_blank">詳細を見る →</a>
       </div>
-
       <div class="stock-item">
         <div class="stock-type-bar type-kodate">OC戸建</div>
         <div class="stock-body">
@@ -866,7 +689,6 @@
         </div>
         <a class="stock-link" href="https://qrcd.org/9RHC" target="_blank">詳細を見る →</a>
       </div>
-
       <div class="stock-item">
         <div class="stock-type-bar type-apart">一棟売りアパート</div>
         <div class="stock-body">
@@ -880,7 +702,6 @@
         </div>
         <a class="stock-link" href="https://qrcd.org/9npd" target="_blank">詳細を見る →</a>
       </div>
-
       <div class="stock-item">
         <div class="stock-type-bar type-kodate">空室戸建</div>
         <div class="stock-body">
@@ -893,16 +714,11 @@
         </div>
         <a class="stock-link" href="https://x.gd/NicOU" target="_blank">詳細を見る →</a>
       </div>
-
     </div>
-
     <a class="stock-more-btn" href="https://reatex-customer-site.vercel.app/stock" target="_blank">
       全49件の物件を見る →
     </a>
-
   </div>
-
-
 </main>
 
 <!-- ===== FOOTER ===== -->
@@ -916,6 +732,5 @@
   </p>
   <p style="margin-top:12px;">Copyright © 2024 Reatex Inc. All Rights Reserved.</p>
 </footer>
-
 </body>
 </html>
