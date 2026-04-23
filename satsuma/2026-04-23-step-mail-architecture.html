@@ -6,18 +6,19 @@
   <title>ステップメール アーキテクチャ — リアテクス</title>
   <style>
     :root {
-      --bg: #0f1117;
-      --panel: #1a1d27;
-      --card: #22263a;
-      --border: #2e3348;
-      --accent: #4f7ef8;
+      --bg: #f8f9fc;
+      --panel: #ffffff;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --border2: #cbd5e1;
+      --accent: #2563eb;
       --accent2: #7c3aed;
-      --green: #22c55e;
-      --orange: #f59e0b;
-      --pink: #ec4899;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --line-color: #4f7ef8;
+      --green: #16a34a;
+      --orange: #d97706;
+      --pink: #db2777;
+      --text: #1e293b;
+      --muted: #64748b;
+      --light: #f1f5f9;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -31,7 +32,7 @@
     /* ===== HEADER ===== */
     .header {
       text-align: center;
-      margin-bottom: 52px;
+      margin-bottom: 48px;
     }
     .header .badge {
       display: inline-block;
@@ -43,49 +44,45 @@
       text-transform: uppercase;
       padding: 4px 14px;
       border-radius: 100px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .header h1 {
-      font-size: clamp(22px, 4vw, 34px);
+      font-size: clamp(20px, 3.5vw, 30px);
       font-weight: 800;
+      color: var(--text);
       line-height: 1.3;
-      background: linear-gradient(135deg, #e2e8f0 30%, #7c9ef8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
     .header p {
-      margin-top: 10px;
+      margin-top: 8px;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13.5px;
     }
 
     /* ===== TRIGGER BOX ===== */
     .trigger-wrapper {
       display: flex;
       justify-content: center;
-      margin-bottom: 0;
     }
     .trigger-box {
-      background: linear-gradient(135deg, #1e2d50, #22263a);
-      border: 1.5px solid #3b5bdb;
+      background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+      border: 2px solid #93c5fd;
       border-radius: 16px;
-      padding: 20px 36px;
+      padding: 18px 36px;
       text-align: center;
-      min-width: 240px;
-      position: relative;
+      min-width: 260px;
     }
     .trigger-box .label {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: .1em;
-      color: #7c9ef8;
+      color: var(--accent);
       text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .trigger-box .title {
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 800;
+      color: var(--text);
     }
     .trigger-box .sub {
       font-size: 12px;
@@ -98,27 +95,28 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0;
-      position: relative;
     }
     .connector-line {
       width: 2px;
-      height: 36px;
-      background: linear-gradient(to bottom, var(--accent), var(--accent2));
+      height: 28px;
+      background: linear-gradient(to bottom, #93c5fd, #c4b5fd);
     }
     .connector-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 8px var(--accent);
     }
     .connector-label {
       font-size: 11px;
-      color: var(--accent);
       font-weight: 700;
-      letter-spacing: .05em;
-      margin: 4px 0;
+      color: var(--accent);
+      letter-spacing: .04em;
+      margin: 3px 0;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 2px 10px;
+      border-radius: 100px;
     }
 
     /* ===== PIPELINE ===== */
@@ -127,187 +125,363 @@
       flex-direction: column;
       align-items: center;
       gap: 0;
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
     /* ===== MAIL CARD ===== */
     .mail-card {
       width: 100%;
-      background: var(--card);
+      background: #fff;
       border: 1.5px solid var(--border);
-      border-radius: 18px;
+      border-radius: 16px;
       overflow: hidden;
-      transition: transform .2s, box-shadow .2s;
-      position: relative;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
     }
-    .mail-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(79,126,248,.18);
-    }
-    .mail-card .card-header {
+
+    /* color accent left border */
+    .mail-card.c1 { border-left: 5px solid #2563eb; }
+    .mail-card.c2 { border-left: 5px solid #7c3aed; }
+    .mail-card.c3 { border-left: 5px solid #16a34a; }
+    .mail-card.c4 { border-left: 5px solid #d97706; }
+    .mail-card.c5 { border-left: 5px solid #db2777; }
+
+    .card-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 14px;
-      padding: 18px 24px 14px;
+      padding: 16px 20px 12px 20px;
       border-bottom: 1px solid var(--border);
+      background: var(--light);
     }
     .mail-num {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 900;
       flex-shrink: 0;
+      color: #fff;
     }
-    .mail-num.m1 { background: linear-gradient(135deg,#1e40af,#3b82f6); color:#fff; }
-    .mail-num.m2 { background: linear-gradient(135deg,#5b21b6,#8b5cf6); color:#fff; }
-    .mail-num.m3 { background: linear-gradient(135deg,#065f46,#10b981); color:#fff; }
-    .mail-num.m4 { background: linear-gradient(135deg,#92400e,#f59e0b); color:#fff; }
-    .mail-num.m5 { background: linear-gradient(135deg,#9d174d,#ec4899); color:#fff; }
+    .mn1 { background: #2563eb; }
+    .mn2 { background: #7c3aed; }
+    .mn3 { background: #16a34a; }
+    .mn4 { background: #d97706; }
+    .mn5 { background: #db2777; }
 
     .card-title-block { flex: 1; }
     .card-title-block .timing {
       font-size: 11px;
       font-weight: 700;
       color: var(--muted);
-      letter-spacing: .08em;
-      text-transform: uppercase;
+      letter-spacing: .06em;
     }
     .card-title-block .subject {
       font-size: 14px;
       font-weight: 700;
       margin-top: 3px;
+      color: var(--text);
       line-height: 1.4;
     }
+    .point-tag {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 100px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .pt1 { background: #dbeafe; color: #1d4ed8; }
+    .pt2 { background: #ede9fe; color: #6d28d9; }
+    .pt3 { background: #dcfce7; color: #15803d; }
+    .pt4 { background: #fef3c7; color: #b45309; }
+    .pt5 { background: #fce7f3; color: #be185d; }
 
+    /* ===== CARD BODY ===== */
     .card-body {
-      padding: 16px 24px 20px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    @media (max-width: 600px) {
-      .card-body { grid-template-columns: 1fr; }
+      padding: 0;
     }
 
-    .info-block { }
-    .info-block .ib-label {
+    /* Mail preview area */
+    .mail-preview {
+      padding: 16px 20px 14px 20px;
+      border-bottom: 1px dashed var(--border2);
+    }
+    .mail-preview .prev-label {
       font-size: 10px;
       font-weight: 700;
       letter-spacing: .1em;
       color: var(--muted);
       text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .info-block .ib-content {
-      font-size: 13px;
-      color: #cbd5e1;
-      line-height: 1.7;
+    .mail-body-text {
+      font-size: 12.5px;
+      line-height: 1.85;
+      color: #334155;
+      white-space: pre-wrap;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    }
+    .mail-body-text .insert {
+      color: #2563eb;
+      font-weight: 600;
+    }
+    .mail-body-text .cta-btn {
+      display: inline-block;
+      background: #2563eb;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 6px;
+      margin: 2px 0;
+    }
+    .mail-body-text .cta-line {
+      display: inline-block;
+      background: #16a34a;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin: 2px 0;
     }
 
+    /* CTA + signature row */
+    .card-footer-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 12px 20px 14px 20px;
+      flex-wrap: wrap;
+    }
+    .cta-block { flex: 1; min-width: 180px; }
+    .cta-block .fb-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
     .cta-pills {
       display: flex;
       flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 2px;
+      gap: 6px;
     }
     .pill {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       font-size: 11.5px;
       font-weight: 600;
       padding: 4px 11px;
       border-radius: 100px;
       border: 1.5px solid;
     }
-    .pill.green  { border-color: #22c55e; color: #22c55e; background: rgba(34,197,94,.08); }
-    .pill.blue   { border-color: #4f7ef8; color: #7cb8fb; background: rgba(79,126,248,.08); }
-    .pill.purple { border-color: #8b5cf6; color: #c4b5fd; background: rgba(139,92,246,.08); }
-
-    /* ===== POINT TAGS (what's special per mail) ===== */
-    .point-tag {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 100px;
-      letter-spacing: .06em;
-    }
-    .pt-blue   { background: rgba(79,126,248,.2); color: #7cb8fb; border: 1px solid #4f7ef8; }
-    .pt-purple { background: rgba(139,92,246,.2); color: #c4b5fd; border: 1px solid #8b5cf6; }
-    .pt-green  { background: rgba(34,197,94,.2);  color: #86efac; border: 1px solid #22c55e; }
-    .pt-orange { background: rgba(245,158,11,.2); color: #fcd34d; border: 1px solid #f59e0b; }
-    .pt-pink   { background: rgba(236,72,153,.2); color: #f9a8d4; border: 1px solid #ec4899; }
+    .pill.green  { border-color: #16a34a; color: #15803d; background: #f0fdf4; }
+    .pill.blue   { border-color: #2563eb; color: #1d4ed8; background: #eff6ff; }
 
     /* ===== COMMON ELEMENTS BAR ===== */
     .common-bar {
       width: 100%;
-      background: linear-gradient(135deg, #1e2235, #1a1d2f);
-      border: 1.5px solid #2e3563;
+      background: #f8faff;
+      border: 1.5px solid #bfdbfe;
       border-radius: 14px;
-      padding: 16px 24px;
-      margin-top: 0;
+      padding: 14px 20px;
     }
     .common-bar .cb-label {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
-      color: #7c9ef8;
+      color: var(--accent);
       letter-spacing: .1em;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
     }
     .common-elements {
       display: flex;
       flex-wrap: wrap;
-      gap: 9px;
+      gap: 7px;
     }
     .ce-chip {
       font-size: 12px;
       font-weight: 600;
-      padding: 5px 13px;
+      padding: 4px 12px;
       border-radius: 8px;
-      background: rgba(79,126,248,.12);
-      border: 1px solid rgba(79,126,248,.3);
-      color: #a5b4fc;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
     }
 
-    /* ===== BOTTOM STATS ===== */
+    /* ===== STATS ===== */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      max-width: 860px;
-      margin: 44px auto 0;
+      gap: 12px;
+      max-width: 900px;
+      margin: 40px auto 0;
     }
     @media (max-width: 640px) {
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
     }
     .stat-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px 20px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 14px;
       text-align: center;
+      box-shadow: 0 1px 6px rgba(0,0,0,.04);
     }
     .stat-card .sv {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 900;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--accent);
     }
     .stat-card .sl {
-      font-size: 12px;
+      font-size: 11.5px;
       color: var(--muted);
-      margin-top: 4px;
+      margin-top: 3px;
+    }
+
+    /* ===== IMPROVEMENT SECTION ===== */
+    .section-title {
+      max-width: 900px;
+      margin: 52px auto 20px;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title span.tag {
+      font-size: 11px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #dc2626, #ea580c);
+      color: #fff;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .improve-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    @media (max-width: 640px) {
+      .improve-grid { grid-template-columns: 1fr; }
+    }
+    .improve-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+    .improve-card.priority-high {
+      border-left: 4px solid #dc2626;
+    }
+    .improve-card.priority-mid {
+      border-left: 4px solid #d97706;
+    }
+    .improve-card.priority-low {
+      border-left: 4px solid #16a34a;
+    }
+    .ic-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .priority-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+    .pb-high   { background: #fee2e2; color: #b91c1c; }
+    .pb-mid    { background: #fef3c7; color: #92400e; }
+    .pb-low    { background: #dcfce7; color: #15803d; }
+    .ic-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .ic-body {
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.75;
+    }
+    .ic-body .before-after {
+      margin-top: 10px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border2);
+      font-size: 12px;
+    }
+    .ba-before {
+      background: #fff5f5;
+      padding: 8px 12px;
+      color: #7f1d1d;
+      border-bottom: 1px solid #fecaca;
+    }
+    .ba-after {
+      background: #f0fdf4;
+      padding: 8px 12px;
+      color: #14532d;
+    }
+    .ba-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      margin-bottom: 2px;
+    }
+
+    /* ===== SIGNATURE SPEC ===== */
+    .sig-section {
+      max-width: 900px;
+      margin: 44px auto 0;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    }
+    .sig-section h3 {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .sig-box {
+      background: #f8fafc;
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 12px;
+      line-height: 1.9;
+      font-family: 'Courier New', monospace;
+      color: #334155;
+      white-space: pre-wrap;
+    }
+    .sig-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #dc2626;
+      font-weight: 600;
     }
 
     /* ===== FOOTER ===== */
@@ -317,7 +491,7 @@
       color: var(--muted);
       font-size: 12px;
     }
-    .footer strong { color: #7c9ef8; }
+    .footer strong { color: var(--accent); }
   </style>
 </head>
 <body>
@@ -326,14 +500,14 @@
   <div class="header">
     <div class="badge">Step Mail Architecture</div>
     <h1>業者向けステップメール 自動配信フロー</h1>
-    <p>Lステップ経由 ／ アドレス取得後〜+32日 ／ 全5通構成</p>
+    <p>Lステップ経由 ／ アドレス取得後〜+32日 ／ 全5通構成 ／ 担当：五十嵐啓人</p>
   </div>
 
-  <!-- MAIN PIPELINE -->
+  <!-- PIPELINE -->
   <div class="pipeline">
 
     <!-- TRIGGER -->
-    <div class="trigger-wrapper">
+    <div class="trigger-wrapper" style="width:100%;">
       <div class="trigger-box">
         <div class="label">🔔 Trigger</div>
         <div class="title">業者メールアドレス取得</div>
@@ -341,175 +515,270 @@
       </div>
     </div>
 
-    <!-- CONNECTOR 1 -->
+    <!-- ① -->
     <div class="connector">
       <div class="connector-line"></div>
       <div class="connector-dot"></div>
     </div>
 
-    <!-- MAIL 1 -->
-    <div class="mail-card">
-      <span class="point-tag pt-blue">御礼・自己紹介</span>
+    <div class="mail-card c1">
       <div class="card-header">
-        <div class="mail-num m1">①</div>
+        <div class="mail-num mn1">①</div>
         <div class="card-title-block">
           <div class="timing">Day n（アドレス取得翌日）</div>
           <div class="subject">【御礼】#担当者様、先日はお電話ありがとうございました</div>
         </div>
+        <div class="point-tag pt1">御礼・自己紹介</div>
       </div>
       <div class="card-body">
-        <div class="info-block">
-          <div class="ib-label">📝 メッセージ骨子</div>
-          <div class="ib-content">
-            突然の電話対応への御礼。全国・全種別での買取対応をPR。
-            訳あり物件（再建築不可・共有持分・事故物件）も積極検討と強調。
-          </div>
+        <div class="mail-preview">
+          <div class="prev-label">✉️ メール本文</div>
+          <div class="mail-body-text"><span class="insert">#会社名（差込）#</span>
+<span class="insert">#担当者（差込）#</span>様
+
+お世話になっております。
+株式会社リアテクスの<span class="insert">#RTX担当（差込）#</span>です。
+
+先日は突然のお電話にご対応いただき、ありがとうございました。
+
+弊社では、戸建・マンション・土地・収益物件など、エリアや種別を問わず全国で買取を行っています。
+
+また、一般的に敬遠されがちな「訳あり物件」（再建築不可物件、共有持分の物件、事故物件など）も積極的に検討しております。
+
+「まずは話だけでも聞いてみようかな」くらいのお気持ちでも大丈夫です。
+スピーディーに査定やご提案をいたしますし、紹介料なども柔軟にご対応いたします。
+
+今後ぜひお役立てできれば嬉しいです。
+
+<span class="cta-btn">査定依頼はこちら</span>
+
+案件のやり取りはLINEでの対応も可能です！
+＊LINEから当社が売主、元付の物件などルートの近い物件を優先紹介いたします。ぜひご登録ください！
+LINE："社用携帯のラインID"
+
+どうぞよろしくお願いいたします。
+
+株式会社リアテクス　<span class="insert">#RTX担当者（差込）#</span></div>
         </div>
-        <div class="info-block">
-          <div class="ib-label">🎯 CTA</div>
-          <div class="cta-pills">
-            <span class="pill green">✅ 査定依頼ボタン</span>
-            <span class="pill blue">💬 LINE登録</span>
+        <div class="card-footer-row">
+          <div class="cta-block">
+            <div class="fb-label">🎯 CTA</div>
+            <div class="cta-pills">
+              <span class="pill green">✅ 査定依頼ボタン</span>
+              <span class="pill blue">💬 LINE登録</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- CONNECTOR 2 -->
+    <!-- ② -->
     <div class="connector">
       <div class="connector-line"></div>
       <div class="connector-label">+8日後 10:00</div>
       <div class="connector-dot"></div>
     </div>
 
-    <!-- MAIL 2 -->
-    <div class="mail-card">
-      <span class="point-tag pt-purple">柔軟対応アピール</span>
+    <div class="mail-card c2">
       <div class="card-header">
-        <div class="mail-num m2">②</div>
+        <div class="mail-num mn2">②</div>
         <div class="card-title-block">
           <div class="timing">Day n+8（10:00 配信）</div>
           <div class="subject">#担当者、物件情報があればぜひご一報ください</div>
         </div>
+        <div class="point-tag pt2">柔軟対応アピール</div>
       </div>
       <div class="card-body">
-        <div class="info-block">
-          <div class="ib-label">📝 メッセージ骨子</div>
-          <div class="ib-content">
-            「とにかく早く」「できるだけ柔軟に」をモットーに訴求。
-            他社断られ案件・見積もりだけのケースも歓迎と伝える。
-          </div>
+        <div class="mail-preview">
+          <div class="prev-label">✉️ メール本文</div>
+          <div class="mail-body-text"><span class="insert">#会社名（差込）#</span>
+<span class="insert">#担当者（差込）#</span>様
+
+いつもお世話になっております。
+株式会社リアテクスの<span class="insert">#RTX担当者（差込）#</span>です。
+
+弊社は「とにかく早く」「できるだけ柔軟に」をモットーに物件の買取をしています。
+
+戸建・マンション・土地・収益物件に加え、扱いにくいと言われるような案件（再建築不可物件、共有持分の物件、事故物件など）も、前向きに検討させて頂きます！
+
+「他社に断られたけど…」
+「とりあえず見積もりだけお願いしたい」
+
+そんなケースでも歓迎です。
+お気軽にご相談いただけると嬉しいです。
+
+<span class="cta-btn">査定依頼はこちら</span>
+
+案件のやり取りはLINEでの対応も可能です！
+＊LINEから当社が売主、元付の物件などルートの近い物件を優先紹介いたします。ぜひご登録ください！
+LINE："社用携帯のラインID"</div>
         </div>
-        <div class="info-block">
-          <div class="ib-label">🎯 CTA</div>
-          <div class="cta-pills">
-            <span class="pill green">✅ 査定依頼ボタン</span>
-            <span class="pill blue">💬 LINE登録</span>
+        <div class="card-footer-row">
+          <div class="cta-block">
+            <div class="fb-label">🎯 CTA</div>
+            <div class="cta-pills">
+              <span class="pill green">✅ 査定依頼ボタン</span>
+              <span class="pill blue">💬 LINE登録</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- CONNECTOR 3 -->
+    <!-- ③ -->
     <div class="connector">
       <div class="connector-line"></div>
       <div class="connector-label">+16日後 10:00</div>
       <div class="connector-dot"></div>
     </div>
 
-    <!-- MAIL 3 -->
-    <div class="mail-card">
-      <span class="point-tag pt-green">スピード対応訴求</span>
+    <div class="mail-card c3">
       <div class="card-header">
-        <div class="mail-num m3">③</div>
+        <div class="mail-num mn3">③</div>
         <div class="card-title-block">
           <div class="timing">Day n+16（10:00 配信）</div>
           <div class="subject">#担当者さん、スピード対応はお任せください</div>
         </div>
+        <div class="point-tag pt3">スピード対応訴求</div>
       </div>
       <div class="card-body">
-        <div class="info-block">
-          <div class="ib-label">📝 メッセージ骨子</div>
-          <div class="ib-content">
-            「対応が早い」という顧客の声を活用。査定依頼当日回答を訴求。
-            難しい条件物件にも柔軟に対応すると強調。
-          </div>
+        <div class="mail-preview">
+          <div class="prev-label">✉️ メール本文</div>
+          <div class="mail-body-text"><span class="insert">#会社名（差込）#</span>
+<span class="insert">#担当者（差込）#</span>様
+
+お世話になっております。
+株式会社リアテクスの<span class="insert">#RTX担当者（差込）#</span>です。
+
+日々お取引いただく中で、よく言っていただけるのが「対応が早いですね」というお声です。
+
+査定依頼をいただいたら、なるべくその日のうち、遅くともすぐにご回答するように心掛けています。
+また、条件が難しい物件でも「どうにかできないか」と柔軟に検討します。
+
+ちょっとした情報でも構いませんので、気軽にご紹介いただければ幸いです。
+
+<span class="cta-btn">査定依頼はこちら</span>
+
+案件のやり取りはLINEでの対応も可能です！
+＊LINEから当社が売主、元付の物件などルートの近い物件を優先紹介いたします。ぜひご登録ください！
+LINE："社用携帯のラインID"</div>
         </div>
-        <div class="info-block">
-          <div class="ib-label">🎯 CTA</div>
-          <div class="cta-pills">
-            <span class="pill green">✅ 査定依頼ボタン</span>
-            <span class="pill blue">💬 LINE登録</span>
+        <div class="card-footer-row">
+          <div class="cta-block">
+            <div class="fb-label">🎯 CTA</div>
+            <div class="cta-pills">
+              <span class="pill green">✅ 査定依頼ボタン</span>
+              <span class="pill blue">💬 LINE登録</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- CONNECTOR 4 -->
+    <!-- ④ -->
     <div class="connector">
       <div class="connector-line"></div>
       <div class="connector-label">+24日後 10:00</div>
       <div class="connector-dot"></div>
     </div>
 
-    <!-- MAIL 4 -->
-    <div class="mail-card">
-      <span class="point-tag pt-orange">難物件 専門性訴求</span>
+    <div class="mail-card c4">
       <div class="card-header">
-        <div class="mail-num m4">④</div>
+        <div class="mail-num mn4">④</div>
         <div class="card-title-block">
           <div class="timing">Day n+24（10:00 配信）</div>
           <div class="subject">#担当者さん、難しい案件もぜひご相談ください</div>
         </div>
+        <div class="point-tag pt4">難物件 専門性訴求</div>
       </div>
       <div class="card-body">
-        <div class="info-block">
-          <div class="ib-label">📝 メッセージ骨子</div>
-          <div class="ib-content">
-            具体的な物件例（接道困難・再建築不可・相続複雑）を列挙。
-            専門家と連携しながら解決実績があることを強調。
-          </div>
+        <div class="mail-preview">
+          <div class="prev-label">✉️ メール本文</div>
+          <div class="mail-body-text"><span class="insert">#会社名（差込）#</span>
+<span class="insert">#担当（差込）#</span>様
+
+お世話になっております。
+株式会社リアテクスの<span class="insert">#RTX担当者（差込）#</span>です。
+
+弊社では、他社が敬遠しがちな案件でも「何とかできないか」と前向きに取り組んでいます。
+
+例えば、
+・接道条件が厳しい土地
+・再建築不可の戸建
+・相続で権利関係が複雑な物件
+
+なども、専門家と連携しながら解決に向けて動いてきました。
+
+「これ、相談してもいいのかな？」というような内容でも大丈夫です。
+まずは気軽にご連絡ください。
+
+<span class="cta-btn">査定依頼はこちら</span>
+
+案件のやり取りはLINEでの対応も可能です！
+＊LINEから当社が売主、元付の物件などルートの近い物件を優先紹介いたします。ぜひご登録ください！
+LINE："社用携帯のラインID"</div>
         </div>
-        <div class="info-block">
-          <div class="ib-label">🎯 CTA</div>
-          <div class="cta-pills">
-            <span class="pill green">✅ 査定依頼ボタン</span>
-            <span class="pill blue">💬 LINE登録</span>
+        <div class="card-footer-row">
+          <div class="cta-block">
+            <div class="fb-label">🎯 CTA</div>
+            <div class="cta-pills">
+              <span class="pill green">✅ 査定依頼ボタン</span>
+              <span class="pill blue">💬 LINE登録</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- CONNECTOR 5 -->
+    <!-- ⑤ -->
     <div class="connector">
       <div class="connector-line"></div>
       <div class="connector-label">+32日後 10:00</div>
       <div class="connector-dot"></div>
     </div>
 
-    <!-- MAIL 5 -->
-    <div class="mail-card">
-      <span class="point-tag pt-pink">3つの強み 総まとめ</span>
+    <div class="mail-card c5">
       <div class="card-header">
-        <div class="mail-num m5">⑤</div>
+        <div class="mail-num mn5">⑤</div>
         <div class="card-title-block">
           <div class="timing">Day n+32（10:00 配信）</div>
           <div class="subject">全国でいろいろな物件を買取しています</div>
         </div>
+        <div class="point-tag pt5">3つの強み 総まとめ</div>
       </div>
       <div class="card-body">
-        <div class="info-block">
-          <div class="ib-label">📝 メッセージ骨子</div>
-          <div class="ib-content">
-            ①スピード感ある対応 ②条件の柔軟な検討 ③紹介者への還元
-            ——3つの強みを集約してシリーズを締めくくる。
-          </div>
+        <div class="mail-preview">
+          <div class="prev-label">✉️ メール本文</div>
+          <div class="mail-body-text"><span class="insert">#会社名（差込）#</span>
+<span class="insert">#担当（差込）#</span>様
+
+お世話になっております。
+株式会社リアテクスの<span class="insert">#RTX担当者（差込）#</span>です。
+
+私たちは全国で、戸建・マンション・土地・収益物件など幅広く買取を続けています。
+
+「スピード感を持って対応すること」
+「柔軟に条件を検討すること」
+「ご紹介いただいた方にしっかり還元すること」
+
+この三点を大切にしながら、日々取り組んでいます。
+
+少しでもお役に立てることがあれば嬉しいです。
+今後ともぜひよろしくお願いいたします。
+
+<span class="cta-btn">査定依頼はこちら</span>
+
+案件のやり取りはLINEでの対応も可能です！
+＊LINEから当社が売主、元付の物件などルートの近い物件を優先紹介いたします。ぜひご登録ください！
+LINE："社用携帯のラインID"</div>
         </div>
-        <div class="info-block">
-          <div class="ib-label">🎯 CTA</div>
-          <div class="cta-pills">
-            <span class="pill green">✅ 査定依頼ボタン</span>
-            <span class="pill blue">💬 LINE登録</span>
+        <div class="card-footer-row">
+          <div class="cta-block">
+            <div class="fb-label">🎯 CTA</div>
+            <div class="cta-pills">
+              <span class="pill green">✅ 査定依頼ボタン</span>
+              <span class="pill blue">💬 LINE登録</span>
+            </div>
           </div>
         </div>
       </div>
@@ -527,8 +796,8 @@
       <div class="common-elements">
         <span class="ce-chip">🏷 会社名・担当者名（差込）</span>
         <span class="ce-chip">🔘 査定依頼プッシュボタン</span>
-        <span class="ce-chip">💬 LINE登録誘導（未公開物件配信特典）</span>
-        <span class="ce-chip">📇 署名：五十嵐啓人（要担当者別修正）</span>
+        <span class="ce-chip">💬 LINE登録誘導（物件優先紹介特典）</span>
+        <span class="ce-chip">📇 署名：五十嵐啓人（担当者別に修正必要）</span>
         <span class="ce-chip">🔔 ロゴ画像（訳あり不動産のリアテクス）</span>
         <span class="ce-chip">📜 宅地建物取引士 東京都知事(1)第107888号</span>
       </div>
@@ -539,27 +808,188 @@
   <!-- STATS -->
   <div class="stats-grid">
     <div class="stat-card">
-      <div class="sv">5</div>
-      <div class="sl">通数（シリーズ全体）</div>
+      <div class="sv">5通</div>
+      <div class="sl">シリーズ全体</div>
     </div>
     <div class="stat-card">
       <div class="sv">32日</div>
-      <div class="sl">配信スパン（初日〜最終）</div>
+      <div class="sl">配信スパン</div>
     </div>
     <div class="stat-card">
       <div class="sv">10:00</div>
       <div class="sl">配信時刻（②〜⑤）</div>
     </div>
     <div class="stat-card">
-      <div class="sv">2</div>
-      <div class="sl">CTA種別（査定 / LINE）</div>
+      <div class="sv">2種</div>
+      <div class="sl">CTA（査定 / LINE）</div>
     </div>
+  </div>
+
+  <!-- ==============================
+       IMPROVEMENT SECTION
+  ================================ -->
+  <div class="section-title">
+    💡 改善案
+    <span class="tag">Suggestions</span>
+  </div>
+
+  <div class="improve-grid">
+
+    <!-- 1 -->
+    <div class="improve-card priority-high">
+      <div class="ic-header">
+        <span class="priority-badge pb-high">🔴 優先度：高</span>
+        <div class="ic-title">件名に「開封率を上げる」工夫を追加</div>
+      </div>
+      <div class="ic-body">
+        ②〜⑤の件名が地味で開封率が低くなりがち。差込変数＋数字・具体的ベネフィットを入れると改善しやすい。
+        <div class="before-after">
+          <div class="ba-before">
+            <div class="ba-label">❌ 現行</div>
+            #担当者、物件情報があればぜひご一報ください
+          </div>
+          <div class="ba-after">
+            <div class="ba-label">✅ 改善案</div>
+            【買取価格】#担当者さんへ、再建築不可も即日査定します
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="improve-card priority-high">
+      <div class="ic-header">
+        <span class="priority-badge pb-high">🔴 優先度：高</span>
+        <div class="ic-title">LINE IDを実際の値に差し替える</div>
+      </div>
+      <div class="ic-body">
+        全通に「社用携帯のラインID」というプレースホルダーが残っており、このままでは配信不可。
+        担当者ごとの正式なLINE IDを記載する必要がある。<br><br>
+        また担当者が複数いる場合は、差込変数（<code>#LINE_ID（差込）#</code>）として動的に切り替える設計を検討。
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="improve-card priority-high">
+      <div class="ic-header">
+        <span class="priority-badge pb-high">🔴 優先度：高</span>
+        <div class="ic-title">⑤以降のフォローアップ設計</div>
+      </div>
+      <div class="ic-body">
+        32日で終了すると、その後はノーコンタクトになる。長期育成のため「月1回の定期配信」または「物件情報メルマガへの移行」を組み込む設計が効果的。
+        <div class="before-after">
+          <div class="ba-before">
+            <div class="ba-label">❌ 現行</div>
+            5通で終了（その後は音信不通）
+          </div>
+          <div class="ba-after">
+            <div class="ba-label">✅ 改善案</div>
+            ⑤後 → 月1回「未公開物件情報メルマガ」に自動移行
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="improve-card priority-mid">
+      <div class="ic-header">
+        <span class="priority-badge pb-mid">🟡 優先度：中</span>
+        <div class="ic-title">CTA動線を1本に絞る（各通）</div>
+      </div>
+      <div class="ic-body">
+        査定依頼ボタン・LINE登録の2つが毎回並列で並んでいる。
+        どちらか「メインCTA」を決め、LINE登録はサブとして文末にのみ記載するほうがクリック率が上がりやすい。
+        <div class="before-after">
+          <div class="ba-before"><div class="ba-label">❌ 現行</div>査定ボタン ＋ LINE登録（同格で並列）</div>
+          <div class="ba-after"><div class="ba-label">✅ 改善案</div>メインCTA：査定ボタン → サブ：LINE誘導（文末のみ）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="improve-card priority-mid">
+      <div class="ic-header">
+        <span class="priority-badge pb-mid">🟡 優先度：中</span>
+        <div class="ic-title">①の配信タイミングを「翌日」から「当日夕方」に前倒し</div>
+      </div>
+      <div class="ic-body">
+        電話後の熱量が最も高いのは通話直後。「翌日配信」より「当日17時〜19時」に御礼メールを送ることで、印象が残りやすく返信率が向上しやすい。
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="improve-card priority-mid">
+      <div class="ic-header">
+        <span class="priority-badge pb-mid">🟡 優先度：中</span>
+        <div class="ic-title">実績・数字を1つ入れる（社会的証明）</div>
+      </div>
+      <div class="ic-body">
+        現行のメールは「自社の強み」の自己申告のみ。「訳あり物件○○件以上の買取実績」「査定回答平均○時間」など具体的な数字を①または②に1つ盛り込むことで信頼性が上がる。
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="improve-card priority-low">
+      <div class="ic-header">
+        <span class="priority-badge pb-low">🟢 優先度：低</span>
+        <div class="ic-title">配信間隔を「8日→5日」に短縮（前半のみ）</div>
+      </div>
+      <div class="ic-body">
+        ①〜②の間が8日あると初期の記憶が薄れやすい。①→②を3〜5日に短縮し、後半（③以降）は8日間隔のままにすることで記憶定着を促しつつ配信疲れを防げる。
+        <div class="before-after">
+          <div class="ba-before"><div class="ba-label">❌ 現行</div>①→8日→②→8日→③→8日→④→8日→⑤</div>
+          <div class="ba-after"><div class="ba-label">✅ 改善案</div>①→3日→②→5日→③→8日→④→8日→⑤</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="improve-card priority-low">
+      <div class="ic-header">
+        <span class="priority-badge pb-low">🟢 優先度：低</span>
+        <div class="ic-title">担当者差込変数の表記を統一する</div>
+      </div>
+      <div class="ic-body">
+        メール④の宛名が <code>#担当（差込）#</code> と省略表記になっており、他通の <code>#担当者（差込）#</code> と不一致。Lステップ上の変数名に合わせて全通で統一する。
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIGNATURE SPEC -->
+  <div class="sig-section">
+    <h3>📋 共通署名仕様（担当者別に修正必要）</h3>
+    <div class="sig-box">━━━━━━━━━━━━━━━━━
+【ロゴ画像】訳あり不動産のリアテクス
+　　・再建築不可
+　　・共有持分
+　　・立ち退き・全空
+　　・心理的瑕疵
+買取・客づけ、目線出し、ご相談ください！
+株式会社リアテクス / REATEX Inc.
+東京都知事(1)第107888号
+
+コンサルティング事業部　売買チーム/マネージャー
+宅地建物取引士
+五十嵐　啓人 / Keito Igarashi　　← ⚠️ 担当者ベースで修正
+
+〒141-0021 東京都品川区上大崎二丁目15-19 MG目黒駅前507
+
+MAIL：igarashi@reatex.co.jp　　← ⚠️ 担当者ベースで修正
+TEL：03-6822-7297
+FAX：03-6740-1747
+携帯：090-1558-0570　　← ⚠️ 担当者ベースで修正
+
+最新の未公開不動産情報や厳選物件情報をLINEで配信中！
+[ コチラから ] 登録をお願いします。
+業者さんの仕入れ目線での物件も配信させて頂いております！
+━━━━━━━━━━━━━━━━━</div>
+    <div class="sig-note">⚠️ ピンク箇所（担当者名・メールアドレス・携帯番号・LINE ID）は配信担当者に合わせて必ず修正してください。</div>
   </div>
 
   <!-- FOOTER -->
   <div class="footer">
-    <strong>株式会社リアテクス</strong> ／ ステップメール設計図 v1.0 ／ 担当：五十嵐啓人<br>
-    ※ ピンク箇所は担当者ベースで修正必要（署名・LINE ID 等）
+    <strong>株式会社リアテクス</strong> ／ ステップメール設計図 v2.0 ／ 2026-04-23
   </div>
 
 </body>
