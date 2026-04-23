@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】新潟県三条市四日町_連棟式長屋 r-2616</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic Pro', 'メイリオ', sans-serif;
+  font-size: 10pt;
+  color: #1a1a1a;
+  background: #eef0f4;
+}
+
+@page { size: A4 landscape; margin: 14mm 15mm; }
+
+@media print {
+  body { background: white !important; }
+  .page-container { box-shadow: none !important; margin-bottom: 0 !important; }
+  * { print-color-adjust: exact; -webkit-print-color-adjust: exact; color-adjust: exact; }
+  .page-break { break-before: page; page-break-before: always; }
+}
+
+/* ページコンテナ */
+.page-container {
+  background: white;
+  width: 297mm;
+  margin: 0 auto 24px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.18);
+  overflow: hidden;
+}
+.page-wrapper {
+  width: 267mm;
+  margin: 0 auto;
+}
+.page-break {
+  break-before: page;
+  page-break-before: always;
+}
+.avoid-break { break-inside: avoid; }
+
+/* ========== ヘッダー ========== */
+.header {
+  background: linear-gradient(135deg, #1A365D 0%, #2A4A7F 100%);
+  color: white;
+  padding: 9px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #DAA520;
+}
+.header-left { flex: 1; }
+.header-badge {
+  display: inline-block;
+  background: rgba(218,165,32,0.3);
+  color: #FFD700;
+  font-size: 7.5pt;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(218,165,32,0.6);
+  margin-bottom: 3px;
+  letter-spacing: 0.05em;
+}
+.header-property-name {
+  font-size: 15pt;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+}
+.header-sub {
+  font-size: 7.5pt;
+  color: rgba(255,255,255,0.75);
+  margin-top: 3px;
+}
+.header-right { text-align: right; flex-shrink: 0; }
+.header-price-label { font-size: 7pt; color: rgba(255,255,255,0.7); }
+.header-price {
+  font-size: 22pt;
+  font-weight: 700;
+  color: #FFD700;
+  line-height: 1.1;
+}
+.header-price-unit { font-size: 11pt; }
+.detail-btn {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 4px 12px;
+  background: #DAA520;
+  color: #1A365D;
+  border-radius: 4px;
+  font-size: 7.5pt;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+
+/* ========== ハイライトボックス ========== */
+.highlight-box {
+  display: flex;
+  background: linear-gradient(135deg, #FFF9E6 0%, #FFFDE7 100%);
+  border-bottom: 2px solid #DAA520;
+  padding: 7px 14px;
+}
+.highlight-item {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid #e8d5a0;
+  padding: 3px 8px;
+}
+.highlight-item:last-child { border-right: none; }
+.highlight-label { font-size: 6.5pt; color: #888; margin-bottom: 1px; }
+.highlight-value { font-size: 17pt; font-weight: 700; color: #1A365D; line-height: 1.1; }
+.highlight-value.red { color: #C41E3A; }
+.highlight-unit { font-size: 7pt; color: #666; }
+
+/* ========== ヒーローセクション ========== */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 70mm;
+}
+.hero-kpi {
+  padding: 10px 14px;
+  background: white;
+  border-right: 1px solid #e0e8f0;
+}
+.hero-photo {
+  background: #2d4a7a;
+  overflow: hidden;
+  position: relative;
+  min-height: 70mm;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-photo-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(26,54,93,0.72);
+  color: white;
+  font-size: 7pt;
+  padding: 3px 10px;
+  text-align: center;
+}
+
+/* ========== KPIグリッド ========== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin: 5px 0 6px;
+}
+.kpi-card {
+  background: linear-gradient(135deg, #EFF4FF, #E8EEFF);
+  border: 1px solid #BDD0F8;
+  border-radius: 5px;
+  padding: 6px 4px;
+  text-align: center;
+}
+.kpi-label { font-size: 6pt; color: #666; margin-bottom: 1px; }
+.kpi-value { font-size: 13pt; font-weight: 700; color: #1A365D; line-height: 1.15; }
+.kpi-unit { font-size: 6.5pt; color: #888; }
+
+/* ========== セクションタイトル ========== */
+.section-title {
+  background: linear-gradient(90deg, #1A365D 0%, #2D5A9B 100%);
+  color: white;
+  padding: 4px 10px;
+  font-size: 8.5pt;
+  font-weight: 700;
+  border-left: 4px solid #DAA520;
+  margin: 8px 0 4px;
+  letter-spacing: 0.03em;
+}
+
+/* ========== 物件概要テーブル ========== */
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.overview-table th {
+  background: #EEF2FF;
+  color: #1A365D;
+  font-weight: 600;
+  padding: 4px 8px;
+  border: 1px solid #BDD0F0;
+  width: 38%;
+  text-align: left;
+  white-space: nowrap;
+}
+.overview-table td {
+  padding: 4px 8px;
+  border: 1px solid #DDE8F5;
+  background: white;
+}
+.overview-table tr:nth-child(even) th { background: #E4EAFF; }
+.overview-table tr:nth-child(even) td { background: #F8FBFF; }
+
+/* ========== フッター ========== */
+.footer-band {
+  background: #1A365D;
+  color: rgba(255,255,255,0.65);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 14px;
+  font-size: 7pt;
+}
+
+/* ========== ページコンテンツ ========== */
+.page-content { padding: 7px 14px 6px; }
+
+/* ========== レントロールテーブル ========== */
+.lentroll-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.lentroll-table th {
+  background: linear-gradient(135deg, #1A365D, #2A4A7F);
+  color: white;
+  padding: 5px 8px;
+  border: 1px solid #1A365D;
+  text-align: center;
+  font-weight: 600;
+}
+.lentroll-table td {
+  padding: 5px 8px;
+  border: 1px solid #DDE8F5;
+  text-align: center;
+  background: white;
+}
+.lentroll-table .vacant td { background: #FFF5F5; color: #999; font-style: italic; }
+.lentroll-table .total-row td { background: #FFF8E7; font-weight: 700; }
+
+/* ========== ファイナンステーブル ========== */
+.finance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.finance-table .th {
+  background: #EEF2FF;
+  color: #1A365D;
+  font-weight: 600;
+  padding: 5px 10px;
+  border: 1px solid #BDD0F0;
+}
+.finance-table td {
+  padding: 5px 10px;
+  border: 1px solid #DDE8F5;
+  background: white;
+}
+.finance-table .subtotal td { background: #FFF8E7; font-weight: 700; }
+.finance-table .income td { background: #F0FFF4; }
+
+/* ========== 2カラムレイアウト ========== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ========== 投資ポイント ========== */
+.points-list { list-style: none; padding: 0; }
+.points-list li {
+  padding: 5px 8px 5px 10px;
+  border-left: 3px solid #DAA520;
+  margin-bottom: 5px;
+  background: #FFF8E7;
+  font-size: 8.5pt;
+  line-height: 1.45;
+}
+
+/* ========== 特記事項 ========== */
+.notes-box {
+  background: #FFF8E7;
+  border: 1px solid #E8C840;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 8.5pt;
+  line-height: 1.7;
+}
+
+/* ========== 周辺環境 ========== */
+.env-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 5px;
+}
+.env-card {
+  background: #F8FAFF;
+  border: 1px solid #BDD0F0;
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+.env-cat { font-size: 6.5pt; color: #888; }
+.env-name { font-size: 8pt; font-weight: 600; color: #1A365D; margin: 1px 0; }
+.env-dist { font-size: 7.5pt; color: #555; }
+
+/* ========== 写真グリッド ========== */
+.photo-grid-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+.photo-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin-bottom: 4px;
+}
+.photo-item {
+  overflow: hidden;
+  border-radius: 3px;
+  border: 1px solid #dde8f5;
+  background: #e8eef8;
+}
+.photo-item img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  display: block;
+}
+.photo-main img { height: 165px; }
+.photo-cap {
+  font-size: 6pt;
+  color: #666;
+  text-align: center;
+  padding: 2px;
+  background: #f4f8ff;
+  border-top: 1px solid #dde8f5;
+}
+
+/* ========== RKCバナー ========== */
+.rkc-banner {
+  background: linear-gradient(135deg, #1A365D 0%, #8B1A2A 100%);
+  color: white;
+  text-align: center;
+  padding: 5px 8px;
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+  margin: 6px 0;
+}
+
+/* ========== アラートボックス ========== */
+.alert-box {
+  background: #FFF0F0;
+  border: 1px solid #F0A0A0;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 7.5pt;
+  color: #666;
+  line-height: 1.55;
+  margin-top: 5px;
+}
+.info-box {
+  background: #F0F8FF;
+  border: 1px solid #BDD0F0;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 7.5pt;
+  color: #555;
+  line-height: 1.55;
+  margin-top: 5px;
+}
+
+/* ========== レスポンシブ ========== */
+@media screen and (max-width: 900px) {
+  .page-container { width: 100% !important; min-height: unset; padding: 0 8px; box-shadow: none; }
+  .page-wrapper { width: 100% !important; padding: 0 8px !important; }
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+  .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+  .header-property-name { font-size: 13pt; }
+  .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+  .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
+  .highlight-item:last-child { border-bottom: none; }
+  .highlight-value { font-size: 16pt; }
+  .two-col, .hero-section { grid-template-columns: 1fr !important; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .kpi-value { font-size: 14pt; }
+  .photo-item img { height: 80px; }
+  .photo-main img { height: 130px; }
+  .photo-grid-main { grid-template-columns: 1fr !important; }
+  .photo-grid-4 { grid-template-columns: 1fr 1fr !important; }
+  .lentroll-table, .finance-table, .overview-table { font-size: 9pt; }
+  body { font-size: 11pt; }
+  .section-title { font-size: 10pt; padding: 6px 12px; }
+  .points-list li, .notes-box { font-size: 10pt; }
+  .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+  .page-break { break-before: auto; page-break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+  .hero-photo { min-height: 50vw; }
+}
+@media screen and (max-width: 480px) {
+  .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .highlight-item { flex: 1 1 100%; }
+  .header-property-name { font-size: 12pt; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 1: 物件概要
+     ============================================================ -->
+<div class="page-container">
+<div class="page-wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">🏠 r-2616 ｜ RKC案件</div>
+      <div class="header-property-name">新潟県三条市四日町　連棟式長屋</div>
+      <div class="header-sub">📍 新潟県三条市四日町4-3　｜　JR信越本線 三条駅 徒歩8分　｜　近隣商業地域</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">25<span class="header-price-unit">万円</span></div>
+      <a href="https://drive.google.com/drive/folders/1hqvWkSouKHUbbiVT3nT0sh9kjCV-UrYZ" target="_blank" class="detail-btn">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <!-- ハイライトボックス -->
+  <div class="highlight-box">
+    <div class="highlight-item">
+      <div class="highlight-label">販売価格</div>
+      <div class="highlight-value">25<span style="font-size:9pt">万円</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">想定利回り（RKC）</div>
+      <div class="highlight-value red">100.8<span style="font-size:9pt">%</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">想定月額賃料</div>
+      <div class="highlight-value">2.1<span style="font-size:9pt">万円</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">土地面積</div>
+      <div class="highlight-value" style="font-size:13pt">197.91<span style="font-size:8pt">㎡</span></div>
+      <div class="highlight-unit">59.86坪</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">最寄駅</div>
+      <div class="highlight-value" style="font-size:12pt">三条駅</div>
+      <div class="highlight-unit">徒歩8分</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">積算評価（土地）</div>
+      <div class="highlight-value" style="font-size:12pt">約90<span style="font-size:8pt">万円</span></div>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション -->
+  <div class="hero-section">
+    <!-- 左：KPIカード -->
+    <div class="hero-kpi">
+      <div class="section-title">📊 投資指標サマリー</div>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">販売価格</div>
+          <div class="kpi-value" style="color:#C41E3A; font-size:14pt;">25万</div>
+          <div class="kpi-unit">円</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">想定利回り</div>
+          <div class="kpi-value" style="color:#C41E3A;">100.8%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">想定月額賃料</div>
+          <div class="kpi-value">2.1万</div>
+          <div class="kpi-unit">円/月</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">想定出口価格</div>
+          <div class="kpi-value" style="font-size:12pt;">126万</div>
+          <div class="kpi-unit">円（利回20%想定）</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">土地積算評価</div>
+          <div class="kpi-value" style="font-size:12pt;">約90万</div>
+          <div class="kpi-unit">円（路線価ベース）</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">想定売却益</div>
+          <div class="kpi-value" style="color:#C41E3A; font-size:12pt;">81万</div>
+          <div class="kpi-unit">円</div>
+        </div>
+      </div>
+      <div style="background:#FFF8E7; border:1px solid #DAA520; border-radius:4px; padding:5px 8px; font-size:7.5pt; color:#555; line-height:1.55; margin-top:5px;">
+        ⚠️ <strong>RKC成功報酬費用として10万円を別途申し受けます</strong><br>
+        現況：空室（空き家11年）｜ 建物未登記・連棟式長屋 ｜ 雨漏り有・残置物有（現状引渡し）
+      </div>
+    </div>
+
+    <!-- 右：外観写真 -->
+    <div class="hero-photo">
+      <img src="https://drive.google.com/thumbnail?id=1rpXnV0ybFiWl4qzMzQDvLGRH1F9Memeh&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1rpXnV0ybFiWl4qzMzQDvLGRH1F9Memeh'"
+           alt="物件外観">
+      <div class="hero-photo-label">📸 物件外観</div>
+    </div>
+  </div>
+
+  <!-- 物件概要テーブル -->
+  <div class="page-content">
+    <div class="section-title">📋 物件概要</div>
+    <div class="two-col">
+      <table class="overview-table">
+        <tr><th>所在地（住居表示）</th><td>新潟県三条市四日町4-3</td></tr>
+        <tr><th>地番</th><td>94番2</td></tr>
+        <tr><th>交通</th><td>JR信越本線 三条駅 徒歩8分</td></tr>
+        <tr><th>権利</th><td>所有権</td></tr>
+        <tr><th>地目</th><td>宅地</td></tr>
+        <tr><th>土地面積</th><td>197.91㎡（59.86坪）</td></tr>
+        <tr><th>接道</th><td>東・公道（幅員不明）</td></tr>
+        <tr><th>区域区分</th><td>市街化区域</td></tr>
+      </table>
+      <table class="overview-table">
+        <tr><th>用途地域</th><td>近隣商業地域</td></tr>
+        <tr><th>建蔽率 / 容積率</th><td>80% ／ 200%</td></tr>
+        <tr><th>建物構造</th><td>連棟式長屋（未登記）</td></tr>
+        <tr><th>築年数</th><td>【確認中】</td></tr>
+        <tr><th>延床面積</th><td>【確認中】</td></tr>
+        <tr><th>現況</th><td>空室（空き家11年）</td></tr>
+        <tr><th>取引形態</th><td>売主</td></tr>
+        <tr><th>広告掲載</th><td>一切不可</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>r-2616 ｜ 新潟県三条市四日町4-3</span>
+    <span>作成日：2026年4月23日</span>
+    <span>1 / 4</span>
+  </div>
+
+</div>
+</div><!-- /page-container -->
+
+
+<!-- ============================================================
+     PAGE 2: レントロール・RKC収支シミュレーション
+     ============================================================ -->
+<div class="page-container page-break">
+<div class="page-wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">🏠 r-2616 ｜ RKC案件</div>
+      <div class="header-property-name">新潟県三条市四日町　連棟式長屋</div>
+      <div class="header-sub">📍 新潟県三条市四日町4-3　｜　JR信越本線 三条駅 徒歩8分</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">25<span class="header-price-unit">万円</span></div>
+      <a href="https://drive.google.com/drive/folders/1hqvWkSouKHUbbiVT3nT0sh9kjCV-UrYZ" target="_blank" class="detail-btn">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="two-col">
+
+      <!-- 左：レントロール（現状） -->
+      <div class="avoid-break">
+        <div class="section-title">📊 レントロール（現状）</div>
+        <table class="lentroll-table">
+          <thead>
+            <tr>
+              <th style="width:15%">区画</th>
+              <th style="width:20%">間取り</th>
+              <th style="width:20%">専有面積</th>
+              <th style="width:20%">現状月額賃料</th>
+              <th style="width:25%">入居状況</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="vacant">
+              <td>-</td>
+              <td>【確認中】</td>
+              <td>【確認中】</td>
+              <td>－</td>
+              <td>空室</td>
+            </tr>
+            <tr class="total-row">
+              <td colspan="3" style="text-align:right;">現状収入合計</td>
+              <td style="color:#C41E3A; font-weight:700;">0円/月</td>
+              <td>全空室</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="info-box">
+          現況：空き家期間11年。残置物有り・雨漏り有。<br>
+          賃貸開始には残置物撤去・雨漏り修繕等が必要です。<br>
+          建物は連棟式長屋（未登記）です。
+        </div>
+
+        <!-- 年間支出テーブル（資料に記載ある項目のみ） -->
+        <div class="section-title" style="margin-top:12px;">💸 年間支出（想定）</div>
+        <table class="finance-table">
+          <tr>
+            <td class="th">固定資産税（実績）</td>
+            <td style="text-align:right;">約35,000円/年<br><span style="font-size:7pt;color:#888;">（令和6年度課税明細書より参考値）</span></td>
+          </tr>
+          <tr>
+            <td class="th">③ 諸経費（RKC想定）</td>
+            <td style="text-align:right;">100,000円（登記費用等概算）</td>
+          </tr>
+          <tr>
+            <td class="th">④ RKC成功報酬費用</td>
+            <td style="text-align:right; color:#C41E3A; font-weight:700;">100,000円</td>
+          </tr>
+        </table>
+        <div style="font-size:7pt; color:#888; padding:3px 5px;">
+          ※ 管理費・修繕積立の記載なし（資料に記載なし）。リフォーム費用は別途。
+        </div>
+      </div>
+
+      <!-- 右：RKC収支シミュレーション -->
+      <div class="avoid-break">
+        <div class="rkc-banner">✦ RKC収支シミュレーション ✦</div>
+        <table class="finance-table">
+          <tr>
+            <td class="th" style="width:58%">① 販売価格（取得費用）</td>
+            <td style="text-align:right; font-weight:700;">250,000円（25万円）</td>
+          </tr>
+          <tr class="income">
+            <td class="th">想定月額賃料（N列）</td>
+            <td style="text-align:right; color:#1a7a1a; font-weight:700;">21,000円/月</td>
+          </tr>
+          <tr class="income">
+            <td class="th">年間想定家賃収入（月額×12）</td>
+            <td style="text-align:right; color:#1a7a1a; font-weight:700;">252,000円</td>
+          </tr>
+          <tr class="income">
+            <td class="th">想定利回り</td>
+            <td style="text-align:right; color:#1a7a1a; font-weight:700; font-size:1.05em;">100.8%</td>
+          </tr>
+          <tr>
+            <td class="th">② 想定出口価格（利回り20%想定）</td>
+            <td style="text-align:right; font-weight:700;">
+              1,260,000円<br>
+              <span style="font-size:7pt; color:#666;">（252,000円 ÷ 20% = 1,260,000円）</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="th" style="padding-left:18px;">　　− ① 取得費用</td>
+            <td style="text-align:right;">−250,000円</td>
+          </tr>
+          <tr>
+            <td class="th" style="padding-left:18px;">　　− ③ 諸経費（想定）</td>
+            <td style="text-align:right;">−100,000円</td>
+          </tr>
+          <tr>
+            <td class="th" style="padding-left:18px;">　　− ④ RKC成功報酬費用</td>
+            <td style="text-align:right; color:#C41E3A;">−100,000円</td>
+          </tr>
+          <tr class="subtotal">
+            <td class="th"><strong>想定売却益（②−①−③−④）</strong></td>
+            <td style="text-align:right; color:#C41E3A; font-weight:700; font-size:1.15em;"><strong>810,000円（約81万円）</strong></td>
+          </tr>
+        </table>
+        <div class="notes-box" style="font-size:7.5pt; color:#666; margin-top:6px;">
+          ⚠️ <strong>RKC成功報酬費用として10万円を別途申し受けます</strong><br>
+          ※ 想定出口価格は利回り20%想定の試算値。市場状況により変動します。<br>
+          ※ 諸経費（③）は登記費用等の概算値。実際と異なる場合があります。<br>
+          ※ リフォーム・残置物撤去費用は別途発生します。
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>r-2616 ｜ 新潟県三条市四日町4-3</span>
+    <span>作成日：2026年4月23日</span>
+    <span>2 / 4</span>
+  </div>
+
+</div>
+</div><!-- /page-container -->
+
+
+<!-- ============================================================
+     PAGE 3: 投資ポイント・周辺環境
+     ============================================================ -->
+<div class="page-container page-break">
+<div class="page-wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">🏠 r-2616 ｜ RKC案件</div>
+      <div class="header-property-name">新潟県三条市四日町　連棟式長屋</div>
+      <div class="header-sub">📍 新潟県三条市四日町4-3　｜　JR信越本線 三条駅 徒歩8分</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">25<span class="header-price-unit">万円</span></div>
+      <a href="https://drive.google.com/drive/folders/1hqvWkSouKHUbbiVT3nT0sh9kjCV-UrYZ" target="_blank" class="detail-btn">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="two-col">
+
+      <!-- 左：積算評価 + 投資ポイント -->
+      <div>
+        <div class="section-title">🏗️ 積算評価（参考）</div>
+        <table class="finance-table">
+          <tr>
+            <td class="th" style="width:55%">路線価</td>
+            <td style="text-align:right;">15,000円/坪（1.5万円/坪）</td>
+          </tr>
+          <tr>
+            <td class="th">土地面積</td>
+            <td style="text-align:right;">59.86坪（197.91㎡）</td>
+          </tr>
+          <tr class="income">
+            <td class="th">土地積算評価</td>
+            <td style="text-align:right; font-weight:700; color:#1a7a1a;">897,900円（約90万円）</td>
+          </tr>
+          <tr>
+            <td class="th">建物積算評価</td>
+            <td style="text-align:right; color:#999;">0円<br><span style="font-size:7pt;">（未登記・連棟式・残存耐用年数0想定）</span></td>
+          </tr>
+          <tr class="subtotal">
+            <td class="th"><strong>積算評価合計</strong></td>
+            <td style="text-align:right; font-weight:700; color:#1A365D;"><strong>約898,000円（約90万円）</strong></td>
+          </tr>
+        </table>
+        <div style="font-size:7pt; color:#999; padding:3px 5px;">
+          ※路線価はユーザー提供値を使用。建物は未登記・連棟式のため積算評価0円。
+        </div>
+
+        <div class="section-title" style="margin-top:10px;">✅ 投資ポイント</div>
+        <ul class="points-list">
+          <li>💰 <strong>超低価格25万円で現金購入可能</strong><br>少額資金での不動産投資スタートに最適</li>
+          <li>📈 <strong>想定利回り100.8%（月額賃料2.1万円）</strong><br>RKC規格でも異次元の高利回り物件</li>
+          <li>🏡 <strong>土地積算評価が販売価格の約3.6倍</strong><br>土地のみで約90万円（販売価格25万円を大幅上回る）</li>
+          <li>📍 <strong>三条駅徒歩8分・近隣商業地域</strong><br>生活利便性の高いエリア、賃貸需要が見込める立地</li>
+          <li>💹 <strong>想定転売益81万円（出口価格126万円）</strong><br>取得価格の約5倍の出口価格（利回20%想定）</li>
+          <li>🌍 <strong>広大な敷地197.91㎡（約60坪）</strong><br>土地面積に余裕あり</li>
+        </ul>
+      </div>
+
+      <!-- 右：周辺環境 + 設備 -->
+      <div>
+        <div class="section-title">🗺️ 周辺環境</div>
+        <div class="env-grid">
+          <div class="env-card">
+            <div class="env-cat">🚉 最寄駅</div>
+            <div class="env-name">JR三条駅</div>
+            <div class="env-dist">信越本線 徒歩8分</div>
+          </div>
+          <div class="env-card">
+            <div class="env-cat">🏪 用途地域</div>
+            <div class="env-name">近隣商業地域</div>
+            <div class="env-dist">市街化区域</div>
+          </div>
+          <div class="env-card">
+            <div class="env-cat">🏦 金融機関</div>
+            <div class="env-name">三条信用金庫</div>
+            <div class="env-dist">四日町支店（近隣）</div>
+          </div>
+          <div class="env-card">
+            <div class="env-cat">🏫 中学校</div>
+            <div class="env-name">三条市立第一中学校</div>
+            <div class="env-dist">周辺</div>
+          </div>
+          <div class="env-card">
+            <div class="env-cat">🏫 小学校</div>
+            <div class="env-name">市立附属小学校</div>
+            <div class="env-dist">周辺</div>
+          </div>
+          <div class="env-card">
+            <div class="env-cat">🌿 公園</div>
+            <div class="env-name">四日町公園</div>
+            <div class="env-dist">周辺</div>
+          </div>
+        </div>
+
+        <div class="section-title" style="margin-top:10px;">🔧 設備・物件特性</div>
+        <table class="overview-table">
+          <tr><th>水道</th><td>公営</td></tr>
+          <tr><th>下水</th><td>浄化槽・下水（両方あり）</td></tr>
+          <tr><th>ガス</th><td>プロパン</td></tr>
+          <tr><th>告知事項</th><td>特になし</td></tr>
+          <tr><th>売却理由</th><td>資産整理</td></tr>
+          <tr><th>管理状況</th><td>月1回（空き家期間中）</td></tr>
+          <tr><th>残置物</th><td>有り（現状引渡し）</td></tr>
+          <tr><th>建物不具合</th><td>雨漏り有り</td></tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>r-2616 ｜ 新潟県三条市四日町4-3</span>
+    <span>作成日：2026年4月23日</span>
+    <span>3 / 4</span>
+  </div>
+
+</div>
+</div><!-- /page-container -->
+
+
+<!-- ============================================================
+     PAGE 4: 物件写真・特記事項
+     ============================================================ -->
+<div class="page-container page-break">
+<div class="page-wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">🏠 r-2616 ｜ RKC案件</div>
+      <div class="header-property-name">新潟県三条市四日町　連棟式長屋</div>
+      <div class="header-sub">📍 新潟県三条市四日町4-3　｜　JR信越本線 三条駅 徒歩8分</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">25<span class="header-price-unit">万円</span></div>
+      <a href="https://drive.google.com/drive/folders/1hqvWkSouKHUbbiVT3nT0sh9kjCV-UrYZ" target="_blank" class="detail-btn">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="section-title">📸 物件写真</div>
+
+    <!-- メイン写真行 -->
+    <div class="photo-grid-main">
+      <div class="photo-item photo-main">
+        <img src="https://drive.google.com/thumbnail?id=1rpXnV0ybFiWl4qzMzQDvLGRH1F9Memeh&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1rpXnV0ybFiWl4qzMzQDvLGRH1F9Memeh'"
+             alt="物件外観">
+        <div class="photo-cap">外観（メイン）</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1zAxCwA6bQX46cNQ1xit1vZjk8NS4fPnv&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1zAxCwA6bQX46cNQ1xit1vZjk8NS4fPnv'"
+             alt="写真1">
+        <div class="photo-cap">外観①</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1yt604PKhJSng5PSEoOQFa0n7PRWqtB4a&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1yt604PKhJSng5PSEoOQFa0n7PRWqtB4a'"
+             alt="写真2">
+        <div class="photo-cap">外観②</div>
+      </div>
+    </div>
+
+    <!-- 4列写真 row 1 -->
+    <div class="photo-grid-4">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1XGYgnld1h8qgDBFyz_01iNbWxjhSgtO6&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1XGYgnld1h8qgDBFyz_01iNbWxjhSgtO6'"
+             alt="写真3">
+        <div class="photo-cap">室内①</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1fq3k9wCDsDYd1XUK7fIsXBUPbiFjWAOs&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1fq3k9wCDsDYd1XUK7fIsXBUPbiFjWAOs'"
+             alt="写真4">
+        <div class="photo-cap">室内②</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1CxZoqTwPGJRYzeeBKwgkOO2x4wDMsILp&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1CxZoqTwPGJRYzeeBKwgkOO2x4wDMsILp'"
+             alt="写真5">
+        <div class="photo-cap">室内③</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=12mGdYH2eztpUYPRs-SV6-3lRNDUQWnFi&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/12mGdYH2eztpUYPRs-SV6-3lRNDUQWnFi'"
+             alt="写真6">
+        <div class="photo-cap">室内④</div>
+      </div>
+    </div>
+
+    <!-- 4列写真 row 2 -->
+    <div class="photo-grid-4">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1gd7CS0nqBVXCbIboet8MVrR0pmqwuGIy&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1gd7CS0nqBVXCbIboet8MVrR0pmqwuGIy'"
+             alt="写真7">
+        <div class="photo-cap">室内⑤</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1Lam2PNfE-eNmR26kdg1tWA2IMdhfQdNv&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Lam2PNfE-eNmR26kdg1tWA2IMdhfQdNv'"
+             alt="写真8">
+        <div class="photo-cap">室内⑥</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1JV6iwH-fBXpXFQ4WT8mcREe4wooF5wTa&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1JV6iwH-fBXpXFQ4WT8mcREe4wooF5wTa'"
+             alt="写真9">
+        <div class="photo-cap">室内⑦</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1SFldSi4XftdDvjrRQqvcr_hWjgn3XKsH&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1SFldSi4XftdDvjrRQqvcr_hWjgn3XKsH'"
+             alt="写真10">
+        <div class="photo-cap">室内⑧</div>
+      </div>
+    </div>
+
+    <!-- 特記事項 -->
+    <div class="section-title" style="margin-top:8px;">⚠️ 特記事項・注意点</div>
+    <div class="notes-box">
+      ・<strong>RKC成功報酬費用として10万円を別途申し受けます</strong><br>
+      ・<strong>雨漏り有り</strong>（修繕が必要。現状引渡し）<br>
+      ・残置物有り（現状引渡し）<br>
+      ・建物は連棟式長屋のため、<strong>再建築の際は隣人との協議が必要</strong><br>
+      ・建物未登記（登記費用等が別途発生する場合あり）<br>
+      ・裏庭の除草を隣地から求められる場合あり（夏場等）<br>
+      ・ガス：プロパン　水道：公営　下水：浄化槽・下水（両方）<br>
+      ・広告掲載：一切不可（売主指定）<br>
+      ・お問い合わせはご紹介業者様へ直接ご連絡ください
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>r-2616 ｜ 新潟県三条市四日町4-3</span>
+    <span>作成日：2026年4月23日</span>
+    <span>4 / 4</span>
+  </div>
+
+</div>
+</div><!-- /page-container -->
+
+</body>
+</html>
