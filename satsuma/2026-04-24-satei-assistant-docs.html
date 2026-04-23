@@ -149,12 +149,36 @@
   </table></div>
 
   <h2 class="section-title">3. インストール方法（初回のみ）</h2>
-  <div class="steps">
-    <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Gmailを開く</div><div>ブラウザでGmailにアクセスする</div></div></div>
-    <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">テストデプロイURLにアクセス</div><div>管理者から共有された「インストール用URL」をクリック</div></div></div>
-    <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">「インストール」をクリック</div><div>Googleアカウントを選択し「許可」をクリック</div></div></div>
-    <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">完了確認</div><div>Gmailの右サイドバーに 🏠 アイコンが表示されれば完了</div></div></div>
+
+  <div class="info-box" style="margin-bottom:16px;">
+    <strong>📋 Apps Script プロジェクト情報</strong><br><br>
+    <table style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+      <tr><td style="padding:4px 8px 4px 0;color:#555;white-space:nowrap;">プロジェクトURL</td><td style="padding:4px 0;"><a href="https://script.google.com/home/projects/1C38pVLjn8efNfceOthyZGNoax2luaVi_MOJgr-pQ8__GyjUZkFNwmpJ1/edit" target="_blank" style="color:#1A5276;font-family:monospace;font-size:0.82rem;word-break:break-all;">https://script.google.com/home/projects/1C38pVLjn8efNfceOthyZGNoax2luaVi_MOJgr-pQ8__GyjUZkFNwmpJ1/edit</a></td></tr>
+      <tr><td style="padding:4px 8px 4px 0;color:#555;white-space:nowrap;">ヘッドデプロイID</td><td style="padding:4px 0;font-family:monospace;font-size:0.82rem;word-break:break-all;">AKfycbxH_JBLorCEy-UO4R2TdWOtVkxacU8QZf_9CFKPwNk</td></tr>
+      <tr><td style="padding:4px 8px 4px 0;color:#555;white-space:nowrap;">対応アプリ</td><td style="padding:4px 0;">Gmail</td></tr>
+    </table>
   </div>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">管理者に自分のGmailアドレスを連絡する</div><div>管理者がテストユーザーとして登録する必要があります（satsuma@reatex.co.jp まで連絡）</div></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Apps Script プロジェクトにアクセス</div><div>上記「プロジェクトURL」をクリックして開く</div></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">「デプロイ」→「デプロイをテスト」をクリック</div><div>Apps Script エディタの右上「デプロイ」ボタン → 「デプロイをテスト」を選択</div></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">「インストール」をクリック</div><div>表示されたダイアログで「インストール」→ Googleアカウントを選択し「許可」</div></div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">完了確認</div><div>Gmailの右サイドバーに 🏠 アイコンが表示されれば完了</div></div></div>
+  </div>
+
+  <div style="margin:16px 0;background:white;border-radius:10px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+    <div style="font-weight:700;color:#1F4E79;margin-bottom:10px;">📸 「デプロイをテスト」画面のイメージ</div>
+    <div style="background:#1e1e2e;border-radius:8px;padding:16px;color:#cdd6f4;font-family:monospace;font-size:0.82rem;line-height:2;">
+      <div style="color:#89b4fa;margin-bottom:8px;">【デプロイをテスト】</div>
+      <div>種類：Google Workspace アドオン</div>
+      <div>ヘッドデプロイID：AKfycbxH_JBLorCEy-UO4R2TdWOtVkxacU8QZf_9CFKPwNk</div>
+      <div>デプロイ：Test latest code</div>
+      <div>Application(s)：Gmail</div>
+      <div style="margin-top:12px;"><span style="background:#2E75B6;color:white;padding:4px 14px;border-radius:4px;">インストール</span></div>
+    </div>
+  </div>
+
   <div class="warning-box">⚠️ 「このアプリはGoogleによって確認されていません」と表示された場合は「詳細」→「リアテクス査定アシスタント（安全ではないページ）に移動」→「許可」を選択してください。</div>
 
   <h2 class="section-title">4. 使い方</h2>
@@ -269,6 +293,16 @@
   </table></div>
 
   <h2 class="section-title">3. セットアップ手順</h2>
+  <h3 class="sub-title">3-0. 現行プロジェクト情報</h3>
+  <div class="info-box" style="margin-bottom:16px;">
+    <table style="width:100%;border-collapse:collapse;font-size:0.88rem;">
+      <tr><td style="padding:4px 8px 4px 0;color:#1A5276;font-weight:700;white-space:nowrap;">プロジェクトURL</td><td style="padding:4px 0;"><a href="https://script.google.com/home/projects/1C38pVLjn8efNfceOthyZGNoax2luaVi_MOJgr-pQ8__GyjUZkFNwmpJ1/edit" target="_blank" style="color:#1A5276;font-family:monospace;font-size:0.81rem;word-break:break-all;">https://script.google.com/home/projects/<br>1C38pVLjn8efNfceOthyZGNoax2luaVi_MOJgr-pQ8__GyjUZkFNwmpJ1/edit</a></td></tr>
+      <tr><td style="padding:4px 8px 4px 0;color:#1A5276;font-weight:700;white-space:nowrap;">ヘッドデプロイID</td><td style="padding:4px 0;font-family:monospace;font-size:0.81rem;word-break:break-all;">AKfycbxH_JBLorCEy-UO4R2TdWOtVkxacU8QZf_9CFKPwNk</td></tr>
+      <tr><td style="padding:4px 8px 4px 0;color:#1A5276;font-weight:700;white-space:nowrap;">デプロイ種別</td><td style="padding:4px 0;">Google Workspace アドオン（Test latest code）</td></tr>
+      <tr><td style="padding:4px 8px 4px 0;color:#1A5276;font-weight:700;white-space:nowrap;">対応アプリ</td><td style="padding:4px 0;">Gmail</td></tr>
+    </table>
+  </div>
+
   <h3 class="sub-title">3-1. 新規環境への導入</h3>
   <div class="steps">
     <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Google Apps Scriptプロジェクトを新規作成</div><div>script.google.com → 「新しいプロジェクト」</div></div></div>
