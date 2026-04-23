@@ -214,41 +214,6 @@
   .photo-main img { width: 100%; height: 140px; object-fit: cover; border-radius: 4px; border: 1px solid #d0daea; display: block; }
   .photo-caption { font-size: 7pt; color: #555; text-align: center; margin-top: 2px; }
 
-  /* LINEページ */
-  .line-page {
-    background: linear-gradient(135deg, #00B900 0%, #00a000 40%, #007a00 100%);
-    color: #fff;
-    min-height: 182mm;
-    padding: 18px 20px 14px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    border-radius: 6px;
-  }
-  .line-logo { font-size: 11pt; font-weight: 700; background: #fff; color: #00B900; display: inline-block; padding: 3px 10px; border-radius: 4px; margin-bottom: 10px; }
-  .line-main-title { font-size: 26pt; font-weight: 900; line-height: 1.15; margin-bottom: 8px; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
-  .line-sub-title { font-size: 11pt; opacity: 0.92; margin-bottom: 16px; font-weight: 600; }
-  .line-content { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 16px; }
-  .line-features { background: rgba(255,255,255,0.15); border-radius: 8px; padding: 12px 16px; min-width: 220px; }
-  .line-features li { list-style: none; padding: 4px 0; font-size: 9.5pt; }
-  .line-features li::before { content: "✅ "; }
-  .line-qr { text-align: center; }
-  .line-qr img { width: 90px; height: 90px; background: #fff; padding: 4px; border-radius: 6px; }
-  .line-qr-label { font-size: 7.5pt; margin-top: 4px; opacity: 0.85; }
-  .line-btn {
-    display: inline-block;
-    background: #fff;
-    color: #00B900;
-    font-size: 14pt;
-    font-weight: 900;
-    padding: 12px 40px;
-    border-radius: 30px;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    margin-bottom: 16px;
-  }
-  .line-note { font-size: 7.5pt; opacity: 0.75; }
-
   /* ===== 印刷設定 ===== */
   @media print {
     body { background: #fff; }
@@ -284,9 +249,7 @@
     .photo-grid-2    { grid-template-columns: 1fr !important; }
     .overview-section { overflow-x: auto; }
     body { font-size: 11pt; }
-    .line-page { padding: 20px 14px; min-height: unset; }
-    .line-content { flex-direction: column; gap: 14px; }
-    .line-main-title { font-size: 22pt; }
+
     .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
   }
   @media screen and (max-width: 480px) {
@@ -310,7 +273,6 @@
   <!-- ヘッダー -->
   <div class="header">
     <div class="header-left">
-      <div class="company-name">株式会社リアテクス｜未公開プレミアム不動産</div>
       <div class="header-property-name">三重県南牟婁郡紀宝町｜3棟AP＋戸建</div>
       <div class="header-address">📍 三重県南牟婁郡紀宝町1486-2　JR鵜殿駅 徒歩約4分</div>
     </div>
@@ -477,8 +439,6 @@
 
   <!-- フッター -->
   <div class="footer-band">
-    <div>株式会社リアテクス｜東京都中央区銀座</div>
-    <div class="footer-contact">📞 03-6822-7297</div>
     <div>p-2316｜三重県南牟婁郡紀宝町</div>
   </div>
 </div>
@@ -489,7 +449,6 @@
 
     <div class="header" style="border-radius:6px;">
       <div class="header-left">
-        <div class="company-name">株式会社リアテクス｜未公開プレミアム不動産</div>
         <div class="header-property-name">レントロール</div>
         <div class="header-address">📍 三重県南牟婁郡紀宝町1486-2 ／ p-2316</div>
       </div>
@@ -612,8 +571,6 @@
     </div>
 
     <div class="footer-band" style="border-radius:6px; margin-top:10px;">
-      <div>株式会社リアテクス｜東京都中央区銀座</div>
-      <div class="footer-contact">📞 03-6822-7297</div>
       <div>p-2316｜三重県南牟婁郡紀宝町</div>
     </div>
   </div>
@@ -625,7 +582,6 @@
 
     <div class="header" style="border-radius:6px;">
       <div class="header-left">
-        <div class="company-name">株式会社リアテクス｜未公開プレミアム不動産</div>
         <div class="header-property-name">収支シミュレーション・投資ポイント</div>
         <div class="header-address">📍 三重県南牟婁郡紀宝町1486-2 ／ p-2316</div>
       </div>
@@ -775,8 +731,6 @@
     </table>
 
     <div class="footer-band" style="border-radius:6px; margin-top:10px;">
-      <div>株式会社リアテクス｜東京都中央区銀座</div>
-      <div class="footer-contact">📞 03-6822-7297</div>
       <div>p-2316｜三重県南牟婁郡紀宝町</div>
     </div>
   </div>
@@ -788,7 +742,6 @@
 
     <div class="header" style="border-radius:6px;">
       <div class="header-left">
-        <div class="company-name">株式会社リアテクス｜未公開プレミアム不動産</div>
         <div class="header-property-name">物件写真・特記事項</div>
         <div class="header-address">📍 三重県南牟婁郡紀宝町1486-2 ／ p-2316</div>
       </div>
@@ -890,48 +843,11 @@
     </div>
 
     <div class="footer-band" style="border-radius:6px; margin-top:10px;">
-      <div>株式会社リアテクス｜東京都中央区銀座</div>
-      <div class="footer-contact">📞 03-6822-7297</div>
       <div>p-2316｜三重県南牟婁郡紀宝町</div>
     </div>
   </div>
 </div>
 
-<!-- ========== PAGE 5: LINE登録ページ ========== -->
-<div class="page-container page-break">
-  <div class="page-wrapper">
-    <div class="line-page">
-      <div class="line-logo">LINE 公式アカウント</div>
-      <div class="line-main-title">未公開プレミアム<br>不動産</div>
-      <div class="line-sub-title">市場に出る前の厳選物件を、いち早くお届けします</div>
-
-      <div class="line-content">
-        <ul class="line-features">
-          <li>未公開・非公開物件を優先配信</li>
-          <li>高利回り・価格改定物件をいち早くお知らせ</li>
-          <li>投資家向け限定情報を毎週配信</li>
-          <li>購入相談・査定・融資サポート無料</li>
-          <li>全国各地の収益不動産を網羅</li>
-        </ul>
-        <div class="line-qr">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx%26lp%3DjXNBfy%26liff_id%3D2008453829-wpj8vzeq"
-               alt="LINE QR">
-          <div class="line-qr-label">QRコードで<br>友だち追加</div>
-        </div>
-      </div>
-
-      <a href="https://liff-gateway.lineml.jp/landing?follow=%40388jjfgx&lp=jXNBfy&liff_id=2008453829-wpj8vzeq"
-         class="line-btn" target="_blank">
-        🔔 友だち追加して物件情報を受け取る
-      </a>
-
-      <div class="line-note">
-        ※ 本資料は未公開物件情報です。転送・二次配布はご遠慮ください。<br>
-        ※ 株式会社リアテクス｜東京都中央区銀座 ｜ TEL: 03-6822-7297
-      </div>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
