@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件概要書 東京都荒川区町屋6丁目 マンション・収益ビル用地</title>
+<style>
+/* ========== 基本設定 ========== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif; font-size: 10pt; color: #1a1a1a; background: #fff; }
+
+/* ========== 印刷設定 ========== */
+@page { size: A4 landscape; margin: 14mm 15mm; }
+@media print {
+  body { font-size: 9pt; }
+  .page-break { break-before: page; }
+  .avoid-break { break-inside: avoid; }
+  .page-container { min-height: 182mm; }
+  * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
+
+/* ========== ページコンテナ ========== */
+.page-container { width: 267mm; margin: 0 auto; padding: 0; background: #fff; }
+.page-wrapper { width: 267mm; margin: 0 auto; padding: 0; }
+.page-break { break-before: page; }
+.avoid-break { break-inside: avoid; }
+
+/* ========== 価格改定バナー ========== */
+.price-revision-banner {
+  background: linear-gradient(135deg, #C41E3A 0%, #8B0000 100%);
+  color: #fff;
+  padding: 7px 20px;
+  text-align: center;
+  font-size: 10.5pt;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+.price-revision-banner::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,0.05) 8px, rgba(255,255,255,0.05) 16px);
+}
+.price-revision-banner .old-price { text-decoration: line-through; opacity: 0.7; margin: 0 8px; }
+.price-revision-banner .new-price { font-size: 13pt; color: #FFD700; }
+.price-revision-banner .diff { background: rgba(255,255,255,0.2); border-radius: 4px; padding: 1px 8px; margin-left: 8px; font-size: 9pt; }
+
+/* ========== ヘッダー ========== */
+.header {
+  background: linear-gradient(135deg, #1A365D 0%, #2C4F8C 100%);
+  color: #fff;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-left {}
+.header-property-name { font-size: 15pt; font-weight: 700; letter-spacing: 0.5px; }
+.header-sub { font-size: 8pt; opacity: 0.8; margin-top: 2px; }
+.header-right { text-align: right; }
+.header-price { font-size: 20pt; font-weight: 700; color: #FFD700; }
+.header-price-label { font-size: 7.5pt; opacity: 0.7; }
+.header-link {
+  display: inline-block; margin-top: 6px; padding: 5px 12px;
+  background: #DAA520; color: #1A365D; border-radius: 4px;
+  font-size: 8pt; font-weight: 700; text-decoration: none;
+}
+
+/* ========== ハイライトボックス ========== */
+.highlight-box {
+  display: flex;
+  background: linear-gradient(135deg, #F5F0E8, #EDE8D8);
+  border-bottom: 3px solid #DAA520;
+  padding: 10px 16px;
+  gap: 0;
+}
+.highlight-item {
+  flex: 1;
+  text-align: center;
+  padding: 6px 10px;
+  border-right: 1px solid #D4C090;
+}
+.highlight-item:last-child { border-right: none; }
+.highlight-label { font-size: 7pt; color: #666; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.highlight-value { font-size: 17pt; font-weight: 700; color: #1A365D; line-height: 1.2; margin: 2px 0; }
+.highlight-value.accent { color: #C41E3A; }
+.highlight-value.gold { color: #B8860B; }
+.highlight-sub { font-size: 7pt; color: #888; }
+
+/* ========== 積算以下強調ボックス ========== */
+.sanzan-box {
+  background: linear-gradient(135deg, #1A365D 0%, #2C4F8C 100%);
+  color: white;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.sanzan-box::before {
+  content: '★';
+  position: absolute;
+  right: 12px; top: 8px;
+  font-size: 40pt;
+  opacity: 0.1;
+}
+.sanzan-title { font-size: 12pt; font-weight: 700; margin-bottom: 6px; }
+.sanzan-numbers { display: flex; align-items: center; gap: 12px; }
+.sanzan-item { text-align: center; }
+.sanzan-item .val { font-size: 18pt; font-weight: 700; }
+.sanzan-item .lbl { font-size: 7.5pt; opacity: 0.8; }
+.sanzan-arrow { font-size: 16pt; color: #DAA520; }
+.sanzan-badge {
+  display: inline-block;
+  background: #DAA520; color: #1A365D;
+  font-size: 10pt; font-weight: 700;
+  padding: 4px 14px; border-radius: 20px;
+  margin-top: 6px;
+}
+.sanzan-note { font-size: 8pt; opacity: 0.75; margin-top: 4px; }
+
+/* ========== ヒーローセクション ========== */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 0;
+  min-height: 90mm;
+}
+.hero-left { padding: 12px 14px; background: #F8FAFF; border-right: 2px solid #E0E8F0; }
+.hero-right { overflow: hidden; }
+.hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-right .photo-placeholder {
+  width: 100%; height: 100%; min-height: 90mm;
+  background: linear-gradient(135deg, #2d4a7a, #1a2d4d);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4); font-size: 10pt;
+}
+
+/* ========== KPIグリッド ========== */
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.kpi-card {
+  background: white; border-radius: 6px; padding: 8px 10px;
+  border: 1px solid #D0DBF0;
+  border-left: 4px solid #1A365D;
+}
+.kpi-card.accent { border-left-color: #C41E3A; }
+.kpi-card.gold { border-left-color: #DAA520; }
+.kpi-label { font-size: 7pt; color: #666; font-weight: 600; }
+.kpi-value { font-size: 14pt; font-weight: 700; color: #1A365D; line-height: 1.2; }
+.kpi-value.red { color: #C41E3A; }
+.kpi-value.gold-color { color: #B8860B; }
+.kpi-sub { font-size: 7pt; color: #888; }
+
+.points-mini { margin-top: 8px; }
+.points-mini li { font-size: 8pt; color: #1A365D; margin-bottom: 4px; padding-left: 14px; position: relative; }
+.points-mini li::before { content: '✓'; position: absolute; left: 0; color: #DAA520; font-weight: 700; }
+
+/* ========== 物件概要テーブル ========== */
+.section-title {
+  background: linear-gradient(90deg, #1A365D, #2C4F8C);
+  color: white; font-size: 9pt; font-weight: 700;
+  padding: 5px 14px; margin: 10px 0 6px;
+}
+.overview-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+.overview-table th {
+  background: #EEF2F8; color: #1A365D; font-weight: 700;
+  padding: 5px 10px; text-align: left;
+  border: 1px solid #D0DBF0;
+  white-space: nowrap; width: 120px;
+}
+.overview-table td {
+  padding: 5px 10px;
+  border: 1px solid #D0DBF0;
+  background: white;
+}
+.overview-table tr:nth-child(even) td { background: #F8FAFF; }
+.two-col-table { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+
+/* ========== フッター帯 ========== */
+.footer-band {
+  background: #1A365D; color: rgba(255,255,255,0.7);
+  padding: 6px 16px; font-size: 7.5pt;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 10px;
+}
+.footer-disclaimer { font-size: 7pt; }
+
+/* ========== P2: 積算分析・投資ポイント ========== */
+.invest-section { padding: 14px 16px 0; }
+.two-col-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.three-col-layout { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+/* 積算評価比較バー */
+.sanzan-compare { margin-bottom: 16px; }
+.compare-bar-wrap { margin: 8px 0 4px; }
+.compare-bar-label { display: flex; justify-content: space-between; font-size: 7.5pt; color: #666; margin-bottom: 3px; }
+.compare-bar { height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; color: white; font-weight: 700; font-size: 9pt; transition: width 0.3s; }
+.bar-sanzan { background: linear-gradient(90deg, #2C4F8C, #1A365D); width: 100%; }
+.bar-price { background: linear-gradient(90deg, #C41E3A, #8B0000); width: 77%; }
+.compare-note {
+  background: #FFF3CD; border: 1px solid #DAA520;
+  border-radius: 4px; padding: 6px 10px; font-size: 8pt; color: #5D4A00;
+  margin-top: 8px;
+}
+
+/* おすすめポイント */
+.points-list { list-style: none; }
+.points-list li {
+  padding: 7px 10px 7px 32px;
+  border-radius: 4px; background: #F0F4FF;
+  margin-bottom: 6px; position: relative;
+  font-size: 8.5pt; line-height: 1.5; color: #1a1a1a;
+  border-left: 3px solid #1A365D;
+}
+.points-list li::before {
+  content: '▶'; position: absolute; left: 10px;
+  color: #DAA520; font-size: 8pt; top: 8px;
+}
+.points-list li strong { color: #C41E3A; }
+
+/* 建築プランカード */
+.plan-card {
+  border: 2px solid #1A365D; border-radius: 8px;
+  overflow: hidden; background: white;
+}
+.plan-card-header {
+  background: linear-gradient(135deg, #1A365D, #2C4F8C);
+  color: white; padding: 8px 14px; font-size: 9.5pt; font-weight: 700;
+}
+.plan-card-body { padding: 10px 12px; }
+.plan-card-img { width: 100%; height: 110px; object-fit: cover; display: block; }
+.plan-card-img-placeholder {
+  width: 100%; height: 110px; background: #EEF2F8;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8pt; color: #999; flex-direction: column; gap: 4px;
+}
+.plan-spec-row { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dotted #ddd; font-size: 8pt; }
+.plan-spec-row:last-child { border-bottom: none; }
+.plan-spec-label { color: #555; }
+.plan-spec-value { font-weight: 700; color: #1A365D; }
+.plan-badge {
+  display: inline-block; background: #DAA520; color: #1A365D;
+  font-size: 7pt; font-weight: 700; padding: 2px 8px; border-radius: 3px; margin-top: 6px;
+}
+
+/* ========== P3: 周辺環境・特記事項 ========== */
+.env-section { padding: 14px 16px 0; }
+.access-card {
+  background: #F0F4FF; border-radius: 6px; padding: 10px 14px;
+  border-left: 4px solid #1A365D; margin-bottom: 8px;
+}
+.access-card h4 { font-size: 9pt; color: #1A365D; font-weight: 700; margin-bottom: 6px; }
+.access-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; font-size: 8.5pt; }
+.access-icon { color: #DAA520; font-size: 11pt; flex-shrink: 0; line-height: 1.2; }
+.access-text { line-height: 1.4; }
+
+.notes-box {
+  background: #FFF8E1; border: 1px solid #F0C040; border-radius: 6px;
+  padding: 10px 14px; margin-top: 8px;
+}
+.notes-box h4 { font-size: 9pt; color: #5D4000; font-weight: 700; margin-bottom: 6px; }
+.notes-box ul { list-style: none; }
+.notes-box ul li { padding: 3px 0 3px 14px; position: relative; font-size: 8.5pt; }
+.notes-box ul li::before { content: '・'; position: absolute; left: 0; color: #B8860B; }
+
+.caution-box {
+  background: #FFF3F3; border: 1px solid #F0B0B0; border-radius: 6px;
+  padding: 8px 14px; margin-top: 8px; font-size: 8pt; color: #800000;
+}
+
+/* ========== P4: 写真ページ ========== */
+.photo-section { padding: 14px 16px 0; }
+.photo-grid-main { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+.photo-grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+.photo-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.photo-item { border-radius: 4px; overflow: hidden; border: 1px solid #E0E0E0; }
+.photo-item img {
+  width: 100%; height: 80px; object-fit: cover; display: block;
+}
+.photo-item.main img { height: 140px; }
+.photo-item .caption {
+  background: #1A365D; color: white; font-size: 7pt; padding: 2px 6px;
+  text-align: center;
+}
+
+/* ========== レスポンシブ ========== */
+@media screen and (max-width: 900px) {
+  .page-container, .page-wrapper { width: 100% !important; padding: 0 8px !important; }
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+  .header-right { text-align: left; width: 100%; }
+  .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+  .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
+  .hero-section, .two-col-layout, .three-col-layout, .two-col-table { grid-template-columns: 1fr !important; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-grid-main, .photo-grid-4, .photo-grid-2 { grid-template-columns: 1fr 1fr !important; }
+  .page-break { break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+}
+@media screen and (max-width: 480px) {
+  .highlight-item { flex: 1 1 100%; }
+  .kpi-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========================================
+     PAGE 1: 物件概要
+     ======================================== -->
+<div class="page-container">
+
+  <!-- 価格改定バナー -->
+  <div class="price-revision-banner">
+    🔥 価格改定！&nbsp;&nbsp;
+    <span class="old-price">3,990万円</span>
+    →&nbsp;<span class="new-price">3,480万円</span>
+    <span class="diff">▼510万円値下げ</span>
+    &nbsp;&nbsp;｜&nbsp;&nbsp;
+    東京23区内・商業地域・積算評価を下回る希少物件！
+  </div>
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-property-name">東京都荒川区町屋6丁目　マンション・収益ビル用地（更地）</div>
+      <div class="header-sub">k-7899 ｜ 東京都荒川区町屋6丁目1-16 ｜ 地番：1492番2 ｜ 商業地域 80%/500%</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格（税込）</div>
+      <div class="header-price">3,480万円</div>
+      <a href="https://drive.google.com/drive/folders/1pmMXzFD8OkM53d3sC7N8td9b6M6kQDAp"
+         target="_blank" class="header-link">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <!-- ハイライトボックス -->
+  <div class="highlight-box">
+    <div class="highlight-item">
+      <div class="highlight-label">販売価格</div>
+      <div class="highlight-value">3,480<span style="font-size:11pt;">万円</span></div>
+      <div class="highlight-sub">（税込）</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">土地積算評価</div>
+      <div class="highlight-value gold">4,495<span style="font-size:11pt;">万円</span></div>
+      <div class="highlight-sub">路線価680,000円×66.11㎡</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">積算との差額</div>
+      <div class="highlight-value accent">▼1,015<span style="font-size:11pt;">万円</span></div>
+      <div class="highlight-sub" style="color:#C41E3A;font-weight:700;">積算評価を下回る！</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">敷地面積</div>
+      <div class="highlight-value">66.11<span style="font-size:10pt;">㎡</span></div>
+      <div class="highlight-sub">約20坪</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">建蔽率 / 容積率</div>
+      <div class="highlight-value" style="font-size:14pt;">80% / 500%</div>
+      <div class="highlight-sub">商業地域</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">建築プラン</div>
+      <div class="highlight-value" style="font-size:11pt; line-height:1.3;">戸建て<br>ビル</div>
+      <div class="highlight-sub">複数プラン添付！</div>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション -->
+  <div class="hero-section">
+    <div class="hero-left">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">販売価格（税込）</div>
+          <div class="kpi-value">3,480<span style="font-size:9pt;">万円</span></div>
+          <div class="kpi-sub">価格改定！旧3,990万円より</div>
+        </div>
+        <div class="kpi-card gold">
+          <div class="kpi-label">土地積算評価</div>
+          <div class="kpi-value gold-color">4,495<span style="font-size:9pt;">万円</span></div>
+          <div class="kpi-sub">固定資産税路線価ベース</div>
+        </div>
+        <div class="kpi-card accent">
+          <div class="kpi-label">積算との差額</div>
+          <div class="kpi-value red">▼1,015万円</div>
+          <div class="kpi-sub">売価 &lt; 積算評価（東京23区内で希少！）</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">路線価（固定資産税）</div>
+          <div class="kpi-value" style="font-size:12pt;">68万円/㎡</div>
+          <div class="kpi-sub">坪単価：約174万円</div>
+        </div>
+      </div>
+      <ul class="points-mini">
+        <li>都電荒川線「町屋駅前」徒歩13分 ／「荒川七丁目」徒歩15分の2駅利用可</li>
+        <li>商業地域・建蔽80%・容積500% — ビル・マンション・事務所など多目的対応</li>
+        <li>更地（アスファルト舗装済み）・境界確認済み — すぐに建築着工可能</li>
+        <li>戸建てプラン・収益ビルプラン（事務所6階建て）の両方添付</li>
+      </ul>
+    </div>
+    <div class="hero-right">
+      <img src="https://drive.google.com/thumbnail?id=1zfUTH0uPmE88X9QwgNhA7FNYief9VkP1&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1zfUTH0uPmE88X9QwgNhA7FNYief9VkP1'"
+           alt="物件外観①">
+    </div>
+  </div>
+
+  <!-- 物件概要テーブル -->
+  <div class="section-title">物件概要</div>
+  <div class="two-col-table">
+    <table class="overview-table">
+      <tr><th>所在地</th><td>東京都荒川区町屋6丁目1-16</td></tr>
+      <tr><th>地番</th><td>1492番2</td></tr>
+      <tr><th>アクセス①</th><td>都電荒川線「町屋駅前」駅 徒歩13分</td></tr>
+      <tr><th>アクセス②</th><td>都電荒川線「荒川七丁目」駅 徒歩15分</td></tr>
+      <tr><th>アクセス③</th><td>町屋駅前より東京都交通局バス4分「町屋三丁目」バス停 徒歩1分</td></tr>
+      <tr><th>地目</th><td>宅地</td></tr>
+      <tr><th>土地権利</th><td>所有権</td></tr>
+    </table>
+    <table class="overview-table">
+      <tr><th>敷地面積（公簿）</th><td>66.11㎡（約20坪）</td></tr>
+      <tr><th>用途地域</th><td>商業地域</td></tr>
+      <tr><th>都市計画</th><td>市街化区域</td></tr>
+      <tr><th>建ぺい率 / 容積率</th><td>80% / 500%</td></tr>
+      <tr><th>前面道路</th><td>東南側公道 幅員約15ｍ、接道の長さ約5.3ｍ</td></tr>
+      <tr><th>その他制限事項</th><td>高度地区</td></tr>
+      <tr><th>現況</th><td>更地（アスファルト舗装済み）</td></tr>
+    </table>
+  </div>
+
+  <table class="overview-table" style="margin-top:4px;">
+    <tr><th style="width:120px;">販売価格（税込）</th><td><strong style="font-size:11pt;color:#C41E3A;">3,480万円</strong>　（価格改定：旧3,990万円 → 新3,480万円 ▼510万円値下げ）</td></tr>
+    <tr><th>積算評価額</th><td><strong style="color:#1A365D;">44,954,800円（約4,495万円）</strong>　固定資産税路線価680,000円/㎡ × 66.11㎡<span style="color:#C41E3A;font-weight:700;margin-left:10px;">※ 販売価格は積算評価を下回っています！</span></td></tr>
+    <tr><th>取引態様</th><td>売主（現況有姿・公簿売買）</td></tr>
+  </table>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <div class="footer-disclaimer">※本書は物件概要書であり、宅建業法による重要事項説明ではありません。現況と異なる場合は現況を優先します。情報流出厳禁。</div>
+    <div>作成日：2026年4月23日</div>
+  </div>
+
+</div>
+<!-- END PAGE 1 -->
+
+
+<!-- ========================================
+     PAGE 2: 積算評価分析 ＋ 投資ポイント ＋ 建築プラン
+     ======================================== -->
+<div class="page-break"></div>
+<div class="page-container">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-property-name">東京23区内「積算以下」の希少用地 ｜ 投資ポイント・建築プラン</div>
+      <div class="header-sub">東京都荒川区町屋6丁目1-16 ｜ 商業地域 建蔽80%・容積500%</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">3,480万円</div>
+      <a href="https://drive.google.com/drive/folders/1pmMXzFD8OkM53d3sC7N8td9b6M6kQDAp"
+         target="_blank" class="header-link">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <div class="invest-section">
+
+    <!-- 積算以下強調 -->
+    <div class="sanzan-box avoid-break">
+      <div class="sanzan-title">🏆 東京23区内で「積算評価を下回る」希少用地！</div>
+      <div class="sanzan-numbers">
+        <div class="sanzan-item">
+          <div class="lbl">土地積算評価</div>
+          <div class="val">4,495万円</div>
+        </div>
+        <div class="sanzan-arrow">＞</div>
+        <div class="sanzan-item">
+          <div class="lbl" style="color:#FFD700;">販売価格</div>
+          <div class="val" style="color:#FFD700;">3,480万円</div>
+        </div>
+        <div style="margin-left:16px;">
+          <span class="sanzan-badge">差額 ▼1,015万円 お得！</span>
+          <div class="sanzan-note" style="margin-top:4px;">路線価680,000円/㎡ × 66.11㎡ = 44,954,800円</div>
+          <div class="sanzan-note">固定資産税路線価ベース計算。東京23区の商業地域で積算以下は極めて希少です。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 積算比較バー -->
+    <div class="sanzan-compare avoid-break">
+      <div class="compare-bar-label">
+        <span>土地積算評価：4,495万円（100%）</span>
+        <span>販売価格：3,480万円（77%）</span>
+      </div>
+      <div class="compare-bar-wrap">
+        <div class="compare-bar bar-sanzan">4,495万円（積算評価）</div>
+      </div>
+      <div class="compare-bar-wrap">
+        <div class="compare-bar bar-price">3,480万円（販売価格）</div>
+      </div>
+      <div class="compare-note">
+        💡 <strong>なぜ積算以下で売買されるのか？</strong>
+        本物件は更地のため建物収益がなく、売主様の資産整理を目的とした売却です。
+        現在の市場価値（積算評価）を1,015万円も下回る価格で取得できる、東京23区内では稀な機会です。
+      </div>
+    </div>
+
+    <!-- 2カラム -->
+    <div class="two-col-layout">
+      <!-- おすすめポイント -->
+      <div class="avoid-break">
+        <div class="section-title" style="margin-top:0;">おすすめポイント</div>
+        <ul class="points-list">
+          <li>
+            都電荒川線「<strong>町屋駅前</strong>」徒歩13分、「<strong>荒川七丁目</strong>」徒歩15分の2駅利用可！
+            バス停徒歩<strong>1分</strong>の好立地！
+          </li>
+          <li>
+            都内では希少な<strong>売価 ＜ 積算価格</strong>の用地！
+            商業地域・建蔽<strong>80%</strong>／容積<strong>500%</strong>で利用用途が広大！
+          </li>
+          <li>
+            収益ビルや投資用マンションなど、<strong>多目的なプロジェクト</strong>に対応できる希少な案件
+          </li>
+          <li>
+            <strong>事務所ビルプラン（S造6階建）・戸建てプラン</strong>の両方を添付。
+            購入後のボリュームチェックや事業化への移行がスムーズ！
+          </li>
+        </ul>
+
+        <!-- 路線価詳細 -->
+        <div class="section-title">積算評価の内訳</div>
+        <table class="overview-table">
+          <tr>
+            <th>路線価（固定資産税）</th>
+            <td><strong>680,000円/㎡</strong>（坪単価 約174万円）</td>
+          </tr>
+          <tr>
+            <th>敷地面積（公簿）</th>
+            <td>66.11㎡（約20坪）</td>
+          </tr>
+          <tr>
+            <th>土地積算評価</th>
+            <td><strong style="color:#1A365D;font-size:10.5pt;">44,954,800円 ≈ 4,495万円</strong></td>
+          </tr>
+          <tr>
+            <th>建物積算評価</th>
+            <td>0円（更地のため）</td>
+          </tr>
+          <tr style="background:#FFF0F0;">
+            <th>販売価格</th>
+            <td><strong style="color:#C41E3A;font-size:10.5pt;">34,800,000円（3,480万円）</strong></td>
+          </tr>
+          <tr style="background:#E8FFE8;">
+            <th>積算との差額</th>
+            <td><strong style="color:#006600;font-size:10.5pt;">▼10,154,800円（約1,015万円）お得！</strong></td>
+          </tr>
+          <tr>
+            <th>土地固定資産税評価額</th>
+            <td>9,375,500円</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- 建築プラン -->
+      <div class="avoid-break">
+        <div class="section-title" style="margin-top:0;">🏗️ 建築プラン（2種類添付）</div>
+        <p style="font-size:8pt;color:#555;margin-bottom:8px;">
+          ご購入前からすぐにボリューム確認・事業計画の検討が可能です。建築プランはGoogleドライブ内の資料をご覧ください。
+        </p>
+
+        <!-- ビルプラン -->
+        <div class="plan-card avoid-break" style="margin-bottom:10px;">
+          <div class="plan-card-header">🏢 収益ビルプラン（事務所・S造6階建）</div>
+          <div class="plan-card-body">
+            <img src="https://drive.google.com/thumbnail?id=1V6Q4o-UqY97cWiK5YEaZyArigJ9DAylc&sz=w800"
+                 class="plan-card-img"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                 alt="建築プラン">
+            <div class="plan-card-img-placeholder" style="display:none;">
+              <span style="font-size:14pt;">🏢</span>
+              <span>S造6階建 事務所プラン</span>
+            </div>
+            <div style="margin-top:8px;">
+              <div class="plan-spec-row"><span class="plan-spec-label">構造・規模</span><span class="plan-spec-value">S造 6階建（エレベーターなし）</span></div>
+              <div class="plan-spec-row"><span class="plan-spec-label">主要用途</span><span class="plan-spec-value">事務所（1〜6階）</span></div>
+              <div class="plan-spec-row"><span class="plan-spec-label">建築面積</span><span class="plan-spec-value">49.13㎡（建蔽率充足）</span></div>
+              <div class="plan-spec-row"><span class="plan-spec-label">延床面積</span><span class="plan-spec-value">254.70㎡（容積率充足）</span></div>
+              <div class="plan-spec-row"><span class="plan-spec-label">各階床面積</span><span class="plan-spec-value">42.45㎡ × 6階</span></div>
+            </div>
+            <div class="plan-badge">容積率500%を活かした6階建て</div>
+          </div>
+        </div>
+
+        <!-- 戸建てプラン -->
+        <div class="plan-card avoid-break">
+          <div class="plan-card-header">🏠 戸建て・住宅系プラン</div>
+          <div class="plan-card-body">
+            <div class="plan-card-img-placeholder">
+              <span style="font-size:14pt;">🏠</span>
+              <span>戸建てプラン</span>
+              <span style="font-size:7pt;color:#aaa;">資料フォルダ内でご確認ください</span>
+            </div>
+            <div style="margin-top:8px;">
+              <div class="plan-spec-row"><span class="plan-spec-label">対象用途</span><span class="plan-spec-value">住宅・戸建て・小規模共同住宅</span></div>
+              <div class="plan-spec-row"><span class="plan-spec-label">容積率上限</span><span class="plan-spec-value">500%（商業地域）</span></div>
+              <div class="plan-spec-row"><span class="plan-spec-label">プラン詳細</span><span class="plan-spec-value">添付資料（販売用資料 別図）参照</span></div>
+            </div>
+            <div class="plan-badge">戸建て・共同住宅プランも検討可能</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band" style="margin-top:10px;">
+    <div class="footer-disclaimer">※本書は物件概要書であり、宅建業法による重要事項説明ではありません。</div>
+    <div>東京都荒川区町屋6丁目1-16 ｜ 作成日：2026年4月23日</div>
+  </div>
+</div>
+<!-- END PAGE 2 -->
+
+
+<!-- ========================================
+     PAGE 3: 周辺環境・特記事項
+     ======================================== -->
+<div class="page-break"></div>
+<div class="page-container">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-property-name">周辺環境・特記事項</div>
+      <div class="header-sub">東京都荒川区町屋6丁目1-16 ｜ 商業地域・更地</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">3,480万円</div>
+      <a href="https://drive.google.com/drive/folders/1pmMXzFD8OkM53d3sC7N8td9b6M6kQDAp"
+         target="_blank" class="header-link">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <div class="env-section">
+    <div class="two-col-layout">
+      <!-- 左：周辺環境・アクセス -->
+      <div>
+        <div class="section-title" style="margin-top:0;">交通アクセス</div>
+        <div class="access-card avoid-break">
+          <h4>🚃 鉄道・路線バス</h4>
+          <div class="access-item">
+            <span class="access-icon">🚊</span>
+            <span class="access-text">都電荒川線「<strong>町屋駅前</strong>」駅 徒歩<strong>13分</strong></span>
+          </div>
+          <div class="access-item">
+            <span class="access-icon">🚊</span>
+            <span class="access-text">都電荒川線「<strong>荒川七丁目</strong>」駅 徒歩<strong>15分</strong></span>
+          </div>
+          <div class="access-item">
+            <span class="access-icon">🚌</span>
+            <span class="access-text">町屋駅前より東京都交通局バス乗車<strong>4分</strong>「<strong>町屋三丁目</strong>」バス停 徒歩<strong>1分</strong></span>
+          </div>
+        </div>
+
+        <div class="section-title">エリア特性・立地概要</div>
+        <div class="access-card avoid-break">
+          <h4>📍 町屋エリアの特徴</h4>
+          <div class="access-item">
+            <span class="access-icon">🏙️</span>
+            <span class="access-text">東京都荒川区の商業エリア中心部。銀行・商業施設・医療機関が集積</span>
+          </div>
+          <div class="access-item">
+            <span class="access-icon">🛣️</span>
+            <span class="access-text">前面道路：東南側公道 幅員約<strong>15ｍ</strong>（都道）。大型車両の搬入も容易</span>
+          </div>
+          <div class="access-item">
+            <span class="access-icon">🏪</span>
+            <span class="access-text">周辺に銀行店舗（RC造8階）・マンション（RC造15階）など大型建物が立地</span>
+          </div>
+          <div class="access-item">
+            <span class="access-icon">📐</span>
+            <span class="access-text">商業地域・防火地域 / 高度地区の指定あり（建築計画時に確認を）</span>
+          </div>
+        </div>
+
+        <!-- 地図写真 -->
+        <div class="section-title">地図・周辺</div>
+        <div style="border-radius:6px; overflow:hidden; border:1px solid #D0DBF0; margin-bottom:8px;">
+          <img src="https://drive.google.com/thumbnail?id=1Rwhj_hyqg_zrC5Ya37WW5zlHlDG1fr_Z&sz=w800"
+               onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Rwhj_hyqg_zrC5Ya37WW5zlHlDG1fr_Z'"
+               alt="地図" style="width:100%; max-height:80mm; object-fit:cover; display:block;">
+        </div>
+
+      </div>
+
+      <!-- 右：特記事項・注意点 -->
+      <div>
+        <div class="section-title" style="margin-top:0;">特記事項</div>
+        <div class="notes-box avoid-break">
+          <h4>📋 物件に関する特記事項</h4>
+          <ul>
+            <li><strong>更地（アスファルト舗装済み）</strong>です。即時建築着工が可能な状態です。</li>
+            <li><strong>境界確認済み</strong>（令和2年10月15日 荒川区生活安全課立会にて確認）</li>
+            <li>インフラ引込・撤去費用等で追加費用が発生する可能性があります。</li>
+            <li>隣地との越境・境界問題：なし</li>
+            <li>告知事項（事件・事故等）：なし</li>
+            <li>近隣トラブル：なし</li>
+            <li>売却理由：資産整理</li>
+          </ul>
+        </div>
+
+        <div class="section-title">建築制限・法令情報</div>
+        <div class="notes-box avoid-break">
+          <h4>📐 法令・都市計画情報</h4>
+          <ul>
+            <li>用途地域：<strong>商業地域</strong></li>
+            <li>建ぺい率：<strong>80%</strong> / 容積率：<strong>500%</strong></li>
+            <li>都市計画区域：市街化区域</li>
+            <li>防火指定：防火地域（建物は耐火構造が必要）</li>
+            <li>高度地区：第3種高度地区（日影規制 5h-3h/6.5m）</li>
+            <li>前面道路（都道）幅員：約15ｍ（道路高さ制限の特例適用あり）</li>
+            <li>隣地（東側）：マンションRC造15階</li>
+            <li>隣地（南側）：銀行店舗・RC造8階</li>
+          </ul>
+        </div>
+
+        <div class="section-title">注意事項・免責事項</div>
+        <div class="caution-box avoid-break">
+          <strong>【注意事項】</strong><br>
+          (1) 現況有姿・公簿売買とします。<br>
+          (2) 本書は物件概要書であり、宅建業法による重要事項説明ではありません。<br>
+          (3) 現状と異なる場合は、現況を優先させていただきます。<br>
+          (4) 建築プラン（ラフプラン）は参考資料であり、実際の建築可能規模とは異なる場合があります。<br>
+          (5) 詳細については仲介業者様へご確認ください。
+        </div>
+
+        <!-- 建築プランPDFサムネイル -->
+        <div class="section-title">建築プラン概要（添付資料より）</div>
+        <div style="border: 2px solid #1A365D; border-radius: 6px; overflow:hidden;">
+          <div style="background:#1A365D; color:white; font-size:8pt; font-weight:700; padding:5px 12px;">
+            （仮称）荒川区町屋6丁目計画 ラフプラン ｜ S造6階建事務所 ｜ Den設計 傳都市建築設計1級建築士事務所
+          </div>
+          <div style="padding:8px; background:#F8FAFF;">
+            <img src="https://drive.google.com/thumbnail?id=1V6Q4o-UqY97cWiK5YEaZyArigJ9DAylc&sz=w800"
+                 onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1V6Q4o-UqY97cWiK5YEaZyArigJ9DAylc'"
+                 alt="建築プラン配置図"
+                 style="width:100%; max-height:60mm; object-fit:contain; display:block;">
+            <div style="font-size:7.5pt; color:#555; margin-top:4px; text-align:center;">
+              配置図・各階平面図（S=1/100）｜ 2025.02.14 ｜ 詳細は共有フォルダ内の建築プランPDFをご覧ください
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band" style="margin-top:10px;">
+    <div class="footer-disclaimer">※本書は物件概要書であり、宅建業法による重要事項説明ではありません。詳細はご紹介業者様へご確認ください。</div>
+    <div>東京都荒川区町屋6丁目1-16 ｜ 作成日：2026年4月23日</div>
+  </div>
+</div>
+<!-- END PAGE 3 -->
+
+
+<!-- ========================================
+     PAGE 4: 物件写真
+     ======================================== -->
+<div class="page-break"></div>
+<div class="page-container">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-property-name">物件写真</div>
+      <div class="header-sub">東京都荒川区町屋6丁目1-16 ｜ 更地（アスファルト舗装済み）・境界確認済み</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">3,480万円</div>
+      <a href="https://drive.google.com/drive/folders/1pmMXzFD8OkM53d3sC7N8td9b6M6kQDAp"
+         target="_blank" class="header-link">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <div class="photo-section">
+
+    <!-- メイン写真 -->
+    <div class="photo-grid-main" style="margin-bottom:8px;">
+      <div class="photo-item main">
+        <img src="https://drive.google.com/thumbnail?id=1zfUTH0uPmE88X9QwgNhA7FNYief9VkP1&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1zfUTH0uPmE88X9QwgNhA7FNYief9VkP1'"
+             alt="物件写真①">
+        <div class="caption">物件外観①</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1Y_Re7fs8WFsz_nUC4M0Uc0Jd2NctQi6V&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Y_Re7fs8WFsz_nUC4M0Uc0Jd2NctQi6V'"
+             alt="物件写真②" style="height:67px;">
+        <div class="caption">物件②</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1j6V3NEcpxMtqWL5zhxrDbRtLN7N5m0h5&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1j6V3NEcpxMtqWL5zhxrDbRtLN7N5m0h5'"
+             alt="物件写真③" style="height:67px;">
+        <div class="caption">物件③</div>
+      </div>
+    </div>
+
+    <!-- 4枚グリッド -->
+    <div class="photo-grid-4">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1q8gXRIz8ZsfdV1Bm4KgrFzgI_kLapQNG&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1q8gXRIz8ZsfdV1Bm4KgrFzgI_kLapQNG'"
+             alt="物件写真④">
+        <div class="caption">物件④</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1bjzNKe9muQwPQcrqKIHhANPoc900CXfy&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1bjzNKe9muQwPQcrqKIHhANPoc900CXfy'"
+             alt="物件写真⑤">
+        <div class="caption">物件⑤</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=15kkOkxzmSBn9ez6DtmTEae7pXFuxLWnP&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/15kkOkxzmSBn9ez6DtmTEae7pXFuxLWnP'"
+             alt="物件写真⑥">
+        <div class="caption">物件⑥</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1VBgMksOQ42u09_Ex_mnjIN8BieV9PVtW&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1VBgMksOQ42u09_Ex_mnjIN8BieV9PVtW'"
+             alt="物件写真⑦">
+        <div class="caption">物件⑦</div>
+      </div>
+    </div>
+
+    <!-- 2枚グリッド -->
+    <div class="photo-grid-2" style="margin-top:8px;">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1FRbvyxPlBPtnBeLIypE6BLCrxUnaZLdj&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1FRbvyxPlBPtnBeLIypE6BLCrxUnaZLdj'"
+             alt="物件写真⑧" style="height:90px;">
+        <div class="caption">物件⑧</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1OeJBL5I2j5Yn4wDOe2beGMuKyefWnlRS&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1OeJBL5I2j5Yn4wDOe2beGMuKyefWnlRS'"
+             alt="物件写真⑨" style="height:90px;">
+        <div class="caption">物件⑨</div>
+      </div>
+    </div>
+
+    <!-- 特記事項（写真ページ下部） -->
+    <div style="margin-top:10px; padding:8px 12px; background:#F0F4FF; border-radius:6px; border-left:4px solid #1A365D; font-size:8pt; color:#333;">
+      <strong>📸 写真について：</strong>
+      写真は更地状態の現況写真です。アスファルト舗装済み・境界確認済みで、購入後すぐに建築着工が可能です。
+      全写真・動画（計18点）は
+      <a href="https://drive.google.com/drive/folders/1pmMXzFD8OkM53d3sC7N8td9b6M6kQDAp" target="_blank"
+         style="color:#1A365D; font-weight:700;">共有フォルダ（📂 詳細はこちら）</a>よりご確認いただけます。
+    </div>
+
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band" style="margin-top:10px;">
+    <div class="footer-disclaimer">※現況と異なる場合は現況を優先します。本書は参考資料です。詳細は仲介業者様にご確認ください。</div>
+    <div>東京都荒川区町屋6丁目1-16 ｜ 作成日：2026年4月23日</div>
+  </div>
+</div>
+<!-- END PAGE 4 -->
+
+</body>
+</html>
