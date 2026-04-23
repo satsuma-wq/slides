@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】神奈川県足柄上郡大井町金子_古家付土地</title>
+<style>
+/* ========== ベーススタイル ========== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  font-size: 10pt;
+  color: #1a1a2e;
+  background: #ffffff;
+  line-height: 1.5;
+}
+
+@page { size: A4 landscape; margin: 14mm 15mm; }
+
+/* ========== 印刷設定 ========== */
+@media print {
+  body { background: white; }
+  .page-container {
+    width: 267mm;
+    min-height: 182mm;
+    page-break-after: always;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .page-break { break-before: page; }
+  .avoid-break { break-inside: avoid; }
+  .price-revision-banner { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
+
+/* ========== ページコンテナ ========== */
+.page-wrapper { width: 267mm; margin: 0 auto; padding: 0; }
+.page-container {
+  width: 267mm;
+  margin: 0 auto 0 auto;
+  background: #fff;
+  position: relative;
+}
+.page-break { break-before: page; }
+
+/* ========== 価格改定バナー ========== */
+.price-revision-banner {
+  background: linear-gradient(135deg, #C41E3A, #8B0000);
+  color: #fff;
+  text-align: center;
+  padding: 5px 14px;
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+.price-revision-banner span.old-price {
+  text-decoration: line-through;
+  color: rgba(255,255,255,0.7);
+  margin-right: 6px;
+}
+.price-revision-banner span.arrow { margin: 0 6px; font-size: 11pt; }
+.price-revision-banner span.new-price {
+  font-size: 12pt;
+  color: #FFD700;
+  font-weight: 900;
+}
+
+/* ========== ヘッダー ========== */
+.header {
+  background: linear-gradient(135deg, #1A365D 0%, #2d5a8e 100%);
+  color: white;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+.header-left {}
+.header-case { font-size: 7pt; color: rgba(255,255,255,0.7); margin-bottom: 2px; }
+.header-property-name { font-size: 15pt; font-weight: 900; line-height: 1.2; }
+.header-address { font-size: 8pt; color: rgba(255,255,255,0.85); margin-top: 3px; }
+.header-right { text-align: right; }
+.header-price-label { font-size: 7.5pt; color: rgba(255,255,255,0.7); }
+.header-price { font-size: 22pt; font-weight: 900; color: #FFD700; line-height: 1.1; }
+.header-price-sub { font-size: 8pt; color: rgba(255,255,255,0.75); }
+.header-link-btn {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 4px 10px;
+  background: #DAA520;
+  color: #1A365D;
+  border-radius: 4px;
+  font-size: 8pt;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ========== ヒーローセクション ========== */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #f0f5ff;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* KPIエリア */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.kpi-card {
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #c8d8f8;
+  padding: 7px 8px;
+  text-align: center;
+}
+.kpi-label { font-size: 7pt; color: #666; margin-bottom: 2px; }
+.kpi-value { font-size: 14pt; font-weight: 900; color: #1A365D; line-height: 1.2; }
+.kpi-unit { font-size: 7pt; color: #888; }
+
+/* 積算アピールカード */
+.sanzan-card {
+  background: linear-gradient(135deg, #1a7a1a, #2d8a2d);
+  border-radius: 8px;
+  color: #fff;
+  padding: 8px 10px;
+  margin-top: 6px;
+  text-align: center;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+.sanzan-card .sanzan-label { font-size: 7.5pt; color: rgba(255,255,255,0.85); }
+.sanzan-card .sanzan-value { font-size: 16pt; font-weight: 900; color: #FFD700; }
+.sanzan-card .sanzan-sub { font-size: 7.5pt; color: rgba(255,255,255,0.9); }
+.sanzan-card .sanzan-highlight { font-size: 9pt; font-weight: 700; color: #FFD700; margin-top: 2px; }
+
+/* 写真エリア */
+.hero-photo {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #c8d8f8;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 70mm;
+  object-fit: cover;
+  display: block;
+}
+.hero-photo-placeholder {
+  background: linear-gradient(135deg, #2d4a7a, #1A365D);
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  padding: 30px 0;
+  min-height: 70mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11pt;
+}
+
+/* ========== セクションタイトル ========== */
+.section-title {
+  background: linear-gradient(135deg, #1A365D, #2d5a8e);
+  color: white;
+  font-size: 8.5pt;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 3px;
+  margin: 8px 14px 5px;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* ========== 物件概要テーブル ========== */
+.overview-section { padding: 0 14px; margin-bottom: 5px; }
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.overview-table td {
+  border: 1px solid #d0d8e8;
+  padding: 3.5px 7px;
+  vertical-align: top;
+}
+.overview-table .th {
+  background: #e8eef8;
+  font-weight: 700;
+  width: 15%;
+  color: #1A365D;
+  white-space: nowrap;
+}
+.overview-table tr:nth-child(even) .th { background: #dde6f5; }
+
+/* ========== アクセス ========== */
+.access-list {
+  list-style: none;
+  padding: 0 14px;
+  margin-bottom: 5px;
+  font-size: 8.5pt;
+  color: #333;
+}
+.access-list li { margin-bottom: 1px; }
+.access-list li::before { content: "🚉 "; }
+
+/* ========== フッター帯 ========== */
+.footer-band {
+  background: linear-gradient(135deg, #1A365D, #2d5a8e);
+  color: rgba(255,255,255,0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 14px;
+  font-size: 7.5pt;
+  margin-top: 6px;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* ========== P2: 積算評価詳細 ========== */
+.sanzan-detail-section { padding: 0 14px; margin-bottom: 8px; }
+.sanzan-detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+}
+.sanzan-detail-table td {
+  border: 1px solid #c0d0c0;
+  padding: 4px 8px;
+  vertical-align: middle;
+}
+.sanzan-detail-table .th {
+  background: #e8f5e9;
+  font-weight: 700;
+  width: 40%;
+  color: #1a4d1a;
+}
+.sanzan-detail-table .value-col {
+  text-align: right;
+  font-weight: 700;
+}
+.sanzan-detail-table tr.total-row { background: #c8e6c9; }
+.sanzan-detail-table tr.total-row td { font-size: 10.5pt; font-weight: 900; color: #1a4d1a; }
+.sanzan-detail-table tr.price-row td { background: #fff3e0; }
+.sanzan-detail-table tr.compare-row { background: linear-gradient(135deg, #1a7a1a, #2d8a2d); print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+.sanzan-detail-table tr.compare-row td { color: #FFD700; font-size: 11pt; font-weight: 900; border-color: #2d8a2d; }
+
+/* ========== ポイントリスト ========== */
+.points-section { padding: 0 14px; margin-bottom: 8px; }
+.points-list { list-style: none; padding: 0; }
+.points-list li {
+  padding: 4px 8px 4px 20px;
+  position: relative;
+  font-size: 8.5pt;
+  border-bottom: 1px dashed #e0e0e0;
+  line-height: 1.5;
+}
+.points-list li::before {
+  content: "✅";
+  position: absolute;
+  left: 2px;
+  font-size: 9pt;
+}
+
+/* ========== 周辺施設グリッド ========== */
+.env-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  padding: 0 14px;
+  margin-bottom: 8px;
+}
+.env-card {
+  border: 1px solid #c8d8f8;
+  border-radius: 5px;
+  padding: 5px 7px;
+  text-align: center;
+  background: #f8fbff;
+}
+.env-icon { font-size: 14pt; }
+.env-name { font-size: 7.5pt; color: #555; margin-top: 2px; }
+.env-dist { font-size: 9pt; font-weight: 700; color: #1A365D; }
+
+/* ========== 特記事項 ========== */
+.notes-section { padding: 0 14px; margin-bottom: 8px; }
+.notes-box {
+  border: 1px solid #f0c0c0;
+  border-radius: 5px;
+  padding: 8px 10px;
+  background: #fff8f8;
+  font-size: 8.5pt;
+  line-height: 1.7;
+}
+.notes-box.green {
+  border-color: #c0e0c0;
+  background: #f8fff8;
+}
+.legal-notes {
+  font-size: 7.5pt;
+  color: #888;
+  padding: 0 14px;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+/* ========== 2列レイアウト ========== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 14px;
+  margin-bottom: 8px;
+}
+
+/* ========== レスポンシブ（タブレット・スマホ） ========== */
+@media screen and (max-width: 900px) {
+  .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+  .page-wrapper   { width: 100% !important; padding: 0 8px !important; }
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+  .header-right { text-align: left; width: 100%; }
+  .hero-section { grid-template-columns: 1fr !important; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .kpi-value { font-size: 15pt; }
+  .hero-photo img { min-height: 120px; }
+  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .two-col { grid-template-columns: 1fr !important; }
+  .overview-table { font-size: 9pt; }
+  .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+  .page-break { break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+}
+@media screen and (max-width: 480px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- PAGE 1: 物件概要 -->
+<!-- ============================================================ -->
+<div class="page-wrapper">
+<div class="page-container">
+
+  <!-- 価格改定バナー -->
+  <div class="price-revision-banner">
+    ⚡ 価格改定のお知らせ &nbsp;|&nbsp;
+    旧価格&nbsp;<span class="old-price">1,110万円</span>
+    <span class="arrow">→</span>
+    新価格&nbsp;<span class="new-price">980万円</span>
+    &nbsp;に改定いたしました（2026年4月）
+  </div>
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-case">【古家付土地】 案件番号：p-1175</div>
+      <div class="header-property-name">神奈川県足柄上郡大井町金子</div>
+      <div class="header-address">〒258-0021 神奈川県足柄上郡大井町金子2653 番地6</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格（税込）</div>
+      <div class="header-price">980<small style="font-size:13pt">万円</small></div>
+      <div class="header-price-sub">積算評価 1,260.8万円の高積算物件</div>
+      <a href="https://drive.google.com/drive/folders/1Xw3i-5PKfqIDiUCof15r_b_2NPx0vWOT"
+         target="_blank" class="header-link-btn">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション -->
+  <div class="hero-section">
+    <!-- 左：KPI + 積算アピール -->
+    <div>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">販売価格</div>
+          <div class="kpi-value" style="color:#C41E3A;">980</div>
+          <div class="kpi-unit">万円</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">土地面積</div>
+          <div class="kpi-value">197</div>
+          <div class="kpi-unit">㎡（59.59坪）</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">土地積算評価</div>
+          <div class="kpi-value" style="color:#1a7a1a;">1,260</div>
+          <div class="kpi-unit">.8万円</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">路線価</div>
+          <div class="kpi-value">6.4</div>
+          <div class="kpi-unit">万円/㎡</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">最寄り駅</div>
+          <div class="kpi-value" style="font-size:11pt;">上大井</div>
+          <div class="kpi-unit">駅 徒歩8分</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">用途地域</div>
+          <div class="kpi-value" style="font-size:8pt; line-height:1.3;">第一種<br>住居地域</div>
+          <div class="kpi-unit">市街化区域</div>
+        </div>
+      </div>
+      <!-- 積算アピール -->
+      <div class="sanzan-card" style="margin-top:6px;">
+        <div class="sanzan-label">🏆 積算評価が販売価格を大きく上回る"高積算"物件</div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-top:4px;">
+          <div>
+            <div style="font-size:7pt;color:rgba(255,255,255,0.8);">土地積算評価</div>
+            <div style="font-size:15pt;font-weight:900;color:#FFD700;">1,260.8万円</div>
+          </div>
+          <div style="font-size:20pt;color:rgba(255,255,255,0.7);">＞</div>
+          <div>
+            <div style="font-size:7pt;color:rgba(255,255,255,0.8);">販売価格</div>
+            <div style="font-size:15pt;font-weight:900;color:#fff;">980万円</div>
+          </div>
+        </div>
+        <div class="sanzan-highlight">販売価格は積算評価の約77.7%！　土地のみで担保価値十分</div>
+      </div>
+    </div>
+    <!-- 右：地図画像 -->
+    <div class="hero-photo">
+      <img src="https://drive.google.com/thumbnail?id=1s7ZQ0pxYk1wYolpgsG7X9Gwrloa4C3vF&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1s7ZQ0pxYk1wYolpgsG7X9Gwrloa4C3vF'"
+           alt="物件地図" style="width:100%; min-height:90mm; object-fit:cover; border-radius:6px;">
+    </div>
+  </div>
+
+  <!-- 物件概要テーブル -->
+  <div class="section-title">■ 物件概要</div>
+  <div class="overview-section">
+    <table class="overview-table">
+      <tr>
+        <td class="th">所在地</td>
+        <td colspan="3">神奈川県足柄上郡大井町金子2653（地番：2653番地6）</td>
+      </tr>
+      <tr>
+        <td class="th">交通</td>
+        <td colspan="3">JR御殿場線「上大井」駅 徒歩8分 ／ JR御殿場線「相模金子」駅 徒歩20分<br>
+        小田急線「新松田」駅より富士急湘南バス約10分「大井町役場入口」停下車 徒歩1分</td>
+      </tr>
+      <tr>
+        <td class="th">地目</td>
+        <td>宅地</td>
+        <td class="th">土地権利</td>
+        <td>所有権</td>
+      </tr>
+      <tr>
+        <td class="th">敷地面積</td>
+        <td>197.00㎡（59.59坪）</td>
+        <td class="th">用途地域</td>
+        <td>第一種住居地域</td>
+      </tr>
+      <tr>
+        <td class="th">建ぺい率</td>
+        <td>60%</td>
+        <td class="th">容積率</td>
+        <td>200%</td>
+      </tr>
+      <tr>
+        <td class="th">前面道路</td>
+        <td colspan="3">北東側　公道　幅員約10.3m　接道　約10.3m</td>
+      </tr>
+      <tr>
+        <td class="th">都市計画</td>
+        <td>市街化区域</td>
+        <td class="th">防火指定</td>
+        <td>指定なし</td>
+      </tr>
+      <tr>
+        <td class="th">古家情報</td>
+        <td colspan="3">木造2階建 / 延床117.18㎡（35.45坪）/ 築1965年3月（昭和40年・築61年）/ 用途：店舗・居宅</td>
+      </tr>
+      <tr>
+        <td class="th">引渡時期</td>
+        <td>相談</td>
+        <td class="th">現況</td>
+        <td>空家（現況有姿・公簿売買）</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>p-1175 ｜ 神奈川県足柄上郡大井町金子_古家付土地</span>
+    <span>本書は物件概要書であり、宅建業法による重要事項ではありません。現状と異なる場合は現況を優先します。</span>
+    <span>1 / 3</span>
+  </div>
+
+</div><!-- page-container -->
+</div><!-- page-wrapper -->
+
+
+<!-- ============================================================ -->
+<!-- PAGE 2: 積算評価詳細 + おすすめポイント -->
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+<div class="page-container">
+
+  <!-- ヘッダー（簡易） -->
+  <div class="header" style="padding:7px 14px;">
+    <div class="header-left">
+      <div class="header-case">p-1175 ｜ 古家付土地</div>
+      <div class="header-property-name" style="font-size:12pt;">神奈川県足柄上郡大井町金子2653</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格（価格改定済）</div>
+      <div class="header-price" style="font-size:18pt;">980<small style="font-size:10pt">万円</small></div>
+      <a href="https://drive.google.com/drive/folders/1Xw3i-5PKfqIDiUCof15r_b_2NPx0vWOT"
+         target="_blank" class="header-link-btn">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <!-- 2列レイアウト：積算詳細 + 建物情報 -->
+  <div class="two-col" style="margin-top:8px;">
+    <!-- 左：積算評価詳細 -->
+    <div>
+      <div class="section-title" style="margin-left:0; margin-right:0;">■ 積算評価詳細</div>
+      <table class="sanzan-detail-table" style="margin-top:0;">
+        <tr>
+          <td class="th">路線価</td>
+          <td class="value-col">64,000円/㎡</td>
+        </tr>
+        <tr>
+          <td class="th">敷地面積</td>
+          <td class="value-col">197.00㎡</td>
+        </tr>
+        <tr class="total-row">
+          <td class="th" style="background:#a5d6a7;">土地積算評価額</td>
+          <td class="value-col" style="font-size:12pt;">12,608,000円<br><span style="font-size:9pt;">（1,260.8万円）</span></td>
+        </tr>
+        <tr>
+          <td class="th">建物積算評価</td>
+          <td class="value-col">0円<br><small style="color:#888;">(築61年・残存耐用年数0年)</small></td>
+        </tr>
+        <tr class="total-row">
+          <td class="th" style="background:#a5d6a7;">積算評価合計</td>
+          <td class="value-col" style="font-size:12pt;color:#1a4d1a;font-weight:900;">1,260.8万円</td>
+        </tr>
+        <tr class="price-row">
+          <td class="th" style="background:#ffe0b2;">販売価格（改定後）</td>
+          <td class="value-col" style="color:#C41E3A;font-size:12pt;">980万円</td>
+        </tr>
+        <tr class="compare-row">
+          <td style="font-weight:700;font-size:9pt;">積算対比（販売価格/積算）</td>
+          <td class="value-col">約77.7%<br><small style="font-size:8pt;color:rgba(255,215,0,0.9);">積算価格に対して 約22%オフ</small></td>
+        </tr>
+      </table>
+
+      <div class="notes-box green" style="margin-top:8px; font-size:8pt;">
+        💡 <strong>土地のみで担保価値が十分</strong><br>
+        相続税路線価（64,000円/㎡）× 197㎡ = <strong>1,260.8万円</strong>の土地積算評価に対し、<br>
+        販売価格は980万円と大幅な低評価。古家解体後も<strong>建築条件なし</strong>の更地として活用可能です。
+      </div>
+    </div>
+
+    <!-- 右：建物情報 + 坪単価 -->
+    <div>
+      <div class="section-title" style="margin-left:0; margin-right:0;">■ 古家・建物情報</div>
+      <table class="sanzan-detail-table" style="font-size:8.5pt;">
+        <tr>
+          <td class="th">用途</td>
+          <td>店舗・居宅（元クリーニング店舗付き住宅）</td>
+        </tr>
+        <tr>
+          <td class="th">構造</td>
+          <td>木造2階建て</td>
+        </tr>
+        <tr>
+          <td class="th">延床面積</td>
+          <td>117.18㎡（35.45坪）</td>
+        </tr>
+        <tr>
+          <td class="th">築年月</td>
+          <td>1965年3月（昭和40年3月）</td>
+        </tr>
+        <tr>
+          <td class="th">築年数</td>
+          <td>築61年</td>
+        </tr>
+        <tr>
+          <td class="th">法定耐用年数</td>
+          <td>22年（残存耐用年数：0年）</td>
+        </tr>
+        <tr>
+          <td class="th">建物積算評価</td>
+          <td><strong>0円</strong>（残存年数0年のため）</td>
+        </tr>
+      </table>
+
+      <div class="section-title" style="margin-left:0; margin-right:0; margin-top:8px;">■ 坪単価（参考）</div>
+      <table class="sanzan-detail-table" style="font-size:8.5pt;">
+        <tr>
+          <td class="th">販売坪単価</td>
+          <td class="value-col">約16.4万円/坪<br><small style="color:#666;">（980万円 ÷ 59.59坪）</small></td>
+        </tr>
+        <tr>
+          <td class="th">積算坪単価</td>
+          <td class="value-col">約21.2万円/坪<br><small style="color:#666;">（1,260.8万円 ÷ 59.59坪）</small></td>
+        </tr>
+        <tr>
+          <td class="th">固都税</td>
+          <td class="value-col">調査中</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- おすすめポイント -->
+  <div class="section-title">■ おすすめポイント</div>
+  <div class="points-section" style="margin:0 0 5px 0;">
+    <ul class="points-list">
+      <li><strong>建築条件なし！</strong>お好きなハウスメーカーや工務店で、自由に建築可能です！</li>
+      <li><strong>土地積算評価額1,260.8万円 ＞ 販売価格980万円</strong>の高積算古屋付き土地！最寄駅徒歩8分の好立地！</li>
+      <li>国道255号線沿いは<strong>大型ショッピングモール、飲食店、商業施設</strong>が多く、買い物が便利です！</li>
+      <li>県道72号線沿いで国道255号線も近く、<strong>道路付けと視認性が良い平坦地</strong>！日当たり・通風も良好！</li>
+      <li>近くにキャンプ場、ハーブガーデン、ゴルフ場があり、<strong>富士山も望める</strong>自然豊かな環境です！</li>
+      <li>大井町役場<strong>徒歩5分</strong>！保育園・スーパー・病院等が徒歩9分以内！生活利便性の高いエリアです！</li>
+      <li><strong>確定測量・残置物撤去後のお引渡し</strong>！初期費用が抑えられ、解体や建築にすぐに取り組めます！</li>
+    </ul>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>p-1175 ｜ 神奈川県足柄上郡大井町金子_古家付土地</span>
+    <span>※積算評価は相続税路線価に基づく参考値です。融資査定等は金融機関の判断によります。</span>
+    <span>2 / 3</span>
+  </div>
+
+</div><!-- page-container -->
+</div><!-- page-wrapper -->
+
+
+<!-- ============================================================ -->
+<!-- PAGE 3: 周辺環境 + 特記事項 -->
+<!-- ============================================================ -->
+<div class="page-break"></div>
+<div class="page-wrapper">
+<div class="page-container">
+
+  <!-- ヘッダー（簡易） -->
+  <div class="header" style="padding:7px 14px;">
+    <div class="header-left">
+      <div class="header-case">p-1175 ｜ 古家付土地</div>
+      <div class="header-property-name" style="font-size:12pt;">神奈川県足柄上郡大井町金子2653</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格（価格改定済）</div>
+      <div class="header-price" style="font-size:18pt;">980<small style="font-size:10pt">万円</small></div>
+      <a href="https://drive.google.com/drive/folders/1Xw3i-5PKfqIDiUCof15r_b_2NPx0vWOT"
+         target="_blank" class="header-link-btn">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <!-- 周辺環境 -->
+  <div class="section-title" style="margin-top:8px;">■ 周辺環境</div>
+  <div class="env-grid">
+    <div class="env-card">
+      <div class="env-icon">🚉</div>
+      <div class="env-name">JR御殿場線「上大井」駅</div>
+      <div class="env-dist">徒歩8分</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🚉</div>
+      <div class="env-name">JR御殿場線「相模金子」駅</div>
+      <div class="env-dist">徒歩20分</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏛️</div>
+      <div class="env-name">大井町役場</div>
+      <div class="env-dist">徒歩5分</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🛒</div>
+      <div class="env-name">スーパー</div>
+      <div class="env-dist">徒歩9分以内</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏥</div>
+      <div class="env-name">病院</div>
+      <div class="env-dist">徒歩9分以内</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">👶</div>
+      <div class="env-name">保育園</div>
+      <div class="env-dist">徒歩9分以内</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🛣️</div>
+      <div class="env-name">国道255号線</div>
+      <div class="env-dist">近接（商業集積）</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏔️</div>
+      <div class="env-name">富士山の眺望</div>
+      <div class="env-dist">望めます</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🚗</div>
+      <div class="env-name">東名「大井松田IC」</div>
+      <div class="env-dist">車でアクセス良好</div>
+    </div>
+  </div>
+
+  <!-- 2列：特記事項 + 注意事項 -->
+  <div class="two-col">
+    <!-- 左：特記事項 -->
+    <div>
+      <div class="section-title" style="margin-left:0; margin-right:0;">■ 特記事項</div>
+      <div class="notes-box" style="font-size:8.5pt; line-height:1.8;">
+        ・家屋の修繕履歴無し。土壌汚染調査 未実施。井戸祓い済み。<br>
+        ・確定測量後のお引き渡しとなります。残置物撤去費用は売主負担です。<br>
+        ・現況有姿・公簿売買・境界明示。<br>
+        ・建物は築61年（残存耐用年数0年）のため、<strong>実質的に土地のみ</strong>としてご検討ください。<br>
+        ・解体後は建築条件なし。自由に新築・建て替えが可能です。
+      </div>
+
+      <div class="section-title" style="margin-left:0; margin-right:0; margin-top:8px;">■ 売買条件</div>
+      <table class="overview-table" style="font-size:8.5pt;">
+        <tr>
+          <td class="th">販売価格</td>
+          <td><strong style="color:#C41E3A;">9,800,000円（税込）</strong><br><small style="color:#888;">旧価格：11,100,000円より改定</small></td>
+        </tr>
+        <tr>
+          <td class="th">取引態様</td>
+          <td>売主</td>
+        </tr>
+        <tr>
+          <td class="th">引渡条件</td>
+          <td>確定測量・残置物撤去後（費用売主負担）</td>
+        </tr>
+        <tr>
+          <td class="th">引渡時期</td>
+          <td>相談</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 右：ご検討のポイント -->
+    <div>
+      <div class="section-title" style="margin-left:0; margin-right:0;">■ 本物件のご検討ポイント</div>
+      <div class="notes-box green" style="font-size:8.5pt; line-height:1.9;">
+        🏡 <strong>【土地購入・新築用地として】</strong><br>
+        　建築条件なし。197㎡（60坪）の広さで自由な設計が可能。<br><br>
+        🏗️ <strong>【解体・更地販売として】</strong><br>
+        　解体費は別途（目安：約150〜250万円程度）。<br>
+        　更地後の土地利用価値が高いエリア。<br><br>
+        🏦 <strong>【担保・融資評価として】</strong><br>
+        　路線価ベースの積算評価1,260.8万円は販売価格980万円を大幅に上回ります。<br><br>
+        🌿 <strong>【ライフスタイル面】</strong><br>
+        　富士山の眺望・自然環境・都市アクセスの三拍子が揃った立地。<br>
+        　テレワーク・移住・セカンドハウスにも最適。
+      </div>
+    </div>
+  </div>
+
+  <!-- 注意事項 -->
+  <div class="legal-notes">
+    ※本書は物件概要書であり、宅建業法による重要事項ではありません。現状と異なる場合は現況を優先とさせていただきます。<br>
+    ※積算評価は相続税路線価を用いた参考値であり、金融機関の融資査定・担保評価を保証するものではありません。<br>
+    ※記載内容は取引条件確定前の情報であり、価格・条件等は予告なく変更となる場合があります。情報の無断転用・二次利用を禁じます。
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>p-1175 ｜ 神奈川県足柄上郡大井町金子_古家付土地</span>
+    <span>作成日：2026年4月23日</span>
+    <span>3 / 3</span>
+  </div>
+
+</div><!-- page-container -->
+</div><!-- page-wrapper -->
+
+</body>
+</html>
