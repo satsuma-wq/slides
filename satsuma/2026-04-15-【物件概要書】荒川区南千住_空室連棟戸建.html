@@ -89,6 +89,17 @@
       background: rgba(218,165,32,0.12); border: 1px solid rgba(218,165,32,0.4);
       border-radius: 2px; padding: 2px 7px; margin-bottom: 5px;
     }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 2px rgba(255,215,0,0.25); }
+      50%      { transform: scale(1.04); box-shadow: 0 0 0 4px rgba(255,215,0,0.45); }
+    }
+    .final-price-ribbon {
+      position: absolute; top: 8px; right: 10px; z-index: 10;
+      background: linear-gradient(135deg, #C41E3A 0%, #FF4757 100%);
+      color: #fff; font-weight: 900; font-size: 9pt; letter-spacing: 1px;
+      padding: 6px 14px; border: 2px solid #FFD700; border-radius: 4px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    }
     .hero-metric-label {
       font-size: 7pt; color: rgba(255,255,255,0.55); font-weight: 500;
       letter-spacing: 0.5px; margin-bottom: 0; line-height: 1.3;
@@ -366,6 +377,16 @@
 <!-- ===== PAGE 1: 概要ページ ===== -->
 <div class="page-container">
 
+  <!-- 最終値下げ告知バー -->
+  <div style="background:linear-gradient(90deg,#C41E3A 0%,#FF4757 50%,#C41E3A 100%); color:#fff; padding:6px 14px; display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #FFD700; print-color-adjust:exact; -webkit-print-color-adjust:exact;">
+    <div style="font-weight:900; font-size:10pt; letter-spacing:1px;">
+      🔥 最終値下げ 実施中 ― 726万円 <span style="color:#FFD700;">→</span> <span style="font-size:12pt;">650万円</span>（△76万円・△10.5%）
+    </div>
+    <div style="font-size:8pt; font-weight:700; background:#FFD700; color:#C41E3A; padding:2px 10px; border-radius:3px; letter-spacing:1px;">
+      表面利回り 19.02% へ UP
+    </div>
+  </div>
+
   <!-- ヘッダー -->
   <div class="header">
     <div class="header-left">
@@ -390,13 +411,16 @@
 
     <!-- 左：KPIハイライト（濃紺背景） -->
     <div class="hero-left" style="padding:10px 18px 10px 16px; gap:0;">
-      <div class="hero-tag">INVESTMENT PROPERTY ― TOKYO ARAKAWA ｜ 物件番号：p-3027</div>
+      <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:5px;">
+        <span class="hero-tag" style="margin-bottom:0;">INVESTMENT PROPERTY ― TOKYO ARAKAWA ｜ 物件番号：p-3027</span>
+        <span style="display:inline-block; font-size:7.5pt; font-weight:900; letter-spacing:1.5px; color:#fff; background:linear-gradient(90deg,#C41E3A 0%,#FF4757 100%); border:1px solid #FFD700; border-radius:2px; padding:2px 10px; box-shadow:0 0 0 2px rgba(255,215,0,0.25); animation:pulse 1.6s ease-in-out infinite;">🔥 最終値下げ 76万円 OFF</span>
+      </div>
 
       <!-- 上段：表面利回り + 現況利回り -->
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:4px;">
         <div>
           <div class="hero-metric-label">表面利回り（満室想定）</div>
-          <div class="hero-metric-value hero-v-green">17.02%</div>
+          <div class="hero-metric-value hero-v-green">19.02%</div>
         </div>
         <div class="hero-current-box">
           <div class="hero-metric-label" style="color:rgba(255,215,0,0.7);">現況利回り（全空室）</div>
@@ -410,13 +434,17 @@
       <!-- 下段：販売価格 + 土地積算比率 -->
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
         <div>
-          <div class="hero-metric-label">販売価格</div>
-          <div class="hero-metric-value hero-v-red">726万円</div>
+          <div class="hero-metric-label">販売価格 <span style="color:#FFD700; font-weight:800; letter-spacing:0.5px;">【最終値下げ】</span></div>
+          <div class="hero-metric-value hero-v-red" style="display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;">
+            <span>650万円</span>
+            <span style="font-size:9pt; color:rgba(255,255,255,0.55); text-decoration:line-through; font-weight:500;">旧価格 726万円</span>
+          </div>
+          <div style="font-size:6.5pt; color:#FFD700; margin-top:1px; font-weight:700;">▼ 76万円値下げ（△10.5%）</div>
         </div>
         <div>
           <div class="hero-metric-label">土地積算比率</div>
-          <div class="hero-metric-value hero-v-green-md">土地積算 54.4%</div>
-          <div style="font-size:6.5pt; color:rgba(255,255,255,0.5); margin-top:1px;">土地価値1,335万円 ＞ 販売価格726万円</div>
+          <div class="hero-metric-value hero-v-green-md">土地積算 48.7%</div>
+          <div style="font-size:6.5pt; color:rgba(255,255,255,0.5); margin-top:1px;">土地価値1,335万円 ＞ 販売価格650万円</div>
         </div>
       </div>
 
@@ -424,7 +452,7 @@
       <div class="hero-bottom-row" style="margin-top:5px;">
         <span class="hero-badge">📍 荒川区役所前 徒歩5分</span>
         <span class="hero-badge">🏠 3DK × 1戸</span>
-        <span class="hero-badge">⏱ 回収期間 約6年</span>
+        <span class="hero-badge">⏱ 回収期間 約5.3年</span>
         <span class="hero-badge">🔑 空室・即リノベ可</span>
       </div>
     </div>
@@ -479,11 +507,15 @@
         </tr>
         <tr>
           <td class="th">売買価格</td>
-          <td class="price-red">726万円（税込）</td>
+          <td class="price-red">
+            <span style="background:#C41E3A; color:#fff; font-size:7pt; padding:1px 6px; border-radius:3px; margin-right:6px; font-weight:900; letter-spacing:0.5px;">🔥 最終値下げ</span>
+            650万円（税込）
+            <span style="font-size:8pt; color:#999; text-decoration:line-through; margin-left:4px; font-weight:500;">旧726万円</span>
+          </td>
         </tr>
         <tr>
           <td class="th">表面利回り</td>
-          <td class="yield-green">17.02%（満室想定）</td>
+          <td class="yield-green">19.02%（満室想定）</td>
         </tr>
         <tr>
           <td class="th">現況利回り</td>
@@ -521,7 +553,7 @@
           <td class="th">土地積算価格</td>
           <td>
             約1,335万円
-            <br><span style="font-size:6.5pt;color:#888;">路線価38万×35.14㎡　対売価比率54.4%</span>
+            <br><span style="font-size:6.5pt;color:#888;">路線価38万×35.14㎡　対売価比率48.7%</span>
           </td>
         </tr>
         <tr>
@@ -691,15 +723,19 @@
         <table class="finance-table">
           <tr>
             <td class="th">販売価格</td>
-            <td style="color:#C41E3A;font-weight:700;">7,260,000円（726万円）</td>
+            <td style="color:#C41E3A;font-weight:700;">
+              <span style="background:#C41E3A; color:#fff; font-size:7pt; padding:1px 6px; border-radius:3px; margin-right:6px; font-weight:900;">🔥 最終値下げ</span>
+              6,500,000円（650万円）
+              <span style="font-size:8pt; color:#999; text-decoration:line-through; margin-left:4px; font-weight:500;">旧7,260,000円</span>
+            </td>
           </tr>
           <tr>
             <td class="th">表面利回り</td>
-            <td style="color:#1a7a1a;font-weight:700;">17.02%</td>
+            <td style="color:#1a7a1a;font-weight:700;">19.02%</td>
           </tr>
           <tr>
             <td class="th">実質利回り（NOI/価格）</td>
-            <td style="color:#1a7a1a;font-weight:700;">16.75%</td>
+            <td style="color:#1a7a1a;font-weight:700;">18.71%</td>
           </tr>
           <tr>
             <td class="th">現況利回り</td>
@@ -707,7 +743,7 @@
           </tr>
           <tr>
             <td class="th">投資回収期間（満室時）</td>
-            <td>約6年</td>
+            <td>約5.3年</td>
           </tr>
           <tr>
             <td class="th">土地積算価格</td>
@@ -718,7 +754,7 @@
           </tr>
           <tr>
             <td class="th">積算対売価比率</td>
-            <td style="color:#1a7a1a;font-weight:700;">54.4%</td>
+            <td style="color:#1a7a1a;font-weight:700;">48.7%</td>
           </tr>
           <tr>
             <td class="th">建物再調達価格（参考）</td>
@@ -742,12 +778,12 @@
         <div class="investment-point-title">⭐ 注目ポイント</div>
         <ul class="points-list">
           <li>東京23区内・都電荒川線「荒川区役所前」駅<strong>徒歩5分</strong>の駅近立地</li>
-          <li>表面利回り<strong>17.02%</strong>の高利回り（販売価格726万円、年間想定収入123.6万円）</li>
+          <li><span style="background:#C41E3A;color:#fff;padding:1px 6px;border-radius:3px;font-weight:900;margin-right:4px;">🔥 最終値下げ</span>販売価格 <strong>650万円</strong>（旧726万円→76万円値下げ・△10.5%）で表面利回り<strong>19.02%</strong>にアップ（年間想定収入123.6万円）</li>
           <li>空室につき<strong>自由にリノベーション可能</strong>（現況約4年空室）</li>
           <li>室内外の残置物撤去は<strong>売主負担</strong>（買主側の追加費用なし）</li>
           <li>3路線4駅（荒川区役所前・三ノ輪・南千住・町屋）利用可能</li>
-          <li>土地積算価格<strong>約1,335万円</strong>に対し販売価格726万円（54.4%）</li>
-          <li>投資回収期間<strong>約6年</strong>（NOI約121.6万円ベース）</li>
+          <li>土地積算価格<strong>約1,335万円</strong>に対し販売価格650万円（<strong>48.7%</strong>）― 土地値を大きく下回る割安水準</li>
+          <li>投資回収期間<strong>約5.3年</strong>（NOI約121.6万円ベース）</li>
           <li>連棟式・接道なし（囲繞地）のため<strong>再建築不可</strong>＝価格メリット大</li>
         </ul>
       </div>
