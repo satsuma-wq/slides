@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>簡単リアテクス査定アシスタント 導入説明書｜社内向け</title>
+<style>
+  :root{
+    --c-bg:#f5f7fa;
+    --c-card:#ffffff;
+    --c-text:#1a2332;
+    --c-muted:#5a6a7e;
+    --c-accent:#0a5fb5;
+    --c-accent-dark:#083d75;
+    --c-accent-soft:#e8f1fb;
+    --c-border:#d9e0e8;
+    --c-success:#1a8754;
+    --c-warning:#c97a00;
+    --c-warning-bg:#fff7e6;
+    --c-danger:#c0392b;
+    --shadow:0 2px 8px rgba(10,30,60,0.06);
+    --shadow-lg:0 4px 16px rgba(10,30,60,0.1);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo","-apple-system",sans-serif;
+    background:var(--c-bg);
+    color:var(--c-text);
+    line-height:1.75;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:40px 24px 80px}
+
+  /* Header */
+  .header{
+    background:linear-gradient(135deg,var(--c-accent) 0%,var(--c-accent-dark) 100%);
+    color:#fff;
+    border-radius:14px;
+    padding:40px 36px;
+    margin-bottom:32px;
+    box-shadow:var(--shadow-lg);
+  }
+  .header .tag{
+    display:inline-block;
+    background:rgba(255,255,255,0.18);
+    padding:4px 12px;
+    border-radius:999px;
+    font-size:12px;
+    letter-spacing:0.1em;
+    margin-bottom:14px;
+  }
+  .header h1{
+    margin:0 0 8px;
+    font-size:28px;
+    letter-spacing:0.02em;
+    font-weight:700;
+  }
+  .header .sub{
+    margin:0;
+    opacity:0.9;
+    font-size:15px;
+  }
+  .header .meta{
+    margin-top:20px;
+    padding-top:16px;
+    border-top:1px solid rgba(255,255,255,0.2);
+    font-size:13px;
+    opacity:0.85;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+
+  /* Section cards */
+  section{
+    background:var(--c-card);
+    border:1px solid var(--c-border);
+    border-radius:12px;
+    padding:32px 36px;
+    margin-bottom:20px;
+    box-shadow:var(--shadow);
+  }
+  section h2{
+    font-size:20px;
+    margin:0 0 18px;
+    padding-bottom:12px;
+    border-bottom:2px solid var(--c-accent-soft);
+    color:var(--c-accent-dark);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  section h2 .num{
+    background:var(--c-accent);
+    color:#fff;
+    width:30px;
+    height:30px;
+    border-radius:8px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+    font-weight:700;
+    flex-shrink:0;
+  }
+  section h3{
+    font-size:16px;
+    margin:24px 0 10px;
+    color:var(--c-text);
+  }
+  section p{margin:0 0 12px}
+
+  /* Overview intro */
+  .intro{
+    background:var(--c-accent-soft);
+    border-left:4px solid var(--c-accent);
+    padding:18px 22px;
+    border-radius:6px;
+    margin-bottom:20px;
+  }
+  .intro p{margin:0}
+
+  /* Steps */
+  .step{
+    border:1px solid var(--c-border);
+    border-radius:10px;
+    padding:22px 24px;
+    margin-bottom:16px;
+    background:#fafbfd;
+    position:relative;
+    padding-left:72px;
+  }
+  .step .step-no{
+    position:absolute;
+    left:20px;
+    top:22px;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:var(--c-accent);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:15px;
+  }
+  .step h3{
+    margin:0 0 10px;
+    font-size:16px;
+    color:var(--c-accent-dark);
+  }
+  .step ol,.step ul{margin:10px 0;padding-left:20px}
+  .step li{margin-bottom:6px}
+
+  /* Buttons / CTA */
+  .cta-box{
+    background:#fff;
+    border:2px dashed var(--c-accent);
+    border-radius:10px;
+    padding:20px;
+    text-align:center;
+    margin:16px 0;
+  }
+  .cta-box .label{
+    font-size:13px;
+    color:var(--c-muted);
+    margin-bottom:10px;
+  }
+  .btn{
+    display:inline-block;
+    background:var(--c-accent);
+    color:#fff;
+    text-decoration:none;
+    padding:12px 28px;
+    border-radius:8px;
+    font-weight:600;
+    font-size:15px;
+    transition:background .15s;
+  }
+  .btn:hover{background:var(--c-accent-dark)}
+  .btn-note{
+    display:block;
+    margin-top:10px;
+    font-size:12px;
+    color:var(--c-warning);
+    font-weight:600;
+  }
+
+  /* Tips / callouts */
+  .callout{
+    background:var(--c-warning-bg);
+    border-left:4px solid var(--c-warning);
+    padding:14px 18px;
+    border-radius:6px;
+    margin:14px 0;
+    font-size:14px;
+  }
+  .callout strong{color:var(--c-warning)}
+  .callout-info{
+    background:var(--c-accent-soft);
+    border-left-color:var(--c-accent);
+  }
+  .callout-info strong{color:var(--c-accent)}
+
+  /* Code / examples */
+  code,.kbd{
+    background:#eef2f7;
+    padding:2px 8px;
+    border-radius:4px;
+    font-family:"SF Mono","Menlo","Consolas",monospace;
+    font-size:13px;
+    color:var(--c-accent-dark);
+  }
+  .example-list{
+    background:#f7f9fc;
+    border:1px solid var(--c-border);
+    border-radius:8px;
+    padding:14px 20px;
+    margin:10px 0;
+  }
+  .example-list li{margin-bottom:4px}
+
+  /* Grid for features */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:12px;
+    margin:14px 0;
+  }
+  .card-mini{
+    background:#fafbfd;
+    border:1px solid var(--c-border);
+    border-radius:8px;
+    padding:16px;
+  }
+  .card-mini .title{
+    font-weight:700;
+    color:var(--c-accent-dark);
+    margin-bottom:4px;
+    font-size:14px;
+  }
+  .card-mini .desc{
+    font-size:13px;
+    color:var(--c-muted);
+    line-height:1.6;
+  }
+
+  /* Flow diagram */
+  .flow{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin:16px 0;
+  }
+  .flow-item{
+    background:var(--c-accent-soft);
+    border:1px solid #b9d4ee;
+    border-radius:8px;
+    padding:12px 18px;
+    position:relative;
+    font-size:14px;
+    color:var(--c-accent-dark);
+    font-weight:500;
+  }
+  .flow-arrow{
+    text-align:center;
+    color:var(--c-accent);
+    font-size:20px;
+    line-height:1;
+  }
+
+  /* FAQ */
+  .faq-item{
+    border-top:1px solid var(--c-border);
+    padding:16px 0;
+  }
+  .faq-item:first-of-type{border-top:none;padding-top:8px}
+  .faq-q{
+    font-weight:700;
+    color:var(--c-accent-dark);
+    margin-bottom:6px;
+  }
+  .faq-q::before{
+    content:"Q. ";
+    color:var(--c-accent);
+  }
+  .faq-a{
+    color:var(--c-text);
+    font-size:14px;
+    padding-left:20px;
+  }
+  .faq-a::before{
+    content:"A. ";
+    color:var(--c-muted);
+    font-weight:700;
+    margin-left:-20px;
+  }
+
+  /* Footer */
+  .footer{
+    text-align:center;
+    padding:30px 0 0;
+    color:var(--c-muted);
+    font-size:13px;
+  }
+  .footer .contact{
+    background:#fff;
+    border:1px solid var(--c-border);
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:16px;
+    box-shadow:var(--shadow);
+  }
+  .footer a{color:var(--c-accent);text-decoration:none}
+
+  /* Icon */
+  .icon{
+    display:inline-block;
+    width:18px;
+    height:18px;
+    vertical-align:middle;
+    margin-right:4px;
+  }
+
+  @media (max-width:600px){
+    .wrap{padding:20px 14px 60px}
+    .header{padding:28px 22px}
+    .header h1{font-size:22px}
+    section{padding:22px 20px}
+    .step{padding-left:20px;padding-top:60px}
+    .step .step-no{top:18px;left:20px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <header class="header">
+    <span class="tag">社内向け｜リアテクス</span>
+    <h1>簡単リアテクス査定アシスタント<br>導入説明書</h1>
+    <p class="sub">Gmailに届いた業者メールからワンクリックで査定結果を取得するGmailアドオンです。</p>
+    <div class="meta">
+      <span>📅 最終更新：2026年4月</span>
+      <span>📄 バージョン：3</span>
+      <span>🏢 対象：リアテクス社内メンバー</span>
+    </div>
+  </header>
+
+  <!-- Overview -->
+  <section>
+    <h2><span class="num">1</span>ツール概要</h2>
+    <div class="intro">
+      <p>業者からのメールに添付された <strong>Googleドライブの物件概要書PDF</strong> を自動で読み取り、AIがリアテクス独自のロジックで <strong>査定額・買付価格</strong> を計算して、Gmail画面の右パネルに表示します。</p>
+    </div>
+
+    <h3>処理の流れ</h3>
+    <div class="flow">
+      <div class="flow-item">① 業者からのメールを開く</div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">② メール本文からGoogleドライブURLを自動検出</div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">③ ドライブからPDF（概要書・レントロール）を取得</div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">④ Gemini AI（gemini-2.5-flash）で解析・計算</div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">⑤ 査定結果をGmail右パネルに表示</div>
+    </div>
+
+    <h3>対応物件種別</h3>
+    <div class="grid">
+      <div class="card-mini">
+        <div class="title">🏢 収益物件</div>
+        <div class="desc">アパート・マンション・ビル等<br>（STEP1〜7の満室/現況/銀行別査定）</div>
+      </div>
+      <div class="card-mini">
+        <div class="title">🌳 土地</div>
+        <div class="desc">更地・解体前提の土地<br>（路線価×倍率＋形状等の補正）</div>
+      </div>
+      <div class="card-mini">
+        <div class="title">🏠 戸建て</div>
+        <div class="desc">中古戸建て（賃貸中・空室・自用）<br>（収益モード／一律査定モードを自動判定）</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Install -->
+  <section>
+    <h2><span class="num">2</span>導入手順</h2>
+
+    <div class="step">
+      <div class="step-no">1</div>
+      <h3>インストールページを開く</h3>
+      <p>下のボタンをクリックし、Google Workspace Marketplace のインストールページを開いてください。</p>
+      <div class="cta-box">
+        <div class="label">▼ インストールページへ</div>
+        <a class="btn" href="https://workspace.google.com/marketplace/app/%E7%B0%A1%E5%8D%98%E3%83%AA%E3%82%A2%E3%83%86%E3%82%AF%E3%82%B9%E6%9F%BB%E5%AE%9A%E3%82%A2%E3%82%B7%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%88%EF%BC%88%E3%83%A1%E3%83%BC%E3%83%AB%E8%A3%9C%E5%8A%A9%EF%BC%89/1085749762423" target="_blank" rel="noopener">簡単リアテクス査定アシスタント（メール補助）</a>
+        <span class="btn-note">⚠️ 必ず @reatex.co.jp のアカウントでログインしてください</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-no">2</div>
+      <h3>インストールを実行</h3>
+      <ol>
+        <li>ページが開いたら <strong>「インストール」</strong> ボタンをクリック</li>
+        <li>アカウント確認のポップアップで <strong>@reatex.co.jp のアカウントを選択</strong></li>
+        <li>権限の確認画面で <strong>「許可」</strong> をクリック</li>
+        <li>「インストールが完了しました」と表示されれば完了</li>
+      </ol>
+      <div class="callout callout-info">
+        <strong>💡 権限について：</strong> 本アドオンは「Gmailの閲覧（URL取得）」「Googleドライブ（PDF読み取り）」「外部サービス接続（Gemini API呼び出し）」の権限を利用します。
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-no">3</div>
+      <h3>Gmailで動作を確認</h3>
+      <ol>
+        <li><a href="https://mail.google.com" target="_blank" rel="noopener">Gmail</a> を開く</li>
+        <li>画面右側のサイドバーに <strong>🏠 のアイコン</strong>（査定アシスタント）が表示されていればインストール成功です</li>
+      </ol>
+      <div class="callout">
+        <strong>⚠️ アイコンが表示されない場合：</strong> Gmail を一度リロード（<span class="kbd">F5</span> キー）してください。それでも出ない場合は、別ブラウザでログインし直してみてください。
+      </div>
+    </div>
+  </section>
+
+  <!-- Usage -->
+  <section>
+    <h2><span class="num">3</span>使い方</h2>
+
+    <ol>
+      <li>業者からの <strong>物件情報メール</strong> を開く</li>
+      <li>メール本文にGoogleドライブのリンクが含まれていると、<strong>右パネルに自動で査定結果が表示</strong> されます</li>
+      <li>査定結果は <strong>査定サマリー（上部）</strong> と <strong>詳細セクション（折りたたみ）</strong> に分かれて表示されます</li>
+    </ol>
+
+    <div class="callout callout-info">
+      <strong>⏱ 処理時間：</strong> AIによる解析のため、結果表示まで <strong>10〜30秒</strong> ほどかかります。しばらくお待ちください。
+    </div>
+
+    <h3>査定結果に表示される内容</h3>
+    <div class="grid">
+      <div class="card-mini">
+        <div class="title">客出し価格目安</div>
+        <div class="desc">プロパー／滋賀銀ライン／AGBライン／現況利回りラインの4種</div>
+      </div>
+      <div class="card-mini">
+        <div class="title">買付価格</div>
+        <div class="desc">利益率・仲介手数料を控除した最終買付価格</div>
+      </div>
+      <div class="card-mini">
+        <div class="title">計算途中値</div>
+        <div class="desc">積算価格・利回り詳細・補正倍率など（詳細展開で確認可）</div>
+      </div>
+    </div>
+
+    <h3>補正・再計算機能</h3>
+    <p>査定結果の下部にある <strong>「補正・再計算」欄</strong> に修正内容を自然文で入力すると、AIが該当パラメーターを修正して全計算をやり直します。</p>
+    <div class="example-list">
+      <strong>入力例：</strong>
+      <ul>
+        <li><code>店舗割合は100%です</code></li>
+        <li><code>路線価は5.8万円です</code></li>
+        <li><code>年間経費は120万円です</code></li>
+        <li><code>入居率は80%で計算して</code></li>
+      </ul>
+    </div>
+    <div class="callout callout-info">
+      <strong>💡 ヒント：</strong> 補正内容はキャッシュに最大6時間保持されるため、同じメールで複数回補正を重ねても高速に再計算されます。
+    </div>
+  </section>
+
+  <!-- Precautions -->
+  <section>
+    <h2><span class="num">4</span>注意事項</h2>
+    <ul>
+      <li><strong>対象メール：</strong> 本文にGoogleドライブのリンク（<code>drive.google.com</code>）が含まれているメールのみ動作します</li>
+      <li><strong>対象ファイル：</strong> PDFファイル（物件概要書・レントロール）のみ対応（画像・Excel等は非対応）</li>
+      <li><strong>フォルダURL対応：</strong> 単一PDF・フォルダURLどちらも可。フォルダ内にレントロールがあれば自動で読み込みます</li>
+      <li><strong>処理時間：</strong> AI解析のため、結果表示まで10〜30秒ほどかかります</li>
+    </ul>
+    <div class="callout">
+      <strong>⚠️ 重要：</strong> 本アドオンの査定結果は <strong>参考値</strong> です。重要な案件・実際の買付判断時は、必ず <strong>正規ロジック（LINE WORKS bot／査定シート）で再確認</strong> してください。
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <h2><span class="num">5</span>よくある質問</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">インストール後、右パネルにアイコンが出てきません</div>
+      <div class="faq-a">Gmailをリロード（F5）してください。それでも出ない場合は、ブラウザのキャッシュクリア、もしくはシークレットウィンドウで再ログインをお試しください。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">査定結果が「該当なし」と表示されます</div>
+      <div class="faq-a">メール本文に <code>drive.google.com</code> のリンクが含まれていない可能性があります。また、PDF以外のファイル形式は読み取れません。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">戸建ての査定モードはどう決まるの？</div>
+      <div class="faq-a">賃貸中 → 収益モード／空室・自用 かつ 一都三県かつ路線価3万以上、または地方で路線価5万超 → 収益＋土地両方／上記以外 → 一律査定モード、と自動判定されます。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">補正入力でパラメーターを変えても、計算が反映されません</div>
+      <div class="faq-a">補正入力は <strong>自然文</strong> で構いません。具体的な数値（例：<code>路線価は5.8万円です</code>）を明示してください。反映されない場合は、一度メールを閉じて開き直してみてください。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">リアテクス以外のアカウント（個人Gmail）でも使えますか？</div>
+      <div class="faq-a">いいえ、本アドオンは <strong>@reatex.co.jp のアカウント限定</strong> でインストール可能です。</div>
+    </div>
+  </section>
+
+  <!-- Footer / Contact -->
+  <footer class="footer">
+    <div class="contact">
+      <strong>📧 不具合・ご質問はこちらまで</strong><br>
+      <a href="mailto:satsuma@reatex.co.jp">satsuma@reatex.co.jp</a>（薩摩）
+    </div>
+    <div>© 株式会社リアテクス｜社内向け資料</div>
+  </footer>
+
+</div>
+</body>
+</html>
