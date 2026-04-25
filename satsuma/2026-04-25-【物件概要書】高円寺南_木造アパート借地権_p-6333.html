@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】高円寺南 木造アパート（借地権）p-6333</title>
+<style>
+/* ============ 基本設定 ============ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'Yu Gothic', sans-serif;
+  font-size: 10pt;
+  color: #1a1a1a;
+  background: #e8edf5;
+}
+
+/* ============ ページ印刷設定 ============ */
+@page {
+  size: A4 landscape;
+  margin: 14mm 15mm;
+}
+
+.page-container {
+  width: 267mm;
+  margin: 0 auto 24px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.page-wrapper {
+  width: 267mm;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.page-break {
+  break-before: page;
+  page-break-before: always;
+}
+
+.avoid-break {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* ============ 印刷最適化 ============ */
+@media print {
+  body { background: #fff; }
+  .page-container {
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+    min-height: 182mm;
+  }
+  .page-wrapper { width: 100%; }
+  * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
+
+/* ============ ヘッダー ============ */
+.header {
+  background: linear-gradient(135deg, #1A365D 0%, #2d5a9e 100%);
+  color: #fff;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.header-left { flex: 1; }
+.header-badge {
+  display: inline-block;
+  background: #C41E3A;
+  color: #fff;
+  font-size: 7.5pt;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+}
+.header-badge-chishaku {
+  display: inline-block;
+  background: #DAA520;
+  color: #1A365D;
+  font-size: 7.5pt;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-bottom: 4px;
+}
+.header-property-name {
+  font-size: 16pt;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+.header-sub {
+  font-size: 8.5pt;
+  color: rgba(255,255,255,0.8);
+}
+.header-right {
+  text-align: right;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+.header-price-label { font-size: 8pt; color: rgba(255,255,255,0.8); margin-bottom: 1px; }
+.header-price { font-size: 22pt; font-weight: 700; color: #FFD700; line-height: 1.1; }
+.header-yield { font-size: 11pt; font-weight: 700; color: #7FFF00; margin-top: 3px; }
+
+/* ============ ヒーローセクション ============ */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 12px 15px;
+  background: #fff;
+}
+.hero-left { padding-right: 12px; }
+.hero-right { padding-left: 12px; border-left: 2px solid #e0e8f0; }
+
+/* ============ KPIグリッド ============ */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-bottom: 10px;
+}
+.kpi-card {
+  background: linear-gradient(135deg, #1A365D 0%, #2d5a9e 100%);
+  color: #fff;
+  padding: 7px 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+.kpi-label { font-size: 7pt; color: rgba(255,255,255,0.8); margin-bottom: 3px; }
+.kpi-value { font-size: 13pt; font-weight: 700; color: #FFD700; line-height: 1.2; }
+.kpi-unit { font-size: 7pt; color: rgba(255,255,255,0.7); }
+
+/* ============ ハイライトボックス ============ */
+.highlight-box {
+  background: #fef9e7;
+  border: 1px solid #f0d060;
+  border-radius: 6px;
+  padding: 9px 12px;
+  margin-bottom: 10px;
+}
+.highlight-title { font-size: 8.5pt; font-weight: 700; color: #8B6914; margin-bottom: 5px; }
+.highlight-list { list-style: none; padding: 0; }
+.highlight-list li {
+  font-size: 8.5pt;
+  color: #3a3a3a;
+  padding: 2px 0 2px 16px;
+  position: relative;
+  line-height: 1.5;
+}
+.highlight-list li::before {
+  content: "■";
+  color: #DAA520;
+  position: absolute;
+  left: 0;
+  font-size: 7pt;
+  top: 4px;
+}
+
+.access-list { list-style: none; padding: 0; margin-top: 8px; }
+.access-list li {
+  font-size: 8.5pt;
+  padding: 3px 0 3px 18px;
+  position: relative;
+  color: #3a3a3a;
+  border-bottom: 1px dotted #ddd;
+}
+.access-list li::before { content: "🚉"; position: absolute; left: 0; font-size: 8pt; }
+
+/* ============ セクションタイトル ============ */
+.section-title {
+  background: linear-gradient(90deg, #1A365D, #2d5a9e);
+  color: #fff;
+  font-size: 9.5pt;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 3px;
+  margin-bottom: 6px;
+}
+
+/* ============ 物件概要テーブル ============ */
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.overview-table td {
+  border: 1px solid #c8d8f0;
+  padding: 4px 8px;
+  vertical-align: top;
+  line-height: 1.4;
+}
+.overview-table .th {
+  background: #e8f0fc;
+  font-weight: 700;
+  color: #1A365D;
+  white-space: nowrap;
+  width: 22%;
+}
+
+/* ============ メイン写真 ============ */
+.photo-main img {
+  width: 100%;
+  height: 88mm;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #c8d8f8;
+  display: block;
+}
+.photo-sub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 6px;
+}
+.photo-sub-grid img {
+  width: 100%;
+  height: 38mm;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #c8d8f8;
+  display: block;
+}
+
+/* ============ フッター帯 ============ */
+.footer-band {
+  background: #1A365D;
+  color: rgba(255,255,255,0.75);
+  padding: 6px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 7.5pt;
+}
+
+/* ============ ページ2〜4 共通ヘッダー ============ */
+.page2-header {
+  background: linear-gradient(135deg, #1A365D 0%, #2d5a9e 100%);
+  color: #fff;
+  padding: 8px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.page2-title { font-size: 12pt; font-weight: 700; color: #FFD700; }
+.page2-sub { font-size: 8.5pt; color: rgba(255,255,255,0.8); margin-top: 2px; }
+.finance-section { padding: 12px 15px; }
+
+/* ============ レントロール ============ */
+.income-summary {
+  background: linear-gradient(135deg, #1a7a1a, #2d9a2d);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.income-item { text-align: center; }
+.income-label { font-size: 8pt; color: rgba(255,255,255,0.85); margin-bottom: 2px; }
+.income-value { font-size: 14pt; font-weight: 700; color: #ADFF2F; }
+
+.lentroll-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  margin-bottom: 12px;
+}
+.lentroll-table th {
+  background: #1A365D;
+  color: #fff;
+  padding: 5px 8px;
+  text-align: center;
+  font-size: 8.5pt;
+}
+.lentroll-table td {
+  border: 1px solid #c8d8f0;
+  padding: 5px 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+.lentroll-table .vacant { color: #C41E3A; font-weight: 700; }
+.lentroll-table .assumed { color: #555; font-style: italic; font-size: 8.5pt; }
+.lentroll-table tr:nth-child(even) { background: #f5f8ff; }
+.lentroll-table .total-row { background: #1A365D; }
+.lentroll-table .total-row td { border-color: #0d2b52; color: #FFD700; font-weight: 700; }
+
+/* ============ ファイナンスデーブル ============ */
+.finance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  margin-bottom: 10px;
+}
+.finance-table .th {
+  background: #e8f0fc;
+  font-weight: 700;
+  color: #1A365D;
+  padding: 5px 10px;
+  width: 58%;
+}
+.finance-table td {
+  border: 1px solid #c8d8f0;
+  padding: 5px 10px;
+  vertical-align: middle;
+}
+.finance-table .subtotal { background: #fef3e0; font-weight: 700; }
+
+/* ============ 2カラム ============ */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* ============ 注意書き ============ */
+.notes-box {
+  background: #fff8e1;
+  border-left: 4px solid #DAA520;
+  padding: 8px 12px;
+  font-size: 8.5pt;
+  color: #5a4a1a;
+  border-radius: 0 4px 4px 0;
+  margin-top: 10px;
+  line-height: 1.65;
+}
+
+/* ============ ページ3 ============ */
+.kpi-highlight-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.kpi-highlight-card {
+  background: linear-gradient(135deg, #1A365D 0%, #2d5a9e 100%);
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+.kpi-highlight-value { font-size: 16pt; font-weight: 700; color: #FFD700; }
+.kpi-highlight-label { font-size: 7.5pt; color: rgba(255,255,255,0.8); margin-top: 2px; }
+
+.points-section {
+  background: #f0f8ff;
+  border: 1px solid #b0d0f0;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+.points-list { list-style: none; padding: 0; margin: 0; }
+.points-list li {
+  font-size: 8.5pt;
+  padding: 4px 0 4px 18px;
+  position: relative;
+  border-bottom: 1px dotted #c8d8f0;
+  line-height: 1.55;
+}
+.points-list li:last-child { border-bottom: none; }
+.points-list li::before { content: "◆"; color: #1A365D; position: absolute; left: 0; font-size: 8pt; top: 5px; }
+
+.env-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+.env-card {
+  border: 1px solid #c8d8f0;
+  border-radius: 6px;
+  padding: 8px 6px;
+  text-align: center;
+  background: #f8fbff;
+}
+.env-icon { font-size: 13pt; margin-bottom: 3px; }
+.env-name { font-size: 7.5pt; color: #1A365D; font-weight: 700; }
+.env-dist { font-size: 7.5pt; color: #555; margin-top: 1px; }
+
+/* ============ ページ4 写真 ============ */
+.photo-grid-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.photo-grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.photo-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.photo-item { position: relative; }
+.photo-item img {
+  width: 100%;
+  height: 58mm;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #c8d8f8;
+  display: block;
+}
+.photo-item.main img { height: 90mm; }
+.photo-caption { font-size: 7pt; color: #555; text-align: center; margin-top: 3px; }
+
+.special-notes {
+  background: #fff8e1;
+  border: 1px solid #f0d060;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 8.5pt;
+  line-height: 1.7;
+  color: #3a3a1a;
+}
+.special-notes h4 {
+  font-size: 9pt;
+  color: #8B6914;
+  font-weight: 700;
+  margin-bottom: 4px;
+  margin-top: 8px;
+}
+.special-notes h4:first-child { margin-top: 0; }
+
+/* ============ レスポンシブ（タブレット・スマホ） ============ */
+@media screen and (max-width: 900px) {
+  .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+  .page-wrapper   { width: 100% !important; padding: 0 8px !important; }
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+  .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+  .header-property-name { font-size: 13pt; }
+  .kpi-grid  { grid-template-columns: repeat(2, 1fr); }
+  .hero-section { grid-template-columns: 1fr !important; }
+  .two-col { grid-template-columns: 1fr !important; }
+  .kpi-highlight-row { grid-template-columns: repeat(2, 1fr); }
+  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-grid-main { grid-template-columns: 1fr !important; }
+  .photo-grid-4    { grid-template-columns: 1fr 1fr !important; }
+  .photo-grid-2    { grid-template-columns: 1fr !important; }
+  body { font-size: 11pt; }
+  .footer-band { flex-direction: column; gap: 4px; text-align: center; padding: 10px; }
+  .page-break { break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+}
+@media screen and (max-width: 480px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .header-property-name { font-size: 12pt; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- PAGE 1: 物件概要 -->
+<!-- ============================================================ -->
+<div class="page-container">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div>
+        <span class="header-badge">全室空室・即引渡可</span>
+        <span class="header-badge-chishaku">旧法借地権</span>
+      </div>
+      <div class="header-property-name">高円寺南 木造アパート（借地権）</div>
+      <div class="header-sub">東京都杉並区高円寺南 3-30-2 ／ 案件番号：p-6333</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">1,430<span style="font-size:12pt; font-weight:400;">万円</span></div>
+      <div class="header-yield">想定利回り 16.45%</div>
+      <a href="https://drive.google.com/drive/folders/1fugiWQYOizBcb75HTFxtnUexLPtlOpV9" target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション: 左KPI＋右写真 -->
+  <div class="hero-section">
+    <!-- 左カラム -->
+    <div class="hero-left">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">販売価格</div>
+          <div class="kpi-value">1,430<span class="kpi-unit">万円</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">想定表面利回り</div>
+          <div class="kpi-value">16.45<span class="kpi-unit">%</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">月間想定賃料</div>
+          <div class="kpi-value" style="font-size:11pt;">196,000<span class="kpi-unit">円</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">年間想定賃料</div>
+          <div class="kpi-value" style="font-size:11pt;">2,352,000<span class="kpi-unit">円</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">総戸数</div>
+          <div class="kpi-value">4<span class="kpi-unit">戸</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">延床面積</div>
+          <div class="kpi-value">76.72<span class="kpi-unit">㎡</span></div>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <div class="highlight-title">▶ 物件ハイライト</div>
+        <ul class="highlight-list">
+          <li>鉄道4線2駅利用可能・高円寺駅徒歩10分の好立地</li>
+          <li>想定利回り16%超（販売価格1,430万円ベース）</li>
+          <li>南東側公園に面し、陽当たり・採光が良好</li>
+          <li>閑静な住宅街・駅まで平坦で徒歩圏内</li>
+          <li>旧法借地権（地代：19,950円/月）</li>
+          <li>未接道につき再建築不可・現状建物利用前提</li>
+        </ul>
+      </div>
+
+      <ul class="access-list">
+        <li>JR中央・総武線『高円寺』駅　徒歩10分</li>
+        <li>東京メトロ東西線『高円寺』駅　徒歩10分</li>
+        <li>東京メトロ丸の内線『新高円寺』駅　徒歩10分</li>
+      </ul>
+    </div>
+
+    <!-- 右カラム: メイン写真 -->
+    <div class="hero-right">
+      <div class="photo-main">
+        <img src="https://drive.google.com/thumbnail?id=1t-PJNNcfIUjGcrad3F5DRga6BF0-M3XA&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1t-PJNNcfIUjGcrad3F5DRga6BF0-M3XA'"
+             alt="物件外観">
+      </div>
+    </div>
+  </div>
+
+  <!-- 物件概要テーブル -->
+  <div style="padding: 0 15px 12px;">
+    <div class="section-title">【物件概要】</div>
+    <table class="overview-table avoid-break">
+      <tr>
+        <td class="th">所在地</td>
+        <td>東京都杉並区高円寺南 3-30-2</td>
+        <td class="th">地番</td>
+        <td>東京都杉並区高円寺南 3-330-1 の一部</td>
+      </tr>
+      <tr>
+        <td class="th">地目</td>
+        <td>宅地</td>
+        <td class="th">土地権利</td>
+        <td><strong style="color:#C41E3A;">旧法借地権</strong></td>
+      </tr>
+      <tr>
+        <td class="th">構造</td>
+        <td>木造瓦葺 2階建</td>
+        <td class="th">間取り</td>
+        <td>1Kタイプ × 4戸</td>
+      </tr>
+      <tr>
+        <td class="th">築年月</td>
+        <td>昭和38年3月（築約63年）</td>
+        <td class="th">延床面積</td>
+        <td>76.72㎡</td>
+      </tr>
+      <tr>
+        <td class="th">現況</td>
+        <td><strong style="color:#C41E3A;">全室空室（4戸）</strong></td>
+        <td class="th">引渡し</td>
+        <td>即可</td>
+      </tr>
+      <tr>
+        <td class="th">借地面積</td>
+        <td>63㎡（19坪）</td>
+        <td class="th">地代</td>
+        <td>19,950円/月（年間：239,400円）</td>
+      </tr>
+      <tr>
+        <td class="th">更新料</td>
+        <td>934,920円</td>
+        <td class="th">承諾料</td>
+        <td>なし</td>
+      </tr>
+      <tr>
+        <td class="th">建蔽率・容積率</td>
+        <td>60%・150%</td>
+        <td class="th">用途地域</td>
+        <td>第一種低層住居専用地域</td>
+      </tr>
+      <tr>
+        <td class="th">都市計画</td>
+        <td>市街化区域</td>
+        <td class="th">防火指定</td>
+        <td>準防火地域</td>
+      </tr>
+      <tr>
+        <td class="th">接道状況</td>
+        <td><strong style="color:#C41E3A;">未接道（再建築不可）</strong></td>
+        <td class="th">高度地区</td>
+        <td>第1種高度地区</td>
+      </tr>
+      <tr>
+        <td class="th">販売価格</td>
+        <td><strong style="color:#C41E3A; font-size:11pt;">1,430万円</strong></td>
+        <td class="th">想定表面利回り</td>
+        <td><strong style="color:#1a7a1a; font-size:11pt;">16.45%</strong></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <span>p-6333 ／ 東京都杉並区高円寺南 3-30-2</span>
+    <span>図面と現況が異なる場合は現況を優先します。本資料は参考資料です。</span>
+    <span>1 / 4</span>
+  </div>
+</div><!-- /page1 -->
+
+
+<!-- ============================================================ -->
+<!-- PAGE 2: レントロール -->
+<!-- ============================================================ -->
+<div class="page-container page-break">
+  <div class="page2-header">
+    <div>
+      <div class="page2-title">レントロール（想定賃料）</div>
+      <div class="page2-sub">高円寺南 木造アパート（借地権）／ p-6333</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="color:rgba(255,255,255,0.8); font-size:8pt;">販売価格</div>
+      <div style="color:#FFD700; font-size:15pt; font-weight:700;">1,430万円</div>
+    </div>
+  </div>
+
+  <div class="finance-section">
+    <!-- 収入サマリー -->
+    <div class="income-summary avoid-break">
+      <div class="income-item">
+        <div class="income-label">月間想定賃料収入（満室時）</div>
+        <div class="income-value">196,000円</div>
+      </div>
+      <div class="income-item">
+        <div class="income-label">年間想定賃料収入（満室時）</div>
+        <div class="income-value">2,352,000円</div>
+      </div>
+      <div class="income-item">
+        <div class="income-label">想定表面利回り</div>
+        <div class="income-value">16.45%</div>
+      </div>
+    </div>
+
+    <!-- レントロールテーブル -->
+    <div class="section-title">全戸賃料一覧（想定値）</div>
+    <table class="lentroll-table avoid-break">
+      <thead>
+        <tr>
+          <th>号室</th>
+          <th>階</th>
+          <th>間取り</th>
+          <th>面積（帖）</th>
+          <th>現況</th>
+          <th>想定賃料（月額）</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>101</td>
+          <td>1階</td>
+          <td>1K</td>
+          <td>5.5帖</td>
+          <td class="vacant">空室</td>
+          <td class="assumed">47,000円（想定）</td>
+          <td>南東向き</td>
+        </tr>
+        <tr>
+          <td>102</td>
+          <td>1階</td>
+          <td>1K</td>
+          <td>6.0帖</td>
+          <td class="vacant">空室</td>
+          <td class="assumed">50,000円（想定）</td>
+          <td>南東向き</td>
+        </tr>
+        <tr>
+          <td>201</td>
+          <td>2階</td>
+          <td>1K</td>
+          <td>6.0帖</td>
+          <td class="vacant">空室</td>
+          <td class="assumed">50,000円（想定）</td>
+          <td>南東向き・陽当たり良好</td>
+        </tr>
+        <tr>
+          <td>202</td>
+          <td>2階</td>
+          <td>1K</td>
+          <td>4.5帖</td>
+          <td class="vacant">空室</td>
+          <td class="assumed">49,000円（想定）</td>
+          <td>南東向き・陽当たり良好</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="5" style="text-align:center;">合計（4戸・満室時）</td>
+          <td>196,000円/月</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="two-col">
+      <!-- 年間収入 -->
+      <div class="avoid-break">
+        <div class="section-title">年間収入（満室想定）</div>
+        <table class="finance-table">
+          <tr>
+            <td class="th">月間想定賃料（満室）</td>
+            <td style="text-align:right; font-weight:700; color:#1a7a1a;">196,000円</td>
+          </tr>
+          <tr>
+            <td class="th">年間想定賃料収入（× 12ヶ月）</td>
+            <td style="text-align:right; font-weight:700; color:#1a7a1a; font-size:11pt;">2,352,000円</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- 年間支出 -->
+      <div class="avoid-break">
+        <div class="section-title">年間支出</div>
+        <table class="finance-table">
+          <tr>
+            <td class="th">地代（19,950円 × 12ヶ月）</td>
+            <td style="text-align:right;">239,400円</td>
+          </tr>
+          <tr class="subtotal">
+            <td class="th"><strong>年間支出合計</strong></td>
+            <td style="text-align:right; font-weight:700; color:#C41E3A;">239,400円</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="notes-box">
+      ※ 全室現況空室のため、賃料はすべて想定値です。実際の成約賃料を保証するものではありません。<br>
+      ※ 地代 19,950円/月は月々の固定支出として必ずご計上ください。<br>
+      ※ 本物件は<strong>旧法借地権</strong>です。土地所有権は含まれません。<br>
+      ※ 管理費・修繕積立等の費目は元資料に記載なし（売主へ別途ご確認ください）。
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <span>p-6333 ／ 東京都杉並区高円寺南 3-30-2</span>
+    <span>想定賃料は参考値です。実際の成約賃料を保証するものではありません。</span>
+    <span>2 / 4</span>
+  </div>
+</div><!-- /page2 -->
+
+
+<!-- ============================================================ -->
+<!-- PAGE 3: 収支シミュレーション＋投資ポイント＋周辺環境 -->
+<!-- ============================================================ -->
+<div class="page-container page-break">
+  <div class="page2-header">
+    <div>
+      <div class="page2-title">収支シミュレーション・投資ポイント</div>
+      <div class="page2-sub">高円寺南 木造アパート（借地権）／ p-6333</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="color:rgba(255,255,255,0.8); font-size:8pt;">販売価格</div>
+      <div style="color:#FFD700; font-size:15pt; font-weight:700;">1,430万円</div>
+    </div>
+  </div>
+
+  <div class="finance-section">
+    <!-- KPIハイライト -->
+    <div class="kpi-highlight-row">
+      <div class="kpi-highlight-card">
+        <div class="kpi-highlight-label">販売価格</div>
+        <div class="kpi-highlight-value">1,430<span style="font-size:9pt;">万円</span></div>
+      </div>
+      <div class="kpi-highlight-card">
+        <div class="kpi-highlight-label">年間想定賃料収入</div>
+        <div class="kpi-highlight-value">235.2<span style="font-size:9pt;">万円</span></div>
+      </div>
+      <div class="kpi-highlight-card">
+        <div class="kpi-highlight-label">表面利回り</div>
+        <div class="kpi-highlight-value">16.45<span style="font-size:9pt;">%</span></div>
+      </div>
+      <div class="kpi-highlight-card">
+        <div class="kpi-highlight-label">実質利回り（NOI基準）</div>
+        <div class="kpi-highlight-value">14.77<span style="font-size:9pt;">%</span></div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <!-- 左: 収支シミュレーション＋積算 -->
+      <div>
+        <div class="section-title">収支シミュレーション（満室想定）</div>
+        <table class="finance-table avoid-break">
+          <tr style="background:#f0faf0;">
+            <td class="th">年間想定賃料収入（196,000円×12）</td>
+            <td style="text-align:right; color:#1a7a1a; font-weight:700;">2,352,000円</td>
+          </tr>
+          <tr>
+            <td class="th" style="padding-left:18px;">△ 地代（19,950円×12ヶ月）</td>
+            <td style="text-align:right; color:#C41E3A;">△239,400円</td>
+          </tr>
+          <tr class="subtotal">
+            <td class="th"><strong>NOI（年間純収益）</strong></td>
+            <td style="text-align:right; font-weight:700; color:#1a7a1a; font-size:11pt;">2,112,600円</td>
+          </tr>
+          <tr>
+            <td class="th">表面利回り（÷1,430万円）</td>
+            <td style="text-align:right; font-weight:700; color:#1a7a1a;">16.45%</td>
+          </tr>
+          <tr>
+            <td class="th">実質利回り（NOI÷1,430万円）</td>
+            <td style="text-align:right; font-weight:700; color:#2d7a2d;">14.77%</td>
+          </tr>
+        </table>
+
+        <div class="section-title" style="margin-top:12px;">積算評価（参考）</div>
+        <table class="finance-table avoid-break">
+          <tr>
+            <td class="th">路線価</td>
+            <td style="text-align:right;">37.1万円/㎡</td>
+          </tr>
+          <tr>
+            <td class="th">借地面積</td>
+            <td style="text-align:right;">63㎡（19坪）</td>
+          </tr>
+          <tr>
+            <td class="th">土地評価額（所有権ベース参考）</td>
+            <td style="text-align:right;">約2,337万円</td>
+          </tr>
+          <tr>
+            <td class="th">建物積算評価</td>
+            <td style="text-align:right; color:#888;">0円<br><span style="font-size:7.5pt;">(木造22年・築約63年・残存0年)</span></td>
+          </tr>
+        </table>
+        <div class="notes-box" style="margin-top:8px; font-size:7.5pt;">
+          ※ 借地権物件のため土地所有権はありません。借地権割合は路線価図にてご確認ください。<br>
+          ※ 建物は残存耐用年数が0年のため積算評価は0円として計算しています。
+        </div>
+      </div>
+
+      <!-- 右: 投資ポイント＋周辺環境 -->
+      <div>
+        <div class="section-title">投資ポイント</div>
+        <div class="points-section avoid-break">
+          <ul class="points-list">
+            <li>鉄道4線2駅徒歩10分・都心へのアクセス良好</li>
+            <li>販売価格1,430万円に対し表面利回り16.45%・実質14.77%</li>
+            <li>南東側公園に面し陽当たり・採光・通風が良好</li>
+            <li>全室空室のため、リフォーム後の賃料設定が自由</li>
+            <li>旧法借地権により低価格での取得が可能</li>
+            <li>未接道・再建築不可（現況建物の長期保有・賃貸運用向き）</li>
+          </ul>
+        </div>
+
+        <div class="section-title" style="margin-top:12px;">周辺環境</div>
+        <div class="env-grid avoid-break">
+          <div class="env-card">
+            <div class="env-icon">🚉</div>
+            <div class="env-name">高円寺駅（JR）</div>
+            <div class="env-dist">徒歩10分</div>
+          </div>
+          <div class="env-card">
+            <div class="env-icon">🚉</div>
+            <div class="env-name">高円寺駅（東西線）</div>
+            <div class="env-dist">徒歩10分</div>
+          </div>
+          <div class="env-card">
+            <div class="env-icon">🚉</div>
+            <div class="env-name">新高円寺駅（丸の内線）</div>
+            <div class="env-dist">徒歩10分</div>
+          </div>
+          <div class="env-card">
+            <div class="env-icon">🌳</div>
+            <div class="env-name">南側公園</div>
+            <div class="env-dist">隣接・陽当たり良好</div>
+          </div>
+          <div class="env-card">
+            <div class="env-icon">🏙️</div>
+            <div class="env-name">高円寺商店街</div>
+            <div class="env-dist">周辺に商業施設多数</div>
+          </div>
+          <div class="env-card">
+            <div class="env-icon">🏘️</div>
+            <div class="env-name">閑静な住宅街</div>
+            <div class="env-dist">杉並区・住宅地</div>
+          </div>
+        </div>
+
+        <div class="notes-box" style="margin-top:10px;">
+          ※ 本シミュレーションは満室想定の参考値です。空室期間・修繕費等は別途考慮が必要です。<br>
+          ※ 借地権物件のため、地代・借地契約の内容を必ずご確認ください。<br>
+          ※ 未接道のため再建築不可。建物維持管理コストにご留意ください。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <span>p-6333 ／ 東京都杉並区高円寺南 3-30-2</span>
+    <span>本シミュレーションは参考値であり、投資成果を保証するものではありません。</span>
+    <span>3 / 4</span>
+  </div>
+</div><!-- /page3 -->
+
+
+<!-- ============================================================ -->
+<!-- PAGE 4: 物件写真＋特記事項 -->
+<!-- ============================================================ -->
+<div class="page-container page-break">
+  <div class="page2-header">
+    <div>
+      <div class="page2-title">物件写真・特記事項</div>
+      <div class="page2-sub">高円寺南 木造アパート（借地権）／ p-6333</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="color:rgba(255,255,255,0.8); font-size:8pt;">案件番号</div>
+      <div style="color:#FFD700; font-size:15pt; font-weight:700;">p-6333</div>
+    </div>
+  </div>
+
+  <div class="finance-section">
+    <!-- 物件写真 -->
+    <div class="section-title">物件写真</div>
+    <div class="photo-grid-main">
+      <div class="photo-item main">
+        <img src="https://drive.google.com/thumbnail?id=1t-PJNNcfIUjGcrad3F5DRga6BF0-M3XA&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1t-PJNNcfIUjGcrad3F5DRga6BF0-M3XA'"
+             alt="外観（メイン）">
+        <div class="photo-caption">外観（メイン）</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1t-PJNNcfIUjGcrad3F5DRga6BF0-M3XA&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1t-PJNNcfIUjGcrad3F5DRga6BF0-M3XA'"
+             alt="外観②">
+        <div class="photo-caption">外観②</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1t-PJNNcfIUjGcrad3F5DRga6BF0-M3XA&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1t-PJNNcfIUjGcrad3F5DRga6BF0-M3XA'"
+             alt="外観③">
+        <div class="photo-caption">外観③</div>
+      </div>
+    </div>
+
+    <!-- 間取り図説明 -->
+    <div style="background:#f5f8ff; border:1px solid #c8d8f0; border-radius:6px; padding:8px 12px; margin-bottom:12px; font-size:8.5pt;">
+      <strong style="color:#1A365D;">【間取り概要】</strong>
+      1階：101号室（1K / 5.5帖）、102号室（1K / 6.0帖）
+      2階：201号室（1K / 6.0帖）、202号室（1K / 4.5帖）
+      ／ 全室1Kタイプ・UB・K付き
+    </div>
+
+    <!-- 特記事項 -->
+    <div class="section-title">特記事項・重要事項</div>
+    <div class="special-notes avoid-break">
+      <h4>【借地権について】</h4>
+      ・本物件は<strong>旧法借地権</strong>（地代：19,950円/月）の物件です。土地所有権は含まれません。<br>
+      ・<strong>更新料：934,920円</strong>（契約更新時）<br>
+      ・<strong>承諾料：なし</strong><br>
+      ・借地契約の内容（残存期間・更新条件・解約条件等）は必ず売主・地主へご確認ください。<br>
+      ・借地権の譲渡・転貸には地主の承諾が必要な場合があります。<br>
+
+      <h4>【再建築不可について】</h4>
+      ・本物件は<strong>未接道のため再建築不可</strong>です。現状建物の維持・リフォームを前提とした購入をご検討ください。<br>
+      ・建替・増築は原則不可です（接道義務不充足）。<br>
+
+      <h4>【現況について】</h4>
+      ・全室空室（4戸）のため、入居付け・内装工事等が必要です。<br>
+      ・<strong>建物に傾きあり</strong>（現況引渡し）。<br>
+      ・<strong>擁壁工事を260万円かけて実施済み</strong>です。<br>
+      ・図面と現況が異なる場合は現況を優先します。<br>
+
+      <h4>【その他】</h4>
+      ・詳細資料（謄本・公図・建物図面・借地契約書等）は共有フォルダをご確認ください。<br>
+      ・詳細・内見のお申し込みは仲介業者までお問い合わせください。
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <span>p-6333 ／ 東京都杉並区高円寺南 3-30-2</span>
+    <span>本資料は参考資料です。重要事項説明書をご確認の上でご判断ください。</span>
+    <span>4 / 4</span>
+  </div>
+</div><!-- /page4 -->
+
+</body>
+</html>
