@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件概要書 r-2683 広島県東広島市河内町 空き家</title>
+<style>
+@page { size: A4 landscape; margin: 14mm 15mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', 'Yu Gothic', sans-serif; font-size: 10pt; color: #1a1a1a; background: #f4f4f4; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+/* ========== ページ共通 ========== */
+.page-container {
+  width: 267mm;
+  margin: 0 auto 20px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  padding: 0;
+  position: relative;
+}
+.page-break { break-before: page; }
+.avoid-break { break-inside: avoid; }
+
+/* ========== ヘッダー ========== */
+.header {
+  background: linear-gradient(135deg, #1A365D 0%, #2d5a9e 100%);
+  color: #fff;
+  padding: 10px 16px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.header-left { flex: 1; }
+.header-label {
+  font-size: 7pt;
+  background: rgba(255,255,255,0.2);
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-bottom: 4px;
+  color: #cce4ff;
+  letter-spacing: 0.08em;
+}
+.header-property-name {
+  font-size: 15pt;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+.header-sub {
+  font-size: 8pt;
+  color: #cce4ff;
+  margin-top: 3px;
+}
+.header-right {
+  text-align: right;
+  min-width: 120px;
+}
+.header-price-label { font-size: 7pt; color: #a0c8ff; }
+.header-price {
+  font-size: 22pt;
+  font-weight: 900;
+  color: #FFD700;
+  line-height: 1.1;
+}
+.header-price-unit { font-size: 10pt; color: #FFD700; }
+.header-bukken { font-size: 7.5pt; color: #cce4ff; margin-top: 4px; }
+
+/* ========== ヒーローセクション ========== */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 0;
+  min-height: 68mm;
+}
+.hero-left {
+  background: linear-gradient(180deg, #1e3f6e 0%, #2a5298 100%);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+.kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.kpi-card {
+  background: rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  text-align: center;
+}
+.kpi-label { font-size: 7pt; color: #9ec5ff; margin-bottom: 2px; }
+.kpi-value {
+  font-size: 16pt;
+  font-weight: 900;
+  color: #FFD700;
+  line-height: 1.1;
+}
+.kpi-value.large { font-size: 20pt; }
+.kpi-unit { font-size: 8pt; color: #cce4ff; }
+.hero-right {
+  position: relative;
+  overflow: hidden;
+  background: #c8d8f0;
+}
+.hero-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255,0,0,0.85);
+  color: #fff;
+  font-size: 8pt;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* ========== セクションタイトル ========== */
+.section-title {
+  background: linear-gradient(90deg, #1A365D, #2d5a9e);
+  color: #fff;
+  font-size: 9pt;
+  font-weight: 700;
+  padding: 5px 14px;
+  margin-bottom: 0;
+  letter-spacing: 0.05em;
+}
+
+/* ========== 概要テーブル ========== */
+.overview-section { padding: 0 12px 10px; }
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+  margin-top: 8px;
+}
+.overview-table th, .overview-table td {
+  border: 1px solid #c8d8e8;
+  padding: 5px 8px;
+  vertical-align: middle;
+}
+.overview-table .row-header {
+  background: #1A365D;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  width: 60px;
+  writing-mode: vertical-rl;
+  padding: 8px 4px;
+}
+.overview-table .sub-header {
+  background: #e8f0f8;
+  color: #1A365D;
+  font-weight: 700;
+  width: 80px;
+  text-align: center;
+}
+.overview-table td { background: #fff; }
+
+/* ========== 2列レイアウト ========== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 10px 12px;
+}
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  padding: 10px 12px;
+}
+
+/* ========== 収支テーブル ========== */
+.finance-section { padding: 0 12px 10px; }
+.finance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  margin-top: 8px;
+}
+.finance-table td {
+  border: 1px solid #c8d8e8;
+  padding: 6px 10px;
+  vertical-align: middle;
+}
+.finance-table .th {
+  background: #e8f0f8;
+  color: #1A365D;
+  font-weight: 600;
+  width: 55%;
+}
+.finance-table .subtotal td {
+  background: #1A365D;
+  color: #fff;
+  font-weight: 700;
+}
+.finance-table .subtotal .th { background: #1A365D; color: #fff; }
+
+/* ========== ハイライトボックス ========== */
+.highlight-box {
+  display: flex;
+  gap: 0;
+  background: linear-gradient(135deg, #FFF8DC, #FFF3CD);
+  border: 2px solid #DAA520;
+  border-radius: 6px;
+  margin: 10px 12px 0;
+  overflow: hidden;
+}
+.highlight-item {
+  flex: 1;
+  text-align: center;
+  padding: 10px 8px;
+  border-right: 1px solid #e8d5a0;
+}
+.highlight-item:last-child { border-right: none; }
+.highlight-label { font-size: 7.5pt; color: #7a5800; font-weight: 600; }
+.highlight-value {
+  font-size: 20pt;
+  font-weight: 900;
+  color: #1A365D;
+  line-height: 1.1;
+}
+.highlight-unit { font-size: 8.5pt; color: #7a5800; }
+
+/* ========== 投資ポイント ========== */
+.points-list { padding: 8px 12px 10px; list-style: none; }
+.points-list li {
+  padding: 5px 0 5px 20px;
+  position: relative;
+  font-size: 9pt;
+  border-bottom: 1px solid #eee;
+  line-height: 1.5;
+}
+.points-list li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #DAA520;
+  font-weight: 900;
+}
+
+/* ========== 注意書き ========== */
+.notes-box {
+  margin: 6px 12px 10px;
+  padding: 8px 12px;
+  background: #fff8f0;
+  border-left: 3px solid #DAA520;
+  font-size: 8pt;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ========== 周辺環境 ========== */
+.env-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 8px 12px;
+}
+.env-card {
+  background: #f0f5ff;
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #c8d8f0;
+}
+.env-icon { font-size: 16pt; margin-bottom: 3px; }
+.env-name { font-size: 8pt; color: #1A365D; font-weight: 700; }
+.env-dist { font-size: 7.5pt; color: #555; }
+
+/* ========== 写真グリッド ========== */
+.photo-section { padding: 0 12px 10px; }
+.photo-grid-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 4px;
+  margin-top: 8px;
+}
+.photo-grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 4px;
+  margin-top: 4px;
+}
+.photo-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin-top: 4px;
+}
+.photo-item {
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
+  background: #c8d8e8;
+}
+.photo-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+.photo-item.main img { height: 200px; }
+.photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 7pt;
+  padding: 2px 6px;
+  text-align: center;
+}
+
+/* ========== フッター ========== */
+.footer-band {
+  background: #1A365D;
+  color: #cce4ff;
+  font-size: 7.5pt;
+  padding: 7px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+.footer-note { color: rgba(255,255,255,0.5); font-size: 6.5pt; }
+
+/* ========== ページラベル ========== */
+.page-label {
+  background: #DAA520;
+  color: #1A365D;
+  font-size: 7pt;
+  font-weight: 700;
+  padding: 2px 10px;
+  display: inline-block;
+  border-radius: 0 0 4px 4px;
+  margin-left: 12px;
+}
+
+/* ========== レスポンシブ（タブレット・スマホ） ========== */
+@media screen and (max-width: 900px) {
+  .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+  .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+  .header-property-name { font-size: 13pt; }
+  .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+  .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
+  .highlight-item:last-child { border-bottom: none; }
+  .highlight-value { font-size: 18pt; }
+  .two-col, .three-col { grid-template-columns: 1fr !important; }
+  .hero-section { grid-template-columns: 1fr !important; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .kpi-value { font-size: 15pt; }
+  .photo-grid-main { grid-template-columns: 1fr !important; }
+  .photo-grid-4 { grid-template-columns: 1fr 1fr !important; }
+  .photo-grid-2 { grid-template-columns: 1fr !important; }
+  .overview-section, .finance-section { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .lentroll-table, .finance-table, .overview-table { font-size: 9pt; }
+  body { font-size: 11pt; }
+  .section-title { font-size: 10pt; padding: 6px 12px; }
+  .points-list li { font-size: 10pt; }
+  .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+  .page-break, .rent-spec-banner { page-break-before: auto; break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+}
+@media screen and (max-width: 480px) {
+  .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
+  .highlight-item { flex: 1 1 100%; }
+  .header-property-name { font-size: 12pt; }
+}
+
+/* ========== 印刷 ========== */
+@media print {
+  body { background: #fff; }
+  .page-container {
+    width: 267mm !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    min-height: 182mm;
+  }
+  .page-break { break-before: page; page-break-before: always; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==============================
+     ページ1: 物件概要
+     ============================== -->
+<div class="page-container avoid-break">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-label">投資用不動産　物件概要書</div>
+      <div class="header-property-name">広島県東広島市河内町　空き家</div>
+      <div class="header-sub">広島県東広島市河内町中河内五反田1202-8　／　JR山陽本線「河内」駅 徒歩5分</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">15<span class="header-price-unit">万円</span></div>
+      <div class="header-bukken">案件番号：r-2683</div>
+      <a href="https://drive.google.com/drive/folders/1w1breJR1tHkUOGupjVvDaYidqA4zQ5Y5" target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション -->
+  <div class="hero-section">
+    <div class="hero-left">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">販売価格</div>
+          <div class="kpi-value large">15</div>
+          <div class="kpi-unit">万円</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">想定利回り</div>
+          <div class="kpi-value large">200</div>
+          <div class="kpi-unit">%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">想定月額賃料</div>
+          <div class="kpi-value">2.5</div>
+          <div class="kpi-unit">万円/月</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">積算評価（土地）</div>
+          <div class="kpi-value">137</div>
+          <div class="kpi-unit">万円</div>
+        </div>
+      </div>
+      <div style="margin-top:8px; padding:6px 8px; background:rgba(255,215,0,0.15); border-radius:4px; border:1px solid rgba(255,215,0,0.4);">
+        <div style="font-size:7.5pt; color:#FFD700; font-weight:700;">🏠 物件ハイライト</div>
+        <div style="font-size:7.5pt; color:#cce4ff; margin-top:3px; line-height:1.6;">
+          ・JR山陽本線「河内」駅 徒歩5分<br>
+          ・土地97.85㎡・延床171.52㎡の広い戸建て<br>
+          ・木造2階建・現状引渡し
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="https://drive.google.com/thumbnail?id=1PISqLqw89QjTH-L1c4HJKF8AUi5RyNeQ&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1PISqLqw89QjTH-L1c4HJKF8AUi5RyNeQ'"
+           alt="物件外観">
+      <div class="hero-badge">現状引渡し</div>
+    </div>
+  </div>
+
+  <!-- 物件概要テーブル -->
+  <div style="padding: 10px 12px 4px;">
+    <div class="section-title">物件概要</div>
+  </div>
+  <div class="overview-section avoid-break">
+    <table class="overview-table">
+      <tbody>
+        <tr>
+          <td class="sub-header">物件名</td>
+          <td colspan="5">広島県東広島市河内町　空き家</td>
+        </tr>
+        <tr>
+          <td class="sub-header">所在</td>
+          <td colspan="3">広島県東広島市河内町中河内五反田1202-8</td>
+          <td class="sub-header">交通</td>
+          <td>JR山陽本線「河内」駅 徒歩5分</td>
+        </tr>
+        <tr>
+          <td class="sub-header" rowspan="3">土地</td>
+          <td class="sub-header">公簿面積</td>
+          <td>97.85㎡（1筆）</td>
+          <td class="sub-header">地目</td>
+          <td colspan="2">宅地</td>
+        </tr>
+        <tr>
+          <td class="sub-header">接道</td>
+          <td colspan="4">西側：県道（1項1号）</td>
+        </tr>
+        <tr>
+          <td class="sub-header">路線価</td>
+          <td colspan="4">1.4万円/㎡</td>
+        </tr>
+        <tr>
+          <td class="sub-header" rowspan="3">建物</td>
+          <td class="sub-header">家屋番号</td>
+          <td>1202番8</td>
+          <td class="sub-header">種類・構造</td>
+          <td colspan="2">居宅・木造スレートぶき2階建</td>
+        </tr>
+        <tr>
+          <td class="sub-header">延床面積</td>
+          <td>171.52㎡（2階建て）</td>
+          <td class="sub-header">築年月</td>
+          <td colspan="2">不詳</td>
+        </tr>
+        <tr>
+          <td class="sub-header">残存耐用年数</td>
+          <td colspan="4">0年（建物積算評価：0円）</td>
+        </tr>
+        <tr>
+          <td class="sub-header" rowspan="3">設備</td>
+          <td class="sub-header">水道</td>
+          <td>公営水道（前所有者申告）</td>
+          <td class="sub-header">下水</td>
+          <td colspan="2">公共下水（前所有者申告）</td>
+        </tr>
+        <tr>
+          <td class="sub-header">ガス</td>
+          <td colspan="4">プロパン（前所有者申告）</td>
+        </tr>
+        <tr>
+          <td class="sub-header">引渡し</td>
+          <td colspan="4">現状引渡し（空き家）</td>
+        </tr>
+        <tr>
+          <td class="sub-header" rowspan="3">法令</td>
+          <td class="sub-header">用途地域</td>
+          <td colspan="4">非線引き区域・近隣商業地域</td>
+        </tr>
+        <tr>
+          <td class="sub-header">建蔽率 / 容積率</td>
+          <td colspan="4">80% ／ 200%</td>
+        </tr>
+        <tr>
+          <td class="sub-header">その他制限</td>
+          <td colspan="4">22条区域、景観法、宅地造成等工事規制区域</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <div>案件番号：r-2683　／　広島県東広島市河内町中河内五反田1202-8</div>
+    <div class="footer-note">本資料は参考情報であり、内容の正確性を保証するものではありません。</div>
+  </div>
+</div>
+
+<!-- ==============================
+     ページ2: RKC収支シミュレーション
+     ============================== -->
+<div class="page-container page-break avoid-break">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-label">収支シミュレーション</div>
+      <div class="header-property-name">広島県東広島市河内町　空き家</div>
+      <div class="header-sub">r-2683　／　販売価格：15万円　／　想定利回り：200%</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">想定利回り</div>
+      <div class="header-price">200<span class="header-price-unit">%</span></div>
+      <a href="https://drive.google.com/drive/folders/1w1breJR1tHkUOGupjVvDaYidqA4zQ5Y5" target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div class="page-label">収支シミュレーション</div>
+
+  <!-- RKC収支シミュレーション -->
+  <div style="padding: 10px 12px 4px;">
+    <div class="section-title">RKC収支シミュレーション</div>
+  </div>
+  <div class="finance-section avoid-break">
+    <table class="finance-table">
+      <tr>
+        <td class="th">① 販売価格（取得費用）</td>
+        <td style="text-align:right; font-weight:700; color:#1A365D;">150,000円（15万円）</td>
+      </tr>
+      <tr style="background:#f0faf0;">
+        <td class="th">想定月額賃料</td>
+        <td style="text-align:right; color:#1a7a1a; font-weight:700;">25,000円 / 月</td>
+      </tr>
+      <tr style="background:#f0faf0;">
+        <td class="th">年間想定家賃収入（想定月額 × 12）</td>
+        <td style="text-align:right; color:#1a7a1a; font-weight:700;">
+          300,000円（25,000円 × 12ヶ月）
+        </td>
+      </tr>
+      <tr style="background:#e8f8e8;">
+        <td class="th"><strong>想定利回り</strong></td>
+        <td style="text-align:right; color:#1a7a1a; font-weight:900; font-size:1.2em;">200%</td>
+      </tr>
+      <tr>
+        <td class="th">② 想定出口価格（利回り20%想定）</td>
+        <td style="text-align:right;">
+          1,500,000円（150万円）<br>
+          <span style="font-size:0.85em; color:#666;">（年間家賃300,000円 ÷ 20% = 1,500,000円）</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="th" style="padding-left:20px;">− ① 取得費用</td>
+        <td style="text-align:right;">−150,000円</td>
+      </tr>
+      <tr>
+        <td class="th" style="padding-left:20px;">− ③ 諸経費（想定）</td>
+        <td style="text-align:right;">−100,000円（登記費用等概算）</td>
+      </tr>
+      <tr>
+        <td class="th" style="padding-left:20px;">− ④ RKC成功報酬費用</td>
+        <td style="text-align:right; color:#C41E3A;">−100,000円</td>
+      </tr>
+      <tr style="background:#1A365D;">
+        <td style="padding: 8px 10px; color:#fff; font-weight:700;"><strong>想定売却益（②−①−③−④）</strong></td>
+        <td style="text-align:right; color:#FFD700; font-weight:900; font-size:1.2em; padding: 8px 10px;"><strong>1,150,000円（115万円）</strong></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="notes-box">
+    ⚠️ <strong>RKC成功報酬費用として10万円を別途申し受けます</strong><br>
+    ※ 想定出口価格は利回り20%想定の試算値です。市場状況により変動します。<br>
+    ※ 諸経費は登記費用等の概算値です。実際の費用は物件状況により異なります。<br>
+    ※ 想定賃料はあくまでも参考値です。賃料保証はございません。
+  </div>
+
+  <!-- 積算評価 -->
+  <div style="padding: 6px 12px 4px;">
+    <div class="section-title">積算評価</div>
+  </div>
+  <div class="finance-section avoid-break">
+    <table class="finance-table">
+      <tr>
+        <td class="th">路線価</td>
+        <td>1.4万円/㎡（14,000円/㎡）</td>
+        <td class="th">土地面積</td>
+        <td>97.85㎡</td>
+      </tr>
+      <tr>
+        <td class="th">土地積算評価</td>
+        <td style="color:#1a7a1a; font-weight:700;">14,000円 × 97.85㎡ ＝ 1,369,900円（約137万円）</td>
+        <td class="th">建物積算評価</td>
+        <td>0円（築年月不詳・残存耐用年数0年）</td>
+      </tr>
+      <tr style="background:#e8f8e8;">
+        <td class="th"><strong>積算評価合計（土地のみ）</strong></td>
+        <td colspan="3" style="font-weight:700; color:#1a7a1a; font-size:1.1em;">約137万円</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="notes-box" style="font-size:8pt; color:#666;">
+    ※ 積算評価は相続税路線価を参考にした概算値です。金融機関の担保評価とは異なる場合があります。<br>
+    ※ 建物の築年月が不詳のため、残存耐用年数を0年として計算しています。
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <div>案件番号：r-2683　／　収支シミュレーション</div>
+    <div class="footer-note">本資料は参考情報であり、内容の正確性を保証するものではありません。</div>
+  </div>
+</div>
+
+<!-- ==============================
+     ページ3: 投資ポイント＋周辺環境
+     ============================== -->
+<div class="page-container page-break avoid-break">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-label">投資ポイント・周辺環境</div>
+      <div class="header-property-name">広島県東広島市河内町　空き家</div>
+      <div class="header-sub">r-2683　／　広島県東広島市河内町中河内五反田1202-8</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">15<span class="header-price-unit">万円</span></div>
+      <a href="https://drive.google.com/drive/folders/1w1breJR1tHkUOGupjVvDaYidqA4zQ5Y5" target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div class="page-label">投資ポイント・周辺環境</div>
+
+  <!-- ハイライト -->
+  <div class="highlight-box avoid-break">
+    <div class="highlight-item">
+      <div class="highlight-label">販売価格</div>
+      <div class="highlight-value">15</div>
+      <div class="highlight-unit">万円</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">想定月額賃料</div>
+      <div class="highlight-value">2.5</div>
+      <div class="highlight-unit">万円/月</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">想定年間家賃</div>
+      <div class="highlight-value">30</div>
+      <div class="highlight-unit">万円/年</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">想定利回り</div>
+      <div class="highlight-value" style="color:#C41E3A;">200</div>
+      <div class="highlight-unit">%</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">想定売却益</div>
+      <div class="highlight-value">115</div>
+      <div class="highlight-unit">万円</div>
+    </div>
+  </div>
+
+  <!-- 投資ポイント -->
+  <div style="padding: 10px 12px 4px;">
+    <div class="section-title">投資ポイント</div>
+  </div>
+  <ul class="points-list avoid-break">
+    <li>販売価格<strong>15万円</strong>という超低価格帯で取得可能。初期投資を大幅に抑えた不動産投資が実現できます。</li>
+    <li>想定月額賃料2.5万円から算出した<strong>想定利回り200%</strong>という高収益ポテンシャルを持つ物件です。</li>
+    <li>JR山陽本線「河内」駅 <strong>徒歩5分</strong>という利便性の高い立地。駅近の戸建て物件。</li>
+    <li>土地97.85㎡・延床<strong>171.52㎡</strong>の広々とした2階建て木造住宅。ゆとりある居住空間が可能。</li>
+    <li>路線価ベースの土地積算評価<strong>約137万円</strong>（販売価格の9倍超）で割安な物件。</li>
+    <li>公営水道・公共下水完備。<strong>ライフライン整備済み</strong>で賃貸活用の基本条件が整っています。</li>
+    <li>非線引き区域・近隣商業地域で<strong>建蔽率80%・容積率200%</strong>と比較的規制緩め。</li>
+    <li>利回り20%想定の出口価格150万円にて売却した場合、諸費用差引後の<strong>想定売却益は115万円</strong>。</li>
+  </ul>
+
+  <!-- 周辺環境 -->
+  <div style="padding: 6px 12px 4px;">
+    <div class="section-title">周辺環境・アクセス</div>
+  </div>
+  <div class="env-grid avoid-break">
+    <div class="env-card">
+      <div class="env-icon">🚃</div>
+      <div class="env-name">JR河内駅</div>
+      <div class="env-dist">徒歩5分</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏫</div>
+      <div class="env-name">河内小学校</div>
+      <div class="env-dist">【確認中】</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏪</div>
+      <div class="env-name">商業施設</div>
+      <div class="env-dist">【確認中】</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏥</div>
+      <div class="env-name">医療施設</div>
+      <div class="env-dist">【確認中】</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🏦</div>
+      <div class="env-name">金融機関</div>
+      <div class="env-dist">【確認中】</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🚗</div>
+      <div class="env-name">東広島バイパス</div>
+      <div class="env-dist">【確認中】</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">🎓</div>
+      <div class="env-name">近隣学校</div>
+      <div class="env-dist">【確認中】</div>
+    </div>
+    <div class="env-card">
+      <div class="env-icon">📍</div>
+      <div class="env-name">東広島市中心部</div>
+      <div class="env-dist">【確認中】</div>
+    </div>
+  </div>
+
+  <div class="notes-box" style="margin-top:8px;">
+    ※ 周辺環境の詳細距離は現地確認・地図サービスにてご確認ください。<br>
+    ※ 本物件は現状空き家です。賃貸活用に際しては現地確認をお勧めします。
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <div>案件番号：r-2683　／　投資ポイント・周辺環境</div>
+    <div class="footer-note">本資料は参考情報であり、内容の正確性を保証するものではありません。</div>
+  </div>
+</div>
+
+<!-- ==============================
+     ページ4: 物件写真＋特記事項
+     ============================== -->
+<div class="page-container page-break">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-label">物件写真・特記事項</div>
+      <div class="header-property-name">広島県東広島市河内町　空き家</div>
+      <div class="header-sub">r-2683　／　広島県東広島市河内町中河内五反田1202-8</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">15<span class="header-price-unit">万円</span></div>
+      <a href="https://drive.google.com/drive/folders/1w1breJR1tHkUOGupjVvDaYidqA4zQ5Y5" target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div class="page-label">物件写真</div>
+
+  <!-- 物件写真 -->
+  <div style="padding: 6px 12px 4px;">
+    <div class="section-title">物件写真</div>
+  </div>
+  <div class="photo-section">
+    <!-- メイン3列 -->
+    <div class="photo-grid-main">
+      <div class="photo-item main">
+        <img src="https://drive.google.com/thumbnail?id=1PISqLqw89QjTH-L1c4HJKF8AUi5RyNeQ&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1PISqLqw89QjTH-L1c4HJKF8AUi5RyNeQ'"
+             alt="外観①">
+        <div class="photo-caption">外観①</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1-SGx_8pmEeupbLJQoy3yp2EC8ds0Xm6i&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1-SGx_8pmEeupbLJQoy3yp2EC8ds0Xm6i'"
+             alt="外観②">
+        <div class="photo-caption">外観②</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1bq9krOvkIvitDcQr_xe5-DT0Gnfhhuko&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1bq9krOvkIvitDcQr_xe5-DT0Gnfhhuko'"
+             alt="外観③">
+        <div class="photo-caption">外観③</div>
+      </div>
+    </div>
+    <!-- 4列グリッド① -->
+    <div class="photo-grid-4">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1Ng66Vx5r0QWL0tK4y3y1wCDX81ObQpWU&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Ng66Vx5r0QWL0tK4y3y1wCDX81ObQpWU'"
+             alt="室内①">
+        <div class="photo-caption">室内①</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1RdNn09N6rNA7GVZLO1DwXTmYW8LR0eMP&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1RdNn09N6rNA7GVZLO1DwXTmYW8LR0eMP'"
+             alt="室内②">
+        <div class="photo-caption">室内②</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1VfICVc_7AwkKYbb3x6uMREwYZEbHNvnA&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1VfICVc_7AwkKYbb3x6uMREwYZEbHNvnA'"
+             alt="室内③">
+        <div class="photo-caption">室内③</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1Ij36G37U_3jsG00zhhG9xLRj0jUUno7F&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Ij36G37U_3jsG00zhhG9xLRj0jUUno7F'"
+             alt="室内④">
+        <div class="photo-caption">室内④</div>
+      </div>
+    </div>
+    <!-- 4列グリッド② -->
+    <div class="photo-grid-4">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1MAeET68K978mZigSn1viY3NGJmwSD4_8&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1MAeET68K978mZigSn1viY3NGJmwSD4_8'"
+             alt="室内⑤">
+        <div class="photo-caption">室内⑤</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1TLg0lcTwFJMJ-dp4MThJZ4RJ2l-5fLed&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1TLg0lcTwFJMJ-dp4MThJZ4RJ2l-5fLed'"
+             alt="室内⑥">
+        <div class="photo-caption">室内⑥</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1smWTntyw5NTv0pjvxomncwJpavrIZcxN&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1smWTntyw5NTv0pjvxomncwJpavrIZcxN'"
+             alt="室内⑦">
+        <div class="photo-caption">室内⑦</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1Lni4kXKvmYgvm9OnbHVq2dQ1ixnCnuHa&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Lni4kXKvmYgvm9OnbHVq2dQ1ixnCnuHa'"
+             alt="室内⑧">
+        <div class="photo-caption">室内⑧</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 特記事項 -->
+  <div style="padding: 6px 12px 4px;">
+    <div class="section-title">特記事項・注意点</div>
+  </div>
+  <ul class="points-list avoid-break" style="font-size:8.5pt;">
+    <li><strong>RKC成功報酬費用として10万円を別途申し受けます</strong></li>
+    <li>本物件は現状引渡しとなります。建物の状態については必ず事前に現地確認をお願いします。</li>
+    <li>築年月が不詳のため、建物状況調査（インスペクション）の実施を推奨します。</li>
+    <li>設備（水道・下水・ガス）の状況は前所有者申告に基づくものであり、実際の状況と異なる場合があります。</li>
+    <li>22条区域・景観法・宅地造成等工事規制区域の制限があります。建築・増改築の際は事前に行政確認が必要です。</li>
+    <li>プロパンガスのため、都市ガスへの切替には費用が発生する場合があります。</li>
+    <li>売主は瑕疵担保責任（契約不適合責任）については契約条件に準じます。詳細は別途ご確認ください。</li>
+    <li>本概要書記載の収支シミュレーション・積算評価はあくまでも参考値です。投資判断はご自身の責任にてお願いします。</li>
+    <li>詳細資料（登記簿謄本・公図・測量図等）は共有フォルダよりご確認いただけます。</li>
+  </ul>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <div>案件番号：r-2683　／　作成日：2026年4月27日</div>
+    <div class="footer-note">本資料は参考情報であり、内容の正確性を保証するものではありません。ご紹介業者様へお問い合わせください。</div>
+  </div>
+</div>
+
+</body>
+</html>
