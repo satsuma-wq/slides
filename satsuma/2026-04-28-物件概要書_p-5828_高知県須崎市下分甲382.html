@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件概要書 p-5828 高知県須崎市下分甲382</title>
+<style>
+  @page { size: A4 landscape; margin: 14mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif; font-size: 10pt; color: #1a1a1a; background: #fff; }
+
+  /* ========== 印刷設定 ========== */
+  @media print {
+    body { background: #fff; }
+    .page-container { min-height: 182mm; }
+    .page-break { break-before: page; }
+    .avoid-break { break-inside: avoid; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+
+  /* ========== ページ共通 ========== */
+  .page-container {
+    width: 267mm;
+    margin: 0 auto;
+    background: #fff;
+    padding-bottom: 4mm;
+  }
+  .page-wrapper { width: 267mm; margin: 0 auto; padding: 0; }
+  .page-break { break-before: page; }
+  .avoid-break { break-inside: avoid; }
+
+  /* ========== ヘッダー ========== */
+  .header {
+    background: linear-gradient(135deg, #1A365D 0%, #2C5282 100%);
+    color: #fff;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-radius: 0 0 4px 4px;
+  }
+  .header-left { flex: 1; }
+  .header-badge {
+    display: inline-block;
+    background: #DAA520;
+    color: #1A365D;
+    font-size: 7pt;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 4px;
+  }
+  .header-property-name {
+    font-size: 16pt;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.03em;
+  }
+  .header-address {
+    font-size: 8.5pt;
+    color: rgba(255,255,255,0.85);
+    margin-top: 3px;
+  }
+  .header-right {
+    text-align: right;
+    flex-shrink: 0;
+    padding-left: 16px;
+  }
+  .header-price-label { font-size: 7.5pt; color: rgba(255,255,255,0.75); }
+  .header-price {
+    font-size: 22pt;
+    font-weight: 700;
+    color: #FFD700;
+    line-height: 1.1;
+  }
+  .header-price-unit { font-size: 10pt; color: rgba(255,255,255,0.85); }
+  .header-sub { font-size: 8pt; color: rgba(255,255,255,0.75); margin-top: 2px; }
+
+  /* ========== ハイライトボックス ========== */
+  .highlight-box {
+    display: flex;
+    background: #FFF8E1;
+    border: 1px solid #e8d5a0;
+    border-radius: 4px;
+    margin: 6px 0;
+    padding: 8px 12px;
+    gap: 4px;
+  }
+  .highlight-item {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid #e8d5a0;
+    padding: 0 8px;
+  }
+  .highlight-item:last-child { border-right: none; }
+  .highlight-label { font-size: 7pt; color: #7a6a2a; font-weight: 500; margin-bottom: 2px; }
+  .highlight-value { font-size: 16pt; font-weight: 700; color: #1A365D; line-height: 1.1; }
+  .highlight-unit { font-size: 8pt; color: #555; }
+
+  /* ========== セクションタイトル ========== */
+  .section-title {
+    background: linear-gradient(90deg, #1A365D, #2C5282);
+    color: #fff;
+    font-size: 8.5pt;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 3px;
+    margin: 6px 0 4px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ========== ヒーローセクション（1ページ目） ========== */
+  .hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 0 0 6px;
+  }
+  .hero-left { }
+  .hero-right { }
+  .hero-photo {
+    width: 100%;
+    height: 88mm;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #c8d8f8;
+    display: block;
+  }
+
+  /* ========== 物件概要テーブル ========== */
+  .overview-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+  }
+  .overview-table td {
+    padding: 4px 8px;
+    border: 1px solid #d0dae8;
+    vertical-align: top;
+    line-height: 1.4;
+  }
+  .overview-table .th {
+    background: #EBF0FA;
+    font-weight: 700;
+    color: #1A365D;
+    width: 22%;
+    white-space: nowrap;
+  }
+  .overview-table tr:nth-child(even) td:not(.th) { background: #F8FAFF; }
+
+  /* ========== KPIグリッド ========== */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin: 4px 0;
+  }
+  .kpi-card {
+    background: linear-gradient(135deg, #EBF0FA, #fff);
+    border: 1px solid #c8d8f8;
+    border-radius: 5px;
+    padding: 8px 10px;
+    text-align: center;
+  }
+  .kpi-label { font-size: 7.5pt; color: #4a5a7a; margin-bottom: 3px; }
+  .kpi-value { font-size: 16pt; font-weight: 700; color: #1A365D; line-height: 1.1; }
+  .kpi-unit { font-size: 8pt; color: #555; }
+
+  /* ========== フッター帯 ========== */
+  .footer-band {
+    background: #1A365D;
+    color: rgba(255,255,255,0.75);
+    font-size: 7.5pt;
+    padding: 5px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+    border-radius: 4px;
+  }
+  .footer-id { color: rgba(255,255,255,0.6); }
+
+  /* ========== レントロールテーブル ========== */
+  .lentroll-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8pt;
+  }
+  .lentroll-table th {
+    background: #1A365D;
+    color: #fff;
+    padding: 5px 6px;
+    text-align: center;
+    font-weight: 700;
+    border: 1px solid #2C5282;
+  }
+  .lentroll-table td {
+    padding: 4px 6px;
+    border: 1px solid #d0dae8;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .lentroll-table tr:nth-child(even) td { background: #F8FAFF; }
+  .lentroll-table .occupied { background: #E8F5E9; }
+  .lentroll-table .vacant { background: #FFF3E0; color: #c0392b; }
+  .lentroll-table .total-row td { background: #EBF0FA; font-weight: 700; }
+
+  /* ========== 収支テーブル ========== */
+  .finance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+  }
+  .finance-table td {
+    padding: 5px 10px;
+    border: 1px solid #d0dae8;
+    vertical-align: middle;
+  }
+  .finance-table .th {
+    background: #EBF0FA;
+    font-weight: 700;
+    color: #1A365D;
+    width: 50%;
+  }
+  .finance-table .subtotal td {
+    background: #1A365D;
+    color: #FFD700;
+    font-weight: 700;
+  }
+  .finance-table tr:nth-child(even) td:not(.th) { background: #F8FAFF; }
+
+  /* ========== 投資ポイント ========== */
+  .points-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .points-list li {
+    padding: 5px 10px 5px 24px;
+    border-bottom: 1px solid #e8f0f8;
+    font-size: 8.5pt;
+    line-height: 1.5;
+    position: relative;
+  }
+  .points-list li:before {
+    content: '✓';
+    position: absolute;
+    left: 8px;
+    color: #1A365D;
+    font-weight: 700;
+  }
+  .points-list li:last-child { border-bottom: none; }
+
+  /* ========== 注意事項 ========== */
+  .notes-box {
+    background: #FFF8E1;
+    border: 1px solid #e8d5a0;
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 7.5pt;
+    line-height: 1.6;
+    color: #5a4a1a;
+    margin: 6px 0;
+  }
+
+  /* ========== 周辺環境 ========== */
+  .env-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin: 4px 0;
+  }
+  .env-card {
+    background: #F8FAFF;
+    border: 1px solid #c8d8f8;
+    border-radius: 4px;
+    padding: 6px 8px;
+  }
+  .env-name { font-size: 8pt; font-weight: 700; color: #1A365D; }
+  .env-dist { font-size: 7.5pt; color: #666; }
+
+  /* ========== 写真ページ ========== */
+  .photo-grid-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .photo-grid-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .photo-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .photo-item { overflow: hidden; border-radius: 3px; border: 1px solid #ddd; }
+  .photo-item img {
+    width: 100%;
+    height: 48mm;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-item.main img { height: 72mm; }
+  .photo-caption {
+    font-size: 6.5pt;
+    text-align: center;
+    color: #666;
+    padding: 2px 0;
+    background: #f5f5f5;
+  }
+
+  /* ========== レスポンシブ ========== */
+  @media screen and (max-width: 900px) {
+    .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+    .page-wrapper { width: 100% !important; padding: 0 8px !important; }
+    .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+    .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+    .header-property-name { font-size: 13pt; }
+    .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+    .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
+    .highlight-item:last-child { border-bottom: none; }
+    .highlight-value { font-size: 18pt; }
+    .hero-section { grid-template-columns: 1fr !important; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .env-grid { grid-template-columns: repeat(2, 1fr); }
+    .kpi-value { font-size: 15pt; }
+    .photo-grid-main { grid-template-columns: 1fr !important; }
+    .photo-grid-4 { grid-template-columns: 1fr 1fr !important; }
+    .photo-grid-2 { grid-template-columns: 1fr !important; }
+    .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+    .page-break { break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+  }
+  @media screen and (max-width: 480px) {
+    .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
+    .highlight-item { flex: 1 1 100%; }
+    .header-property-name { font-size: 12pt; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== PAGE 1: 概要 ===================== -->
+<div class="page-container">
+<div class="page-wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">収益不動産 / 一棟集合住宅</div>
+      <div class="header-property-name">井上アパート（須崎市下分甲382）</div>
+      <div class="header-address">高知県須崎市下分甲382 ／ 案件番号：p-5828</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">600<span class="header-price-unit">万円</span></div>
+      <div class="header-sub">推計表面利回り 約45%（満室時）</div>
+      <a href="https://drive.google.com/drive/folders/1WDS5-cpGPneQfU94SWrig_t078-1dNWn"
+         target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <!-- ハイライト -->
+  <div class="highlight-box">
+    <div class="highlight-item">
+      <div class="highlight-label">販売価格</div>
+      <div class="highlight-value">600<span class="highlight-unit">万円</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">推計表面利回り</div>
+      <div class="highlight-value">約45<span class="highlight-unit">%</span></div>
+      <div style="font-size:6.5pt;color:#888;">（満室時・賃料要確認）</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">総戸数</div>
+      <div class="highlight-value">9<span class="highlight-unit">戸</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">土地面積</div>
+      <div class="highlight-value">583<span class="highlight-unit">㎡</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">積算評価</div>
+      <div class="highlight-value">約204<span class="highlight-unit">万円</span></div>
+      <div style="font-size:6.5pt;color:#888;">（土地のみ、建物残存0年）</div>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション -->
+  <div class="hero-section">
+    <div class="hero-left">
+      <!-- 物件概要テーブル -->
+      <div class="section-title">物件概要</div>
+      <table class="overview-table">
+        <tr>
+          <td class="th">所在地</td>
+          <td>高知県須崎市下分甲382</td>
+        </tr>
+        <tr>
+          <td class="th">物件種別</td>
+          <td>共同住宅（木造・CB造 複数棟）</td>
+        </tr>
+        <tr>
+          <td class="th">総戸数</td>
+          <td>9戸（賃貸借契約書9通確認）</td>
+        </tr>
+        <tr>
+          <td class="th">土地面積</td>
+          <td>583.24㎡（4筆）登記簿面積</td>
+        </tr>
+        <tr>
+          <td class="th">地目</td>
+          <td>宅地（4筆：甲376番5・甲382番1・甲382番2・甲383番）</td>
+        </tr>
+        <tr>
+          <td class="th">権利種別</td>
+          <td>所有権（借地権なし）</td>
+        </tr>
+        <tr>
+          <td class="th">建物構造</td>
+          <td>木造瓦葺平家建・コンクリートブロック造亜鉛メッキ鋼板葺2階建（混在）</td>
+        </tr>
+        <tr>
+          <td class="th">築年数</td>
+          <td>昭和42年〜昭和49年（築52〜59年）</td>
+        </tr>
+        <tr>
+          <td class="th">用途地域</td>
+          <td>都市計画区域内（区域区分なし）</td>
+        </tr>
+        <tr>
+          <td class="th">建蔽率 / 容積率</td>
+          <td>60% / 200%</td>
+        </tr>
+        <tr>
+          <td class="th">確認済証等</td>
+          <td>確認済証・検査済証なし</td>
+        </tr>
+        <tr>
+          <td class="th">路線価</td>
+          <td>3.5万円/㎡</td>
+        </tr>
+        <tr>
+          <td class="th">引渡し条件</td>
+          <td>現状引渡し</td>
+        </tr>
+      </table>
+    </div>
+    <div class="hero-right">
+      <!-- 外観写真 -->
+      <img class="hero-photo"
+           src="https://drive.google.com/thumbnail?id=17n0AZ3v5R06zzzehu55hGEowgb_xqJDg&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/17n0AZ3v5R06zzzehu55hGEowgb_xqJDg'"
+           alt="物件外観1">
+      <img src="https://drive.google.com/thumbnail?id=1dgW3y7h8u8NyfYNHhx_70hPSxKaGYsDi&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1dgW3y7h8u8NyfYNHhx_70hPSxKaGYsDi'"
+           alt="物件外観2"
+           style="width:100%; height:30mm; object-fit:cover; border-radius:4px; border:1px solid #c8d8f8; display:block; margin-top:4px;">
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-band">
+    <div class="footer-id">案件番号：p-5828 ／ 高知県須崎市下分甲382</div>
+    <div>2026年4月28日作成</div>
+  </div>
+</div><!-- /page-wrapper -->
+</div><!-- /page-container -->
+
+
+<!-- ===================== PAGE 2: レントロール ===================== -->
+<div class="page-break"></div>
+<div class="page-container">
+<div class="page-wrapper">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">レントロール</div>
+      <div class="header-property-name">井上アパート（須崎市下分甲382）</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">600<span class="header-price-unit">万円</span></div>
+      <a href="https://drive.google.com/drive/folders/1WDS5-cpGPneQfU94SWrig_t078-1dNWn"
+         target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div class="section-title">賃貸借状況（レントロール）</div>
+  <table class="lentroll-table avoid-break">
+    <thead>
+      <tr>
+        <th style="width:8%">号室</th>
+        <th style="width:18%">種別・構造</th>
+        <th style="width:12%">専有面積</th>
+        <th style="width:10%">状況</th>
+        <th style="width:14%">月額賃料</th>
+        <th style="width:14%">駐車場</th>
+        <th style="width:24%">備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="occupied">
+        <td>1号室</td>
+        <td>居宅（木造平家）</td>
+        <td>68.96㎡</td>
+        <td>入居中</td>
+        <td style="text-align:right;font-weight:700;">25,000円</td>
+        <td>【確認中】</td>
+        <td>生活保護入居</td>
+      </tr>
+      <tr>
+        <td>2号室</td>
+        <td>共同住宅（CB造1階）</td>
+        <td>43.73㎡</td>
+        <td>【確認中】</td>
+        <td style="text-align:right;">【確認中】</td>
+        <td>【確認中】</td>
+        <td>甲382番1の2</td>
+      </tr>
+      <tr class="occupied">
+        <td>3号室</td>
+        <td>共同住宅（CB造2階）</td>
+        <td>43.73㎡</td>
+        <td>【確認中】</td>
+        <td style="text-align:right;">【確認中】</td>
+        <td>【確認中】</td>
+        <td>甲382番1の2</td>
+      </tr>
+      <tr>
+        <td>4号室</td>
+        <td>共同住宅（CB造1階）</td>
+        <td>43.73㎡</td>
+        <td>【確認中】</td>
+        <td style="text-align:right;">【確認中】</td>
+        <td>【確認中】</td>
+        <td>甲382番2の2</td>
+      </tr>
+      <tr class="occupied">
+        <td>5号室</td>
+        <td>共同住宅（CB造2階）</td>
+        <td>43.73㎡</td>
+        <td>【確認中】</td>
+        <td style="text-align:right;">【確認中】</td>
+        <td>【確認中】</td>
+        <td>甲382番2の2</td>
+      </tr>
+      <tr>
+        <td>6〜9号室</td>
+        <td>共同住宅（未登記含む）</td>
+        <td>【確認中】</td>
+        <td>【確認中】</td>
+        <td style="text-align:right;">【確認中】</td>
+        <td>【確認中】</td>
+        <td>9戸分賃貸借契約書あり</td>
+      </tr>
+      <tr class="total-row">
+        <td colspan="4" style="text-align:center;">合計（9戸）</td>
+        <td style="text-align:right;">
+          推計225,000円<br>
+          <span style="font-size:7pt;color:#555;">（25,000×9戸、要確認）</span>
+        </td>
+        <td>5台（1台5,000円）</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="notes-box" style="margin-top:8px;">
+    ⚠️ 上記レントロールは賃貸借契約書9通を確認中のため、2〜9号室の詳細は【確認中】です。1号室のみ25,000円/月を確認済み。<br>
+    ⚠️ 空室の現状回復はされておりません。現在、賃貸募集は行っておりません。<br>
+    ⚠️ 賃料滞納・未収金はございません。入退予定もございません。
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">収入サマリー</div>
+  <table class="finance-table avoid-break">
+    <tr>
+      <td class="th">現況月額家賃収入（推計）</td>
+      <td style="text-align:right;font-weight:700;color:#1a7a1a;">
+        推計 225,000円/月
+        <span style="font-size:7.5pt;color:#888;font-weight:normal;">（25,000円×9戸、満室時）</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="th">年間家賃収入（推計・満室時）</td>
+      <td style="text-align:right;font-weight:700;color:#1a7a1a;">推計 2,700,000円/年</td>
+    </tr>
+    <tr>
+      <td class="th">駐車場収入（現況）</td>
+      <td style="text-align:right;">5,000円/月（1台利用中）</td>
+    </tr>
+    <tr>
+      <td class="th">推計年間総収入（駐車場込）</td>
+      <td style="text-align:right;font-weight:700;">推計 2,760,000円/年</td>
+    </tr>
+  </table>
+
+  <div class="section-title" style="margin-top:8px;">年間支出（把握分）</div>
+  <table class="finance-table avoid-break">
+    <tr>
+      <td class="th">固定資産税・都市計画税</td>
+      <td style="text-align:right;">【確認中】（評価証明書にて確認要）</td>
+    </tr>
+    <tr>
+      <td class="th">修繕履歴</td>
+      <td style="text-align:right;">現所有者による修繕なし</td>
+    </tr>
+  </table>
+
+  <div class="footer-band">
+    <div class="footer-id">案件番号：p-5828 ／ レントロール（2/4ページ）</div>
+    <div>※賃料は賃貸借契約書9通から確認中。詳細は共有フォルダをご参照ください。</div>
+  </div>
+</div>
+</div>
+
+
+<!-- ===================== PAGE 3: 収支シミュレーション ===================== -->
+<div class="page-break"></div>
+<div class="page-container">
+<div class="page-wrapper">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">収支シミュレーション・投資ポイント</div>
+      <div class="header-property-name">井上アパート（須崎市下分甲382）</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">600<span class="header-price-unit">万円</span></div>
+      <a href="https://drive.google.com/drive/folders/1WDS5-cpGPneQfU94SWrig_t078-1dNWn"
+         target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:4px;">
+    <div>
+      <div class="section-title">収支シミュレーション（満室想定）</div>
+      <table class="finance-table avoid-break">
+        <tr>
+          <td class="th">販売価格（取得費用）</td>
+          <td style="text-align:right;">6,000,000円</td>
+        </tr>
+        <tr style="background:#f0faf0;">
+          <td class="th">年間想定家賃収入（推計）</td>
+          <td style="text-align:right;color:#1a7a1a;font-weight:700;">
+            2,700,000円<br>
+            <span style="font-size:7pt;color:#888;">(25,000円×9戸×12ヶ月)</span>
+          </td>
+        </tr>
+        <tr style="background:#f0faf0;">
+          <td class="th">推計表面利回り（満室時）</td>
+          <td style="text-align:right;color:#1a7a1a;font-weight:700;font-size:12pt;">約45.0%</td>
+        </tr>
+        <tr>
+          <td class="th">駐車場収入（現況）</td>
+          <td style="text-align:right;">60,000円/年（1台×5,000円×12）</td>
+        </tr>
+        <tr>
+          <td class="th">固定資産税等</td>
+          <td style="text-align:right;">【確認中】</td>
+        </tr>
+        <tr>
+          <td class="th">NOI（推計）</td>
+          <td style="text-align:right;font-weight:700;color:#1A365D;">
+            推計 約2,700,000円/年<br>
+            <span style="font-size:7pt;color:#888;">※各費用控除前の参考値</span>
+          </td>
+        </tr>
+      </table>
+
+      <div class="section-title" style="margin-top:8px;">積算評価（簡易）</div>
+      <table class="finance-table avoid-break">
+        <tr>
+          <td class="th">土地積算価格</td>
+          <td style="text-align:right;">
+            3.5万円/㎡ × 583.24㎡<br>
+            <span style="color:#1a7a1a;font-weight:700;">＝ 約2,041,340円（約204万円）</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="th">建物積算価格</td>
+          <td style="text-align:right;">
+            0円<br>
+            <span style="font-size:7pt;color:#888;">（全棟残存耐用年数0年）</span>
+          </td>
+        </tr>
+        <tr class="subtotal">
+          <td class="th" style="color:#FFD700;">積算評価合計</td>
+          <td style="text-align:right;color:#FFD700;font-weight:700;font-size:11pt;">約204万円</td>
+        </tr>
+        <tr>
+          <td class="th">積算乖離率</td>
+          <td style="text-align:right;">積算204万円 / 売価600万円 ＝ 約34%</td>
+        </tr>
+      </table>
+
+      <div class="notes-box" style="margin-top:6px;font-size:7.5pt;">
+        ※ 利回りは賃料25,000円×9戸の満室想定値です。実際の入居状況・賃料は賃貸借契約書をご確認ください。<br>
+        ※ 建物の法定耐用年数（木造22年・CB造34年）を超過しているため、建物積算評価は0円です。
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">投資ポイント</div>
+      <div class="avoid-break">
+        <ul class="points-list">
+          <li><strong>超高利回り：推計約45%（満室時）</strong> ― 販売価格600万円に対し、9戸×25,000円の賃料体系。高知県内の生活保護入居者による安定需要が見込まれる。</li>
+          <li><strong>大規模土地（583㎡）所有権</strong> ― 4筆合計583.24㎡の宅地を所有権で取得。将来的な用途変更・建替えの検討が可能。</li>
+          <li><strong>9戸分賃貸借契約書あり</strong> ― 現在の賃貸状況は賃貸借契約書9通で確認可能。滞納・未収金なし。</li>
+          <li><strong>生活保護受給者入居</strong> ― 確認済み戸室において須崎市福祉事務所経由の生活保護入居者が入居。行政保証による安定収入。</li>
+          <li><strong>駐車場5台分</strong> ― 敷地内5台分の駐車スペース（うち1台貸出中・月5,000円）。追加収入の可能性あり。</li>
+          <li><strong>現状渡し</strong> ― 空室の現状回復未実施のため、取得後に低コストでDIYリフォームし賃貸化する戦略も可能。</li>
+        </ul>
+      </div>
+
+      <div class="section-title" style="margin-top:8px;">周辺環境・エリア情報</div>
+      <div class="env-grid avoid-break">
+        <div class="env-card">
+          <div class="env-name">📍 所在地</div>
+          <div class="env-dist">高知県須崎市下分甲382</div>
+        </div>
+        <div class="env-card">
+          <div class="env-name">🚉 最寄り駅</div>
+          <div class="env-dist">土讃線 須崎駅（約2km）</div>
+        </div>
+        <div class="env-card">
+          <div class="env-name">🏙️ 市区町村</div>
+          <div class="env-dist">須崎市（人口約1.7万人）</div>
+        </div>
+        <div class="env-card">
+          <div class="env-name">🏥 医療</div>
+          <div class="env-dist">市立須崎病院 他</div>
+        </div>
+        <div class="env-card">
+          <div class="env-name">🏪 商業</div>
+          <div class="env-dist">市内スーパー・コンビニ</div>
+        </div>
+        <div class="env-card">
+          <div class="env-name">🚗 道路</div>
+          <div class="env-dist">国道56号線沿線</div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:8px;">特記事項・注意点</div>
+      <div class="notes-box">
+        ・確認済証・検査済証はございません<br>
+        ・全棟とも残存耐用年数が法定を超過（建物積算0円）<br>
+        ・未登記建物あり（現所有者が確認中）<br>
+        ・2025年末に現所有者へ所有権移転。それ以前の空室期間は把握不明<br>
+        ・現在の賃貸募集は行っておりません<br>
+        ・賃料等詳細は賃貸借契約書9通（共有フォルダ内）をご確認ください
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <div class="footer-id">案件番号：p-5828 ／ 収支シミュレーション（3/4ページ）</div>
+    <div>※推計値のため参考資料。実際の数値は詳細資料にてご確認ください。</div>
+  </div>
+</div>
+</div>
+
+
+<!-- ===================== PAGE 4: 物件写真 ===================== -->
+<div class="page-break"></div>
+<div class="page-container">
+<div class="page-wrapper">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-badge">物件写真</div>
+      <div class="header-property-name">井上アパート（須崎市下分甲382）</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">600<span class="header-price-unit">万円</span></div>
+      <a href="https://drive.google.com/drive/folders/1WDS5-cpGPneQfU94SWrig_t078-1dNWn"
+         target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <!-- 外観メイン写真 -->
+  <div class="section-title">外観・全景</div>
+  <div class="photo-grid-main">
+    <div class="photo-item main">
+      <img src="https://drive.google.com/thumbnail?id=17n0AZ3v5R06zzzehu55hGEowgb_xqJDg&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/17n0AZ3v5R06zzzehu55hGEowgb_xqJDg'"
+           alt="外観1">
+      <div class="photo-caption">外観（南側）</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1dgW3y7h8u8NyfYNHhx_70hPSxKaGYsDi&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1dgW3y7h8u8NyfYNHhx_70hPSxKaGYsDi'"
+           alt="外観2">
+      <div class="photo-caption">外観（北側）</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1pq0q-z21q9pI8eUsh6fFTPhjRz1qs5gZ&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1pq0q-z21q9pI8eUsh6fFTPhjRz1qs5gZ'"
+           alt="外観3">
+      <div class="photo-caption">外観（側面）</div>
+    </div>
+  </div>
+
+  <!-- 棟・内部写真 -->
+  <div class="section-title">各棟・共用部・駐車場</div>
+  <div class="photo-grid-4">
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=199rjh70gOTQZR7g5GoqW3gyuIEM6KODh&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/199rjh70gOTQZR7g5GoqW3gyuIEM6KODh'"
+           alt="建物1">
+      <div class="photo-caption">CB造棟外観</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=19B-QC8lUPKl0ve7O5Szs7xGjVDxh5uFf&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/19B-QC8lUPKl0ve7O5Szs7xGjVDxh5uFf'"
+           alt="建物2">
+      <div class="photo-caption">通路・共用部</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1N06iMYE1wiAdtmJjy_GEHyDGJI7R4kNl&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1N06iMYE1wiAdtmJjy_GEHyDGJI7R4kNl'"
+           alt="建物3">
+      <div class="photo-caption">敷地内状況</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1VUHBaToJhWoO9_i0X1YRvTYV2A84t9c9&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1VUHBaToJhWoO9_i0X1YRvTYV2A84t9c9'"
+           alt="建物4">
+      <div class="photo-caption">建物外観</div>
+    </div>
+  </div>
+
+  <!-- 室内・その他 -->
+  <div class="section-title">室内・その他</div>
+  <div class="photo-grid-4">
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1W8aJJkTglDVAqYoKulR9s9kPWuv6rHtO&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1W8aJJkTglDVAqYoKulR9s9kPWuv6rHtO'"
+           alt="室内1">
+      <div class="photo-caption">室内状況</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1a8SsDTnfo8wC6_YHB2zi1-hbR0kuMNIN&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1a8SsDTnfo8wC6_YHB2zi1-hbR0kuMNIN'"
+           alt="室内2">
+      <div class="photo-caption">室内状況</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1m3el8xgfvJMboMXLuanbgFk7gexnTOBv&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1m3el8xgfvJMboMXLuanbgFk7gexnTOBv'"
+           alt="室内3">
+      <div class="photo-caption">室内状況</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://drive.google.com/thumbnail?id=1mSZSYZ0kqNCRHQx9oVr2JIc8iszHNE5O&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1mSZSYZ0kqNCRHQx9oVr2JIc8iszHNE5O'"
+           alt="室内4">
+      <div class="photo-caption">室内状況</div>
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <div class="footer-id">案件番号：p-5828 ／ 物件写真（4/4ページ）</div>
+    <div>詳細写真は共有フォルダをご参照ください</div>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
