@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【物件概要書】佐賀県唐津市_中古戸建</title>
+<style>
+  /* ===== 基本設定 ===== */
+  @page { size: A4 landscape; margin: 14mm 15mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif; font-size: 10pt; color: #1a1a2e; background: #fff; }
+
+  /* ===== 印刷設定 ===== */
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page-container { min-height: 182mm; }
+    .page-break { break-before: page; }
+    .avoid-break { break-inside: avoid; }
+  }
+
+  /* ===== ページ構成 ===== */
+  .page-container { width: 100%; padding: 0; }
+  .page-wrapper { width: 267mm; margin: 0 auto; padding: 0; }
+  .page-break { break-before: page; }
+  .avoid-break { break-inside: avoid; }
+
+  /* ===== ヘッダー ===== */
+  .header {
+    background: linear-gradient(135deg, #1A365D 0%, #2d5a9e 100%);
+    color: #fff;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #DAA520;
+  }
+  .header-left { display: flex; flex-direction: column; gap: 3px; }
+  .header-label { font-size: 7pt; color: #a8c4e8; letter-spacing: 1px; text-transform: uppercase; }
+  .header-property-name { font-size: 16pt; font-weight: 700; color: #fff; line-height: 1.2; }
+  .header-sub { font-size: 8pt; color: #c8d8f8; }
+  .header-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .header-price { font-size: 22pt; font-weight: 900; color: #FFD700; line-height: 1; }
+  .header-price-label { font-size: 7pt; color: #a8c4e8; }
+  .header-price-unit { font-size: 10pt; font-weight: 700; }
+  .header-tag {
+    background: #DAA520; color: #1A365D;
+    padding: 3px 10px; border-radius: 3px;
+    font-size: 7.5pt; font-weight: 700;
+  }
+  .btn-detail {
+    display: inline-block; margin-top: 4px; padding: 5px 12px;
+    background: #DAA520; color: #1A365D; border-radius: 4px;
+    font-size: 8pt; font-weight: 700; text-decoration: none;
+  }
+
+  /* ===== ハイライトボックス ===== */
+  .highlight-box {
+    display: flex; background: #fffbee;
+    border: 1.5px solid #e8d5a0; border-top: none;
+    padding: 8px 16px; gap: 0;
+  }
+  .highlight-item {
+    flex: 1; text-align: center;
+    border-right: 1px solid #e8d5a0; padding: 4px 8px;
+  }
+  .highlight-item:last-child { border-right: none; }
+  .highlight-label { font-size: 7pt; color: #888; margin-bottom: 2px; }
+  .highlight-value { font-size: 20pt; font-weight: 900; color: #C41E3A; line-height: 1; }
+  .highlight-unit { font-size: 8pt; color: #555; margin-top: 1px; }
+
+  /* ===== セクションタイトル ===== */
+  .section-title {
+    background: linear-gradient(90deg, #1A365D, #2d5a9e);
+    color: #fff; padding: 5px 14px;
+    font-size: 9pt; font-weight: 700;
+    letter-spacing: 0.5px; margin-bottom: 0;
+  }
+
+  /* ===== ヒーローセクション ===== */
+  .hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  .hero-left { display: flex; flex-direction: column; gap: 6px; }
+  .hero-right { }
+
+  /* ===== KPIグリッド ===== */
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+  }
+  .kpi-card {
+    background: linear-gradient(135deg, #f0f4ff, #e8eef8);
+    border: 1px solid #c8d8f8; border-radius: 5px;
+    padding: 7px 6px; text-align: center;
+  }
+  .kpi-label { font-size: 7pt; color: #666; margin-bottom: 2px; }
+  .kpi-value { font-size: 16pt; font-weight: 900; color: #1A365D; line-height: 1; }
+  .kpi-unit { font-size: 7pt; color: #888; margin-top: 1px; }
+
+  /* ===== 物件概要テーブル ===== */
+  .overview-section { margin-top: 8px; }
+  .overview-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+  .overview-table td { border: 1px solid #c8d8f8; padding: 4px 7px; vertical-align: middle; }
+  .overview-table .th { background: #edf2ff; font-weight: 700; color: #1A365D; width: 22%; white-space: nowrap; }
+  .overview-table .th2 { background: #edf2ff; font-weight: 700; color: #1A365D; width: 20%; white-space: nowrap; }
+  .two-col-row td:nth-child(3) { background: #edf2ff; font-weight: 700; color: #1A365D; width: 20%; }
+
+  /* ===== フィナンスセクション ===== */
+  .finance-section { margin-top: 8px; }
+  .finance-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+  .finance-table td { border: 1px solid #c8d8f8; padding: 5px 9px; vertical-align: middle; }
+  .finance-table .th { background: #edf2ff; font-weight: 700; color: #1A365D; width: 55%; }
+  .finance-table .subtotal td { background: #fff8e6; border-top: 2px solid #DAA520; }
+
+  /* ===== 投資ポイント ===== */
+  .points-box {
+    background: #f0f8ff; border: 1.5px solid #c8d8f8; border-radius: 5px;
+    padding: 10px 14px; margin-top: 8px;
+  }
+  .points-list { list-style: none; padding: 0; }
+  .points-list li { padding: 3px 0; font-size: 9pt; color: #333; }
+  .points-list li::before { content: "✅ "; }
+
+  /* ===== 注意事項ボックス ===== */
+  .notes-box {
+    background: #fff8f8; border: 1px solid #f5c6c6; border-radius: 4px;
+    padding: 8px 12px; margin-top: 6px; font-size: 8pt; color: #555; line-height: 1.6;
+  }
+
+  /* ===== 周辺環境 ===== */
+  .env-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 6px; }
+  .env-card {
+    background: #f5f8ff; border: 1px solid #c8d8f8; border-radius: 4px;
+    padding: 6px; text-align: center;
+  }
+  .env-icon { font-size: 14pt; }
+  .env-name { font-size: 7pt; color: #888; margin-top: 2px; }
+  .env-val { font-size: 8.5pt; font-weight: 700; color: #1A365D; }
+
+  /* ===== フッター帯 ===== */
+  .footer-band {
+    background: #1A365D; color: #fff;
+    padding: 6px 16px; margin-top: 10px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 7.5pt;
+  }
+  .footer-note { color: #a8c4e8; font-size: 7pt; }
+
+  /* ===== レスポンシブ ===== */
+  @media screen and (max-width: 900px) {
+    .page-container { width: 100% !important; padding: 0 8px; }
+    .page-wrapper   { width: 100% !important; padding: 0 8px !important; }
+    .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+    .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+    .header-property-name { font-size: 13pt; }
+    .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+    .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
+    .highlight-item:last-child { border-bottom: none; }
+    .highlight-value { font-size: 18pt; }
+    .two-col, .three-col, .overview-two-col, .hero-section { grid-template-columns: 1fr !important; }
+    .kpi-grid  { grid-template-columns: repeat(2, 1fr); }
+    .env-grid  { grid-template-columns: repeat(2, 1fr); }
+    .kpi-value { font-size: 15pt; }
+    .overview-section, .finance-section { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .overview-table, .finance-table { font-size: 9pt; }
+    body { font-size: 11pt; }
+    .section-title { font-size: 10pt; padding: 6px 12px; }
+    .points-list li, .notes-box { font-size: 10pt; }
+    .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+    .page-break, .rent-spec-banner {
+      page-break-before: auto; break-before: auto;
+      border-top: 4px solid #1A365D; margin-top: 24px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .kpi-grid, .env-grid { grid-template-columns: repeat(2, 1fr); }
+    .highlight-item { flex: 1 1 100%; }
+    .header-property-name { font-size: 12pt; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== PAGE 1：概要 ===== -->
+<div class="page-container">
+<div class="page-wrapper">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-label">物件概要書 / Property Overview</div>
+      <div class="header-property-name">佐賀県唐津市厳木町本山　中古戸建</div>
+      <div class="header-sub">案件番号：r-2635　｜　JR唐津線 岩屋駅 徒歩約9分</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">20<span class="header-price-unit">万円</span></div>
+      <div class="header-tag">🏠 中古戸建</div>
+      <a href="https://x.gd/rKNMq" target="_blank" class="btn-detail">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <!-- ハイライトボックス -->
+  <div class="highlight-box">
+    <div class="highlight-item">
+      <div class="highlight-label">販売価格</div>
+      <div class="highlight-value">20</div>
+      <div class="highlight-unit">万円</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">想定月額賃料</div>
+      <div class="highlight-value">1.5</div>
+      <div class="highlight-unit">万円 / 月</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">想定利回り</div>
+      <div class="highlight-value">90</div>
+      <div class="highlight-unit">% （年間家賃 ÷ 販売価格）</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">土地面積</div>
+      <div class="highlight-value">114.46</div>
+      <div class="highlight-unit">㎡（34.62坪）</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">建物床面積</div>
+      <div class="highlight-value">88.47</div>
+      <div class="highlight-unit">㎡（26.76坪）</div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">築年数</div>
+      <div class="highlight-value">約50</div>
+      <div class="highlight-unit">年（昭和50年築）</div>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション -->
+  <div class="hero-section" style="margin-top:10px;">
+    <div class="hero-left">
+      <!-- KPI -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">間取り</div>
+          <div class="kpi-value" style="font-size:14pt;">3LDK</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">構造</div>
+          <div class="kpi-value" style="font-size:10pt;">木造瓦葺</div>
+          <div class="kpi-unit">2階建</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">現況</div>
+          <div class="kpi-value" style="font-size:14pt; color:#888;">空室</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">土地権利</div>
+          <div class="kpi-value" style="font-size:12pt;">所有権</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">都市計画</div>
+          <div class="kpi-value" style="font-size:9pt;">区域外</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">用途地域</div>
+          <div class="kpi-value" style="font-size:9pt;">指定無</div>
+        </div>
+      </div>
+
+      <!-- 積算評価 -->
+      <div class="avoid-break" style="margin-top:8px;">
+        <div class="section-title">積算評価</div>
+        <table class="overview-table" style="margin-top:0;">
+          <tr>
+            <td class="th">路線価</td>
+            <td>3,200円/㎡（0.32万円/㎡）</td>
+            <td class="th2">土地積算</td>
+            <td>約366,272円（≒37万円）</td>
+          </tr>
+          <tr>
+            <td class="th">建物積算</td>
+            <td>0円（残存耐用年数0年）</td>
+            <td class="th2">積算評価計</td>
+            <td><strong>約37万円</strong></td>
+          </tr>
+        </table>
+        <div class="notes-box" style="margin-top:4px; font-size:7.5pt;">
+          ※ 木造耐用年数22年、築約50年のため残存耐用年数0年。建物積算は0円で計算。<br>
+          ※ 路線価は相続税路線価をもとに算出した概算値です。
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <!-- 外観写真（物件フォルダから） -->
+      <img src="https://drive.google.com/thumbnail?id=1XlcmsRHw_EVFJqxF85TeAu6kkWiUNxi7&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1XlcmsRHw_EVFJqxF85TeAu6kkWiUNxi7'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='flex';};"
+           alt="物件外観"
+           style="width:100%; max-height:90mm; object-fit:cover; border-radius:6px; border:1px solid #c8d8f8;">
+      <div style="display:none; width:100%; height:90mm; background:#2d4a7a; color:rgba(255,255,255,0.4); border-radius:6px; justify-content:center; align-items:center; font-size:11pt;">
+        写真準備中
+      </div>
+    </div>
+  </div>
+
+  <!-- 物件概要テーブル -->
+  <div class="overview-section avoid-break" style="margin-top:8px;">
+    <div class="section-title">物件概要</div>
+    <table class="overview-table">
+      <tr>
+        <td class="th">所在地</td>
+        <td colspan="3">佐賀県唐津市厳木町本山159-4</td>
+      </tr>
+      <tr>
+        <td class="th">交通</td>
+        <td colspan="3">JR唐津線 岩屋駅 徒歩約9分（約700m）</td>
+      </tr>
+      <tr>
+        <td class="th">地積</td>
+        <td>114.46㎡（34.62坪）</td>
+        <td class="th2">地目</td>
+        <td>宅地</td>
+      </tr>
+      <tr>
+        <td class="th">土地権利</td>
+        <td>所有権</td>
+        <td class="th2">接道状況</td>
+        <td>北側　公道</td>
+      </tr>
+      <tr>
+        <td class="th">都市計画</td>
+        <td>都市計画区域外</td>
+        <td class="th2">用途地域</td>
+        <td>指定無し</td>
+      </tr>
+      <tr>
+        <td class="th">建蔽率</td>
+        <td>−</td>
+        <td class="th2">容積率</td>
+        <td>−</td>
+      </tr>
+      <tr>
+        <td class="th">規制</td>
+        <td colspan="3">宅地造成等規制法・景観まちづくり条例・土砂災害防止対策推進法</td>
+      </tr>
+      <tr>
+        <td class="th">水道</td>
+        <td>公営水道</td>
+        <td class="th2">電気</td>
+        <td>電力自由化</td>
+      </tr>
+      <tr>
+        <td class="th">下水</td>
+        <td>汲み取り</td>
+        <td class="th2">ガス</td>
+        <td>プロパンガス</td>
+      </tr>
+      <tr>
+        <td class="th">築年月日</td>
+        <td>昭和50年12月15日（築約50年）</td>
+        <td class="th2">構造</td>
+        <td>木造瓦葺2階建</td>
+      </tr>
+      <tr>
+        <td class="th">登記簿床面積</td>
+        <td>88.47㎡（26.76坪）</td>
+        <td class="th2">間取り</td>
+        <td>3LDK</td>
+      </tr>
+      <tr>
+        <td class="th">現況</td>
+        <td>空室</td>
+        <td class="th2">引渡し</td>
+        <td>相談</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div>r-2635 ｜ 佐賀県唐津市厳木町本山　中古戸建</div>
+    <div class="footer-note">本資料は投資判断の参考情報です。数値は概算であり市場状況により変動します。</div>
+  </div>
+
+</div><!-- /page-wrapper -->
+</div><!-- /page-container -->
+
+
+<!-- ===== PAGE 2：収益シミュレーション ===== -->
+<div class="page-break"></div>
+<div class="page-container">
+<div class="page-wrapper">
+
+  <!-- ヘッダー（2ページ） -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-label">収益シミュレーション / Investment Simulation</div>
+      <div class="header-property-name">佐賀県唐津市厳木町本山　中古戸建</div>
+      <div class="header-sub">案件番号：r-2635</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">20<span class="header-price-unit">万円</span></div>
+      <a href="https://x.gd/rKNMq" target="_blank" class="btn-detail">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <!-- RKC収支シミュレーション -->
+  <div class="finance-section avoid-break" style="margin-top:12px;">
+    <div class="section-title">RKC収支シミュレーション</div>
+    <table class="finance-table">
+      <tr>
+        <td class="th">① 販売価格（取得費用）</td>
+        <td style="text-align:right; font-weight:700;">200,000円</td>
+      </tr>
+      <tr style="background:#f0faf0;">
+        <td class="th">年間想定家賃収入（想定月額 × 12）</td>
+        <td style="text-align:right; color:#1a7a1a; font-weight:700;">
+          180,000円（月15,000円 × 12ヶ月）
+        </td>
+      </tr>
+      <tr style="background:#f0faf0;">
+        <td class="th">想定利回り</td>
+        <td style="text-align:right; color:#1a7a1a; font-weight:700; font-size:1.15em;">90%</td>
+      </tr>
+      <tr>
+        <td class="th">② 想定出口価格（利回り20%想定）</td>
+        <td style="text-align:right;">
+          900,000円<br>
+          <span style="font-size:0.85em; color:#666;">（年間家賃180,000円 ÷ 20% = 900,000円）</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="th" style="padding-left:20px;">− ① 取得費用</td>
+        <td style="text-align:right;">−200,000円</td>
+      </tr>
+      <tr>
+        <td class="th" style="padding-left:20px;">− ③ 諸経費（想定）</td>
+        <td style="text-align:right;">−100,000円（登記費用等概算）</td>
+      </tr>
+      <tr>
+        <td class="th" style="padding-left:20px;">− ④ RKC成功報酬費用</td>
+        <td style="text-align:right; color:#C41E3A;">−100,000円</td>
+      </tr>
+      <tr class="subtotal">
+        <td class="th"><strong>想定売却益（②−①−③−④）</strong></td>
+        <td style="text-align:right; color:#C41E3A; font-weight:900; font-size:1.2em;">
+          <strong>500,000円</strong>
+        </td>
+      </tr>
+    </table>
+    <div class="notes-box" style="margin-top:8px; font-size:8pt;">
+      ⚠️ <strong>RKC成功報酬費用として10万円を別途申し受けます</strong><br>
+      ※ 想定出口価格は利回り20%想定の試算値です。市場状況により変動します。<br>
+      ※ 諸経費は登記費用等の概算値です。実際の費用は個別にご確認ください。<br>
+      ※ 利回りは販売価格に対する年間想定家賃収入の割合であり、保証するものではありません。
+    </div>
+  </div>
+
+  <!-- 積算評価詳細 -->
+  <div class="finance-section avoid-break" style="margin-top:14px;">
+    <div class="section-title">積算評価（参考）</div>
+    <table class="finance-table">
+      <tr>
+        <td class="th">路線価（相続税路線価）</td>
+        <td style="text-align:right;">3,200円/㎡</td>
+      </tr>
+      <tr>
+        <td class="th">土地面積</td>
+        <td style="text-align:right;">114.46㎡</td>
+      </tr>
+      <tr>
+        <td class="th">土地積算価格</td>
+        <td style="text-align:right; font-weight:700;">約366,272円（≒約37万円）</td>
+      </tr>
+      <tr>
+        <td class="th">建物積算価格</td>
+        <td style="text-align:right;">0円（木造耐用年数22年・築約50年 → 残存耐用年数0年）</td>
+      </tr>
+      <tr class="subtotal">
+        <td class="th"><strong>積算評価合計</strong></td>
+        <td style="text-align:right; font-weight:700;"><strong>約37万円</strong></td>
+      </tr>
+    </table>
+    <div class="notes-box" style="margin-top:6px; font-size:7.5pt;">
+      ※ 積算評価は販売価格（20万円）を上回っており、土地値ベースの割安感があります。<br>
+      ※ 路線価は全国地価マップ（相続税路線価）をもとに算出した概算値です。
+    </div>
+  </div>
+
+  <!-- 投資ポイント -->
+  <div class="points-box avoid-break" style="margin-top:14px;">
+    <div class="section-title" style="margin-bottom:8px;">投資ポイント</div>
+    <ul class="points-list">
+      <li><strong>超高利回り90%：</strong>販売価格20万円に対し想定月額賃料1.5万円。年間家賃収入18万円で圧倒的な利回りを実現</li>
+      <li><strong>積算評価が販売価格を上回る：</strong>土地積算評価約37万円 ＞ 販売価格20万円。土地値ベースでの安心感あり</li>
+      <li><strong>RKC出口戦略：</strong>利回り20%換算の想定出口価格90万円、想定売却益50万円（諸経費・報酬差引後）</li>
+      <li><strong>所有権取得：</strong>土地・建物ともに所有権。安定した資産保有が可能</li>
+      <li><strong>駅徒歩圏：</strong>JR唐津線 岩屋駅 徒歩約9分（約700m）</li>
+      <li><strong>3LDK・木造2階建：</strong>ファミリー向け間取り、88.47㎡の広さ</li>
+    </ul>
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div>r-2635 ｜ 佐賀県唐津市厳木町本山　中古戸建</div>
+    <div class="footer-note">詳細はご紹介業者様へお問い合わせください。</div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ===== PAGE 3：物件詳細・特記事項 ===== -->
+<div class="page-break"></div>
+<div class="page-container">
+<div class="page-wrapper">
+
+  <!-- ヘッダー（3ページ） -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-label">物件詳細・特記事項 / Property Details</div>
+      <div class="header-property-name">佐賀県唐津市厳木町本山　中古戸建</div>
+      <div class="header-sub">案件番号：r-2635</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">20<span class="header-price-unit">万円</span></div>
+      <a href="https://x.gd/rKNMq" target="_blank" class="btn-detail">📂 詳細はこちら</a>
+    </div>
+  </div>
+
+  <!-- 特記事項・注意点 -->
+  <div class="avoid-break" style="margin-top:12px;">
+    <div class="section-title">特記事項・注意点</div>
+    <div class="notes-box" style="margin-top:0; border-radius:0 0 4px 4px; font-size:8.5pt; line-height:1.8;">
+      <ul style="list-style:none; padding:0;">
+        <li>・現況有姿での引渡し（現状のままお引渡し）</li>
+        <li>・<strong>土砂災害警戒区域に該当</strong>（購入前に必ずご確認ください）</li>
+        <li>・隣接する建物との室内連結通路について、当該通路を塞ぐ処置をとる必要があります</li>
+        <li>・司法書士は売主指定</li>
+        <li>・境界非明示</li>
+        <li>・下水：汲み取り（浄化槽なし）</li>
+        <li>・ライフライン・間取りについては前所有者の聴取をもとに記載しており、現況とは異なる可能性があります</li>
+        <li>・<strong>RKC成功報酬費用として10万円を別途申し受けます</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 物件詳細スペック -->
+  <div class="overview-section avoid-break" style="margin-top:12px;">
+    <div class="section-title">物件スペック詳細</div>
+    <table class="overview-table">
+      <tr>
+        <td class="th">物件種別</td>
+        <td>中古戸建（空室）</td>
+        <td class="th2">案件番号</td>
+        <td>r-2635</td>
+      </tr>
+      <tr>
+        <td class="th">所在地</td>
+        <td colspan="3">佐賀県唐津市厳木町本山159-4</td>
+      </tr>
+      <tr>
+        <td class="th">交通アクセス</td>
+        <td colspan="3">JR唐津線 岩屋駅 徒歩約9分（約700m）</td>
+      </tr>
+      <tr>
+        <td class="th">土地面積</td>
+        <td>114.46㎡（34.62坪）</td>
+        <td class="th2">地目</td>
+        <td>宅地</td>
+      </tr>
+      <tr>
+        <td class="th">登記簿床面積</td>
+        <td>88.47㎡（26.76坪）</td>
+        <td class="th2">間取り</td>
+        <td>3LDK</td>
+      </tr>
+      <tr>
+        <td class="th">構造</td>
+        <td>木造瓦葺2階建</td>
+        <td class="th2">築年月日</td>
+        <td>昭和50年12月15日</td>
+      </tr>
+      <tr>
+        <td class="th">土地権利</td>
+        <td>所有権</td>
+        <td class="th2">接道状況</td>
+        <td>北側　公道</td>
+      </tr>
+      <tr>
+        <td class="th">都市計画</td>
+        <td>都市計画区域外</td>
+        <td class="th2">用途地域</td>
+        <td>指定無し</td>
+      </tr>
+      <tr>
+        <td class="th">建蔽率 / 容積率</td>
+        <td>− / −</td>
+        <td class="th2">防火・高度地区</td>
+        <td>無し / 無し</td>
+      </tr>
+      <tr>
+        <td class="th">水道</td>
+        <td>公営水道</td>
+        <td class="th2">電気</td>
+        <td>電力自由化</td>
+      </tr>
+      <tr>
+        <td class="th">下水</td>
+        <td>汲み取り</td>
+        <td class="th2">ガス</td>
+        <td>プロパンガス</td>
+      </tr>
+      <tr>
+        <td class="th">現況</td>
+        <td>空室</td>
+        <td class="th2">引渡し時期</td>
+        <td>相談</td>
+      </tr>
+      <tr>
+        <td class="th">法的規制</td>
+        <td colspan="3">宅地造成等規制法・景観まちづくり条例・土砂災害防止対策推進法</td>
+      </tr>
+      <tr>
+        <td class="th">想定月額賃料</td>
+        <td>15,000円 / 月</td>
+        <td class="th2">想定年間賃料</td>
+        <td>180,000円 / 年</td>
+      </tr>
+      <tr>
+        <td class="th">想定利回り</td>
+        <td><strong style="color:#C41E3A; font-size:11pt;">90.00%</strong></td>
+        <td class="th2">路線価</td>
+        <td>3,200円/㎡（相続税路線価）</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 周辺環境 -->
+  <div class="avoid-break" style="margin-top:12px;">
+    <div class="section-title">周辺環境</div>
+    <div class="env-grid">
+      <div class="env-card">
+        <div class="env-icon">🚃</div>
+        <div class="env-name">最寄駅</div>
+        <div class="env-val">岩屋駅（JR唐津線）<br>徒歩約9分</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">🏙️</div>
+        <div class="env-name">最寄都市</div>
+        <div class="env-val">唐津市（佐賀県）</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">⚠️</div>
+        <div class="env-name">ハザード</div>
+        <div class="env-val">土砂災害警戒区域<br>（詳細要確認）</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">🏘️</div>
+        <div class="env-name">都市計画</div>
+        <div class="env-val">都市計画区域外</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">🛣️</div>
+        <div class="env-name">接道</div>
+        <div class="env-val">北側 公道</div>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">💧</div>
+        <div class="env-name">インフラ</div>
+        <div class="env-val">公営水道<br>プロパンガス</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <div>r-2635 ｜ 佐賀県唐津市厳木町本山　中古戸建</div>
+    <div class="footer-note">本資料の内容は告知事項を含みます。必ず現地確認・重要事項説明をご確認ください。</div>
+  </div>
+
+</div>
+</div>
+
+</body>
+</html>
