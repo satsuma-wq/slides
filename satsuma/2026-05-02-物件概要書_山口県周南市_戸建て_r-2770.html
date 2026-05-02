@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件概要書 r-2770 山口県周南市</title>
+<style>
+/* ========== 基本設定 ========== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif; font-size: 10pt; color: #1a1a1a; background: #fff; }
+
+/* ========== 印刷設定 ========== */
+@page { size: A4 landscape; margin: 14mm 15mm; }
+@media print {
+  body { background: #fff; }
+  .page-break { break-before: page; }
+  .avoid-break { break-inside: avoid; }
+  .page-container { min-height: 182mm; }
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+@media screen {
+  body { background: #e8e8e8; }
+  .page-container { max-width: 267mm; margin: 10px auto; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+}
+
+/* ========== ヘッダー ========== */
+.header {
+  background: linear-gradient(135deg, #1A365D 0%, #2d5a9e 100%);
+  color: #fff;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+.header-left {}
+.header-property-name { font-size: 15pt; font-weight: 700; letter-spacing: 0.5px; }
+.header-address { font-size: 9pt; color: rgba(255,255,255,0.85); margin-top: 3px; }
+.header-right { text-align: right; }
+.header-price { font-size: 20pt; font-weight: 700; color: #FFD700; }
+.header-price-label { font-size: 8pt; color: rgba(255,255,255,0.8); }
+.header-bukken-num { font-size: 8pt; color: rgba(255,255,255,0.7); margin-top: 2px; }
+
+/* ========== ハイライトボックス ========== */
+.highlight-box {
+  display: flex;
+  background: linear-gradient(135deg, #fff8e7 0%, #fffbf0 100%);
+  border: 1.5px solid #DAA520;
+  border-radius: 6px;
+  margin: 8px 0;
+  padding: 8px 4px;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+.highlight-item {
+  flex: 1;
+  text-align: center;
+  padding: 4px 8px;
+  border-right: 1px solid #e8d5a0;
+}
+.highlight-item:last-child { border-right: none; }
+.highlight-label { font-size: 7.5pt; color: #8B6914; font-weight: 600; }
+.highlight-value { font-size: 18pt; font-weight: 700; color: #1A365D; line-height: 1.2; }
+.highlight-unit { font-size: 8pt; color: #555; }
+.highlight-value.green { color: #1a7a1a; }
+
+/* ========== ヒーローセクション ========== */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10px;
+  margin: 8px 0;
+}
+.hero-left {}
+.hero-right img {
+  width: 100%;
+  max-height: 90mm;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #c8d8f8;
+}
+.hero-photo-placeholder {
+  background: #2d4a7a;
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  padding: 40px 0;
+  border-radius: 6px;
+}
+
+/* ========== KPIグリッド ========== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.kpi-card {
+  background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+  border: 1px solid #b0c0e0;
+  border-radius: 5px;
+  padding: 6px 8px;
+  text-align: center;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+.kpi-label { font-size: 7.5pt; color: #555; }
+.kpi-value { font-size: 13pt; font-weight: 700; color: #1A365D; }
+.kpi-value.accent { color: #C41E3A; }
+.kpi-value.green { color: #1a7a1a; }
+.kpi-unit { font-size: 7.5pt; color: #777; }
+
+/* ========== セクションタイトル ========== */
+.section-title {
+  background: #1A365D;
+  color: #fff;
+  font-size: 9pt;
+  font-weight: 700;
+  padding: 4px 10px;
+  margin: 6px 0 4px;
+  border-radius: 3px;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* ========== テーブル共通 ========== */
+.overview-table, .finance-table, .lentroll-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+}
+.overview-table td, .finance-table td, .lentroll-table td,
+.overview-table th, .finance-table th, .lentroll-table th {
+  border: 1px solid #ccc;
+  padding: 4px 7px;
+  vertical-align: middle;
+}
+.overview-table .th, .finance-table .th, .lentroll-table .th {
+  background: #f0f4ff;
+  font-weight: 600;
+  color: #1A365D;
+  width: 32%;
+}
+.overview-table tr:nth-child(even) td:not(.th),
+.lentroll-table tr:nth-child(even) td:not(.th) {
+  background: #fafbff;
+}
+.finance-table .subtotal td {
+  background: #fff0f0;
+  font-weight: 700;
+}
+
+/* ========== 2カラムレイアウト ========== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+/* ========== 投資ポイント ========== */
+.points-list { list-style: none; padding: 0; }
+.points-list li {
+  font-size: 8.5pt;
+  padding: 4px 0 4px 16px;
+  border-bottom: 1px dashed #ddd;
+  position: relative;
+}
+.points-list li::before { content: '◆'; color: #DAA520; position: absolute; left: 0; font-size: 8pt; }
+.points-list li:last-child { border-bottom: none; }
+
+/* ========== 注意書き ========== */
+.notes-box {
+  background: #fffbf0;
+  border: 1px solid #e8d5a0;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 8pt;
+  color: #555;
+  margin-top: 6px;
+}
+
+/* ========== 写真グリッド ========== */
+.photo-grid-main { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4px; margin-bottom: 4px; }
+.photo-grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 4px; margin-bottom: 4px; }
+.photo-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.photo-item img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  display: block;
+}
+.photo-main img { height: 140px; }
+.photo-label { font-size: 7pt; color: #666; text-align: center; margin-top: 2px; }
+
+/* ========== フッター帯 ========== */
+.footer-band {
+  background: #1A365D;
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 16px;
+  font-size: 7.5pt;
+  margin-top: 8px;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+/* ========== ページ区切り ========== */
+.page-break { break-before: page; page-break-before: always; }
+.avoid-break { break-inside: avoid; }
+
+/* ========== ページコンテナ ========== */
+.page-container { padding: 10px 12px; }
+.page-wrapper { width: 267mm; margin: 0 auto; padding: 0; }
+
+/* ========== RKCバッジ ========== */
+.rkc-badge {
+  display: inline-block;
+  background: #C41E3A;
+  color: #fff;
+  font-size: 7.5pt;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* ========== レスポンシブ ========== */
+@media screen and (max-width: 900px) {
+  .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+  .page-wrapper { width: 100% !important; padding: 0 8px !important; }
+  .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+  .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+  .header-property-name { font-size: 13pt; }
+  .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+  .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid #e8d5a0; padding-bottom: 8px; }
+  .highlight-item:last-child { border-bottom: none; }
+  .highlight-value { font-size: 18pt; }
+  .two-col, .three-col, .hero-section { grid-template-columns: 1fr !important; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-grid-main { grid-template-columns: 1fr !important; }
+  .photo-grid-4 { grid-template-columns: 1fr 1fr !important; }
+  .photo-grid-2 { grid-template-columns: 1fr !important; }
+  body { font-size: 11pt; }
+  .section-title { font-size: 10pt; padding: 6px 12px; }
+  .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+  .page-break, .rent-spec-banner { page-break-before: auto; break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+}
+@media screen and (max-width: 480px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .highlight-item { flex: 1 1 100%; }
+  .header-property-name { font-size: 12pt; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== PAGE 1: 概要 ========== -->
+<div class="page-container">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-property-name">
+        山口県周南市 戸建て
+        <span class="rkc-badge">RKC</span>
+      </div>
+      <div class="header-address">📍 山口県周南市大字下上2205</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price-label">販売価格</div>
+      <div class="header-price">15<span style="font-size:12pt;">万円</span></div>
+      <div class="header-bukken-num">案件番号：r-2770</div>
+      <a href="https://x.gd/Z5BTF" target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <!-- ハイライトボックス -->
+  <div class="highlight-box avoid-break">
+    <div class="highlight-item">
+      <div class="highlight-label">販売価格</div>
+      <div class="highlight-value">15<span class="highlight-unit">万円</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">想定月額賃料</div>
+      <div class="highlight-value green">1.3<span class="highlight-unit">万円/月</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">想定利回り</div>
+      <div class="highlight-value" style="color:#C41E3A;">104<span class="highlight-unit">%</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">路線価</div>
+      <div class="highlight-value">1.93<span class="highlight-unit">万円/㎡</span></div>
+    </div>
+    <div class="highlight-item">
+      <div class="highlight-label">エリア</div>
+      <div class="highlight-value" style="font-size:11pt;">山口県<br><span style="font-size:13pt;">周南市</span></div>
+    </div>
+  </div>
+
+  <!-- ヒーローセクション -->
+  <div class="hero-section">
+    <div class="hero-left">
+      <!-- KPIカード -->
+      <div class="kpi-grid avoid-break">
+        <div class="kpi-card">
+          <div class="kpi-label">販売価格</div>
+          <div class="kpi-value">15</div>
+          <div class="kpi-unit">万円</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">想定月額賃料</div>
+          <div class="kpi-value green">1.3</div>
+          <div class="kpi-unit">万円/月</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">年間家賃収入</div>
+          <div class="kpi-value green">15.6</div>
+          <div class="kpi-unit">万円/年</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">想定利回り</div>
+          <div class="kpi-value accent">104%</div>
+          <div class="kpi-unit">年利回り</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">想定出口価格</div>
+          <div class="kpi-value">78</div>
+          <div class="kpi-unit">万円（利回り20%想定）</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">想定売却益</div>
+          <div class="kpi-value accent">43</div>
+          <div class="kpi-unit">万円</div>
+        </div>
+      </div>
+
+      <!-- 物件概要テーブル（簡易版） -->
+      <div class="section-title">物件概要</div>
+      <table class="overview-table avoid-break">
+        <tr><td class="th">物件番号</td><td>r-2770</td></tr>
+        <tr><td class="th">所在地</td><td>山口県周南市大字下上2205</td></tr>
+        <tr><td class="th">物件種別</td><td>戸建て（中古）</td></tr>
+        <tr><td class="th">販売価格</td><td><strong>150,000円（15万円）</strong></td></tr>
+        <tr><td class="th">想定賃料</td><td>13,000円/月（年間156,000円）</td></tr>
+        <tr><td class="th">土地面積</td><td>【確認中】</td></tr>
+        <tr><td class="th">建物面積</td><td>【確認中】</td></tr>
+        <tr><td class="th">築年数</td><td>【確認中】</td></tr>
+        <tr><td class="th">構造</td><td>【確認中】</td></tr>
+        <tr><td class="th">現況</td><td>空室（現状引渡し）</td></tr>
+        <tr><td class="th">路線価</td><td>19,300円/㎡（1.93万円/㎡）</td></tr>
+      </table>
+    </div>
+
+    <div class="hero-right">
+      <img src="https://drive.google.com/thumbnail?id=1on3mhesFFgEqPqfXOCvIA42uqHm57PJo&sz=w800"
+           onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1on3mhesFFgEqPqfXOCvIA42uqHm57PJo'"
+           alt="物件外観">
+    </div>
+  </div>
+
+  <!-- フッター帯 -->
+  <div class="footer-band">
+    <span>案件番号：r-2770｜山口県周南市大字下上2205</span>
+    <span>作成日：2026年5月2日</span>
+  </div>
+</div>
+
+<!-- ========== PAGE 2: RKC収支シミュレーション ========== -->
+<div class="page-break"></div>
+<div class="page-container">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-property-name">山口県周南市 戸建て <span class="rkc-badge">RKC</span></div>
+      <div class="header-address">📍 山口県周南市大字下上2205</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">15<span style="font-size:12pt;">万円</span></div>
+      <div class="header-bukken-num">案件番号：r-2770</div>
+      <a href="https://x.gd/Z5BTF" target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:8px;">
+    <div>
+      <!-- RKC収支シミュレーション -->
+      <div class="section-title">RKC収支シミュレーション</div>
+      <table class="finance-table avoid-break">
+        <tr>
+          <td class="th">① 販売価格（取得費用）</td>
+          <td style="text-align:right; font-weight:700;">150,000円（15万円）</td>
+        </tr>
+        <tr style="background:#f0faf0;">
+          <td class="th">年間想定家賃収入（想定月額×12）</td>
+          <td style="text-align:right; color:#1a7a1a; font-weight:700;">
+            156,000円（13,000円 × 12ヶ月）
+          </td>
+        </tr>
+        <tr style="background:#f0faf0;">
+          <td class="th">想定利回り</td>
+          <td style="text-align:right; color:#1a7a1a; font-weight:700; font-size:12pt;">104%</td>
+        </tr>
+        <tr>
+          <td class="th">② 想定出口価格（利回り20%想定）</td>
+          <td style="text-align:right;">
+            780,000円（78万円）<br>
+            <span style="font-size:0.85em; color:#666;">（年間家賃156,000円 ÷ 20%）</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="th" style="padding-left:20px;">− ① 取得費用</td>
+          <td style="text-align:right;">−150,000円</td>
+        </tr>
+        <tr>
+          <td class="th" style="padding-left:20px;">− ③ 諸経費（想定）</td>
+          <td style="text-align:right;">−100,000円（登記費用等概算）</td>
+        </tr>
+        <tr>
+          <td class="th" style="padding-left:20px;">− ④ RKC成功報酬費用</td>
+          <td style="text-align:right; color:#C41E3A;">−100,000円</td>
+        </tr>
+        <tr class="subtotal">
+          <td class="th"><strong>想定売却益（②−①−③−④）</strong></td>
+          <td style="text-align:right; color:#C41E3A; font-weight:700; font-size:13pt;">
+            <strong>430,000円（43万円）</strong>
+          </td>
+        </tr>
+      </table>
+      <div class="notes-box" style="margin-top:8px; font-size:0.85em; color:#666;">
+        ⚠️ <strong>RKC成功報酬費用として10万円を別途申し受けます</strong><br>
+        ※ 想定出口価格は利回り20%想定の試算値です。市場状況により変動します。<br>
+        ※ 諸経費は登記費用等の概算値です。<br>
+        ※ 本シミュレーションはあくまで参考値であり、実際の収益を保証するものではありません。
+      </div>
+
+      <!-- 賃料概要 -->
+      <div class="section-title" style="margin-top:12px;">賃料概要</div>
+      <table class="lentroll-table avoid-break">
+        <thead>
+          <tr style="background:#1A365D; color:#fff;">
+            <th>間取り</th>
+            <th>専有面積</th>
+            <th>現況</th>
+            <th>想定賃料</th>
+            <th>年間賃料</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>【確認中】</td>
+            <td>【確認中】</td>
+            <td>空室</td>
+            <td style="text-align:right; font-weight:700; color:#1a7a1a;">13,000円/月</td>
+            <td style="text-align:right; font-weight:700; color:#1a7a1a;">156,000円/年</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr style="background:#f0f4ff; font-weight:700;">
+            <td colspan="3">合計</td>
+            <td style="text-align:right; color:#1a7a1a;">13,000円/月</td>
+            <td style="text-align:right; color:#1a7a1a;">156,000円/年</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div>
+      <!-- 積算評価 -->
+      <div class="section-title">積算評価（概算）</div>
+      <table class="overview-table avoid-break">
+        <tr><td class="th">路線価</td><td>19,300円/㎡</td></tr>
+        <tr><td class="th">土地面積</td><td>【確認中】</td></tr>
+        <tr><td class="th">土地積算評価</td><td>【確認中】</td></tr>
+        <tr><td class="th">建物再調達価格</td><td>【確認中】</td></tr>
+        <tr><td class="th">建物面積</td><td>【確認中】</td></tr>
+        <tr><td class="th">残存耐用年数</td><td>【確認中】</td></tr>
+        <tr><td class="th">建物積算評価</td><td>【確認中】</td></tr>
+        <tr style="background:#fff0f0; font-weight:700;">
+          <td class="th">積算評価合計</td>
+          <td>【確認中】</td>
+        </tr>
+      </table>
+      <div class="notes-box" style="margin-top:6px;">
+        ※ 積算評価は詳細資料確認後に更新します。
+      </div>
+
+      <!-- 年間収支サマリー -->
+      <div class="section-title" style="margin-top:12px;">年間収支サマリー</div>
+      <table class="finance-table avoid-break">
+        <tr>
+          <td class="th">年間想定家賃収入</td>
+          <td style="text-align:right; color:#1a7a1a; font-weight:700;">+156,000円</td>
+        </tr>
+        <tr>
+          <td class="th">年間支出（参考）</td>
+          <td style="text-align:right; color:#555;">【確認中】</td>
+        </tr>
+        <tr class="subtotal">
+          <td class="th"><strong>年間NOI（参考）</strong></td>
+          <td style="text-align:right; color:#1a7a1a; font-weight:700;">【確認中】</td>
+        </tr>
+      </table>
+      <div class="notes-box" style="margin-top:6px;">
+        ※ 年間支出・NOIは詳細資料確認後に更新します。<br>
+        ※ 固定資産税等の詳細は別途ご確認ください。
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <span>案件番号：r-2770｜山口県周南市大字下上2205</span>
+    <span>作成日：2026年5月2日</span>
+  </div>
+</div>
+
+<!-- ========== PAGE 3: 投資ポイント・周辺環境 ========== -->
+<div class="page-break"></div>
+<div class="page-container">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-property-name">山口県周南市 戸建て <span class="rkc-badge">RKC</span></div>
+      <div class="header-address">📍 山口県周南市大字下上2205</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">15<span style="font-size:12pt;">万円</span></div>
+      <div class="header-bukken-num">案件番号：r-2770</div>
+      <a href="https://x.gd/Z5BTF" target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:8px;">
+    <div>
+      <!-- 投資ポイント -->
+      <div class="section-title">投資ポイント</div>
+      <ul class="points-list avoid-break">
+        <li><strong>超高利回り104%</strong>：販売価格15万円に対し、想定年間家賃15.6万円で利回り104%を実現</li>
+        <li><strong>低価格取得</strong>：わずか15万円の取得コストで不動産投資をスタート可能</li>
+        <li><strong>出口戦略明確</strong>：利回り20%想定の出口価格は78万円、想定売却益43万円</li>
+        <li><strong>山口県周南市</strong>：工業都市として安定した人口基盤があるエリア</li>
+        <li><strong>現状引渡し</strong>：空室物件のため即入居可能な状態での引渡し</li>
+        <li>詳細資料（謄本・公図等）は共有フォルダよりご確認ください</li>
+      </ul>
+
+      <!-- 注意事項 -->
+      <div class="section-title" style="margin-top:12px;">注意事項・特記事項</div>
+      <div class="notes-box avoid-break">
+        ・現状引渡しとなります<br>
+        ・物件の詳細（築年数・構造・面積等）は別途資料をご確認ください<br>
+        ・<strong>RKC成功報酬費用として10万円を別途申し受けます</strong><br>
+        ・登記費用・諸経費は別途必要です（概算10万円）<br>
+        ・本概要書記載の想定賃料・利回りは試算値であり保証するものではありません<br>
+        ・詳細はご紹介業者様までお問い合わせください
+      </div>
+    </div>
+
+    <div>
+      <!-- 周辺環境 -->
+      <div class="section-title">周辺エリア情報</div>
+      <table class="overview-table avoid-break">
+        <tr><td class="th">所在市区町村</td><td>山口県周南市</td></tr>
+        <tr><td class="th">エリア特性</td><td>山口県東部の工業都市</td></tr>
+        <tr><td class="th">主要産業</td><td>石油化学・製造業等</td></tr>
+        <tr><td class="th">最寄り駅</td><td>【確認中】</td></tr>
+        <tr><td class="th">最寄りバス停</td><td>【確認中】</td></tr>
+        <tr><td class="th">スーパー・商業施設</td><td>【確認中】</td></tr>
+        <tr><td class="th">学校・教育施設</td><td>【確認中】</td></tr>
+        <tr><td class="th">医療施設</td><td>【確認中】</td></tr>
+      </table>
+      <div class="notes-box" style="margin-top:6px;">
+        ※ 周辺環境の詳細は別途資料をご確認ください。
+      </div>
+
+      <!-- 物件写真サムネイル -->
+      <div class="section-title" style="margin-top:12px;">物件写真（一部）</div>
+      <div class="photo-grid-4 avoid-break">
+        <div class="photo-item">
+          <img src="https://drive.google.com/thumbnail?id=1qLrMTj8QmK-yifBtjzPeO_A9RLGnwVv8&sz=w800"
+               onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1qLrMTj8QmK-yifBtjzPeO_A9RLGnwVv8'"
+               alt="物件写真1">
+        </div>
+        <div class="photo-item">
+          <img src="https://drive.google.com/thumbnail?id=1RCsU0EZgqBXzDU5SBi4B-9248e4tNTty&sz=w800"
+               onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1RCsU0EZgqBXzDU5SBi4B-9248e4tNTty'"
+               alt="物件写真2">
+        </div>
+        <div class="photo-item">
+          <img src="https://drive.google.com/thumbnail?id=1b0PNa5H5j7DDOyh3MbaDOd5qP_pLX60c&sz=w800"
+               onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1b0PNa5H5j7DDOyh3MbaDOd5qP_pLX60c'"
+               alt="物件写真3">
+        </div>
+        <div class="photo-item">
+          <img src="https://drive.google.com/thumbnail?id=1mHeQaQ2CWMx1Ab933R0JxIwIJ9GsEd_r&sz=w800"
+               onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1mHeQaQ2CWMx1Ab933R0JxIwIJ9GsEd_r'"
+               alt="物件写真4">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <span>案件番号：r-2770｜山口県周南市大字下上2205</span>
+    <span>作成日：2026年5月2日</span>
+  </div>
+</div>
+
+<!-- ========== PAGE 4: 物件写真 ========== -->
+<div class="page-break"></div>
+<div class="page-container">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-property-name">山口県周南市 戸建て <span class="rkc-badge">RKC</span></div>
+      <div class="header-address">📍 山口県周南市大字下上2205 ／ 物件写真</div>
+    </div>
+    <div class="header-right">
+      <div class="header-price">15<span style="font-size:12pt;">万円</span></div>
+      <div class="header-bukken-num">案件番号：r-2770</div>
+      <a href="https://x.gd/Z5BTF" target="_blank"
+         style="display:inline-block; margin-top:6px; padding:4px 10px;
+                background:#DAA520; color:#1A365D; border-radius:4px;
+                font-size:8pt; font-weight:700; text-decoration:none;">
+        📂 詳細はこちら
+      </a>
+    </div>
+  </div>
+
+  <div style="margin-top:8px;">
+    <!-- 外観・メイン写真 -->
+    <div class="section-title">外観・主要写真</div>
+    <div class="photo-grid-main avoid-break" style="margin-bottom:6px;">
+      <div class="photo-item photo-main">
+        <img src="https://drive.google.com/thumbnail?id=1on3mhesFFgEqPqfXOCvIA42uqHm57PJo&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1on3mhesFFgEqPqfXOCvIA42uqHm57PJo'"
+             alt="外観メイン">
+        <div class="photo-label">外観</div>
+      </div>
+      <div class="photo-item photo-main">
+        <img src="https://drive.google.com/thumbnail?id=1qLrMTj8QmK-yifBtjzPeO_A9RLGnwVv8&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1qLrMTj8QmK-yifBtjzPeO_A9RLGnwVv8'"
+             alt="外観2">
+        <div class="photo-label">外観②</div>
+      </div>
+      <div class="photo-item photo-main">
+        <img src="https://drive.google.com/thumbnail?id=1RCsU0EZgqBXzDU5SBi4B-9248e4tNTty&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1RCsU0EZgqBXzDU5SBi4B-9248e4tNTty'"
+             alt="外観3">
+        <div class="photo-label">外観③</div>
+      </div>
+    </div>
+
+    <!-- 室内写真 -->
+    <div class="section-title">室内写真</div>
+    <div class="photo-grid-4 avoid-break" style="margin-bottom:6px;">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1b0PNa5H5j7DDOyh3MbaDOd5qP_pLX60c&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1b0PNa5H5j7DDOyh3MbaDOd5qP_pLX60c'"
+             alt="室内1">
+        <div class="photo-label">室内①</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1mHeQaQ2CWMx1Ab933R0JxIwIJ9GsEd_r&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1mHeQaQ2CWMx1Ab933R0JxIwIJ9GsEd_r'"
+             alt="室内2">
+        <div class="photo-label">室内②</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1xF77ySGkwekT0qknHSKvyZ6PPcJtCbqs&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1xF77ySGkwekT0qknHSKvyZ6PPcJtCbqs'"
+             alt="室内3">
+        <div class="photo-label">室内③</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1RLnTZSWIVyar3A0oZRNuLOegrfuKvCDJ&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1RLnTZSWIVyar3A0oZRNuLOegrfuKvCDJ'"
+             alt="室内4">
+        <div class="photo-label">室内④</div>
+      </div>
+    </div>
+
+    <!-- 追加写真 -->
+    <div class="photo-grid-4 avoid-break" style="margin-bottom:6px;">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=141UaXLFxJE-Uwt0G5NEiwYzO1PbHP9Lk&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/141UaXLFxJE-Uwt0G5NEiwYzO1PbHP9Lk'"
+             alt="写真5">
+        <div class="photo-label">写真⑤</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1cD26cv1u_hOGp0TFqonzPVPS4GGkom6k&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1cD26cv1u_hOGp0TFqonzPVPS4GGkom6k'"
+             alt="写真6">
+        <div class="photo-label">写真⑥</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1Uw06Y8Wk6Kf_qyXnyi2Mb4AKpa7sHzyI&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Uw06Y8Wk6Kf_qyXnyi2Mb4AKpa7sHzyI'"
+             alt="写真7">
+        <div class="photo-label">写真⑦</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1IYxHZI3fe1H7_XcUfiBSfyMFaLR3apS_&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1IYxHZI3fe1H7_XcUfiBSfyMFaLR3apS_'"
+             alt="写真8">
+        <div class="photo-label">写真⑧</div>
+      </div>
+    </div>
+
+    <!-- 追加写真2行目 -->
+    <div class="photo-grid-4 avoid-break">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1ahZO2lJrtowLlE6ypqQTN2x5O4dggVB6&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1ahZO2lJrtowLlE6ypqQTN2x5O4dggVB6'"
+             alt="写真9">
+        <div class="photo-label">写真⑨</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1NJMhU99hsZzTVX8uL1BczKWH4WRVcnPL&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1NJMhU99hsZzTVX8uL1BczKWH4WRVcnPL'"
+             alt="写真10">
+        <div class="photo-label">写真⑩</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=19kKH6S7WjZoZXPma5ZBJudtSifriw4Vs&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/19kKH6S7WjZoZXPma5ZBJudtSifriw4Vs'"
+             alt="写真11">
+        <div class="photo-label">写真⑪</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1Go8PjEn0D3zyKhuz5Nr-GgVz78-ChLai&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1Go8PjEn0D3zyKhuz5Nr-GgVz78-ChLai'"
+             alt="写真12">
+        <div class="photo-label">写真⑫</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-band">
+    <span>案件番号：r-2770｜山口県周南市大字下上2205</span>
+    <span>作成日：2026年5月2日</span>
+  </div>
+</div>
+
+</body>
+</html>
