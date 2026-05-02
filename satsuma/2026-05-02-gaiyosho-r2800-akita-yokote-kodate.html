@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件概要書 r-2800 秋田県横手市 戸建て</title>
+<style>
+  /* ========== 基本設定 ========== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif; font-size: 10pt; color: #1a1a1a; background: #f0f4f8; }
+
+  /* ========== ページコンテナ ========== */
+  .page-container {
+    width: 297mm;
+    background: #fff;
+    margin: 0 auto 20px auto;
+    padding: 14mm 15mm;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  }
+  .page-break { break-before: page; }
+  .avoid-break { break-inside: avoid; }
+
+  /* ========== ヘッダー ========== */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: linear-gradient(135deg, #1A365D 0%, #2d5a8e 100%);
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 6px 6px 0 0;
+    margin-bottom: 0;
+  }
+  .header-left { flex: 1; }
+  .header-badge {
+    display: inline-block;
+    background: #C41E3A;
+    color: #fff;
+    font-size: 7pt;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    letter-spacing: 0.05em;
+  }
+  .header-property-name { font-size: 16pt; font-weight: 700; line-height: 1.2; }
+  .header-sub { font-size: 8.5pt; color: rgba(255,255,255,0.8); margin-top: 3px; }
+  .header-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .header-price-label { font-size: 8pt; color: rgba(255,255,255,0.7); }
+  .header-price { font-size: 22pt; font-weight: 700; color: #FFD700; line-height: 1; }
+  .header-price-sub { font-size: 8pt; color: rgba(255,255,255,0.7); }
+  .header-case { font-size: 8pt; color: rgba(255,255,255,0.6); margin-top: 2px; }
+
+  /* ========== 詳細リンクボタン ========== */
+  .detail-link {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 10px;
+    background: #DAA520;
+    color: #1A365D;
+    border-radius: 4px;
+    font-size: 8pt;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  /* ========== ハイライトボックス ========== */
+  .highlight-box {
+    display: flex;
+    background: linear-gradient(135deg, #1A365D 0%, #2a4a7a 100%);
+    padding: 12px 16px;
+    gap: 0;
+    margin-bottom: 14px;
+    border-radius: 0 0 6px 6px;
+  }
+  .highlight-item {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    padding: 4px 8px;
+  }
+  .highlight-item:last-child { border-right: none; }
+  .highlight-label { font-size: 7.5pt; color: rgba(255,255,255,0.7); margin-bottom: 3px; }
+  .highlight-value { font-size: 16pt; font-weight: 700; color: #FFD700; line-height: 1.1; }
+  .highlight-unit { font-size: 8pt; color: rgba(255,255,255,0.8); }
+
+  /* ========== セクションタイトル ========== */
+  .section-title {
+    background: #1A365D;
+    color: #fff;
+    font-size: 9.5pt;
+    font-weight: 700;
+    padding: 5px 12px;
+    margin: 12px 0 6px 0;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+  }
+  .section-title-gold {
+    background: linear-gradient(90deg, #1A365D, #2d5a8e);
+    color: #FFD700;
+    font-size: 9.5pt;
+    font-weight: 700;
+    padding: 5px 12px;
+    margin: 12px 0 6px 0;
+    border-radius: 3px;
+  }
+
+  /* ========== ヒーローセクション ========== */
+  .hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .hero-left {}
+  .hero-right {}
+  .hero-photo {
+    width: 100%;
+    height: 80mm;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 2px solid #c8d8f8;
+    display: block;
+  }
+
+  /* ========== KPIグリッド ========== */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .kpi-card {
+    background: linear-gradient(135deg, #f8faff 0%, #eef4ff 100%);
+    border: 1px solid #c8d8f8;
+    border-radius: 5px;
+    padding: 8px 10px;
+    text-align: center;
+  }
+  .kpi-label { font-size: 7.5pt; color: #4a6fa5; margin-bottom: 2px; }
+  .kpi-value { font-size: 14pt; font-weight: 700; color: #1A365D; line-height: 1.1; }
+  .kpi-unit { font-size: 7.5pt; color: #666; }
+
+  /* ========== 概要テーブル ========== */
+  .overview-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+  }
+  .overview-table td {
+    border: 1px solid #d0d8e8;
+    padding: 5px 8px;
+    vertical-align: top;
+  }
+  .overview-table .th {
+    background: #e8eef8;
+    color: #1A365D;
+    font-weight: 700;
+    width: 28%;
+    white-space: nowrap;
+  }
+  .overview-table tr:nth-child(even) td:not(.th) { background: #fafbff; }
+
+  /* ========== レントロールテーブル ========== */
+  .lentroll-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+  }
+  .lentroll-table th {
+    background: #1A365D;
+    color: #fff;
+    padding: 6px 8px;
+    text-align: center;
+    font-weight: 600;
+  }
+  .lentroll-table td {
+    border: 1px solid #d0d8e8;
+    padding: 5px 8px;
+    text-align: center;
+  }
+  .lentroll-table tr:nth-child(even) td { background: #fafbff; }
+  .lentroll-total td {
+    background: #e8eef8 !important;
+    font-weight: 700;
+    color: #1A365D;
+  }
+
+  /* ========== 収支テーブル ========== */
+  .finance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    margin-bottom: 10px;
+  }
+  .finance-table td {
+    border: 1px solid #d0d8e8;
+    padding: 5px 8px;
+  }
+  .finance-table .th {
+    background: #e8eef8;
+    color: #1A365D;
+    font-weight: 600;
+    width: 60%;
+  }
+  .finance-table .subtotal td {
+    background: #1A365D !important;
+    color: #FFD700 !important;
+    font-weight: 700;
+  }
+
+  /* ========== 投資ポイント ========== */
+  .points-list { list-style: none; padding: 0; }
+  .points-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 5px 0;
+    border-bottom: 1px dashed #d0d8e8;
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+  .points-list li:last-child { border-bottom: none; }
+  .points-list li::before {
+    content: "✔";
+    color: #1A365D;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ========== 特記事項 ========== */
+  .notes-box {
+    background: #fff8e8;
+    border: 1px solid #e8d060;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 8.5pt;
+    line-height: 1.6;
+  }
+
+  /* ========== 写真グリッド ========== */
+  .photo-grid-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .photo-grid-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .photo-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .photo-item img {
+    width: 100%;
+    height: 52mm;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #c8d8f8;
+    display: block;
+  }
+  .photo-item-main img {
+    width: 100%;
+    height: 72mm;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 2px solid #c8d8f8;
+    display: block;
+  }
+  .photo-label {
+    font-size: 7pt;
+    color: #666;
+    text-align: center;
+    margin-top: 2px;
+  }
+
+  /* ========== フッター ========== */
+  .footer-band {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1A365D;
+    color: rgba(255,255,255,0.7);
+    font-size: 7.5pt;
+    padding: 6px 14px;
+    margin-top: 14px;
+    border-radius: 3px;
+  }
+
+  /* ========== 2カラムレイアウト ========== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* ========== バナー ========== */
+  .rent-spec-banner {
+    background: linear-gradient(90deg, #C41E3A, #a01830);
+    color: #fff;
+    text-align: center;
+    font-size: 9.5pt;
+    font-weight: 700;
+    padding: 7px;
+    border-radius: 4px;
+    margin: 12px 0 10px 0;
+    letter-spacing: 0.1em;
+  }
+
+  /* ========== ページラッパー ========== */
+  .page-wrapper {
+    width: 267mm;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* ========== 印刷設定 ========== */
+  @page { size: A4 landscape; margin: 14mm 15mm; }
+  @media print {
+    body { background: #fff; }
+    .page-container {
+      width: 267mm;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      min-height: 182mm;
+    }
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* ========== レスポンシブ（タブレット・スマホ） ========== */
+  @media screen and (max-width: 900px) {
+    .page-container { width: 100% !important; min-height: unset; padding: 0 8px; }
+    .page-wrapper   { width: 100% !important; padding: 0 8px !important; }
+    .header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; }
+    .header-right { text-align: left; width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+    .header-property-name { font-size: 13pt; }
+    .highlight-box { flex-wrap: wrap; gap: 8px; padding: 10px; }
+    .highlight-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
+    .highlight-item:last-child { border-bottom: none; }
+    .highlight-value { font-size: 14pt; }
+    .two-col, .three-col, .hero-section { grid-template-columns: 1fr !important; }
+    .kpi-grid  { grid-template-columns: repeat(2, 1fr); }
+    .photo-grid-main { grid-template-columns: 1fr !important; }
+    .photo-grid-4    { grid-template-columns: 1fr 1fr !important; }
+    .photo-grid-2    { grid-template-columns: 1fr !important; }
+    .photo-item img { height: 100px; }
+    .photo-item-main img { height: 160px; }
+    .hero-photo { height: 180px; }
+    .footer-band { flex-direction: column; gap: 6px; text-align: center; padding: 10px 14px; }
+    .page-break { break-before: auto; border-top: 4px solid #1A365D; margin-top: 24px; }
+  }
+  @media screen and (max-width: 480px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .highlight-item { flex: 1 1 100%; }
+    .header-property-name { font-size: 12pt; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================================================== -->
+<!-- PAGE 1: 物件概要                                          -->
+<!-- ======================================================== -->
+<div class="page-container">
+  <div class="page-wrapper">
+
+    <!-- ヘッダー -->
+    <div class="header">
+      <div class="header-left">
+        <div class="header-badge">RKC</div>
+        <div class="header-property-name">秋田県横手市 平鹿町 戸建て</div>
+        <div class="header-sub">秋田県横手市平鹿町浅舞字浅舞56-2</div>
+      </div>
+      <div class="header-right">
+        <div class="header-price-label">販売価格</div>
+        <div class="header-price">15<span style="font-size:14pt;">万円</span></div>
+        <div class="header-price-sub">（税込）</div>
+        <div class="header-case">案件番号：r-2800</div>
+        <a href="https://drive.google.com/drive/folders/1RGeq2XNm0DBEUkkMAF8Od3RwNunMjdzp" target="_blank" class="detail-link">📂 詳細はこちら</a>
+      </div>
+    </div>
+
+    <!-- ハイライトボックス -->
+    <div class="highlight-box">
+      <div class="highlight-item">
+        <div class="highlight-label">販売価格</div>
+        <div class="highlight-value">15<span class="highlight-unit">万円</span></div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">想定月額賃料</div>
+        <div class="highlight-value">2.2<span class="highlight-unit">万円</span></div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">想定表面利回り</div>
+        <div class="highlight-value">176<span class="highlight-unit">%</span></div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">路線価</div>
+        <div class="highlight-value">0.58<span class="highlight-unit">万円/㎡</span></div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-label">想定出口価格</div>
+        <div class="highlight-value">132<span class="highlight-unit">万円</span></div>
+      </div>
+    </div>
+
+    <!-- ヒーローセクション：左KPI＋右外観写真 -->
+    <div class="hero-section avoid-break">
+      <!-- 左：KPIカード -->
+      <div class="hero-left">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">販売価格</div>
+            <div class="kpi-value">15<span class="kpi-unit">万円</span></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">想定月額賃料</div>
+            <div class="kpi-value">2.2<span class="kpi-unit">万円</span></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">想定年間家賃収入</div>
+            <div class="kpi-value">26.4<span class="kpi-unit">万円</span></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">想定表面利回り</div>
+            <div class="kpi-value" style="color:#C41E3A;">176<span class="kpi-unit">%</span></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">想定出口価格</div>
+            <div class="kpi-value">132<span class="kpi-unit">万円</span></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">想定売却益</div>
+            <div class="kpi-value" style="color:#C41E3A;">97<span class="kpi-unit">万円</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右：外観写真 -->
+      <div class="hero-right">
+        <img class="hero-photo"
+             src="https://drive.google.com/thumbnail?id=1_dspchx4j7Joyipmd3o9K-IuQJNLTeWO&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1_dspchx4j7Joyipmd3o9K-IuQJNLTeWO'"
+             alt="物件外観">
+      </div>
+    </div>
+
+    <!-- 物件概要テーブル -->
+    <div class="section-title">■ 物件概要</div>
+    <table class="overview-table avoid-break">
+      <tr>
+        <td class="th">所在地</td>
+        <td>秋田県横手市平鹿町浅舞字浅舞56-2</td>
+        <td class="th">交通</td>
+        <td>【確認中】</td>
+      </tr>
+      <tr>
+        <td class="th">物件種別</td>
+        <td>戸建て（空き家）</td>
+        <td class="th">土地面積</td>
+        <td>【確認中】</td>
+      </tr>
+      <tr>
+        <td class="th">建物構造</td>
+        <td>【確認中】</td>
+        <td class="th">建物面積</td>
+        <td>【確認中】</td>
+      </tr>
+      <tr>
+        <td class="th">築年数</td>
+        <td>【確認中】</td>
+        <td class="th">間取り</td>
+        <td>【確認中】</td>
+      </tr>
+      <tr>
+        <td class="th">現況</td>
+        <td>空室（現状引渡し）</td>
+        <td class="th">引渡し</td>
+        <td>相談</td>
+      </tr>
+      <tr>
+        <td class="th">路線価</td>
+        <td>5,800円/㎡（0.58万円/㎡）</td>
+        <td class="th">都市計画</td>
+        <td>【確認中】</td>
+      </tr>
+      <tr>
+        <td class="th">用途地域</td>
+        <td>【確認中】</td>
+        <td class="th">建ぺい率／容積率</td>
+        <td>【確認中】</td>
+      </tr>
+      <tr>
+        <td class="th">権利形態</td>
+        <td>所有権</td>
+        <td class="th">接道状況</td>
+        <td>【確認中】</td>
+      </tr>
+      <tr>
+        <td class="th">販売価格</td>
+        <td style="font-weight:700; color:#C41E3A;">150,000円（15万円）</td>
+        <td class="th">案件番号</td>
+        <td>r-2800</td>
+      </tr>
+    </table>
+
+    <!-- フッター -->
+    <div class="footer-band">
+      <span>r-2800 ｜ 秋田県横手市平鹿町 戸建て</span>
+      <span>作成日：2026年5月2日</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- PAGE 2: レントロール・年間収支                             -->
+<!-- ======================================================== -->
+<div class="page-container page-break">
+  <div class="page-wrapper">
+
+    <div class="header">
+      <div class="header-left">
+        <div class="header-badge">RKC</div>
+        <div class="header-property-name">レントロール ／ 年間収支</div>
+        <div class="header-sub">秋田県横手市平鹿町浅舞字浅舞56-2　｜　r-2800</div>
+      </div>
+      <div class="header-right">
+        <div class="header-price-label">販売価格</div>
+        <div class="header-price">15<span style="font-size:14pt;">万円</span></div>
+        <a href="https://drive.google.com/drive/folders/1RGeq2XNm0DBEUkkMAF8Od3RwNunMjdzp" target="_blank" class="detail-link">📂 詳細はこちら</a>
+      </div>
+    </div>
+
+    <div class="rent-spec-banner">🏠 空室物件 ／ 入居付け後の収益シミュレーション</div>
+
+    <!-- レントロール -->
+    <div class="section-title">■ レントロール（想定）</div>
+    <table class="lentroll-table avoid-break">
+      <thead>
+        <tr>
+          <th>区画</th>
+          <th>用途</th>
+          <th>現況</th>
+          <th>想定月額賃料</th>
+          <th>想定年間賃料</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1号室（全体）</td>
+          <td>住居</td>
+          <td style="color:#C41E3A; font-weight:700;">空室</td>
+          <td style="text-align:right;">22,000円</td>
+          <td style="text-align:right;">264,000円</td>
+          <td>現状引渡し</td>
+        </tr>
+        <tr class="lentroll-total">
+          <td colspan="3" style="text-align:right;">合計</td>
+          <td style="text-align:right;">22,000円</td>
+          <td style="text-align:right;">264,000円</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 収入サマリー -->
+    <div class="section-title" style="margin-top:16px;">■ 年間収入サマリー（想定）</div>
+    <table class="finance-table avoid-break">
+      <tr>
+        <td class="th">想定月額賃料</td>
+        <td style="text-align:right; font-weight:700; color:#1a7a1a;">22,000円</td>
+      </tr>
+      <tr>
+        <td class="th">想定年間賃料収入</td>
+        <td style="text-align:right; font-weight:700; color:#1a7a1a;">264,000円（22,000円 × 12ヶ月）</td>
+      </tr>
+      <tr>
+        <td class="th">満室想定稼働率</td>
+        <td style="text-align:right;">100%（入居付け前提）</td>
+      </tr>
+    </table>
+
+    <!-- 年間支出 -->
+    <div class="section-title" style="margin-top:16px;">■ 年間支出（想定）</div>
+    <table class="finance-table avoid-break">
+      <tr>
+        <td class="th">固定資産税・都市計画税（想定）</td>
+        <td style="text-align:right;">【確認中】</td>
+      </tr>
+      <tr>
+        <td class="th">その他経費</td>
+        <td style="text-align:right;">【確認中】</td>
+      </tr>
+    </table>
+
+    <div class="notes-box" style="margin-top:10px;">
+      ※ 支出については詳細資料をご確認ください。想定賃料はエリア相場に基づく試算値です。<br>
+      ※ 本物件は空室のため、入居付け後の収益を前提としたシミュレーションです。
+    </div>
+
+    <!-- フッター -->
+    <div class="footer-band">
+      <span>r-2800 ｜ 秋田県横手市平鹿町 戸建て</span>
+      <span>作成日：2026年5月2日</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- PAGE 3: RKC収支シミュレーション・投資ポイント・周辺環境    -->
+<!-- ======================================================== -->
+<div class="page-container page-break">
+  <div class="page-wrapper">
+
+    <div class="header">
+      <div class="header-left">
+        <div class="header-badge">RKC</div>
+        <div class="header-property-name">RKC収支シミュレーション ／ 投資ポイント</div>
+        <div class="header-sub">秋田県横手市平鹿町浅舞字浅舞56-2　｜　r-2800</div>
+      </div>
+      <div class="header-right">
+        <div class="header-price-label">販売価格</div>
+        <div class="header-price">15<span style="font-size:14pt;">万円</span></div>
+        <a href="https://drive.google.com/drive/folders/1RGeq2XNm0DBEUkkMAF8Od3RwNunMjdzp" target="_blank" class="detail-link">📂 詳細はこちら</a>
+      </div>
+    </div>
+
+    <div class="two-col" style="gap:16px; margin-top:12px;">
+
+      <!-- 左：RKC収支シミュレーション -->
+      <div>
+        <div class="section-title-gold">■ RKC収支シミュレーション</div>
+        <table class="finance-table avoid-break">
+          <tr>
+            <td class="th">① 販売価格（取得費用）</td>
+            <td style="text-align:right; font-weight:700;">150,000円（15万円）</td>
+          </tr>
+          <tr style="background:#f0faf0;">
+            <td class="th">年間想定家賃収入（月額×12）</td>
+            <td style="text-align:right; color:#1a7a1a; font-weight:700;">
+              264,000円（22,000円 × 12ヶ月）
+            </td>
+          </tr>
+          <tr style="background:#f0faf0;">
+            <td class="th">想定表面利回り</td>
+            <td style="text-align:right; color:#1a7a1a; font-weight:700; font-size:12pt;">176%</td>
+          </tr>
+          <tr>
+            <td class="th">② 想定出口価格（利回り20%想定）</td>
+            <td style="text-align:right;">
+              1,320,000円（132万円）<br>
+              <span style="font-size:0.85em; color:#666;">（年間家賃264,000円 ÷ 20% = 1,320,000円）</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="th" style="padding-left:20px;">− ① 取得費用</td>
+            <td style="text-align:right;">−150,000円</td>
+          </tr>
+          <tr>
+            <td class="th" style="padding-left:20px;">− ③ 諸経費（想定）</td>
+            <td style="text-align:right;">−100,000円（登記費用等概算）</td>
+          </tr>
+          <tr>
+            <td class="th" style="padding-left:20px;">− ④ RKC成功報酬費用</td>
+            <td style="text-align:right; color:#C41E3A;">−100,000円</td>
+          </tr>
+          <tr style="background:#1A365D;">
+            <td style="color:#FFD700; font-weight:700; padding:6px 8px;"><strong>想定売却益（②−①−③−④）</strong></td>
+            <td style="text-align:right; color:#FFD700; font-weight:700; font-size:13pt; padding:6px 8px;">
+              <strong>970,000円（97万円）</strong>
+            </td>
+          </tr>
+        </table>
+
+        <div class="notes-box" style="margin-top:8px; font-size:8pt; color:#666;">
+          ⚠️ <strong>RKC成功報酬費用として10万円を別途申し受けます</strong><br>
+          ※ 想定出口価格は利回り20%想定の試算値です。市場状況により変動します。<br>
+          ※ 諸経費は登記費用等の概算値です。実際の費用は物件状況により異なります。
+        </div>
+      </div>
+
+      <!-- 右：投資ポイント＋周辺環境 -->
+      <div>
+        <div class="section-title">■ 投資ポイント</div>
+        <ul class="points-list avoid-break">
+          <li>超低価格帯（15万円）で取得できる戸建て投資物件</li>
+          <li>想定利回り<strong>176%</strong>の超高利回り案件（入居付け後）</li>
+          <li>利回り20%基準での出口価格132万円に対し、取得費15万円＋諸費用20万円で想定売却益<strong>97万円</strong></li>
+          <li>秋田県横手市：豊富な農業・工業雇用による安定した住宅需要</li>
+          <li>空室のため購入後すぐに入居付け・DIY可能</li>
+          <li>現状引渡しのため早期決済に対応可能</li>
+        </ul>
+
+        <div class="section-title" style="margin-top:14px;">■ 周辺環境</div>
+        <table class="overview-table avoid-break" style="font-size:8.5pt;">
+          <tr>
+            <td class="th">市区町村</td>
+            <td>横手市（秋田県）</td>
+          </tr>
+          <tr>
+            <td class="th">最寄り駅</td>
+            <td>JR奥羽本線 横手駅（約6km）</td>
+          </tr>
+          <tr>
+            <td class="th">地域特性</td>
+            <td>農業・工業が盛んな横手盆地中心部</td>
+          </tr>
+          <tr>
+            <td class="th">周辺施設</td>
+            <td>横手市立平鹿総合病院・各種スーパー・学校</td>
+          </tr>
+          <tr>
+            <td class="th">積雪地域</td>
+            <td>豪雪地帯（冬季の管理要注意）</td>
+          </tr>
+        </table>
+
+        <div class="section-title" style="margin-top:14px;">■ 積算評価（概算）</div>
+        <table class="finance-table avoid-break" style="font-size:8.5pt;">
+          <tr>
+            <td class="th">路線価</td>
+            <td>5,800円/㎡（0.58万円/㎡）</td>
+          </tr>
+          <tr>
+            <td class="th">土地積算評価</td>
+            <td>路線価 × 土地面積（詳細資料参照）</td>
+          </tr>
+          <tr>
+            <td class="th">建物積算評価</td>
+            <td>【確認中】（築年数・構造により計算）</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- フッター -->
+    <div class="footer-band">
+      <span>r-2800 ｜ 秋田県横手市平鹿町 戸建て</span>
+      <span>作成日：2026年5月2日</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================================================== -->
+<!-- PAGE 4: 物件写真・特記事項                                 -->
+<!-- ======================================================== -->
+<div class="page-container page-break">
+  <div class="page-wrapper">
+
+    <div class="header">
+      <div class="header-left">
+        <div class="header-badge">RKC</div>
+        <div class="header-property-name">物件写真 ／ 特記事項</div>
+        <div class="header-sub">秋田県横手市平鹿町浅舞字浅舞56-2　｜　r-2800</div>
+      </div>
+      <div class="header-right">
+        <div class="header-price-label">販売価格</div>
+        <div class="header-price">15<span style="font-size:14pt;">万円</span></div>
+        <a href="https://drive.google.com/drive/folders/1RGeq2XNm0DBEUkkMAF8Od3RwNunMjdzp" target="_blank" class="detail-link">📂 詳細はこちら</a>
+      </div>
+    </div>
+
+    <!-- 写真：メイン外観 + サブ2枚 -->
+    <div class="section-title" style="margin-top:10px;">■ 外観・建物写真</div>
+    <div class="photo-grid-main">
+      <div class="photo-item-main">
+        <img src="https://drive.google.com/thumbnail?id=1_dspchx4j7Joyipmd3o9K-IuQJNLTeWO&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1_dspchx4j7Joyipmd3o9K-IuQJNLTeWO'"
+             alt="外観①">
+        <div class="photo-label">外観①</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1j2ONovWoMbjZMQUUo0cCFRsOfWhgQEwy&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1j2ONovWoMbjZMQUUo0cCFRsOfWhgQEwy'"
+             alt="外観②">
+        <div class="photo-label">外観②</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=129fZvy0wJtG5ZvwLkDsy1DUfImTllpCD&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/129fZvy0wJtG5ZvwLkDsy1DUfImTllpCD'"
+             alt="外観③">
+        <div class="photo-label">外観③</div>
+      </div>
+    </div>
+
+    <!-- 室内写真 4列 -->
+    <div class="section-title">■ 室内・内部写真</div>
+    <div class="photo-grid-4">
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1_vigSHqaDh6mrWh3U8ZllXIK9nzhk_41&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1_vigSHqaDh6mrWh3U8ZllXIK9nzhk_41'"
+             alt="室内①">
+        <div class="photo-label">室内①</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1G2hVvV36VQyQwWy4tOhlGNdoh-Zzl6z9&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1G2hVvV36VQyQwWy4tOhlGNdoh-Zzl6z9'"
+             alt="室内②">
+        <div class="photo-label">室内②</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1OCi5TMc3LiD_CeTHH_p-yONxcV8T9tQ8&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1OCi5TMc3LiD_CeTHH_p-yONxcV8T9tQ8'"
+             alt="室内③">
+        <div class="photo-label">室内③</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=15kdUip10Ac3D85dpRrUzHXm7jZlbIHSN&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/15kdUip10Ac3D85dpRrUzHXm7jZlbIHSN'"
+             alt="室内④">
+        <div class="photo-label">室内④</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=1-v_VZ71G8FX95ItcgX5Yj-Jj3tJBGD7h&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1-v_VZ71G8FX95ItcgX5Yj-Jj3tJBGD7h'"
+             alt="室内⑤">
+        <div class="photo-label">室内⑤</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=12V5X4W9dr9h85kSryFmTzzJH5UsyRZvC&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/12V5X4W9dr9h85kSryFmTzzJH5UsyRZvC'"
+             alt="室内⑥">
+        <div class="photo-label">室内⑥</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=13OpklC5abvx76v43zRlEGJ4VioTF8OJU&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/13OpklC5abvx76v43zRlEGJ4VioTF8OJU'"
+             alt="室内⑦">
+        <div class="photo-label">室内⑦</div>
+      </div>
+      <div class="photo-item">
+        <img src="https://drive.google.com/thumbnail?id=18xzLLsKTXiJbBgHlBA5w7Tdq7DhCZv_s&sz=w800"
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/18xzLLsKTXiJbBgHlBA5w7Tdq7DhCZv_s'"
+             alt="室内⑧">
+        <div class="photo-label">室内⑧</div>
+      </div>
+    </div>
+
+    <!-- 特記事項 -->
+    <div class="section-title">■ 特記事項・注意点</div>
+    <div class="notes-box avoid-break">
+      <ul class="points-list" style="list-style:none; padding:0;">
+        <li style="display:flex; gap:6px; padding:4px 0; border-bottom:1px dashed #d0d8e8;">
+          <span style="color:#C41E3A;">⚠️</span>
+          <strong>RKC成功報酬費用として10万円を別途申し受けます</strong>
+        </li>
+        <li style="display:flex; gap:6px; padding:4px 0; border-bottom:1px dashed #d0d8e8;">
+          <span>・</span>現状引渡しのため、室内の状況は詳細資料（写真・現地確認）にてご確認ください
+        </li>
+        <li style="display:flex; gap:6px; padding:4px 0; border-bottom:1px dashed #d0d8e8;">
+          <span>・</span>豪雪地帯のため、冬季の積雪・除雪対応についてご確認ください
+        </li>
+        <li style="display:flex; gap:6px; padding:4px 0; border-bottom:1px dashed #d0d8e8;">
+          <span>・</span>建物・土地の詳細（面積・築年数・構造等）は詳細資料をご参照ください
+        </li>
+        <li style="display:flex; gap:6px; padding:4px 0; border-bottom:1px dashed #d0d8e8;">
+          <span>・</span>想定賃料・利回りはあくまでも試算値であり、将来の収益を保証するものではありません
+        </li>
+        <li style="display:flex; gap:6px; padding:4px 0;">
+          <span>・</span>ご不明な点はご紹介業者様までお問い合わせください
+        </li>
+      </ul>
+    </div>
+
+    <!-- フッター -->
+    <div class="footer-band">
+      <span>r-2800 ｜ 秋田県横手市平鹿町 戸建て</span>
+      <span>作成日：2026年5月2日</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
