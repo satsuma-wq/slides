@@ -138,6 +138,9 @@
   table.price td.cur{background:var(--flag-soft);font-weight:700;}
   table.price td.na{color:#C2CAD6;}
   table.price .amt{font-weight:700;}
+  table.price tr.goal th,table.price tr.goal td{background:var(--ok-soft)!important;color:var(--ok);font-weight:800;}
+  table.price .est{font-size:10px;color:var(--accent);font-weight:700;vertical-align:super;}
+  table.price td.be{font-weight:700;}
 
   footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);
     font-size:13px;color:var(--muted);}
@@ -368,16 +371,30 @@
             <td class="amt">¥6,611,000<span class="u">¥2,204</span></td>
           </tr>
           <tr>
-            <th>Yahoo!不動産</th>
+            <th>Yahoo!不動産<span class="est">試算</span></th>
             <td class="cur">15枠 ¥57,750<span class="u">単価 ¥3,850</span></td>
-            <td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td>
-            <td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td>
+            <td class="amt">¥385,000<span class="u">¥3,850</span></td>
+            <td class="amt">¥770,000<span class="u">¥3,850</span></td>
+            <td class="amt">¥1,155,000<span class="u">¥3,850</span></td>
+            <td class="amt">¥1,925,000<span class="u">¥3,850</span></td>
+            <td class="amt">¥3,850,000<span class="u">¥3,850</span></td>
+            <td class="amt">¥5,775,000<span class="u">¥3,850</span></td>
+            <td class="amt">¥7,700,000<span class="u">¥3,850</span></td>
+            <td class="amt">¥9,625,000<span class="u">¥3,850</span></td>
+            <td class="amt">¥11,550,000<span class="u">¥3,850</span></td>
           </tr>
           <tr>
-            <th>スーモ</th>
+            <th>スーモ<span class="est">試算</span></th>
             <td class="cur">15枠 ¥127,050<span class="u">単価 ¥8,470</span></td>
-            <td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td>
-            <td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td>
+            <td class="amt">¥847,000<span class="u">¥8,470</span></td>
+            <td class="amt">¥1,694,000<span class="u">¥8,470</span></td>
+            <td class="amt">¥2,541,000<span class="u">¥8,470</span></td>
+            <td class="amt">¥4,235,000<span class="u">¥8,470</span></td>
+            <td class="amt">¥8,470,000<span class="u">¥8,470</span></td>
+            <td class="amt">¥12,705,000<span class="u">¥8,470</span></td>
+            <td class="amt">¥16,940,000<span class="u">¥8,470</span></td>
+            <td class="amt">¥21,175,000<span class="u">¥8,470</span></td>
+            <td class="amt">¥25,410,000<span class="u">¥8,470</span></td>
           </tr>
           <tr>
             <th>不動産連合体<small>1,000件以上（ボリュームディスカウント適用）</small></th>
@@ -395,7 +412,58 @@
         </tbody>
       </table>
     </div>
-    <div class="note">Yahoo!不動産・スーモは件数別プランの提供がないため「—」。料金は税込・月額の目安です。</div>
+    <div class="note">料金は税込・月額の目安。<b>Yahoo!不動産・スーモ</b>は件数別プランの提供がないため、<span class="est" style="position:static">試算</span>＝現行単価×件数で算出した参考値です（実際は枠数固定／別条件の可能性あり）。</div>
+  </section>
+
+  <section>
+    <h2>08 — Break-even &amp; Target</h2>
+    <p class="lead">損益分岐・目標シミュレーション</p>
+    <p>前提：<b>1件成約あたりの粗利を100万円</b>と仮定。<b>目標は500件あたり7本成約</b>（＝100件あたり1.4本）。各ポータルの掲載料を回収するのに必要な成約本数（<b>損益分岐本数 ＝ 掲載料 ÷ 100万円</b>）を件数別に算出しました。</p>
+    <div class="scroll">
+      <table class="price">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>100 件</th><th>200 件</th><th>300 件</th><th>500 件</th>
+            <th>1,000 件</th><th>1,500 件</th><th>2,000 件</th><th>2,500 件</th><th>3,000 件</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="goal">
+            <th>🎯 目標成約本数</th>
+            <td>1.4本</td><td>2.8本</td><td>4.2本</td><td>7本</td>
+            <td>14本</td><td>21本</td><td>28本</td><td>35本</td><td>42本</td>
+          </tr>
+          <tr>
+            <th>損益分岐 ｜ 健美家</th>
+            <td class="be">0.1本</td><td class="be">0.2本</td><td class="be">0.3本</td><td class="be">0.4本</td>
+            <td class="be">0.9本</td><td class="be">1.3本</td><td class="be">1.8本</td><td class="be">2.2本</td><td class="be">2.6本</td>
+          </tr>
+          <tr>
+            <th>損益分岐 ｜ アットホーム</th>
+            <td class="be">0.2本</td><td class="be">0.5本</td><td class="be">0.7本</td><td class="be">1.1本</td>
+            <td class="be">2.2本</td><td class="be">3.3本</td><td class="be">4.4本</td><td class="be">5.5本</td><td class="be">6.6本</td>
+          </tr>
+          <tr>
+            <th>損益分岐 ｜ Yahoo!不動産<span class="est">試算</span></th>
+            <td class="be">0.4本</td><td class="be">0.8本</td><td class="be">1.2本</td><td class="be">1.9本</td>
+            <td class="be">3.9本</td><td class="be">5.8本</td><td class="be">7.7本</td><td class="be">9.6本</td><td class="be">11.6本</td>
+          </tr>
+          <tr>
+            <th>損益分岐 ｜ スーモ<span class="est">試算</span></th>
+            <td class="be">0.8本</td><td class="be">1.7本</td><td class="be">2.5本</td><td class="be">4.2本</td>
+            <td class="be">8.5本</td><td class="be">12.7本</td><td class="be">16.9本</td><td class="be">21.2本</td><td class="be">25.4本</td>
+          </tr>
+          <tr>
+            <th>損益分岐 ｜ 不動産連合体</th>
+            <td class="be">0.1本</td><td class="be">0.1本</td><td class="be">0.1本</td><td class="be">0.2本</td>
+            <td class="be">0.2本</td><td class="be">0.3本</td><td class="be">0.4本</td><td class="be">0.6本</td><td class="be">0.7本</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="result">目標（500件＝7本）を達成すれば、<b>全ポータルで損益分岐本数を大きく上回り黒字</b>。例：3,000件で目標 <b>42本</b> に対し、最も高いスーモ（試算）でも損益分岐は約 <b>25.4本</b>、健美家なら <b>2.6本</b> で回収できる。</div>
+    <div class="note">損益分岐本数 ＝ 各掲載料 ÷ 100万円（1件あたり粗利の仮定値）。目標本数 ＝ 件数 ÷ 500 × 7本。Yahoo!不動産・スーモは試算掲載料に基づくため参考値です。</div>
   </section>
 
   <footer>
