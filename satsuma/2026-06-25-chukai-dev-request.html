@@ -124,24 +124,6 @@
     width:30px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:6px;}
   ol.checks b{color:var(--text);}
 
-  /* ---- pricing matrix ---- */
-  table.price{min-width:980px;font-size:13.5px;}
-  table.price th,table.price td{text-align:center;white-space:nowrap;padding:10px 12px;}
-  table.price thead th{position:sticky;top:0;}
-  table.price thead th.cur{color:var(--flag);background:var(--flag-soft);}
-  table.price tbody th{text-align:left;white-space:normal;min-width:200px;position:sticky;left:0;
-    background:#FAFBFD;z-index:1;font-family:var(--sans);text-transform:none;letter-spacing:0;
-    color:var(--text);font-size:14px;font-weight:800;}
-  table.price tbody th small{display:block;font-weight:500;font-size:11.5px;color:var(--muted);
-    margin-top:3px;line-height:1.5;}
-  table.price td .u{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-top:2px;}
-  table.price td.cur{background:var(--flag-soft);font-weight:700;}
-  table.price td.na{color:#C2CAD6;}
-  table.price .amt{font-weight:700;}
-  table.price tr.goal th,table.price tr.goal td{background:var(--ok-soft)!important;color:var(--ok);font-weight:800;}
-  table.price .est{font-size:10px;color:var(--accent);font-weight:700;vertical-align:super;}
-  table.price td.be{font-weight:700;}
-
   footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);
     font-size:13px;color:var(--muted);}
   footer a{color:var(--accent);}
@@ -175,6 +157,7 @@
     <div class="links">
       <a class="btn" href="https://drive.google.com/drive/u/0/folders/1z9a8CgRRIlJLGwF7LsWZLaAqCMY-lQYd" target="_blank" rel="noopener">📁 説明動画フォルダを開く</a>
       <a class="btn ghost" href="https://drive.google.com/file/d/1wGo3VL6jMUZeltv2saY2abBixaC4RVkb/view" target="_blank" rel="noopener">▶ 動画を直接見る</a>
+      <a class="btn ghost" href="2026-06-25-portal-pricing.html">📊 掲載料金・損益分岐シミュレーション</a>
     </div>
   </header>
 
@@ -331,139 +314,11 @@
 
   <section>
     <h2>07 — Reference</h2>
-    <p class="lead">参考資料：ポータルサイト掲載料金 比較表</p>
-    <p>収益物件の掲載先候補について、掲載件数別の料金・単価をまとめたもの。<b>橙色＝現在のプラン</b>。単価は1件あたりの月額目安（税込）。</p>
-    <div class="scroll">
-      <table class="price">
-        <thead>
-          <tr>
-            <th>ポータルサイト名</th>
-            <th class="cur">現在のプラン<br>(掲載枠・料金)</th>
-            <th>100 件</th><th>200 件</th><th>300 件</th><th>500 件</th>
-            <th>1,000 件</th><th>1,500 件</th><th>2,000 件</th><th>2,500 件</th><th>3,000 件</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>健美家<small>LIFULL HOME'Sと連動</small></th>
-            <td class="cur">100件 ¥88,000<span class="u">単価 ¥880</span></td>
-            <td class="amt">¥88,000<span class="u">¥880</span></td>
-            <td class="amt">¥198,000<span class="u">¥990</span></td>
-            <td class="amt">¥264,000<span class="u">¥880</span></td>
-            <td class="amt">¥440,000<span class="u">¥880</span></td>
-            <td class="amt">¥880,000<span class="u">¥880</span></td>
-            <td class="amt">¥1,320,000<span class="u">¥880</span></td>
-            <td class="amt">¥1,760,000<span class="u">¥880</span></td>
-            <td class="amt">¥2,200,000<span class="u">¥880</span></td>
-            <td class="amt">¥2,640,000<span class="u">¥880</span></td>
-          </tr>
-          <tr>
-            <th>アットホーム<small>定価のため、件数とタイミングによってディスカウント交渉余地有</small></th>
-            <td class="cur">70枠 ¥154,000<span class="u">単価 ¥2,200／情報処理費用 ¥11,000</span></td>
-            <td class="amt">¥231,000<span class="u">¥2,310</span></td>
-            <td class="amt">¥451,000<span class="u">¥2,255</span></td>
-            <td class="amt">¥671,000<span class="u">¥2,237</span></td>
-            <td class="amt">¥1,111,000<span class="u">¥2,222</span></td>
-            <td class="amt">¥2,211,000<span class="u">¥2,211</span></td>
-            <td class="amt">¥3,311,000<span class="u">¥2,207</span></td>
-            <td class="amt">¥4,411,000<span class="u">¥2,206</span></td>
-            <td class="amt">¥5,511,000<span class="u">¥2,204</span></td>
-            <td class="amt">¥6,611,000<span class="u">¥2,204</span></td>
-          </tr>
-          <tr>
-            <th>Yahoo!不動産<span class="est">試算</span></th>
-            <td class="cur">15枠 ¥57,750<span class="u">単価 ¥3,850</span></td>
-            <td class="amt">¥385,000<span class="u">¥3,850</span></td>
-            <td class="amt">¥770,000<span class="u">¥3,850</span></td>
-            <td class="amt">¥1,155,000<span class="u">¥3,850</span></td>
-            <td class="amt">¥1,925,000<span class="u">¥3,850</span></td>
-            <td class="amt">¥3,850,000<span class="u">¥3,850</span></td>
-            <td class="amt">¥5,775,000<span class="u">¥3,850</span></td>
-            <td class="amt">¥7,700,000<span class="u">¥3,850</span></td>
-            <td class="amt">¥9,625,000<span class="u">¥3,850</span></td>
-            <td class="amt">¥11,550,000<span class="u">¥3,850</span></td>
-          </tr>
-          <tr>
-            <th>スーモ<span class="est">試算</span></th>
-            <td class="cur">15枠 ¥127,050<span class="u">単価 ¥8,470</span></td>
-            <td class="amt">¥847,000<span class="u">¥8,470</span></td>
-            <td class="amt">¥1,694,000<span class="u">¥8,470</span></td>
-            <td class="amt">¥2,541,000<span class="u">¥8,470</span></td>
-            <td class="amt">¥4,235,000<span class="u">¥8,470</span></td>
-            <td class="amt">¥8,470,000<span class="u">¥8,470</span></td>
-            <td class="amt">¥12,705,000<span class="u">¥8,470</span></td>
-            <td class="amt">¥16,940,000<span class="u">¥8,470</span></td>
-            <td class="amt">¥21,175,000<span class="u">¥8,470</span></td>
-            <td class="amt">¥25,410,000<span class="u">¥8,470</span></td>
-          </tr>
-          <tr>
-            <th>不動産連合体<small>1,000件以上（ボリュームディスカウント適用）</small></th>
-            <td class="cur">80枠 ¥66,000<span class="u">単価 ¥825</span></td>
-            <td class="amt">¥77,000<span class="u">¥770</span></td>
-            <td class="amt">¥110,000<span class="u">¥550</span></td>
-            <td class="amt">¥143,000<span class="u">¥477</span></td>
-            <td class="amt">¥209,000<span class="u">¥418</span></td>
-            <td class="amt">¥220,000<span class="u">¥220</span></td>
-            <td class="amt">¥330,000<span class="u">¥220</span></td>
-            <td class="amt">¥440,000<span class="u">¥220</span></td>
-            <td class="amt">¥550,000<span class="u">¥220</span></td>
-            <td class="amt">¥660,000<span class="u">¥220</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <p class="lead">参考資料：掲載料金・損益分岐・目標</p>
+    <p>ポータルサイトの掲載件数別の料金、損益分岐、目標達成時の利益シミュレーションは、別ページにまとめました。</p>
+    <div class="links" style="margin-top:0">
+      <a class="btn" href="2026-06-25-portal-pricing.html">📊 ポータルサイト掲載料金・損益分岐・目標を見る</a>
     </div>
-    <div class="note">料金は税込・月額の目安。<b>Yahoo!不動産・スーモ</b>は件数別プランの提供がないため、<span class="est" style="position:static">試算</span>＝現行単価×件数で算出した参考値です（実際は枠数固定／別条件の可能性あり）。</div>
-  </section>
-
-  <section>
-    <h2>08 — Break-even &amp; Target</h2>
-    <p class="lead">損益分岐・目標シミュレーション</p>
-    <p>前提：<b>1件成約あたりの粗利を100万円</b>と仮定。<b>目標は500件あたり7本成約</b>（＝100件あたり1.4本）。各ポータルの掲載料を回収するのに必要な成約本数（<b>損益分岐本数 ＝ 掲載料 ÷ 100万円</b>）を件数別に算出しました。</p>
-    <div class="scroll">
-      <table class="price">
-        <thead>
-          <tr>
-            <th>項目</th>
-            <th>100 件</th><th>200 件</th><th>300 件</th><th>500 件</th>
-            <th>1,000 件</th><th>1,500 件</th><th>2,000 件</th><th>2,500 件</th><th>3,000 件</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="goal">
-            <th>🎯 目標成約本数</th>
-            <td>1.4本</td><td>2.8本</td><td>4.2本</td><td>7本</td>
-            <td>14本</td><td>21本</td><td>28本</td><td>35本</td><td>42本</td>
-          </tr>
-          <tr>
-            <th>損益分岐 ｜ 健美家</th>
-            <td class="be">0.1本</td><td class="be">0.2本</td><td class="be">0.3本</td><td class="be">0.4本</td>
-            <td class="be">0.9本</td><td class="be">1.3本</td><td class="be">1.8本</td><td class="be">2.2本</td><td class="be">2.6本</td>
-          </tr>
-          <tr>
-            <th>損益分岐 ｜ アットホーム</th>
-            <td class="be">0.2本</td><td class="be">0.5本</td><td class="be">0.7本</td><td class="be">1.1本</td>
-            <td class="be">2.2本</td><td class="be">3.3本</td><td class="be">4.4本</td><td class="be">5.5本</td><td class="be">6.6本</td>
-          </tr>
-          <tr>
-            <th>損益分岐 ｜ Yahoo!不動産<span class="est">試算</span></th>
-            <td class="be">0.4本</td><td class="be">0.8本</td><td class="be">1.2本</td><td class="be">1.9本</td>
-            <td class="be">3.9本</td><td class="be">5.8本</td><td class="be">7.7本</td><td class="be">9.6本</td><td class="be">11.6本</td>
-          </tr>
-          <tr>
-            <th>損益分岐 ｜ スーモ<span class="est">試算</span></th>
-            <td class="be">0.8本</td><td class="be">1.7本</td><td class="be">2.5本</td><td class="be">4.2本</td>
-            <td class="be">8.5本</td><td class="be">12.7本</td><td class="be">16.9本</td><td class="be">21.2本</td><td class="be">25.4本</td>
-          </tr>
-          <tr>
-            <th>損益分岐 ｜ 不動産連合体</th>
-            <td class="be">0.1本</td><td class="be">0.1本</td><td class="be">0.1本</td><td class="be">0.2本</td>
-            <td class="be">0.2本</td><td class="be">0.3本</td><td class="be">0.4本</td><td class="be">0.6本</td><td class="be">0.7本</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="result">目標（500件＝7本）を達成すれば、<b>全ポータルで損益分岐本数を大きく上回り黒字</b>。例：3,000件で目標 <b>42本</b> に対し、最も高いスーモ（試算）でも損益分岐は約 <b>25.4本</b>、健美家なら <b>2.6本</b> で回収できる。</div>
-    <div class="note">損益分岐本数 ＝ 各掲載料 ÷ 100万円（1件あたり粗利の仮定値）。目標本数 ＝ 件数 ÷ 500 × 7本。Yahoo!不動産・スーモは試算掲載料に基づくため参考値です。</div>
   </section>
 
   <footer>
