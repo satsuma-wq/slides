@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>開発依頼書｜仲介事業部 業務フロー自動化（収益物件）</title>
+<style>
+  :root{
+    --ground:#F4F6FA;
+    --surface:#FFFFFF;
+    --text:#18212E;
+    --muted:#5A6678;
+    --line:#DBE0EA;
+    --accent:#2B4ACB;
+    --accent-soft:#E7ECFB;
+    --flag:#C2410C;
+    --flag-soft:#FBEAE0;
+    --ok:#0E7C5A;
+    --ok-soft:#E2F2EC;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+    --sans:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","YuGothic",Meiryo,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ground);color:var(--text);font-family:var(--sans);
+    line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:.01em;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px 96px;}
+
+  /* ---- header / title block ---- */
+  header.doc{padding:64px 0 40px;border-bottom:3px solid var(--text);}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin:0 0 18px;}
+  h1{font-size:clamp(28px,5vw,42px);line-height:1.25;margin:0 0 8px;font-weight:800;letter-spacing:.005em;}
+  .subtitle{font-size:clamp(16px,2.4vw,19px);color:var(--muted);font-weight:600;margin:0 0 32px;}
+  .meta{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .meta div{background:var(--surface);padding:13px 16px;}
+  .meta dt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);
+    text-transform:uppercase;margin:0 0 3px;}
+  .meta dd{margin:0;font-size:14.5px;font-weight:600;}
+  .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;
+    text-decoration:none;font-weight:700;font-size:14.5px;padding:11px 20px;border-radius:8px;
+    border:1px solid var(--accent);transition:opacity .15s;}
+  .btn:hover{opacity:.88;}
+  .btn:focus-visible{outline:3px solid var(--accent-soft);outline-offset:2px;}
+  .btn.ghost{background:var(--surface);color:var(--accent);}
+
+  /* ---- section ---- */
+  section{margin-top:56px;}
+  h2{font-size:13px;font-family:var(--mono);letter-spacing:.2em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 6px;font-weight:700;}
+  h2 + .lead{font-size:22px;font-weight:800;margin:0 0 20px;letter-spacing:.01em;}
+  p{margin:0 0 14px;}
+  .note{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);
+    border-radius:6px;padding:16px 20px;margin:18px 0;}
+  .policy{background:var(--accent-soft);border:none;border-left:4px solid var(--accent);
+    border-radius:6px;padding:16px 20px;margin:18px 0;font-weight:600;}
+
+  /* ---- condition logic ---- */
+  .cond{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:20px 0 6px;}
+  .chip{display:inline-flex;align-items:center;gap:8px;background:var(--surface);
+    border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-weight:700;font-size:14.5px;}
+  .chip .n{font-family:var(--mono);font-size:11px;color:var(--accent);}
+  .op{font-family:var(--mono);font-weight:700;color:var(--accent);font-size:18px;}
+  .result{margin-top:14px;font-weight:700;background:var(--text);color:#fff;border-radius:8px;
+    padding:14px 20px;font-size:15.5px;}
+  .result b{color:#9DB2FF;}
+
+  /* ---- pipeline ---- */
+  .flow{margin-top:8px;}
+  .step{position:relative;padding-left:72px;padding-bottom:34px;}
+  .step:not(:last-child)::before{content:"";position:absolute;left:23px;top:46px;bottom:-4px;
+    width:2px;background:var(--line);}
+  .step .num{position:absolute;left:0;top:0;width:48px;height:48px;border-radius:12px;
+    background:var(--accent);color:#fff;font-family:var(--mono);font-weight:700;font-size:17px;
+    display:flex;align-items:center;justify-content:center;}
+  .step.future .num{background:var(--surface);color:var(--accent);border:2px dashed var(--accent);}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:20px 22px;box-shadow:0 1px 2px rgba(24,33,46,.04);}
+  .card h3{margin:0 0 4px;font-size:18.5px;font-weight:800;}
+  .card .role{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);
+    text-transform:uppercase;margin:0 0 12px;}
+  .card p{margin:0 0 10px;font-size:15px;}
+  .card p:last-child{margin-bottom:0;}
+  .card ul{margin:6px 0 10px;padding-left:20px;font-size:15px;}
+  .card li{margin:4px 0;}
+
+  /* ---- tags ---- */
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;font-weight:600;
+    padding:4px 10px;border-radius:6px;text-transform:uppercase;}
+  .tag.auto{background:var(--ok-soft);color:var(--ok);}
+  .tag.semi{background:var(--accent-soft);color:var(--accent);}
+  .tag.check{background:var(--flag-soft);color:var(--flag);}
+  .tag.reuse{background:#EEF0F4;color:var(--muted);}
+
+  /* ---- tables ---- */
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0;
+    border:1px solid var(--line);border-radius:10px;}
+  table{width:100%;border-collapse:collapse;min-width:520px;background:var(--surface);font-size:14.5px;}
+  th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);background:#FAFBFD;font-weight:700;}
+  tr:last-child td{border-bottom:none;}
+  td code{font-family:var(--mono);font-size:13px;background:#EEF0F4;padding:2px 6px;border-radius:4px;}
+  .lv{font-family:var(--mono);font-weight:700;font-size:12px;padding:3px 9px;border-radius:5px;white-space:nowrap;}
+  .lv.a{background:var(--ok-soft);color:var(--ok);}
+  .lv.b{background:var(--accent-soft);color:var(--accent);}
+  .lv.c{background:var(--flag-soft);color:var(--flag);}
+
+  /* ---- glossary ---- */
+  .gloss{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .gloss .row{display:grid;grid-template-columns:160px 1fr;background:var(--surface);}
+  .gloss .row > div{padding:12px 16px;}
+  .gloss .heard{font-family:var(--mono);font-size:13px;color:var(--flag);border-right:1px solid var(--line);}
+  .gloss .heard b{display:block;color:var(--text);font-family:var(--sans);font-size:14.5px;margin-top:2px;}
+
+  /* ---- check list ---- */
+  ol.checks{counter-reset:c;list-style:none;padding:0;margin:18px 0 0;}
+  ol.checks li{position:relative;padding:14px 18px 14px 56px;background:var(--surface);
+    border:1px solid var(--line);border-radius:10px;margin-bottom:10px;font-size:15px;}
+  ol.checks li::before{counter-increment:c;content:"Q"counter(c);position:absolute;left:14px;top:13px;
+    font-family:var(--mono);font-weight:700;font-size:13px;color:var(--flag);background:var(--flag-soft);
+    width:30px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:6px;}
+  ol.checks b{color:var(--text);}
+
+  footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--muted);}
+  footer a{color:var(--accent);}
+  .src{font-family:var(--mono);font-size:12.5px;word-break:break-all;}
+
+  @media(max-width:560px){
+    .meta{grid-template-columns:1fr;}
+    .gloss .row{grid-template-columns:1fr;}
+    .gloss .heard{border-right:none;border-bottom:1px solid var(--line);}
+    .step{padding-left:60px;}
+  }
+  @media print{
+    body{background:#fff;}
+    .card,.note,ol.checks li{box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="doc">
+    <p class="eyebrow">Development Request · 開発依頼書</p>
+    <h1>仲介事業部 業務フロー自動化</h1>
+    <p class="subtitle">収益物件（NEMO 01 地方収益 / NEMO 02 関東収益）を対象とした抽出〜登録の半自動化</p>
+    <dl class="meta">
+      <div><dt>依頼元</dt><dd>仲介事業部</dd></div>
+      <div><dt>起票日</dt><dd>2026-06-24</dd></div>
+      <div><dt>対象範囲</dt><dd>収益物件のみ（地方＝NEMO 01 / 関東＝NEMO 02）</dd></div>
+      <div><dt>出典</dt><dd>業務説明動画（約5分24秒）</dd></div>
+    </dl>
+    <div class="links">
+      <a class="btn" href="https://drive.google.com/drive/u/0/folders/1z9a8CgRRIlJLGwF7LsWZLaAqCMY-lQYd" target="_blank" rel="noopener">📁 説明動画フォルダを開く</a>
+      <a class="btn ghost" href="https://drive.google.com/file/d/1wGo3VL6jMUZeltv2saY2abBixaC4RVkb/view" target="_blank" rel="noopener">▶ 動画を直接見る</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>01 — Background</h2>
+    <p class="lead">背景・目的</p>
+    <p>買取事業部ですでに運用している業務フローと同じ流れを、<b>仲介事業部</b>にも構築したい。流れの大枠は従来と同様だが、今回は対象を<b>収益物件に限定</b>する。対象セグメントは、地方の収益物件（NEMO 01）と関東の収益物件（NEMO 02）。</p>
+    <div class="policy">方針：100点の精度は狙わない。70〜80点の精度で「数を稼ぐ」ことが目的。完全自動化にこだわらず、<b>自動化できるところを自動化</b>し、運用負荷を下げる。</div>
+  </section>
+
+  <section>
+    <h2>02 — Segmentation</h2>
+    <p class="lead">対象データの抽出条件</p>
+    <p>買取で検討中のデータ（NEMO）の中から、仲介の対象案件を抽出する。仲介と買取は対象がバッティングするため、<b>買取を優先</b>する（＝買取で扱うものを除いた残りが仲介の検討対象）。抽出条件は次の3つすべてを満たす行：</p>
+    <div class="cond">
+      <span class="chip"><span class="n">①</span> REINS（レインズ）掲載</span>
+      <span class="op">×</span>
+      <span class="chip"><span class="n">②</span> 色がついている行</span>
+      <span class="op">×</span>
+      <span class="chip"><span class="n">③</span>「完了」以下の行も含む</span>
+    </div>
+    <div class="result">対象 ＝ <b>REINS掲載</b> かつ <b>色付き</b> かつ <b>「完了」ライン以下</b> の行</div>
+    <div class="note">「完了」は買取側でチェックを入れたラインを指す。<b>「完了」がついた行および、それより下の行</b>を仲介対象に含める点に注意。「色がついている」の意味（どの色＝どの状態か）は要確認（Q3）。</div>
+  </section>
+
+  <section>
+    <h2>03 — Pipeline</h2>
+    <p class="lead">業務フロー（処理ステップ）</p>
+    <div class="flow">
+
+      <div class="step">
+        <div class="num">01</div>
+        <div class="card">
+          <h3>仲介案件表への転記</h3>
+          <p class="role">Extract → Transcribe</p>
+          <p>抽出条件を満たし「完了」がついた案件を、買取の案件表とは<b>別の「仲介の案件表」</b>に転記する。以降の処理はこの仲介案件表を起点に進む。</p>
+          <div class="tags"><span class="tag semi">半自動 / 自動化希望</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">02</div>
+        <div class="card">
+          <h3>広告承諾書の送付</h3>
+          <p class="role">Outbound</p>
+          <p>仲介案件表に転記された案件に対し、<b>広告承諾書（広告承諾の依頼）をメールで送付</b>する。</p>
+          <ul>
+            <li>メールアドレスが無い相手には、<b>eFAX（FAX送信をメール経由で行う仕組み）</b>で送付。</li>
+            <li>広告承諾書の具体的な内容・フォーマットは別途協議のうえ提示（Q1）。</li>
+          </ul>
+          <div class="tags"><span class="tag semi">半自動</span><span class="tag check">フォーマット要確認</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">03</div>
+        <div class="card">
+          <h3>返信メールの受信 → ドライブへ自動保管</h3>
+          <p class="role">Inbound → Auto-file</p>
+          <p>承諾書送付後、相手から送付状（返信）メールが届く（買取と同様の流れ）。現状は<b>業務委託の担当者が手作業で</b>Googleドライブの所定フォルダへ保管しているが、ここを自動化したい。</p>
+          <ul>
+            <li>仲介専用の<b>エイリアスメール（例：仲介@〜）</b>を新設する。</li>
+            <li>そこに届いたメールと、<b>仲介の管理表（案件表）の住所を照合</b>する。</li>
+            <li>住所が一致したら、<b>該当案件のドライブフォルダへ自動保管</b>する。</li>
+          </ul>
+          <div class="tags"><span class="tag auto">自動化（主目的）</span><span class="tag reuse">既存「買取・案件資料自動保管GAS」を流用可</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">04</div>
+        <div class="card">
+          <h3>概要書の作成 → 共有フォルダ保管</h3>
+          <p class="role">Document</p>
+          <p>保管後、<b>概要書を作成</b>するか、既存の概要書（マイソク）の<b>「帯」（業者名等の表示部分）だけを切った</b>ものを、共有フォルダに保管する。</p>
+          <ul>
+            <li>ここも自動化したいが、難易度が高ければ<b>この工程だけは業務委託</b>に任せる方針でも可。</li>
+          </ul>
+          <div class="tags"><span class="tag semi">自動化希望（難しければ業務委託）</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">05</div>
+        <div class="card">
+          <h3>「ミライ（未来へ）」への登録</h3>
+          <p class="role">Register</p>
+          <p>共有フォルダができたら、その物件を<b>「ミライ（未来へ）」</b>に登録する必要がある。取り込み側の処理で、<b>ミライへの登録まで自動</b>で行けると理想。</p>
+          <div class="tags"><span class="tag semi">自動化希望</span><span class="tag check">システム名・仕様 要確認</span></div>
+        </div>
+      </div>
+
+      <div class="step future">
+        <div class="num">06</div>
+        <div class="card">
+          <h3>将来像：スプレッドシートから直接登録</h3>
+          <p class="role">Future / Ideal</p>
+          <p>件数が増えるため、将来的には<b>スプレッドシート上から直接ミライへ登録</b>できる形にしたい。理想は、<b>共有フォルダに資料が追加された段階で、ミライへ自動登録される</b>システム。</p>
+          <div class="tags"><span class="tag check">構想段階 / 要確認</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>04 — Priority</h2>
+    <p class="lead">自動化の優先度（エンジニア向け整理）</p>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr><th>工程</th><th>内容</th><th>自動化レベル</th><th>備考</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>01 転記</td><td>仲介案件表へ転記</td><td><span class="lv b">半自動</span></td><td>抽出条件（02章）に基づく</td></tr>
+          <tr><td>02 送付</td><td>広告承諾書の送付（メール / eFAX）</td><td><span class="lv b">半自動</span></td><td>承諾書フォーマット未確定</td></tr>
+          <tr><td>03 保管</td><td>受信メール→住所照合→ドライブ保管</td><td><span class="lv a">自動（最優先）</span></td><td>既存買取GASを流用</td></tr>
+          <tr><td>04 概要書</td><td>概要書作成／帯切り→共有フォルダ</td><td><span class="lv c">努力目標</span></td><td>難なら業務委託</td></tr>
+          <tr><td>05 登録</td><td>ミライへ登録</td><td><span class="lv b">半自動</span></td><td>連携仕様要確認</td></tr>
+          <tr><td>06 将来</td><td>スプシ／フォルダ起点の自動登録</td><td><span class="lv c">将来構想</span></td><td>今回スコープ外候補</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>05 — Glossary</h2>
+    <p class="lead">用語・固有名詞メモ</p>
+    <p>本依頼書は説明動画の音声から起こしています。音声認識で誤変換されやすい用語を、業務文脈に基づき補正しました（左：聞き取り時の表記 → 右：正しい用語）。</p>
+    <div class="gloss">
+      <div class="row"><div class="heard">中海／中階／中華<b>→ 仲介</b></div><div>仲介事業部のこと。</div></div>
+      <div class="row"><div class="heard">海鳥<b>→ 買取</b></div><div>買取事業部。仲介と対象がバッティングする。</div></div>
+      <div class="row"><div class="heard">広告証拠書<b>→ 広告承諾書</b></div><div>広告掲載の承諾を得るための書類。</div></div>
+      <div class="row"><div class="heard">転帰<b>→ 転記</b></div><div>別の案件表へ書き写すこと。</div></div>
+      <div class="row"><div class="heard">ねモゼロワン／ゼロウニー<b>→ NEMO 01 / NEMO 02</b></div><div>地方収益＝NEMO 01、関東収益＝NEMO 02。</div></div>
+      <div class="row"><div class="heard">スペシ／スプシ<b>→ スプレッドシート</b></div><div>Googleスプレッドシート。</div></div>
+      <div class="row"><div class="heard">未来へ／ミライ<b>→ 登録先システム（要確認）</b></div><div>物件の登録先。正式名称・仕様は未確定（Q4）。</div></div>
+      <div class="row"><div class="heard">ポテト<b>→ 不明（要確認）</b></div><div>移行先ツール／ポータルの可能性。正式名称は未確定（Q4）。</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>06 — Open Questions</h2>
+    <p class="lead">確認事項（着手前に要確定）</p>
+    <ol class="checks">
+      <li><b>広告承諾書のフォーマット・内容</b>　動画内で「別途協議・提示」とされています。文面・差込項目・送付先の取得元を共有ください。</li>
+      <li><b>「ミライ（未来へ）」の正式名称と連携方法</b>　API・CSV取込・画面登録のいずれか、ログイン方法、登録に必要な項目を確認させてください。</li>
+      <li><b>「色がついている」の定義</b>　NEMO上のどのセル色が、どの状態を意味するのか（例：黄＝検討中 等）の対応表が必要です。</li>
+      <li><b>eFAXの具体的な送信手段</b>　利用中のeFAXサービス名と、メール経由送信の宛先フォーマットを確認させてください。</li>
+      <li><b>既存「買取・案件資料自動保管GAS」の流用範囲</b>　住所照合→ドライブ保管の仕組みを、仲介用に複製してよいか。フォルダ構成・管理表の列構成を共有ください。</li>
+      <li><b>「ポテト」の正体</b>　移行先ツールかポータル名と思われますが、正式名称・用途が不明です。</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p><b>出典</b>：仲介事業部 業務説明動画（CleanShot 画面録画・約5分24秒／2026-06-24）</p>
+    <p class="src"><a href="https://drive.google.com/drive/u/0/folders/1z9a8CgRRIlJLGwF7LsWZLaAqCMY-lQYd" target="_blank" rel="noopener">📁 動画フォルダ</a>　／　<a href="https://drive.google.com/file/d/1wGo3VL6jMUZeltv2saY2abBixaC4RVkb/view" target="_blank" rel="noopener">▶ 動画ファイル</a></p>
+    <p>本書は動画の音声起こしを基に、社内の業務文脈で補正・構造化したものです。固有名詞・フォーマット類は「確認事項」の確定後に追記します。</p>
+  </footer>
+
+</div>
+</body>
+</html>
