@@ -92,7 +92,7 @@
   <header class="doc">
     <p class="eyebrow">Reference · 料金・収支シミュレーション</p>
     <h1>ポータルサイト掲載料金・損益分岐・目標</h1>
-    <p class="subtitle">収益物件の掲載先候補／掲載件数別の料金・合計・損益分岐・目標達成時の利益</p>
+    <p class="subtitle">収益物件の掲載先候補／掲載件数別の料金・人件費・損益分岐・目標達成時の利益</p>
     <div class="links">
       <a class="btn" href="2026-06-25-chukai-dev-request.html">← 開発依頼書に戻る</a>
     </div>
@@ -214,32 +214,34 @@
   <section>
     <h2>02 — Profit Simulation</h2>
     <p class="lead">損益分岐・目標達成時の収支</p>
-    <div class="policy">前提：1件成約あたりの粗利を<b>100万円</b>と仮定。目標は<b>500件あたり7本成約</b>（＝100件あたり1.4本）。<br>損益分岐本数 ＝ 合計掲載料 ÷ 100万円　／　目標達成時の利益 ＝（目標本数 × 100万円）− 合計掲載料。</div>
+    <div class="policy">前提：1件成約あたりの粗利を<b>100万円</b>と仮定。目標は<b>500件あたり7本成約</b>。<b>人件費（業務委託費）は500件あたり30万円</b>（件数に比例）。<br>総コスト ＝ 合計掲載料 ＋ 人件費　／　損益分岐本数 ＝ 総コスト ÷ 100万円　／　目標達成時の利益 ＝（目標本数 × 100万円）− 総コスト。</div>
+    <p class="unit-cap">単位：金額＝万円／本数＝成約件数</p>
     <table class="tbl sum">
       <thead>
         <tr>
-          <th style="width:12%">掲載件数</th>
-          <th>合計掲載料<small>(月額)</small></th>
+          <th style="width:11%">掲載件数</th>
+          <th>掲載料<small>(月額)</small></th>
+          <th>人件費<small>(500件/30万)</small></th>
+          <th class="totcol">総コスト</th>
           <th>損益分岐<small>必要本数</small></th>
           <th>目標本数<small>(500件=7本)</small></th>
-          <th>目標達成時<br>売上</th>
           <th class="profith">目標達成時<br>利益</th>
         </tr>
       </thead>
       <tbody>
-        <tr><th>100 件</th><td>39.6万</td><td>0.4本</td><td class="goal">1.4本</td><td>140万</td><td class="profit">+100.4万</td></tr>
-        <tr><th>200 件</th><td>75.9万</td><td>0.8本</td><td class="goal">2.8本</td><td>280万</td><td class="profit">+204.1万</td></tr>
-        <tr><th>300 件</th><td>107.8万</td><td>1.1本</td><td class="goal">4.2本</td><td>420万</td><td class="profit">+312.2万</td></tr>
-        <tr><th>500 件</th><td>176.0万</td><td>1.8本</td><td class="goal">7本</td><td>700万</td><td class="profit">+524.0万</td></tr>
-        <tr><th>1,000 件</th><td>331.1万</td><td>3.3本</td><td class="goal">14本</td><td>1,400万</td><td class="profit">+1,068.9万</td></tr>
-        <tr><th>1,500 件</th><td>496.1万</td><td>5.0本</td><td class="goal">21本</td><td>2,100万</td><td class="profit">+1,603.9万</td></tr>
-        <tr><th>2,000 件</th><td>661.1万</td><td>6.6本</td><td class="goal">28本</td><td>2,800万</td><td class="profit">+2,138.9万</td></tr>
-        <tr><th>2,500 件</th><td>826.1万</td><td>8.3本</td><td class="goal">35本</td><td>3,500万</td><td class="profit">+2,673.9万</td></tr>
-        <tr><th>3,000 件</th><td>991.1万</td><td>9.9本</td><td class="goal">42本</td><td>4,200万</td><td class="profit">+3,208.9万</td></tr>
+        <tr><th>100 件</th><td>39.6万</td><td>6.0万</td><td class="totcol">45.6万</td><td>0.5本</td><td class="goal">1.4本</td><td class="profit">+94.4万</td></tr>
+        <tr><th>200 件</th><td>75.9万</td><td>12.0万</td><td class="totcol">87.9万</td><td>0.9本</td><td class="goal">2.8本</td><td class="profit">+192.1万</td></tr>
+        <tr><th>300 件</th><td>107.8万</td><td>18.0万</td><td class="totcol">125.8万</td><td>1.3本</td><td class="goal">4.2本</td><td class="profit">+294.2万</td></tr>
+        <tr><th>500 件</th><td>176.0万</td><td>30.0万</td><td class="totcol">206.0万</td><td>2.1本</td><td class="goal">7本</td><td class="profit">+494.0万</td></tr>
+        <tr><th>1,000 件</th><td>331.1万</td><td>60.0万</td><td class="totcol">391.1万</td><td>3.9本</td><td class="goal">14本</td><td class="profit">+1,008.9万</td></tr>
+        <tr><th>1,500 件</th><td>496.1万</td><td>90.0万</td><td class="totcol">586.1万</td><td>5.9本</td><td class="goal">21本</td><td class="profit">+1,513.9万</td></tr>
+        <tr><th>2,000 件</th><td>661.1万</td><td>120.0万</td><td class="totcol">781.1万</td><td>7.8本</td><td class="goal">28本</td><td class="profit">+2,018.9万</td></tr>
+        <tr><th>2,500 件</th><td>826.1万</td><td>150.0万</td><td class="totcol">976.1万</td><td>9.8本</td><td class="goal">35本</td><td class="profit">+2,523.9万</td></tr>
+        <tr><th>3,000 件</th><td>991.1万</td><td>180.0万</td><td class="totcol">1,171.1万</td><td>11.7本</td><td class="goal">42本</td><td class="profit">+3,028.9万</td></tr>
       </tbody>
     </table>
-    <div class="result">どの件数でも<span class="g">目標本数が損益分岐本数を大きく上回り、目標達成時は全て黒字</span>。例：3,000件なら合計掲載料 約<b>991万円/月</b>に対し、目標42本で売上<b>4,200万円</b>・利益 約<span class="g">+3,209万円</span>。</div>
-    <div class="note">合計掲載料は健美家＋アットホーム＋不動産連合体（Yahoo!・スーモは0で集計）。1件あたり粗利100万円は仮定値で、実際の成約単価により変動します。</div>
+    <div class="result">人件費を加えても<span class="g">どの件数でも目標達成時は黒字</span>。例：3,000件なら総コスト 約<b>1,171万円/月</b>（掲載料991万＋人件費180万）に対し、目標42本で売上<b>4,200万円</b>・利益 約<span class="g">+3,029万円</span>。</div>
+    <div class="note">合計掲載料は健美家＋アットホーム＋不動産連合体（Yahoo!・スーモは0で集計）。人件費＝業務委託費 500件あたり30万円（比例計算）。1件あたり粗利100万円は仮定値で、実際の成約単価により変動します。</div>
   </section>
 
   <footer>
