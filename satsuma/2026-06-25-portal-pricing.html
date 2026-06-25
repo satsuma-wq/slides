@@ -3,133 +3,250 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ポータルサイト掲載料金 比較表</title>
+<title>ポータルサイト掲載料金・損益分岐・目標｜収益物件</title>
 <style>
   :root{
-    --bg:#f4f6f8; --card:#fff; --ink:#1f2933; --sub:#52606d;
-    --line:#e4e7eb; --head:#1e3a5f; --head2:#2c5282;
-    --accent:#2c5282; --zebra:#f8fafc; --hot:#fef9e7;
+    --ground:#F4F6FA;--surface:#FFFFFF;--text:#18212E;--muted:#5A6678;
+    --line:#DBE0EA;--accent:#2B4ACB;--accent-soft:#E7ECFB;
+    --flag:#C2410C;--flag-soft:#FBEAE0;--ok:#0E7C5A;--ok-soft:#E2F2EC;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+    --sans:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","YuGothic",Meiryo,system-ui,sans-serif;
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);
-    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,system-ui,sans-serif;
-    line-height:1.6;-webkit-text-size-adjust:100%;}
-  .wrap{max-width:1280px;margin:0 auto;padding:28px 16px 64px;}
-  header h1{font-size:1.45rem;margin:0 0 6px;letter-spacing:.02em;}
-  header p{margin:0;color:var(--sub);font-size:.9rem;}
-  .meta{margin-top:8px;font-size:.78rem;color:#9aa5b1;}
-  .scroll{overflow-x:auto;margin-top:22px;border:1px solid var(--line);
-    border-radius:12px;background:var(--card);box-shadow:0 2px 14px rgba(31,41,51,.06);}
-  table{border-collapse:collapse;width:100%;min-width:1100px;font-size:.86rem;}
-  thead th{background:var(--head);color:#fff;font-weight:600;
-    padding:12px 10px;text-align:center;white-space:nowrap;
-    position:sticky;top:0;border-right:1px solid rgba(255,255,255,.12);}
-  thead th:first-child{text-align:left;background:var(--head2);min-width:230px;
-    position:sticky;left:0;z-index:3;}
-  tbody th{text-align:left;font-weight:600;padding:12px 12px;
-    background:var(--card);position:sticky;left:0;z-index:1;
-    border-right:1px solid var(--line);min-width:230px;}
-  tbody td{padding:11px 10px;text-align:center;white-space:nowrap;
-    border-top:1px solid var(--line);border-right:1px solid var(--line);}
-  tbody tr:nth-child(even) th,tbody tr:nth-child(even) td{background:var(--zebra);}
-  tbody tr:nth-child(even) th{background:#eef2f6;}
-  .site{font-weight:700;font-size:.95rem;color:var(--head);}
-  .note{display:block;font-weight:400;font-size:.74rem;color:var(--sub);margin-top:3px;}
-  .plan{font-weight:600;}
-  .plan .unit,.price .unit{display:block;font-size:.72rem;color:var(--sub);font-weight:400;margin-top:2px;}
-  .price{font-weight:600;}
-  .na{color:#cbd2d9;}
-  .col-current{background:var(--hot)!important;}
-  tbody td.col-current{background:#fdf6d8!important;}
-  footer{margin-top:18px;font-size:.76rem;color:#9aa5b1;}
-  @media(max-width:640px){
-    header h1{font-size:1.15rem}
-    table{font-size:.8rem}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ground);color:var(--text);font-family:var(--sans);
+    line-height:1.8;font-size:16px;-webkit-font-smoothing:antialiased;letter-spacing:.01em;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px 96px;}
+
+  header.doc{padding:56px 0 32px;border-bottom:3px solid var(--text);}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin:0 0 16px;}
+  h1{font-size:clamp(26px,5vw,38px);line-height:1.25;margin:0 0 8px;font-weight:800;}
+  .subtitle{font-size:clamp(15px,2.4vw,18px);color:var(--muted);font-weight:600;margin:0 0 24px;}
+  .links{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--surface);color:var(--accent);
+    text-decoration:none;font-weight:700;font-size:14px;padding:10px 18px;border-radius:8px;
+    border:1px solid var(--accent);transition:opacity .15s;}
+  .btn:hover{opacity:.85;}
+
+  section{margin-top:48px;}
+  h2{font-size:13px;font-family:var(--mono);letter-spacing:.2em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 6px;font-weight:700;}
+  h2 + .lead{font-size:22px;font-weight:800;margin:0 0 16px;}
+  p{margin:0 0 14px;}
+  .policy{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:6px;
+    padding:16px 20px;margin:18px 0;font-weight:600;}
+  .note{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--muted);
+    border-radius:6px;padding:14px 18px;margin:16px 0;font-size:14px;color:var(--muted);}
+  .result{margin-top:16px;font-weight:700;background:var(--text);color:#fff;border-radius:8px;
+    padding:16px 20px;font-size:15.5px;}
+  .result b{color:#9DB2FF;}
+  .result .g{color:#7FE3BE;}
+
+  /* ---- responsive table (no horizontal scroll) ---- */
+  .tbl{width:100%;border-collapse:collapse;background:var(--surface);
+    border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    table-layout:fixed;font-size:14px;margin-top:8px;}
+  .tbl th,.tbl td{padding:9px 5px;text-align:center;border-bottom:1px solid var(--line);
+    border-right:1px solid var(--line);word-break:break-word;}
+  .tbl th:last-child,.tbl td:last-child{border-right:none;}
+  .tbl tr:last-child td{border-bottom:none;}
+  .tbl thead th{background:#1E2A44;color:#fff;font-weight:700;font-size:12.5px;line-height:1.3;
+    padding:11px 4px;}
+  .tbl thead th small{display:block;font-weight:500;font-size:10px;color:#B9C3DA;margin-top:2px;}
+  .tbl tbody th{background:#FAFBFD;font-weight:800;text-align:left;padding-left:9px;font-size:13px;}
+  .tbl .amt{font-weight:700;font-size:14px;}
+  .tbl .u{display:block;font-size:10px;color:var(--muted);font-weight:500;margin-top:1px;}
+  .tbl .zero{color:#B5BECC;font-weight:600;}
+  .tbl tr.cur th,.tbl tr.cur td{background:var(--flag-soft);}
+  .tbl tr.cur td{font-weight:700;}
+  .tbl tr.cur th{color:var(--flag);}
+  /* total column / cells */
+  .tbl .totcol{background:var(--accent-soft);color:var(--accent);font-weight:800;}
+  .tbl thead th.totcol{background:#24369A;color:#fff;}
+  .est{font-size:10px;color:var(--accent);font-weight:700;vertical-align:super;}
+  .unit-cap{font-size:12.5px;color:var(--muted);margin:0 0 8px;font-weight:600;}
+
+  /* summary table */
+  .tbl.sum td.goal{color:var(--accent);font-weight:800;}
+  .tbl.sum td.profit{background:var(--ok-soft);color:var(--ok);font-weight:800;font-size:14.5px;}
+  .tbl.sum th.profith{background:#0E7C5A;}
+
+  footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--muted);}
+  footer a{color:var(--accent);}
+
+  @media(max-width:680px){
+    body{font-size:15px;}
+    .tbl{font-size:11.5px;}
+    .tbl th,.tbl td{padding:6px 2px;}
+    .tbl .amt{font-size:12px;}
+    .tbl .u{font-size:9px;}
+    .tbl tbody th{font-size:11px;padding-left:5px;}
+    .tbl thead th{font-size:10.5px;}
   }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <h1>ポータルサイト掲載料金 比較表</h1>
-    <p>掲載件数別の料金・単価一覧（健美家・アットホーム・Yahoo!不動産・スーモ・不動産連合体）</p>
-    <div class="meta">単価は1件あたりの月額目安／黄色は現在のプラン</div>
+
+  <header class="doc">
+    <p class="eyebrow">Reference · 料金・収支シミュレーション</p>
+    <h1>ポータルサイト掲載料金・損益分岐・目標</h1>
+    <p class="subtitle">収益物件の掲載先候補／掲載件数別の料金・合計・損益分岐・目標達成時の利益</p>
+    <div class="links">
+      <a class="btn" href="2026-06-25-chukai-dev-request.html">← 開発依頼書に戻る</a>
+    </div>
   </header>
 
-  <div class="scroll">
-    <table>
+  <section>
+    <h2>01 — Pricing</h2>
+    <p class="lead">掲載件数別 料金表（合計付き）</p>
+    <p>件数を縦・ポータルを横に並べた一覧。<b>橙色＝現在のプラン</b>、<b>青色＝各社合計</b>。金額は税込・月額の目安、下段は1件あたり単価。</p>
+    <p class="unit-cap">単位：金額＝万円／単価＝円（1件・月あたり）</p>
+    <table class="tbl">
       <thead>
         <tr>
-          <th>ポータルサイト名</th>
-          <th class="col-current">現在のプラン<br>(掲載枠・料金)</th>
-          <th>100 件</th>
-          <th>200 件</th>
-          <th>300 件</th>
-          <th>500 件</th>
-          <th>1,000 件</th>
-          <th>1,500 件</th>
-          <th>2,000 件</th>
-          <th>2,500 件</th>
-          <th>3,000 件</th>
+          <th style="width:12%">掲載件数</th>
+          <th>健美家<small>HOME'S連動</small></th>
+          <th>アットホーム</th>
+          <th>Yahoo!不動産</th>
+          <th>スーモ</th>
+          <th>不動産連合体</th>
+          <th class="totcol">合計</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th><span class="site">健美家</span><span class="note">LIFULL HOME'Sと連動</span></th>
-          <td class="col-current plan">100件 ¥88,000<span class="unit">単価 ¥880</span></td>
-          <td class="price">¥88,000<span class="unit">¥880</span></td>
-          <td class="price">¥198,000<span class="unit">¥990</span></td>
-          <td class="price">¥264,000<span class="unit">¥880</span></td>
-          <td class="price">¥440,000<span class="unit">¥880</span></td>
-          <td class="price">¥880,000<span class="unit">¥880</span></td>
-          <td class="price">¥1,320,000<span class="unit">¥880</span></td>
-          <td class="price">¥1,760,000<span class="unit">¥880</span></td>
-          <td class="price">¥2,200,000<span class="unit">¥880</span></td>
-          <td class="price">¥2,640,000<span class="unit">¥880</span></td>
+        <tr class="cur">
+          <th>現在のプラン</th>
+          <td>8.8万<span class="u">100件/¥880</span></td>
+          <td>15.4万<span class="u">70枠/¥2,200</span></td>
+          <td class="zero">0<span class="u">15枠</span></td>
+          <td class="zero">0<span class="u">15枠</span></td>
+          <td>6.6万<span class="u">80枠/¥825</span></td>
+          <td class="totcol">30.8万</td>
         </tr>
         <tr>
-          <th><span class="site">アットホーム</span><span class="note">定価のため、件数とタイミングによってディスカウント交渉余地有</span></th>
-          <td class="col-current plan">70枠 ¥154,000<span class="unit">単価 ¥2,200／情報処理費用 ¥11,000</span></td>
-          <td class="price">¥231,000<span class="unit">¥2,310</span></td>
-          <td class="price">¥451,000<span class="unit">¥2,255</span></td>
-          <td class="price">¥671,000<span class="unit">¥2,237</span></td>
-          <td class="price">¥1,111,000<span class="unit">¥2,222</span></td>
-          <td class="price">¥2,211,000<span class="unit">¥2,211</span></td>
-          <td class="price">¥3,311,000<span class="unit">¥2,207</span></td>
-          <td class="price">¥4,411,000<span class="unit">¥2,206</span></td>
-          <td class="price">¥5,511,000<span class="unit">¥2,204</span></td>
-          <td class="price">¥6,611,000<span class="unit">¥2,204</span></td>
+          <th>100 件</th>
+          <td class="amt">8.8万<span class="u">¥880</span></td>
+          <td class="amt">23.1万<span class="u">¥2,310</span></td>
+          <td class="zero">0</td>
+          <td class="zero">0</td>
+          <td class="amt">7.7万<span class="u">¥770</span></td>
+          <td class="totcol">39.6万</td>
         </tr>
         <tr>
-          <th><span class="site">Yahoo!不動産</span></th>
-          <td class="col-current plan">15枠 ¥57,750<span class="unit">単価 ¥3,850</span></td>
-          <td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td>
-          <td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td>
+          <th>200 件</th>
+          <td class="amt">19.8万<span class="u">¥990</span></td>
+          <td class="amt">45.1万<span class="u">¥2,255</span></td>
+          <td class="zero">0</td>
+          <td class="zero">0</td>
+          <td class="amt">11.0万<span class="u">¥550</span></td>
+          <td class="totcol">75.9万</td>
         </tr>
         <tr>
-          <th><span class="site">スーモ</span></th>
-          <td class="col-current plan">15枠 ¥127,050<span class="unit">単価 ¥8,470</span></td>
-          <td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td>
-          <td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td>
+          <th>300 件</th>
+          <td class="amt">26.4万<span class="u">¥880</span></td>
+          <td class="amt">67.1万<span class="u">¥2,237</span></td>
+          <td class="zero">0</td>
+          <td class="zero">0</td>
+          <td class="amt">14.3万<span class="u">¥477</span></td>
+          <td class="totcol">107.8万</td>
         </tr>
         <tr>
-          <th><span class="site">不動産連合体</span><span class="note">1,000件以上（ボリュームディスカウント適用）</span></th>
-          <td class="col-current plan">80枠 ¥66,000<span class="unit">単価 ¥825</span></td>
-          <td class="price">¥77,000<span class="unit">¥770</span></td>
-          <td class="price">¥110,000<span class="unit">¥550</span></td>
-          <td class="price">¥143,000<span class="unit">¥477</span></td>
-          <td class="price">¥209,000<span class="unit">¥418</span></td>
-          <td class="price">¥220,000<span class="unit">¥220</span></td>
-          <td class="price">¥330,000<span class="unit">¥220</span></td>
-          <td class="price">¥440,000<span class="unit">¥220</span></td>
-          <td class="price">¥550,000<span class="unit">¥220</span></td>
-          <td class="price">¥660,000<span class="unit">¥220</span></td>
+          <th>500 件</th>
+          <td class="amt">44.0万<span class="u">¥880</span></td>
+          <td class="amt">111.1万<span class="u">¥2,222</span></td>
+          <td class="zero">0</td>
+          <td class="zero">0</td>
+          <td class="amt">20.9万<span class="u">¥418</span></td>
+          <td class="totcol">176.0万</td>
+        </tr>
+        <tr>
+          <th>1,000 件</th>
+          <td class="amt">88.0万<span class="u">¥880</span></td>
+          <td class="amt">221.1万<span class="u">¥2,211</span></td>
+          <td class="zero">0</td>
+          <td class="zero">0</td>
+          <td class="amt">22.0万<span class="u">¥220</span></td>
+          <td class="totcol">331.1万</td>
+        </tr>
+        <tr>
+          <th>1,500 件</th>
+          <td class="amt">132.0万<span class="u">¥880</span></td>
+          <td class="amt">331.1万<span class="u">¥2,207</span></td>
+          <td class="zero">0</td>
+          <td class="zero">0</td>
+          <td class="amt">33.0万<span class="u">¥220</span></td>
+          <td class="totcol">496.1万</td>
+        </tr>
+        <tr>
+          <th>2,000 件</th>
+          <td class="amt">176.0万<span class="u">¥880</span></td>
+          <td class="amt">441.1万<span class="u">¥2,206</span></td>
+          <td class="zero">0</td>
+          <td class="zero">0</td>
+          <td class="amt">44.0万<span class="u">¥220</span></td>
+          <td class="totcol">661.1万</td>
+        </tr>
+        <tr>
+          <th>2,500 件</th>
+          <td class="amt">220.0万<span class="u">¥880</span></td>
+          <td class="amt">551.1万<span class="u">¥2,204</span></td>
+          <td class="zero">0</td>
+          <td class="zero">0</td>
+          <td class="amt">55.0万<span class="u">¥220</span></td>
+          <td class="totcol">826.1万</td>
+        </tr>
+        <tr>
+          <th>3,000 件</th>
+          <td class="amt">264.0万<span class="u">¥880</span></td>
+          <td class="amt">661.1万<span class="u">¥2,204</span></td>
+          <td class="zero">0</td>
+          <td class="zero">0</td>
+          <td class="amt">66.0万<span class="u">¥220</span></td>
+          <td class="totcol">991.1万</td>
         </tr>
       </tbody>
     </table>
-  </div>
+    <div class="note"><b>Yahoo!不動産・スーモは料金未確定のため、一旦ゼロ（0）として集計しています。</b>確定後に金額を反映します。合計は健美家＋アットホーム＋不動産連合体の3社分です。</div>
+  </section>
 
-  <footer>※ 料金は税込・月額の目安。Yahoo!不動産・スーモは件数別プランの提供なし。</footer>
+  <section>
+    <h2>02 — Profit Simulation</h2>
+    <p class="lead">損益分岐・目標達成時の収支</p>
+    <div class="policy">前提：1件成約あたりの粗利を<b>100万円</b>と仮定。目標は<b>500件あたり7本成約</b>（＝100件あたり1.4本）。<br>損益分岐本数 ＝ 合計掲載料 ÷ 100万円　／　目標達成時の利益 ＝（目標本数 × 100万円）− 合計掲載料。</div>
+    <table class="tbl sum">
+      <thead>
+        <tr>
+          <th style="width:12%">掲載件数</th>
+          <th>合計掲載料<small>(月額)</small></th>
+          <th>損益分岐<small>必要本数</small></th>
+          <th>目標本数<small>(500件=7本)</small></th>
+          <th>目標達成時<br>売上</th>
+          <th class="profith">目標達成時<br>利益</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th>100 件</th><td>39.6万</td><td>0.4本</td><td class="goal">1.4本</td><td>140万</td><td class="profit">+100.4万</td></tr>
+        <tr><th>200 件</th><td>75.9万</td><td>0.8本</td><td class="goal">2.8本</td><td>280万</td><td class="profit">+204.1万</td></tr>
+        <tr><th>300 件</th><td>107.8万</td><td>1.1本</td><td class="goal">4.2本</td><td>420万</td><td class="profit">+312.2万</td></tr>
+        <tr><th>500 件</th><td>176.0万</td><td>1.8本</td><td class="goal">7本</td><td>700万</td><td class="profit">+524.0万</td></tr>
+        <tr><th>1,000 件</th><td>331.1万</td><td>3.3本</td><td class="goal">14本</td><td>1,400万</td><td class="profit">+1,068.9万</td></tr>
+        <tr><th>1,500 件</th><td>496.1万</td><td>5.0本</td><td class="goal">21本</td><td>2,100万</td><td class="profit">+1,603.9万</td></tr>
+        <tr><th>2,000 件</th><td>661.1万</td><td>6.6本</td><td class="goal">28本</td><td>2,800万</td><td class="profit">+2,138.9万</td></tr>
+        <tr><th>2,500 件</th><td>826.1万</td><td>8.3本</td><td class="goal">35本</td><td>3,500万</td><td class="profit">+2,673.9万</td></tr>
+        <tr><th>3,000 件</th><td>991.1万</td><td>9.9本</td><td class="goal">42本</td><td>4,200万</td><td class="profit">+3,208.9万</td></tr>
+      </tbody>
+    </table>
+    <div class="result">どの件数でも<span class="g">目標本数が損益分岐本数を大きく上回り、目標達成時は全て黒字</span>。例：3,000件なら合計掲載料 約<b>991万円/月</b>に対し、目標42本で売上<b>4,200万円</b>・利益 約<span class="g">+3,209万円</span>。</div>
+    <div class="note">合計掲載料は健美家＋アットホーム＋不動産連合体（Yahoo!・スーモは0で集計）。1件あたり粗利100万円は仮定値で、実際の成約単価により変動します。</div>
+  </section>
+
+  <footer>
+    <p>収益物件（NEMO 01 地方収益 / NEMO 02 関東収益）の掲載先選定向け資料。<a href="2026-06-25-chukai-dev-request.html">開発依頼書はこちら</a>。</p>
+    <p>金額・単価は提示資料に基づく目安です。Yahoo!不動産・スーモは料金未確定のため一旦ゼロで集計しています。</p>
+  </footer>
+
 </div>
 </body>
 </html>
