@@ -124,6 +124,21 @@
     width:30px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:6px;}
   ol.checks b{color:var(--text);}
 
+  /* ---- pricing matrix ---- */
+  table.price{min-width:980px;font-size:13.5px;}
+  table.price th,table.price td{text-align:center;white-space:nowrap;padding:10px 12px;}
+  table.price thead th{position:sticky;top:0;}
+  table.price thead th.cur{color:var(--flag);background:var(--flag-soft);}
+  table.price tbody th{text-align:left;white-space:normal;min-width:200px;position:sticky;left:0;
+    background:#FAFBFD;z-index:1;font-family:var(--sans);text-transform:none;letter-spacing:0;
+    color:var(--text);font-size:14px;font-weight:800;}
+  table.price tbody th small{display:block;font-weight:500;font-size:11.5px;color:var(--muted);
+    margin-top:3px;line-height:1.5;}
+  table.price td .u{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-top:2px;}
+  table.price td.cur{background:var(--flag-soft);font-weight:700;}
+  table.price td.na{color:#C2CAD6;}
+  table.price .amt{font-weight:700;}
+
   footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);
     font-size:13px;color:var(--muted);}
   footer a{color:var(--accent);}
@@ -309,6 +324,78 @@
       <li><b>既存「買取・案件資料自動保管GAS」の流用範囲</b>　住所照合→ドライブ保管の仕組みを、仲介用に複製してよいか。フォルダ構成・管理表の列構成を共有ください。</li>
       <li><b>「ポテト」の正体</b>　移行先ツールかポータル名と思われますが、正式名称・用途が不明です。</li>
     </ol>
+  </section>
+
+  <section>
+    <h2>07 — Reference</h2>
+    <p class="lead">参考資料：ポータルサイト掲載料金 比較表</p>
+    <p>収益物件の掲載先候補について、掲載件数別の料金・単価をまとめたもの。<b>橙色＝現在のプラン</b>。単価は1件あたりの月額目安（税込）。</p>
+    <div class="scroll">
+      <table class="price">
+        <thead>
+          <tr>
+            <th>ポータルサイト名</th>
+            <th class="cur">現在のプラン<br>(掲載枠・料金)</th>
+            <th>100 件</th><th>200 件</th><th>300 件</th><th>500 件</th>
+            <th>1,000 件</th><th>1,500 件</th><th>2,000 件</th><th>2,500 件</th><th>3,000 件</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>健美家<small>LIFULL HOME'Sと連動</small></th>
+            <td class="cur">100件 ¥88,000<span class="u">単価 ¥880</span></td>
+            <td class="amt">¥88,000<span class="u">¥880</span></td>
+            <td class="amt">¥198,000<span class="u">¥990</span></td>
+            <td class="amt">¥264,000<span class="u">¥880</span></td>
+            <td class="amt">¥440,000<span class="u">¥880</span></td>
+            <td class="amt">¥880,000<span class="u">¥880</span></td>
+            <td class="amt">¥1,320,000<span class="u">¥880</span></td>
+            <td class="amt">¥1,760,000<span class="u">¥880</span></td>
+            <td class="amt">¥2,200,000<span class="u">¥880</span></td>
+            <td class="amt">¥2,640,000<span class="u">¥880</span></td>
+          </tr>
+          <tr>
+            <th>アットホーム<small>定価のため、件数とタイミングによってディスカウント交渉余地有</small></th>
+            <td class="cur">70枠 ¥154,000<span class="u">単価 ¥2,200／情報処理費用 ¥11,000</span></td>
+            <td class="amt">¥231,000<span class="u">¥2,310</span></td>
+            <td class="amt">¥451,000<span class="u">¥2,255</span></td>
+            <td class="amt">¥671,000<span class="u">¥2,237</span></td>
+            <td class="amt">¥1,111,000<span class="u">¥2,222</span></td>
+            <td class="amt">¥2,211,000<span class="u">¥2,211</span></td>
+            <td class="amt">¥3,311,000<span class="u">¥2,207</span></td>
+            <td class="amt">¥4,411,000<span class="u">¥2,206</span></td>
+            <td class="amt">¥5,511,000<span class="u">¥2,204</span></td>
+            <td class="amt">¥6,611,000<span class="u">¥2,204</span></td>
+          </tr>
+          <tr>
+            <th>Yahoo!不動産</th>
+            <td class="cur">15枠 ¥57,750<span class="u">単価 ¥3,850</span></td>
+            <td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td>
+            <td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td>
+          </tr>
+          <tr>
+            <th>スーモ</th>
+            <td class="cur">15枠 ¥127,050<span class="u">単価 ¥8,470</span></td>
+            <td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td>
+            <td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td><td class="na">—</td>
+          </tr>
+          <tr>
+            <th>不動産連合体<small>1,000件以上（ボリュームディスカウント適用）</small></th>
+            <td class="cur">80枠 ¥66,000<span class="u">単価 ¥825</span></td>
+            <td class="amt">¥77,000<span class="u">¥770</span></td>
+            <td class="amt">¥110,000<span class="u">¥550</span></td>
+            <td class="amt">¥143,000<span class="u">¥477</span></td>
+            <td class="amt">¥209,000<span class="u">¥418</span></td>
+            <td class="amt">¥220,000<span class="u">¥220</span></td>
+            <td class="amt">¥330,000<span class="u">¥220</span></td>
+            <td class="amt">¥440,000<span class="u">¥220</span></td>
+            <td class="amt">¥550,000<span class="u">¥220</span></td>
+            <td class="amt">¥660,000<span class="u">¥220</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">Yahoo!不動産・スーモは件数別プランの提供がないため「—」。料金は税込・月額の目安です。</div>
   </section>
 
   <footer>
