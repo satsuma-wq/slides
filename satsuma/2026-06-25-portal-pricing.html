@@ -101,6 +101,30 @@
   .tbl.sum td.goal{color:var(--accent);font-weight:800;}
   .tbl.sum td.profit{background:var(--ok-soft);color:var(--ok);font-weight:800;font-size:14.5px;}
   .tbl.sum th.profith{background:#0E7C5A;}
+  .tbl tr.mile th,.tbl tr.mile td{background:var(--accent-soft);font-weight:800;}
+  .tbl tr.mile th{color:var(--accent);}
+
+  /* flow / funnel */
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:18px 0;}
+  .flow .step{flex:1;min-width:150px;background:var(--surface);border:1px solid var(--line);
+    border-radius:10px;padding:13px 15px;}
+  .flow .step.accent{background:var(--accent-soft);border-color:var(--accent);}
+  .flow .step.ok{background:var(--ok-soft);border-color:#9FD9C5;}
+  .flow .step .k{font-size:11px;font-family:var(--mono);letter-spacing:.06em;color:var(--muted);font-weight:600;}
+  .flow .step .v{font-size:22px;font-weight:800;line-height:1.15;margin-top:3px;}
+  .flow .step .v small{font-size:12px;color:var(--muted);font-weight:600;}
+  .flow .step .d{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.5;}
+  .flow .step.accent .v{color:var(--accent);}
+  .flow .step.ok .v{color:var(--ok);}
+  .flow .ar{flex:0 0 auto;color:var(--accent);font-weight:800;font-size:18px;line-height:1;}
+
+  /* svg chart */
+  .chart{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 12px 8px;margin-top:8px;}
+  .chart svg{width:100%;height:auto;display:block;}
+  .legend{display:flex;flex-wrap:wrap;gap:18px;font-size:12.5px;color:var(--muted);margin-top:8px;padding:0 4px;}
+  .legend span{display:inline-flex;align-items:center;}
+  .legend i{display:inline-block;width:16px;height:3px;background:var(--accent);margin-right:6px;border-radius:2px;}
+  .legend i.dash{height:0;width:16px;border-top:2px dashed var(--flag);background:none;}
 
   @media(max-width:680px){
     body{font-size:15px;}
@@ -111,6 +135,7 @@
     .tbl tbody th{font-size:11px;padding-left:5px;}
     .tbl thead th{font-size:10.5px;}
     .stat .v{font-size:22px;}
+    .flow .ar{transform:rotate(90deg);width:100%;text-align:center;}
   }
 </style>
 </head>
@@ -120,7 +145,7 @@
   <header class="doc">
     <p class="eyebrow">Reference · 料金・収支シミュレーション</p>
     <h1>ポータルサイト掲載料金・損益分岐・目標</h1>
-    <p class="subtitle">直近3日間の対象案件実績（平均利益ベース）と、掲載先候補・件数別料金・損益分岐・目標達成時の利益</p>
+    <p class="subtitle">直近実績（平均利益ベース）・新規承諾フロー・在庫推移シミュレーション・掲載先候補別料金・損益分岐・目標達成時の利益</p>
   </header>
 
   <section>
@@ -170,7 +195,91 @@
   </section>
 
   <section>
-    <h2>02 — Pricing</h2>
+    <h2>02 — Growth Model</h2>
+    <p class="lead">新規承諾フロー・在庫推移・在庫400件時の収支</p>
+    <p>直近実績の<b>3日で122件</b>は月換算 約<b>1,200件</b>。この1,200件へ広告承諾書を送付し、承諾率 約<b>20%</b>＝毎月 約<b>240件</b>が新規掲載。掲載後は毎月 約<b>10%</b>が成約・削除されるため、差し引きで在庫は段階的に増加します。</p>
+
+    <div class="flow">
+      <div class="step"><div class="k">月間対象 (送付)</div><div class="v">1,200<small>件</small></div><div class="d">122件/3日 ≒ 月1,200件</div></div>
+      <div class="ar">×20%→</div>
+      <div class="step accent"><div class="k">新規掲載 / 月</div><div class="v">240<small>件</small></div><div class="d">広告承諾率 約20%</div></div>
+      <div class="ar">−10%↻</div>
+      <div class="step ok"><div class="k">毎月 売却・削除</div><div class="v">10<small>%</small></div><div class="d">在庫の約1割が成約で消える</div></div>
+    </div>
+    <div class="note">在庫推移モデル：<b>在庫(翌月) ＝（当月在庫 ＋ 新規240件）×（1 − 売却10%）</b>。新規流入と売却が均衡する長期の上限は約<b>2,160件</b>。</div>
+
+    <p class="unit-cap" style="margin-top:22px">在庫件数の推移（12ヶ月・モデル試算）</p>
+    <div class="chart">
+      <svg viewBox="0 0 720 340" role="img" aria-label="在庫件数の12ヶ月推移グラフ">
+        <g stroke="#E3E8F0" stroke-width="1">
+          <line x1="44" y1="16" x2="704" y2="16"/>
+          <line x1="44" y1="88" x2="704" y2="88"/>
+          <line x1="44" y1="160" x2="704" y2="160"/>
+          <line x1="44" y1="232" x2="704" y2="232"/>
+          <line x1="44" y1="304" x2="704" y2="304"/>
+        </g>
+        <g fill="#5A6678" font-size="11" font-family="sans-serif" text-anchor="end">
+          <text x="38" y="20">1,600</text>
+          <text x="38" y="92">1,200</text>
+          <text x="38" y="164">800</text>
+          <text x="38" y="236">400</text>
+          <text x="38" y="308">0</text>
+        </g>
+        <line x1="44" y1="232" x2="704" y2="232" stroke="#C2410C" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <text x="702" y="226" fill="#C2410C" font-size="11" font-weight="700" font-family="sans-serif" text-anchor="end">在庫400件ライン（≈2ヶ月目で到達）</text>
+        <polygon points="44,304 99,265.1 154,230.2 209,198.7 264,170.3 319,144.7 374,121.8 429,101.1 484,82.6 539,65.9 594,50.7 649,37.2 704,25 704,304 44,304" fill="#E7ECFB"/>
+        <polyline points="44,304 99,265.1 154,230.2 209,198.7 264,170.3 319,144.7 374,121.8 429,101.1 484,82.6 539,65.9 594,50.7 649,37.2 704,25" fill="none" stroke="#2B4ACB" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <g fill="#2B4ACB">
+          <circle cx="44" cy="304" r="3"/><circle cx="99" cy="265.1" r="3.5"/><circle cx="154" cy="230.2" r="3.5"/>
+          <circle cx="209" cy="198.7" r="3"/><circle cx="264" cy="170.3" r="3"/><circle cx="319" cy="144.7" r="3"/>
+          <circle cx="374" cy="121.8" r="3.5"/><circle cx="429" cy="101.1" r="3"/><circle cx="484" cy="82.6" r="3"/>
+          <circle cx="539" cy="65.9" r="3"/><circle cx="594" cy="50.7" r="3"/><circle cx="649" cy="37.2" r="3"/><circle cx="704" cy="25" r="3.5"/>
+        </g>
+        <g fill="#18212E" font-size="11.5" font-weight="700" font-family="sans-serif" text-anchor="middle">
+          <text x="99" y="257">220</text>
+          <text x="158" y="222">410</text>
+          <text x="374" y="113">1,012</text>
+          <text x="700" y="20" text-anchor="end">1,550</text>
+        </g>
+        <g fill="#5A6678" font-size="11" font-family="sans-serif" text-anchor="middle">
+          <text x="44" y="322">0</text><text x="99" y="322">1</text><text x="154" y="322">2</text><text x="209" y="322">3</text>
+          <text x="264" y="322">4</text><text x="319" y="322">5</text><text x="374" y="322">6</text><text x="429" y="322">7</text>
+          <text x="484" y="322">8</text><text x="539" y="322">9</text><text x="594" y="322">10</text><text x="649" y="322">11</text><text x="704" y="322">12</text>
+          <text x="374" y="337" font-weight="600">経過月数（月）</text>
+        </g>
+      </svg>
+      <div class="legend">
+        <span><i></i>在庫件数（月末）</span>
+        <span><i class="dash"></i>在庫400件ライン</span>
+      </div>
+    </div>
+
+    <p class="unit-cap" style="margin-top:24px">在庫レベル別 収支サマリー（粗利180万円／件・人件費500件30万円比例）</p>
+    <table class="tbl sum">
+      <thead>
+        <tr>
+          <th style="width:13%">在庫件数</th>
+          <th>到達<small>目安</small></th>
+          <th>月間コスト<small>掲載料+人件費</small></th>
+          <th>損益分岐<small>必要本数/売上</small></th>
+          <th>目標本数<small>(500件=7本)</small></th>
+          <th>必要売上<small>(手数料)</small></th>
+          <th class="profith">目標達成時<br>利益/月</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th>220 件</th><td>約1ヶ月</td><td class="totcol">95.5万</td><td>0.5本<span class="u">売上96万</span></td><td class="goal">3.1本</td><td>554万</td><td class="profit">+459万</td></tr>
+        <tr class="mile"><th>400 件</th><td>約2ヶ月</td><td class="totcol">165.9万</td><td>0.9本<span class="u">売上166万</span></td><td class="goal">5.6本</td><td>1,008万</td><td class="profit">+842万</td></tr>
+        <tr><th>1,000 件</th><td>約6ヶ月</td><td class="totcol">391.1万</td><td>2.2本<span class="u">売上391万</span></td><td class="goal">14本</td><td>2,520万</td><td class="profit">+2,129万</td></tr>
+        <tr><th>1,550 件</th><td>約12ヶ月</td><td class="totcol">605.6万</td><td>3.4本<span class="u">売上606万</span></td><td class="goal">21.7本</td><td>3,906万</td><td class="profit">+3,300万</td></tr>
+      </tbody>
+    </table>
+    <div class="result"><b>在庫400件（≈2ヶ月）</b>時点：月間コストは約<b>166万円</b>（掲載料141.9万＋人件費24万）。<span class="g">月0.9本（売上166万円）で黒字化</span>し、目標5.6本なら売上<b>1,008万円</b>・利益 約<span class="g">+842万円/月</span>。在庫が増えるほど必要本数（損益分岐）も緩やかに上がりますが、目標利益は在庫に比例して拡大します。</div>
+    <div class="note">「必要売上＝仲介手数料（＝1本180万円×成約本数）」。利益＝手数料収入 − 掲載料 − 人件費。掲載料は健美家＋アットホーム＋不動産連合体の3社合計（Yahoo!・スーモは実数向けのため対象外）を在庫件数で按分。本数・金額はモデル試算で、承諾率・売却率・成約単価により変動します。</div>
+  </section>
+
+  <section>
+    <h2>03 — Pricing</h2>
     <p class="lead">掲載件数別 料金表（合計付き）</p>
     <p>件数を縦・ポータルを横に並べた一覧。<b>橙色＝現在のプラン</b>、<b>青色＝各社合計</b>。金額は税込・月額の目安、下段は1件あたり単価。料金はスプレッドシート最新値を反映。</p>
     <p class="unit-cap">単位：金額＝万円／単価＝円（1件・月あたり）</p>
@@ -283,8 +392,8 @@
   </section>
 
   <section>
-    <h2>03 — Profit Simulation</h2>
-    <p class="lead">損益分岐・目標達成時の収支</p>
+    <h2>04 — Profit Simulation</h2>
+    <p class="lead">掲載件数別 損益分岐・目標達成時の収支</p>
     <div class="policy">前提：1件成約あたりの粗利を<b>180万円</b>（上の実績＝平均単価5,642万円 × 仲介手数料3%）とする。目標は<b>500件あたり7本成約</b>。<b>人件費（業務委託費）は500件あたり30万円</b>（件数に比例）。<br>総コスト ＝ 合計掲載料 ＋ 人件費　／　損益分岐本数 ＝ 総コスト ÷ 180万円　／　目標達成時の利益 ＝（目標本数 × 180万円）− 総コスト。</div>
     <p class="unit-cap">単位：金額＝万円／本数＝成約件数</p>
     <table class="tbl sum">
