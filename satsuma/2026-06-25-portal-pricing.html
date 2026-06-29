@@ -42,6 +42,19 @@
   .result b{color:#9DB2FF;}
   .result .g{color:#7FE3BE;}
 
+  /* ---- stat cards ---- */
+  .stats{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0;}
+  .stat{flex:1;min-width:120px;background:var(--surface);border:1px solid var(--line);
+    border-radius:10px;padding:14px 16px;}
+  .stat .k{font-size:11px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;}
+  .stat .v{font-size:26px;font-weight:800;margin-top:4px;line-height:1.1;}
+  .stat .v small{font-size:13px;color:var(--muted);font-weight:600;margin-left:2px;}
+  .stat.hi{background:var(--text);border-color:var(--text);}
+  .stat.hi .k{color:#9DB2FF;}
+  .stat.hi .v{color:#fff;}
+  .stat.hi .v small{color:#B9C3DA;}
+
   /* ---- responsive table (no horizontal scroll) ---- */
   .tbl{width:100%;border-collapse:collapse;background:var(--surface);
     border:1px solid var(--line);border-radius:10px;overflow:hidden;
@@ -66,14 +79,28 @@
   .est{font-size:10px;color:var(--accent);font-weight:700;vertical-align:super;}
   .unit-cap{font-size:12.5px;color:var(--muted);margin:0 0 8px;font-weight:600;}
 
-  /* summary table */
-  .tbl.sum td.goal{color:var(--accent);font-weight:800;}
-  .tbl.sum td.profit{background:var(--ok-soft);color:var(--ok);font-weight:800;font-size:14.5px;}
-  .tbl.sum th.profith{background:#0E7C5A;}
+  /* excluded portals (実数向け・対象外) */
+  .tbl thead th.excl{background:#3A4358;color:#C7CDD9;}
+  .tbl thead th.excl .x{display:inline-block;background:var(--flag);color:#fff;font-size:9px;
+    font-weight:700;padding:1px 6px;border-radius:4px;margin-top:3px;letter-spacing:.04em;}
+  .tbl td.excl{background:#F6F7FA;color:#A7AFBD;font-weight:600;
+    text-decoration:line-through;text-decoration-color:#CDD3DC;}
+  .tbl tr.cur td.excl{background:#F0EEEC;}
+
+  /* price distribution bars */
+  .dist td:nth-child(1),.dist th:nth-child(1){text-align:left;padding-left:10px;font-weight:700;}
+  .dist td:last-child{padding:9px 10px;}
+  .bar-wrap{background:var(--accent-soft);border-radius:5px;height:15px;width:100%;overflow:hidden;}
+  .bar-fill{background:var(--accent);height:100%;border-radius:5px;min-width:2px;}
 
   footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);
     font-size:13px;color:var(--muted);}
   footer a{color:var(--accent);}
+
+  /* summary table */
+  .tbl.sum td.goal{color:var(--accent);font-weight:800;}
+  .tbl.sum td.profit{background:var(--ok-soft);color:var(--ok);font-weight:800;font-size:14.5px;}
+  .tbl.sum th.profith{background:#0E7C5A;}
 
   @media(max-width:680px){
     body{font-size:15px;}
@@ -83,6 +110,7 @@
     .tbl .u{font-size:9px;}
     .tbl tbody th{font-size:11px;padding-left:5px;}
     .tbl thead th{font-size:10.5px;}
+    .stat .v{font-size:22px;}
   }
 </style>
 </head>
@@ -92,13 +120,59 @@
   <header class="doc">
     <p class="eyebrow">Reference · 料金・収支シミュレーション</p>
     <h1>ポータルサイト掲載料金・損益分岐・目標</h1>
-    <p class="subtitle">収益物件の掲載先候補／掲載件数別の料金・人件費・損益分岐・目標達成時の利益</p>
+    <p class="subtitle">直近3日間の対象案件実績（平均利益ベース）と、掲載先候補・件数別料金・損益分岐・目標達成時の利益</p>
   </header>
 
   <section>
-    <h2>01 — Pricing</h2>
+    <h2>01 — Recent Results</h2>
+    <p class="lead">直近3日間の仲介対象案件と平均利益</p>
+    <p>NEMO在庫表（01 地方収益／02 関東収益）から、<b>REINS掲載・網掛け対象・住所あり</b>を満たす行を取得日ベースで集計した実績です。<b>6/26〜6/28</b>の3日間で対象は<b>合計122件</b>。</p>
+
+    <div class="stats">
+      <div class="stat hi"><div class="k">合計 (3日間)</div><div class="v">122<small>件</small></div></div>
+      <div class="stat"><div class="k">6/26</div><div class="v">59<small>件</small></div></div>
+      <div class="stat"><div class="k">6/27</div><div class="v">41<small>件</small></div></div>
+      <div class="stat"><div class="k">6/28</div><div class="v">22<small>件</small></div></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="k">NEMO-01 地方収益</div><div class="v">88<small>件</small></div></div>
+      <div class="stat"><div class="k">NEMO-02 関東収益</div><div class="v">34<small>件</small></div></div>
+    </div>
+
+    <p class="unit-cap" style="margin-top:26px">価格帯分布（取得日6/26〜6/28・万円）</p>
+    <table class="tbl dist">
+      <thead>
+        <tr>
+          <th style="width:30%">価格帯</th>
+          <th style="width:15%">件数</th>
+          <th style="width:15%">構成比</th>
+          <th>分布</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th>〜3,000万</th><td>76件</td><td>62.3%</td><td><div class="bar-wrap"><div class="bar-fill" style="width:62.3%"></div></div></td></tr>
+        <tr><th>3,000〜5,000万</th><td>12件</td><td>9.8%</td><td><div class="bar-wrap"><div class="bar-fill" style="width:9.8%"></div></div></td></tr>
+        <tr><th>5,000万〜1億</th><td>16件</td><td>13.1%</td><td><div class="bar-wrap"><div class="bar-fill" style="width:13.1%"></div></div></td></tr>
+        <tr><th>1億〜2億</th><td>10件</td><td>8.2%</td><td><div class="bar-wrap"><div class="bar-fill" style="width:8.2%"></div></div></td></tr>
+        <tr><th>2億〜3億</th><td>5件</td><td>4.1%</td><td><div class="bar-wrap"><div class="bar-fill" style="width:4.1%"></div></div></td></tr>
+        <tr><th>3億〜</th><td>3件</td><td>2.5%</td><td><div class="bar-wrap"><div class="bar-fill" style="width:2.5%"></div></div></td></tr>
+      </tbody>
+    </table>
+
+    <div class="stats" style="margin-top:14px">
+      <div class="stat"><div class="k">中央値</div><div class="v">2,200<small>万円</small></div></div>
+      <div class="stat"><div class="k">平均単価</div><div class="v">5,642<small>万円</small></div></div>
+      <div class="stat"><div class="k">最小</div><div class="v">280<small>万円</small></div></div>
+      <div class="stat"><div class="k">最大</div><div class="v">6.5<small>億円</small></div></div>
+    </div>
+
+    <div class="policy">平均単価<b>5,642万円</b> × 仲介手数料<b>3%</b> ≒ <b>約180万円／件</b>。これを下の損益分岐シミュレーションの「1件あたり粗利」前提に採用（従来の仮定100万円から更新）。<br>※6割超（62.3%）が3,000万円以下の小ぶりな物件に集中。中央値2,200万円。</div>
+  </section>
+
+  <section>
+    <h2>02 — Pricing</h2>
     <p class="lead">掲載件数別 料金表（合計付き）</p>
-    <p>件数を縦・ポータルを横に並べた一覧。<b>橙色＝現在のプラン</b>、<b>青色＝各社合計</b>。金額は税込・月額の目安、下段は1件あたり単価。</p>
+    <p>件数を縦・ポータルを横に並べた一覧。<b>橙色＝現在のプラン</b>、<b>青色＝各社合計</b>。金額は税込・月額の目安、下段は1件あたり単価。料金はスプレッドシート最新値を反映。</p>
     <p class="unit-cap">単位：金額＝万円／単価＝円（1件・月あたり）</p>
     <table class="tbl">
       <thead>
@@ -106,10 +180,10 @@
           <th style="width:12%">掲載件数</th>
           <th>健美家<small>HOME'S連動</small></th>
           <th>アットホーム</th>
-          <th>Yahoo!不動産</th>
-          <th>スーモ</th>
+          <th class="excl">Yahoo!不動産<span class="x">対象外</span></th>
+          <th class="excl">スーモ<span class="x">対象外</span></th>
           <th>不動産連合体</th>
-          <th class="totcol">合計</th>
+          <th class="totcol">合計<small>(3社)</small></th>
         </tr>
       </thead>
       <tbody>
@@ -117,8 +191,8 @@
           <th>現在のプラン</th>
           <td>8.8万<span class="u">100件/¥880</span></td>
           <td>15.4万<span class="u">70枠/¥2,200</span></td>
-          <td class="zero">0<span class="u">15枠</span></td>
-          <td class="zero">0<span class="u">15枠</span></td>
+          <td class="excl">5.8万<span class="u">15枠/¥3,850</span></td>
+          <td class="excl">12.7万<span class="u">15枠/¥8,470</span></td>
           <td>6.6万<span class="u">80枠/¥825</span></td>
           <td class="totcol">30.8万</td>
         </tr>
@@ -126,8 +200,8 @@
           <th>100 件</th>
           <td class="amt">8.8万<span class="u">¥880</span></td>
           <td class="amt">23.1万<span class="u">¥2,310</span></td>
-          <td class="zero">0</td>
-          <td class="zero">0</td>
+          <td class="excl">19.8万<span class="u">¥1,980</span></td>
+          <td class="excl">53.9万<span class="u">¥5,390</span></td>
           <td class="amt">7.7万<span class="u">¥770</span></td>
           <td class="totcol">39.6万</td>
         </tr>
@@ -135,8 +209,8 @@
           <th>200 件</th>
           <td class="amt">19.8万<span class="u">¥990</span></td>
           <td class="amt">45.1万<span class="u">¥2,255</span></td>
-          <td class="zero">0</td>
-          <td class="zero">0</td>
+          <td class="excl">39.6万<span class="u">¥1,980</span></td>
+          <td class="excl">103.4万<span class="u">¥5,170</span></td>
           <td class="amt">11.0万<span class="u">¥550</span></td>
           <td class="totcol">75.9万</td>
         </tr>
@@ -144,8 +218,8 @@
           <th>300 件</th>
           <td class="amt">26.4万<span class="u">¥880</span></td>
           <td class="amt">67.1万<span class="u">¥2,237</span></td>
-          <td class="zero">0</td>
-          <td class="zero">0</td>
+          <td class="excl">42.9万<span class="u">¥1,430</span></td>
+          <td class="excl">155.1万<span class="u">¥5,170</span></td>
           <td class="amt">14.3万<span class="u">¥477</span></td>
           <td class="totcol">107.8万</td>
         </tr>
@@ -153,8 +227,8 @@
           <th>500 件</th>
           <td class="amt">44.0万<span class="u">¥880</span></td>
           <td class="amt">111.1万<span class="u">¥2,222</span></td>
-          <td class="zero">0</td>
-          <td class="zero">0</td>
+          <td class="excl">55.0万<span class="u">¥1,100</span></td>
+          <td class="excl">258.5万<span class="u">¥5,170</span></td>
           <td class="amt">20.9万<span class="u">¥418</span></td>
           <td class="totcol">176.0万</td>
         </tr>
@@ -162,8 +236,8 @@
           <th>1,000 件</th>
           <td class="amt">88.0万<span class="u">¥880</span></td>
           <td class="amt">221.1万<span class="u">¥2,211</span></td>
-          <td class="zero">0</td>
-          <td class="zero">0</td>
+          <td class="excl">93.5万<span class="u">¥935</span></td>
+          <td class="excl">517.0万<span class="u">¥5,170</span></td>
           <td class="amt">22.0万<span class="u">¥220</span></td>
           <td class="totcol">331.1万</td>
         </tr>
@@ -171,8 +245,8 @@
           <th>1,500 件</th>
           <td class="amt">132.0万<span class="u">¥880</span></td>
           <td class="amt">331.1万<span class="u">¥2,207</span></td>
-          <td class="zero">0</td>
-          <td class="zero">0</td>
+          <td class="excl">115.5万<span class="u">¥770</span></td>
+          <td class="excl">775.5万<span class="u">¥5,170</span></td>
           <td class="amt">33.0万<span class="u">¥220</span></td>
           <td class="totcol">496.1万</td>
         </tr>
@@ -180,8 +254,8 @@
           <th>2,000 件</th>
           <td class="amt">176.0万<span class="u">¥880</span></td>
           <td class="amt">441.1万<span class="u">¥2,206</span></td>
-          <td class="zero">0</td>
-          <td class="zero">0</td>
+          <td class="excl">132.0万<span class="u">¥660</span></td>
+          <td class="excl">1,034.0万<span class="u">¥5,170</span></td>
           <td class="amt">44.0万<span class="u">¥220</span></td>
           <td class="totcol">661.1万</td>
         </tr>
@@ -189,8 +263,8 @@
           <th>2,500 件</th>
           <td class="amt">220.0万<span class="u">¥880</span></td>
           <td class="amt">551.1万<span class="u">¥2,204</span></td>
-          <td class="zero">0</td>
-          <td class="zero">0</td>
+          <td class="excl">159.5万<span class="u">¥638</span></td>
+          <td class="excl">—<span class="u">上限超</span></td>
           <td class="amt">55.0万<span class="u">¥220</span></td>
           <td class="totcol">826.1万</td>
         </tr>
@@ -198,20 +272,20 @@
           <th>3,000 件</th>
           <td class="amt">264.0万<span class="u">¥880</span></td>
           <td class="amt">661.1万<span class="u">¥2,204</span></td>
-          <td class="zero">0</td>
-          <td class="zero">0</td>
+          <td class="excl">181.5万<span class="u">¥605</span></td>
+          <td class="excl">—<span class="u">上限超</span></td>
           <td class="amt">66.0万<span class="u">¥220</span></td>
           <td class="totcol">991.1万</td>
         </tr>
       </tbody>
     </table>
-    <div class="note"><b>Yahoo!不動産・スーモは料金未確定のため、一旦ゼロ（0）として集計しています。</b>確定後に金額を反映します。合計は健美家＋アットホーム＋不動産連合体の3社分です。</div>
+    <div class="note"><b>Yahoo!不動産・スーモは「実数向け」の掲載方式のため、当社の網掛け一括掲載では使用不可（対象外）。</b>料金はスプレッドシート最新値を参考表示（取消線・グレー）していますが、合計・収支には含めていません。<b>合計は健美家＋アットホーム＋不動産連合体の3社分</b>です。スーモは最大2,000枠までのため2,500件以上は上限超。</div>
   </section>
 
   <section>
-    <h2>02 — Profit Simulation</h2>
+    <h2>03 — Profit Simulation</h2>
     <p class="lead">損益分岐・目標達成時の収支</p>
-    <div class="policy">前提：1件成約あたりの粗利を<b>100万円</b>と仮定。目標は<b>500件あたり7本成約</b>。<b>人件費（業務委託費）は500件あたり30万円</b>（件数に比例）。<br>総コスト ＝ 合計掲載料 ＋ 人件費　／　損益分岐本数 ＝ 総コスト ÷ 100万円　／　目標達成時の利益 ＝（目標本数 × 100万円）− 総コスト。</div>
+    <div class="policy">前提：1件成約あたりの粗利を<b>180万円</b>（上の実績＝平均単価5,642万円 × 仲介手数料3%）とする。目標は<b>500件あたり7本成約</b>。<b>人件費（業務委託費）は500件あたり30万円</b>（件数に比例）。<br>総コスト ＝ 合計掲載料 ＋ 人件費　／　損益分岐本数 ＝ 総コスト ÷ 180万円　／　目標達成時の利益 ＝（目標本数 × 180万円）− 総コスト。</div>
     <p class="unit-cap">単位：金額＝万円／本数＝成約件数</p>
     <table class="tbl sum">
       <thead>
@@ -226,24 +300,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr><th>100 件</th><td>39.6万</td><td>6.0万</td><td class="totcol">45.6万</td><td>0.5本</td><td class="goal">1.4本</td><td class="profit">+94.4万</td></tr>
-        <tr><th>200 件</th><td>75.9万</td><td>12.0万</td><td class="totcol">87.9万</td><td>0.9本</td><td class="goal">2.8本</td><td class="profit">+192.1万</td></tr>
-        <tr><th>300 件</th><td>107.8万</td><td>18.0万</td><td class="totcol">125.8万</td><td>1.3本</td><td class="goal">4.2本</td><td class="profit">+294.2万</td></tr>
-        <tr><th>500 件</th><td>176.0万</td><td>30.0万</td><td class="totcol">206.0万</td><td>2.1本</td><td class="goal">7本</td><td class="profit">+494.0万</td></tr>
-        <tr><th>1,000 件</th><td>331.1万</td><td>60.0万</td><td class="totcol">391.1万</td><td>3.9本</td><td class="goal">14本</td><td class="profit">+1,008.9万</td></tr>
-        <tr><th>1,500 件</th><td>496.1万</td><td>90.0万</td><td class="totcol">586.1万</td><td>5.9本</td><td class="goal">21本</td><td class="profit">+1,513.9万</td></tr>
-        <tr><th>2,000 件</th><td>661.1万</td><td>120.0万</td><td class="totcol">781.1万</td><td>7.8本</td><td class="goal">28本</td><td class="profit">+2,018.9万</td></tr>
-        <tr><th>2,500 件</th><td>826.1万</td><td>150.0万</td><td class="totcol">976.1万</td><td>9.8本</td><td class="goal">35本</td><td class="profit">+2,523.9万</td></tr>
-        <tr><th>3,000 件</th><td>991.1万</td><td>180.0万</td><td class="totcol">1,171.1万</td><td>11.7本</td><td class="goal">42本</td><td class="profit">+3,028.9万</td></tr>
+        <tr><th>100 件</th><td>39.6万</td><td>6.0万</td><td class="totcol">45.6万</td><td>0.3本</td><td class="goal">1.4本</td><td class="profit">+206.4万</td></tr>
+        <tr><th>200 件</th><td>75.9万</td><td>12.0万</td><td class="totcol">87.9万</td><td>0.5本</td><td class="goal">2.8本</td><td class="profit">+416.1万</td></tr>
+        <tr><th>300 件</th><td>107.8万</td><td>18.0万</td><td class="totcol">125.8万</td><td>0.7本</td><td class="goal">4.2本</td><td class="profit">+630.2万</td></tr>
+        <tr><th>500 件</th><td>176.0万</td><td>30.0万</td><td class="totcol">206.0万</td><td>1.1本</td><td class="goal">7本</td><td class="profit">+1,054.0万</td></tr>
+        <tr><th>1,000 件</th><td>331.1万</td><td>60.0万</td><td class="totcol">391.1万</td><td>2.2本</td><td class="goal">14本</td><td class="profit">+2,128.9万</td></tr>
+        <tr><th>1,500 件</th><td>496.1万</td><td>90.0万</td><td class="totcol">586.1万</td><td>3.3本</td><td class="goal">21本</td><td class="profit">+3,193.9万</td></tr>
+        <tr><th>2,000 件</th><td>661.1万</td><td>120.0万</td><td class="totcol">781.1万</td><td>4.3本</td><td class="goal">28本</td><td class="profit">+4,258.9万</td></tr>
+        <tr><th>2,500 件</th><td>826.1万</td><td>150.0万</td><td class="totcol">976.1万</td><td>5.4本</td><td class="goal">35本</td><td class="profit">+5,323.9万</td></tr>
+        <tr><th>3,000 件</th><td>991.1万</td><td>180.0万</td><td class="totcol">1,171.1万</td><td>6.5本</td><td class="goal">42本</td><td class="profit">+6,388.9万</td></tr>
       </tbody>
     </table>
-    <div class="result">人件費を加えても<span class="g">どの件数でも目標達成時は黒字</span>。例：3,000件なら総コスト 約<b>1,171万円/月</b>（掲載料991万＋人件費180万）に対し、目標42本で売上<b>4,200万円</b>・利益 約<span class="g">+3,029万円</span>。</div>
-    <div class="note">合計掲載料は健美家＋アットホーム＋不動産連合体（Yahoo!・スーモは0で集計）。人件費＝業務委託費 500件あたり30万円（比例計算）。1件あたり粗利100万円は仮定値で、実際の成約単価により変動します。</div>
+    <div class="result">粗利を実績の<b>180万円/件</b>に更新すると、<span class="g">損益分岐は大きく下がり</span>どの件数でも目標達成時は黒字。例：3,000件なら総コスト 約<b>1,171万円/月</b>（掲載料991万＋人件費180万）に対し、目標42本で売上<b>7,560万円</b>・利益 約<span class="g">+6,389万円</span>。損益分岐はわずか<b>6.5本</b>。</div>
+    <div class="note">合計掲載料は健美家＋アットホーム＋不動産連合体（Yahoo!・スーモは実数向けのため対象外）。人件費＝業務委託費 500件あたり30万円（比例計算）。1件あたり粗利180万円は直近実績（平均単価5,642万円×手数料3%≒169万円）に基づく目安で、実際の成約単価により変動します。</div>
   </section>
 
   <footer>
-    <p>収益物件（NEMO 01 地方収益 / NEMO 02 関東収益）の掲載先選定向け資料。</p>
-    <p>金額・単価は提示資料に基づく目安です。Yahoo!不動産・スーモは料金未確定のため一旦ゼロで集計しています。</p>
+    <p>収益物件（NEMO 01 地方収益 / NEMO 02 関東収益）の掲載先選定向け資料。直近実績（6/26〜6/28・対象122件）と平均利益180万円/件を反映。</p>
+    <p>料金はスプレッドシート最新値に基づく目安です。Yahoo!不動産・スーモは実数向けの掲載方式のため対象外（参考表示のみ・合計には不算入）。</p>
   </footer>
 
 </div>
