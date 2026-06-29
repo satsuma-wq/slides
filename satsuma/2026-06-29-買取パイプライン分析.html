@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>買取パイプライン分析レポート 2026年1〜6月｜リアテクス</title>
+<style>
+  :root{
+    --ink:#1a1f2b; --sub:#5b6472; --line:#e6e9ef; --bg:#f6f8fb; --card:#fff;
+    --blue:#2f6df6; --blue2:#dbe6ff; --green:#1aa260; --green2:#d7f2e3;
+    --red:#e5484d; --red2:#fce0e1; --amber:#d98a00; --amber2:#fdeecf; --slate:#8a94a6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+    line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:28px 18px 80px}
+  header.hero{background:linear-gradient(135deg,#1f3a8a,#2f6df6);color:#fff;border-radius:18px;padding:34px 30px;margin-bottom:22px;box-shadow:0 10px 30px rgba(47,109,246,.18)}
+  header.hero .tag{display:inline-block;background:rgba(255,255,255,.18);padding:4px 12px;border-radius:999px;font-size:12.5px;letter-spacing:.04em;margin-bottom:12px}
+  header.hero h1{margin:0 0 8px;font-size:25px;line-height:1.4;font-weight:800}
+  header.hero p{margin:0;opacity:.92;font-size:14px}
+  .meta{font-size:12.5px;opacity:.85;margin-top:14px}
+  h2{font-size:19px;margin:34px 0 12px;padding-left:12px;border-left:5px solid var(--blue)}
+  h3{font-size:15.5px;margin:20px 0 8px;color:var(--ink)}
+  p{font-size:14.5px;color:var(--ink)}
+  .lead{font-size:15px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:14px 0;box-shadow:0 1px 2px rgba(20,30,50,.03)}
+  .verdict{display:flex;gap:14px;align-items:flex-start;border-radius:14px;padding:18px 20px;margin:12px 0}
+  .verdict .ic{font-size:22px;line-height:1}
+  .v-up{background:var(--green2);border:1px solid #b7e6cd}
+  .v-flat{background:var(--amber2);border:1px solid #f3d79a}
+  .v-down{background:var(--red2);border:1px solid #f3b6b8}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .kpi .lab{font-size:12px;color:var(--sub)}
+  .kpi .val{font-size:26px;font-weight:800;margin:4px 0 2px}
+  .kpi .delta{font-size:12.5px;font-weight:700}
+  .up{color:var(--green)} .down{color:var(--red)} .flat{color:var(--amber)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0}
+  th,td{padding:9px 10px;text-align:center;border-bottom:1px solid var(--line)}
+  th{background:#f2f5fa;color:var(--sub);font-weight:700;font-size:12.5px}
+  td.lft,th.lft{text-align:left}
+  tr td:first-child{font-weight:600}
+  .barwrap{display:flex;align-items:center;gap:8px;margin:5px 0}
+  .barwrap .nm{width:62px;font-size:12px;color:var(--sub);text-align:right;flex:none}
+  .bar{height:20px;border-radius:5px;background:var(--blue);display:flex;align-items:center;justify-content:flex-end;padding-right:7px;color:#fff;font-size:11.5px;font-weight:700;min-width:26px}
+  .bar.g{background:var(--green)} .bar.r{background:var(--red)} .bar.a{background:var(--amber)} .bar.s{background:#9aa7bd}
+  .note{font-size:12.5px;color:var(--sub)}
+  .pill{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:999px}
+  .pill.up{background:var(--green2);color:#0d7a45} .pill.flat{background:var(--amber2);color:#9a6400} .pill.down{background:var(--red2);color:#b3262b}
+  .callout{background:#eef3ff;border:1px solid #cfe0ff;border-radius:12px;padding:16px 18px;margin:14px 0}
+  .callout b{color:#1f3a8a}
+  ul{margin:8px 0 8px;padding-left:20px} li{margin:5px 0;font-size:14px}
+  .foot{margin-top:30px;font-size:12px;color:var(--slate);border-top:1px solid var(--line);padding-top:14px}
+  .scroll{overflow-x:auto}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:680px){.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <span class="tag">社内分析レポート ・ メール履歴ベース</span>
+  <h1>買取パイプライン分析<br>2026年 1〜3月 vs 5〜6月</h1>
+  <p>「現場を離れてから買付・成約スピードが落ちたのでは？」という仮説を、Gmail履歴から定量検証しました。</p>
+  <div class="meta">対象：portal@reatex.co.jp 周辺の物件メール／作成日：2026-06-29／単位は特記なき限り「物件数」</div>
+</header>
+
+<!-- ===== 結論 ===== -->
+<h2>まず結論</h2>
+<div class="verdict v-up">
+  <div class="ic">✅</div>
+  <div>
+    <b>「投入量・買付件数・対応スピード」はいずれも落ちていません。むしろ全項目で増加・向上しています。</b><br>
+    <span class="note">物件の入口（資料到達）は1日あたり約30件→約74件に倍増。買付送付も月75件→約146件に増加。資料到達から買付/お断りまでの判断は今も“ほぼ当日（数時間）”で、6月が最速でした。</span>
+  </div>
+</div>
+<div class="verdict v-flat">
+  <div class="ic">⚠️</div>
+  <div>
+    <b>ただし「買付→契約（成約）」への転換と、査定後の確認段階に滞留の兆候があります。</b><br>
+    <span class="note">買付が約2倍に増えたのに「仕入契約調整中」の件数は横ばい（7件）。「確認/依頼中」の滞留は+86%。＝<b>たくさん買付を打っているが、契約成立まで運ぶ力が量に追いついていない</b>可能性。これが「成約率が落ちた」という体感の正体と考えられます。</span>
+  </div>
+</div>
+
+<!-- ===== KPI ===== -->
+<h2>主要指標サマリー（1〜3月 → 5〜6月）</h2>
+<div class="grid">
+  <div class="kpi"><div class="lab">物件投入（資料到達）</div><div class="val">約74<span style="font-size:13px;font-weight:600">件/日</span></div><div class="delta up">▲ 約30→74件/日</div></div>
+  <div class="kpi"><div class="lab">買付送付</div><div class="val">約146<span style="font-size:13px;font-weight:600">件/月</span></div><div class="delta up">▲ 約75→146件/月</div></div>
+  <div class="kpi"><div class="lab">資料到達→買付 中央値</div><div class="val">2.0<span style="font-size:13px;font-weight:600">時間</span></div><div class="delta up">▲ 6月が最速</div></div>
+  <div class="kpi"><div class="lab">仕入契約調整中</div><div class="val">7.0<span style="font-size:13px;font-weight:600">件</span></div><div class="delta flat">― 横ばい（要注意）</div></div>
+</div>
+
+<!-- ===== 1. 投入量 ===== -->
+<h2>1. 物件の投入量（資料到達＝採番）</h2>
+<p class="lead">物件には採番時に連番のP番号が振られます。これを定点観測すると、投入量の絶対水準が分かります。</p>
+<div class="card scroll">
+  <div class="barwrap"><div class="nm">1月上旬</div><div class="bar s" style="width:42%">約31件/日</div></div>
+  <div class="barwrap"><div class="nm">2月</div><div class="bar s" style="width:60%">約45件/日</div></div>
+  <div class="barwrap"><div class="nm">2〜3月</div><div class="bar" style="width:71%">約53件/日</div></div>
+  <div class="barwrap"><div class="nm">4月</div><div class="bar" style="width:91%">約68件/日</div></div>
+  <div class="barwrap"><div class="nm">5〜6月</div><div class="bar g" style="width:100%">約74件/日</div></div>
+  <p class="note">P番号の実測：1/9 = p-1901 ／ 1/16 ≈ p-2,120 ／ 2/13 = p-3,271 ／ 3/31 = p-5,701 ／ 5/1 ≈ p-7,800 ／ 6/28 = p-12,108。</p>
+</div>
+<div class="callout">
+  💡 <b>ご記憶の「1日30件近く」は1月頃の実数とほぼ一致</b>します。そして現在の投入量は<b>当時の2倍以上</b>。入口は詰まっていません。
+</div>
+
+<!-- ===== 2. 買付送付 ===== -->
+<h2>2. 買付送付（買付証明書の送付）</h2>
+<p class="lead">買付には2つの経路があります。①コールド型（件名「住所＋買付証明書送付」）と、②反響返信型（業者の資料到着メールに同一スレッドで返信して送付）。<b>近年は②が主流</b>です。両方を合算・名寄せした実数：</p>
+<div class="card scroll">
+  <table>
+    <tr><th class="lft">月</th><th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月*</th></tr>
+    <tr><td class="lft">買付送付（物件数）</td><td>58</td><td>89</td><td>78</td><td>118</td><td><b>188</b></td><td>104</td></tr>
+  </table>
+  <div class="barwrap"><div class="nm">1月</div><div class="bar" style="width:31%">58</div></div>
+  <div class="barwrap"><div class="nm">2月</div><div class="bar" style="width:47%">89</div></div>
+  <div class="barwrap"><div class="nm">3月</div><div class="bar" style="width:41%">78</div></div>
+  <div class="barwrap"><div class="nm">4月</div><div class="bar" style="width:63%">118</div></div>
+  <div class="barwrap"><div class="nm">5月</div><div class="bar g" style="width:100%">188</div></div>
+  <div class="barwrap"><div class="nm">6月*</div><div class="bar g" style="width:55%">104</div></div>
+  <p class="note">*6月は6/28時点の月途中。1〜3月平均 約75件/月 → 5〜6月平均 約146件/月。 ＊当初「件名のみ」で集計した際は反響返信型を取りこぼし過少（3月33件等）でした。本表は本文ベースで補正済みです。</p>
+</div>
+
+<!-- ===== 3. スピード ===== -->
+<h2>3. 対応スピード（資料到達 → 買付 / お断り）</h2>
+<p class="lead">反響スレッドを実測（各月18〜28件）。営業時間補正なしの実時間・中央値で評価しています。</p>
+<div class="two">
+  <div class="card">
+    <h3 style="margin-top:0">資料到達→買付（中央値）</h3>
+    <div class="barwrap"><div class="nm">3月</div><div class="bar" style="width:74%">4.5h</div></div>
+    <div class="barwrap"><div class="nm">5月</div><div class="bar" style="width:100%">6.1h</div></div>
+    <div class="barwrap"><div class="nm">6月</div><div class="bar g" style="width:33%">2.0h</div></div>
+    <p class="note">全体（買付＋お断り）中央値：3月4.4h → 5月5.9h → 6月3.4h。<b>6月が最速</b>。</p>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">買付到達率（買付÷（買付＋お断り））</h3>
+    <div class="barwrap"><div class="nm">3月</div><div class="bar a" style="width:72%">39%</div></div>
+    <div class="barwrap"><div class="nm">5月</div><div class="bar g" style="width:100%">54%</div></div>
+    <div class="barwrap"><div class="nm">6月</div><div class="bar a" style="width:65%">35%</div></div>
+    <p class="note">触れた案件のうち買付に進む割合。月により変動し、明確な低下は見られません。</p>
+  </div>
+</div>
+<div class="callout">⏱ 資料到達からほぼ<b>当日（数時間）</b>で買付/お断りを返す運用は今も維持。<b>「判断が遅くなった」という事実はデータ上確認できません。</b></div>
+
+<!-- ===== 4. 滞留 ===== -->
+<h2>4. 滞留（バックログ）— ここに注意</h2>
+<p class="lead">社内ST通知の平均滞留件数（1〜3月 vs 5〜6月）。投入が倍増したため一部ステータスで案件が溜まっています。</p>
+<div class="card scroll">
+  <table>
+    <tr><th class="lft">ステータス</th><th>1〜3月平均</th><th>5〜6月平均</th><th>増減</th></tr>
+    <tr><td class="lft">査定中</td><td>16.3</td><td>20.9</td><td><span class="pill up">+28%</span></td></tr>
+    <tr><td class="lft">確認 / 依頼中</td><td>11.7</td><td>21.8</td><td><span class="pill down">+86%</span></td></tr>
+    <tr><td class="lft">仕入契約調整中</td><td>7.0</td><td>7.0</td><td><span class="pill flat">±0%</span></td></tr>
+  </table>
+  <p class="note">※ST通知システムは3/19稼働開始のため、1〜3月は3月後半の値。6月は査定中通知が6/8で停止し過少の可能性。</p>
+</div>
+<div class="callout">
+  🔎 <b>注目点：買付が約2倍に増えたのに「仕入契約調整中」は7件で横ばい。</b>
+  一方で「確認/依頼中」の滞留は+86%。買付は大量に打てているが、その先の<b>確認・契約交渉の段階で案件が前に進まず溜まっている</b>構図が見えます。＝量は出ているが「契約・成約」への転換が量に追いついていない可能性。
+</div>
+
+<!-- ===== 5. 上流 ===== -->
+<h2>5. 上流の活動量（参考）</h2>
+<div class="two">
+  <div class="card">
+    <h3 style="margin-top:0">資料請求アウトリーチ</h3>
+    <div class="barwrap"><div class="nm">1月</div><div class="bar s" style="width:15%">21</div></div>
+    <div class="barwrap"><div class="nm">3月</div><div class="bar" style="width:29%">41</div></div>
+    <div class="barwrap"><div class="nm">5月</div><div class="bar g" style="width:100%">~141</div></div>
+    <div class="barwrap"><div class="nm">6月</div><div class="bar g" style="width:97%">~137</div></div>
+    <p class="note">資料請求メール。1月比で約4〜6倍に増加。</p>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">買取査定依頼（インバウンド）</h3>
+    <div class="barwrap"><div class="nm">1月</div><div class="bar" style="width:55%">30</div></div>
+    <div class="barwrap"><div class="nm">2月</div><div class="bar" style="width:100%">~55</div></div>
+    <div class="barwrap"><div class="nm">5月</div><div class="bar" style="width:89%">49</div></div>
+    <div class="barwrap"><div class="nm">6月</div><div class="bar" style="width:75%">41</div></div>
+    <p class="note">業者からの査定依頼。月40〜55件で安定。</p>
+  </div>
+</div>
+
+<!-- ===== 解釈 ===== -->
+<h2>6. 解釈と提言</h2>
+<div class="card">
+  <h3 style="margin-top:0">何が起きているか</h3>
+  <ul>
+    <li><b>入口（投入）・買付・スピードはむしろ強化された。</b> 体制移行後もオペレーションは止まっていない。</li>
+    <li><b>本当の課題は「買付→契約→決済」の転換（クロージング）。</b> 買付提出は倍増したが、契約交渉段階の処理量（仕入契約調整中）は横ばいで、確認段階の滞留が急増。</li>
+    <li>言い換えると、<b>「数を打つ」フェーズは機能、「決める・まとめる」フェーズが相対的なボトルネック</b>になっている可能性が高い。</li>
+  </ul>
+  <h3>次にやると良いこと</h3>
+  <ul>
+    <li><b>成約（契約・決済）件数の月次推移を確定</b>：本分析はメール由来のため、物件管理表の「仕入契約済/決済完了」ステータスでの月次集計が最も正確。買付に対する契約化率を出す。</li>
+    <li><b>「確認/依頼中」滞留の棚卸し</b>：+86%の滞留が何で止まっているか（売主確認待ち／社内判断待ち／資料不足）を分類。</li>
+    <li><b>買付の質（指値乖離）の点検</b>：反響返信型の「簡易版・指値」買付が増えており、成約に結びつきにくい低確度買付が量を押し上げている可能性。確度別の内訳分析を推奨。</li>
+  </ul>
+</div>
+
+<div class="foot">
+  <b>データの注意</b>：本レポートはGmail検索（portal@reatex.co.jp 周辺）からの推計です。住所による名寄せ・eFax配信通知の除外を行っていますが、表記ゆれによる軽微な誤差を含みます。投入量はP番号連番からの推計、買付件数は本文フレーズ＋名寄せによる集計、滞留はST通知の平均値、スピードは反響スレッドの実測サンプル（各月18〜28件）です。「成約（契約・決済）」の精密値は物件管理表ステータスでの確認を推奨します。<br>
+  © 株式会社リアテクス｜社内分析資料（2026-06-29）
+</div>
+
+</div>
+</body>
+</html>
