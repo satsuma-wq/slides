@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>構造表 ｜ NEMO-02収益（一棟収益/一都三県）</title>
+<meta name="description" content="建物構造に関する2つの表：法定耐用年数表（構造・用途別）と構造別 再調達価格・法定耐用年数表。">
+<style>
+  :root{
+    --bg:#f5f6f8; --card:#ffffff; --ink:#1f2733; --muted:#6b7682;
+    --line:#e4e8ee; --head:#27364a; --accent:#2f6f4f; --zebra:#f8fafb;
+    --na:#b9c0c9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+    line-height:1.55;-webkit-text-size-adjust:100%;}
+  .wrap{max-width:920px;margin:0 auto;padding:28px 18px 80px;}
+  header.page{margin-bottom:8px;}
+  h1{font-size:1.7rem;margin:0 0 6px;letter-spacing:.02em;}
+  .src{font-size:.82rem;color:var(--muted);margin:0 0 4px;}
+  .src a{color:var(--accent);text-decoration:none;}
+  .src a:hover{text-decoration:underline;}
+  .toc{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 4px;}
+  .toc a{font-size:.85rem;text-decoration:none;color:var(--head);background:#fff;
+    border:1px solid var(--line);border-radius:999px;padding:6px 14px;}
+  .toc a:hover{border-color:var(--accent);color:var(--accent);}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px 18px 8px;margin-top:22px;box-shadow:0 1px 2px rgba(20,30,50,.04);}
+  h2{font-size:1.15rem;margin:0 0 2px;display:flex;align-items:baseline;gap:10px;}
+  h2 .no{color:var(--accent);font-weight:800;}
+  .note{font-size:.8rem;color:var(--muted);margin:2px 0 14px;}
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;}
+  table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:520px;}
+  thead th{position:sticky;top:0;background:var(--head);color:#fff;font-weight:600;
+    text-align:left;padding:10px 12px;white-space:nowrap;z-index:1;}
+  tbody td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tbody tr:nth-child(even){background:var(--zebra);}
+  td.grp{font-weight:700;background:#eef3f0;border-right:1px solid var(--line);
+    vertical-align:middle;white-space:nowrap;}
+  td.ynum{text-align:right;white-space:nowrap;}
+  .num{font-variant-numeric:tabular-nums;font-weight:600;}
+  .na{color:var(--na);}
+  td.sub{color:var(--muted);font-size:.84rem;}
+  tr.noprice td{color:var(--muted);}
+  footer{margin-top:30px;font-size:.78rem;color:var(--muted);text-align:center;}
+  @media(max-width:480px){ h1{font-size:1.35rem} .wrap{padding:18px 12px 60px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page">
+    <h1>構造表</h1>
+    <p class="src">出典：Googleスプレッドシート「NEMO-02収益（一棟収益/一都三県）」 内 構造関連シート ／ 作成日 2026-06-30</p>
+  </header>
+
+  <nav class="toc">
+    <a href="#t1">① 法定耐用年数表（構造・用途別）</a>
+    <a href="#t2">② 構造別 再調達価格・法定耐用年数表</a>
+  </nav>
+
+  <section id="t1">
+    <h2><span class="no">①</span> 法定耐用年数表（構造・用途別）</h2>
+    <p class="note">建物の構造・用途・細目ごとの法定耐用年数（年）。「—」は区分見出し行で年数の指定なし。全57行。</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>構造・用途</th><th>細目</th><th style="text-align:right">耐用年数（年）</th></tr></thead>
+        <tbody>
+<tr><td class="grp" rowspan="6">木造・合成樹脂造のもの</td><td>事務所用のもの</td><td class="ynum"><span class="num">24</span></td></tr>
+<tr><td>店舗用・住宅用のもの</td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>飲食店用のもの</td><td class="ynum"><span class="num">20</span></td></tr>
+<tr><td>旅館用・ホテル用・病院用・車庫用のもの</td><td class="ynum"><span class="num">17</span></td></tr>
+<tr><td>公衆浴場用のもの</td><td class="ynum"><span class="num">12</span></td></tr>
+<tr><td>工場用・倉庫用のもの（一般用）</td><td class="ynum"><span class="num">15</span></td></tr>
+<tr><td class="grp" rowspan="6">木骨モルタル造のもの</td><td>事務所用のもの</td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>店舗用・住宅用のもの</td><td class="ynum"><span class="num">20</span></td></tr>
+<tr><td>飲食店用のもの</td><td class="ynum"><span class="num">19</span></td></tr>
+<tr><td>旅館用・ホテル用・病院用・車庫用のもの</td><td class="ynum"><span class="num">15</span></td></tr>
+<tr><td>公衆浴場用のもの</td><td class="ynum"><span class="num">11</span></td></tr>
+<tr><td>工場用・倉庫用のもの（一般用）</td><td class="ynum"><span class="num">14</span></td></tr>
+<tr><td class="grp" rowspan="14">鉄骨鉄筋コンクリート造・鉄筋コンクリート造のもの</td><td>事務所用のもの</td><td class="ynum"><span class="num">50</span></td></tr>
+<tr><td>住宅用のもの</td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td class="sub">飲食店用のもの</td><td class="ynum"><span class="na">—</span></td></tr>
+<tr><td class="sub">延べ面積のうちに占める木造内装部分の</td><td class="ynum"><span class="na">—</span></td></tr>
+<tr><td>面積が30％を超えるもの</td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>その他のもの</td><td class="ynum"><span class="num">41</span></td></tr>
+<tr><td class="sub">旅館用・ホテル用のもの</td><td class="ynum"><span class="na">—</span></td></tr>
+<tr><td class="sub">延べ面積のうちに占める木造内装部分の</td><td class="ynum"><span class="na">—</span></td></tr>
+<tr><td>面積が30％を超えるもの</td><td class="ynum"><span class="num">31</span></td></tr>
+<tr><td>その他のもの</td><td class="ynum"><span class="num">39</span></td></tr>
+<tr><td>店舗用・病院用のもの</td><td class="ynum"><span class="num">39</span></td></tr>
+<tr><td>車庫用のもの</td><td class="ynum"><span class="num">38</span></td></tr>
+<tr><td>公衆浴場用のもの</td><td class="ynum"><span class="num">31</span></td></tr>
+<tr><td>工場用・倉庫用のもの（一般用）</td><td class="ynum"><span class="num">38</span></td></tr>
+<tr><td class="grp" rowspan="6">れんが造・石造・ブロック造のもの</td><td>事務所用のもの</td><td class="ynum"><span class="num">41</span></td></tr>
+<tr><td>店舗用・住宅用・飲食店用のもの</td><td class="ynum"><span class="num">38</span></td></tr>
+<tr><td>旅館用・ホテル用・病院用のもの</td><td class="ynum"><span class="num">36</span></td></tr>
+<tr><td>車庫用のもの</td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>公衆浴場用のもの</td><td class="ynum"><span class="num">30</span></td></tr>
+<tr><td>工場用・倉庫用のもの（一般用）</td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td class="grp" rowspan="25">金属造のもの</td><td class="sub">事務所用のもの</td><td class="ynum"><span class="na">—</span></td></tr>
+<tr><td class="sub">骨格材の肉厚が、（以下同じ。）</td><td class="ynum"><span class="na">—</span></td></tr>
+<tr><td>４㎜を超えるもの</td><td class="ynum"><span class="num">38</span></td></tr>
+<tr><td>３㎜を超え、４㎜以下のもの</td><td class="ynum"><span class="num">30</span></td></tr>
+<tr><td>３㎜以下のもの</td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td class="sub">店舗用・住宅用のもの</td><td class="ynum"><span class="na">—</span></td></tr>
+<tr><td>４㎜を超えるもの</td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>３㎜を超え、４㎜以下のもの</td><td class="ynum"><span class="num">27</span></td></tr>
+<tr><td>３㎜以下のもの</td><td class="ynum"><span class="num">19</span></td></tr>
+<tr><td class="sub">飲食店用・車庫用のもの</td><td class="ynum"><span class="na">—</span></td></tr>
+<tr><td>４㎜を超えるもの</td><td class="ynum"><span class="num">31</span></td></tr>
+<tr><td>３㎜を超え、４㎜以下のもの</td><td class="ynum"><span class="num">25</span></td></tr>
+<tr><td>３㎜以下のもの</td><td class="ynum"><span class="num">19</span></td></tr>
+<tr><td class="sub">旅館用・ホテル用・病院用のもの</td><td class="ynum"><span class="na">—</span></td></tr>
+<tr><td>４㎜を超えるもの</td><td class="ynum"><span class="num">29</span></td></tr>
+<tr><td>３㎜を超え、４㎜以下のもの</td><td class="ynum"><span class="num">24</span></td></tr>
+<tr><td>３㎜以下のもの</td><td class="ynum"><span class="num">17</span></td></tr>
+<tr><td class="sub">公衆浴場用のもの</td><td class="ynum"><span class="na">—</span></td></tr>
+<tr><td>４㎜を超えるもの</td><td class="ynum"><span class="num">27</span></td></tr>
+<tr><td>３㎜を超え、４㎜以下のもの</td><td class="ynum"><span class="num">19</span></td></tr>
+<tr><td>３㎜以下のもの</td><td class="ynum"><span class="num">15</span></td></tr>
+<tr><td class="sub">工場用・倉庫用のもの（一般用）</td><td class="ynum"><span class="na">—</span></td></tr>
+<tr><td>４㎜を超えるもの</td><td class="ynum"><span class="num">31</span></td></tr>
+<tr><td>３㎜を超え、４㎜以下のもの</td><td class="ynum"><span class="num">24</span></td></tr>
+<tr><td>３㎜以下のもの</td><td class="ynum"><span class="num">17</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="t2">
+    <h2><span class="no">②</span> 構造別 再調達価格・法定耐用年数表</h2>
+    <p class="note">構造名の表記ゆれに対応した、再調達価格（万円/㎡）と法定耐用年数（年）の対応表。「—」は再調達価格の指定なし。全94行。</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>構造名</th><th style="text-align:right">再調達価格（万円/㎡）</th><th style="text-align:right">法定耐用年数（年）</th></tr></thead>
+        <tbody>
+<tr><td>木造</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>木・鉄骨造</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>ブロック</td><td class="ynum"><span class="num">17</span></td><td class="ynum"><span class="num">37</span></td></tr>
+<tr><td>鉄骨造</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>ＲＣ</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>RCB</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>ＳＲＣ</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>SRC造</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>ＰＣ</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>ＨＰＣ</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>軽量鉄骨造</td><td class="ynum"><span class="num">14</span></td><td class="ynum"><span class="num">27</span></td></tr>
+<tr><td>その他</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>木造（軸組工法）</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>木・鉄筋コンクリート</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>重量鉄骨造</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>重量鉄骨</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>ブロック造</td><td class="ynum"><span class="num">17</span></td><td class="ynum"><span class="num">37</span></td></tr>
+<tr><td>木骨防火造</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>木造・一部鉄骨造</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>ＡＬＣ</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>鉄骨木造陸屋根</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>木・ＲＣ</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>その他(鉄骨・木造)</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>その他(木・鉄骨造)</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>その他(木・ＲＣ)</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>その他(木・ＲＣ造)</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>その他(木造)</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>その他(ＲＣ＋ＣＢ)</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>鉄筋コンクリート(RC)造</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>鉄骨鉄筋コンクリート(SRC)造</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>その他（ブロック造）</td><td class="ynum"><span class="num">17</span></td><td class="ynum"><span class="num">37</span></td></tr>
+<tr><td>その他（木・鉄筋コンクリート造）</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>その他（鉄骨・木造）</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>その他(木造合金メッキ鋼板葺)</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>鉄骨・木造</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>その他（鉄骨造木造）</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>その他（鉄骨造ストレート葺）</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>その他（重量鉄骨造）</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>木・鉄筋</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>丸太組工法</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>木・RC造</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>RC造</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>S造</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>RCB造</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>軽量鉄骨</td><td class="ynum"><span class="num">14</span></td><td class="ynum"><span class="num">27</span></td></tr>
+<tr><td>RC(鉄筋コンクリート)</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>SRC(鉄骨鉄筋コンクリート)</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>ＳＲＣ造</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>SRC・RC</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>ＳＣ・ＳＲＣ造</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>木造（木造）</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>鉄筋コンクリート</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>木造（木造瓦葺）</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>鉄骨（鉄骨）</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>鉄骨</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>鉄筋ブロック（ブロック）</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">37</span></td></tr>
+<tr><td>木造・RC造</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>鉄骨（鉄骨造陸屋根亜鉛メッキ鋼板葺）</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>木・鉄筋コンクリート造</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>鉄筋コンクリート造</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>鉄骨鉄筋コンクリート造</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>その他（木造鉄筋コンクリート造）</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>軽量鉄骨造スレート葺</td><td class="ynum"><span class="num">14</span></td><td class="ynum"><span class="num">27</span></td></tr>
+<tr><td>木造鉄筋コンクリート造</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>その他(ＲＣ・Ｓ造)</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>鉄骨鉄筋コンクリート</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>木造かわらぶき</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>コンクリートブロック</td><td class="ynum"><span class="num">17</span></td><td class="ynum"><span class="num">37</span></td></tr>
+<tr><td>木・鉄筋コンクリー</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>軽量鉄骨造瓦葺</td><td class="ynum"><span class="num">14</span></td><td class="ynum"><span class="num">27</span></td></tr>
+<tr><td>ＲＣ造陸屋根</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>鉄骨造亜鉛メッキ鋼板葺</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>木造瓦葺</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>コンクリートブロック造</td><td class="ynum"><span class="num">17</span></td><td class="ynum"><span class="num">37</span></td></tr>
+<tr><td>その他（コンクリートブロック造）</td><td class="ynum"><span class="num">17</span></td><td class="ynum"><span class="num">37</span></td></tr>
+<tr><td>鉄骨造陸屋根</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>その他(木・鉄筋コンクリート)</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>鉄骨造スレート葺</td><td class="ynum"><span class="num">16</span></td><td class="ynum"><span class="num">34</span></td></tr>
+<tr><td>木・鉄骨造亜鉛メッキ鋼板葺</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>木造平家建</td><td class="ynum"><span class="num">13</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr><td>鉄筋コンクリート造陸屋根</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>鉄筋コンクリート造5階</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr><td>鉄筋コンクリートブロック造</td><td class="ynum"><span class="num">18</span></td><td class="ynum"><span class="num">47</span></td></tr>
+<tr class="noprice"><td>木造サイディングアスファルトシングル葺2階建</td><td class="ynum"><span class="na">—</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr class="noprice"><td>木造スレート葺2階建</td><td class="ynum"><span class="na">—</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr class="noprice"><td>地上3階　軽量鉄骨</td><td class="ynum"><span class="na">—</span></td><td class="ynum"><span class="num">27</span></td></tr>
+<tr class="noprice"><td>木造2階建</td><td class="ynum"><span class="na">—</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr class="noprice"><td>木造2階建（軸組工法）</td><td class="ynum"><span class="na">—</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr class="noprice"><td>木造3階建</td><td class="ynum"><span class="na">—</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr class="noprice"><td>木造　地上2階</td><td class="ynum"><span class="na">—</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr class="noprice"><td>木造平屋建</td><td class="ynum"><span class="na">—</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr class="noprice"><td>木造瓦葺2階建</td><td class="ynum"><span class="na">—</span></td><td class="ynum"><span class="num">22</span></td></tr>
+<tr class="noprice"><td>軽量鉄骨2階建</td><td class="ynum"><span class="na">—</span></td><td class="ynum"><span class="num">27</span></td></tr>
+<tr class="noprice"><td>鉄骨3階建</td><td class="ynum"><span class="na">—</span></td><td class="ynum"><span class="num">34</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>構造表 — NEMO-02収益データより抽出・整形 ／ 2026-06-30</footer>
+</div>
+</body>
+</html>
