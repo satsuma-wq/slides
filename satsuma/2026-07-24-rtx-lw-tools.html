@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【協業】RTX LINE WORKS 便利ツール（一括送信 / 全既読）</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f4f8;color:#333;padding:24px 16px}
+  .container{max-width:720px;margin:0 auto}
+  h1{font-size:1.4em;font-weight:700;margin-bottom:6px}
+  .lead{font-size:.9em;color:#555;background:#e8f0fe;border-left:3px solid #2563eb;padding:12px 16px;border-radius:0 6px 6px 0;margin-bottom:16px;line-height:1.7}
+  .update{font-size:.82em;color:#8a5a00;background:#fff8e1;border-left:3px solid #f9a825;padding:10px 14px;border-radius:0 6px 6px 0;margin-bottom:24px;line-height:1.6}
+  .nav{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+  .nav a{flex:1;min-width:200px;text-align:center;text-decoration:none;font-weight:700;font-size:.95em;padding:14px;border-radius:10px;color:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+  .nav a.send{background:#1d4ed8}
+  .nav a.read{background:#0057b8}
+  .tool{margin-bottom:40px}
+  .tool-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #e5e7eb}
+  .tool-head h2{font-size:1.2em;font-weight:700}
+  .tag{display:inline-block;color:#fff;font-size:.7em;padding:2px 8px;border-radius:10px;vertical-align:middle;font-weight:600}
+  .card{background:white;border-radius:10px;padding:18px 22px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .card h3{font-size:.98em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .card h3 .num{color:white;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:.8em;flex-shrink:0}
+  .send-c{color:#1d4ed8} .send-n{background:#1d4ed8}
+  .read-c{color:#0057b8} .read-n{background:#0057b8}
+  ol,ul{padding-left:1.4em}
+  ol li,ul li{margin-bottom:7px;line-height:1.7}
+  textarea{width:100%;height:96px;font-family:monospace;font-size:10.5px;border:1px solid #ddd;border-radius:6px;padding:10px;resize:vertical;background:#fafafa;margin-top:10px}
+  .copy-btn{display:block;width:100%;margin-top:8px;padding:12px;color:white;border:none;border-radius:6px;font-size:.95em;cursor:pointer;font-weight:600}
+  .copy-btn.send{background:#1d4ed8} .copy-btn.read{background:#0057b8}
+  kbd{background:#eee;border:1px solid #ccc;border-radius:3px;padding:1px 5px;font-family:monospace;font-size:.9em}
+  code{background:#f0f0f0;padding:1px 5px;border-radius:3px;font-family:monospace;font-size:.9em}
+  .note{background:#fff8e1;border-left:3px solid #f9a825;padding:10px 14px;border-radius:0 6px 6px 0;font-size:.86em;margin-top:12px;line-height:1.7}
+  .tip{background:#e8f5e9;border-left:3px solid #43a047;padding:10px 14px;border-radius:0 6px 6px 0;font-size:.86em;margin-top:12px;line-height:1.7}
+  table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.88em}
+  th{background:#f0f4f8;padding:8px 12px;text-align:left;border:1px solid #e0e0e0;font-weight:600}
+  td{padding:8px 12px;border:1px solid #e0e0e0;vertical-align:top}
+  tr:nth-child(even) td{background:#fafafa}
+  .ver{font-size:.75em;color:#bbb;text-align:center;margin-top:8px}
+  .back{display:inline-block;font-size:.8em;color:#2563eb;text-decoration:none;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="container" id="top">
+  <h1>🛠 【協業】RTX LINE WORKS 便利ツール</h1>
+  <p class="lead"><b>一括送信</b>と<b>全既読</b>の2つのツールをまとめたページです。<br>どちらもLINE WORKSのトーク画面（<code>talk.worksmobile.com</code>）で使う「ブックマークレット」です。使いたいツールのコードをブックマークに登録して、ワンクリックで実行します。</p>
+  <p class="update">🔄 <b>2026-07-24 更新：</b> LINE WORKS本体のアップデートで内部構造が変わり、旧バージョンが動かなくなっていた問題を修正しました（一括送信で本文が入らず空メッセージが送られてしまう不具合の解消を含む）。<b>お手数ですが、下のコードで再登録をお願いします。</b></p>
+
+  <div class="nav">
+    <a class="send" href="#send">📨 一括送信ツール</a>
+    <a class="read" href="#read">✅ 全既読ツール</a>
+  </div>
+
+  <!-- ============ 一括送信 ============ -->
+  <div class="tool" id="send">
+    <div class="tool-head">
+      <h2 class="send-c">📨 一括送信ツール</h2>
+      <span class="tag send-n">v3.0</span>
+    </div>
+    <p style="font-size:.88em;color:#555;line-height:1.7;margin-bottom:8px">「<b>協業</b>」と「<b>RTX</b>」が名前に入っているLINE WORKSグループに、同じメッセージをまとめて送れます（「閉鎖」を含むグループは自動除外）。物件紹介やお知らせを、何十件ものグループへ1件ずつ送る手間がなくなります。</p>
+
+    <div class="card">
+      <h3 class="send-c"><span class="num send-n">1</span>コードをコピーする</h3>
+      <p style="font-size:.88em;color:#555">下のボタンを押してコードを全選択し、<kbd>Ctrl</kbd>+<kbd>C</kbd>（Macは<kbd>⌘</kbd>+<kbd>C</kbd>）でコピー。</p>
+      <textarea id="code-send" readonly>javascript:void((async()=&gt;{ const sleep=ms=&gt;new Promise(r=&gt;setTimeout(r,ms)); if(!location.hostname.includes('worksmobile.com')){alert('LINE WORKS のトーク画面で実行してください');return} document.title='チャンネル読み込み中...'; const sl=document.querySelector('.chat_list'); if(sl){const sc=sl.closest('[class*=scroll]')||sl.parentElement;if(sc){let prev=0,cur=sl.querySelectorAll('.item_chat').length;for(let i=0;i&lt;60;i++){sc.scrollTop=sc.scrollHeight;await sleep(600);cur=sl.querySelectorAll('.item_chat').length;document.title='読み込み中... '+cur+'件';if(cur===prev)break;prev=cur}sc.scrollTop=0;await sleep(500)}} const channels=window._messageAppData&amp;&amp;window._messageAppData.ChannelList&amp;&amp;window._messageAppData.ChannelList._channels; if(!channels){alert('チャンネルデータが見つかりません。ページをリロード(F5)してから再実行してください。');document.title='LINE WORKS';return} const kyogyo=Object.values(channels).filter(ch=&gt;ch&amp;&amp;ch.title&amp;&amp;ch.title.includes('協業')&amp;&amp;ch.title.includes('RTX')&amp;&amp;!ch.title.includes('閉鎖')); document.title='LINE WORKS'; if(!kyogyo.length){alert('「協業」と「RTX」を含むグループが見つかりません');return} const ov=document.createElement('div');ov.id='rtx-send-overlay';ov.style.cssText='position:fixed;top:0;left:0;width:100%25;height:100%25;background:rgba(0,0,0,0.5);z-index:99999;display:flex;align-items:center;justify-content:center;font-family:sans-serif'; const box=document.createElement('div');box.style.cssText='background:%23fff;border-radius:16px;padding:28px;width:520px;max-width:90vw;max-height:90vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.2)'; const h=document.createElement('div');h.style.cssText='font-size:18px;font-weight:700;color:%231f2937;margin-bottom:4px';h.textContent='【協業】RTX 一括送信';box.appendChild(h); const sub=document.createElement('div');sub.style.cssText='font-size:13px;color:%236b7280;margin-bottom:16px';sub.textContent=kyogyo.length+'グループに送信します';box.appendChild(sub); const gl=document.createElement('div');gl.style.cssText='font-size:12px;color:%236b7280;margin-bottom:8px;max-height:120px;overflow-y:auto;background:%23f9fafb;border-radius:8px;padding:8px';gl.innerHTML=kyogyo.map(ch=&gt;'・'+ch.title).join('&lt;br&gt;');box.appendChild(gl); const lb=document.createElement('div');lb.style.cssText='font-size:13px;font-weight:600;color:%23374151;margin-bottom:6px';lb.textContent='メッセージ：';box.appendChild(lb); const ta=document.createElement('textarea');ta.style.cssText='width:100%25;height:240px;border:1px solid %23d1d5db;border-radius:8px;padding:12px;font-size:14px;line-height:1.6;resize:vertical;font-family:inherit';ta.placeholder='ここにメッセージを入力...';box.appendChild(ta); const btns=document.createElement('div');btns.style.cssText='display:flex;gap:10px;margin-top:16px;justify-content:flex-end'; const cb=document.createElement('button');cb.id='rtx-cancel';cb.style.cssText='padding:10px 24px;border-radius:8px;border:1px solid %23d1d5db;background:%23fff;color:%23374151;font-size:14px;cursor:pointer';cb.textContent='キャンセル';btns.appendChild(cb); const sbtn=document.createElement('button');sbtn.id='rtx-send';sbtn.style.cssText='padding:10px 24px;border-radius:8px;border:none;background:%232563eb;color:%23fff;font-size:14px;font-weight:600;cursor:pointer';sbtn.textContent='送信する';btns.appendChild(sbtn); box.appendChild(btns);ov.appendChild(box);document.body.appendChild(ov);ta.focus(); const result=await new Promise(resolve=&gt;{cb.onclick=()=&gt;{ov.remove();resolve(null)};sbtn.onclick=()=&gt;{const v=ta.value;ov.remove();resolve(v)}}); if(!result||!result.trim())return; const msg=result; if(!confirm('以下の'+kyogyo.length+'グループにメッセージを送信します。よろしいですか？\n\n※送信中はブラウザを閉じないでください'))return; const getFK=el=&gt;Object.keys(el).find(k=&gt;k.startsWith('__reactFiber')||k.startsWith('__reactInternalInstance')); const findRoom=()=&gt;{const mi=document.getElementById('message-input');if(!mi)return null;let n=mi[getFK(mi)];for(let d=0;d&lt;25&amp;&amp;n;d++,n=n.return){const sn=n.stateNode;if(sn&amp;&amp;sn!==window&amp;&amp;typeof sn.sendMessage==='function'&amp;&amp;sn.editor)return{comp:sn,mi:mi}}return null}; const getClick=()=&gt;{const items=document.querySelectorAll('.chat_list .item_chat');if(!items.length)return null;const fk=getFK(items[0]);const r=items[0][fk]&amp;&amp;items[0][fk].return;return r&amp;&amp;r.stateNode&amp;&amp;r.stateNode.props&amp;&amp;r.stateNode.props.clickChannel}; let done=0;const errors=[]; for(const ch of kyogyo){ try{ const clickCh=getClick();if(typeof clickCh!=='function'){errors.push(ch.title+': 開く機能なし');continue} clickCh(ch);await sleep(1500); const f=findRoom();if(!f){errors.push(ch.title+': 入力欄なし');continue} const comp=f.comp,mi=f.mi; const openNo=comp.props&amp;&amp;comp.props.channel&amp;&amp;comp.props.channel.channelNo; if(openNo!==ch.channelNo){errors.push(ch.title+': チャンネル不一致でスキップ');continue} const ed=comp.editor.current; try{mi.focus()}catch(e){} await sleep(120); ed.setContent(msg); await new Promise(r=&gt;requestAnimationFrame(()=&gt;setTimeout(r,300))); if(!ed.content||!String(ed.content).trim()){try{ed.clearContent()}catch(e){}errors.push(ch.title+': 本文が入らずスキップ(空送信防止)');continue} const sr=await comp.sendMessage(); if(sr&amp;&amp;typeof sr==='object'&amp;&amp;'keepContent'in sr){errors.push(ch.title+': 送信保留(未送信)');try{ed.clearContent()}catch(e){}continue} done++;document.title='送信中... '+done+'/'+kyogyo.length; await sleep(1000); }catch(e){errors.push(ch.title+': '+(e&amp;&amp;e.message||e))} } document.title='LINE WORKS'; let res='完了！ '+done+'/'+kyogyo.length+'グループに送信しました'; if(errors.length)res+='\n\nスキップ/エラー('+errors.length+'件)：\n'+errors.slice(0,30).join('\n'); alert(res); })())</textarea>
+      <button class="copy-btn send" onclick="var t=document.getElementById('code-send');t.focus();t.select();this.textContent='✅ 選択されました！ → Ctrl+C（⌘+C）でコピー'">👆 クリックしてコードを全選択する</button>
+    </div>
+
+    <div class="card">
+      <h3 class="send-c"><span class="num send-n">2</span>ブックマークとして登録する（最初の1回だけ）</h3>
+      <ol>
+        <li>Chromeのブックマークバーで<b>右クリック</b> →「<b>ページを追加…</b>」</li>
+        <li><b>名前</b>：<code>協業RTX一括送信</code></li>
+        <li><b>URL</b>欄を全選択（<kbd>Ctrl</kbd>+<kbd>A</kbd>）して、コピーしたコードを<b>貼り付け</b>（<kbd>Ctrl</kbd>+<kbd>V</kbd>）→「<b>保存</b>」</li>
+      </ol>
+      <div style="background:#f8fafc;border-radius:6px;padding:10px 12px;margin-top:8px;font-size:.84em;color:#555;line-height:1.7">📌 ブックマークバーが出ていないとき：<b>Windows</b> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> ／ <b>Mac</b> <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd></div>
+      <div class="note">⚠️ <b>重要：</b>Chromeは登録時に先頭の <code>javascript:</code> を消すことがあります。保存後にブックマークを<b>右クリック→「編集」</b>し、URLが <code>javascript:void(</code> で始まっているか確認してください。消えていたら先頭に <code>javascript:</code> を足して再保存。</div>
+    </div>
+
+    <div class="card">
+      <h3 class="send-c"><span class="num send-n">3</span>使い方（毎回）</h3>
+      <ol>
+        <li>Chromeで <code>talk.worksmobile.com</code>（トーク画面）を開く</li>
+        <li>ブックマーク「<b>協業RTX一括送信</b>」をクリック</li>
+        <li>タブに「読み込み中… ○○件」と出て、対象グループ一覧＋入力欄が表示される</li>
+        <li>メッセージを入力して「<b>送信する</b>」→ 確認で「<b>OK</b>」</li>
+        <li>「完了！」が出たら終了</li>
+      </ol>
+      <div class="tip">✅ タブのタイトルに「送信中… 1/○○」と進捗が出ます。<b>完了ダイアログが出るまでブラウザを閉じないでください。</b>入力欄に文字が入らなかったグループは、安全のため送信せずスキップし、完了画面に一覧表示します（<b>空メッセージは送りません</b>）。</div>
+    </div>
+
+    <div class="card">
+      <h3 class="send-c">⏱ 送信にかかる時間の目安</h3>
+      <table>
+        <tr><th>グループ数</th><th>かかる時間</th></tr>
+        <tr><td>50件</td><td>約2分半</td></tr>
+        <tr><td>100件</td><td>約5分</td></tr>
+        <tr><td>200件</td><td>約10分</td></tr>
+        <tr><td>250件</td><td>約12分</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 class="send-c">🔧 うまくいかないとき</h3>
+      <table>
+        <tr><th>症状</th><th>対処</th></tr>
+        <tr><td>「トーク画面で実行してください」</td><td><code>talk.worksmobile.com</code> を開いてから実行</td></tr>
+        <tr><td>「チャンネルデータが見つかりません」</td><td>ページをリロード（<kbd>F5</kbd>）して再実行</td></tr>
+        <tr><td>対象グループが0件</td><td>トーク一覧を表示した状態でリロード→再実行</td></tr>
+        <tr><td>一部グループでスキップ</td><td>完了画面の一覧を見て、そのグループだけ手動送信</td></tr>
+        <tr><td>ボタンが反応しない</td><td>ブックマークのURL先頭に <code>javascript:</code> があるか確認</td></tr>
+      </table>
+      <p class="ver">v3.0 / 2026-07-24 — LINE WORKSアップデート対応・社内専用ツール</p>
+    </div>
+    <a class="back" href="#top">↑ 上に戻る</a>
+  </div>
+
+  <!-- ============ 全既読 ============ -->
+  <div class="tool" id="read">
+    <div class="tool-head">
+      <h2 class="read-c">✅ 全既読ツール</h2>
+      <span class="tag read-n">v6</span>
+    </div>
+    <p style="font-size:.88em;color:#555;line-height:1.7;margin-bottom:8px">クリック1回で、トーク一覧の<b>未読をすべて既読</b>にします。未読バッジがたまったときにまとめて処理できます。</p>
+
+    <div class="card">
+      <h3 class="read-c"><span class="num read-n">1</span>コードをコピーする</h3>
+      <p style="font-size:.88em;color:#555">下のボタンを押してコードを全選択し、<kbd>Ctrl</kbd>+<kbd>C</kbd>（Macは<kbd>⌘</kbd>+<kbd>C</kbd>）でコピー。</p>
+      <textarea id="code-read" readonly>javascript:void((async()=&gt;{ const sleep=ms=&gt;new Promise(r=&gt;setTimeout(r,ms)); if(!location.hostname.includes('worksmobile.com')){alert('LINE WORKS のトーク画面で実行してください');return} document.title='読み込み中...'; const sl=document.querySelector('.chat_list'); if(sl){const sc=sl.closest('[class*=scroll]')||sl.parentElement;if(sc){let prev=0,cur=sl.querySelectorAll('.item_chat').length;for(let i=0;i&lt;60;i++){sc.scrollTop=sc.scrollHeight;await sleep(500);cur=sl.querySelectorAll('.item_chat').length;document.title='読み込み中... '+cur+'件';if(cur===prev)break;prev=cur}sc.scrollTop=0;await sleep(400)}} const channels=window._messageAppData&amp;&amp;window._messageAppData.ChannelList&amp;&amp;window._messageAppData.ChannelList._channels; document.title='LINE WORKS'; if(!channels){alert('チャンネルデータが見つかりません。ページをリロード(F5)してから再実行してください。');return} const unread=Object.values(channels).filter(c=&gt;c&amp;&amp;typeof c.unreadCount==='number'&amp;&amp;c.unreadCount&gt;0); if(!unread.length){alert('未読はありません！');return} const getFK=el=&gt;Object.keys(el).find(k=&gt;k.startsWith('__reactFiber')||k.startsWith('__reactInternalInstance')); const getClick=()=&gt;{const items=document.querySelectorAll('.chat_list .item_chat');if(!items.length)return null;const fk=getFK(items[0]);const r=items[0][fk]&amp;&amp;items[0][fk].return;return r&amp;&amp;r.stateNode&amp;&amp;r.stateNode.props&amp;&amp;r.stateNode.props.clickChannel}; const clickCh=getClick(); if(typeof clickCh!=='function'){alert('チャンネルを開く機能が見つかりません。ページをリロード(F5)して再実行してください。');return} if(!confirm(unread.length+'件の未読トークをまとめて既読にしますか？'))return; let d=0; for(const ch of unread){try{clickCh(ch);d++;document.title='既読処理中... '+d+'/'+unread.length;await sleep(500)}catch(e){}} document.title='LINE WORKS'; alert('完了！ '+d+'件を既読にしました'); })())</textarea>
+      <button class="copy-btn read" onclick="var t=document.getElementById('code-read');t.focus();t.select();this.textContent='✅ 選択されました！ → Ctrl+C（⌘+C）でコピー'">👆 クリックしてコードを全選択する</button>
+    </div>
+
+    <div class="card">
+      <h3 class="read-c"><span class="num read-n">2</span>ブックマークとして登録する（最初の1回だけ）</h3>
+      <ol>
+        <li>Chromeのブックマークバーで<b>右クリック</b> →「<b>ページを追加…</b>」</li>
+        <li><b>名前</b>：<code>LW全既読</code></li>
+        <li><b>URL</b>欄を全選択（<kbd>Ctrl</kbd>+<kbd>A</kbd>）して貼り付け（<kbd>Ctrl</kbd>+<kbd>V</kbd>）→「<b>保存</b>」</li>
+      </ol>
+      <div class="note">⚠️ 送信ツールと同じく、URL先頭の <code>javascript:</code> が消えていないか（右クリック→「編集」で）確認してください。</div>
+    </div>
+
+    <div class="card">
+      <h3 class="read-c"><span class="num read-n">3</span>使い方</h3>
+      <ol>
+        <li><code>talk.worksmobile.com</code> を開き、<b>トーク一覧</b>が見える状態にする</li>
+        <li>ブックマーク「<b>LW全既読</b>」をクリック</li>
+        <li>「○件の未読トークをまとめて既読にしますか？」→「<b>OK</b>」</li>
+      </ol>
+      <div class="tip">✅ タブのタイトルに「既読処理中… 1/○」と進捗が出ます。完了すると「完了！ ○件を既読にしました」と表示されます。</div>
+    </div>
+
+    <div class="card">
+      <h3 class="read-c">🔧 うまくいかないとき</h3>
+      <table>
+        <tr><th>症状</th><th>対処</th></tr>
+        <tr><td>「トーク画面で実行してください」</td><td><code>talk.worksmobile.com</code> を開いてから実行</td></tr>
+        <tr><td>「チャンネルデータが見つかりません」</td><td>ページをリロード（<kbd>F5</kbd>）して再実行</td></tr>
+        <tr><td>未読が減らない</td><td>トーク一覧を表示した状態でリロード→再実行</td></tr>
+      </table>
+      <p class="ver">v6 / 2026-07-24 — LINE WORKSアップデート対応・社内専用ツール</p>
+    </div>
+    <a class="back" href="#top">↑ 上に戻る</a>
+  </div>
+
+</div>
+</body>
+</html>
