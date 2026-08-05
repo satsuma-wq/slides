@@ -1,460 +1,338 @@
 <!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AMEX RTX 2026年7月 利用明細</title>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AMEX RTX 2026年7月 利用明細分析</title>
 <style>
-  :root { --primary:#1a365d; --accent:#2b6cb0; --red:#c53030; --orange:#c05621; --green:#276749; --gray:#718096; }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:-apple-system,'Hiragino Sans','Noto Sans JP',sans-serif; background:#f7fafc; color:#2d3748; line-height:1.6; padding:20px; }
-  .container { max-width:1100px; margin:0 auto; }
-  header { background:linear-gradient(135deg,var(--primary),var(--accent)); color:#fff; padding:28px 36px; border-radius:12px; margin-bottom:20px; }
-  header h1 { font-size:22px; } header p { opacity:.85; font-size:13px; margin-top:4px; }
-  .summary-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-bottom:20px; }
-  .summary-card { background:#fff; border-radius:10px; padding:20px; box-shadow:0 1px 3px rgba(0,0,0,.08); text-align:center; }
-  .summary-card .label { font-size:12px; color:var(--gray); } .summary-card .value { font-size:24px; font-weight:800; }
-  .section { background:#fff; border-radius:10px; padding:24px 28px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
-  .section h2 { font-size:16px; font-weight:700; color:var(--primary); margin-bottom:12px; padding-bottom:6px; border-bottom:2px solid #e2e8f0; }
-  table { width:100%; border-collapse:collapse; font-size:13px; }
-  thead th { background:#edf2f7; text-align:left; padding:8px 10px; font-weight:600; font-size:11px; color:#4a5568; white-space:nowrap; }
-  thead th.num { text-align:right; }
-  tbody td { padding:7px 10px; border-bottom:1px solid #edf2f7; }
-  tbody td.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
-  .total-row td { font-weight:700; border-top:2px solid #cbd5e0; background:#f7fafc; }
-  .flag { display:inline-block; font-size:10px; font-weight:600; padding:1px 6px; border-radius:3px; }
-  .flag-warn { background:#fed7d7; color:#c53030; }
-  .flag-check { background:#feebc8; color:#c05621; }
-  .flag-ok { background:#c6f6d5; color:#276749; }
-  .cat-header td { background:#edf2f7; font-weight:700; font-size:13px; color:var(--primary); }
-  .highlight { background:#fffff0; }
-  details { margin-bottom:8px; }
-  details summary { cursor:pointer; font-weight:600; font-size:14px; padding:8px 0; color:var(--primary); }
-  details summary:hover { color:var(--accent); }
-  .note { font-size:12px; color:var(--gray); padding:8px 0; border-top:1px solid #edf2f7; margin-top:12px; }
-  footer { text-align:center; padding:16px; font-size:11px; color:var(--gray); }
-  @media(max-width:640px) { body{padding:10px;} .section{padding:16px 12px;} table{font-size:12px;} }
-</style>
-</head>
-<body>
-<div class="container">
-<header>
-  <h1>AMEX利用明細一覧 ─ 不要コスト洗い出し</h1>
-  <p>リアテクス 2026年7月請求（6/20〜7/19利用分）</p>
-</header>
-
+:root{--primary:#1a365d;--accent:#2b6cb0;--red:#c53030;--orange:#c05621;--green:#276749;--gray:#718096}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Hiragino Sans','Noto Sans JP',sans-serif;background:#f7fafc;color:#2d3748;line-height:1.6;padding:20px}
+.container{max-width:1100px;margin:0 auto}
+header{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:28px 36px;border-radius:12px;margin-bottom:20px}
+header h1{font-size:22px} header p{opacity:.85;font-size:13px;margin-top:4px}
+.summary-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:20px}
+.sc{background:#fff;border-radius:10px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.08);text-align:center}
+.sc .label{font-size:12px;color:var(--gray)} .sc .value{font-size:24px;font-weight:800}
+.section{background:#fff;border-radius:10px;padding:24px 28px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.section h2{font-size:16px;font-weight:700;color:var(--primary);margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e2e8f0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:#edf2f7;text-align:left;padding:8px 10px;font-weight:600;font-size:11px;color:#4a5568;white-space:nowrap}
+thead th.num{text-align:right}
+tbody td{padding:7px 10px;border-bottom:1px solid #edf2f7}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.total-row td{font-weight:700;border-top:2px solid #cbd5e0;background:#f7fafc}
+.flag{display:inline-block;font-size:10px;font-weight:600;padding:1px 6px;border-radius:3px}
+.flag-warn{background:#fed7d7;color:#c53030} .flag-check{background:#feebc8;color:#c05621} .flag-ok{background:#c6f6d5;color:#276749}
+.highlight{background:#fffff0}
+details{margin-bottom:4px} details summary{cursor:pointer;font-weight:600;font-size:13px;padding:6px 0;color:var(--primary)}
+.note{font-size:12px;color:var(--gray);padding:8px 0;border-top:1px solid #edf2f7;margin-top:12px}
+footer{text-align:center;padding:16px;font-size:11px;color:var(--gray)}
+@media(max-width:640px){body{padding:10px}.section{padding:16px 12px}table{font-size:12px}}
+</style></head><body><div class="container">
+<header><h1>AMEXカード利用明細 ─ 不要コスト洗い出し</h1>
+<p>リアテクス 2026年7月請求（6/20〜7/19利用分）・全276件を分析</p></header>
 <div class="summary-row">
-  <div class="summary-card">
-    <div class="label">請求総額</div>
-    <div class="value" style="color:var(--primary)">4,966,610円</div>
-  </div>
-  <div class="summary-card">
-    <div class="label">抽出取引数</div>
-    <div class="value">276件</div>
-  </div>
-  <div class="summary-card">
-    <div class="label">要検討フラグ</div>
-    <div class="value" style="color:var(--red)">指摘あり</div>
-  </div>
+<div class="sc"><div class="label">請求総額</div><div class="value" style="color:var(--primary)">4,966,610円</div></div>
+<div class="sc"><div class="label">抽出・分類済み</div><div class="value">3,438,842円</div></div>
+<div class="sc"><div class="label">要検討・要確認</div><div class="value" style="color:var(--red)">2,811,561円</div></div>
 </div>
-
-<div class="section">
-  <h2>カテゴリ別集計と判定</h2>
-  <table>
-    <thead><tr><th>カテゴリ</th><th class="num">件数</th><th class="num">金額</th><th>判定</th><th>コメント</th></tr></thead>
-    <tbody>
-<tr><td>不動産サイト掲載</td><td class="num">1</td><td class="num">782,700</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">掲載料。費用対効果を確認</td></tr>
-<tr class="highlight"><td>その他（高額）</td><td class="num">3</td><td class="num">626,202</td><td><span class="flag flag-warn">要確認</span></td><td style="font-size:12px;color:#4a5568">内容確認が必要</td></tr>
-<tr class="highlight"><td>AI（Claude）</td><td class="num">16</td><td class="num">303,316</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">Anthropic API利用料。複数契約が重複していないか確認</td></tr>
-<tr><td>その他</td><td class="num">45</td><td class="num">294,981</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">明細読取不可。原本確認推奨</td></tr>
-<tr class="highlight"><td>AI（Claude Team）</td><td class="num">6</td><td class="num">244,889</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">Claude Teamプラン。アカウント数と利用者の整合確認</td></tr>
-<tr class="highlight"><td>支払い（大口）</td><td class="num">1</td><td class="num">230,600</td><td><span class="flag flag-warn">要確認</span></td><td style="font-size:12px;color:#4a5568">内容確認が必要</td></tr>
-<tr class="highlight"><td>飲食（プレミアム）</td><td class="num">28</td><td class="num">182,570</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">高単価飲食。接待であれば妥当だが頻度確認</td></tr>
-<tr><td>飲食</td><td class="num">53</td><td class="num">182,310</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">飲食店利用。接待か福利厚生か確認</td></tr>
-<tr><td>SaaS（その他）</td><td class="num">5</td><td class="num">87,259</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">内容確認が必要</td></tr>
-<tr><td>SaaS（Zoom）</td><td class="num">1</td><td class="num">79,488</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">79,488円/月は上位プラン。人数・利用実態を確認</td></tr>
-<tr class="highlight"><td>交通（Lyft）</td><td class="num">11</td><td class="num">59,841</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">海外配車。出張時のみか確認</td></tr>
-<tr><td>SaaS（Google Cloud）</td><td class="num">3</td><td class="num">55,051</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">GCP利用料。プロジェクト単位で要否確認</td></tr>
-<tr><td>ETC（高速道路）</td><td class="num">63</td><td class="num">40,700</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">業務移動。妥当</td></tr>
-<tr class="highlight"><td>AI（ChatGPT）</td><td class="num">1</td><td class="num">36,746</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">OpenAI ChatGPT Plus。Claudeと重複利用の可能性</td></tr>
-<tr><td>宿泊</td><td class="num">1</td><td class="num">36,300</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">出張宿泊。妥当</td></tr>
-<tr><td>SaaS（Microsoft 365）</td><td class="num">1</td><td class="num">33,992</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">M365ライセンス。アカウント数の適正化</td></tr>
-<tr><td>自社関連</td><td class="num">1</td><td class="num">30,000</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">自社関連の支出</td></tr>
-<tr class="highlight"><td>飲食（Uber Eats）</td><td class="num">13</td><td class="num">22,830</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">デリバリー利用。業務利用か私用か確認</td></tr>
-<tr class="highlight"><td>AI（HeyGen）</td><td class="num">2</td><td class="num">21,659</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">動画生成AI。利用頻度に見合うか確認</td></tr>
-<tr><td>SaaS（Jicoo）</td><td class="num">1</td><td class="num">14,850</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">日程調整ツール。14,850円は上位プラン</td></tr>
+<div class="section"><h2>カテゴリ別集計と判定</h2><table><thead><tr><th>カテゴリ</th><th class="num">件数</th><th class="num">金額</th><th>判定</th><th>コメント</th></tr></thead><tbody>
+<tr class="highlight"><td>高額支出（要確認）</td><td class="num">4</td><td class="num">1,408,902</td><td><span class="flag flag-warn">要確認</span></td><td style="font-size:12px;color:#4a5568">PDF読取不可の高額取引。原本確認必須</td></tr>
+<tr class="highlight"><td>AI（Claude）</td><td class="num">16</td><td class="num">303,316</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">16件/月。API利用料。複数契約が重複している可能性</td></tr>
+<tr class="highlight"><td>AI（Claude Team）</td><td class="num">6</td><td class="num">244,889</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">6件。チームプラン。6/26に184,402円の大口あり</td></tr>
+<tr class="highlight"><td>大口支払い（要確認）</td><td class="num">1</td><td class="num">230,600</td><td><span class="flag flag-warn">要確認</span></td><td style="font-size:12px;color:#4a5568">230,600円。内容確認必須</td></tr>
+<tr class="highlight"><td>交通（Lyft・海外）</td><td class="num">36</td><td class="num">230,598</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">36件/230,598円。7/1-9の海外出張中に集中。毎日複数回利用</td></tr>
+<tr class="highlight"><td>飲食（プレミアム）</td><td class="num">28</td><td class="num">182,570</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">28件。高単価。頻度が多い</td></tr>
+<tr><td>飲食</td><td class="num">53</td><td class="num">182,310</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">53件。接待・福利厚生の確認</td></tr>
+<tr><td>SaaS（その他）</td><td class="num">5</td><td class="num">87,259</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">内容不明。原本確認推奨</td></tr>
+<tr><td>SaaS（Zoom）</td><td class="num">1</td><td class="num">79,488</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">79,488円は上位プラン。Google Meetで代替可能か</td></tr>
+<tr class="highlight"><td>交通（Lyft）</td><td class="num">11</td><td class="num">59,841</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">11件。国内での海外配車アプリ利用</td></tr>
+<tr class="highlight"><td>その他（要確認）</td><td class="num">5</td><td class="num">57,028</td><td><span class="flag flag-warn">要確認</span></td><td style="font-size:12px;color:#4a5568">PDF読取不可。原本確認推奨</td></tr>
+<tr><td>SaaS（Google Cloud）</td><td class="num">3</td><td class="num">55,051</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">GCP。3件55,051円。プロジェクト単位で要否確認</td></tr>
+<tr><td>ETC（高速道路）</td><td class="num">66</td><td class="num">43,853</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">66件。業務移動。妥当</td></tr>
+<tr class="highlight"><td>AI（ChatGPT）</td><td class="num">1</td><td class="num">36,746</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">Claude利用中なら重複。解約検討</td></tr>
+<tr><td>宿泊</td><td class="num">1</td><td class="num">36,300</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">COBA広島。36,300円。出張宿泊</td></tr>
+<tr><td>SaaS（Microsoft 365）</td><td class="num">1</td><td class="num">33,992</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">33,992円。アカウント数の適正化</td></tr>
+<tr><td>自社関連</td><td class="num">1</td><td class="num">30,000</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">リアテクス関連。30,000円</td></tr>
+<tr class="highlight"><td>飲食（Uber Eats）</td><td class="num">13</td><td class="num">22,830</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">13件。業務/私用の確認</td></tr>
+<tr class="highlight"><td>AI（HeyGen）</td><td class="num">2</td><td class="num">21,659</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">動画AI。2件で21,659円。利用頻度確認</td></tr>
+<tr><td>SaaS（Jicoo）</td><td class="num">1</td><td class="num">14,850</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">日程調整。14,850円は上位プラン。無料ツールで代替可能か</td></tr>
 <tr><td>SaaS（CleanShot）</td><td class="num">2</td><td class="num">14,502</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">スクショツール。個人利用の可能性</td></tr>
-<tr class="highlight"><td>交通（Uber）</td><td class="num">1</td><td class="num">10,554</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">配車サービス。業務利用確認</td></tr>
-<tr><td>交通（タクシー）</td><td class="num">3</td><td class="num">9,500</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">業務移動。妥当</td></tr>
-<tr><td>備品（Amazon）</td><td class="num">3</td><td class="num">7,554</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">備品購入。妥当</td></tr>
-<tr><td>交通（機内WiFi）</td><td class="num">2</td><td class="num">7,353</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">出張時WiFi。妥当</td></tr>
-<tr><td>SaaS（GitHub）</td><td class="num">2</td><td class="num">6,083</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">開発用。必要経費</td></tr>
-<tr><td>SaaS（Adobe）</td><td class="num">1</td><td class="num">4,980</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">Adobe CC。利用者確認</td></tr>
-<tr><td>SaaS（ペライチ）</td><td class="num">1</td><td class="num">4,378</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">LP作成。現在も使用中か確認</td></tr>
-<tr><td>システム利用</td><td class="num">1</td><td class="num">3,093</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">システム利用料</td></tr>
-<tr class="highlight"><td>AI（ElevenLabs）</td><td class="num">1</td><td class="num">2,028</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">音声生成AI。利用頻度に見合うか確認</td></tr>
-<tr><td>通信</td><td class="num">1</td><td class="num">1,103</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">通信費。妥当</td></tr>
-<tr><td>交通（カーシェア）</td><td class="num">1</td><td class="num">880</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">業務移動。妥当</td></tr>
-<tr><td>SaaS（Marshmallow）</td><td class="num">1</td><td class="num">550</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">質問サービス。要否確認</td></tr>
+<tr class="highlight"><td>交通（Uber）</td><td class="num">1</td><td class="num">10,554</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">配車1件。10,554円</td></tr>
+<tr><td>交通（タクシー）</td><td class="num">3</td><td class="num">9,500</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">3件。業務移動。妥当</td></tr>
+<tr><td>備品（Amazon）</td><td class="num">3</td><td class="num">7,554</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">3件。7,554円。妥当</td></tr>
+<tr><td>交通（機内WiFi）</td><td class="num">2</td><td class="num">7,353</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">2件。出張時。妥当</td></tr>
+<tr><td>SaaS（GitHub）</td><td class="num">2</td><td class="num">6,083</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">開発に必須。6,083円</td></tr>
+<tr><td>その他（少額）</td><td class="num">3</td><td class="num">5,855</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">PDF読取不可の少額取引</td></tr>
+<tr><td>SaaS（Adobe）</td><td class="num">1</td><td class="num">4,980</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">Adobe CC。4,980円</td></tr>
+<tr><td>SaaS（ペライチ）</td><td class="num">1</td><td class="num">4,378</td><td><span class="flag flag-check">確認</span></td><td style="font-size:12px;color:#4a5568">LP作成。4,378円。現在も使用中か</td></tr>
+<tr><td>システム利用</td><td class="num">1</td><td class="num">3,093</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">3,093円</td></tr>
+<tr class="highlight"><td>AI（ElevenLabs）</td><td class="num">1</td><td class="num">2,028</td><td><span class="flag flag-warn">要検討</span></td><td style="font-size:12px;color:#4a5568">音声AI。月2,028円。利用頻度確認</td></tr>
+<tr><td>交通（カーシェア）</td><td class="num">1</td><td class="num">880</td><td><span class="flag flag-ok">OK</span></td><td style="font-size:12px;color:#4a5568">1件。880円。妥当</td></tr>
 <tr class="total-row"><td>合計</td><td class="num">276</td><td class="num">3,438,842</td><td></td><td></td></tr>
-</tbody></table>
-<div class="note">※ PDF独自フォントのため一部明細が読取不可。「その他」は原本での確認を推奨します。</div></div>
-
-<div class="section">
-  <h2>要検討・要確認の内訳（削減候補）</h2>
-  <table>
-    <thead><tr><th>日付</th><th>カテゴリ</th><th>内容</th><th class="num">金額</th><th>指摘</th></tr></thead>
-    <tbody>
-<tr><td>6/23</td><td>その他（高額）</td><td>�������〔�����〕</td><td class="num">371,000</td><td><span class="flag flag-warn">要確認</span></td></tr>
-<tr><td>6/18</td><td>支払い（大口）</td><td>大口支払い</td><td class="num">230,600</td><td><span class="flag flag-warn">要確認</span></td></tr>
-<tr><td>7/02</td><td>その他（高額）</td><td>51,993           1,184        </td><td class="num">190,202</td><td><span class="flag flag-warn">要確認</span></td></tr>
-<tr><td>6/26</td><td>AI（Claude Team）</td><td>ANTHROPIC CLAUDE TEAM</td><td class="num">184,402</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/30</td><td>その他（高額）</td><td>������������������</td><td class="num">65,000</td><td><span class="flag flag-warn">要確認</span></td></tr>
-<tr><td>6/27</td><td>AI（Claude）</td><td>ANTHROPIC CLAUDE SUBSCRIPTION</td><td class="num">36,832</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/22</td><td>AI（ChatGPT）</td><td>OPENAI ChatGPT</td><td class="num">36,746</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/26</td><td>AI（Claude Team）</td><td>ANTHROPIC CLAUDE TEAM</td><td class="num">22,374</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/21</td><td>AI（Claude Team）</td><td>ANTHROPIC CLAUDE TEAM</td><td class="num">18,850</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/14</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">18,804</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/15</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">18,131</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/30</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">17,852</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/17</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">17,785</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/16</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">17,701</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/16</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">17,700</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/16</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">17,698</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/17</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">17,688</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/15</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">17,685</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/17</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">17,640</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/16</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">17,606</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/29</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">17,598</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/30</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">17,562</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/29</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">17,519</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/23</td><td>AI（Claude）</td><td>ANTHROPIC</td><td class="num">17,515</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/26</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">17,040</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/27</td><td>AI（HeyGen）</td><td>HeyGen</td><td class="num">16,781</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/11</td><td>交通（Lyft）</td><td>LYFT   *PRIORITY</td><td class="num">15,481</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/13</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">15,260</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/12</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">12,460</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/10</td><td>AI（Claude Team）</td><td>ANTHROPIC CLAUDE TEAM</td><td class="num">12,370</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/12</td><td>交通（Lyft）</td><td>LYFT   *AIRPORT</td><td class="num">11,559</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/12</td><td>交通（Uber）</td><td>Uber（配車）</td><td class="num">10,554</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/23</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">10,260</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/29</td><td>交通（Lyft）</td><td>LYFT   *AIRPORT</td><td class="num">9,544</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/30</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">9,110</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/22</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">9,000</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/25</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">8,100</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/22</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">7,680</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/27</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">6,670</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/15</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">6,320</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/21</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">6,260</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/19</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">6,060</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/19</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">6,060</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/29</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">5,990</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/27</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">5,640</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/19</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">5,440</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/20</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">5,440</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/28</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">5,430</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/15</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">5,300</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/27</td><td>AI（HeyGen）</td><td>HeyGen</td><td class="num">4,878</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/10</td><td>交通（Lyft）</td><td>LYFT   *PRIORITY</td><td class="num">4,684</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/18</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">4,480</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/15</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">4,340</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/21</td><td>AI（Claude Team）</td><td>ANTHROPIC CLAUDE TEAM</td><td class="num">3,706</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/26</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">3,520</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/10</td><td>交通（Lyft）</td><td>LYFT   *PRIORITY</td><td class="num">3,351</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/10</td><td>交通（Lyft）</td><td>LYFT   *PRIORITY</td><td class="num">3,342</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/23</td><td>AI（Claude Team）</td><td>ANTHROPIC CLAUDE TEAM</td><td class="num">3,187</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/29</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">2,970</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/29</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">2,890</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/30</td><td>交通（Lyft）</td><td>LYFT   *STANDARD</td><td class="num">2,853</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/10</td><td>交通（Lyft）</td><td>LYFT   *PRIORITY</td><td class="num">2,842</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/11</td><td>交通（Lyft）</td><td>LYFT   *STANDARD</td><td class="num">2,842</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/25</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">2,840</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/26</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">2,760</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/17</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">2,700</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/16</td><td>飲食（Uber Eats）</td><td>Uber Eats</td><td class="num">2,632</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/24</td><td>飲食（プレミアム）</td><td>飲食店（プレミアム）</td><td class="num">2,550</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/24</td><td>飲食（Uber Eats）</td><td>Uber Eats</td><td class="num">2,311</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/26</td><td>AI（ElevenLabs）</td><td>ElevenLabs</td><td class="num">2,028</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/21</td><td>飲食（Uber Eats）</td><td>Uber Eats</td><td class="num">1,839</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/27</td><td>飲食（Uber Eats）</td><td>Uber Eats</td><td class="num">1,835</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/22</td><td>飲食（Uber Eats）</td><td>Uber Eats</td><td class="num">1,830</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/18</td><td>飲食（Uber Eats）</td><td>Uber Eats</td><td class="num">1,806</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/20</td><td>飲食（Uber Eats）</td><td>Uber Eats</td><td class="num">1,798</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/19</td><td>飲食（Uber Eats）</td><td>Uber Eats</td><td class="num">1,797</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/15</td><td>飲食（Uber Eats）</td><td>Uber Eats</td><td class="num">1,797</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/17</td><td>飲食（Uber Eats）</td><td>Uber Eats</td><td class="num">1,797</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/29</td><td>交通（Lyft）</td><td>LYFT   *STANDARD</td><td class="num">1,674</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/29</td><td>交通（Lyft）</td><td>LYFT   *STANDARD</td><td class="num">1,669</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>6/19</td><td>飲食（Uber Eats）</td><td>Uber Eats</td><td class="num">1,405</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/14</td><td>飲食（Uber Eats）</td><td>Uber Eats</td><td class="num">1,359</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr><td>7/14</td><td>飲食（Uber Eats）</td><td>Uber Eats</td><td class="num">624</td><td><span class="flag flag-warn">要検討</span></td></tr>
-<tr class="total-row"><td></td><td>要検討合計</td><td></td><td class="num">1,741,235</td><td></td></tr>
-</tbody></table></div>
-<div class="section"><h2>全取引明細（カテゴリ別）</h2>
-<details><summary>不動産サイト掲載 — 1件 / 782,700円 <span class="flag flag-check">確認</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>7/12</td><td>不動産サイト掲載料</td><td class="num">782,700</td></tr>
-</tbody></table></details>
-<details><summary>その他（高額） — 3件 / 626,202円 <span class="flag flag-warn">要確認</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>6/23</td><td>�������〔�����〕</td><td class="num">371,000</td></tr>
-<tr><td>6/30</td><td>������������������</td><td class="num">65,000</td></tr>
-<tr><td>7/02</td><td>51,993           1,184        </td><td class="num">190,202</td></tr>
+</tbody></table><div class="note">※ PDF独自フォントのため一部明細が読取不可。「要確認」は原本での確認を推奨します。<br>※ 請求総額4,966,610円との差額は、別カード会員分・返金処理等を含みます。</div></div>
+<div class="section"><h2>全取引明細（カテゴリ別・クリックで展開）</h2>
+<details><summary>高額支出（要確認） — 4件 / 1,408,902円 <span class="flag flag-warn">要確認</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
+<tr><td>6/23</td><td>¥371,000 ※原本で内容確認</td><td class="num">371,000</td></tr>
+<tr><td>6/30</td><td>¥65,000 ※原本で内容確認</td><td class="num">65,000</td></tr>
+<tr><td>7/02</td><td>¥190,202 ※原本で内容確認</td><td class="num">190,202</td></tr>
+<tr><td>7/12</td><td>¥782,700 ※原本確認（不動産サイト掲載料？）</td><td class="num">782,700</td></tr>
 </tbody></table></details>
 <details><summary>AI（Claude） — 16件 / 303,316円 <span class="flag flag-warn">要検討</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>6/23</td><td>ANTHROPIC</td><td class="num">17,515</td></tr>
-<tr><td>6/27</td><td>ANTHROPIC CLAUDE SUBSCRIPTION</td><td class="num">36,832</td></tr>
-<tr><td>6/29</td><td>ANTHROPIC</td><td class="num">17,598</td></tr>
-<tr><td>6/29</td><td>ANTHROPIC</td><td class="num">17,519</td></tr>
-<tr><td>6/30</td><td>ANTHROPIC</td><td class="num">17,562</td></tr>
-<tr><td>6/30</td><td>ANTHROPIC</td><td class="num">17,852</td></tr>
-<tr><td>7/14</td><td>ANTHROPIC</td><td class="num">18,804</td></tr>
-<tr><td>7/15</td><td>ANTHROPIC</td><td class="num">18,131</td></tr>
-<tr><td>7/15</td><td>ANTHROPIC</td><td class="num">17,685</td></tr>
-<tr><td>7/16</td><td>ANTHROPIC</td><td class="num">17,701</td></tr>
-<tr><td>7/16</td><td>ANTHROPIC</td><td class="num">17,606</td></tr>
-<tr><td>7/16</td><td>ANTHROPIC</td><td class="num">17,698</td></tr>
-<tr><td>7/16</td><td>ANTHROPIC</td><td class="num">17,700</td></tr>
-<tr><td>7/17</td><td>ANTHROPIC</td><td class="num">17,785</td></tr>
-<tr><td>7/17</td><td>ANTHROPIC</td><td class="num">17,640</td></tr>
-<tr><td>7/17</td><td>ANTHROPIC</td><td class="num">17,688</td></tr>
-</tbody></table></details>
-<details><summary>その他 — 45件 / 294,981円 <span class="flag flag-ok">OK</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>0/00</td><td></td><td class="num">3,355</td></tr>
-<tr><td>0/00</td><td></td><td class="num">16,777</td></tr>
-<tr><td>6/20</td><td>オペ−ク������������</td><td class="num">9,800</td></tr>
-<tr><td>6/21</td><td>���������������������</td><td class="num">600</td></tr>
-<tr><td>6/23</td><td>����������������</td><td class="num">1,900</td></tr>
-<tr><td>6/26</td><td>������������������</td><td class="num">14,451</td></tr>
-<tr><td>6/27</td><td>����������������</td><td class="num">5,000</td></tr>
-<tr><td>6/28</td><td>����������������</td><td class="num">1,500</td></tr>
-<tr><td>7/01</td><td>111.84</td><td class="num">18,818</td></tr>
-<tr><td>7/01</td><td>10.95</td><td class="num">1,842</td></tr>
-<tr><td>7/01</td><td>9.94</td><td class="num">1,674</td></tr>
-<tr><td>7/01</td><td>49.94</td><td class="num">8,413</td></tr>
-<tr><td>7/01</td><td>7.92</td><td class="num">1,334</td></tr>
-<tr><td>7/02</td><td>16.96</td><td class="num">2,857</td></tr>
-<tr><td>7/02</td><td>3.66</td><td class="num">616</td></tr>
-<tr><td>7/02</td><td>3.40</td><td class="num">572</td></tr>
-<tr><td>7/02</td><td>16.95</td><td class="num">2,855</td></tr>
-<tr><td>7/02</td><td>9.96</td><td class="num">1,669</td></tr>
-<tr><td>7/03</td><td>134.00</td><td class="num">22,373</td></tr>
-<tr><td>7/03</td><td>131.00</td><td class="num">21,872</td></tr>
-<tr><td>7/04</td><td>19.92</td><td class="num">3,325</td></tr>
-<tr><td>7/04</td><td>11.98</td><td class="num">2,000</td></tr>
-<tr><td>7/04</td><td>13.97</td><td class="num">2,332</td></tr>
-<tr><td>7/05</td><td>35.96</td><td class="num">6,004</td></tr>
-<tr><td>7/05</td><td>47.92</td><td class="num">8,000</td></tr>
-<tr><td>7/06</td><td>11.93</td><td class="num">1,992</td></tr>
-<tr><td>7/06</td><td>18.97</td><td class="num">3,167</td></tr>
-<tr><td>7/06</td><td>12.99</td><td class="num">2,183</td></tr>
-<tr><td>7/06</td><td>18.92</td><td class="num">3,181</td></tr>
-<tr><td>7/06</td><td>11.93</td><td class="num">2,005</td></tr>
-<tr><td>7/06</td><td>18.99</td><td class="num">3,192</td></tr>
-<tr><td>7/07</td><td>21.94</td><td class="num">3,688</td></tr>
-<tr><td>7/07</td><td>44.92</td><td class="num">7,536</td></tr>
-<tr><td>7/07</td><td>46.93</td><td class="num">7,873</td></tr>
-<tr><td>7/08</td><td>119.00</td><td class="num">19,965</td></tr>
-<tr><td>7/08</td><td>44.99</td><td class="num">7,548</td></tr>
-<tr><td>7/08</td><td>16.97</td><td class="num">2,847</td></tr>
-<tr><td>7/08</td><td>13.99</td><td class="num">2,347</td></tr>
-<tr><td>7/08</td><td>269.00</td><td class="num">45,284</td></tr>
-<tr><td>7/08</td><td>7.95</td><td class="num">1,338</td></tr>
-<tr><td>7/09</td><td>24.95</td><td class="num">4,196</td></tr>
-<tr><td>7/09</td><td>12.97</td><td class="num">2,181</td></tr>
-<tr><td>7/09</td><td>10.96</td><td class="num">1,843</td></tr>
-<tr><td>7/09</td><td>9.97</td><td class="num">1,676</td></tr>
-<tr><td>7/14</td><td>������アカウント������</td><td class="num">11,000</td></tr>
+<tr><td>6/23</td><td>Anthropic</td><td class="num">17,515</td></tr>
+<tr><td>6/27</td><td>Anthropic Claude Subscription</td><td class="num">36,832</td></tr>
+<tr><td>6/29</td><td>Anthropic</td><td class="num">17,598</td></tr>
+<tr><td>6/29</td><td>Anthropic</td><td class="num">17,519</td></tr>
+<tr><td>6/30</td><td>Anthropic</td><td class="num">17,852</td></tr>
+<tr><td>6/30</td><td>Anthropic</td><td class="num">17,562</td></tr>
+<tr><td>7/14</td><td>Anthropic</td><td class="num">18,804</td></tr>
+<tr><td>7/15</td><td>Anthropic</td><td class="num">18,131</td></tr>
+<tr><td>7/15</td><td>Anthropic</td><td class="num">17,685</td></tr>
+<tr><td>7/16</td><td>Anthropic</td><td class="num">17,701</td></tr>
+<tr><td>7/16</td><td>Anthropic</td><td class="num">17,700</td></tr>
+<tr><td>7/16</td><td>Anthropic</td><td class="num">17,698</td></tr>
+<tr><td>7/16</td><td>Anthropic</td><td class="num">17,606</td></tr>
+<tr><td>7/17</td><td>Anthropic</td><td class="num">17,785</td></tr>
+<tr><td>7/17</td><td>Anthropic</td><td class="num">17,688</td></tr>
+<tr><td>7/17</td><td>Anthropic</td><td class="num">17,640</td></tr>
 </tbody></table></details>
 <details><summary>AI（Claude Team） — 6件 / 244,889円 <span class="flag flag-warn">要検討</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>6/21</td><td>ANTHROPIC CLAUDE TEAM</td><td class="num">18,850</td></tr>
-<tr><td>6/21</td><td>ANTHROPIC CLAUDE TEAM</td><td class="num">3,706</td></tr>
-<tr><td>6/23</td><td>ANTHROPIC CLAUDE TEAM</td><td class="num">3,187</td></tr>
-<tr><td>6/26</td><td>ANTHROPIC CLAUDE TEAM</td><td class="num">184,402</td></tr>
-<tr><td>6/26</td><td>ANTHROPIC CLAUDE TEAM</td><td class="num">22,374</td></tr>
-<tr><td>7/10</td><td>ANTHROPIC CLAUDE TEAM</td><td class="num">12,370</td></tr>
+<tr><td>6/21</td><td>Anthropic Claude Team</td><td class="num">18,850</td></tr>
+<tr><td>6/21</td><td>Anthropic Claude Team</td><td class="num">3,706</td></tr>
+<tr><td>6/23</td><td>Anthropic Claude Team</td><td class="num">3,187</td></tr>
+<tr><td>6/26</td><td>Anthropic Claude Team</td><td class="num">184,402</td></tr>
+<tr><td>6/26</td><td>Anthropic Claude Team</td><td class="num">22,374</td></tr>
+<tr><td>7/10</td><td>Anthropic Claude Team</td><td class="num">12,370</td></tr>
 </tbody></table></details>
-<details><summary>支払い（大口） — 1件 / 230,600円 <span class="flag flag-warn">要確認</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>6/18</td><td>大口支払い</td><td class="num">230,600</td></tr>
+<details><summary>大口支払い（要確認） — 1件 / 230,600円 <span class="flag flag-warn">要確認</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
+<tr><td>6/18</td><td>大口支払い ※原本確認</td><td class="num">230,600</td></tr>
+</tbody></table></details>
+<details><summary>交通（Lyft・海外） — 36件 / 230,598円 <span class="flag flag-warn">要検討</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
+<tr><td>7/01</td><td>Lyft XL RIDE ($111.84)</td><td class="num">18,818</td></tr>
+<tr><td>7/01</td><td>Lyft PRIORITY ($49.94)</td><td class="num">8,413</td></tr>
+<tr><td>7/01</td><td>Lyft XL RIDE ($10.95)</td><td class="num">1,842</td></tr>
+<tr><td>7/01</td><td>Lyft PRIORITY ($9.94)</td><td class="num">1,674</td></tr>
+<tr><td>7/01</td><td>Lyft PRIORITY ($7.92)</td><td class="num">1,334</td></tr>
+<tr><td>7/02</td><td>Lyft PRIORITY ($16.96)</td><td class="num">2,857</td></tr>
+<tr><td>7/02</td><td>Lyft PRIORITY ($16.95)</td><td class="num">2,855</td></tr>
+<tr><td>7/02</td><td>Lyft PRIORITY ($9.96)</td><td class="num">1,669</td></tr>
+<tr><td>7/02</td><td>Lyft STANDARD ($3.66)</td><td class="num">616</td></tr>
+<tr><td>7/02</td><td>Lyft STANDARD ($3.40)</td><td class="num">572</td></tr>
+<tr><td>7/03</td><td>Lyft XL RIDE ($134.00)</td><td class="num">22,373</td></tr>
+<tr><td>7/03</td><td>Lyft XL RIDE ($131.00)</td><td class="num">21,872</td></tr>
+<tr><td>7/04</td><td>Lyft PRIORITY ($19.92)</td><td class="num">3,325</td></tr>
+<tr><td>7/04</td><td>Lyft PRIORITY ($13.97)</td><td class="num">2,332</td></tr>
+<tr><td>7/04</td><td>Lyft PRIORITY ($11.98)</td><td class="num">2,000</td></tr>
+<tr><td>7/05</td><td>Lyft PRIORITY ($47.92)</td><td class="num">8,000</td></tr>
+<tr><td>7/05</td><td>Lyft PRIORITY ($35.96)</td><td class="num">6,004</td></tr>
+<tr><td>7/06</td><td>Lyft PRIORITY ($18.99)</td><td class="num">3,192</td></tr>
+<tr><td>7/06</td><td>Lyft PRIORITY ($18.92)</td><td class="num">3,181</td></tr>
+<tr><td>7/06</td><td>Lyft PRIORITY ($18.97)</td><td class="num">3,167</td></tr>
+<tr><td>7/06</td><td>Lyft PRIORITY ($12.99)</td><td class="num">2,183</td></tr>
+<tr><td>7/06</td><td>Lyft PRIORITY ($11.93)</td><td class="num">2,005</td></tr>
+<tr><td>7/06</td><td>Lyft PRIORITY ($11.93)</td><td class="num">1,992</td></tr>
+<tr><td>7/07</td><td>Lyft XL RIDE ($46.93)</td><td class="num">7,873</td></tr>
+<tr><td>7/07</td><td>Lyft PRIORITY ($44.92)</td><td class="num">7,536</td></tr>
+<tr><td>7/07</td><td>Lyft PRIORITY ($21.94)</td><td class="num">3,688</td></tr>
+<tr><td>7/08</td><td>Lyft XL RIDE ($269.00)</td><td class="num">45,284</td></tr>
+<tr><td>7/08</td><td>Lyft XL RIDE ($119.00)</td><td class="num">19,965</td></tr>
+<tr><td>7/08</td><td>Lyft PRIORITY ($44.99)</td><td class="num">7,548</td></tr>
+<tr><td>7/08</td><td>Lyft PRIORITY ($16.97)</td><td class="num">2,847</td></tr>
+<tr><td>7/08</td><td>Lyft PRIORITY ($13.99)</td><td class="num">2,347</td></tr>
+<tr><td>7/08</td><td>Lyft XL RIDE ($7.95)</td><td class="num">1,338</td></tr>
+<tr><td>7/09</td><td>Lyft PRIORITY ($24.95)</td><td class="num">4,196</td></tr>
+<tr><td>7/09</td><td>Lyft PRIORITY ($12.97)</td><td class="num">2,181</td></tr>
+<tr><td>7/09</td><td>Lyft PRIORITY ($10.96)</td><td class="num">1,843</td></tr>
+<tr><td>7/09</td><td>Lyft PRIORITY ($9.97)</td><td class="num">1,676</td></tr>
 </tbody></table></details>
 <details><summary>飲食（プレミアム） — 28件 / 182,570円 <span class="flag flag-warn">要検討</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
 <tr><td>6/17</td><td>飲食店（プレミアム）</td><td class="num">2,700</td></tr>
 <tr><td>6/18</td><td>飲食店（プレミアム）</td><td class="num">4,480</td></tr>
+<tr><td>6/19</td><td>飲食店（プレミアム）</td><td class="num">6,060</td></tr>
+<tr><td>6/19</td><td>飲食店（プレミアム）</td><td class="num">6,060</td></tr>
 <tr><td>6/19</td><td>飲食店（プレミアム）</td><td class="num">5,440</td></tr>
-<tr><td>6/19</td><td>飲食店（プレミアム）</td><td class="num">6,060</td></tr>
-<tr><td>6/19</td><td>飲食店（プレミアム）</td><td class="num">6,060</td></tr>
 <tr><td>6/20</td><td>飲食店（プレミアム）</td><td class="num">5,440</td></tr>
 <tr><td>6/21</td><td>飲食店（プレミアム）</td><td class="num">6,260</td></tr>
-<tr><td>6/22</td><td>飲食店（プレミアム）</td><td class="num">7,680</td></tr>
 <tr><td>6/22</td><td>飲食店（プレミアム）</td><td class="num">9,000</td></tr>
+<tr><td>6/22</td><td>飲食店（プレミアム）</td><td class="num">7,680</td></tr>
 <tr><td>6/23</td><td>飲食店（プレミアム）</td><td class="num">10,260</td></tr>
 <tr><td>6/24</td><td>飲食店（プレミアム）</td><td class="num">2,550</td></tr>
-<tr><td>6/25</td><td>飲食店（プレミアム）</td><td class="num">2,840</td></tr>
 <tr><td>6/25</td><td>飲食店（プレミアム）</td><td class="num">8,100</td></tr>
-<tr><td>6/26</td><td>飲食店（プレミアム）</td><td class="num">2,760</td></tr>
-<tr><td>6/26</td><td>飲食店（プレミアム）</td><td class="num">3,520</td></tr>
+<tr><td>6/25</td><td>飲食店（プレミアム）</td><td class="num">2,840</td></tr>
 <tr><td>6/26</td><td>飲食店（プレミアム）</td><td class="num">17,040</td></tr>
-<tr><td>6/27</td><td>飲食店（プレミアム）</td><td class="num">5,640</td></tr>
+<tr><td>6/26</td><td>飲食店（プレミアム）</td><td class="num">3,520</td></tr>
+<tr><td>6/26</td><td>飲食店（プレミアム）</td><td class="num">2,760</td></tr>
 <tr><td>6/27</td><td>飲食店（プレミアム）</td><td class="num">6,670</td></tr>
+<tr><td>6/27</td><td>飲食店（プレミアム）</td><td class="num">5,640</td></tr>
 <tr><td>6/28</td><td>飲食店（プレミアム）</td><td class="num">5,430</td></tr>
-<tr><td>6/29</td><td>飲食店（プレミアム）</td><td class="num">2,890</td></tr>
-<tr><td>6/29</td><td>飲食店（プレミアム）</td><td class="num">2,970</td></tr>
 <tr><td>6/29</td><td>飲食店（プレミアム）</td><td class="num">5,990</td></tr>
+<tr><td>6/29</td><td>飲食店（プレミアム）</td><td class="num">2,970</td></tr>
+<tr><td>6/29</td><td>飲食店（プレミアム）</td><td class="num">2,890</td></tr>
 <tr><td>6/30</td><td>飲食店（プレミアム）</td><td class="num">9,110</td></tr>
 <tr><td>7/12</td><td>飲食店（プレミアム）</td><td class="num">12,460</td></tr>
 <tr><td>7/13</td><td>飲食店（プレミアム）</td><td class="num">15,260</td></tr>
-<tr><td>7/15</td><td>飲食店（プレミアム）</td><td class="num">4,340</td></tr>
-<tr><td>7/15</td><td>飲食店（プレミアム）</td><td class="num">5,300</td></tr>
 <tr><td>7/15</td><td>飲食店（プレミアム）</td><td class="num">6,320</td></tr>
+<tr><td>7/15</td><td>飲食店（プレミアム）</td><td class="num">5,300</td></tr>
+<tr><td>7/15</td><td>飲食店（プレミアム）</td><td class="num">4,340</td></tr>
 </tbody></table></details>
 <details><summary>飲食 — 53件 / 182,310円 <span class="flag flag-check">確認</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>6/17</td><td>飲食店</td><td class="num">5,330</td></tr>
 <tr><td>6/17</td><td>飲食店</td><td class="num">5,680</td></tr>
+<tr><td>6/17</td><td>飲食店</td><td class="num">5,330</td></tr>
+<tr><td>6/18</td><td>飲食店</td><td class="num">2,600</td></tr>
 <tr><td>6/18</td><td>飲食店</td><td class="num">2,200</td></tr>
 <tr><td>6/18</td><td>飲食店</td><td class="num">700</td></tr>
-<tr><td>6/18</td><td>飲食店</td><td class="num">2,600</td></tr>
-<tr><td>6/19</td><td>飲食店</td><td class="num">1,100</td></tr>
-<tr><td>6/19</td><td>飲食店</td><td class="num">3,200</td></tr>
-<tr><td>6/19</td><td>飲食店</td><td class="num">3,870</td></tr>
-<tr><td>6/19</td><td>飲食店</td><td class="num">6,620</td></tr>
 <tr><td>6/19</td><td>飲食店</td><td class="num">6,750</td></tr>
+<tr><td>6/19</td><td>飲食店</td><td class="num">6,620</td></tr>
+<tr><td>6/19</td><td>飲食店</td><td class="num">3,870</td></tr>
+<tr><td>6/19</td><td>飲食店</td><td class="num">3,200</td></tr>
 <tr><td>6/19</td><td>飲食店</td><td class="num">2,070</td></tr>
-<tr><td>6/20</td><td>飲食店</td><td class="num">1,750</td></tr>
-<tr><td>6/20</td><td>飲食店</td><td class="num">3,300</td></tr>
+<tr><td>6/19</td><td>飲食店</td><td class="num">1,100</td></tr>
 <tr><td>6/20</td><td>飲食店</td><td class="num">3,380</td></tr>
-<tr><td>6/20</td><td>飲食店</td><td class="num">2,500</td></tr>
+<tr><td>6/20</td><td>飲食店</td><td class="num">3,300</td></tr>
 <tr><td>6/20</td><td>飲食店</td><td class="num">2,600</td></tr>
-<tr><td>6/21</td><td>飲食店</td><td class="num">2,200</td></tr>
-<tr><td>6/21</td><td>飲食店</td><td class="num">2,200</td></tr>
-<tr><td>6/21</td><td>飲食店</td><td class="num">17,580</td></tr>
+<tr><td>6/20</td><td>飲食店</td><td class="num">2,500</td></tr>
+<tr><td>6/20</td><td>飲食店</td><td class="num">1,750</td></tr>
 <tr><td>6/21</td><td>飲食店</td><td class="num">21,290</td></tr>
+<tr><td>6/21</td><td>飲食店</td><td class="num">17,580</td></tr>
+<tr><td>6/21</td><td>飲食店</td><td class="num">2,300</td></tr>
+<tr><td>6/21</td><td>飲食店</td><td class="num">2,300</td></tr>
+<tr><td>6/21</td><td>飲食店</td><td class="num">2,200</td></tr>
+<tr><td>6/21</td><td>飲食店</td><td class="num">2,200</td></tr>
 <tr><td>6/21</td><td>飲食店</td><td class="num">1,500</td></tr>
-<tr><td>6/21</td><td>飲食店</td><td class="num">2,300</td></tr>
-<tr><td>6/21</td><td>飲食店</td><td class="num">2,300</td></tr>
-<tr><td>6/22</td><td>飲食店</td><td class="num">1,700</td></tr>
+<tr><td>6/22</td><td>飲食店</td><td class="num">2,500</td></tr>
+<tr><td>6/22</td><td>飲食店</td><td class="num">2,500</td></tr>
+<tr><td>6/22</td><td>飲食店</td><td class="num">2,500</td></tr>
 <tr><td>6/22</td><td>飲食店</td><td class="num">2,000</td></tr>
-<tr><td>6/22</td><td>飲食店</td><td class="num">2,500</td></tr>
-<tr><td>6/22</td><td>飲食店</td><td class="num">2,500</td></tr>
-<tr><td>6/22</td><td>飲食店</td><td class="num">2,500</td></tr>
+<tr><td>6/22</td><td>飲食店</td><td class="num">1,700</td></tr>
 <tr><td>6/23</td><td>飲食店</td><td class="num">5,100</td></tr>
 <tr><td>6/24</td><td>飲食店</td><td class="num">5,900</td></tr>
-<tr><td>6/24</td><td>飲食店</td><td class="num">1,300</td></tr>
 <tr><td>6/24</td><td>飲食店</td><td class="num">1,800</td></tr>
+<tr><td>6/24</td><td>飲食店</td><td class="num">1,300</td></tr>
 <tr><td>6/25</td><td>飲食店</td><td class="num">3,300</td></tr>
-<tr><td>6/25</td><td>飲食店</td><td class="num">1,000</td></tr>
 <tr><td>6/25</td><td>飲食店</td><td class="num">1,500</td></tr>
-<tr><td>6/26</td><td>飲食店</td><td class="num">500</td></tr>
+<tr><td>6/25</td><td>飲食店</td><td class="num">1,000</td></tr>
 <tr><td>6/26</td><td>飲食店</td><td class="num">4,200</td></tr>
-<tr><td>7/10</td><td>飲食店</td><td class="num">1,300</td></tr>
-<tr><td>7/10</td><td>飲食店</td><td class="num">1,300</td></tr>
-<tr><td>7/10</td><td>飲食店</td><td class="num">1,900</td></tr>
+<tr><td>6/26</td><td>飲食店</td><td class="num">500</td></tr>
 <tr><td>7/10</td><td>飲食店</td><td class="num">2,000</td></tr>
+<tr><td>7/10</td><td>飲食店</td><td class="num">1,900</td></tr>
+<tr><td>7/10</td><td>飲食店</td><td class="num">1,300</td></tr>
+<tr><td>7/10</td><td>飲食店</td><td class="num">1,300</td></tr>
 <tr><td>7/11</td><td>飲食店</td><td class="num">2,160</td></tr>
-<tr><td>7/12</td><td>飲食店</td><td class="num">3,600</td></tr>
 <tr><td>7/12</td><td>飲食店</td><td class="num">4,350</td></tr>
-<tr><td>7/13</td><td>飲食店</td><td class="num">1,950</td></tr>
+<tr><td>7/12</td><td>飲食店</td><td class="num">3,600</td></tr>
 <tr><td>7/13</td><td>飲食店</td><td class="num">3,080</td></tr>
-<tr><td>7/14</td><td>飲食店</td><td class="num">4,850</td></tr>
+<tr><td>7/13</td><td>飲食店</td><td class="num">1,950</td></tr>
 <tr><td>7/14</td><td>飲食店</td><td class="num">5,900</td></tr>
-<tr><td>7/14</td><td>飲食店</td><td class="num">2,100</td></tr>
-<tr><td>7/14</td><td>飲食店</td><td class="num">2,300</td></tr>
-<tr><td>7/14</td><td>飲食店</td><td class="num">2,600</td></tr>
+<tr><td>7/14</td><td>飲食店</td><td class="num">4,850</td></tr>
 <tr><td>7/14</td><td>飲食店</td><td class="num">2,700</td></tr>
+<tr><td>7/14</td><td>飲食店</td><td class="num">2,600</td></tr>
+<tr><td>7/14</td><td>飲食店</td><td class="num">2,300</td></tr>
+<tr><td>7/14</td><td>飲食店</td><td class="num">2,100</td></tr>
 <tr><td>7/15</td><td>飲食店</td><td class="num">1,400</td></tr>
 </tbody></table></details>
 <details><summary>SaaS（その他） — 5件 / 87,259円 <span class="flag flag-check">確認</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>5/00</td><td>コンピュータ関連</td><td class="num">4,194</td></tr>
-<tr><td>5/08</td><td>コンピュータ関連</td><td class="num">17,615</td></tr>
-<tr><td>6/17</td><td>インターネットサービス</td><td class="num">21,670</td></tr>
-<tr><td>6/18</td><td>インターネットサービス</td><td class="num">11,000</td></tr>
-<tr><td>6/18</td><td>インターネットサービス</td><td class="num">32,780</td></tr>
+<tr><td>5/00</td><td>コンピュータ関連 ※原本確認</td><td class="num">4,194</td></tr>
+<tr><td>5/08</td><td>コンピュータ関連 ※原本確認</td><td class="num">17,615</td></tr>
+<tr><td>6/17</td><td>インターネットサービス ※原本確認</td><td class="num">21,670</td></tr>
+<tr><td>6/18</td><td>インターネットサービス ※原本確認</td><td class="num">32,780</td></tr>
+<tr><td>6/18</td><td>インターネットサービス ※原本確認</td><td class="num">11,000</td></tr>
 </tbody></table></details>
 <details><summary>SaaS（Zoom） — 1件 / 79,488円 <span class="flag flag-check">確認</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
 <tr><td>7/16</td><td>Zoom</td><td class="num">79,488</td></tr>
 </tbody></table></details>
 <details><summary>交通（Lyft） — 11件 / 59,841円 <span class="flag flag-warn">要検討</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>6/29</td><td>LYFT   *AIRPORT</td><td class="num">9,544</td></tr>
-<tr><td>6/29</td><td>LYFT   *STANDARD</td><td class="num">1,674</td></tr>
-<tr><td>6/29</td><td>LYFT   *STANDARD</td><td class="num">1,669</td></tr>
-<tr><td>6/30</td><td>LYFT   *STANDARD</td><td class="num">2,853</td></tr>
-<tr><td>7/10</td><td>LYFT   *PRIORITY</td><td class="num">3,351</td></tr>
-<tr><td>7/10</td><td>LYFT   *PRIORITY</td><td class="num">4,684</td></tr>
-<tr><td>7/10</td><td>LYFT   *PRIORITY</td><td class="num">2,842</td></tr>
-<tr><td>7/10</td><td>LYFT   *PRIORITY</td><td class="num">3,342</td></tr>
-<tr><td>7/11</td><td>LYFT   *PRIORITY</td><td class="num">15,481</td></tr>
-<tr><td>7/11</td><td>LYFT   *STANDARD</td><td class="num">2,842</td></tr>
-<tr><td>7/12</td><td>LYFT   *AIRPORT</td><td class="num">11,559</td></tr>
+<tr><td>6/29</td><td>Lyft AIRPORT</td><td class="num">9,544</td></tr>
+<tr><td>6/29</td><td>Lyft STANDARD</td><td class="num">1,674</td></tr>
+<tr><td>6/29</td><td>Lyft STANDARD</td><td class="num">1,669</td></tr>
+<tr><td>6/30</td><td>Lyft STANDARD</td><td class="num">2,853</td></tr>
+<tr><td>7/10</td><td>Lyft PRIORITY</td><td class="num">4,684</td></tr>
+<tr><td>7/10</td><td>Lyft PRIORITY</td><td class="num">3,351</td></tr>
+<tr><td>7/10</td><td>Lyft PRIORITY</td><td class="num">3,342</td></tr>
+<tr><td>7/10</td><td>Lyft PRIORITY</td><td class="num">2,842</td></tr>
+<tr><td>7/11</td><td>Lyft PRIORITY</td><td class="num">15,481</td></tr>
+<tr><td>7/11</td><td>Lyft STANDARD</td><td class="num">2,842</td></tr>
+<tr><td>7/12</td><td>Lyft AIRPORT</td><td class="num">11,559</td></tr>
+</tbody></table></details>
+<details><summary>その他（要確認） — 5件 / 57,028円 <span class="flag flag-warn">要確認</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
+<tr><td>0/00</td><td>¥16,777 ※PDF読取不可・原本確認</td><td class="num">16,777</td></tr>
+<tr><td>6/20</td><td>¥9,800 ※PDF読取不可・原本確認</td><td class="num">9,800</td></tr>
+<tr><td>6/26</td><td>¥14,451 ※PDF読取不可・原本確認</td><td class="num">14,451</td></tr>
+<tr><td>6/27</td><td>¥5,000 ※PDF読取不可・原本確認</td><td class="num">5,000</td></tr>
+<tr><td>7/14</td><td>¥11,000 ※PDF読取不可・原本確認</td><td class="num">11,000</td></tr>
 </tbody></table></details>
 <details><summary>SaaS（Google Cloud） — 3件 / 55,051円 <span class="flag flag-ok">OK</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
 <tr><td>2/07</td><td>Google Cloud</td><td class="num">15,051</td></tr>
 <tr><td>6/23</td><td>Google Cloud</td><td class="num">20,000</td></tr>
 <tr><td>6/27</td><td>Google Cloud</td><td class="num">20,000</td></tr>
 </tbody></table></details>
-<details><summary>ETC（高速道路） — 63件 / 40,700円 <span class="flag flag-ok">OK</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
+<details><summary>ETC（高速道路） — 66件 / 43,853円 <span class="flag flag-ok">OK</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
 <tr><td>6/10</td><td>ETC高速料金</td><td class="num">380</td></tr>
-<tr><td>6/12</td><td>ETC高速料金</td><td class="num">630</td></tr>
 <tr><td>6/12</td><td>ETC高速料金</td><td class="num">870</td></tr>
 <tr><td>6/12</td><td>ETC高速料金</td><td class="num">770</td></tr>
+<tr><td>6/12</td><td>ETC高速料金</td><td class="num">630</td></tr>
 <tr><td>6/12</td><td>ETC高速料金</td><td class="num">460</td></tr>
+<tr><td>6/13</td><td>ETC高速料金</td><td class="num">1,103</td></tr>
+<tr><td>6/14</td><td>ETC高速料金</td><td class="num">1,270</td></tr>
+<tr><td>6/14</td><td>ETC高速料金</td><td class="num">1,270</td></tr>
 <tr><td>6/14</td><td>ETC高速料金</td><td class="num">630</td></tr>
 <tr><td>6/14</td><td>ETC高速料金</td><td class="num">630</td></tr>
-<tr><td>6/14</td><td>ETC高速料金</td><td class="num">1,270</td></tr>
 <tr><td>6/14</td><td>ETC高速料金</td><td class="num">300</td></tr>
-<tr><td>6/14</td><td>ETC高速料金</td><td class="num">1,270</td></tr>
 <tr><td>6/14</td><td>ETC高速料金</td><td class="num">300</td></tr>
+<tr><td>6/16</td><td>ETC高速料金</td><td class="num">850</td></tr>
 <tr><td>6/16</td><td>ETC高速料金</td><td class="num">630</td></tr>
-<tr><td>6/16</td><td>ETC高速料金</td><td class="num">350</td></tr>
 <tr><td>6/16</td><td>ETC高速料金</td><td class="num">500</td></tr>
 <tr><td>6/16</td><td>ETC高速料金</td><td class="num">460</td></tr>
 <tr><td>6/16</td><td>ETC高速料金</td><td class="num">460</td></tr>
-<tr><td>6/16</td><td>ETC高速料金</td><td class="num">850</td></tr>
 <tr><td>6/16</td><td>ETC高速料金</td><td class="num">380</td></tr>
+<tr><td>6/16</td><td>ETC高速料金</td><td class="num">350</td></tr>
+<tr><td>6/17</td><td>ETC高速料金</td><td class="num">3,090</td></tr>
 <tr><td>6/17</td><td>ETC高速料金</td><td class="num">2,640</td></tr>
 <tr><td>6/17</td><td>ETC高速料金</td><td class="num">1,080</td></tr>
 <tr><td>6/17</td><td>ETC高速料金</td><td class="num">630</td></tr>
 <tr><td>6/17</td><td>ETC高速料金</td><td class="num">630</td></tr>
+<tr><td>6/17</td><td>ETC高速料金</td><td class="num">460</td></tr>
+<tr><td>6/17</td><td>ETC高速料金</td><td class="num">460</td></tr>
+<tr><td>6/17</td><td>ETC高速料金</td><td class="num">460</td></tr>
 <tr><td>6/17</td><td>ETC高速料金</td><td class="num">420</td></tr>
-<tr><td>6/17</td><td>ETC高速料金</td><td class="num">3,090</td></tr>
-<tr><td>6/17</td><td>ETC高速料金</td><td class="num">460</td></tr>
-<tr><td>6/17</td><td>ETC高速料金</td><td class="num">460</td></tr>
 <tr><td>6/17</td><td>ETC高速料金</td><td class="num">370</td></tr>
-<tr><td>6/17</td><td>ETC高速料金</td><td class="num">460</td></tr>
-<tr><td>6/18</td><td>ETC高速料金</td><td class="num">350</td></tr>
 <tr><td>6/18</td><td>ETC高速料金</td><td class="num">640</td></tr>
-<tr><td>6/19</td><td>ETC高速料金</td><td class="num">330</td></tr>
+<tr><td>6/18</td><td>ETC高速料金</td><td class="num">350</td></tr>
 <tr><td>6/19</td><td>ETC高速料金</td><td class="num">900</td></tr>
-<tr><td>6/19</td><td>ETC高速料金</td><td class="num">500</td></tr>
-<tr><td>6/19</td><td>ETC高速料金</td><td class="num">460</td></tr>
 <tr><td>6/19</td><td>ETC高速料金</td><td class="num">680</td></tr>
 <tr><td>6/19</td><td>ETC高速料金</td><td class="num">640</td></tr>
+<tr><td>6/19</td><td>ETC高速料金</td><td class="num">500</td></tr>
+<tr><td>6/19</td><td>ETC高速料金</td><td class="num">460</td></tr>
+<tr><td>6/19</td><td>ETC高速料金</td><td class="num">330</td></tr>
 <tr><td>6/23</td><td>ETC高速料金</td><td class="num">630</td></tr>
-<tr><td>6/23</td><td>ETC高速料金</td><td class="num">300</td></tr>
+<tr><td>6/23</td><td>ETC高速料金</td><td class="num">380</td></tr>
 <tr><td>6/23</td><td>ETC高速料金</td><td class="num">330</td></tr>
 <tr><td>6/23</td><td>ETC高速料金</td><td class="num">300</td></tr>
-<tr><td>6/23</td><td>ETC高速料金</td><td class="num">380</td></tr>
+<tr><td>6/23</td><td>ETC高速料金</td><td class="num">300</td></tr>
+<tr><td>6/24</td><td>ETC高速料金</td><td class="num">640</td></tr>
 <tr><td>6/24</td><td>ETC高速料金</td><td class="num">630</td></tr>
 <tr><td>6/24</td><td>ETC高速料金</td><td class="num">570</td></tr>
-<tr><td>6/24</td><td>ETC高速料金</td><td class="num">640</td></tr>
 <tr><td>6/24</td><td>ETC高速料金</td><td class="num">570</td></tr>
 <tr><td>6/24</td><td>ETC高速料金</td><td class="num">570</td></tr>
 <tr><td>6/24</td><td>ETC高速料金</td><td class="num">460</td></tr>
-<tr><td>6/25</td><td>ETC高速料金</td><td class="num">460</td></tr>
 <tr><td>6/25</td><td>ETC高速料金</td><td class="num">640</td></tr>
+<tr><td>6/25</td><td>ETC高速料金</td><td class="num">550</td></tr>
+<tr><td>6/25</td><td>ETC高速料金</td><td class="num">460</td></tr>
 <tr><td>6/26</td><td>ETC高速料金</td><td class="num">640</td></tr>
-<tr><td>6/28</td><td>ETC高速料金</td><td class="num">460</td></tr>
+<tr><td>6/28</td><td>ETC高速料金</td><td class="num">1,500</td></tr>
 <tr><td>6/28</td><td>ETC高速料金</td><td class="num">630</td></tr>
+<tr><td>6/28</td><td>ETC高速料金</td><td class="num">460</td></tr>
 <tr><td>6/29</td><td>ETC高速料金</td><td class="num">730</td></tr>
-<tr><td>6/29</td><td>ETC高速料金</td><td class="num">460</td></tr>
-<tr><td>6/29</td><td>ETC高速料金</td><td class="num">710</td></tr>
 <tr><td>6/29</td><td>ETC高速料金</td><td class="num">730</td></tr>
 <tr><td>6/29</td><td>ETC高速料金</td><td class="num">720</td></tr>
+<tr><td>6/29</td><td>ETC高速料金</td><td class="num">710</td></tr>
 <tr><td>6/29</td><td>ETC高速料金</td><td class="num">630</td></tr>
 <tr><td>6/29</td><td>ETC高速料金</td><td class="num">630</td></tr>
 <tr><td>6/29</td><td>ETC高速料金</td><td class="num">630</td></tr>
+<tr><td>6/29</td><td>ETC高速料金</td><td class="num">460</td></tr>
 <tr><td>6/30</td><td>ETC高速料金</td><td class="num">510</td></tr>
 <tr><td>6/30</td><td>ETC高速料金</td><td class="num">510</td></tr>
 <tr><td>6/30</td><td>ETC高速料金</td><td class="num">350</td></tr>
 </tbody></table></details>
 <details><summary>AI（ChatGPT） — 1件 / 36,746円 <span class="flag flag-warn">要検討</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>6/22</td><td>OPENAI ChatGPT</td><td class="num">36,746</td></tr>
+<tr><td>6/22</td><td>OpenAI ChatGPT</td><td class="num">36,746</td></tr>
 </tbody></table></details>
 <details><summary>宿泊 — 1件 / 36,300円 <span class="flag flag-check">確認</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
 <tr><td>7/12</td><td>COBA HIROSHIMA</td><td class="num">36,300</td></tr>
@@ -466,23 +344,23 @@
 <tr><td>6/18</td><td>リアテクス関連</td><td class="num">30,000</td></tr>
 </tbody></table></details>
 <details><summary>飲食（Uber Eats） — 13件 / 22,830円 <span class="flag flag-warn">要検討</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>6/19</td><td>Uber Eats</td><td class="num">1,405</td></tr>
 <tr><td>6/19</td><td>Uber Eats</td><td class="num">1,797</td></tr>
+<tr><td>6/19</td><td>Uber Eats</td><td class="num">1,405</td></tr>
 <tr><td>6/20</td><td>Uber Eats</td><td class="num">1,798</td></tr>
 <tr><td>6/21</td><td>Uber Eats</td><td class="num">1,839</td></tr>
 <tr><td>6/22</td><td>Uber Eats</td><td class="num">1,830</td></tr>
 <tr><td>6/24</td><td>Uber Eats</td><td class="num">2,311</td></tr>
 <tr><td>6/27</td><td>Uber Eats</td><td class="num">1,835</td></tr>
-<tr><td>7/14</td><td>Uber Eats</td><td class="num">624</td></tr>
 <tr><td>7/14</td><td>Uber Eats</td><td class="num">1,359</td></tr>
+<tr><td>7/14</td><td>Uber Eats</td><td class="num">624</td></tr>
 <tr><td>7/15</td><td>Uber Eats</td><td class="num">1,797</td></tr>
 <tr><td>7/16</td><td>Uber Eats</td><td class="num">2,632</td></tr>
 <tr><td>7/17</td><td>Uber Eats</td><td class="num">1,797</td></tr>
 <tr><td>7/18</td><td>Uber Eats</td><td class="num">1,806</td></tr>
 </tbody></table></details>
 <details><summary>AI（HeyGen） — 2件 / 21,659円 <span class="flag flag-warn">要検討</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>6/27</td><td>HeyGen</td><td class="num">4,878</td></tr>
 <tr><td>6/27</td><td>HeyGen</td><td class="num">16,781</td></tr>
+<tr><td>6/27</td><td>HeyGen</td><td class="num">4,878</td></tr>
 </tbody></table></details>
 <details><summary>SaaS（Jicoo） — 1件 / 14,850円 <span class="flag flag-check">確認</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
 <tr><td>7/10</td><td>Jicoo（日程調整）</td><td class="num">14,850</td></tr>
@@ -512,6 +390,11 @@
 <tr><td>6/21</td><td>GitHub</td><td class="num">190</td></tr>
 <tr><td>6/29</td><td>GitHub</td><td class="num">5,893</td></tr>
 </tbody></table></details>
+<details><summary>その他（少額） — 3件 / 5,855円 <span class="flag flag-ok">OK</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
+<tr><td>0/00</td><td>¥3,355 ※PDF読取不可</td><td class="num">3,355</td></tr>
+<tr><td>6/21</td><td>¥600 ※PDF読取不可</td><td class="num">600</td></tr>
+<tr><td>6/23</td><td>¥1,900 ※PDF読取不可</td><td class="num">1,900</td></tr>
+</tbody></table></details>
 <details><summary>SaaS（Adobe） — 1件 / 4,980円 <span class="flag flag-ok">OK</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
 <tr><td>6/27</td><td>Adobe</td><td class="num">4,980</td></tr>
 </tbody></table></details>
@@ -524,15 +407,8 @@
 <details><summary>AI（ElevenLabs） — 1件 / 2,028円 <span class="flag flag-warn">要検討</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
 <tr><td>6/26</td><td>ElevenLabs</td><td class="num">2,028</td></tr>
 </tbody></table></details>
-<details><summary>通信 — 1件 / 1,103円 <span class="flag flag-ok">OK</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>6/13</td><td>モバイル通信</td><td class="num">1,103</td></tr>
-</tbody></table></details>
 <details><summary>交通（カーシェア） — 1件 / 880円 <span class="flag flag-ok">OK</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
 <tr><td>6/30</td><td>オリックスカーシェア</td><td class="num">880</td></tr>
 </tbody></table></details>
-<details><summary>SaaS（Marshmallow） — 1件 / 550円 <span class="flag flag-check">確認</span></summary><table><thead><tr><th>日付</th><th>内容</th><th class="num">金額</th></tr></thead><tbody>
-<tr><td>6/25</td><td>Marshmallow</td><td class="num">550</td></tr>
-</tbody></table></details>
 </div>
-<footer>2026年8月5日作成 ／ AMEX Business Platinum RTX</footer>
-</div></body></html>
+<footer>2026年8月5日作成 ／ AMEX Business Platinum RTX ／ 社外秘</footer></div></body></html>
