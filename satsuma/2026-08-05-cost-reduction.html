@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>経費削減計画 2026年8月 | リアテクス</title>
+<style>
+  :root {
+    --primary: #1a365d;
+    --accent: #2b6cb0;
+    --green: #276749;
+    --red: #c53030;
+    --orange: #c05621;
+    --gray: #718096;
+    --bg: #f7fafc;
+    --card: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: #2d3748;
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff;
+    padding: 32px 40px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+  }
+  header h1 { font-size: 24px; font-weight: 700; }
+  header p { opacity: 0.85; margin-top: 6px; font-size: 14px; }
+
+  /* Summary cards */
+  .summary-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .summary-card {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+  .summary-card .label { font-size: 13px; color: var(--gray); margin-bottom: 4px; }
+  .summary-card .value { font-size: 28px; font-weight: 800; }
+  .summary-card .sub { font-size: 12px; color: var(--gray); margin-top: 4px; }
+  .val-red { color: var(--red); }
+  .val-green { color: var(--green); }
+  .val-orange { color: var(--orange); }
+
+  /* Section */
+  .section {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .section h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .section h2 .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge-red { background: #fed7d7; color: var(--red); }
+  .badge-green { background: #c6f6d5; color: var(--green); }
+  .badge-orange { background: #feebc8; color: var(--orange); }
+  .badge-gray { background: #e2e8f0; color: #4a5568; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  thead th {
+    background: #edf2f7;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    font-size: 12px;
+    color: #4a5568;
+    white-space: nowrap;
+  }
+  thead th.num { text-align: right; }
+  tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #edf2f7;
+    vertical-align: top;
+  }
+  tbody td.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  .total-row td {
+    font-weight: 700;
+    border-top: 2px solid #cbd5e0;
+    background: #f7fafc;
+  }
+  .strike { text-decoration: line-through; color: var(--gray); }
+  .minus { color: var(--red); font-weight: 600; }
+  .note { font-size: 12px; color: var(--gray); }
+  .status {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .status-done { background: #c6f6d5; color: #276749; }
+  .status-progress { background: #bee3f8; color: #2b6cb0; }
+  .status-pending { background: #feebc8; color: #c05621; }
+  .status-keep { background: #e2e8f0; color: #4a5568; }
+
+  /* Monthly chart */
+  .monthly-chart {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .month-col {
+    text-align: center;
+    padding: 12px 4px;
+    border-radius: 8px;
+    background: #edf2f7;
+  }
+  .month-col.active { background: #fed7d7; }
+  .month-col.future { background: #c6f6d5; }
+  .month-col .m-label { font-size: 12px; font-weight: 600; color: #4a5568; }
+  .month-col .m-value { font-size: 16px; font-weight: 800; margin-top: 4px; }
+  .month-col .m-note { font-size: 10px; color: var(--gray); margin-top: 2px; }
+
+  /* Tasks */
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid #edf2f7;
+    gap: 12px;
+  }
+  .task-item:last-child { border-bottom: none; }
+  .task-num {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .task-body { flex: 1; }
+  .task-title { font-weight: 600; font-size: 14px; }
+  .task-meta { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: var(--gray);
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 12px; }
+    header { padding: 24px 20px; }
+    .section { padding: 20px 16px; }
+    .summary-card .value { font-size: 22px; }
+    table { font-size: 13px; }
+    thead th, tbody td { padding: 8px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>経費削減計画</h1>
+  <p>2026年8月5日 Mgr/経営管理グループ議論まとめ</p>
+</header>
+
+<!-- Summary Cards -->
+<div class="summary-row">
+  <div class="summary-card">
+    <div class="label">8月単月の削減</div>
+    <div class="value val-red">&#9660; 448万円</div>
+    <div class="sub">予算修正による圧縮</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">9月以降の恒久削減</div>
+    <div class="value val-green">&#9660; 125万円<span style="font-size:16px">/月</span></div>
+    <div class="sub">解約・終了確定分</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">検討中の追加削減</div>
+    <div class="value val-orange">&#9660; 15万円~<span style="font-size:16px">/月</span></div>
+    <div class="sub">金額判明分のみ</div>
+  </div>
+</div>
+
+<!-- 月別削減効果 -->
+<div class="section">
+  <h2>月別 削減効果シミュレーション</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>項目</th>
+        <th class="num">8月</th>
+        <th class="num">9月</th>
+        <th class="num">10月</th>
+        <th class="num">11月~</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>FAX広告費</td>
+        <td class="num minus">▲2,274,847</td>
+        <td class="num minus">▲2,274,847</td>
+        <td class="num minus">▲2,274,847</td>
+        <td class="num minus">▲2,274,847</td>
+        <td class="note">FAXDM停止（継続方針）</td>
+      </tr>
+      <tr>
+        <td>システム利用料</td>
+        <td class="num minus">▲1,424,046</td>
+        <td class="num minus">▲1,424,046</td>
+        <td class="num minus">▲1,424,046</td>
+        <td class="num minus">▲1,424,046</td>
+        <td class="note">レインズ請求なし分</td>
+      </tr>
+      <tr>
+        <td>白井先生費用</td>
+        <td class="num minus">▲779,000</td>
+        <td class="num">―</td>
+        <td class="num">―</td>
+        <td class="num">―</td>
+        <td class="note">8月のみ不発生</td>
+      </tr>
+      <tr>
+        <td>クラウドワークス</td>
+        <td class="num">―</td>
+        <td class="num minus">▲1,234,490</td>
+        <td class="num minus">▲1,234,490</td>
+        <td class="num minus">▲1,234,490</td>
+        <td class="note">8月支払いで終了</td>
+      </tr>
+      <tr>
+        <td>ゼンリンデータコム</td>
+        <td class="num">―</td>
+        <td class="num">―</td>
+        <td class="num minus">▲13,200</td>
+        <td class="num minus">▲13,200</td>
+        <td class="note">9月で終了</td>
+      </tr>
+      <tr class="total-row">
+        <td>合計（確定分）</td>
+        <td class="num minus">▲4,477,893</td>
+        <td class="num minus">▲4,933,383</td>
+        <td class="num minus">▲4,946,583</td>
+        <td class="num minus">▲4,946,583</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="monthly-chart">
+    <div class="month-col active">
+      <div class="m-label">8月</div>
+      <div class="m-value val-red">▲448万</div>
+      <div class="m-note">予算修正</div>
+    </div>
+    <div class="month-col future">
+      <div class="m-label">9月</div>
+      <div class="m-value val-green">▲493万</div>
+      <div class="m-note">+CW終了</div>
+    </div>
+    <div class="month-col future">
+      <div class="m-label">10月</div>
+      <div class="m-value val-green">▲495万</div>
+      <div class="m-note">+ゼンリン終了</div>
+    </div>
+    <div class="month-col future">
+      <div class="m-label">11月~</div>
+      <div class="m-value val-green">▲495万</div>
+      <div class="m-note">恒久水準</div>
+    </div>
+  </div>
+</div>
+
+<!-- 8月単月削減 -->
+<div class="section">
+  <h2>8月単月の削減（予算修正） <span class="badge badge-red">確定</span></h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>項目</th>
+        <th class="num">修正前（仮計上）</th>
+        <th class="num">修正後</th>
+        <th class="num">削減額</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>FAX広告費</td>
+        <td class="num strike">2,274,847</td>
+        <td class="num">0</td>
+        <td class="num minus">▲2,274,847</td>
+        <td>8月は未実施。小松さん了承</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>システム利用料</td>
+        <td class="num strike">1,557,146</td>
+        <td class="num">133,100</td>
+        <td class="num minus">▲1,424,046</td>
+        <td>レインズ請求なし</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>白井先生費用</td>
+        <td class="num strike">779,000</td>
+        <td class="num">0</td>
+        <td class="num minus">▲779,000</td>
+        <td>今月はかからない見込み</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>修繕費</td>
+        <td class="num strike">仮計上あり</td>
+        <td class="num">0</td>
+        <td class="num">―</td>
+        <td>売却時計上に変更（金額要確認）</td>
+      </tr>
+      <tr class="total-row">
+        <td></td>
+        <td>8月合計</td>
+        <td class="num"></td>
+        <td class="num"></td>
+        <td class="num minus">▲4,477,893</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 恒久削減 -->
+<div class="section">
+  <h2>恒久的な削減（解約・終了確定） <span class="badge badge-green">確定</span></h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>項目</th>
+        <th class="num">月額</th>
+        <th>終了時期</th>
+        <th class="num">年間削減効果</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>クラウドワークス</td>
+        <td class="num minus">▲1,234,490</td>
+        <td><span class="status status-done">8月で終了</span></td>
+        <td class="num minus">▲14,813,880</td>
+        <td>9月以降ゼロ</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>ゼンリンデータコム</td>
+        <td class="num minus">▲13,200</td>
+        <td><span class="status status-done">9月で終了</span></td>
+        <td class="num minus">▲158,400</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>HOME4U（広告）</td>
+        <td class="num">要確認</td>
+        <td><span class="status status-progress">解約手続き中</span></td>
+        <td class="num">要確認</td>
+        <td>解約完了まで3ヶ月</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>第一コンサル採用停止</td>
+        <td class="num">採用外注費</td>
+        <td><span class="status status-done">即時</span></td>
+        <td class="num">要確認</td>
+        <td>数字回復まで凍結</td>
+      </tr>
+      <tr class="total-row">
+        <td></td>
+        <td>恒久月額合計（確定分）</td>
+        <td class="num minus">▲1,247,690/月</td>
+        <td></td>
+        <td class="num minus">▲14,972,280+</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 検討中 -->
+<div class="section">
+  <h2>検討中の項目 <span class="badge badge-orange">要判断</span></h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>項目</th>
+        <th class="num">月額</th>
+        <th>判断</th>
+        <th>備考</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>ハイハイメール</td>
+        <td class="num">150,000</td>
+        <td><span class="status status-pending">要判断</span></td>
+        <td>LINE@に誘導して解約を提案</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>スーモ・ヤフー不動産</td>
+        <td class="num">要確認</td>
+        <td><span class="status status-pending">要判断</span></td>
+        <td>実需やめてレインズ集約。五十嵐さん賛成</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>配配メール</td>
+        <td class="num">要確認</td>
+        <td><span class="status status-pending">要検討</span></td>
+        <td>ISステップメールで使用中。効果次第</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>採用関連外注費</td>
+        <td class="num">要確認</td>
+        <td><span class="status status-progress">洗い出し中</span></td>
+        <td>加藤さんが費用洗い出し中</td>
+      </tr>
+      <tr style="opacity:0.5">
+        <td><s>5</s></td>
+        <td><s>コムデスク（CTI/Widsley）</s></td>
+        <td class="num"><s>168,801</s></td>
+        <td><span class="status status-keep">継続</span></td>
+        <td>ISが荷電で使用中のため継続</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 残タスク -->
+<div class="section">
+  <h2>残タスク</h2>
+  <div class="task-item">
+    <div class="task-num">1</div>
+    <div class="task-body">
+      <div class="task-title">HOME4U 解約状況を土田さんに確認</div>
+      <div class="task-meta">担当：五十嵐さん ／ 期限：8月6日（明日）</div>
+    </div>
+  </div>
+  <div class="task-item">
+    <div class="task-num">2</div>
+    <div class="task-body">
+      <div class="task-title">配配メール：ステップメール効果検証 → 継続/解約判断</div>
+      <div class="task-meta">担当：五十嵐さん ／ 期限：未定</div>
+    </div>
+  </div>
+  <div class="task-item">
+    <div class="task-num">3</div>
+    <div class="task-body">
+      <div class="task-title">ハイハイメール：LINE@移行の最終判断</div>
+      <div class="task-meta">担当：未定 ／ 期限：未定</div>
+    </div>
+  </div>
+  <div class="task-item">
+    <div class="task-num">4</div>
+    <div class="task-body">
+      <div class="task-title">スーモ・ヤフー不動産：解約の最終判断</div>
+      <div class="task-meta">担当：未定 ／ 期限：未定</div>
+    </div>
+  </div>
+  <div class="task-item">
+    <div class="task-num">5</div>
+    <div class="task-body">
+      <div class="task-title">採用関連費用の洗い出し</div>
+      <div class="task-meta">担当：加藤さん ／ 期限：8月11日定例まで</div>
+    </div>
+  </div>
+  <div class="task-item">
+    <div class="task-num">6</div>
+    <div class="task-body">
+      <div class="task-title">コンサル経験者採用の継続/停止判断</div>
+      <div class="task-meta">担当：鶴野さん ／ 期限：未定</div>
+    </div>
+  </div>
+  <div class="task-item">
+    <div class="task-num">7</div>
+    <div class="task-body">
+      <div class="task-title">先月PL仮計上の数値確認</div>
+      <div class="task-meta">担当：鶴野さん ／ 期限：未定</div>
+    </div>
+  </div>
+  <div class="task-item">
+    <div class="task-num">8</div>
+    <div class="task-body">
+      <div class="task-title">ランコスに見える費目の付替え検討</div>
+      <div class="task-meta">担当：藤山さん ／ 期限：未定</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  作成日：2026年8月5日 ／ リアテクス Mgr/経営管理グループ
+</footer>
+
+</div>
+</body>
+</html>
